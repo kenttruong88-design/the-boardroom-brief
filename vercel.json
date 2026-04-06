@@ -2,15 +2,35 @@
   "crons": [
     {
       "path": "/api/market-sync",
-      "schedule": "*/15 13-21 * * 1-5"
+      "schedule": "*/15 8-18 * * 1-5"
     },
     {
       "path": "/api/market-sync",
-      "schedule": "0 * * * *"
+      "schedule": "0 */2 * * *"
+    },
+    {
+      "path": "/api/newsletter/send",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/social/queue-today",
+      "schedule": "0 7 * * *"
     },
     {
       "path": "/api/ai/macro-draft",
-      "schedule": "0 6 1 * *"
+      "schedule": "0 5 1 * *"
+    },
+    {
+      "path": "/api/newsletter/weekly-digest",
+      "schedule": "0 8 * * 5"
+    },
+    {
+      "path": "/api/sitemap/rebuild",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/ai/earnings",
+      "schedule": "0 19 * * *"
     }
   ]
 }

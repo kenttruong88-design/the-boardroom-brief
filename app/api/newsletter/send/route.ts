@@ -7,13 +7,18 @@ import MorningBrief, { type MarketItem, type ArticleItem } from "@/emails/mornin
 
 const BATCH_SIZE = 100;
 
-export async function POST(req: Request) {
-  // Protect with secret header
-  const secret = req.headers.get("x-newsletter-secret");
-  if (secret !== process.env.CRON_SECRET) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+function isAuthorized(req: Request): boolean {
+  const secret = req.headers.get("x-newsletter-secret") ?? req.headers.get("authorization")?.replace("Bearer ", "");
+  return secret === process.env.CRON_SECRET;
+}
 
+// Vercel Cron hits GET
+export async function GET(req: Request) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  return runSend();
+}
+
+async function runSend() {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
     return NextResponse.json({ error: "RESEND_API_KEY not configured" }, { status: 500 });
@@ -166,4 +171,9 @@ export async function POST(req: Request) {
     subscribers: emails.length,
     articles: articleIds.length,
   });
+}
+
+export async function POST(req: Request) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  return runSend();
 }
