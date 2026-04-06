@@ -7,6 +7,10 @@
     {
       "path": "/api/market-sync",
       "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/ai/macro-draft",
+      "schedule": "0 6 1 * *"
     }
   ]
 }

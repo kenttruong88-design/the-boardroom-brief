@@ -2,6 +2,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemas";
+import { headlineGeneratorPlugin } from "./sanity-plugin-headline-generator/src";
 
 export default defineConfig({
   name: "the-boardroom-brief",
@@ -13,6 +14,7 @@ export default defineConfig({
   plugins: [
     structureTool(),
     visionTool(),
+    headlineGeneratorPlugin(),
   ],
 
   schema: {
