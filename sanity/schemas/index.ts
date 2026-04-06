@@ -1,4 +1,14 @@
 import type { SchemaTypeDefinition } from "sanity";
+import { article } from "./article";
+import { author } from "./author";
+import { pillar } from "./pillar";
+import { country } from "./country";
+import { tag } from "./tag";
 
-// Schemas are defined in Prompt 2.2
-export const schemaTypes: SchemaTypeDefinition[] = [];
+export const schemaTypes: SchemaTypeDefinition[] = [
+  article,
+  author,
+  pillar,
+  country,
+  tag,
+];
