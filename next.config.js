@@ -6,6 +6,14 @@ const nextConfig = {
       root: __dirname,
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
