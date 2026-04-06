@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase";
+import Welcome from "@/emails/welcome";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -21,6 +24,24 @@ export async function GET(req: Request) {
 
   if (error || !data) {
     return NextResponse.redirect(`${siteUrl}/subscribe?error=invalid_token`);
+  }
+
+  // Send welcome email
+  const resendKey = process.env.RESEND_API_KEY;
+  if (resendKey) {
+    try {
+      const resend = new Resend(resendKey);
+      const html = await render(Welcome({
+        preferencesUrl: `${siteUrl}/welcome`,
+        siteUrl,
+      }));
+      await resend.emails.send({
+        from: "The Boardroom Brief <brief@theboardroombrief.com>",
+        to: data.email,
+        subject: "Welcome to The Boardroom Brief",
+        html,
+      });
+    } catch { /* welcome email failure shouldn't block redirect */ }
   }
 
   return NextResponse.redirect(`${siteUrl}/welcome?email=${encodeURIComponent(data.email)}`);
