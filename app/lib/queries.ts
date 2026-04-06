@@ -1,5 +1,8 @@
-import { client } from "./sanity";
+import { client as _client } from "./sanity";
 import { cache } from "react";
+
+// If Sanity isn't configured, all queries return empty results
+const client = _client;
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -47,6 +50,7 @@ const ARTICLE_CARD = `
 
 /** Latest N articles across all pillars */
 export const getLatestArticles = cache(async (limit = 10): Promise<SanityArticle[]> => {
+  if (!client) return [];
   return client.fetch(
     `*[_type == "article"] | order(publishedAt desc) [0...$limit] { ${ARTICLE_CARD} }`,
     { limit: limit - 1 },
@@ -56,6 +60,7 @@ export const getLatestArticles = cache(async (limit = 10): Promise<SanityArticle
 
 /** Featured articles for the homepage hero */
 export const getFeaturedArticles = cache(async (limit = 5): Promise<SanityArticle[]> => {
+  if (!client) return [];
   return client.fetch(
     `*[_type == "article" && featured == true] | order(publishedAt desc) [0...$limit] { ${ARTICLE_CARD} }`,
     { limit: limit - 1 },
@@ -65,6 +70,7 @@ export const getFeaturedArticles = cache(async (limit = 5): Promise<SanityArticl
 
 /** Articles by pillar slug */
 export const getArticlesByPillar = cache(async (pillarSlug: string, limit = 20): Promise<SanityArticle[]> => {
+  if (!client) return [];
   return client.fetch(
     `*[_type == "article" && pillar->slug.current == $pillarSlug] | order(publishedAt desc) [0...$limit] { ${ARTICLE_CARD} }`,
     { pillarSlug, limit: limit - 1 },
@@ -74,6 +80,7 @@ export const getArticlesByPillar = cache(async (pillarSlug: string, limit = 20):
 
 /** Single article by slug (full content) */
 export const getArticleBySlug = cache(async (slug: string): Promise<SanityArticleFull | null> => {
+  if (!client) return null;
   const results = await client.fetch(
     `*[_type == "article" && slug.current == $slug][0] {
       ${ARTICLE_CARD},
@@ -89,6 +96,7 @@ export const getArticleBySlug = cache(async (slug: string): Promise<SanityArticl
 
 /** Articles by country slug */
 export const getArticlesByCountry = cache(async (countrySlug: string, limit = 12): Promise<SanityArticle[]> => {
+  if (!client) return [];
   return client.fetch(
     `*[_type == "article" && $countrySlug in countries[]->slug.current] | order(publishedAt desc) [0...$limit] { ${ARTICLE_CARD} }`,
     { countrySlug, limit: limit - 1 },
@@ -98,12 +106,14 @@ export const getArticlesByCountry = cache(async (countrySlug: string, limit = 12
 
 /** All pillar slugs (for generateStaticParams) */
 export const getAllPillarSlugs = cache(async (): Promise<string[]> => {
+  if (!client) return [];
   const pillars = await client.fetch(`*[_type == "pillar"]{ "slug": slug.current }`);
   return pillars.map((p: { slug: string }) => p.slug);
 });
 
 /** All article slugs with their pillar (for generateStaticParams) */
 export const getAllArticleSlugs = cache(async (): Promise<{ section: string; slug: string }[]> => {
+  if (!client) return [];
   const articles = await client.fetch(
     `*[_type == "article"]{ "slug": slug.current, "section": pillar->slug.current }`
   );
@@ -112,6 +122,7 @@ export const getAllArticleSlugs = cache(async (): Promise<{ section: string; slu
 
 /** All country slugs (for generateStaticParams) */
 export const getAllCountrySlugs = cache(async (): Promise<string[]> => {
+  if (!client) return [];
   const countries = await client.fetch(`*[_type == "country"]{ "slug": slug.current }`);
   return countries.map((c: { slug: string }) => c.slug);
 });
