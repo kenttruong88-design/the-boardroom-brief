@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
-import TickerBar from "@/app/components/TickerBar";
+import MarketTicker from "@/app/components/MarketTicker";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, ECONOMIES, formatDateShort } from "@/app/lib/mock-data";
 import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
 import { Clock, ArrowRight } from "lucide-react";
@@ -62,7 +62,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <TickerBar />
+      <MarketTicker />
       <Navigation />
 
       <main style={{ background: "var(--cream)" }}>

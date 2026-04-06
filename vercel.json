@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/market-sync",
+      "schedule": "*/15 13-21 * * 1-5"
+    },
+    {
+      "path": "/api/market-sync",
+      "schedule": "0 * * * *"
+    }
+  ]
+}
