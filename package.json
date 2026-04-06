@@ -12,6 +12,8 @@
     "@sanity/client": "^7.20.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.19.0",
+    "@supabase/ssr": "^0.10.0",
+    "@supabase/supabase-js": "^2.101.1",
     "lucide-react": "^1.7.0",
     "next": "^16.2.2",
     "next-sanity": "^12.2.1",
