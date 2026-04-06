@@ -95,8 +95,6 @@ export default function Footer() {
                   border: "1px solid rgba(255,255,255,0.15)",
                   color: "var(--cream)",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "var(--red)")}
-                onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.15)")}
               />
               <button
                 type="submit"

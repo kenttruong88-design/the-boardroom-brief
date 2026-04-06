@@ -12,14 +12,16 @@
 
 /* ── Design tokens ── */
 :root {
-  --navy:   #0f1923;
-  --cream:  #f5f0e8;
-  --red:    #c8391a;
-  --gold:   #b8960c;
-  --ink:    #1a1712;
-  --ink-m:  #6b6558;
-  --border: #ccc5b5;
-  --surface:#ede8de;
+  --navy:    #0f1923;
+  --navy-l:  #1a2a3a;
+  --cream:   #f5f0e8;
+  --surface: #ede8de;
+  --border:  #ccc5b5;
+  --red:     #c8391a;
+  --red-h:   #a82e14;
+  --gold:    #b8960c;
+  --ink:     #1a1712;
+  --ink-m:   #6b6558;
 }
 
 /* ── Base ── */
@@ -34,14 +36,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), Georgia, serif;
   line-height: 1.15;
   color: var(--navy);
 }
 
-/* Drop cap */
+/* ── Drop cap ── */
 .drop-cap::first-letter {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: 4.5rem;
@@ -52,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--navy);
 }
 
-/* Pull quote */
+/* ── Pull quote ── */
 .pull-quote {
   border-left: 3px solid var(--red);
   margin: 2rem 0;
@@ -64,95 +65,133 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--surface);
 }
 
-/* ── Utility classes ── */
-@layer components {
-  /* Layout */
-  .container-editorial {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
+/* ── Layout ── */
+.container-editorial {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px)  { .container-editorial { padding-left: 1.5rem; padding-right: 1.5rem; } }
+@media (min-width: 1024px) { .container-editorial { padding-left: 2rem;   padding-right: 2rem;   } }
 
-  /* Labels */
-  .eyebrow {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    font-weight: 500;
-  }
+/* ── Label utilities ── */
+.eyebrow {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 500;
+}
+.eyebrow-gold {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.eyebrow-muted {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-m);
+  font-weight: 500;
+}
 
-  .eyebrow-gold {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-  }
+/* ── Buttons ── */
+.btn-red {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-red:hover { background: var(--red-h); }
 
-  .eyebrow-muted {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-m);
-    font-weight: 500;
-  }
+.btn-navy {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--cream);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-navy:hover { background: var(--navy-l); }
 
-  /* Buttons */
-  .btn-red {
-    @apply inline-block bg-red-accent text-white text-sm font-sans font-semibold px-5 py-2.5 transition-colors;
-    @apply hover:bg-red-hover;
-    border-radius: 2px;
-    letter-spacing: 0.01em;
-  }
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--ink-m);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-outline:hover { border-color: var(--navy); color: var(--navy); }
 
-  .btn-navy {
-    @apply inline-block bg-navy text-cream-DEFAULT text-sm font-sans font-semibold px-5 py-2.5 transition-colors;
-    @apply hover:bg-navy-light;
-    border-radius: 2px;
-  }
+/* ── Rules / dividers ── */
+.rule       { border-top: 1px solid var(--border); }
+.rule-thick { border-top: 2px solid var(--navy); }
+.rule-red   { border-top: 2px solid var(--red); }
 
-  .btn-outline {
-    @apply inline-block border border-cream-border text-ink-muted text-sm font-sans px-5 py-2.5 transition-colors;
-    @apply hover:border-navy hover:text-navy;
-    background: transparent;
-    border-radius: 2px;
-  }
+/* ── Data / mono text ── */
+.data-label {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-m);
+  text-transform: uppercase;
+}
+.data-value {
+  font-family: var(--font-jetbrains), monospace;
+  font-weight: 500;
+}
 
-  /* Dividers */
-  .rule { border-top: 1px solid var(--border); }
-  .rule-thick { border-top: 2px solid var(--navy); }
-  .rule-red { border-top: 2px solid var(--red); }
+/* ── Pillar badge ── */
+.pillar-badge {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid currentColor;
+  display: inline-block;
+}
 
-  /* Cards */
-  .card-surface {
-    background: var(--surface);
-    border: 1px solid var(--border);
-  }
+/* ── Hover card — border turns red on hover ── */
+.hover-card {
+  border: 1px solid var(--border);
+  transition: border-color 0.15s;
+  cursor: pointer;
+}
+.hover-card:hover { border-color: var(--red); }
 
-  /* Data / mono text */
-  .data-label {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--ink-m);
-    text-transform: uppercase;
-  }
-
-  .data-value {
-    font-family: var(--font-jetbrains), monospace;
-    font-weight: 500;
-  }
-
-  /* Section pillar badge */
-  .pillar-badge {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    border: 1px solid currentColor;
-    display: inline-block;
-  }
+/* ── Text clamp ── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
