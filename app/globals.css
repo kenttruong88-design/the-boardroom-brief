@@ -2,20 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Ticker animation ── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker { animation: ticker 50s linear infinite; }
+.animate-ticker:hover { animation-play-state: paused; }
+
+/* ── Design tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy:   #0f1923;
+  --cream:  #f5f0e8;
+  --red:    #c8391a;
+  --gold:   #b8960c;
+  --ink:    #1a1712;
+  --ink-m:  #6b6558;
+  --border: #ccc5b5;
+  --surface:#ede8de;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, serif;
+  line-height: 1.15;
+  color: var(--navy);
+}
+
+/* Drop cap */
+.drop-cap::first-letter {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 0.8;
+  float: left;
+  margin: 0.08em 0.12em 0 0;
+  color: var(--navy);
+}
+
+/* Pull quote */
+.pull-quote {
+  border-left: 3px solid var(--red);
+  margin: 2rem 0;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--navy);
+  background: var(--surface);
+}
+
+/* ── Utility classes ── */
+@layer components {
+  /* Layout */
+  .container-editorial {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Labels */
+  .eyebrow {
+    font-family: var(--font-jetbrains), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+  }
+
+  .eyebrow-gold {
+    font-family: var(--font-jetbrains), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .eyebrow-muted {
+    font-family: var(--font-jetbrains), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-m);
+    font-weight: 500;
+  }
+
+  /* Buttons */
+  .btn-red {
+    @apply inline-block bg-red-accent text-white text-sm font-sans font-semibold px-5 py-2.5 transition-colors;
+    @apply hover:bg-red-hover;
+    border-radius: 2px;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-navy {
+    @apply inline-block bg-navy text-cream-DEFAULT text-sm font-sans font-semibold px-5 py-2.5 transition-colors;
+    @apply hover:bg-navy-light;
+    border-radius: 2px;
+  }
+
+  .btn-outline {
+    @apply inline-block border border-cream-border text-ink-muted text-sm font-sans px-5 py-2.5 transition-colors;
+    @apply hover:border-navy hover:text-navy;
+    background: transparent;
+    border-radius: 2px;
+  }
+
+  /* Dividers */
+  .rule { border-top: 1px solid var(--border); }
+  .rule-thick { border-top: 2px solid var(--navy); }
+  .rule-red { border-top: 2px solid var(--red); }
+
+  /* Cards */
+  .card-surface {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  /* Data / mono text */
+  .data-label {
+    font-family: var(--font-jetbrains), monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-m);
+    text-transform: uppercase;
+  }
+
+  .data-value {
+    font-family: var(--font-jetbrains), monospace;
+    font-weight: 500;
+  }
+
+  /* Section pillar badge */
+  .pillar-badge {
+    font-family: var(--font-jetbrains), monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid currentColor;
+    display: inline-block;
+  }
 }
