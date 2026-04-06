@@ -127,9 +127,10 @@ export default function HomePage() {
               <span className="eyebrow-muted">As of {new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })} UTC</span>
             </div>
             <div
-              className="grid grid-cols-3 sm:grid-cols-6 divide-x"
-              style={{ border: "1px solid var(--border)", divideColor: "var(--border)" }}
-            >
+  className="grid grid-cols-3 sm:grid-cols-6 divide-x [--tw-divide-opacity:1] divide-[var(--border)]"
+  style={{ border: "1px solid var(--border)" }}
+>
+            
               {TICKER_DATA.slice(0, 6).map((item) => (
                 <div
                   key={item.symbol}
