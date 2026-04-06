@@ -3,7 +3,10 @@ import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import TickerBar from "@/app/components/TickerBar";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, ECONOMIES, formatDateShort } from "@/app/lib/mock-data";
+import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
 import { Clock, ArrowRight } from "lucide-react";
+
+export const revalidate = 60;
 
 // ── Inline components ──────────────────────────────────────────────
 
@@ -27,9 +30,34 @@ function Meta({ date, readTime }: { date: string; readTime: number }) {
   );
 }
 
-export default function HomePage() {
-  const hero = MOCK_ARTICLES[0];
-  const secondary = MOCK_ARTICLES.slice(1, 4);
+// Normalise a Sanity article into the same shape used in the template
+function normaliseSanity(a: SanityArticle) {
+  return {
+    slug: a.slug.current,
+    title: a.title,
+    satiricalHeadline: a.satiricalHeadline ?? "",
+    excerpt: a.excerpt ?? "",
+    publishedAt: a.publishedAt,
+    readTime: a.readTime ?? 5,
+    pillar: a.pillar?.slug?.current ?? "markets-floor",
+    coverImage: a.coverImage?.asset?.url ?? null,
+  };
+}
+
+export default async function HomePage() {
+  // Try Sanity first; fall back to mock data if CMS is empty
+  let articles = MOCK_ARTICLES;
+  try {
+    const sanityArticles = await getLatestArticles(10);
+    if (sanityArticles.length > 0) {
+      articles = sanityArticles.map(normaliseSanity) as unknown as typeof MOCK_ARTICLES;
+    }
+  } catch {
+    // Sanity unavailable — use mock data
+  }
+
+  const hero = articles[0];
+  const secondary = articles.slice(1, 4);
   const spotlightEconomy = ECONOMIES.find((e) => e.slug === "united-states")!;
 
   return (

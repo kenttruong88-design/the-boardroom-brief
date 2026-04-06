@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Filter, Clock } from "lucide-react";
 import { PILLARS, MOCK_ARTICLES, ECONOMIES, getPillar, formatDateShort } from "@/app/lib/mock-data";
+import { getArticlesByPillar, type SanityArticle } from "@/app/lib/queries";
+
+export const revalidate = 60;
 
 interface Props {
   params: Promise<{ section: string }>;
@@ -90,12 +93,34 @@ function GlobalOfficeWidget() {
   );
 }
 
+function normaliseSanity(a: SanityArticle) {
+  return {
+    slug: a.slug.current,
+    title: a.title,
+    satiricalHeadline: a.satiricalHeadline ?? "",
+    excerpt: a.excerpt ?? "",
+    publishedAt: a.publishedAt,
+    readTime: a.readTime ?? 5,
+    pillar: a.pillar?.slug?.current ?? "markets-floor",
+    coverImage: a.coverImage?.asset?.url ?? null,
+  };
+}
+
 export default async function SectionPage({ params }: Props) {
   const { section: sectionSlug } = await params;
   const pillar = getPillar(sectionSlug);
   if (!pillar) notFound();
 
-  const articles = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug);
+  let articles = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug);
+  try {
+    const sanityArticles = await getArticlesByPillar(sectionSlug, 20);
+    if (sanityArticles.length > 0) {
+      articles = sanityArticles.map(normaliseSanity) as unknown as typeof MOCK_ARTICLES;
+    }
+  } catch {
+    // Sanity unavailable — use mock data
+  }
+
   const displayArticles = articles.length >= 2
     ? articles
     : [...articles, ...MOCK_ARTICLES.filter((a) => a.pillar !== sectionSlug).slice(0, 6 - articles.length)];

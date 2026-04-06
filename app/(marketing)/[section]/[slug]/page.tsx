@@ -2,15 +2,39 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Clock, ArrowLeft, Share2, Bookmark, Link2, MessageSquare } from "lucide-react";
-import { MOCK_ARTICLES, PILLARS, getArticleBySlug, formatDate, formatDateShort } from "@/app/lib/mock-data";
+import { MOCK_ARTICLES, PILLARS, getArticleBySlug as getMockArticle, formatDate, formatDateShort } from "@/app/lib/mock-data";
+import { getArticleBySlug as getSanityArticle } from "@/app/lib/queries";
+
+export const revalidate = 60;
 
 interface Props {
   params: Promise<{ section: string; slug: string }>;
 }
 
+async function resolveArticle(slug: string) {
+  try {
+    const sanity = await getSanityArticle(slug);
+    if (sanity) {
+      return {
+        title: sanity.title,
+        slug: sanity.slug.current,
+        satiricalHeadline: sanity.satiricalHeadline ?? "",
+        excerpt: sanity.excerpt ?? "",
+        publishedAt: sanity.publishedAt,
+        readTime: sanity.readTime ?? 5,
+        pillar: sanity.pillar?.slug?.current ?? "markets-floor",
+        author: sanity.author?.name ?? "Staff Writer",
+        coverImage: sanity.coverImage?.asset?.url ?? null,
+        _fromSanity: true,
+      };
+    }
+  } catch { /* fall through */ }
+  return getMockArticle(slug) ?? null;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await resolveArticle(slug);
   if (!article) return {};
   return {
     title: `${article.title} | The Boardroom Brief`,
@@ -31,7 +55,7 @@ export function generateStaticParams() {
 
 export default async function ArticlePage({ params }: Props) {
   const { section: sectionSlug, slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await resolveArticle(slug);
   if (!article || article.pillar !== sectionSlug) notFound();
 
   const pillar = PILLARS.find((p) => p.slug === sectionSlug);
