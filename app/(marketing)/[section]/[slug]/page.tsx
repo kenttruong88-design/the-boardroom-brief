@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Clock, ArrowLeft, Share2, Bookmark, Link2, MessageSquare } from "lucide-react";
 import { MOCK_ARTICLES, PILLARS, getArticleBySlug as getMockArticle, formatDate, formatDateShort } from "@/app/lib/mock-data";
 import { getArticleBySlug as getSanityArticle } from "@/app/lib/queries";
+import ArticleReadTracker from "@/app/components/ArticleReadTracker";
 
 export const revalidate = 60;
 
@@ -32,20 +33,37 @@ async function resolveArticle(slug: string) {
   return getMockArticle(slug) ?? null;
 }
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { section, slug } = await params;
   const article = await resolveArticle(slug);
   if (!article) return {};
+
+  const canonicalUrl = `${SITE_URL}/${section}/${slug}`;
+  const ogImage = (article as { coverImage?: string | null }).coverImage
+    ?? `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}`;
+
   return {
     title: `${article.title} | The Boardroom Brief`,
     description: article.excerpt,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: article.title,
       description: article.satiricalHeadline,
       type: "article",
       publishedTime: article.publishedAt,
+      authors: [(article as { author?: string }).author ?? "The Boardroom Brief"],
+      url: canonicalUrl,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
+      siteName: "The Boardroom Brief",
     },
-    twitter: { card: "summary_large_image", title: article.title, description: article.satiricalHeadline },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.satiricalHeadline,
+      images: [ogImage],
+    },
   };
 }
 
@@ -61,8 +79,43 @@ export default async function ArticlePage({ params }: Props) {
   const pillar = PILLARS.find((p) => p.slug === sectionSlug);
   const related = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug && a.slug !== slug).slice(0, 3);
 
+  const canonicalUrl = `${SITE_URL}/${sectionSlug}/${slug}`;
+  const articleAuthor = (article as { author?: string }).author ?? "The Boardroom Brief";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "NewsArticle",
+        "headline": article.title,
+        "description": article.excerpt,
+        "datePublished": article.publishedAt,
+        "dateModified": article.publishedAt,
+        "author": { "@type": "Person", "name": articleAuthor },
+        "publisher": {
+          "@type": "Organization",
+          "name": "The Boardroom Brief",
+          "url": SITE_URL,
+          "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` },
+        },
+        "url": canonicalUrl,
+        "mainEntityOfPage": canonicalUrl,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+          { "@type": "ListItem", "position": 2, "name": pillar?.name ?? sectionSlug, "item": `${SITE_URL}/${sectionSlug}` },
+          { "@type": "ListItem", "position": 3, "name": article.title, "item": canonicalUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <div style={{ background: "var(--cream)" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <ArticleReadTracker slug={slug} section={sectionSlug} articleId={slug} />
       <div className="container-editorial py-8">
 
         {/* Breadcrumb */}
@@ -208,6 +261,8 @@ export default async function ArticlePage({ params }: Props) {
               <p className="text-sm font-sans mt-2" style={{ color: "var(--ink-m)" }}>Comments are available to subscribers. Sign in to join the conversation.</p>
               <Link href="/login" className="btn-navy mt-4 inline-block text-sm">Sign in to comment</Link>
             </div>
+            {/* End sentinel for 80% scroll tracking */}
+            <div id="article-end-sentinel" aria-hidden="true" />
           </article>
 
           {/* Sidebar */}
