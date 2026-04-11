@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, Filter, Clock } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import { PILLARS, MOCK_ARTICLES, ECONOMIES, getPillar, formatDateShort } from "@/app/lib/mock-data";
 import { getArticlesByPillar, type SanityArticle } from "@/app/lib/queries";
 
@@ -132,17 +132,14 @@ export default async function SectionPage({ params }: Props) {
     <div style={{ background: "var(--cream)" }}>
 
       {/* Section header */}
-      <div style={{ background: "var(--navy)", borderBottom: "3px solid var(--red)" }}>
-        <div className="container-editorial py-10">
-          <span className={`pillar-badge text-2xs ${pillar.color}`} style={{ borderColor: "rgba(245,240,232,0.4)", color: "rgba(245,240,232,0.7)" }}>
+      <div style={{ background: "var(--navy)", borderBottom: "2px solid var(--red)" }}>
+        <div className="container-editorial py-4 flex items-center gap-3">
+          <span className={`pillar-badge text-2xs ${pillar.color}`} style={{ borderColor: "rgba(245,240,232,0.3)", color: "rgba(245,240,232,0.65)" }}>
             {pillar.name}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif font-bold mt-2 mb-2" style={{ color: "var(--cream)" }}>
-            {pillar.name}
-          </h1>
-          <p className="text-sm font-sans max-w-xl" style={{ color: "rgba(245,240,232,0.55)" }}>
+          <h1 className="text-lg font-serif font-bold" style={{ color: "var(--cream)" }}>
             {pillar.description}
-          </p>
+          </h1>
         </div>
       </div>
 
@@ -151,32 +148,6 @@ export default async function SectionPage({ params }: Props) {
 
           {/* Main content */}
           <div className="lg:col-span-2">
-
-            {/* Filter bar */}
-            <div className="flex flex-wrap items-center gap-3 mb-8 p-3" style={{ border: "1px solid var(--border)", background: "var(--surface)" }}>
-              <Filter className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
-              <select className="text-xs font-mono px-3 py-1.5 outline-none cursor-pointer"
-                style={{ background: "var(--cream)", border: "1px solid var(--border)", color: "var(--ink)", fontFamily: "var(--font-jetbrains)", borderRadius: "2px" }}>
-                <option value="">All economies</option>
-                {ECONOMIES.map((e) => <option key={e.slug} value={e.slug}>{e.flag} {e.name}</option>)}
-              </select>
-              <select className="text-xs font-mono px-3 py-1.5 outline-none cursor-pointer"
-                style={{ background: "var(--cream)", border: "1px solid var(--border)", color: "var(--ink)", fontFamily: "var(--font-jetbrains)", borderRadius: "2px" }}>
-                <option value="">All dates</option>
-                <option value="today">Today</option>
-                <option value="week">This week</option>
-                <option value="month">This month</option>
-              </select>
-              <select className="text-xs font-mono px-3 py-1.5 outline-none cursor-pointer"
-                style={{ background: "var(--cream)", border: "1px solid var(--border)", color: "var(--ink)", fontFamily: "var(--font-jetbrains)", borderRadius: "2px" }}>
-                <option value="">All topics</option>
-                <option value="rates">Interest Rates</option>
-                <option value="fx">FX &amp; Currency</option>
-                <option value="equities">Equities</option>
-                <option value="commodities">Commodities</option>
-              </select>
-              <span className="eyebrow-muted ml-auto">{displayArticles.length} articles</span>
-            </div>
 
             {/* Featured article */}
             {featured && (

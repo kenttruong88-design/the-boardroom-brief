@@ -11,8 +11,20 @@ export default function Navigation() {
 
   return (
     <header style={{ background: "var(--cream)", borderBottom: "2px solid var(--navy)" }}>
+      {/* Dateline strip — above the masthead */}
+      <div className="border-b" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
+        <div className="container-editorial py-1 flex items-center justify-between">
+          <span className="eyebrow-muted text-2xs hidden sm:block" style={{ fontFamily: "var(--font-jetbrains)" }}>
+            Vol. I
+          </span>
+          <span className="eyebrow-muted text-2xs ml-auto" style={{ fontFamily: "var(--font-jetbrains)" }}>
+            {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+          </span>
+        </div>
+      </div>
+
       {/* Masthead */}
-      <div className="container-editorial py-4 border-b relative" style={{ borderColor: "var(--border)" }}>
+      <div className="container-editorial py-4 border-b" style={{ borderColor: "var(--border)" }}>
         <div className="text-center">
           <Link href="/" className="inline-block">
             <h1
@@ -25,12 +37,6 @@ export default function Navigation() {
           <p className="eyebrow-muted mt-1">
             Real markets. Real news. Questionable corporate poetry.
           </p>
-        </div>
-        {/* Date — right-aligned, vertically centred */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden sm:block text-right">
-          <span className="eyebrow-muted text-2xs" style={{ fontFamily: "var(--font-jetbrains)" }}>
-            {new Date().toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "short", day: "numeric" })}
-          </span>
         </div>
       </div>
 
