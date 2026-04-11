@@ -32,7 +32,7 @@ const config: Config = {
           light:  "#fbbf24",
         },
         ink: {
-          DEFAULT: "#1e293b",   // slate-800
+          DEFAULT: "#0f172a",   // slate-950 — near black
           muted:   "#475569",   // slate-600
           light:   "#64748b",   // slate-500
         },

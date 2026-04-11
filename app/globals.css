@@ -24,8 +24,8 @@
   --red-h:   #c2410c;   /* orange-700 */
 
   /* Type */
-  --ink:     #1e293b;   /* slate-800 */
-  --ink-m:   #64748b;   /* slate-500 */
+  --ink:     #0f172a;   /* slate-950 — near black for body text */
+  --ink-m:   #475569;   /* slate-600 — muted labels */
 
   /* Highlight */
   --gold:    #f59e0b;   /* amber-400 */
