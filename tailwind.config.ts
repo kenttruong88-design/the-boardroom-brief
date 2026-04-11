@@ -10,45 +10,54 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: "#0f1923",
-          light: "#1a2a3a",
-          muted: "#2c3e50",
+          DEFAULT: "#0f172a",   // slate-950
+          light:   "#1e293b",   // slate-800
+          muted:   "#334155",   // slate-700
         },
         cream: {
-          DEFAULT: "#f5f0e8",
-          dark: "#ede8de",
-          border: "#ccc5b5",
+          DEFAULT: "#ffffff",
+          dark:    "#f8fafc",
+          border:  "#e2e8f0",
         },
         red: {
-          accent: "#c8391a",
-          hover: "#a82e14",
+          accent: "#0d9488",    // teal-600 — brand accent
+          hover:  "#0f766e",    // teal-700
+        },
+        orange: {
+          accent: "#ea580c",
+          hover:  "#c2410c",
         },
         gold: {
-          accent: "#b8960c",
-          light: "#d4af37",
+          accent: "#f59e0b",
+          light:  "#fbbf24",
         },
         ink: {
-          DEFAULT: "#1a1712",
-          muted: "#4a4540",
-          light: "#6b6558",
+          DEFAULT: "#1e293b",   // slate-800
+          muted:   "#475569",   // slate-600
+          light:   "#64748b",   // slate-500
+        },
+        teal: {
+          DEFAULT: "#0d9488",
+          dark:    "#0f766e",
+          light:   "#14b8a6",
         },
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
+        serif: ["var(--font-playfair)", "Fraunces", "Georgia", "serif"],
+        sans:  ["var(--font-dm-sans)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
+        mono:  ["var(--font-jetbrains)", "monospace"],
       },
       fontSize: {
         "2xs": ["0.65rem", { lineHeight: "1rem" }],
-        xs: ["0.75rem", { lineHeight: "1.125rem" }],
-        sm: ["0.875rem", { lineHeight: "1.375rem" }],
-        base: ["1rem", { lineHeight: "1.625rem" }],
-        lg: ["1.125rem", { lineHeight: "1.75rem" }],
-        xl: ["1.25rem", { lineHeight: "1.875rem" }],
-        "2xl": ["1.5rem", { lineHeight: "2rem" }],
+        xs:    ["0.75rem", { lineHeight: "1.125rem" }],
+        sm:    ["0.875rem", { lineHeight: "1.375rem" }],
+        base:  ["1rem",    { lineHeight: "1.625rem" }],
+        lg:    ["1.125rem", { lineHeight: "1.75rem" }],
+        xl:    ["1.25rem",  { lineHeight: "1.875rem" }],
+        "2xl": ["1.5rem",   { lineHeight: "2rem" }],
         "3xl": ["1.875rem", { lineHeight: "2.375rem" }],
-        "4xl": ["2.25rem", { lineHeight: "2.75rem" }],
-        "5xl": ["3rem", { lineHeight: "1.1" }],
+        "4xl": ["2.25rem",  { lineHeight: "2.75rem" }],
+        "5xl": ["3rem",     { lineHeight: "1.1" }],
       },
       spacing: {
         "18": "4.5rem",
@@ -56,13 +65,13 @@ const config: Config = {
         "26": "6.5rem",
       },
       borderRadius: {
-        DEFAULT: "2px",
-        sm: "1px",
-        md: "3px",
-        lg: "4px",
+        DEFAULT: "3px",
+        sm: "2px",
+        md: "4px",
+        lg: "6px",
       },
       borderColor: {
-        DEFAULT: "#ccc5b5",
+        DEFAULT: "#e2e8f0",
       },
     },
   },

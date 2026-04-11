@@ -6,7 +6,7 @@ export default function TickerBar() {
   const items = [...TICKER_DATA, ...TICKER_DATA];
 
   return (
-    <div className="bg-navy overflow-hidden border-b border-navy-light" style={{ height: "36px" }}>
+    <div className="overflow-hidden" style={{ height: "36px", background: "var(--navy)", borderBottom: "1px solid var(--navy-l)" }}>
       <div className="flex items-center h-full">
         {/* Live label */}
         <div

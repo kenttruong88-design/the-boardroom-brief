@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import PostHogProvider from "./components/PostHogProvider";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+// Fraunces: optical-size serif — distinctive, nothing like FT's Playfair
+const fraunces = Fraunces({
+  variable: "--font-playfair",   // keep CSS var name so all components work unchanged
   subsets: ["latin"],
   display: "swap",
+  axes: ["opsz"],
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+// Plus Jakarta Sans: modern geometric sans
+const jakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-dm-sans",    // keep CSS var name so all components work unchanged
   subsets: ["latin"],
   display: "swap",
 });
@@ -69,7 +72,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className={`${playfair.variable} ${dmSans.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className={`${fraunces.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} antialiased`}>
         <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
