@@ -34,6 +34,14 @@ export const PILLARS = [
     color: "text-rose-700 border-rose-700",
     bg: "bg-rose-50",
   },
+  {
+    slug: "off-the-record",
+    name: "Off The Record",
+    description: "The podcast — unfiltered conversations on corporate life, leadership, and the stuff nobody puts in the press release",
+    color: "text-orange-700 border-orange-700",
+    bg: "bg-orange-50",
+    isPodcast: true,
+  },
 ];
 
 export const MOCK_ARTICLES = [
@@ -155,6 +163,30 @@ export const MOCK_ARTICLES = [
     author: "The Boardroom Brief",
     publishedAt: "2026-04-03T07:00:00Z",
     readTime: 4,
+    featured: false,
+  },
+  {
+    slug: "ep12-the-performance-review-industrial-complex",
+    title: "Ep. 12 — The Performance Review Industrial Complex",
+    satiricalHeadline: "We Invited an HR Director. She Has Opinions. So Do We.",
+    excerpt:
+      "Why does the annual performance review survive despite universal hatred? This week we go deep on the rituals of corporate evaluation, the psychology of feedback, and why 'exceeds expectations' somehow never results in a raise.",
+    pillar: "off-the-record",
+    author: "Off The Record",
+    publishedAt: "2026-04-07T06:00:00Z",
+    readTime: 42,
+    featured: true,
+  },
+  {
+    slug: "ep11-remote-work-class-war",
+    title: "Ep. 11 — Remote Work and the New Class War",
+    satiricalHeadline: "Who Gets To Work From Home Is Now Officially A Status Symbol",
+    excerpt:
+      "The return-to-office debate has split workforces along new fault lines. We talk to people on both sides — and find out why the executives mandating five days in office are suspiciously hard to reach on Fridays.",
+    pillar: "off-the-record",
+    author: "Off The Record",
+    publishedAt: "2026-03-31T06:00:00Z",
+    readTime: 38,
     featured: false,
   },
 ];
