@@ -55,7 +55,7 @@ export default function EconomiesPage() {
                     <div key={ind.label} className="flex justify-between items-center">
                       <span className="text-2xs" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>{ind.label}</span>
                       <span className="text-2xs font-semibold flex items-center gap-0.5"
-                        style={{ color: ind.up ? "#ea580c" : "var(--navy)", fontFamily: "var(--font-jetbrains)" }}>
+                        style={{ color: ind.up ? "#16a34a" : "var(--navy)", fontFamily: "var(--font-jetbrains)" }}>
                         {ind.up ? <TrendingUp className="w-2.5 h-2.5" /> : <TrendingDown className="w-2.5 h-2.5" />}
                         {ind.value}
                       </span>

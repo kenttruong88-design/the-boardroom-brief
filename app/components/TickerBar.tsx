@@ -39,7 +39,7 @@ export default function TickerBar() {
                 <span className="text-2xs text-white font-medium">{item.value}</span>
                 <span
                   className="text-2xs font-medium"
-                  style={{ color: item.up ? "#ea580c" : "#f87171" }}
+                  style={{ color: item.up ? "#16a34a" : "#f87171" }}
                 >
                   {item.change}
                 </span>

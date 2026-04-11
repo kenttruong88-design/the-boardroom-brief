@@ -52,11 +52,11 @@ function SlideOver({ quote, onClose }: SlideOverProps) {
             </div>
             <div className="flex items-center gap-2">
               {up
-                ? <TrendingUp className="w-4 h-4" style={{ color: "#ea580c" }} />
+                ? <TrendingUp className="w-4 h-4" style={{ color: "#16a34a" }} />
                 : <TrendingDown className="w-4 h-4" style={{ color: "#dc2626" }} />}
               <span
                 className="text-sm font-semibold"
-                style={{ color: up ? "#ea580c" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}
+                style={{ color: up ? "#16a34a" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}
               >
                 {up ? "+" : ""}{quote.changePct.toFixed(2)}%
               </span>
@@ -77,7 +77,7 @@ function SlideOver({ quote, onClose }: SlideOverProps) {
                   className="flex-1"
                   style={{
                     height: `${h}%`,
-                    background: up ? "#ea580c" : "#dc2626",
+                    background: up ? "#16a34a" : "#dc2626",
                     opacity: 0.4 + (i / 7) * 0.6,
                     borderRadius: "1px 1px 0 0",
                   }}
@@ -209,7 +209,7 @@ export default function MarketTicker() {
                   </span>
                   <span
                     className="text-2xs font-mono"
-                    style={{ color: up ? "#ea580c" : "#f87171" }}
+                    style={{ color: up ? "#16a34a" : "#f87171" }}
                   >
                     {up ? "▲" : "▼"} {Math.abs(quote.changePct).toFixed(2)}%
                   </span>

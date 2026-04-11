@@ -10,8 +10,8 @@ export const PILLARS = [
     slug: "macro-mondays",
     name: "Macro Mondays",
     description: "Central banks, GDP, inflation, and all the numbers no one agrees on",
-    color: "text-orange-600 border-orange-600",
-    bg: "bg-orange-50",
+    color: "text-emerald-700 border-emerald-700",
+    bg: "bg-emerald-50",
   },
   {
     slug: "c-suite-circus",
@@ -39,7 +39,7 @@ export const PILLARS = [
     name: "Off The Record",
     description: "The podcast — unfiltered conversations on corporate life, leadership, and the stuff nobody puts in the press release",
     color: "text-orange-700 border-orange-700",
-    bg: "bg-orange-50",
+    bg: "bg-emerald-50",
     isPodcast: true,
   },
 ];
@@ -222,7 +222,7 @@ export const CONTINENTS = [
     name: "Europe",
     flag: "🌍",
     gdp: "$23.1T",
-    color: "text-orange-600 border-orange-600",
+    color: "text-emerald-700 border-emerald-700",
     description: "The EU's single market navigates energy transition, defence spending pressures, and German industrial contraction",
     keyEconomies: ["Germany", "France", "United Kingdom", "Italy", "Scandinavia"],
     indicators: { gdpGrowth: "0.9%", inflation: "2.6%", unemployment: "6.1%" },
