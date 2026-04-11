@@ -19,9 +19,9 @@
   --surface: #f8fafc;   /* slate-50 — barely-there cool gray */
   --border:  #e2e8f0;   /* slate-200 */
 
-  /* Brand accent — teal, nothing like FT red */
-  --red:     #0d9488;   /* teal-600 */
-  --red-h:   #0f766e;   /* teal-700 */
+  /* Brand accent */
+  --red:     #ea580c;   /* orange-600 */
+  --red-h:   #c2410c;   /* orange-700 */
 
   /* Type */
   --ink:     #1e293b;   /* slate-800 */
@@ -29,7 +29,7 @@
 
   /* Highlight */
   --gold:    #f59e0b;   /* amber-400 */
-  --orange:  #ea580c;   /* orange-600 — CTA energy */
+  --orange:  #ea580c;   /* orange-600 */
 }
 
 /* ── Base ── */

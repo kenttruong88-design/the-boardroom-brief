@@ -20,8 +20,8 @@ const config: Config = {
           border:  "#e2e8f0",
         },
         red: {
-          accent: "#0d9488",    // teal-600 — brand accent
-          hover:  "#0f766e",    // teal-700
+          accent: "#ea580c",    // orange-600 — brand accent
+          hover:  "#c2410c",    // orange-700
         },
         orange: {
           accent: "#ea580c",
@@ -36,11 +36,7 @@ const config: Config = {
           muted:   "#475569",   // slate-600
           light:   "#64748b",   // slate-500
         },
-        teal: {
-          DEFAULT: "#0d9488",
-          dark:    "#0f766e",
-          light:   "#14b8a6",
-        },
+
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "Fraunces", "Georgia", "serif"],
