@@ -41,20 +41,51 @@ function normaliseSanity(a: SanityArticle) {
   };
 }
 
+interface ArticleLead {
+  slug: string;
+  title: string;
+  satiricalHeadline: string;
+  excerpt: string;
+  publishedAt: string;
+  readTime: number;
+  pillar: string;
+  author?: string;
+  coverImage?: string | null;
+  featured?: boolean;
+}
+
+// Top story per pillar — curated from mock data, overridden by Sanity when live
+const CURATED: Record<string, string> = {
+  "markets-floor":  "fed-holds-rates-signals-caution-2026",
+  "c-suite-circus": "ceo-turnover-record-q1-2026",
+  "global-office":  "eu-ai-act-enforcement-begins",
+  "water-cooler":   "open-plan-office-productivity-myth",
+  "off-the-record": "ep12-the-performance-review-industrial-complex",
+};
+
 export default async function HomePage() {
-  let allArticles = MOCK_ARTICLES;
+  // Build a map of pillar → top article, using Sanity if available else mock
+  let sanityByPillar: Record<string, ArticleLead> = {};
   try {
     const sanityArticles = await getLatestArticles(20);
-    if (sanityArticles.length > 0) {
-      allArticles = sanityArticles.map(normaliseSanity) as unknown as typeof MOCK_ARTICLES;
+    for (const a of sanityArticles) {
+      const pillarSlug = a.pillar?.slug?.current;
+      if (pillarSlug && !sanityByPillar[pillarSlug]) {
+        sanityByPillar[pillarSlug] = normaliseSanity(a);
+      }
     }
-  } catch { /* fall through to mock */ }
+  } catch { /* fall through */ }
 
-  // 1 lead story per pillar (first match), excluding Macro Mondays from the index
-  const pillarLeads = PILLARS.filter((p) => p.slug !== "macro-mondays").map((pillar) => ({
-    pillar,
-    article: allArticles.find((a) => a.pillar === pillar.slug) ?? null,
-  })).filter((x) => x.article !== null) as { pillar: typeof PILLARS[0]; article: typeof MOCK_ARTICLES[0] }[];
+  // 1 lead story per pillar, excluding Macro Mondays
+  const pillarLeads: { pillar: (typeof PILLARS)[0]; article: ArticleLead }[] = PILLARS
+    .filter((p) => p.slug !== "macro-mondays")
+    .flatMap((pillar) => {
+      const article: ArticleLead | undefined =
+        sanityByPillar[pillar.slug] ??
+        MOCK_ARTICLES.find((a) => a.slug === CURATED[pillar.slug]) ??
+        MOCK_ARTICLES.find((a) => a.pillar === pillar.slug);
+      return article ? [{ pillar, article }] : [];
+    });
 
   const hero = pillarLeads[0];
   const grid = pillarLeads.slice(1);
