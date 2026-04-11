@@ -50,8 +50,8 @@ export default async function HomePage() {
     }
   } catch { /* fall through to mock */ }
 
-  // 1 lead story per pillar (first match)
-  const pillarLeads = PILLARS.map((pillar) => ({
+  // 1 lead story per pillar (first match), excluding Macro Mondays from the index
+  const pillarLeads = PILLARS.filter((p) => p.slug !== "macro-mondays").map((pillar) => ({
     pillar,
     article: allArticles.find((a) => a.pillar === pillar.slug) ?? null,
   })).filter((x) => x.article !== null) as { pillar: typeof PILLARS[0]; article: typeof MOCK_ARTICLES[0] }[];
