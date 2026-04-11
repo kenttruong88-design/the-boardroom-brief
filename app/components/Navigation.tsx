@@ -15,7 +15,7 @@ export default function Navigation() {
       <div className="container-editorial py-4 border-b relative" style={{ borderColor: "var(--border)" }}>
         {/* Date — top-right corner, above the title */}
         <div className="absolute top-3 right-0 hidden sm:block">
-          <span className="eyebrow-muted text-2xs" style={{ fontFamily: "var(--font-jetbrains)" }}>
+          <span className="eyebrow-muted text-2xs" style={{ fontFamily: "var(--font-jetbrains)" }} suppressHydrationWarning>
             {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
           </span>
         </div>
