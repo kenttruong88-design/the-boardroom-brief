@@ -1,13 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X, Search, Sun, Moon } from "lucide-react";
-import { PILLARS } from "@/app/lib/mock-data";
+import { PILLARS, MOCK_ARTICLES } from "@/app/lib/mock-data";
+import LoginModal from "@/app/components/auth/LoginModal";
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 50);
+    } else {
+      setSearchQuery("");
+    }
+  }, [searchOpen]);
+
+  const searchResults = searchQuery.trim().length > 1
+    ? MOCK_ARTICLES.filter((a) =>
+        a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        a.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 5)
+    : [];
 
   return (
     <header style={{ background: "var(--cream)", borderBottom: "2px solid var(--navy)" }}>
@@ -59,8 +79,10 @@ export default function Navigation() {
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-4">
             <button
-              className="text-ink-muted hover:text-navy transition-colors"
+              onClick={() => setSearchOpen(true)}
+              className="transition-colors"
               style={{ color: "var(--ink-m)" }}
+              aria-label="Search"
             >
               <Search className="w-4 h-4" />
             </button>
@@ -71,13 +93,13 @@ export default function Navigation() {
             >
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link
-              href="/login"
+            <button
+              onClick={() => setLoginOpen(true)}
               className="text-sm font-sans transition-colors"
               style={{ color: "var(--ink-m)" }}
             >
               Sign in
-            </Link>
+            </button>
             <Link href="/subscribe" className="btn-red">
               Subscribe
             </Link>
@@ -85,7 +107,7 @@ export default function Navigation() {
 
           {/* Mobile controls */}
           <div className="lg:hidden flex items-center gap-3 ml-auto">
-            <button style={{ color: "var(--ink-m)" }}>
+            <button onClick={() => setSearchOpen(true)} style={{ color: "var(--ink-m)" }} aria-label="Search">
               <Search className="w-4 h-4" />
             </button>
             <Link href="/subscribe" className="btn-red text-xs px-3 py-1.5">
@@ -128,13 +150,69 @@ export default function Navigation() {
               5 Continents
             </Link>
             <div className="pt-3">
-              <Link href="/login" className="btn-navy block text-center mb-2">
+              <button onClick={() => { setLoginOpen(true); setMobileOpen(false); }} className="btn-navy block text-center mb-2 w-full">
                 Sign in
-              </Link>
+              </button>
               <Link href="/subscribe" className="btn-red block text-center">
                 Subscribe
               </Link>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Login Modal */}
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
+
+      {/* Search Overlay */}
+      {searchOpen && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col"
+          style={{ background: "rgba(15,23,42,0.85)" }}
+          onClick={(e) => e.target === e.currentTarget && setSearchOpen(false)}
+        >
+          <div style={{ background: "var(--cream)", borderBottom: "1px solid var(--border)" }}>
+            <div className="container-editorial py-4 flex items-center gap-3">
+              <Search className="w-5 h-5 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search articles…"
+                className="flex-1 text-base font-sans outline-none bg-transparent"
+                style={{ color: "var(--ink)" }}
+                onKeyDown={(e) => e.key === "Escape" && setSearchOpen(false)}
+              />
+              <button onClick={() => setSearchOpen(false)} style={{ color: "var(--ink-m)" }}>
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {searchResults.length > 0 && (
+              <div className="container-editorial pb-4 space-y-0">
+                {searchResults.map((article) => (
+                  <Link
+                    key={article.slug}
+                    href={`/${article.pillar}/${article.slug}`}
+                    onClick={() => setSearchOpen(false)}
+                    className="flex items-start gap-3 py-3 border-t transition-colors hover:opacity-70"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    <div className="flex-1">
+                      <p className="eyebrow mb-0.5">{article.pillar?.replace(/-/g, " ")}</p>
+                      <p className="text-sm font-sans font-medium" style={{ color: "var(--ink)" }}>{article.title}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {searchQuery.trim().length > 1 && searchResults.length === 0 && (
+              <div className="container-editorial pb-4 pt-2">
+                <p className="text-sm font-sans" style={{ color: "var(--ink-m)" }}>No results for "{searchQuery}"</p>
+              </div>
+            )}
           </div>
         </div>
       )}
