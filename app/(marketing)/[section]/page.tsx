@@ -146,26 +146,6 @@ export default async function SectionPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Pillar tab nav */}
-      <div style={{ background: "var(--surface)", borderBottom: "1px solid var(--border)" }}>
-        <div className="container-editorial flex gap-0 overflow-x-auto">
-          {PILLARS.map((p) => (
-            <Link key={p.slug} href={`/${p.slug}`}
-              className="px-4 py-3 text-xs font-mono whitespace-nowrap border-b-2 transition-colors"
-              style={{
-                borderBottomColor: p.slug === sectionSlug ? "var(--red)" : "transparent",
-                color: p.slug === sectionSlug ? "var(--navy)" : "var(--ink-m)",
-                fontFamily: "var(--font-jetbrains)",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-              }}
-            >
-              {p.name}
-            </Link>
-          ))}
-        </div>
-      </div>
-
       <div className="container-editorial py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 

@@ -12,18 +12,26 @@ export default function Navigation() {
   return (
     <header style={{ background: "var(--cream)", borderBottom: "2px solid var(--navy)" }}>
       {/* Masthead */}
-      <div className="container-editorial py-4 text-center border-b" style={{ borderColor: "var(--border)" }}>
-        <Link href="/" className="inline-block">
-          <h1
-            className="text-4xl sm:text-5xl font-serif font-bold tracking-tight"
-            style={{ color: "var(--navy)" }}
-          >
-            The Boardroom Brief
-          </h1>
-        </Link>
-        <p className="eyebrow-muted mt-1">
-          Real markets. Real news. Questionable corporate poetry.
-        </p>
+      <div className="container-editorial py-4 border-b relative" style={{ borderColor: "var(--border)" }}>
+        <div className="text-center">
+          <Link href="/" className="inline-block">
+            <h1
+              className="text-4xl sm:text-5xl font-serif font-bold tracking-tight"
+              style={{ color: "var(--navy)" }}
+            >
+              The Boardroom Brief
+            </h1>
+          </Link>
+          <p className="eyebrow-muted mt-1">
+            Real markets. Real news. Questionable corporate poetry.
+          </p>
+        </div>
+        {/* Date — right-aligned, vertically centred */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden sm:block text-right">
+          <span className="eyebrow-muted text-2xs" style={{ fontFamily: "var(--font-jetbrains)" }}>
+            {new Date().toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "short", day: "numeric" })}
+          </span>
+        </div>
       </div>
 
       {/* Nav bar */}
