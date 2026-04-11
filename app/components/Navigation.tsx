@@ -30,7 +30,7 @@ export default function Navigation() {
             </h1>
           </Link>
           <p className="eyebrow-muted mt-1">
-            Markets. Policy. Power. Five continents, one perspective.
+            Real markets. Real news. Questionable corporate poetry.
           </p>
         </div>
       </div>

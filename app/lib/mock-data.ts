@@ -224,7 +224,7 @@ export const CONTINENTS = [
     gdp: "$23.1T",
     color: "text-emerald-700 border-emerald-700",
     description: "The EU's single market navigates energy transition, defence spending pressures, and German industrial contraction",
-    keyEconomies: ["Germany", "France", "United Kingdom", "Italy"],
+    keyEconomies: ["Germany", "France", "United Kingdom", "Italy", "Scandinavia"],
     indicators: { gdpGrowth: "0.9%", inflation: "2.6%", unemployment: "6.1%" },
   },
   {
