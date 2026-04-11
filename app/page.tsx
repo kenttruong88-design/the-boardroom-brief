@@ -179,12 +179,12 @@ export default async function HomePage() {
                 <div key={item.symbol} className="p-3 text-center" style={{ background: "var(--surface)" }}>
                   <div className="data-label mb-1">{item.symbol}</div>
                   <div className="data-value text-sm" style={{ color: "var(--navy)" }}>{item.value}</div>
-                  <div className="text-xs mt-0.5" style={{ color: item.up ? "#16a34a" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}>
+                  <div className="text-xs mt-0.5" style={{ color: item.up ? "#ea580c" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}>
                     {item.change}
                   </div>
                   <div className="mt-2 h-8 flex items-end justify-center gap-0.5">
                     {[40, 55, 35, 65, 50, 70, item.up ? 80 : 45].map((h, i) => (
-                      <div key={i} style={{ width: "3px", height: `${h}%`, background: item.up ? "#16a34a" : "#dc2626", opacity: 0.6 + (i / 7) * 0.4 }} />
+                      <div key={i} style={{ width: "3px", height: `${h}%`, background: item.up ? "#ea580c" : "#dc2626", opacity: 0.6 + (i / 7) * 0.4 }} />
                     ))}
                   </div>
                 </div>

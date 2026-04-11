@@ -126,14 +126,14 @@ export default async function ContinentPage({ params }: Props) {
               <div className="data-label mb-1">{stat.label}</div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold" style={{
-                  color: stat.isGrowth ? (growthUp ? "#16a34a" : "#dc2626") : "var(--navy)",
+                  color: stat.isGrowth ? (growthUp ? "#ea580c" : "#dc2626") : "var(--navy)",
                   fontFamily: "var(--font-jetbrains)",
                 }}>
                   {stat.value}
                 </span>
                 {stat.isGrowth && (
                   growthUp
-                    ? <TrendingUp className="w-4 h-4" style={{ color: "#16a34a" }} />
+                    ? <TrendingUp className="w-4 h-4" style={{ color: "#ea580c" }} />
                     : <TrendingDown className="w-4 h-4" style={{ color: "#dc2626" }} />
                 )}
               </div>
@@ -183,13 +183,13 @@ export default async function ContinentPage({ params }: Props) {
                   </ul>
                 </div>
                 <div>
-                  <p className="text-xs font-mono font-semibold mb-3 uppercase tracking-wider" style={{ color: "#16a34a", fontFamily: "var(--font-jetbrains)" }}>
+                  <p className="text-xs font-mono font-semibold mb-3 uppercase tracking-wider" style={{ color: "#ea580c", fontFamily: "var(--font-jetbrains)" }}>
                     Opportunities
                   </p>
                   <ul className="space-y-2">
                     {detail.opportunities.map((o) => (
                       <li key={o} className="flex items-start gap-2 text-sm font-sans" style={{ color: "var(--ink)" }}>
-                        <span style={{ color: "#16a34a", marginTop: "2px" }}>↑</span> {o}
+                        <span style={{ color: "#ea580c", marginTop: "2px" }}>↑</span> {o}
                       </li>
                     ))}
                   </ul>

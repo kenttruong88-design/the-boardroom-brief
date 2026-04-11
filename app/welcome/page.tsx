@@ -50,7 +50,7 @@ function WelcomeContent() {
   if (saved) {
     return (
       <div className="text-center py-20">
-        <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: "#16a34a" }} />
+        <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: "#ea580c" }} />
         <h2 className="text-2xl font-serif font-bold mb-2" style={{ color: "var(--navy)" }}>
           You're all set.
         </h2>

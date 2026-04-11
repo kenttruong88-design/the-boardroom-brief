@@ -301,7 +301,7 @@ export default async function ArticlePage({ params }: Props) {
                       <span className="data-label">{item.symbol}</span>
                       <div className="text-right">
                         <div className="data-value text-xs" style={{ color: "var(--navy)" }}>{item.value}</div>
-                        <div className="text-2xs" style={{ color: item.up ? "#16a34a" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}>{item.change}</div>
+                        <div className="text-2xs" style={{ color: item.up ? "#ea580c" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}>{item.change}</div>
                       </div>
                     </div>
                   ))}

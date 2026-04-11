@@ -50,7 +50,7 @@ function MarketsFloorWidget() {
             <span className="data-label text-2xs">{idx.name}</span>
             <div className="text-right">
               <div className="data-value text-xs" style={{ color: "var(--navy)" }}>{idx.value}</div>
-              <div className="text-2xs" style={{ color: idx.up ? "#16a34a" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}>{idx.change}</div>
+              <div className="text-2xs" style={{ color: idx.up ? "#ea580c" : "#dc2626", fontFamily: "var(--font-jetbrains)" }}>{idx.change}</div>
             </div>
           </div>
         ))}
