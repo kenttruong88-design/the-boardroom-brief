@@ -3,7 +3,7 @@ import { callClaude, parseJSON } from "@/app/lib/claude";
 import { createAdminClient } from "@/app/lib/supabase";
 import { client as sanityClient } from "@/app/lib/sanity";
 
-const SYSTEM_PROMPT = `You write social media copy for The Boardroom Brief. LinkedIn posts should be professional but entertaining — a senior manager would share them. Twitter/X posts should be punchy, quotable, and under 240 chars with a sardonic twist. Never use more than 2 hashtags. Never use more than 1 emoji.`;
+const SYSTEM_PROMPT = `You write social media copy for The Alignment Times. LinkedIn posts should be professional but entertaining — a senior manager would share them. Twitter/X posts should be punchy, quotable, and under 240 chars with a sardonic twist. Never use more than 2 hashtags. Never use more than 1 emoji.`;
 
 interface SocialPost {
   linkedinPost: string;
@@ -58,7 +58,7 @@ async function runQueue() {
     return NextResponse.json({ skipped: true, reason: "Sanity not configured" });
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
   const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
   // Fetch today's articles

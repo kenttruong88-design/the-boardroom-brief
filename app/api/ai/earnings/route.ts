@@ -3,7 +3,7 @@ import { callClaude, parseJSON } from "@/app/lib/claude";
 import { writeClient } from "@/app/lib/sanity";
 import { ECONOMIES } from "@/app/lib/mock-data";
 
-const SYSTEM_PROMPT = `You write earnings coverage for The Boardroom Brief. You treat earnings calls like employee performance reviews — sympathetic but honest, with a corporate culture lens. Real numbers only. Satire is in the framing, not the facts.`;
+const SYSTEM_PROMPT = `You write earnings coverage for The Alignment Times. You treat earnings calls like employee performance reviews — sympathetic but honest, with a corporate culture lens. Real numbers only. Satire is in the framing, not the facts.`;
 
 // Economy country codes for filtering FMP results
 const ECONOMY_CODES = new Set(ECONOMIES.map((e) => e.code));
@@ -130,7 +130,7 @@ Return as JSON: {"headline": "...", "satiricalHeadline": "...", "summary": "..."
         sanityId = created._id;
 
         await sendSlackNotification(
-          `📋 New earnings draft ready for review: *${report.name}* (${report.symbol})\n"${draft.headline}"\nEdit in Sanity: https://theboardroombrief.com/studio`
+          `📋 New earnings draft ready for review: *${report.name}* (${report.symbol})\n"${draft.headline}"\nEdit in Sanity: https://thealignmenttimes.com/studio`
         );
       }
 

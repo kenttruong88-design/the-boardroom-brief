@@ -3,7 +3,7 @@ import Navigation from "@/app/components/Navigation";
 import Footer from "@/app/components/Footer";
 import MarketTicker from "@/app/components/MarketTicker";
 import EconomySelector from "@/app/components/EconomySelector";
-import { MOCK_ARTICLES, PILLARS, TICKER_DATA, ECONOMIES, formatDateShort } from "@/app/lib/mock-data";
+import { MOCK_ARTICLES, PILLARS, TICKER_DATA, CONTINENTS, formatDateShort } from "@/app/lib/mock-data";
 import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
 import { Clock, Mic, ArrowRight } from "lucide-react";
 
@@ -197,16 +197,16 @@ export default async function HomePage() {
             <div className="rule-thick mb-4" />
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="eyebrow">30 Economies</h2>
+                <h2 className="eyebrow">5 Continents</h2>
                 <p className="text-xs font-sans mt-0.5" style={{ color: "var(--ink-m)" }}>
-                  Select a country for macro briefing, key indicators, and latest coverage
+                  Continental briefings — key indicators, leading economies, and latest coverage
                 </p>
               </div>
               <Link href="/economies" className="flex items-center gap-1 text-xs font-sans font-semibold transition-colors hover:opacity-70" style={{ color: "var(--red)", fontFamily: "var(--font-jetbrains)" }}>
-                Full map <ArrowRight className="w-3 h-3" />
+                View all <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
-            <EconomySelector economies={ECONOMIES} />
+            <EconomySelector continents={CONTINENTS} />
           </section>
 
           {/* ── NEWSLETTER CTA ───────────────────────────────── */}
@@ -215,7 +215,7 @@ export default async function HomePage() {
               Five stories. Every morning. Under 5 minutes.
             </h2>
             <p className="text-sm font-sans mb-8 max-w-lg mx-auto" style={{ color: "rgba(245,240,232,0.55)" }}>
-              Join executives and investors who start their day with The Boardroom Brief.
+              Join executives and investors who start their day with The Alignment Times.
             </p>
             <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input type="email" placeholder="your@email.com" className="flex-1 text-sm font-sans px-4 py-3 outline-none"

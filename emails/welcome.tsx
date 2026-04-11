@@ -25,20 +25,20 @@ interface WelcomeProps {
 }
 
 export default function Welcome({
-  preferencesUrl = "https://theboardroombrief.com/welcome",
-  siteUrl = "https://theboardroombrief.com",
+  preferencesUrl = "https://thealignmenttimes.com/welcome",
+  siteUrl = "https://thealignmenttimes.com",
 }: WelcomeProps) {
   return (
     <Html lang="en">
       <Head />
-      <Preview>Welcome to The Boardroom Brief — your daily executive intelligence starts tomorrow.</Preview>
+      <Preview>Welcome to The Alignment Times — your daily executive intelligence starts tomorrow.</Preview>
       <Body style={{ backgroundColor: CREAM, fontFamily: "Georgia, 'Times New Roman', serif", margin: 0, padding: 0 }}>
         <Container style={{ maxWidth: "600px", margin: "0 auto", backgroundColor: CREAM }}>
 
           {/* Masthead */}
           <Section style={{ backgroundColor: NAVY, padding: "28px 24px", borderBottom: `3px solid ${RED}` }}>
             <Heading style={{ color: CREAM, fontSize: "28px", fontFamily: "Georgia, serif", margin: "0 0 6px", fontWeight: "700" }}>
-              The Boardroom Brief
+              The Alignment Times
             </Heading>
             <Text style={{ color: "rgba(245,240,232,0.55)", fontSize: "12px", fontFamily: "Arial, sans-serif", margin: 0 }}>
               Executive intelligence for leaders who shape the global economy.
@@ -94,7 +94,7 @@ export default function Welcome({
               <Link href={siteUrl} style={{ color: MUTED, textDecoration: "underline" }}>Visit site</Link>
             </Text>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
-              © {new Date().getFullYear()} The Boardroom Brief. Real markets. Real news. Questionable corporate poetry.
+              © {new Date().getFullYear()} The Alignment Times. Real markets. Real news. Questionable corporate poetry.
             </Text>
           </Section>
 

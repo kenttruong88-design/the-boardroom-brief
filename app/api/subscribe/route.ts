@@ -57,14 +57,14 @@ export async function POST(req: Request) {
     // Send confirmation email via Resend + React Email template
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
       const confirmUrl = `${siteUrl}/api/confirm?token=${token}`;
       const resend = new Resend(resendKey);
       const html = await render(Confirmation({ confirmUrl, email }));
       await resend.emails.send({
-        from: "The Boardroom Brief <brief@theboardroombrief.com>",
+        from: "The Alignment Times <brief@thealignmenttimes.com>",
         to: [email],
-        subject: "Confirm your subscription — The Boardroom Brief",
+        subject: "Confirm your subscription — The Alignment Times",
         html,
       });
     }

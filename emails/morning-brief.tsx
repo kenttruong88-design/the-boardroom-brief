@@ -100,9 +100,9 @@ export default function MorningBrief({
   leadArticle = defaultLead,
   articles = defaultArticles,
   waterCooler = "Today's corporate wisdom: if a meeting could have been an email, the email could probably have been nothing.",
-  unsubscribeUrl = "https://theboardroombrief.com/unsubscribe",
-  preferencesUrl = "https://theboardroombrief.com/preferences",
-  siteUrl = "https://theboardroombrief.com",
+  unsubscribeUrl = "https://thealignmenttimes.com/unsubscribe",
+  preferencesUrl = "https://thealignmenttimes.com/preferences",
+  siteUrl = "https://thealignmenttimes.com",
 }: MorningBriefProps) {
   return (
     <Html lang="en">
@@ -130,7 +130,7 @@ export default function MorningBrief({
           {/* Masthead */}
           <Section style={{ backgroundColor: NAVY, padding: "24px 24px 28px", borderBottom: `3px solid ${RED}` }}>
             <Heading style={{ color: CREAM, fontSize: "32px", fontFamily: "Georgia, serif", margin: "0 0 6px", fontWeight: "700", letterSpacing: "-0.5px" }}>
-              The Boardroom Brief
+              The Alignment Times
             </Heading>
             <Text style={{ color: "rgba(245,240,232,0.55)", fontSize: "13px", fontFamily: "Arial, sans-serif", margin: 0 }}>
               Good morning. Markets opened. Coffee optional.
@@ -232,7 +232,7 @@ export default function MorningBrief({
               <Link href={siteUrl} style={{ color: MUTED, textDecoration: "underline" }}>Visit site</Link>
             </Text>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
-              © {new Date().getFullYear()} The Boardroom Brief. Real markets. Real news. Questionable corporate poetry.
+              © {new Date().getFullYear()} The Alignment Times. Real markets. Real news. Questionable corporate poetry.
             </Text>
           </Section>
 

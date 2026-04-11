@@ -33,7 +33,7 @@ async function resolveArticle(slug: string) {
   return getMockArticle(slug) ?? null;
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { section, slug } = await params;
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ?? `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}`;
 
   return {
-    title: `${article.title} | The Boardroom Brief`,
+    title: `${article.title} | The Alignment Times`,
     description: article.excerpt,
     alternates: { canonical: canonicalUrl },
     openGraph: {
@@ -53,10 +53,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.satiricalHeadline,
       type: "article",
       publishedTime: article.publishedAt,
-      authors: [(article as { author?: string }).author ?? "The Boardroom Brief"],
+      authors: [(article as { author?: string }).author ?? "The Alignment Times"],
       url: canonicalUrl,
       images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
-      siteName: "The Boardroom Brief",
+      siteName: "The Alignment Times",
     },
     twitter: {
       card: "summary_large_image",
@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: Props) {
   const related = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug && a.slug !== slug).slice(0, 3);
 
   const canonicalUrl = `${SITE_URL}/${sectionSlug}/${slug}`;
-  const articleAuthor = (article as { author?: string }).author ?? "The Boardroom Brief";
+  const articleAuthor = (article as { author?: string }).author ?? "The Alignment Times";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -94,7 +94,7 @@ export default async function ArticlePage({ params }: Props) {
         "author": { "@type": "Person", "name": articleAuthor },
         "publisher": {
           "@type": "Organization",
-          "name": "The Boardroom Brief",
+          "name": "The Alignment Times",
           "url": SITE_URL,
           "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` },
         },
@@ -214,7 +214,7 @@ export default async function ArticlePage({ params }: Props) {
                     Continue reading with a free account
                   </h3>
                   <p className="text-sm font-sans mb-6" style={{ color: "rgba(245,240,232,0.6)" }}>
-                    Unlimited access to The Boardroom Brief — free for a limited time.
+                    Unlimited access to The Alignment Times — free for a limited time.
                   </p>
                   <div className="flex gap-3 justify-center">
                     <Link href="/subscribe" className="btn-red">Subscribe free</Link>

@@ -26,7 +26,7 @@ async function runSend() {
 
   const supabase = createAdminClient();
   const resend = new Resend(resendKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
   // ── 1. Fetch confirmed subscribers ──────────────────────────────────────────
   const { data: subscribers, error: subError } = await supabase
@@ -71,7 +71,7 @@ async function runSend() {
       title: a.title,
       satiricalHeadline: a.satiricalHeadline ?? "",
       excerpt: a.excerpt ?? "",
-      pillar: a.pillar?.name ?? "The Boardroom Brief",
+      pillar: a.pillar?.name ?? "The Alignment Times",
       pillarSlug: a.pillar?.slug?.current ?? "markets-floor",
       slug: a.slug.current,
     }));
@@ -80,10 +80,10 @@ async function runSend() {
   // Fallback article if Sanity is empty
   if (articles.length === 0) {
     articles = [{
-      title: "The Boardroom Brief — Today's Edition",
+      title: "The Alignment Times — Today's Edition",
       satiricalHeadline: "Five stories. Zero jargon. Probably.",
       excerpt: "Visit the site for today's full coverage.",
-      pillar: "The Boardroom Brief",
+      pillar: "The Alignment Times",
       pillarSlug: "markets-floor",
       slug: "",
     }];
@@ -132,7 +132,7 @@ async function runSend() {
     })
   );
 
-  const subject = `The Boardroom Brief — ${date}`;
+  const subject = `The Alignment Times — ${date}`;
 
   // ── 5. Send in batches of 100 ────────────────────────────────────────────
   let successCount = 0;
@@ -144,7 +144,7 @@ async function runSend() {
     const results = await Promise.allSettled(
       batch.map((to: string) =>
         resend.emails.send({
-          from: "The Boardroom Brief <brief@theboardroombrief.com>",
+          from: "The Alignment Times <brief@thealignmenttimes.com>",
           to,
           subject,
           html,

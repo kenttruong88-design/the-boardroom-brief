@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { callClaude, parseJSON } from "@/app/lib/claude";
 
-const SYSTEM_PROMPT = `You are the headline writer for The Boardroom Brief, a financial news site with a dry, satirical corporate culture twist. Your headlines acknowledge real financial news while adding a wry observation about office life, corporate-speak, or professional absurdity. Tone: The Economist meets The Onion. Safe for professional sharing. Never crude. Always informed. The humor should make a CFO chuckle, not cringe.`;
+const SYSTEM_PROMPT = `You are the headline writer for The Alignment Times, a financial news site with a dry, satirical corporate culture twist. Your headlines acknowledge real financial news while adding a wry observation about office life, corporate-speak, or professional absurdity. Tone: The Economist meets The Onion. Safe for professional sharing. Never crude. Always informed. The humor should make a CFO chuckle, not cringe.`;
 
 export async function POST(req: Request) {
   try {

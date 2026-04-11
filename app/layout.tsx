@@ -21,18 +21,18 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
 export const metadata: Metadata = {
   title: {
-    default: "The Boardroom Brief",
-    template: "%s | The Boardroom Brief",
+    default: "The Alignment Times",
+    template: "%s | The Alignment Times",
   },
-  description: "Real markets. Real news. Questionable corporate poetry. Executive intelligence covering 30 economies.",
+  description: "Economic intelligence across five continents. Markets, policy, and power — aligned.",
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: SITE_URL },
   openGraph: {
-    siteName: "The Boardroom Brief",
+    siteName: "The Alignment Times",
     type: "website",
     locale: "en_US",
   },
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "The Boardroom Brief",
+  "name": "The Alignment Times",
   "url": SITE_URL,
-  "description": "Real markets. Real news. Questionable corporate poetry.",
+  "description": "Economic intelligence across five continents.",
   "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` },
   "sameAs": [],
 };

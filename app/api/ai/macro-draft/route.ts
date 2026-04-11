@@ -3,7 +3,7 @@ import { callClaude, parseJSON } from "@/app/lib/claude";
 import { writeClient } from "@/app/lib/sanity";
 import { ECONOMIES } from "@/app/lib/mock-data";
 
-const SYSTEM_PROMPT = `You are a staff writer at The Boardroom Brief. You write about macroeconomic data in a way that's accurate, informative, and laced with dry corporate humor. You never make up numbers. You only interpret real data provided to you.`;
+const SYSTEM_PROMPT = `You are a staff writer at The Alignment Times. You write about macroeconomic data in a way that's accurate, informative, and laced with dry corporate humor. You never make up numbers. You only interpret real data provided to you.`;
 
 type Indicator = "gdp" | "inflation" | "unemployment";
 

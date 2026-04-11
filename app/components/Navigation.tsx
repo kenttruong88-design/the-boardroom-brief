@@ -26,11 +26,11 @@ export default function Navigation() {
               className="text-4xl sm:text-5xl font-serif font-bold tracking-tight"
               style={{ color: "var(--navy)" }}
             >
-              The Boardroom Brief
+              The Alignment Times
             </h1>
           </Link>
           <p className="eyebrow-muted mt-1">
-            Real markets. Real news. Questionable corporate poetry.
+            Markets. Policy. Power. Five continents, one perspective.
           </p>
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function Navigation() {
               style={{ borderColor: "var(--border)", color: "var(--ink-m)" }}
               onClick={() => setMobileOpen(false)}
             >
-              30 Economies
+              5 Continents
             </Link>
             <div className="pt-3">
               <Link href="/login" className="btn-navy block text-center mb-2">

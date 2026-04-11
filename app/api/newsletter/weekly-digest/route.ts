@@ -24,7 +24,7 @@ async function runWeeklyDigest() {
 
   const supabase = createAdminClient();
   const resend = new Resend(resendKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
   // Fetch confirmed subscribers
   const { data: subscribers } = await supabase
@@ -73,7 +73,7 @@ async function runWeeklyDigest() {
 
         <!-- Header -->
         <tr><td style="background:#0f1923;padding:24px;border-bottom:3px solid #c8391a;">
-          <div style="color:#f5f0e8;font-size:26px;font-family:Georgia,serif;font-weight:700;">The Boardroom Brief</div>
+          <div style="color:#f5f0e8;font-size:26px;font-family:Georgia,serif;font-weight:700;">The Alignment Times</div>
           <div style="color:rgba(245,240,232,0.55);font-size:12px;font-family:Arial,sans-serif;margin-top:4px;">Weekly Digest — week ending ${weekLabel}</div>
         </td></tr>
 
@@ -103,7 +103,7 @@ async function runWeeklyDigest() {
             <a href="${siteUrl}" style="color:#888;">Visit site</a>
           </p>
           <p style="color:#aaa;font-size:10px;font-family:Arial,sans-serif;margin:0;">
-            © ${new Date().getFullYear()} The Boardroom Brief. Real markets. Real news. Questionable corporate poetry.
+            © ${new Date().getFullYear()} The Alignment Times. Real markets. Real news. Questionable corporate poetry.
           </p>
         </td></tr>
 
@@ -119,9 +119,9 @@ async function runWeeklyDigest() {
     const batch = emails.slice(i, i + 100);
     const results = await Promise.allSettled(
       batch.map((to: string) => resend.emails.send({
-        from: "The Boardroom Brief <brief@theboardroombrief.com>",
+        from: "The Alignment Times <brief@thealignmenttimes.com>",
         to,
-        subject: `The Boardroom Brief — Weekly Digest (${weekLabel})`,
+        subject: `The Alignment Times — Weekly Digest (${weekLabel})`,
         html,
       }))
     );

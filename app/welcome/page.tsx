@@ -66,7 +66,7 @@ function WelcomeContent() {
       {/* Header */}
       <div className="text-center mb-12">
         <p className="eyebrow-gold mb-2" style={{ color: "var(--gold)" }}>
-          Welcome to The Boardroom Brief
+          Welcome to The Alignment Times
         </p>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-3" style={{ color: "var(--navy)" }}>
           Personalise your brief.

@@ -24,7 +24,7 @@ interface ConfirmationProps {
 }
 
 export default function Confirmation({
-  confirmUrl = "https://theboardroombrief.com/api/confirm?token=example",
+  confirmUrl = "https://thealignmenttimes.com/api/confirm?token=example",
   email = "you@example.com",
 }: ConfirmationProps) {
   return (
@@ -37,7 +37,7 @@ export default function Confirmation({
           {/* Masthead */}
           <Section style={{ backgroundColor: NAVY, padding: "28px 24px", borderBottom: `3px solid ${RED}` }}>
             <Heading style={{ color: CREAM, fontSize: "28px", fontFamily: "Georgia, serif", margin: "0 0 6px", fontWeight: "700" }}>
-              The Boardroom Brief
+              The Alignment Times
             </Heading>
             <Text style={{ color: "rgba(245,240,232,0.55)", fontSize: "12px", fontFamily: "Arial, sans-serif", margin: 0 }}>
               Executive intelligence for leaders who shape the global economy.
@@ -54,7 +54,7 @@ export default function Confirmation({
               We received a subscription request for <strong>{email}</strong>.
             </Text>
             <Text style={{ color: "#333", fontSize: "15px", fontFamily: "Georgia, serif", lineHeight: "1.7", margin: "0 0 28px" }}>
-              Click the button below to confirm and start receiving The Boardroom Brief every morning. This link expires in 24 hours.
+              Click the button below to confirm and start receiving The Alignment Times every morning. This link expires in 24 hours.
             </Text>
             <Button
               href={confirmUrl}
@@ -74,7 +74,7 @@ export default function Confirmation({
           {/* Footer */}
           <Section style={{ padding: "20px 24px", backgroundColor: "#e8e2d8", borderTop: `1px solid ${BORDER}` }}>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
-              © {new Date().getFullYear()} The Boardroom Brief. Real markets. Real news. Questionable corporate poetry.
+              © {new Date().getFullYear()} The Alignment Times. Real markets. Real news. Questionable corporate poetry.
             </Text>
           </Section>
 

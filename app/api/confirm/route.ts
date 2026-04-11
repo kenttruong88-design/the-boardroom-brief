@@ -36,9 +36,9 @@ export async function GET(req: Request) {
         siteUrl,
       }));
       await resend.emails.send({
-        from: "The Boardroom Brief <brief@theboardroombrief.com>",
+        from: "The Alignment Times <brief@thealignmenttimes.com>",
         to: data.email,
-        subject: "Welcome to The Boardroom Brief",
+        subject: "Welcome to The Alignment Times",
         html,
       });
     } catch { /* welcome email failure shouldn't block redirect */ }

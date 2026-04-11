@@ -52,7 +52,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "The Federal Reserve left rates unchanged at its March meeting, with Chair Powell warning that the path to 2% inflation remains 'bumpy.' Markets repriced rate cut expectations sharply.",
     pillar: "markets-floor",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-06T08:00:00Z",
     readTime: 4,
     featured: true,
@@ -64,7 +64,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "Hyperscaler capex commitments and a surge in sovereign AI deals suggest the infrastructure buildout is far from over.",
     pillar: "markets-floor",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-06T07:30:00Z",
     readTime: 5,
     featured: false,
@@ -76,7 +76,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "Exports and manufacturing drove the beat, while domestic consumption remains subdued. The property sector continues to weigh on sentiment despite targeted stimulus.",
     pillar: "macro-mondays",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-05T09:00:00Z",
     readTime: 6,
     featured: false,
@@ -88,7 +88,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "Activist pressure, AI disruption, and shareholder impatience are reshaping the average tenure of a Fortune 500 CEO.",
     pillar: "c-suite-circus",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-05T08:00:00Z",
     readTime: 5,
     featured: false,
@@ -100,7 +100,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "Phase one obligations are now live. Companies with high-risk AI systems face audits, documentation requirements, and fines up to 7% of global turnover.",
     pillar: "global-office",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-04T09:00:00Z",
     readTime: 7,
     featured: false,
@@ -112,7 +112,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "New research from three universities confirms that open-plan offices reduce productivity, increase stress, and generate Slack messages that could have been emails.",
     pillar: "water-cooler",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-04T08:00:00Z",
     readTime: 3,
     featured: false,
@@ -124,7 +124,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "DXY above 106 is tightening financial conditions across EM. We break down which economies are most exposed.",
     pillar: "markets-floor",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-04T07:00:00Z",
     readTime: 5,
     featured: false,
@@ -136,7 +136,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "Three consecutive years of manufacturing contraction, energy cost disadvantage, and China competition have economists revising long-term growth estimates downward.",
     pillar: "macro-mondays",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-03T09:00:00Z",
     readTime: 6,
     featured: false,
@@ -148,7 +148,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "A new analysis finds that 94% of LinkedIn 'insights' posted by executives could be replaced by a fortune cookie without loss of intellectual content.",
     pillar: "water-cooler",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-03T08:00:00Z",
     readTime: 4,
     featured: false,
@@ -160,7 +160,7 @@ export const MOCK_ARTICLES = [
     excerpt:
       "Claude's expanding share in financial services and legal sectors signals a shift from experimentation to mission-critical deployment.",
     pillar: "c-suite-circus",
-    author: "The Boardroom Brief",
+    author: "The Alignment Times",
     publishedAt: "2026-04-03T07:00:00Z",
     readTime: 4,
     featured: false,
@@ -206,38 +206,67 @@ export const TICKER_DATA = [
   { symbol: "VIX",     value: "14.82",    change: "-0.94%", up: false },
 ];
 
-export const ECONOMIES = [
-  { slug: "united-states",  name: "United States",  region: "Americas",           code: "US", flag: "🇺🇸" },
-  { slug: "canada",         name: "Canada",          region: "Americas",           code: "CA", flag: "🇨🇦" },
-  { slug: "brazil",         name: "Brazil",          region: "Americas",           code: "BR", flag: "🇧🇷" },
-  { slug: "mexico",         name: "Mexico",          region: "Americas",           code: "MX", flag: "🇲🇽" },
-  { slug: "argentina",      name: "Argentina",       region: "Americas",           code: "AR", flag: "🇦🇷" },
-  { slug: "chile",          name: "Chile",           region: "Americas",           code: "CL", flag: "🇨🇱" },
-  { slug: "united-kingdom", name: "United Kingdom",  region: "Europe",             code: "GB", flag: "🇬🇧" },
-  { slug: "germany",        name: "Germany",         region: "Europe",             code: "DE", flag: "🇩🇪" },
-  { slug: "france",         name: "France",          region: "Europe",             code: "FR", flag: "🇫🇷" },
-  { slug: "italy",          name: "Italy",           region: "Europe",             code: "IT", flag: "🇮🇹" },
-  { slug: "spain",          name: "Spain",           region: "Europe",             code: "ES", flag: "🇪🇸" },
-  { slug: "netherlands",    name: "Netherlands",     region: "Europe",             code: "NL", flag: "🇳🇱" },
-  { slug: "switzerland",    name: "Switzerland",     region: "Europe",             code: "CH", flag: "🇨🇭" },
-  { slug: "sweden",         name: "Sweden",          region: "Europe",             code: "SE", flag: "🇸🇪" },
-  { slug: "poland",         name: "Poland",          region: "Europe",             code: "PL", flag: "🇵🇱" },
-  { slug: "norway",         name: "Norway",          region: "Europe",             code: "NO", flag: "🇳🇴" },
-  { slug: "china",          name: "China",           region: "Asia-Pacific",       code: "CN", flag: "🇨🇳" },
-  { slug: "japan",          name: "Japan",           region: "Asia-Pacific",       code: "JP", flag: "🇯🇵" },
-  { slug: "india",          name: "India",           region: "Asia-Pacific",       code: "IN", flag: "🇮🇳" },
-  { slug: "south-korea",    name: "South Korea",     region: "Asia-Pacific",       code: "KR", flag: "🇰🇷" },
-  { slug: "australia",      name: "Australia",       region: "Asia-Pacific",       code: "AU", flag: "🇦🇺" },
-  { slug: "singapore",      name: "Singapore",       region: "Asia-Pacific",       code: "SG", flag: "🇸🇬" },
-  { slug: "indonesia",      name: "Indonesia",       region: "Asia-Pacific",       code: "ID", flag: "🇮🇩" },
-  { slug: "malaysia",       name: "Malaysia",        region: "Asia-Pacific",       code: "MY", flag: "🇲🇾" },
-  { slug: "thailand",       name: "Thailand",        region: "Asia-Pacific",       code: "TH", flag: "🇹🇭" },
-  { slug: "vietnam",        name: "Vietnam",         region: "Asia-Pacific",       code: "VN", flag: "🇻🇳" },
-  { slug: "saudi-arabia",   name: "Saudi Arabia",    region: "Middle East & Africa", code: "SA", flag: "🇸🇦" },
-  { slug: "uae",            name: "UAE",             region: "Middle East & Africa", code: "AE", flag: "🇦🇪" },
-  { slug: "south-africa",   name: "South Africa",    region: "Middle East & Africa", code: "ZA", flag: "🇿🇦" },
-  { slug: "nigeria",        name: "Nigeria",         region: "Middle East & Africa", code: "NG", flag: "🇳🇬" },
+export const CONTINENTS = [
+  {
+    slug: "north-america",
+    name: "North America",
+    flag: "🌎",
+    gdp: "$28.8T",
+    color: "text-blue-700 border-blue-700",
+    description: "The world's largest single-country economy, Canada's resource wealth, and Mexico's manufacturing renaissance",
+    keyEconomies: ["United States", "Canada", "Mexico"],
+    indicators: { gdpGrowth: "2.8%", inflation: "3.2%", unemployment: "3.9%" },
+  },
+  {
+    slug: "europe",
+    name: "Europe",
+    flag: "🌍",
+    gdp: "$23.1T",
+    color: "text-emerald-700 border-emerald-700",
+    description: "The EU's single market navigates energy transition, defence spending pressures, and German industrial contraction",
+    keyEconomies: ["Germany", "France", "United Kingdom", "Italy"],
+    indicators: { gdpGrowth: "0.9%", inflation: "2.6%", unemployment: "6.1%" },
+  },
+  {
+    slug: "asia-pacific",
+    name: "Asia-Pacific",
+    flag: "🌏",
+    gdp: "$38.2T",
+    color: "text-purple-700 border-purple-700",
+    description: "China's uneven recovery, India's demographic dividend, Japan's inflation awakening, and Southeast Asia's supply chain shift",
+    keyEconomies: ["China", "Japan", "India", "South Korea", "Australia"],
+    indicators: { gdpGrowth: "4.6%", inflation: "2.1%", unemployment: "4.3%" },
+  },
+  {
+    slug: "middle-east",
+    name: "Middle East",
+    flag: "🌍",
+    gdp: "$4.6T",
+    color: "text-amber-700 border-amber-700",
+    description: "Gulf states diversifying beyond oil, sovereign wealth reshaping global capital flows, and regional geopolitics driving risk premiums",
+    keyEconomies: ["Saudi Arabia", "UAE", "Turkey", "Israel"],
+    indicators: { gdpGrowth: "3.4%", inflation: "4.8%", unemployment: "5.9%" },
+  },
+  {
+    slug: "africa",
+    name: "Africa",
+    flag: "🌍",
+    gdp: "$3.1T",
+    color: "text-rose-700 border-rose-700",
+    description: "The continent's fastest-growing markets, commodity super-cycle exposure, and the race to capture the demographic dividend",
+    keyEconomies: ["Nigeria", "South Africa", "Egypt", "Kenya", "Ethiopia"],
+    indicators: { gdpGrowth: "3.8%", inflation: "18.2%", unemployment: "7.4%" },
+  },
 ];
+
+// Keep ECONOMIES as a flat lookup for any remaining references
+export const ECONOMIES = CONTINENTS.map((c) => ({
+  slug: c.slug,
+  name: c.name,
+  region: c.name,
+  code: c.slug.toUpperCase().slice(0, 2),
+  flag: c.flag,
+}));
 
 export const PILLAR_SLUGS = PILLARS.map((p) => p.slug);
 

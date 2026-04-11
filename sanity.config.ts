@@ -5,8 +5,8 @@ import { schemaTypes } from "./sanity/schemas";
 import { headlineGeneratorPlugin } from "./sanity-plugin-headline-generator/src";
 
 export default defineConfig({
-  name: "the-boardroom-brief",
-  title: "The Boardroom Brief",
+  name: "the-alignment-times",
+  title: "The Alignment Times",
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "placeholder",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",

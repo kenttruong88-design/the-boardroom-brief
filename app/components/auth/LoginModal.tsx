@@ -65,7 +65,7 @@ export default function LoginModal({ open, onClose }: Props) {
         {!sent ? (
           <>
             <p className="eyebrow-gold mb-1" style={{ color: "var(--gold)" }}>
-              The Boardroom Brief
+              The Alignment Times
             </p>
             <h2 className="text-2xl font-serif font-bold mb-1" style={{ color: "var(--navy)" }}>
               Sign in

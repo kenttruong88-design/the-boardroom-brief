@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { PILLARS, ECONOMIES } from "@/app/lib/mock-data";
 import { getAllArticleSlugs } from "@/app/lib/queries";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
 export const revalidate = 86400; // 24h
 

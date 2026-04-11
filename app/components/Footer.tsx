@@ -12,7 +12,7 @@ export default function Footer() {
               className="text-2xl font-serif font-bold mb-3"
               style={{ color: "var(--cream)" }}
             >
-              The Boardroom Brief
+              The Alignment Times
             </div>
             <p
               className="text-sm font-sans mb-6 leading-relaxed"
@@ -54,7 +54,7 @@ export default function Footer() {
                   className="text-sm font-sans transition-colors hover:text-white"
                   style={{ color: "rgba(245,240,232,0.55)" }}
                 >
-                  30 Economies
+                  5 Continents
                 </Link>
               </li>
             </ul>
@@ -115,7 +115,7 @@ export default function Footer() {
             className="text-xs"
             style={{ color: "rgba(245,240,232,0.35)", fontFamily: "var(--font-jetbrains)" }}
           >
-            © {new Date().getFullYear()} The Boardroom Brief. All rights reserved.
+            © {new Date().getFullYear()} The Alignment Times. All rights reserved.
           </p>
           <div className="flex gap-6">
             {["Privacy", "Terms", "Cookies"].map((item) => (

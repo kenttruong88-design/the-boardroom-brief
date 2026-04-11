@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
 export async function POST(req: NextRequest) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     line_items: [{ price: priceId, quantity: 1 }],
     success_url: `${SITE_URL}/subscribe/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${SITE_URL}/subscribe`,
-    metadata: { source: "boardroom_brief" },
+    metadata: { source: "alignment_times" },
   });
 
   return NextResponse.json({ url: session.url });

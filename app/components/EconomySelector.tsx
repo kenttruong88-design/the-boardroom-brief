@@ -1,150 +1,88 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { ArrowRight, TrendingUp, TrendingDown } from "lucide-react";
 
-interface Economy {
+interface Continent {
   slug: string;
   name: string;
-  region: string;
-  code: string;
   flag: string;
+  gdp: string;
+  color: string;
+  description: string;
+  keyEconomies: string[];
+  indicators: { gdpGrowth: string; inflation: string; unemployment: string };
 }
 
 interface Props {
-  economies: Economy[];
+  continents: Continent[];
 }
 
-const REGIONS = ["Americas", "Europe", "Asia-Pacific", "Middle East & Africa"];
-
-export default function EconomySelector({ economies }: Props) {
-  const [query, setQuery] = useState("");
-  const [activeRegion, setActiveRegion] = useState<string | null>(null);
-
-  const filtered = useMemo(() => {
-    let list = economies;
-    if (activeRegion) list = list.filter((e) => e.region === activeRegion);
-    if (query.trim()) {
-      const q = query.toLowerCase();
-      list = list.filter((e) => e.name.toLowerCase().includes(q) || e.code.toLowerCase().includes(q));
-    }
-    return list;
-  }, [economies, query, activeRegion]);
-
-  const grouped = useMemo(() => {
-    if (query.trim() || activeRegion) return null; // flat list when searching/filtering
-    return REGIONS.map((region) => ({
-      region,
-      economies: economies.filter((e) => e.region === region),
-    }));
-  }, [economies, query, activeRegion]);
-
+export default function EconomySelector({ continents }: Props) {
   return (
-    <div>
-      {/* Controls */}
-      <div className="flex flex-wrap gap-3 mb-5 items-center">
-        {/* Search */}
-        <div className="relative">
-          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style={{ color: "var(--ink-m)" }} />
-          <input
-            type="text"
-            placeholder="Search economies…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="text-xs font-sans pl-8 pr-3 py-2 outline-none w-48"
-            style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--ink)", borderRadius: "2px" }}
-          />
-        </div>
-
-        {/* Region filters */}
-        <div className="flex gap-1 flex-wrap">
-          <button
-            onClick={() => setActiveRegion(null)}
-            className="text-2xs font-mono px-3 py-1.5 transition-colors"
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      {continents.map((c) => {
+        const growthUp = !c.indicators.gdpGrowth.startsWith("-");
+        return (
+          <Link
+            key={c.slug}
+            href={`/economies/${c.slug}`}
+            className="group flex flex-col p-5 transition-all hover:-translate-y-0.5"
             style={{
-              background: activeRegion === null ? "var(--navy)" : "var(--surface)",
-              color: activeRegion === null ? "var(--cream)" : "var(--ink-m)",
+              background: "var(--surface)",
               border: "1px solid var(--border)",
-              borderRadius: "2px",
-              fontFamily: "var(--font-jetbrains)",
+              borderTop: `3px solid currentColor`,
             }}
           >
-            All
-          </button>
-          {REGIONS.map((r) => (
-            <button
-              key={r}
-              onClick={() => setActiveRegion(activeRegion === r ? null : r)}
-              className="text-2xs font-mono px-3 py-1.5 transition-colors"
-              style={{
-                background: activeRegion === r ? "var(--navy)" : "var(--surface)",
-                color: activeRegion === r ? "var(--cream)" : "var(--ink-m)",
-                border: "1px solid var(--border)",
-                borderRadius: "2px",
-                fontFamily: "var(--font-jetbrains)",
-              }}
-            >
-              {r}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Grouped grid (default) */}
-      {grouped ? (
-        <div className="space-y-6">
-          {grouped.map(({ region, economies: regionEcons }) => (
-            <div key={region}>
-              <p className="eyebrow-muted text-2xs mb-3" style={{ fontFamily: "var(--font-jetbrains)" }}>
-                {region}
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-                {regionEcons.map((e) => (
-                  <EconomyCard key={e.slug} economy={e} />
-                ))}
-              </div>
+            <div className="flex items-start justify-between mb-3">
+              <span className="text-3xl">{c.flag}</span>
+              <span className={`text-xs font-mono font-semibold ${c.color}`} style={{ fontFamily: "var(--font-jetbrains)" }}>
+                {c.gdp}
+              </span>
             </div>
-          ))}
-        </div>
-      ) : (
-        // Flat filtered grid
-        <div>
-          {filtered.length === 0 ? (
-            <p className="text-sm font-sans py-6 text-center" style={{ color: "var(--ink-m)" }}>
-              No economies found for &ldquo;{query}&rdquo;
+
+            <h3 className="font-serif font-bold text-base mb-1 group-hover:opacity-75 transition-opacity" style={{ color: "var(--navy)" }}>
+              {c.name}
+            </h3>
+
+            <p className="text-xs font-sans leading-relaxed mb-4 flex-1" style={{ color: "var(--ink-m)" }}>
+              {c.description.split(",")[0]}…
             </p>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-              {filtered.map((e) => (
-                <EconomyCard key={e.slug} economy={e} />
+
+            {/* Key indicators */}
+            <div className="space-y-1.5 mb-4">
+              {[
+                { label: "GDP Growth", value: c.indicators.gdpGrowth, up: growthUp },
+                { label: "Inflation", value: c.indicators.inflation, up: false },
+                { label: "Unemployment", value: c.indicators.unemployment, up: false },
+              ].map((ind) => (
+                <div key={ind.label} className="flex justify-between items-center">
+                  <span className="text-2xs" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>
+                    {ind.label}
+                  </span>
+                  <span className="text-2xs font-semibold flex items-center gap-0.5" style={{ color: ind.up ? "#16a34a" : "var(--navy)", fontFamily: "var(--font-jetbrains)" }}>
+                    {ind.up ? <TrendingUp className="w-2.5 h-2.5" /> : <TrendingDown className="w-2.5 h-2.5" />}
+                    {ind.value}
+                  </span>
+                </div>
               ))}
             </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
 
-function EconomyCard({ economy }: { economy: Economy }) {
-  return (
-    <Link
-      href={`/economies/${economy.slug}`}
-      className="group flex flex-col items-center gap-1.5 py-3 px-2 text-center transition-all hover:scale-105"
-      style={{
-        background: "var(--surface)",
-        border: "1px solid var(--border)",
-        borderRadius: "2px",
-      }}
-    >
-      <span className="text-2xl leading-none">{economy.flag}</span>
-      <span className="text-2xs font-sans leading-tight" style={{ color: "var(--ink)" }}>
-        {economy.name}
-      </span>
-      <span className="text-2xs font-mono" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>
-        {economy.code}
-      </span>
-    </Link>
+            {/* Key economies */}
+            <div className="flex flex-wrap gap-1 mb-3">
+              {c.keyEconomies.slice(0, 3).map((e) => (
+                <span key={e} className="text-2xs px-1.5 py-0.5 font-mono" style={{ background: "var(--border)", color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>
+                  {e}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-1 text-2xs font-semibold" style={{ color: "var(--red)", fontFamily: "var(--font-jetbrains)" }}>
+              Full briefing <ArrowRight className="w-3 h-3" />
+            </div>
+          </Link>
+        );
+      })}
+    </div>
   );
 }

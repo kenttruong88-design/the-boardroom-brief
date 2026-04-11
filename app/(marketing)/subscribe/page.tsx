@@ -44,7 +44,7 @@ const tiers = [
     period: "/month",
     description: "Team access for up to 10 seats.",
     cta: "Contact us",
-    href: "mailto:hello@theboardroombrief.com",
+    href: "mailto:hello@thealignmenttimes.com",
     features: [
       "Everything in Pro",
       "Up to 10 team seats",
