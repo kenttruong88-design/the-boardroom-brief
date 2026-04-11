@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/app/lib/supabase";
+import { createAdminClient } from "@/app/lib/supabase-server";
 import { randomBytes } from "crypto";
 import { Resend } from "resend";
 import { render } from "@react-email/components";

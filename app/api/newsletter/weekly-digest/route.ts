@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { createAdminClient } from "@/app/lib/supabase";
+import { createAdminClient } from "@/app/lib/supabase-server";
 import { client as sanityClient } from "@/app/lib/sanity";
 
 function isAuthorized(req: Request): boolean {

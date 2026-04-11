@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { fetchAllMarketData } from "@/app/lib/market-fetcher";
-import { createAdminClient } from "@/app/lib/supabase";
+import { createAdminClient } from "@/app/lib/supabase-server";
 
 // Protected with a secret header — set CRON_SECRET in env vars
 export async function POST(req: Request) {

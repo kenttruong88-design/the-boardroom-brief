@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { callClaude, parseJSON } from "@/app/lib/claude";
-import { createAdminClient } from "@/app/lib/supabase";
+import { createAdminClient } from "@/app/lib/supabase-server";
 import { client as sanityClient } from "@/app/lib/sanity";
 
 const SYSTEM_PROMPT = `You write social media copy for The Alignment Times. LinkedIn posts should be professional but entertaining — a senior manager would share them. Twitter/X posts should be punchy, quotable, and under 240 chars with a sardonic twist. Never use more than 2 hashtags. Never use more than 1 emoji.`;

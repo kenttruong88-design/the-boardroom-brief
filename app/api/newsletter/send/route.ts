@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { render } from "@react-email/components";
-import { createAdminClient } from "@/app/lib/supabase";
+import { createAdminClient } from "@/app/lib/supabase-server";
 import { client as sanityClient } from "@/app/lib/sanity";
 import MorningBrief, { type MarketItem, type ArticleItem } from "@/emails/morning-brief";
 

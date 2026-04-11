@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/app/lib/supabase";
+import { createAdminClient } from "@/app/lib/supabase-server";
 import { fetchAllMarketData, MOCK_MARKET_DATA } from "@/app/lib/market-fetcher";
 
 export const revalidate = 300; // 5 minutes
