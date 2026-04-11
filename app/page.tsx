@@ -66,15 +66,6 @@ export default async function HomePage() {
       <Navigation />
 
       <main style={{ background: "var(--cream)" }}>
-        {/* Date bar */}
-        <div className="border-b" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
-          <div className="container-editorial py-1.5 flex items-center justify-between">
-            <span className="eyebrow-muted">
-              {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
-            </span>
-            <span className="eyebrow-muted hidden sm:block">Vol. I, No. 1</span>
-          </div>
-        </div>
 
         <div className="container-editorial py-8">
 

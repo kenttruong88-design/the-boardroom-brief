@@ -11,20 +11,15 @@ export default function Navigation() {
 
   return (
     <header style={{ background: "var(--cream)", borderBottom: "2px solid var(--navy)" }}>
-      {/* Dateline strip — above the masthead */}
-      <div className="border-b" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
-        <div className="container-editorial py-1 flex items-center justify-between">
-          <span className="eyebrow-muted text-2xs hidden sm:block" style={{ fontFamily: "var(--font-jetbrains)" }}>
-            Vol. I
-          </span>
-          <span className="eyebrow-muted text-2xs ml-auto" style={{ fontFamily: "var(--font-jetbrains)" }}>
+      {/* Masthead */}
+      <div className="container-editorial py-4 border-b relative" style={{ borderColor: "var(--border)" }}>
+        {/* Date — top-right corner, above the title */}
+        <div className="absolute top-3 right-0 hidden sm:block">
+          <span className="eyebrow-muted text-2xs" style={{ fontFamily: "var(--font-jetbrains)" }}>
             {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
           </span>
         </div>
-      </div>
 
-      {/* Masthead */}
-      <div className="container-editorial py-4 border-b" style={{ borderColor: "var(--border)" }}>
         <div className="text-center">
           <Link href="/" className="inline-block">
             <h1
