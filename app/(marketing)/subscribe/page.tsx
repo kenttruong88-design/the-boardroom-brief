@@ -1,167 +1,138 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
-
-const PRICE_ID = process.env.NEXT_PUBLIC_STRIPE_PRO_PRICE_ID ?? "";
-
-const tiers = [
-  {
-    name: "Free",
-    price: "$0",
-    period: "/month",
-    description: "Five stories every morning. No credit card required.",
-    cta: "Start reading",
-    href: "/",
-    features: [
-      "Morning Brief newsletter",
-      "3 full articles/day",
-      "Markets ticker",
-      "30 economy snapshots",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    price: "$9",
-    period: "/month",
-    description: "Everything in Free, plus unlimited access and no ads.",
-    cta: "Subscribe",
-    priceId: PRICE_ID,
-    features: [
-      "Everything in Free",
-      "Unlimited article access",
-      "No ads",
-      "Weekly Digest email",
-      "Full earnings coverage",
-      "Early access to new features",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Corporate",
-    price: "$49",
-    period: "/month",
-    description: "Team access for up to 10 seats.",
-    cta: "Contact us",
-    href: "mailto:hello@thealignmenttimes.com",
-    features: [
-      "Everything in Pro",
-      "Up to 10 team seats",
-      "Custom newsletter digest",
-      "Priority support",
-      "Invoice billing",
-    ],
-    highlight: false,
-  },
-];
+import { Mail, Check } from "lucide-react";
 
 export default function SubscribePage() {
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleProCheckout() {
-    if (!PRICE_ID) {
-      alert("Stripe not configured yet — check back soon.");
-      return;
-    }
-    setLoading(true);
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMsg("");
+
     try {
-      const res = await fetch("/api/stripe/checkout", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ priceId: PRICE_ID }),
+        body: JSON.stringify({ email, source: "subscribe-page" }),
       });
-      const { url } = await res.json() as { url?: string };
-      if (url) window.location.href = url;
+      const data = await res.json() as { message?: string; error?: string };
+
+      if (!res.ok) {
+        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+      } else {
+        setStatus("success");
+      }
     } catch {
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+      setErrorMsg("Something went wrong. Please try again.");
+      setStatus("error");
     }
   }
 
   return (
     <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
       <div className="container-editorial py-20">
-        <div className="text-center mb-14">
-          <p className="eyebrow mb-3">Pricing</p>
-          <h1 className="text-4xl sm:text-5xl font-serif font-bold" style={{ color: "var(--navy)" }}>
-            Intelligence worth paying for.
+
+        {/* Header */}
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <p className="eyebrow mb-3">Daily Newsletter</p>
+          <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-4" style={{ color: "var(--navy)" }}>
+            Five stories. Every morning. Free.
           </h1>
-          <p className="text-lg font-sans mt-4 max-w-xl mx-auto" style={{ color: "var(--ink-m)" }}>
-            Real markets. Real news. Questionable corporate poetry — starting free.
+          <p className="text-lg font-sans" style={{ color: "var(--ink-m)" }}>
+            The Alignment Times delivers economic intelligence across five continents — markets, policy, and power — straight to your inbox before the market opens.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className="flex flex-col p-8"
-              style={{
-                background: tier.highlight ? "var(--navy)" : "var(--surface)",
-                border: tier.highlight ? "2px solid var(--red)" : "1px solid var(--border)",
-              }}
-            >
-              {tier.highlight && (
-                <p className="text-xs font-sans font-semibold tracking-widest uppercase mb-4" style={{ color: "var(--gold)" }}>
-                  Most Popular
-                </p>
-              )}
-              <h2
-                className="text-xl font-serif font-bold"
-                style={{ color: tier.highlight ? "var(--cream)" : "var(--navy)" }}
+        {/* Form card */}
+        <div className="max-w-md mx-auto">
+          {status === "success" ? (
+            <div className="text-center p-10" style={{ background: "var(--navy)" }}>
+              <div
+                className="w-14 h-14 flex items-center justify-center mx-auto mb-5"
+                style={{ background: "var(--red)", borderRadius: "2px" }}
               >
-                {tier.name}
-              </h2>
-              <div className="flex items-end gap-1 mt-2 mb-1">
-                <span
-                  className="text-4xl font-serif font-bold"
-                  style={{ color: tier.highlight ? "var(--cream)" : "var(--navy)" }}
-                >
-                  {tier.price}
-                </span>
-                <span className="text-sm font-sans mb-1" style={{ color: tier.highlight ? "rgba(245,240,232,0.5)" : "var(--ink-m)" }}>
-                  {tier.period}
-                </span>
+                <Mail className="w-7 h-7 text-white" />
               </div>
-              <p className="text-sm font-sans mb-6" style={{ color: tier.highlight ? "rgba(245,240,232,0.65)" : "var(--ink-m)" }}>
-                {tier.description}
+              <h2 className="text-2xl font-serif font-bold mb-3" style={{ color: "var(--cream)" }}>
+                Check your inbox
+              </h2>
+              <p className="text-sm font-sans" style={{ color: "rgba(245,240,232,0.7)" }}>
+                We sent a confirmation link to <strong style={{ color: "var(--cream)" }}>{email}</strong>. Click it to activate your subscription.
               </p>
-
-              <ul className="space-y-2.5 mb-8 flex-1">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm font-sans" style={{ color: tier.highlight ? "rgba(245,240,232,0.85)" : "var(--ink)" }}>
-                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: tier.highlight ? "var(--gold)" : "var(--red)" }} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              {tier.priceId !== undefined ? (
-                <button
-                  onClick={handleProCheckout}
-                  disabled={loading}
-                  className="btn-red w-full text-center disabled:opacity-60"
-                >
-                  {loading ? "Redirecting…" : tier.cta}
-                </button>
-              ) : tier.href?.startsWith("mailto") ? (
-                <a href={tier.href} className="btn-outline w-full text-center" style={{ border: "1px solid var(--border)", color: "var(--navy)" }}>
-                  {tier.cta}
-                </a>
-              ) : (
-                <a href={tier.href} className="btn-outline w-full text-center" style={{ border: "1px solid var(--border)", color: "var(--navy)" }}>
-                  {tier.cta}
-                </a>
-              )}
             </div>
-          ))}
+          ) : (
+            <div className="p-8" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="eyebrow-muted block mb-2">Your email address</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    required
+                    className="w-full text-base font-sans px-4 py-3 outline-none"
+                    style={{
+                      background: "var(--cream)",
+                      border: "1px solid var(--border)",
+                      color: "var(--ink)",
+                      borderRadius: "2px",
+                    }}
+                  />
+                </div>
+
+                {status === "error" && (
+                  <p className="text-sm font-sans" style={{ color: "var(--red)" }}>{errorMsg}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="btn-red w-full flex items-center justify-center gap-2 disabled:opacity-60"
+                >
+                  <Mail className="w-4 h-4" />
+                  {status === "loading" ? "Subscribing…" : "Subscribe — it's free"}
+                </button>
+              </form>
+
+              <p className="text-xs font-sans text-center mt-4" style={{ color: "var(--ink-m)" }}>
+                No spam. No paid tiers. Unsubscribe any time.
+              </p>
+            </div>
+          )}
         </div>
 
-        <p className="text-center text-sm font-sans mt-8" style={{ color: "var(--ink-m)" }}>
-          Cancel anytime. No dark patterns. We&apos;re journalists, not growth hackers.
-        </p>
+        {/* What you get */}
+        <div className="max-w-2xl mx-auto mt-16">
+          <div className="rule-thick mb-8" />
+          <h2 className="text-xl font-serif font-bold mb-6 text-center" style={{ color: "var(--navy)" }}>
+            What's in every edition
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { title: "Markets Floor", body: "Indices, forex, and commodities — what moved and why." },
+              { title: "C-Suite Circus", body: "Executive moves, boardroom strategy, and corporate theatre." },
+              { title: "Global Office", body: "International business, geopolitics, and trade." },
+              { title: "Water Cooler", body: "Corporate culture and workplace absurdity, served dry." },
+              { title: "Off The Record", body: "Podcast picks — unfiltered conversations on leadership." },
+              { title: "5 Continents", body: "One macro signal per region, every morning." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 p-4" style={{ border: "1px solid var(--border)" }}>
+                <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "var(--red)" }} />
+                <div>
+                  <p className="text-sm font-sans font-semibold" style={{ color: "var(--navy)" }}>{item.title}</p>
+                  <p className="text-sm font-sans mt-0.5" style={{ color: "var(--ink-m)" }}>{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
