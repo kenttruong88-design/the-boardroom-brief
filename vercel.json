@@ -1,6 +1,10 @@
 {
   "crons": [
     {
+      "path": "/api/newsroom/run",
+      "schedule": "0 4 * * *"
+    },
+    {
       "path": "/api/market-sync",
       "schedule": "*/15 8-18 * * 1-5"
     },
