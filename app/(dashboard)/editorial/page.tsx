@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, XCircle, ExternalLink, ChevronDown, ChevronRight } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
+import RejectedArticlesSection from "@/app/components/editorial/RejectedArticlesSection";
 import type { DailyDigest, ArticleDraft, EditorReview } from "@/app/lib/agents/types";
 
 type ArticleEntry = { draft: ArticleDraft; review: EditorReview };
@@ -28,11 +29,13 @@ function ArticleCard({
   index,
   onApprove,
   onReject,
+  approving,
 }: {
   entry: ArticleEntry;
   index: number;
   onApprove: (i: number) => void;
   onReject: (i: number) => void;
+  approving: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const { draft, review } = entry;
@@ -123,10 +126,12 @@ function ArticleCard({
       <div className="flex items-center gap-3">
         <button
           onClick={() => onApprove(index)}
-          className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2 transition-opacity hover:opacity-80"
+          disabled={approving}
+          className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2 transition-opacity hover:opacity-80 disabled:opacity-50"
           style={{ background: "#15803d", color: "#fff", borderRadius: "2px" }}
         >
-          <CheckCircle className="w-4 h-4" /> Approve + Publish
+          <CheckCircle className="w-4 h-4" />
+          {approving ? "Publishing…" : "Approve + Publish"}
         </button>
         <a
           href={`${siteUrl}/studio`}
@@ -154,7 +159,8 @@ export default function EditorialDashboard() {
   const [loading, setLoading] = useState(true);
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [actioned, setActioned] = useState<Record<number, "approved" | "rejected">>({});
-  const [showRejected, setShowRejected] = useState(false);
+  const [approvingIndex, setApprovingIndex] = useState<number | null>(null);
+  const [publishedUrls, setPublishedUrls] = useState<Record<number, string>>({});
   const [error, setError] = useState("");
 
   // Auth check
@@ -171,7 +177,7 @@ export default function EditorialDashboard() {
     fetch("/api/editorial/review")
       .then((r) => r.json())
       .then((data) => {
-        if (data.digest_json) setDigest(data.digest_json as DailyDigest);
+        if (data.digest) setDigest(data.digest as DailyDigest);
         else setError("No digest found for today.");
       })
       .catch(() => setError("Failed to load digest."))
@@ -179,28 +185,34 @@ export default function EditorialDashboard() {
   }, [authed]);
 
   async function handleApprove(index: number) {
-    const entry = digest!.articles[index];
-    // Publish to Sanity
-    const res = await fetch("/api/editorial/publish", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(entry.draft),
-    });
-    if (res.ok) {
-      await fetch("/api/editorial/review", {
+    setApprovingIndex(index);
+    try {
+      const res = await fetch("/api/editorial/approve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "approve", articleIndex: index }),
+        body: JSON.stringify({ articleId: String(index) }),
       });
-      setActioned((prev) => ({ ...prev, [index]: "approved" }));
+      const data = await res.json() as { success?: boolean; publishedUrl?: string; error?: string };
+      if (res.ok && data.success) {
+        setActioned((prev) => ({ ...prev, [index]: "approved" }));
+        if (data.publishedUrl) {
+          setPublishedUrls((prev) => ({ ...prev, [index]: data.publishedUrl! }));
+        }
+      } else {
+        alert(data.error ?? "Approval failed. Please try again.");
+      }
+    } catch {
+      alert("Network error. Please try again.");
+    } finally {
+      setApprovingIndex(null);
     }
   }
 
   async function handleReject(index: number) {
-    await fetch("/api/editorial/review", {
+    await fetch("/api/editorial/reject", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "reject", articleIndex: index }),
+      body: JSON.stringify({ articleId: String(index) }),
     });
     setActioned((prev) => ({ ...prev, [index]: "rejected" }));
   }
@@ -236,13 +248,14 @@ export default function EditorialDashboard() {
 
   const passed = digest.articles
     .map((entry, i) => ({ entry, i }))
-    .filter(({ entry, i }) => entry.review.passed && !actioned[i]);
+    .filter(({ i }) => digest.articles[i].review.passed && !actioned[i]);
 
   const rejected = digest.articles
-    .map((entry, i) => ({ entry, i }))
-    .filter(({ entry, i }) => !entry.review.passed || actioned[i] === "rejected");
+    .map((entry, i) => ({ entry, i, articleIndex: i }))
+    .filter(({ i }) => !digest.articles[i].review.passed || actioned[i] === "rejected")
+    .map(({ entry, i }) => ({ ...entry, articleIndex: i }));
 
-  const approved = Object.values(actioned).filter((v) => v === "approved").length;
+  const approvedCount = Object.values(actioned).filter((v) => v === "approved").length;
 
   return (
     <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
@@ -258,7 +271,7 @@ export default function EditorialDashboard() {
             <span><strong style={{ color: "var(--navy)" }}>{digest.totalArticles}</strong> written</span>
             <span><strong style={{ color: "#15803d" }}>{digest.passedArticles}</strong> passed</span>
             <span><strong style={{ color: "var(--red)" }}>{digest.rejectedArticles}</strong> rejected</span>
-            {approved > 0 && <span><strong style={{ color: "#1d4ed8" }}>{approved}</strong> published today</span>}
+            {approvedCount > 0 && <span><strong style={{ color: "#1d4ed8" }}>{approvedCount}</strong> published today</span>}
           </div>
         </div>
 
@@ -267,13 +280,32 @@ export default function EditorialDashboard() {
           <div className="mb-10">
             <h2 className="eyebrow mb-5">Ready for review ({passed.length})</h2>
             {passed.map(({ entry, i }) => (
-              <ArticleCard
-                key={i}
-                entry={entry}
-                index={i}
-                onApprove={handleApprove}
-                onReject={handleReject}
-              />
+              <div key={i}>
+                <ArticleCard
+                  entry={entry}
+                  index={i}
+                  onApprove={handleApprove}
+                  onReject={handleReject}
+                  approving={approvingIndex === i}
+                />
+                {actioned[i] === "approved" && publishedUrls[i] && (
+                  <div
+                    className="flex items-center gap-2 px-4 py-2 mb-4 -mt-3 text-sm font-sans"
+                    style={{ background: "#f0fdf4", border: "1px solid #86efac", color: "#15803d" }}
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    Published —{" "}
+                    <a
+                      href={publishedUrls[i]}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: "#15803d", textDecoration: "underline" }}
+                    >
+                      View live article →
+                    </a>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         ) : (
@@ -282,41 +314,13 @@ export default function EditorialDashboard() {
           </div>
         )}
 
-        {/* Rejected articles — collapsed */}
-        {rejected.length > 0 && (
-          <div>
-            <button
-              onClick={() => setShowRejected((v) => !v)}
-              className="flex items-center gap-2 text-sm font-sans mb-4 transition-opacity hover:opacity-70"
-              style={{ color: "var(--ink-m)" }}
-            >
-              {showRejected ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-              Not passing / rejected ({rejected.length})
-            </button>
-            {showRejected && (
-              <div className="space-y-3">
-                {rejected.map(({ entry, i }) => (
-                  <div
-                    key={i}
-                    className="p-4"
-                    style={{ background: "var(--surface)", border: "1px solid var(--border)", opacity: 0.7 }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="eyebrow-muted mr-2">{pillarLabel(entry.draft.pillar)}</span>
-                        <span className="text-sm font-serif font-bold" style={{ color: "var(--navy)" }}>
-                          {entry.draft.headline}
-                        </span>
-                      </div>
-                      <ScoreBadge score={entry.review.score} />
-                    </div>
-                    <p className="text-xs font-sans mt-1" style={{ color: "var(--ink-m)" }}>{entry.review.notes}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        {/* Rejected articles */}
+        <RejectedArticlesSection
+          rejectedArticles={rejected}
+          onDismiss={(articleIndex) =>
+            setActioned((prev) => ({ ...prev, [articleIndex]: "rejected" }))
+          }
+        />
 
       </div>
     </div>

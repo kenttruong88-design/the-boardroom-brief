@@ -71,7 +71,7 @@ export default function DailyDigestEmail({
     <Html lang="en">
       <Head />
       <Preview>
-        {passedCount} article{passedCount !== 1 ? "s" : ""} ready for review — {digest.date}
+        {`${passedCount} article${passedCount !== 1 ? "s" : ""} ready for review — ${digest.date}`}
       </Preview>
 
       <Body style={{ backgroundColor: CREAM, fontFamily: "Georgia, 'Times New Roman', serif", margin: 0, padding: 0 }}>
