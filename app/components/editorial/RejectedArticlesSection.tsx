@@ -4,46 +4,43 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight, RefreshCw, X, Clock } from "lucide-react";
 import type { ArticleDraft, EditorReview } from "@/app/lib/agents/types";
 
-interface RejectedEntry {
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+export interface RejectedArticleEntry {
   draft: ArticleDraft;
   review: EditorReview;
   articleIndex: number;
 }
 
 interface Props {
-  rejectedArticles: Array<{ draft: ArticleDraft; review: EditorReview; articleIndex: number }>;
+  rejectedArticles: RejectedArticleEntry[];
   onDismiss?: (articleIndex: number) => void;
 }
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function truncate(text: string, max: number) {
   return text.length <= max ? text : text.slice(0, max - 1) + "…";
 }
 
-function ScoreDot({ score }: { score: number }) {
-  const color = score >= 7 ? "#15803d" : score >= 5 ? "#d97706" : "#dc2626";
-  return (
-    <span
-      className="inline-block w-2 h-2 rounded-full flex-shrink-0 mt-1.5"
-      style={{ background: color }}
-      aria-hidden="true"
-    />
-  );
-}
+// ── Row ───────────────────────────────────────────────────────────────────────
+
+type RevisionState = "idle" | "loading" | "done" | "error";
 
 function RejectedRow({
   entry,
   onDismiss,
 }: {
-  entry: RejectedEntry;
+  entry: RejectedArticleEntry;
   onDismiss?: (i: number) => void;
 }) {
   const { draft, review, articleIndex } = entry;
-  const [revisionState, setRevisionState] = useState<
-    "idle" | "loading" | "pending" | "error"
-  >("idle");
-  const [revisedScore, setRevisedScore] = useState<number | null>(null);
-  const [dismissed, setDismissed] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+
+  const [revisionState, setRevisionState] = useState<RevisionState>("idle");
+  const [revisedScore, setRevisedScore]   = useState<number | null>(null);
+  const [revisedNotes, setRevisedNotes]   = useState<string>("");
+  const [errorMsg, setErrorMsg]           = useState("");
+  const [dismissed, setDismissed]         = useState(false);
 
   if (dismissed) return null;
 
@@ -54,15 +51,23 @@ function RejectedRow({
       const res = await fetch("/api/editorial/revise", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ articleIndex }),
+        body: JSON.stringify({ articleId: String(articleIndex) }),
       });
-      const data = await res.json() as { score?: number; error?: string };
-      if (!res.ok) {
-        setErrorMsg(data.error ?? "Revision failed.");
+      const data = await res.json() as {
+        success?: boolean;
+        newScore?: number;
+        passed?: boolean;
+        notes?: string;
+        error?: string;
+      };
+
+      if (!res.ok || !data.success) {
+        setErrorMsg(data.error ?? "Revision failed. Please try again.");
         setRevisionState("error");
       } else {
-        setRevisedScore(data.score ?? null);
-        setRevisionState("pending");
+        setRevisedScore(data.newScore ?? null);
+        setRevisedNotes(data.notes ?? "");
+        setRevisionState("done");
       }
     } catch {
       setErrorMsg("Network error. Please try again.");
@@ -72,10 +77,10 @@ function RejectedRow({
 
   async function handleDismiss() {
     try {
-      await fetch("/api/editorial/review", {
+      await fetch("/api/editorial/reject", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "reject", articleIndex }),
+        body: JSON.stringify({ articleId: String(articleIndex) }),
       });
     } catch {
       // non-fatal — still remove from UI
@@ -86,52 +91,72 @@ function RejectedRow({
 
   return (
     <div
-      className="flex items-start gap-3 py-3 px-4"
+      className="flex items-start gap-3 px-4 py-3"
       style={{ borderBottom: "1px solid var(--border)" }}
     >
-      {/* Status dot */}
-      <ScoreDot score={review.score} />
+      {/* Red status dot */}
+      <span
+        className="flex-shrink-0 mt-1.5 w-2 h-2 rounded-full"
+        style={{ background: "#dc2626" }}
+        aria-hidden="true"
+      />
 
       {/* Content */}
       <div className="flex-1 min-w-0">
+        {/* Agent + headline */}
         <div className="flex items-center gap-2 flex-wrap mb-0.5">
-          <span className="text-xs font-mono font-semibold" style={{ color: "var(--ink-m)" }}>
+          <span
+            className="text-xs font-mono font-semibold flex-shrink-0"
+            style={{ color: "var(--ink-m)" }}
+          >
             {draft.agentName}
           </span>
-          <span className="text-xs font-sans font-medium" style={{ color: "var(--navy)" }}>
+          <span
+            className="text-xs font-sans"
+            style={{ color: "var(--navy)" }}
+          >
             {truncate(draft.headline, 80)}
           </span>
         </div>
 
-        <div className="flex items-center gap-2 mb-1">
+        {/* Score + notes */}
+        <div className="flex items-baseline gap-2 flex-wrap">
           <span
-            className="text-xs font-mono font-bold"
+            className="text-xs font-mono font-bold flex-shrink-0"
             style={{ color: "#dc2626" }}
           >
-            {review.score}/10
+            {review.score.toFixed(1)}/10
           </span>
-          <span className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
+          <span
+            className="text-xs font-sans"
+            style={{ color: "var(--ink-m)" }}
+          >
             {truncate(review.notes, 120)}
           </span>
         </div>
 
-        {revisionState === "pending" && (
-          <div className="flex items-center gap-1.5 mt-1">
-            <Clock className="w-3 h-3" style={{ color: "var(--ink-m)" }} />
+        {/* Revised state */}
+        {revisionState === "done" && revisedScore !== null && (
+          <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+            <Clock className="w-3 h-3 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
             <span className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
               Revised — pending
             </span>
-            {revisedScore !== null && (
-              <span
-                className="text-xs font-mono font-bold ml-1"
-                style={{ color: revisedScore >= 7 ? "#15803d" : "#dc2626" }}
-              >
-                New score: {revisedScore}/10
+            <span
+              className="text-xs font-mono font-bold"
+              style={{ color: revisedScore >= 7 ? "#15803d" : "#dc2626" }}
+            >
+              New score: {revisedScore.toFixed(1)}/10
+            </span>
+            {revisedNotes && (
+              <span className="text-xs font-sans w-full mt-0.5" style={{ color: "var(--ink-m)" }}>
+                {truncate(revisedNotes, 120)}
               </span>
             )}
           </div>
         )}
 
+        {/* Error */}
         {revisionState === "error" && (
           <p className="text-xs font-sans mt-1" style={{ color: "#dc2626" }}>
             {errorMsg}
@@ -141,33 +166,36 @@ function RejectedRow({
 
       {/* Actions */}
       <div className="flex items-center gap-2 flex-shrink-0">
-        {revisionState === "idle" || revisionState === "error" ? (
-          <button
-            onClick={handleRevise}
-            disabled={revisionState === "loading"}
-            className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5 transition-opacity hover:opacity-70 disabled:opacity-40"
-            style={{
-              border: "1px solid var(--border)",
-              color: "var(--navy)",
-              borderRadius: "2px",
-              whiteSpace: "nowrap",
-            }}
-            title="Send for one more revision attempt"
-          >
-            <RefreshCw className="w-3 h-3" />
-            Send for revision
-          </button>
-        ) : revisionState === "loading" ? (
-          <span className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
-            Revising…
-          </span>
-        ) : null}
+        {/* Revision button — hidden once revision is done */}
+        {revisionState !== "done" && (
+          revisionState === "loading" ? (
+            <span className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
+              Revising…
+            </span>
+          ) : (
+            <button
+              onClick={handleRevise}
+              className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5 transition-opacity hover:opacity-70"
+              style={{
+                border: "1px solid var(--border)",
+                color: "var(--navy)",
+                borderRadius: "2px",
+                whiteSpace: "nowrap",
+              }}
+              title="Send back for one revision attempt through the journalist + editor pipeline"
+            >
+              <RefreshCw className="w-3 h-3" />
+              Send for revision
+            </button>
+          )
+        )}
 
+        {/* Dismiss */}
         <button
           onClick={handleDismiss}
           className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5 transition-opacity hover:opacity-70"
           style={{ color: "#dc2626" }}
-          title="Permanently dismiss this article"
+          title="Permanently remove from today's digest"
         >
           <X className="w-3 h-3" />
           Dismiss
@@ -177,33 +205,41 @@ function RejectedRow({
   );
 }
 
+// ── Section ───────────────────────────────────────────────────────────────────
+
 export default function RejectedArticlesSection({ rejectedArticles, onDismiss }: Props) {
   const [expanded, setExpanded] = useState(false);
 
-  if (rejectedArticles.length === 0) return null;
+  // Filter out dismissed rows for the count
+  const count = rejectedArticles.length;
+
+  if (count === 0) return null;
 
   return (
     <div style={{ border: "1px solid var(--border)" }}>
-      {/* Header / toggle */}
+      {/* Toggle header */}
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 transition-colors hover:opacity-70"
+        className="w-full flex items-center justify-between px-4 py-3 transition-opacity hover:opacity-70"
         style={{ background: "var(--surface)" }}
       >
         <div className="flex items-center gap-2">
           <span
             className="inline-block w-2 h-2 rounded-full flex-shrink-0"
             style={{ background: "#dc2626" }}
+            aria-hidden="true"
           />
-          <span className="text-sm font-sans font-medium" style={{ color: "var(--navy)" }}>
-            Rejected by editor in chief ({rejectedArticles.length}) — not sent for human review
+          <span
+            className="text-sm font-sans font-medium"
+            style={{ color: "var(--navy)" }}
+          >
+            Rejected by editor in chief ({count}) — not sent for human review
           </span>
         </div>
-        {expanded ? (
-          <ChevronDown className="w-4 h-4 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
-        ) : (
-          <ChevronRight className="w-4 h-4 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
-        )}
+        {expanded
+          ? <ChevronDown className="w-4 h-4 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
+          : <ChevronRight className="w-4 h-4 flex-shrink-0" style={{ color: "var(--ink-m)" }} />
+        }
       </button>
 
       {/* Rows */}
