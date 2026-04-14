@@ -4,10 +4,11 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   CheckCircle, XCircle, ExternalLink, ChevronDown, ChevronRight,
-  Play, Loader2, Settings, Zap, X,
+  Play, Loader2, Settings, Zap, X, AlertCircle, Clock,
 } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
 import RejectedArticlesSection from "@/app/components/editorial/RejectedArticlesSection";
+import PipelineProgressPanel from "@/app/components/editorial/PipelineProgressPanel";
 import type { DailyDigest, ArticleDraft, EditorReview } from "@/app/lib/agents/types";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -38,6 +39,13 @@ const PILLAR_COLORS: Record<string, string> = {
   "global-office":  "#b45309",
   "water-cooler":   "#be123c",
 };
+
+interface LastRun {
+  date: string;
+  total_articles_written: number;
+  passed_review: number;
+  created_at: string;
+}
 
 const PILLAR_SLUGS = Object.keys(PILLAR_LABELS).filter((k) => k !== "all") as Exclude<PillarFilter, "all">[];
 const LS_THRESHOLD_KEY = "tbb_auto_approve_threshold";
@@ -419,6 +427,61 @@ function AutoApproveModal({
   );
 }
 
+// ── Force-run confirmation modal ──────────────────────────────────────────────
+
+function ForceRunModal({
+  articlesProduced,
+  onConfirm,
+  onClose,
+}: {
+  articlesProduced: number;
+  onConfirm: () => void;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: "rgba(15,25,35,0.6)" }}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div
+        className="w-full max-w-sm p-8"
+        style={{ background: "var(--cream)", border: "2px solid var(--navy)", borderRadius: "2px" }}
+      >
+        <div className="flex items-start gap-3 mb-4">
+          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#d97706" }} />
+          <div>
+            <h2 className="text-lg font-serif font-bold" style={{ color: "var(--navy)" }}>
+              Pipeline already ran today
+            </h2>
+            <p className="text-sm font-sans mt-1" style={{ color: "var(--ink-m)" }}>
+              The pipeline ran this morning and produced{" "}
+              <strong style={{ color: "var(--navy)" }}>{articlesProduced}</strong>{" "}
+              article{articlesProduced !== 1 ? "s" : ""}. Run again anyway?
+            </p>
+          </div>
+        </div>
+        <div className="flex gap-3 mt-6">
+          <button
+            onClick={onConfirm}
+            className="flex-1 py-2.5 text-sm font-sans font-semibold transition-opacity hover:opacity-80"
+            style={{ background: "var(--navy)", color: "var(--cream)", borderRadius: "2px" }}
+          >
+            Run again
+          </button>
+          <button
+            onClick={onClose}
+            className="px-4 py-2.5 text-sm font-sans transition-opacity hover:opacity-70"
+            style={{ border: "1px solid var(--border)", color: "var(--navy)", borderRadius: "2px" }}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main page ─────────────────────────────────────────────────────────────────
 
 export default function EditorialDashboard() {
@@ -443,9 +506,16 @@ export default function EditorialDashboard() {
   const [bulkApproving, setBulkApproving] = useState(false);
   const [bulkResult, setBulkResult] = useState("");
 
-  // Pipeline runner
-  const [pipelineRunning, setPipelineRunning] = useState(false);
-  const [pipelineResult, setPipelineResult] = useState("");
+  // Pipeline trigger
+  const [triggering, setTriggering]                     = useState(false);
+  const [activeJobId, setActiveJobId]                   = useState<string | null>(null);
+  const [showPanel, setShowPanel]                       = useState(false);
+  const [showForceModal, setShowForceModal]             = useState(false);
+  const [forceArticlesProduced, setForceArticlesProduced] = useState(0);
+  const [triggerError, setTriggerError]                 = useState("");
+
+  // Last run indicator
+  const [lastRun, setLastRun] = useState<LastRun | null>(null);
 
   // Auto-approve modal + threshold
   const [showAutoModal, setShowAutoModal] = useState(false);
@@ -535,7 +605,9 @@ export default function EditorialDashboard() {
         status: string;
         digest?: DailyDigest;
         articlesApproved?: number;
+        lastRun?: LastRun;
       };
+      if (data.lastRun) setLastRun(data.lastRun);
       if (data.digest) {
         setDigest(data.digest);
         setArticlesApproved(data.articlesApproved ?? 0);
@@ -630,32 +702,40 @@ export default function EditorialDashboard() {
     }
   }
 
-  async function handleRunPipeline() {
-    if (pipelineRunning) return;
-    setPipelineRunning(true);
-    setPipelineResult("");
+  async function handleTriggerPipeline(force = false) {
+    setTriggering(true);
+    setTriggerError("");
     try {
-      const res = await fetch("/api/editorial/run-pipeline", { method: "POST" });
+      const res = await fetch("/api/newsroom/trigger", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(force ? { force: true } : {}),
+      });
       const data = await res.json() as {
-        totalArticlesWritten?: number;
-        passedReview?: number;
-        errors?: string[];
+        jobId?: string;
+        status?: string;
         error?: string;
+        articlesProduced?: number;
       };
-      if (res.ok) {
-        setPipelineResult(
-          `Done — ${data.totalArticlesWritten ?? 0} written, ${data.passedReview ?? 0} passed.${
-            data.errors?.length ? ` ${data.errors.length} error(s).` : ""
-          }`
-        );
-        await fetchDigest();
+
+      if (data.status === "already_running" && data.jobId) {
+        // Pipeline is already running — open the panel for the existing job
+        setActiveJobId(data.jobId);
+        setShowPanel(true);
+      } else if (data.status === "already_ran") {
+        // Show confirmation modal
+        setForceArticlesProduced(data.articlesProduced ?? 0);
+        setShowForceModal(true);
+      } else if (data.status === "started" && data.jobId) {
+        setActiveJobId(data.jobId);
+        setShowPanel(true);
       } else {
-        setPipelineResult(data.error ?? "Pipeline failed.");
+        setTriggerError(data.error ?? "Failed to start pipeline.");
       }
     } catch {
-      setPipelineResult("Pipeline may still be running. Refresh in a few minutes.");
+      setTriggerError("Network error. Please try again.");
     } finally {
-      setPipelineRunning(false);
+      setTriggering(false);
     }
   }
 
@@ -735,12 +815,19 @@ export default function EditorialDashboard() {
     <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
       <div className="container-editorial py-10">
 
-        {/* ── AUTO-APPROVE MODAL ── */}
+        {/* ── MODALS ── */}
         {showAutoModal && (
           <AutoApproveModal
             current={autoThreshold}
             onSave={handleSaveThreshold}
             onClose={() => setShowAutoModal(false)}
+          />
+        )}
+        {showForceModal && (
+          <ForceRunModal
+            articlesProduced={forceArticlesProduced}
+            onConfirm={() => { setShowForceModal(false); handleTriggerPipeline(true); }}
+            onClose={() => setShowForceModal(false)}
           />
         )}
 
@@ -752,8 +839,27 @@ export default function EditorialDashboard() {
               Daily Review
             </h1>
             <p className="text-sm font-sans mt-1" style={{ color: "var(--ink-m)" }}>{today}</p>
+
+            {/* Last run indicator */}
+            {lastRun && (() => {
+              const ranDate = lastRun.date;
+              const todayStr = new Date().toISOString().split("T")[0];
+              const yesterdayStr = new Date(Date.now() - 86400000).toISOString().split("T")[0];
+              const dotColor = ranDate === todayStr ? "#15803d" : ranDate === yesterdayStr ? "#d97706" : "#6b6558";
+              const label = ranDate === todayStr ? "today" : ranDate === yesterdayStr ? "yesterday" : ranDate;
+              const time = new Date(lastRun.created_at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "UTC" });
+              return (
+                <div className="flex items-center gap-1.5 mt-2">
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dotColor }} />
+                  <span className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
+                    Last run: {label} {time} UTC · {lastRun.total_articles_written} articles
+                  </span>
+                </div>
+              );
+            })()}
+
             {autoThreshold !== null && (
-              <div className="flex items-center gap-1.5 mt-2">
+              <div className="flex items-center gap-1.5 mt-1.5">
                 <Zap className="w-3 h-3" style={{ color: "#15803d" }} />
                 <span className="text-xs font-sans" style={{ color: "#15803d" }}>
                   Auto-approve active — threshold {autoThreshold}/10
@@ -764,30 +870,43 @@ export default function EditorialDashboard() {
 
           <div className="flex-shrink-0 flex flex-col items-end gap-2">
             <button
-              onClick={handleRunPipeline}
-              disabled={pipelineRunning}
+              onClick={() => showPanel ? setShowPanel(false) : handleTriggerPipeline(false)}
+              disabled={triggering}
               className="flex items-center gap-2 text-sm font-sans font-semibold px-4 py-2.5 transition-opacity hover:opacity-80 disabled:opacity-50"
               style={{ background: "var(--navy)", color: "var(--cream)", borderRadius: "2px" }}
             >
-              {pipelineRunning
+              {triggering
                 ? <Loader2 className="w-4 h-4 animate-spin" />
-                : <Play className="w-4 h-4" />}
-              {pipelineRunning ? "Running pipeline…" : "Run pipeline now"}
+                : showPanel
+                  ? <Clock className="w-4 h-4" />
+                  : <Play className="w-4 h-4" />}
+              {triggering ? "Starting…" : showPanel ? "View progress" : "Run pipeline now"}
             </button>
-            {pipelineRunning && (
-              <p className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
-                Takes 5–8 min — stay on this page
-              </p>
-            )}
-            {pipelineResult && !pipelineRunning && (
-              <p
-                className="text-xs font-sans"
-                style={{ color: pipelineResult.includes("failed") || pipelineResult.includes("error") ? "var(--red)" : "#15803d" }}
-              >
-                {pipelineResult}
-              </p>
+            {triggerError && (
+              <p className="text-xs font-sans" style={{ color: "var(--red)" }}>{triggerError}</p>
             )}
           </div>
+        </div>
+
+        {/* ── PIPELINE PROGRESS PANEL ── */}
+        <div
+          style={{
+            overflow: "hidden",
+            maxHeight: showPanel && activeJobId ? "700px" : "0",
+            transition: "max-height 0.3s ease-in-out",
+            marginBottom: showPanel && activeJobId ? "2rem" : "0",
+          }}
+        >
+          {activeJobId && (
+            <PipelineProgressPanel
+              jobId={activeJobId}
+              onClose={() => setShowPanel(false)}
+              onComplete={async () => {
+                setShowPanel(false);
+                await fetchDigest();
+              }}
+            />
+          )}
         </div>
 
         {/* ── ERROR STATE ── */}
