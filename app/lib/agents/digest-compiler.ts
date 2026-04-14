@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase-server";
+import { generateApprovalTokens } from "@/app/lib/approval-tokens";
 import DailyDigestEmail from "@/emails/daily-digest";
 import type { ArticleDraft, EditorReview, DailyDigest } from "./types";
 
@@ -51,8 +52,21 @@ export async function sendDailyDigestEmail(digest: DailyDigest): Promise<void> {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
-  const html = await render(DailyDigestEmail({ digest, siteUrl }));
-  const subject = `Boardroom Brief — ${digest.passedArticles} article${digest.passedArticles !== 1 ? "s" : ""} ready for review — ${digest.date}`;
+
+  // Generate one-click approval tokens for all passing articles
+  const passingIndices = digest.articles
+    .map((_, i) => i)
+    .filter((i) => digest.articles[i].review.passed)
+    .map((i) => String(i));
+
+  const approvalTokens = passingIndices.length > 0
+    ? await generateApprovalTokens(passingIndices, digest.date).catch(() => ({} as Record<string, string>))
+    : {};
+
+  const html = await render(DailyDigestEmail({ digest, siteUrl, approvalTokens }));
+
+  const passedCount = digest.passedArticles;
+  const subject = `[${passedCount} article${passedCount !== 1 ? "s" : ""} ready] Boardroom Brief digest — ${digest.date}`;
 
   const resend = new Resend(resendKey);
   const { error } = await resend.emails.send({
@@ -66,7 +80,6 @@ export async function sendDailyDigestEmail(digest: DailyDigest): Promise<void> {
     throw new Error(`[digest] Resend error: ${error.message}`);
   }
 
-  // Mark email sent in Supabase
   const supabase = createAdminClient();
   await supabase
     .from("daily_digest")
