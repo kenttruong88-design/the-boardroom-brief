@@ -1,63 +1,55 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/app/lib/supabase-server";
 import { JOURNALIST_PERSONAS } from "@/app/lib/agents/personas";
 import { reviseArticle, reviewArticle } from "@/app/lib/agents/editor-review";
-import type { DailyDigest } from "@/app/lib/agents/types";
-
-function todayDate() {
-  return new Date().toISOString().split("T")[0];
-}
+import { requireAuth, loadDigest, saveDigest, resolveIndex, todayDate } from "../_helpers";
 
 export async function POST(req: Request) {
-  const { articleIndex } = await req.json() as { articleIndex: number };
+  const auth = await requireAuth();
+  if (auth instanceof NextResponse) return auth;
 
-  if (articleIndex === undefined || articleIndex === null) {
-    return NextResponse.json({ error: "articleIndex required" }, { status: 400 });
+  const { articleId, digestDate } = await req.json() as {
+    articleId: string;
+    digestDate?: string;
+  };
+
+  const date = digestDate ?? todayDate();
+  const index = resolveIndex(articleId);
+
+  if (index < 0) {
+    return NextResponse.json({ error: "Invalid articleId" }, { status: 400 });
   }
 
-  const supabase = createAdminClient();
-
-  // Load today's digest
-  const { data, error } = await supabase
-    .from("daily_digest")
-    .select("digest_json")
-    .eq("date", todayDate())
-    .single();
-
-  if (error || !data) {
-    return NextResponse.json({ error: "No digest for today" }, { status: 404 });
+  const row = await loadDigest(date);
+  if (!row) {
+    return NextResponse.json({ error: "No digest for that date" }, { status: 404 });
   }
 
-  const digest = data.digest_json as DailyDigest;
-  const entry = digest.articles[articleIndex];
-
+  const entry = row.digest_json.articles[index];
   if (!entry) {
     return NextResponse.json({ error: "Article not found" }, { status: 404 });
   }
 
   const persona = JOURNALIST_PERSONAS.find((p) => p.pillar === entry.draft.pillar);
   if (!persona) {
-    return NextResponse.json({ error: "No persona found for pillar" }, { status: 400 });
+    return NextResponse.json({ error: "No persona for pillar" }, { status: 400 });
   }
 
-  // Run one revision attempt through journalist + re-review
+  // Run revision through journalist + re-review
   const revisedDraft = await reviseArticle(persona, entry.draft, entry.review);
-  const newReview = await reviewArticle(revisedDraft, articleIndex);
+  const newReview = await reviewArticle(revisedDraft, index);
 
-  // Patch the digest in Supabase
-  digest.articles[articleIndex] = { draft: revisedDraft, review: newReview };
-  if (newReview.passed) {
+  // Patch digest
+  const digest = row.digest_json;
+  digest.articles[index] = { draft: revisedDraft, review: newReview };
+  if (newReview.passed && !entry.review.passed) {
     digest.passedArticles = (digest.passedArticles ?? 0) + 1;
     digest.rejectedArticles = Math.max(0, (digest.rejectedArticles ?? 1) - 1);
   }
-
-  await supabase
-    .from("daily_digest")
-    .update({ digest_json: digest })
-    .eq("date", todayDate());
+  await saveDigest(digest, date);
 
   return NextResponse.json({
-    score: newReview.score,
+    success: true,
+    newScore: newReview.score,
     passed: newReview.passed,
     notes: newReview.notes,
   });
