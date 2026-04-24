@@ -38,7 +38,7 @@ Return only valid JSON with no markdown, no explanation — just the object:
 }`;
 
   const writeResponse = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 2048,
     system: writeSystem,
     messages: [{ role: "user", content: writeUser }],
@@ -77,7 +77,7 @@ Return only valid JSON with no markdown, no explanation — just the object:
 }`;
 
   const metaResponse = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 512,
     system: "You are an SEO and content metadata specialist for a financial news publication.",
     messages: [{ role: "user", content: metaUser }],

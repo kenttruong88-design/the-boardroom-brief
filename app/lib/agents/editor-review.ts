@@ -42,7 +42,7 @@ Return only valid JSON with no markdown, no explanation — just the object:
 }`;
 
   const response = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 1024,
     system: EDITOR_IN_CHIEF_PERSONA.systemPrompt,
     messages: [{ role: "user", content: userPrompt }],
@@ -120,7 +120,7 @@ Rewrite the article addressing all revision notes. Return only valid JSON with n
 }`;
 
   const writeResponse = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 2048,
     system: persona.systemPrompt,
     messages: [{ role: "user", content: userPrompt }],
