@@ -26,6 +26,10 @@ export interface SanityArticleFull extends SanityArticle {
   body?: unknown[];
   seoTitle?: string;
   seoDescription?: string;
+  featuredImage?: { asset: { url: string }; alt?: string };
+  ogImage?: string;
+  imagePrompt?: string;
+  imageGeneratedWith?: string;
 }
 
 // ─── Fragments ───────────────────────────────────────────────────────────────
@@ -86,7 +90,11 @@ export const getArticleBySlug = cache(async (slug: string): Promise<SanityArticl
       ${ARTICLE_CARD},
       body,
       seoTitle,
-      seoDescription
+      seoDescription,
+      featuredImage { asset->{ url }, alt },
+      ogImage,
+      imagePrompt,
+      imageGeneratedWith
     }`,
     { slug },
     { next: { revalidate: 60 } }

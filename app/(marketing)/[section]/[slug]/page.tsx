@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { Clock, ArrowLeft, Share2, Bookmark, Link2, MessageSquare } from "lucide-react";
 import { MOCK_ARTICLES, PILLARS, getArticleBySlug as getMockArticle, formatDate, formatDateShort } from "@/app/lib/mock-data";
@@ -26,6 +27,10 @@ async function resolveArticle(slug: string) {
         pillar: sanity.pillar?.slug?.current ?? "markets-floor",
         author: sanity.author?.name ?? "Staff Writer",
         coverImage: sanity.coverImage?.asset?.url ?? null,
+        featuredImage: sanity.featuredImage ?? null,
+        ogImage: sanity.ogImage ?? null,
+        imagePrompt: sanity.imagePrompt ?? null,
+        imageGeneratedWith: sanity.imageGeneratedWith ?? null,
         _fromSanity: true,
       };
     }
@@ -41,8 +46,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!article) return {};
 
   const canonicalUrl = `${SITE_URL}/${section}/${slug}`;
-  const ogImage = (article as { coverImage?: string | null }).coverImage
-    ?? `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}`;
+  const a = article as typeof article & {
+    ogImage?: string | null;
+    featuredImage?: { asset: { url: string } } | null;
+    coverImage?: string | null;
+  };
+  const ogImage =
+    a.ogImage ??
+    a.featuredImage?.asset?.url ??
+    a.coverImage ??
+    `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}`;
 
   return {
     title: `${article.title} | The Alignment Times`,
@@ -62,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: article.title,
       description: article.satiricalHeadline,
-      images: [ogImage],
+      images: [a.ogImage ?? ogImage],
     },
   };
 }
@@ -78,6 +91,13 @@ export default async function ArticlePage({ params }: Props) {
 
   const pillar = PILLARS.find((p) => p.slug === sectionSlug);
   const related = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug && a.slug !== slug).slice(0, 3);
+
+  const articleExt = article as typeof article & {
+    featuredImage?: { asset: { url: string }; alt?: string } | null;
+    ogImage?: string | null;
+    imageGeneratedWith?: string | null;
+  };
+  const featuredImage = articleExt.featuredImage ?? null;
 
   const canonicalUrl = `${SITE_URL}/${sectionSlug}/${slug}`;
   const articleAuthor = (article as { author?: string }).author ?? "The Alignment Times";
@@ -157,12 +177,49 @@ export default async function ArticlePage({ params }: Props) {
               {pillar && (
                 <span className={`pillar-badge text-2xs mb-4 inline-block ${pillar.color}`}>{pillar.name}</span>
               )}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight mb-4" style={{ color: "var(--navy)" }}>
-                {article.title}
-              </h1>
-              <p className="text-lg sm:text-xl font-serif italic mb-6" style={{ color: "var(--red)" }}>
-                {article.satiricalHeadline}
-              </p>
+
+              {/* Hero image with headline overlay — shown when featuredImage exists */}
+              {featuredImage ? (
+                <div className="relative mb-6 overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                  <Image
+                    src={featuredImage.asset.url}
+                    fill
+                    alt={featuredImage.alt ?? article.title}
+                    className="object-cover"
+                    priority
+                    sizes="100vw"
+                  />
+                  {/* Gradient overlay — dark bottom for legible headline */}
+                  <div style={{
+                    position: "absolute", inset: 0,
+                    background: "linear-gradient(to top, rgba(15,25,35,0.88) 0%, rgba(15,25,35,0.35) 55%, transparent 100%)",
+                  }} />
+                  {/* Headline overlay */}
+                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "2rem 1.75rem 1.5rem" }}>
+                    <h1
+                      className="font-serif font-bold leading-tight mb-2"
+                      style={{ color: "#fff", fontSize: "clamp(1.35rem, 3.5vw, 2.25rem)" }}
+                    >
+                      {article.title}
+                    </h1>
+                    <p className="font-serif italic" style={{ color: "rgba(245,240,232,0.78)", fontSize: "clamp(0.9rem, 2vw, 1.1rem)" }}>
+                      {article.satiricalHeadline}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight mb-4" style={{ color: "var(--navy)" }}>
+                    {article.title}
+                  </h1>
+                  <p className="text-lg sm:text-xl font-serif italic mb-6" style={{ color: "var(--red)" }}>
+                    {article.satiricalHeadline}
+                  </p>
+                  {/* Fallback gray hero */}
+                  <div className="mb-6 rounded-sm" style={{ background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)", height: "280px" }} />
+                </>
+              )}
+
               <div className="rule mb-4" />
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-4 text-sm font-sans" style={{ color: "var(--ink-m)" }}>
@@ -179,9 +236,6 @@ export default async function ArticlePage({ params }: Props) {
               </div>
               <div className="rule mt-4" />
             </header>
-
-            {/* Hero image placeholder */}
-            <div className="mb-8 rounded-sm" style={{ background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)", height: "340px" }} />
 
             {/* Article body */}
             <div className="font-sans text-base leading-relaxed space-y-5" style={{ color: "var(--ink)" }}>
@@ -223,6 +277,16 @@ export default async function ArticlePage({ params }: Props) {
                 </div>
               </div>
             </div>
+
+            {/* Image credit */}
+            {featuredImage && (
+              <p className="mt-6 font-sans" style={{ fontSize: "11px", color: "var(--ink-m)" }}>
+                {articleExt.imageGeneratedWith === "unsplash"
+                  ? <>Photo: <a href="https://unsplash.com" target="_blank" rel="noreferrer" style={{ color: "var(--ink-m)", textDecoration: "underline" }}>Unsplash</a></>
+                  : "Illustration generated with AI"
+                }
+              </p>
+            )}
 
             {/* Author card */}
             <div className="mt-10 p-6 border flex items-center gap-4" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
