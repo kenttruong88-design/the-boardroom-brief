@@ -91,11 +91,14 @@ export async function appendJobLog(
 
 export async function markJobRunning(jobId: string | null): Promise<void> {
   if (!jobId) return;
-  await createAdminClient()
-    .from("pipeline_jobs")
-    .update({ status: "running", started_at: new Date().toISOString() })
-    .eq("id", jobId)
-    .catch((e: Error) => console.error("[pipeline-logger] markJobRunning:", e.message));
+  try {
+    await createAdminClient()
+      .from("pipeline_jobs")
+      .update({ status: "running", started_at: new Date().toISOString() })
+      .eq("id", jobId);
+  } catch (e) {
+    console.error("[pipeline-logger] markJobRunning:", (e as Error).message);
+  }
 }
 
 export async function markJobComplete(
@@ -104,16 +107,19 @@ export async function markJobComplete(
   durationMs: number
 ): Promise<void> {
   if (!jobId) return;
-  await createAdminClient()
-    .from("pipeline_jobs")
-    .update({
-      status: "complete",
-      completed_at: new Date().toISOString(),
-      duration_ms: durationMs,
-      ...counts,
-    })
-    .eq("id", jobId)
-    .catch((e: Error) => console.error("[pipeline-logger] markJobComplete:", e.message));
+  try {
+    await createAdminClient()
+      .from("pipeline_jobs")
+      .update({
+        status: "complete",
+        completed_at: new Date().toISOString(),
+        duration_ms: durationMs,
+        ...counts,
+      })
+      .eq("id", jobId);
+  } catch (e) {
+    console.error("[pipeline-logger] markJobComplete:", (e as Error).message);
+  }
 }
 
 export async function markJobFailed(
@@ -122,16 +128,37 @@ export async function markJobFailed(
   durationMs: number
 ): Promise<void> {
   if (!jobId) return;
-  await createAdminClient()
-    .from("pipeline_jobs")
-    .update({
-      status: "failed",
-      completed_at: new Date().toISOString(),
-      duration_ms: durationMs,
-      error,
-    })
-    .eq("id", jobId)
-    .catch((e: Error) => console.error("[pipeline-logger] markJobFailed:", e.message));
+  try {
+    await createAdminClient()
+      .from("pipeline_jobs")
+      .update({
+        status: "failed",
+        completed_at: new Date().toISOString(),
+        duration_ms: durationMs,
+        error,
+      })
+      .eq("id", jobId);
+  } catch (e) {
+    console.error("[pipeline-logger] markJobFailed:", (e as Error).message);
+  }
+}
+
+// ── Image generation status ───────────────────────────────────────────────────
+
+export async function logImageStatus(
+  jobId: string | null,
+  articleSlug: string,
+  result: { generatedWith: string; durationMs: number } | null
+): Promise<void> {
+  if (!jobId) return;
+  let message: string;
+  if (result) {
+    const secs = (result.durationMs / 1000).toFixed(1);
+    message = `Image: ${articleSlug} — generated via ${result.generatedWith} (${secs}s)`;
+  } else {
+    message = `Image: ${articleSlug} — all sources failed, publishing without image`;
+  }
+  await appendJobLog(jobId, message);
 }
 
 // ── Cancellation check ────────────────────────────────────────────────────────

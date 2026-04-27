@@ -6,6 +6,7 @@ import {
   Heading,
   Hr,
   Html,
+  Img,
   Preview,
   Section,
   Text,
@@ -153,6 +154,16 @@ export default function DailyDigestEmail({
                 <Text style={{ color: MUTED, fontSize: "14px", fontFamily: "Georgia, serif", fontStyle: "italic", lineHeight: "1.5", margin: "0 0 14px" }}>
                   {draft.satiricalHeadline}
                 </Text>
+
+                {/* Article thumbnail — shown only when image was generated */}
+                {draft.featuredImage && (
+                  <Img
+                    src={draft.featuredImage.thumbnailUrl}
+                    alt={draft.featuredImage.altText}
+                    width="100%"
+                    style={{ display: "block", marginBottom: "14px", borderRadius: "2px" }}
+                  />
+                )}
 
                 {/* Editor note — only shown when score < 8.5 */}
                 {showEditorNote && (

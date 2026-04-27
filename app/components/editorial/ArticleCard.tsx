@@ -97,6 +97,7 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
   const [expanded, setExpanded]         = useState(false);
   const [errorMsg, setErrorMsg]         = useState("");
+  const [imageHovered, setImageHovered] = useState(false);
 
   const articleId   = String(index);
   const avatar      = AGENT_AVATARS[draft.agentName];
@@ -309,8 +310,82 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
         </div>
       </div>
 
+      {/* ── 3. IMAGE PREVIEW ───────────────────────────────────────────── */}
+      <div
+        style={{ position: "relative", paddingTop: "56.25%", background: "var(--surface)", overflow: "hidden", borderTop: "1px solid var(--border)" }}
+        onMouseEnter={() => setImageHovered(true)}
+        onMouseLeave={() => setImageHovered(false)}
+      >
+        {draft.featuredImage ? (
+          <>
+            <img
+              src={draft.featuredImage.thumbnailUrl}
+              alt={draft.featuredImage.altText}
+              title={draft.featuredImage.generatedPrompt}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            />
+            {/* Source badge */}
+            <span
+              style={{
+                position: "absolute", bottom: 8, left: 8,
+                background: "rgba(0,0,0,0.55)", color: "#fff",
+                fontSize: "9px", fontFamily: "Arial, sans-serif", fontWeight: 700,
+                letterSpacing: "0.8px", textTransform: "uppercase",
+                padding: "2px 6px", borderRadius: "2px",
+              }}
+            >
+              {draft.featuredImage.generatedWith === "unsplash" ? "Unsplash" : "AI generated"}
+            </span>
+            {/* Hover overlay — Replace image */}
+            {imageHovered && (
+              <a
+                href={sanityStudioUrl}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  position: "absolute", inset: 0,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "rgba(15,25,35,0.55)",
+                  color: "#fff", fontSize: "12px",
+                  fontFamily: "Arial, sans-serif", fontWeight: 600,
+                  textDecoration: "none", gap: "6px",
+                  transition: "background 0.15s",
+                }}
+              >
+                <ExternalLink style={{ width: 14, height: 14 }} />
+                Replace image in Sanity
+              </a>
+            )}
+          </>
+        ) : (
+          <div
+            style={{
+              position: "absolute", inset: 0,
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", gap: 10,
+            }}
+          >
+            <p style={{ color: "var(--ink-m)", fontSize: "12px", fontFamily: "Arial, sans-serif", margin: 0 }}>
+              No image — will publish without hero image
+            </p>
+            <a
+              href={sanityStudioUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                fontSize: "11px", fontFamily: "Arial, sans-serif",
+                color: "var(--navy)", border: "1px solid var(--border)",
+                padding: "4px 10px", textDecoration: "none", borderRadius: "2px",
+              }}
+            >
+              Add image in Sanity
+            </a>
+          </div>
+        )}
+      </div>
+
       <div className="p-5 space-y-4">
-        {/* ── 3. EDITOR NOTE ───────────────────────────────────────────── */}
+        {/* ── 4. EDITOR NOTE ───────────────────────────────────────────── */}
         {showEditorNote && (
           <div
             className="px-3 py-2.5"
@@ -329,7 +404,7 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
           </div>
         )}
 
-        {/* ── 4. ARTICLE PREVIEW ───────────────────────────────────────── */}
+        {/* ── 5. ARTICLE PREVIEW ───────────────────────────────────────── */}
         <p
           className="font-serif leading-relaxed"
           style={{ fontSize: "13px", color: "var(--ink-m)" }}

@@ -1,11 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { generateArticleImage } from "./image-generator";
 import type { AgentPersona, TopicBrief, ArticleDraft } from "./types";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 function stripFences(raw: string): string {
   return raw.replace(/```(?:json)?\s*/gi, "").replace(/```\s*/g, "").trim();
@@ -59,10 +56,25 @@ Return only valid JSON with no markdown, no explanation — just the object:
   const { headline, satiricalHeadline, body } = writeResult;
   const excerpt = body.replace(/\n+/g, " ").slice(0, 150);
 
-  // ── 2-second delay between calls ────────────────────────────────────────────
-  await sleep(2000);
+  // ── Build partial draft for image generation prompt ──────────────────────────
+  // Image prompt only needs headline, pillar, body, countries — no tags yet.
 
-  // ── CALL 2 — Generate metadata ───────────────────────────────────────────────
+  const partialDraft: ArticleDraft = {
+    pillar:            persona.pillar,
+    agentName:         persona.name,
+    topicBrief:        topic,
+    headline,
+    satiricalHeadline,
+    body,
+    seoTitle:          "",
+    seoDescription:    "",
+    tags:              [],
+    tone:              "hybrid",
+    marketSymbols:     [],
+    countries:         [],
+  };
+
+  // ── CALLS 2 & 3 — SEO metadata + image generation in parallel ───────────────
 
   const metaUser = `Article headline: ${headline}
 Article excerpt (first 150 chars of body): ${excerpt}
@@ -76,12 +88,18 @@ Return only valid JSON with no markdown, no explanation — just the object:
   "tone": "satire or straight or hybrid"
 }`;
 
-  const metaResponse = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 512,
-    system: "You are an SEO and content metadata specialist for a financial news publication.",
-    messages: [{ role: "user", content: metaUser }],
-  });
+  const [metaResponse, imageResult] = await Promise.all([
+    client.messages.create({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 512,
+      system: "You are an SEO and content metadata specialist for a financial news publication.",
+      messages: [{ role: "user", content: metaUser }],
+    }),
+    generateArticleImage(partialDraft).catch((err) => {
+      console.warn("[article-writer] Image generation error:", (err as Error).message);
+      return null;
+    }),
+  ]);
 
   const metaRaw = metaResponse.content
     .filter((b) => b.type === "text")
@@ -95,20 +113,36 @@ Return only valid JSON with no markdown, no explanation — just the object:
     tone: "satire" | "straight" | "hybrid";
   };
 
-  // ── Merge into ArticleDraft ──────────────────────────────────────────────────
+  // ── Assemble final draft ─────────────────────────────────────────────────────
 
-  return {
-    pillar: persona.pillar,
-    agentName: persona.name,
-    topicBrief: topic,
+  const draft: ArticleDraft = {
+    pillar:            persona.pillar,
+    agentName:         persona.name,
+    topicBrief:        topic,
     headline,
     satiricalHeadline,
     body,
-    seoTitle: metaResult.seoTitle,
-    seoDescription: metaResult.seoDescription,
-    tags: metaResult.tags ?? [],
-    tone: metaResult.tone ?? "hybrid",
-    marketSymbols: [],
-    countries: [],
+    seoTitle:          metaResult.seoTitle,
+    seoDescription:    metaResult.seoDescription,
+    tags:              metaResult.tags ?? [],
+    tone:              metaResult.tone ?? "hybrid",
+    marketSymbols:     [],
+    countries:         [],
   };
+
+  if (imageResult) {
+    draft.featuredImage = {
+      cloudinaryPublicId: imageResult.publicId,
+      url:                imageResult.url,
+      heroUrl:            imageResult.heroUrl,
+      thumbnailUrl:       imageResult.thumbnailUrl,
+      ogImageUrl:         imageResult.ogImageUrl,
+      altText:            headline,
+      generatedWith:      imageResult.generatedWith,
+      generatedPrompt:    imageResult.generatedPrompt,
+      durationMs:         imageResult.durationMs,
+    };
+  }
+
+  return draft;
 }

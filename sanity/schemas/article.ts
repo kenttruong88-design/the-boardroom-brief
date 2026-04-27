@@ -111,9 +111,32 @@ export const article = defineType({
       rows: 2,
       group: "seo",
     }),
+    defineField({
+      name: "ogImage",
+      title: "OG Image URL",
+      type: "url",
+      description: "Cloudinary OG image URL (auto-generated).",
+      group: "seo",
+    }),
+    defineField({
+      name: "imagePrompt",
+      title: "Image Generation Prompt",
+      type: "text",
+      rows: 3,
+      description: "The prompt used to generate the cover image. For audit purposes.",
+      group: "ai",
+    }),
+    defineField({
+      name: "imageGeneratedWith",
+      title: "Image Model",
+      type: "string",
+      description: "Which model generated the cover image (e.g. flux-schnell, unsplash).",
+      group: "ai",
+    }),
   ],
   groups: [
     { name: "seo", title: "SEO" },
+    { name: "ai",  title: "AI Metadata" },
   ],
   preview: {
     select: {

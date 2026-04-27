@@ -7,12 +7,31 @@ export interface SanityPublishResult {
   publishedUrl: string;
 }
 
+const PILLAR_NAMES: Record<string, string> = {
+  "markets-floor":  "Markets Floor",
+  "macro-mondays":  "Macro Mondays",
+  "c-suite-circus": "C-Suite Circus",
+  "global-office":  "Global Office",
+  "water-cooler":   "Water Cooler",
+};
+
 function slugify(text: string) {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 96);
+}
+
+async function ensurePillarExists(pillarSlug: string): Promise<string> {
+  // Use the slug as the document _id so the reference is stable and predictable
+  await writeClient!.createIfNotExists({
+    _id: pillarSlug,
+    _type: "pillar",
+    name: PILLAR_NAMES[pillarSlug] ?? pillarSlug,
+    slug: { _type: "slug", current: pillarSlug },
+  });
+  return pillarSlug;
 }
 
 export async function createSanityArticle(
@@ -26,7 +45,9 @@ export async function createSanityArticle(
   const slug = slugify(draft.headline);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
-  const doc = {
+  const pillarId = await ensurePillarExists(draft.pillar);
+
+  const doc: Record<string, unknown> = {
     _type: "article",
     title: draft.headline,
     slug: { _type: "slug", current: slug },
@@ -39,7 +60,7 @@ export async function createSanityArticle(
       markDefs: [],
       children: [{ _type: "span", _key: `s${i}`, text: para, marks: [] }],
     })),
-    pillar: { _type: "reference", _ref: draft.pillar },
+    pillar: { _type: "reference", _ref: pillarId },
     seoTitle: draft.seoTitle,
     seoDescription: draft.seoDescription,
     tags: draft.tags,
@@ -50,6 +71,17 @@ export async function createSanityArticle(
     featured: false,
     status,
   };
+
+  if (draft.featuredImage) {
+    doc.featuredImage = {
+      _type: "image",
+      asset: { _type: "reference", url: draft.featuredImage.heroUrl },
+      alt: draft.featuredImage.altText,
+    };
+    doc.ogImage         = draft.featuredImage.ogImageUrl;
+    doc.imagePrompt     = draft.featuredImage.generatedPrompt;
+    doc.imageGeneratedWith = draft.featuredImage.generatedWith;
+  }
 
   const created = await writeClient.create(doc);
 

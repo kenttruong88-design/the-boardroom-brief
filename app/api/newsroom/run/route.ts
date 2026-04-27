@@ -8,7 +8,7 @@ import { compileDailyDigest, persistDigest, sendDailyDigestEmail } from "@/app/l
 import { createAdminClient } from "@/app/lib/supabase-server";
 import {
   markJobRunning, markJobComplete, markJobFailed,
-  updateJobProgress, appendJobLog, checkCancelled,
+  updateJobProgress, appendJobLog, checkCancelled, logImageStatus,
 } from "@/app/lib/pipeline-logger";
 import type { ArticleDraft, EditorReview } from "@/app/lib/agents/types";
 
@@ -157,6 +157,17 @@ async function runPipeline(req: Request, jobId: string | null) {
           const draft = await writeArticle(persona, topic);
           drafts.push(draft);
           writtenCount++;
+
+          const articleSlug = draft.headline
+            .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48);
+          await logImageStatus(
+            jobId,
+            articleSlug,
+            draft.featuredImage
+              ? { generatedWith: draft.featuredImage.generatedWith, durationMs: draft.featuredImage.durationMs }
+              : null
+          );
+
           await updateJobProgress(jobId, "writing", {
             status: "running",
             counts: { written: writtenCount, total: totalTopics },

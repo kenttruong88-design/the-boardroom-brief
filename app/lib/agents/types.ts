@@ -12,6 +12,18 @@ export interface TopicBrief {
   wordCount: number;
 }
 
+export interface FeaturedImage {
+  cloudinaryPublicId: string;
+  url:                string;
+  heroUrl:            string;
+  thumbnailUrl:       string;
+  ogImageUrl:         string;
+  altText:            string;
+  generatedWith:      string;
+  generatedPrompt:    string;
+  durationMs:         number;
+}
+
 export interface ArticleDraft {
   pillar: string;
   agentName: string;
@@ -25,6 +37,7 @@ export interface ArticleDraft {
   tone: "satire" | "straight" | "hybrid";
   marketSymbols: string[];
   countries: string[];
+  featuredImage?: FeaturedImage;
 }
 
 export interface EditorReview {
