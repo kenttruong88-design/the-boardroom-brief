@@ -148,13 +148,19 @@ export async function markJobFailed(
 export async function logImageStatus(
   jobId: string | null,
   articleSlug: string,
-  result: { generatedWith: string; durationMs: number } | null
+  result: { source: string; durationMs: number } | null
 ): Promise<void> {
   if (!jobId) return;
   let message: string;
   if (result) {
     const secs = (result.durationMs / 1000).toFixed(1);
-    message = `Image: ${articleSlug} — generated via ${result.generatedWith} (${secs}s)`;
+    if (result.source === "pexels") {
+      message = `Image: ${articleSlug} — flux failed, using Pexels fallback (${secs}s)`;
+    } else if (result.source === "pillar-default") {
+      message = `Image: ${articleSlug} — using pillar default image`;
+    } else {
+      message = `Image: ${articleSlug} — generated via ${result.source} (${secs}s)`;
+    }
   } else {
     message = `Image: ${articleSlug} — all sources failed, publishing without image`;
   }

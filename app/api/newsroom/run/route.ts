@@ -164,7 +164,7 @@ async function runPipeline(req: Request, jobId: string | null) {
             jobId,
             articleSlug,
             draft.featuredImage
-              ? { generatedWith: draft.featuredImage.generatedWith, durationMs: draft.featuredImage.durationMs }
+              ? { source: draft.featuredImage.source, durationMs: draft.featuredImage.durationMs }
               : null
           );
 

@@ -30,6 +30,9 @@ export interface SanityArticleFull extends SanityArticle {
   ogImage?: string;
   imagePrompt?: string;
   imageGeneratedWith?: string;
+  imagePhotographerName?: string;
+  imagePhotographerUrl?: string;
+  imagePexelsUrl?: string;
 }
 
 // ─── Fragments ───────────────────────────────────────────────────────────────
@@ -94,7 +97,10 @@ export const getArticleBySlug = cache(async (slug: string): Promise<SanityArticl
       featuredImage { asset->{ url }, alt },
       ogImage,
       imagePrompt,
-      imageGeneratedWith
+      imageGeneratedWith,
+      imagePhotographerName,
+      imagePhotographerUrl,
+      imagePexelsUrl
     }`,
     { slug },
     { next: { revalidate: 60 } }

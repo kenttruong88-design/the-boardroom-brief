@@ -334,7 +334,7 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
                 padding: "2px 6px", borderRadius: "2px",
               }}
             >
-              {draft.featuredImage.generatedWith === "unsplash" ? "Unsplash" : "AI generated"}
+              {draft.featuredImage.source === "pexels" ? "Pexels" : draft.featuredImage.source === "pillar-default" ? "Default" : "AI generated"}
             </span>
             {/* Hover overlay — Replace image */}
             {imageHovered && (

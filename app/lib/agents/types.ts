@@ -18,9 +18,13 @@ export interface FeaturedImage {
   heroUrl:            string;
   thumbnailUrl:       string;
   ogImageUrl:         string;
+  mobileUrl:          string;
   altText:            string;
-  generatedWith:      string;
-  generatedPrompt:    string;
+  source:             "flux-schnell" | "dall-e-3" | "pexels" | "pillar-default";
+  generatedPrompt?:   string;
+  photographerName?:  string;
+  photographerUrl?:   string;
+  pexelsPageUrl?:     string;
   durationMs:         number;
 }
 

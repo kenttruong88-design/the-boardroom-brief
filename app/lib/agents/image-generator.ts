@@ -19,22 +19,50 @@ export interface CloudinaryResult {
   heroUrl:      string;
   thumbnailUrl: string;
   ogImageUrl:   string;
+  mobileUrl:    string;
 }
 
 export interface ArticleImageResult extends CloudinaryResult {
-  generatedWith:   "flux-schnell" | "unsplash";
-  generatedPrompt: string;
-  durationMs:      number;
+  source:           "flux-schnell" | "pexels" | "pillar-default";
+  generatedPrompt?: string;
+  photographerName?: string;
+  photographerUrl?:  string;
+  pexelsPageUrl?:    string;
+  durationMs:        number;
 }
+
+interface PexelsResult {
+  buffer:           Buffer;
+  photographerName: string;
+  photographerUrl:  string;
+  pexelsPageUrl:    string;
+}
+
+// ── Pillar config ─────────────────────────────────────────────────────────────
+
+const PILLAR_SEARCH_TERMS: Record<string, string> = {
+  "markets-floor":  "finance business",
+  "macro-mondays":  "economy government",
+  "c-suite-circus": "corporate office business",
+  "global-office":  "office workplace",
+  "water-cooler":   "coffee office casual",
+};
+
+const PILLAR_DEFAULT_IDS: Record<string, string> = {
+  "markets-floor":  "boardroom-brief/defaults/markets-floor-default",
+  "macro-mondays":  "boardroom-brief/defaults/macro-mondays-default",
+  "c-suite-circus": "boardroom-brief/defaults/c-suite-circus-default",
+  "global-office":  "boardroom-brief/defaults/global-office-default",
+  "water-cooler":   "boardroom-brief/defaults/water-cooler-default",
+};
 
 // ── 1. Flux Schnell via Replicate ─────────────────────────────────────────────
 
 export async function generateWithFlux(prompt: string): Promise<Buffer> {
   const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
 
-  const timeoutMs = 30_000;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  const timer = setTimeout(() => controller.abort(), 30_000);
 
   try {
     const output = await replicate.run(
@@ -50,57 +78,72 @@ export async function generateWithFlux(prompt: string): Promise<Buffer> {
       }
     );
 
-    // output is an array of FileOutput objects
     const outputs = output as { url: () => URL }[];
-    if (!outputs || outputs.length === 0) {
-      throw new Error("Flux returned no outputs");
-    }
+    if (!outputs || outputs.length === 0) throw new Error("Flux returned no outputs");
 
     const imageUrl = outputs[0].url().toString();
     const res = await fetch(imageUrl, { signal: controller.signal });
     if (!res.ok) throw new Error(`Failed to fetch Flux image: ${res.status}`);
 
-    const arrayBuffer = await res.arrayBuffer();
-    return Buffer.from(arrayBuffer);
+    return Buffer.from(await res.arrayBuffer());
   } finally {
     clearTimeout(timer);
   }
 }
 
-// ── 2. Unsplash fallback ──────────────────────────────────────────────────────
+// ── 2. Pexels fallback ────────────────────────────────────────────────────────
 
-export async function fetchUnsplashImage(
+export async function fetchPexelsImage(
   keywords: string[],
-  countries: string[]
-): Promise<Buffer> {
-  const key = process.env.UNSPLASH_ACCESS_KEY;
-  if (!key) throw new Error("UNSPLASH_ACCESS_KEY not set");
+  pillar: string
+): Promise<PexelsResult | null> {
+  const key = process.env.PEXELS_API_KEY;
+  if (!key) {
+    console.warn("[image-generator] PEXELS_API_KEY not set — skipping Pexels fallback");
+    return null;
+  }
 
-  const queryParts = [...keywords.slice(0, 3)];
-  if (countries.length > 0) queryParts.push(countries[0]);
-  const q = encodeURIComponent(queryParts.join(" "));
+  const pillarTerms = PILLAR_SEARCH_TERMS[pillar] ?? "business";
+  const keywordPart = keywords.slice(0, 3).join(" ");
+  const q = encodeURIComponent(`${keywordPart} ${pillarTerms}`.trim());
 
   const searchRes = await fetch(
-    `https://api.unsplash.com/search/photos?query=${q}&orientation=landscape&per_page=5`,
-    { headers: { Authorization: `Client-ID ${key}` } }
+    `https://api.pexels.com/v1/search?query=${q}&orientation=landscape&per_page=5&size=large`,
+    { headers: { Authorization: key } }
   );
 
   if (!searchRes.ok) {
-    throw new Error(`Unsplash search failed: ${searchRes.status}`);
+    console.warn(`[image-generator] Pexels search failed: ${searchRes.status}`);
+    return null;
   }
 
   const data = await searchRes.json() as {
-    results: Array<{ urls: { regular: string }; width: number; height: number }>;
+    photos: Array<{
+      src: { large2x: string };
+      photographer: string;
+      photographer_url: string;
+      url: string;
+    }>;
   };
 
-  const photo = data.results.find((r) => r.width > r.height) ?? data.results[0];
-  if (!photo) throw new Error("Unsplash returned no results");
+  const photo = data.photos?.[0];
+  if (!photo) {
+    console.warn("[image-generator] Pexels returned no results");
+    return null;
+  }
 
-  const imgRes = await fetch(photo.urls.regular);
-  if (!imgRes.ok) throw new Error(`Failed to fetch Unsplash image: ${imgRes.status}`);
+  const imgRes = await fetch(photo.src.large2x);
+  if (!imgRes.ok) {
+    console.warn(`[image-generator] Failed to fetch Pexels image: ${imgRes.status}`);
+    return null;
+  }
 
-  const arrayBuffer = await imgRes.arrayBuffer();
-  return Buffer.from(arrayBuffer);
+  return {
+    buffer:           Buffer.from(await imgRes.arrayBuffer()),
+    photographerName: photo.photographer,
+    photographerUrl:  photo.photographer_url,
+    pexelsPageUrl:    photo.url,
+  };
 }
 
 // ── 3. Upload to Cloudinary ───────────────────────────────────────────────────
@@ -129,77 +172,97 @@ export async function uploadToCloudinary(
     }
   );
 
-  const base = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
-  const id = result.public_id;
+  return buildCloudinaryUrls(result.public_id, result.secure_url);
+}
 
+// ── 4. Build Cloudinary URL variants ─────────────────────────────────────────
+
+function buildCloudinaryUrls(publicId: string, secureUrl: string): CloudinaryResult {
+  const base = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
   return {
-    publicId:     id,
-    url:          result.secure_url,
-    heroUrl:      `${base}/c_fill,w_1200,h_630/${id}`,
-    thumbnailUrl: `${base}/c_fill,w_400,h_267/${id}`,
-    ogImageUrl:   `${base}/c_fill,w_1200,h_630,q_auto,f_auto/${id}`,
+    publicId,
+    url:          secureUrl,
+    heroUrl:      `${base}/c_fill,w_1200,h_630/${publicId}`,
+    thumbnailUrl: `${base}/c_fill,w_400,h_267/${publicId}`,
+    ogImageUrl:   `${base}/c_fill,w_1200,h_630,q_auto,f_auto/${publicId}`,
+    mobileUrl:    `${base}/c_fill,w_800,h_450/${publicId}`,
   };
 }
 
-// ── 4. Master function ────────────────────────────────────────────────────────
+// ── 5. Master function — never returns null ───────────────────────────────────
 
 export async function generateArticleImage(
   draft: ArticleDraft
-): Promise<ArticleImageResult | null> {
+): Promise<ArticleImageResult> {
   const startedAt = Date.now();
 
+  const slug = draft.headline
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 64);
+
+  // ── a. Generate prompt ───────────────────────────────────────────────────────
+  let prompt = "";
   try {
-    const prompt = await generateImagePrompt(draft);
+    prompt = await generateImagePrompt(draft);
     console.log(`[image-generator] Prompt: "${prompt.slice(0, 80)}…"`);
+  } catch (err) {
+    console.warn("[image-generator] Prompt generation failed:", (err as Error).message);
+  }
 
-    const slug = draft.headline
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "")
-      .slice(0, 64);
-
-    let imageBuffer: Buffer | null = null;
-    let source: "flux-schnell" | "unsplash" = "flux-schnell";
-
-    // Try Flux first
+  // ── b. Try Flux Schnell ──────────────────────────────────────────────────────
+  if (prompt) {
     try {
       console.log("[image-generator] Trying Flux Schnell…");
-      imageBuffer = await generateWithFlux(prompt);
+      const buffer = await generateWithFlux(prompt);
+      const cloudinary = await uploadToCloudinary(buffer, slug, draft.pillar);
       console.log("[image-generator] Flux succeeded.");
-    } catch (fluxErr) {
-      console.warn(
-        "[image-generator] Flux failed, falling back to Unsplash:",
-        (fluxErr as Error).message
-      );
-      source = "unsplash";
-
-      try {
-        imageBuffer = await fetchUnsplashImage(draft.tags ?? [], draft.countries ?? []);
-        console.log("[image-generator] Unsplash fallback succeeded.");
-      } catch (unsplashErr) {
-        console.warn(
-          "[image-generator] Unsplash fallback also failed:",
-          (unsplashErr as Error).message
-        );
-      }
+      return {
+        ...cloudinary,
+        source:          "flux-schnell",
+        generatedPrompt: prompt,
+        durationMs:      Date.now() - startedAt,
+      };
+    } catch (err) {
+      console.warn("[image-generator] Flux failed:", (err as Error).message);
     }
-
-    if (!imageBuffer) {
-      console.warn("[image-generator] Both sources failed — article will publish without image.");
-      return null;
-    }
-
-    const cloudinary = await uploadToCloudinary(imageBuffer, slug, draft.pillar);
-    console.log(`[image-generator] Uploaded to Cloudinary: ${cloudinary.publicId}`);
-
-    return {
-      ...cloudinary,
-      generatedWith:   source,
-      generatedPrompt: prompt,
-      durationMs:      Date.now() - startedAt,
-    };
-  } catch (err) {
-    console.error("[image-generator] Unexpected error:", (err as Error).message);
-    return null;
   }
+
+  // ── c. Try Pexels fallback ───────────────────────────────────────────────────
+  try {
+    console.log("[image-generator] Trying Pexels fallback…");
+    const pexels = await fetchPexelsImage(draft.tags ?? [], draft.pillar);
+    if (pexels) {
+      const cloudinary = await uploadToCloudinary(pexels.buffer, slug, draft.pillar);
+      console.log("[image-generator] Pexels fallback succeeded.");
+      return {
+        ...cloudinary,
+        source:           "pexels",
+        photographerName: pexels.photographerName,
+        photographerUrl:  pexels.photographerUrl,
+        pexelsPageUrl:    pexels.pexelsPageUrl,
+        durationMs:       Date.now() - startedAt,
+      };
+    }
+  } catch (err) {
+    console.warn("[image-generator] Pexels fallback failed:", (err as Error).message);
+  }
+
+  // ── d. Pillar default — always succeeds ─────────────────────────────────────
+  console.warn(`[image-generator] Using pillar default for "${draft.pillar}"`);
+  const defaultId = PILLAR_DEFAULT_IDS[draft.pillar]
+    ?? PILLAR_DEFAULT_IDS["water-cooler"];
+
+  const base = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
+  return {
+    publicId:     defaultId,
+    url:          `${base}/${defaultId}`,
+    heroUrl:      `${base}/c_fill,w_1200,h_630/${defaultId}`,
+    thumbnailUrl: `${base}/c_fill,w_400,h_267/${defaultId}`,
+    ogImageUrl:   `${base}/c_fill,w_1200,h_630,q_auto,f_auto/${defaultId}`,
+    mobileUrl:    `${base}/c_fill,w_800,h_450/${defaultId}`,
+    source:       "pillar-default",
+    durationMs:   Date.now() - startedAt,
+  };
 }

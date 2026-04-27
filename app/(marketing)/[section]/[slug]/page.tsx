@@ -27,10 +27,13 @@ async function resolveArticle(slug: string) {
         pillar: sanity.pillar?.slug?.current ?? "markets-floor",
         author: sanity.author?.name ?? "Staff Writer",
         coverImage: sanity.coverImage?.asset?.url ?? null,
-        featuredImage: sanity.featuredImage ?? null,
-        ogImage: sanity.ogImage ?? null,
-        imagePrompt: sanity.imagePrompt ?? null,
-        imageGeneratedWith: sanity.imageGeneratedWith ?? null,
+        featuredImage:         sanity.featuredImage ?? null,
+        ogImage:               sanity.ogImage ?? null,
+        imagePrompt:           sanity.imagePrompt ?? null,
+        imageGeneratedWith:    sanity.imageGeneratedWith ?? null,
+        imagePhotographerName: sanity.imagePhotographerName ?? null,
+        imagePhotographerUrl:  sanity.imagePhotographerUrl ?? null,
+        imagePexelsUrl:        sanity.imagePexelsUrl ?? null,
         _fromSanity: true,
       };
     }
@@ -93,9 +96,12 @@ export default async function ArticlePage({ params }: Props) {
   const related = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug && a.slug !== slug).slice(0, 3);
 
   const articleExt = article as typeof article & {
-    featuredImage?: { asset: { url: string }; alt?: string } | null;
-    ogImage?: string | null;
-    imageGeneratedWith?: string | null;
+    featuredImage?:         { asset: { url: string }; alt?: string } | null;
+    ogImage?:               string | null;
+    imageGeneratedWith?:    string | null;
+    imagePhotographerName?: string | null;
+    imagePhotographerUrl?:  string | null;
+    imagePexelsUrl?:        string | null;
   };
   const featuredImage = articleExt.featuredImage ?? null;
 
@@ -278,13 +284,38 @@ export default async function ArticlePage({ params }: Props) {
               </div>
             </div>
 
-            {/* Image credit */}
-            {featuredImage && (
-              <p className="mt-6 font-sans" style={{ fontSize: "11px", color: "var(--ink-m)" }}>
-                {articleExt.imageGeneratedWith === "unsplash"
-                  ? <>Photo: <a href="https://unsplash.com" target="_blank" rel="noreferrer" style={{ color: "var(--ink-m)", textDecoration: "underline" }}>Unsplash</a></>
-                  : "Illustration generated with AI"
-                }
+            {/* Image credit — positioned bottom-right of hero, only for non-default sources */}
+            {featuredImage && articleExt.imageGeneratedWith !== "pillar-default" && (
+              <p
+                className="image-credit"
+                style={{
+                  fontSize: "10px", color: "var(--ink-m)",
+                  textAlign: "right", marginTop: "4px",
+                  fontFamily: "Arial, sans-serif",
+                }}
+              >
+                {articleExt.imageGeneratedWith === "pexels" ? (
+                  <>
+                    Photo by{" "}
+                    <a
+                      href={articleExt.imagePhotographerUrl ?? "https://pexels.com"}
+                      target="_blank" rel="noreferrer"
+                      style={{ color: "var(--ink-m)", textDecoration: "underline" }}
+                    >
+                      {articleExt.imagePhotographerName ?? "Photographer"}
+                    </a>
+                    {" "}via{" "}
+                    <a
+                      href={articleExt.imagePexelsUrl ?? "https://pexels.com"}
+                      target="_blank" rel="noreferrer"
+                      style={{ color: "var(--ink-m)", textDecoration: "underline" }}
+                    >
+                      Pexels
+                    </a>
+                  </>
+                ) : (
+                  "Illustration generated with AI"
+                )}
               </p>
             )}
 

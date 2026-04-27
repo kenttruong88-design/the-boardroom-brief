@@ -96,7 +96,8 @@ Return only valid JSON with no markdown, no explanation — just the object:
       messages: [{ role: "user", content: metaUser }],
     }),
     generateArticleImage(partialDraft).catch((err) => {
-      console.warn("[article-writer] Image generation error:", (err as Error).message);
+      // generateArticleImage shouldn't throw (has internal fallback), but guard anyway
+      console.error("[article-writer] Unexpected image error:", (err as Error).message);
       return null;
     }),
   ]);
@@ -137,9 +138,13 @@ Return only valid JSON with no markdown, no explanation — just the object:
       heroUrl:            imageResult.heroUrl,
       thumbnailUrl:       imageResult.thumbnailUrl,
       ogImageUrl:         imageResult.ogImageUrl,
+      mobileUrl:          imageResult.mobileUrl,
       altText:            headline,
-      generatedWith:      imageResult.generatedWith,
+      source:             imageResult.source,
       generatedPrompt:    imageResult.generatedPrompt,
+      photographerName:   imageResult.photographerName,
+      photographerUrl:    imageResult.photographerUrl,
+      pexelsPageUrl:      imageResult.pexelsPageUrl,
       durationMs:         imageResult.durationMs,
     };
   }

@@ -78,9 +78,12 @@ export async function createSanityArticle(
       asset: { _type: "reference", url: draft.featuredImage.heroUrl },
       alt: draft.featuredImage.altText,
     };
-    doc.ogImage         = draft.featuredImage.ogImageUrl;
-    doc.imagePrompt     = draft.featuredImage.generatedPrompt;
-    doc.imageGeneratedWith = draft.featuredImage.generatedWith;
+    doc.ogImage              = draft.featuredImage.ogImageUrl;
+    doc.imagePrompt          = draft.featuredImage.generatedPrompt ?? null;
+    doc.imageGeneratedWith   = draft.featuredImage.source;
+    doc.imagePhotographerName = draft.featuredImage.photographerName ?? null;
+    doc.imagePhotographerUrl  = draft.featuredImage.photographerUrl ?? null;
+    doc.imagePexelsUrl        = draft.featuredImage.pexelsPageUrl ?? null;
   }
 
   const created = await writeClient.create(doc);
