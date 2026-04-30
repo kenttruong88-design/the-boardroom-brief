@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PortableText } from "@portabletext/react";
-import { ChevronDown, ChevronRight, CheckCircle, XCircle, ExternalLink, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronRight, CheckCircle, XCircle, ExternalLink, Loader2, RefreshCw } from "lucide-react";
 import type { ArticleDraft, EditorReview } from "@/app/lib/agents/types";
 
 // ── Agent avatars ─────────────────────────────────────────────────────────────
@@ -97,7 +97,9 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
   const [expanded, setExpanded]         = useState(false);
   const [errorMsg, setErrorMsg]         = useState("");
-  const [imageHovered, setImageHovered] = useState(false);
+  const [currentImage, setCurrentImage] = useState(draft.featuredImage ?? null);
+  const [regenerating, setRegenerating] = useState(false);
+  const [regenError, setRegenError]     = useState("");
 
   const articleId   = String(index);
   const avatar      = AGENT_AVATARS[draft.agentName];
@@ -175,6 +177,28 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
     setCardState("idle");
     setSanityDocId(null);
     setPublishedUrl(null);
+  }
+
+  async function handleRegenerate() {
+    setRegenerating(true);
+    setRegenError("");
+    try {
+      const res = await fetch("/api/editorial/regenerate-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ articleId }),
+      });
+      const data = await res.json() as { success?: boolean; featuredImage?: typeof currentImage; error?: string };
+      if (res.ok && data.featuredImage) {
+        setCurrentImage(data.featuredImage);
+      } else {
+        setRegenError(data.error ?? "Regeneration failed");
+      }
+    } catch {
+      setRegenError("Network error");
+    } finally {
+      setRegenerating(false);
+    }
   }
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -311,76 +335,102 @@ export default function ArticleCard({ draft, review, index, onApprove, onReject 
       </div>
 
       {/* ── 3. IMAGE PREVIEW ───────────────────────────────────────────── */}
-      <div
-        style={{ position: "relative", paddingTop: "56.25%", background: "var(--surface)", overflow: "hidden", borderTop: "1px solid var(--border)" }}
-        onMouseEnter={() => setImageHovered(true)}
-        onMouseLeave={() => setImageHovered(false)}
-      >
-        {draft.featuredImage ? (
-          <>
-            <img
-              src={draft.featuredImage.thumbnailUrl}
-              alt={draft.featuredImage.altText}
-              title={draft.featuredImage.generatedPrompt}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-            />
-            {/* Source badge */}
-            <span
-              style={{
-                position: "absolute", bottom: 8, left: 8,
-                background: "rgba(0,0,0,0.55)", color: "#fff",
-                fontSize: "9px", fontFamily: "Arial, sans-serif", fontWeight: 700,
-                letterSpacing: "0.8px", textTransform: "uppercase",
-                padding: "2px 6px", borderRadius: "2px",
-              }}
-            >
-              {draft.featuredImage.source === "pexels" ? "Pexels" : draft.featuredImage.source === "pillar-default" ? "Default" : "AI generated"}
-            </span>
-            {/* Hover overlay — Replace image */}
-            {imageHovered && (
-              <a
-                href={sanityStudioUrl}
-                target="_blank"
-                rel="noreferrer"
+      <div style={{ borderTop: "1px solid var(--border)" }}>
+        <div
+          style={{ position: "relative", paddingTop: "56.25%", background: "var(--surface)", overflow: "hidden" }}
+        >
+          {currentImage ? (
+            <>
+              <img
+                src={currentImage.thumbnailUrl}
+                alt={currentImage.altText}
+                title={currentImage.generatedPrompt}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              {/* Source badge */}
+              <span
                 style={{
-                  position: "absolute", inset: 0,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  background: "rgba(15,25,35,0.55)",
-                  color: "#fff", fontSize: "12px",
-                  fontFamily: "Arial, sans-serif", fontWeight: 600,
-                  textDecoration: "none", gap: "6px",
-                  transition: "background 0.15s",
+                  position: "absolute", bottom: 8, left: 8,
+                  background: "rgba(0,0,0,0.55)", color: "#fff",
+                  fontSize: "9px", fontFamily: "Arial, sans-serif", fontWeight: 700,
+                  letterSpacing: "0.8px", textTransform: "uppercase",
+                  padding: "2px 6px", borderRadius: "2px",
                 }}
               >
-                <ExternalLink style={{ width: 14, height: 14 }} />
-                Replace image in Sanity
-              </a>
-            )}
-          </>
-        ) : (
-          <div
-            style={{
-              position: "absolute", inset: 0,
-              display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center", gap: 10,
-            }}
-          >
-            <p style={{ color: "var(--ink-m)", fontSize: "12px", fontFamily: "Arial, sans-serif", margin: 0 }}>
-              No image — will publish without hero image
-            </p>
-            <a
-              href={sanityStudioUrl}
-              target="_blank"
-              rel="noreferrer"
+                {currentImage.source === "pexels" ? "Pexels" : currentImage.source === "pillar-default" ? "Default" : "AI generated"}
+              </span>
+              {/* Regenerating overlay */}
+              {regenerating && (
+                <div
+                  style={{
+                    position: "absolute", inset: 0,
+                    display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8,
+                    background: "rgba(15,25,35,0.65)",
+                  }}
+                >
+                  <Loader2 style={{ width: 22, height: 22, color: "#fff", animation: "spin 1s linear infinite" }} />
+                  <span style={{ color: "#fff", fontSize: "11px", fontFamily: "Arial, sans-serif" }}>Generating…</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <div
               style={{
-                fontSize: "11px", fontFamily: "Arial, sans-serif",
-                color: "var(--navy)", border: "1px solid var(--border)",
-                padding: "4px 10px", textDecoration: "none", borderRadius: "2px",
+                position: "absolute", inset: 0,
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: 10,
               }}
             >
-              Add image in Sanity
-            </a>
-          </div>
+              {regenerating ? (
+                <>
+                  <Loader2 style={{ width: 22, height: 22, color: "var(--ink-m)", animation: "spin 1s linear infinite" }} />
+                  <span style={{ color: "var(--ink-m)", fontSize: "12px", fontFamily: "Arial, sans-serif" }}>Generating image…</span>
+                </>
+              ) : (
+                <p style={{ color: "var(--ink-m)", fontSize: "12px", fontFamily: "Arial, sans-serif", margin: 0 }}>
+                  No image
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Regenerate bar */}
+        <div
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "6px 10px",
+            background: "var(--cream)",
+            borderTop: "1px solid var(--border)",
+          }}
+        >
+          <span style={{ fontSize: "10px", fontFamily: "Arial, sans-serif", color: "var(--ink-m)" }}>
+            {currentImage?.generatedPrompt
+              ? `"${currentImage.generatedPrompt.slice(0, 60)}${currentImage.generatedPrompt.length > 60 ? "…" : ""}"`
+              : "No image prompt"}
+          </span>
+          <button
+            onClick={handleRegenerate}
+            disabled={regenerating || cardState === "approved"}
+            style={{
+              display: "flex", alignItems: "center", gap: 5,
+              fontSize: "11px", fontFamily: "Arial, sans-serif", fontWeight: 600,
+              color: regenerating ? "var(--ink-m)" : "var(--navy)",
+              background: "transparent", border: "1px solid var(--border)",
+              padding: "3px 8px", borderRadius: "2px", cursor: "pointer",
+              opacity: cardState === "approved" ? 0.4 : 1,
+              flexShrink: 0, marginLeft: 8,
+            }}
+            title="Generate a new image for this article"
+          >
+            <RefreshCw style={{ width: 11, height: 11, ...(regenerating ? { animation: "spin 1s linear infinite" } : {}) }} />
+            {regenerating ? "Generating…" : "New image"}
+          </button>
+        </div>
+        {regenError && (
+          <p style={{ fontSize: "10px", fontFamily: "Arial, sans-serif", color: "var(--red)", padding: "4px 10px", margin: 0 }}>
+            {regenError}
+          </p>
         )}
       </div>
 

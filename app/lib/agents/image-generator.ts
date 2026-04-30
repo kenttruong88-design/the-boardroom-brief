@@ -61,34 +61,39 @@ const PILLAR_DEFAULT_IDS: Record<string, string> = {
 export async function generateWithFlux(prompt: string): Promise<Buffer> {
   const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
 
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 30_000);
+  const output = await replicate.run(
+    "black-forest-labs/flux-schnell",
+    {
+      input: {
+        prompt,
+        num_outputs:    1,
+        aspect_ratio:   "16:9",
+        output_format:  "webp",
+        output_quality: 80,
+      },
+    }
+  );
 
-  try {
-    const output = await replicate.run(
-      "black-forest-labs/flux-schnell",
-      {
-        input: {
-          prompt,
-          num_outputs:    1,
-          aspect_ratio:   "16:9",
-          output_format:  "webp",
-          output_quality: 80,
-        },
-      }
-    );
+  // Replicate SDK returns either FileOutput[] (new) or plain objects with .url() (old)
+  const outputs = output as unknown[];
+  if (!outputs || outputs.length === 0) throw new Error("Flux returned no outputs");
 
-    const outputs = output as { url: () => URL }[];
-    if (!outputs || outputs.length === 0) throw new Error("Flux returned no outputs");
-
-    const imageUrl = outputs[0].url().toString();
-    const res = await fetch(imageUrl, { signal: controller.signal });
-    if (!res.ok) throw new Error(`Failed to fetch Flux image: ${res.status}`);
-
-    return Buffer.from(await res.arrayBuffer());
-  } finally {
-    clearTimeout(timer);
+  const first = outputs[0];
+  let imageUrl: string;
+  if (typeof first === "string") {
+    imageUrl = first;
+  } else if (first && typeof (first as { url: unknown }).url === "function") {
+    imageUrl = (first as { url: () => URL }).url().toString();
+  } else if (first && typeof (first as { url: unknown }).url === "string") {
+    imageUrl = (first as { url: string }).url;
+  } else {
+    throw new Error(`Unexpected Flux output shape: ${JSON.stringify(first)}`);
   }
+
+  const res = await fetch(imageUrl);
+  if (!res.ok) throw new Error(`Failed to fetch Flux image: ${res.status}`);
+
+  return Buffer.from(await res.arrayBuffer());
 }
 
 // ── 2. Pexels fallback ────────────────────────────────────────────────────────

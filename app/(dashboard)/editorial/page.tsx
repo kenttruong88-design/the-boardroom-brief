@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   CheckCircle, XCircle, ExternalLink, ChevronDown, ChevronRight,
-  Play, Loader2, Settings, Zap, X, AlertCircle, Clock,
+  Play, Loader2, Settings, Zap, X, AlertCircle, Clock, RefreshCw,
 } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
 import RejectedArticlesSection from "@/app/components/editorial/RejectedArticlesSection";
@@ -145,10 +145,35 @@ function ArticleCard({
   publishedUrl?: string;
   autoApproved?: boolean;
 }) {
-  const [expanded, setExpanded] = useState(false);
   const { draft, review } = entry;
+  const [expanded, setExpanded]         = useState(false);
+  const [currentImage, setCurrentImage] = useState(draft.featuredImage ?? null);
+  const [regenerating, setRegenerating] = useState(false);
+  const [regenError, setRegenError]     = useState("");
   const pillarColor = PILLAR_COLORS[draft.pillar] ?? "var(--red)";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+
+  async function handleRegenerate() {
+    setRegenerating(true);
+    setRegenError("");
+    try {
+      const res = await fetch("/api/editorial/regenerate-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ articleId: String(index) }),
+      });
+      const data = await res.json() as { featuredImage?: typeof currentImage; error?: string };
+      if (res.ok && data.featuredImage) {
+        setCurrentImage(data.featuredImage);
+      } else {
+        setRegenError(data.error ?? "Regeneration failed");
+      }
+    } catch {
+      setRegenError("Network error");
+    } finally {
+      setRegenerating(false);
+    }
+  }
 
   return (
     <div
@@ -214,6 +239,96 @@ function ArticleCard({
               </div>
             );
           })}
+        </div>
+
+        {/* Image preview */}
+        <div style={{ marginBottom: "1rem", border: "1px solid var(--border)" }}>
+          <div style={{ position: "relative", paddingTop: "42%", background: "#e8e4dc", overflow: "hidden" }}>
+            {currentImage ? (
+              <>
+                <img
+                  src={currentImage.thumbnailUrl}
+                  alt={currentImage.altText}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <span style={{
+                  position: "absolute", bottom: 6, left: 6,
+                  background: "rgba(0,0,0,0.55)", color: "#fff",
+                  fontSize: "9px", fontFamily: "Arial, sans-serif", fontWeight: 700,
+                  letterSpacing: "0.8px", textTransform: "uppercase",
+                  padding: "2px 6px", borderRadius: "2px",
+                }}>
+                  {currentImage.source === "pexels" ? "Pexels" : currentImage.source === "pillar-default" ? "Default" : "AI generated"}
+                </span>
+                {regenerating && (
+                  <div style={{
+                    position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(15,25,35,0.6)", gap: 8, flexDirection: "column",
+                  }}>
+                    <Loader2 style={{ width: 20, height: 20, color: "#fff", animation: "spin 1s linear infinite" }} />
+                    <span style={{ color: "#fff", fontSize: "11px", fontFamily: "Arial, sans-serif" }}>Generating…</span>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {regenerating
+                  ? <Loader2 style={{ width: 20, height: 20, color: "var(--ink-m)", animation: "spin 1s linear infinite" }} />
+                  : <span style={{ fontSize: "12px", fontFamily: "Arial, sans-serif", color: "var(--ink-m)" }}>No image</span>}
+              </div>
+            )}
+          </div>
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "6px 8px", background: "var(--cream)", borderTop: "1px solid var(--border)",
+            gap: 8,
+          }}>
+            {/* Source + prompt */}
+            <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
+              {currentImage && (
+                <span style={{
+                  flexShrink: 0,
+                  fontSize: "10px", fontFamily: "Arial, sans-serif", fontWeight: 700,
+                  letterSpacing: "0.6px", textTransform: "uppercase",
+                  padding: "1px 5px", borderRadius: "2px",
+                  ...(currentImage.source === "flux-schnell"
+                    ? { background: "#dbeafe", color: "#1d4ed8" }
+                    : currentImage.source === "pexels"
+                    ? { background: "#dcfce7", color: "#15803d" }
+                    : { background: "#f3f4f6", color: "#6b7280" }),
+                }}>
+                  {currentImage.source === "flux-schnell" ? "Flux AI" : currentImage.source === "pexels" ? "Pexels" : "Default"}
+                </span>
+              )}
+              <span style={{ fontSize: "10px", fontFamily: "Arial, sans-serif", color: "var(--ink-m)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {currentImage?.generatedPrompt
+                  ? `"${currentImage.generatedPrompt.slice(0, 60)}${currentImage.generatedPrompt.length > 60 ? "…" : ""}"`
+                  : currentImage?.source === "pexels" && currentImage.photographerName
+                  ? `Photo by ${currentImage.photographerName}`
+                  : "no prompt"}
+              </span>
+            </div>
+            <button
+              onClick={handleRegenerate}
+              disabled={regenerating || !!publishedUrl}
+              style={{
+                display: "flex", alignItems: "center", gap: 4, flexShrink: 0,
+                fontSize: "11px", fontFamily: "Arial, sans-serif", fontWeight: 600,
+                color: regenerating ? "var(--ink-m)" : "var(--navy)",
+                background: "transparent", border: "1px solid var(--border)",
+                padding: "3px 8px", borderRadius: "2px", cursor: "pointer",
+                opacity: !!publishedUrl ? 0.4 : 1,
+              }}
+            >
+              <RefreshCw style={{ width: 11, height: 11, ...(regenerating ? { animation: "spin 1s linear infinite" } : {}) }} />
+              {regenerating ? "Generating…" : "New image"}
+            </button>
+          </div>
+          {regenError && (
+            <p style={{ fontSize: "10px", fontFamily: "Arial, sans-serif", color: "var(--red)", padding: "3px 8px", margin: 0 }}>
+              {regenError}
+            </p>
+          )}
         </div>
 
         {/* Editor notes */}

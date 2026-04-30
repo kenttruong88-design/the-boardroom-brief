@@ -73,11 +73,8 @@ export async function createSanityArticle(
   };
 
   if (draft.featuredImage) {
-    doc.featuredImage = {
-      _type: "image",
-      asset: { _type: "reference", url: draft.featuredImage.heroUrl },
-      alt: draft.featuredImage.altText,
-    };
+    doc.heroImageUrl         = draft.featuredImage.heroUrl;
+    doc.heroImageAlt         = draft.featuredImage.altText;
     doc.ogImage              = draft.featuredImage.ogImageUrl;
     doc.imagePrompt          = draft.featuredImage.generatedPrompt ?? null;
     doc.imageGeneratedWith   = draft.featuredImage.source;
@@ -86,7 +83,8 @@ export async function createSanityArticle(
     doc.imagePexelsUrl        = draft.featuredImage.pexelsPageUrl ?? null;
   }
 
-  const created = await writeClient.create(doc);
+  const docWithId = { ...doc, _id: `article-${slug}` } as Record<string, unknown> & { _id: string; _type: string };
+  const created = await writeClient.createOrReplace(docWithId);
 
   // Trigger ISR revalidation — non-fatal if it fails
   await fetch(

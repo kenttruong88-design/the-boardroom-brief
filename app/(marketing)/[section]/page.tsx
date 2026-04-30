@@ -121,9 +121,15 @@ export default async function SectionPage({ params }: Props) {
     // Sanity unavailable — use mock data
   }
 
-  const displayArticles = articles.length >= 2
-    ? articles
-    : [...articles, ...MOCK_ARTICLES.filter((a) => a.pillar !== sectionSlug).slice(0, 6 - articles.length)];
+  const seen = new Set<string>();
+  const unique = articles.filter((a) => {
+    if (seen.has(a.slug)) return false;
+    seen.add(a.slug);
+    return true;
+  });
+  const displayArticles = unique.length >= 2
+    ? unique
+    : [...unique, ...MOCK_ARTICLES.filter((a) => a.pillar !== sectionSlug && !seen.has(a.slug)).slice(0, 6 - unique.length)];
 
   const featured = displayArticles[0];
   const grid = displayArticles.slice(1);

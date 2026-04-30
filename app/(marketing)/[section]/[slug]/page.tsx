@@ -27,7 +27,8 @@ async function resolveArticle(slug: string) {
         pillar: sanity.pillar?.slug?.current ?? "markets-floor",
         author: sanity.author?.name ?? "Staff Writer",
         coverImage: sanity.coverImage?.asset?.url ?? null,
-        featuredImage:         sanity.featuredImage ?? null,
+        heroImageUrl:          sanity.heroImageUrl ?? null,
+        heroImageAlt:          sanity.heroImageAlt ?? null,
         ogImage:               sanity.ogImage ?? null,
         imagePrompt:           sanity.imagePrompt ?? null,
         imageGeneratedWith:    sanity.imageGeneratedWith ?? null,
@@ -50,13 +51,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonicalUrl = `${SITE_URL}/${section}/${slug}`;
   const a = article as typeof article & {
+    heroImageUrl?: string | null;
     ogImage?: string | null;
-    featuredImage?: { asset: { url: string } } | null;
     coverImage?: string | null;
   };
   const ogImage =
     a.ogImage ??
-    a.featuredImage?.asset?.url ??
+    a.heroImageUrl ??
     a.coverImage ??
     `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}`;
 
@@ -96,14 +97,16 @@ export default async function ArticlePage({ params }: Props) {
   const related = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug && a.slug !== slug).slice(0, 3);
 
   const articleExt = article as typeof article & {
-    featuredImage?:         { asset: { url: string }; alt?: string } | null;
+    heroImageUrl?:          string | null;
+    heroImageAlt?:          string | null;
     ogImage?:               string | null;
     imageGeneratedWith?:    string | null;
     imagePhotographerName?: string | null;
     imagePhotographerUrl?:  string | null;
     imagePexelsUrl?:        string | null;
   };
-  const featuredImage = articleExt.featuredImage ?? null;
+  const heroImageUrl = articleExt.heroImageUrl ?? null;
+  const heroImageAlt = articleExt.heroImageAlt ?? article.title;
 
   const canonicalUrl = `${SITE_URL}/${sectionSlug}/${slug}`;
   const articleAuthor = (article as { author?: string }).author ?? "The Alignment Times";
@@ -184,13 +187,13 @@ export default async function ArticlePage({ params }: Props) {
                 <span className={`pillar-badge text-2xs mb-4 inline-block ${pillar.color}`}>{pillar.name}</span>
               )}
 
-              {/* Hero image with headline overlay — shown when featuredImage exists */}
-              {featuredImage ? (
+              {/* Hero image with headline overlay — shown when heroImageUrl exists */}
+              {heroImageUrl ? (
                 <div className="relative mb-6 overflow-hidden" style={{ aspectRatio: "16/9" }}>
                   <Image
-                    src={featuredImage.asset.url}
+                    src={heroImageUrl}
                     fill
-                    alt={featuredImage.alt ?? article.title}
+                    alt={heroImageAlt}
                     className="object-cover"
                     priority
                     sizes="100vw"
@@ -285,7 +288,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
 
             {/* Image credit — positioned bottom-right of hero, only for non-default sources */}
-            {featuredImage && articleExt.imageGeneratedWith !== "pillar-default" && (
+            {heroImageUrl && articleExt.imageGeneratedWith !== "pillar-default" && (
               <p
                 className="image-credit"
                 style={{
