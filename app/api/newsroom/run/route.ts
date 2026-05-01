@@ -150,7 +150,8 @@ async function runPipeline(req: Request, jobId: string | null) {
       if (topics.length === 0) return [];
 
       const drafts: ArticleDraft[] = [];
-      for (const topic of topics) {
+      for (let ti = 0; ti < topics.length; ti++) {
+        const topic = topics[ti];
         try {
           await appendJobLog(jobId, `${persona.name}: writing "${topic.title}"`);
           console.log(`[newsroom] ${persona.name} writing: "${topic.title}"`);
@@ -172,7 +173,7 @@ async function runPipeline(req: Request, jobId: string | null) {
             status: "running",
             counts: { written: writtenCount, total: totalTopics },
           });
-          if (topics.indexOf(topic) < topics.length - 1) await sleep(2000);
+          if (ti < topics.length - 1) await sleep(2000);
         } catch (err) {
           const msg = `Write failed for ${persona.name} / "${topic.title}": ${(err as Error).message}`;
           console.error(`[newsroom] ${msg}`);
