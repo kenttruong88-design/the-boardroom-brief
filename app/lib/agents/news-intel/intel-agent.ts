@@ -165,7 +165,7 @@ export async function storeStories(stories: RawStory[]): Promise<number> {
     market_symbols: s.marketSymbols ?? [],
     relevance_score: s.relevanceScore ?? 5,
     satirical_score: s.satiricalScore ?? 3,
-    headline_hash: s.headlineHash,
+    headline_hash: generateHeadlineHash(s.headline),
   }));
 
   // Upsert — headline_hash unique constraint handles any race conditions

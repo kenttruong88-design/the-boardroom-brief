@@ -43,7 +43,7 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
 
     if (data && data.length > 0) {
       marketSnapshot = data.reduce(
-        (acc, row) => ({
+        (acc: Record<string, unknown>, row: { symbol: string; name: string; price: number; change_pct: number; pulled_at: string }) => ({
           ...acc,
           [row.symbol]: {
             name: row.name,
@@ -70,7 +70,7 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
 
     if (data && data.length > 0) {
       const seen = new Set<string>();
-      const deduped = data.filter((row) => {
+      const deduped = data.filter((row: { country_slug: string; indicator: string; value: number; period: string; pulled_at: string }) => {
         const key = `${row.country_slug}:${row.indicator}`;
         if (seen.has(key)) return false;
         seen.add(key);
@@ -78,7 +78,7 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
       });
 
       macroSnapshot = deduped.reduce(
-        (acc, row) => ({
+        (acc: Record<string, unknown>, row: { country_slug: string; indicator: string; value: number; period: string; pulled_at: string }) => ({
           ...acc,
           [`${row.country_slug}/${row.indicator}`]: {
             value: row.value,
