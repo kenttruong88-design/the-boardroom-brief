@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   CheckCircle, XCircle, ExternalLink, ChevronDown, ChevronRight,
-  Play, Loader2, Settings, Zap, X, AlertCircle, Clock, RefreshCw,
+  Play, Loader2, Settings, Zap, X, AlertCircle, Clock, RefreshCw, MessageSquare,
 } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
 import RejectedArticlesSection from "@/app/components/editorial/RejectedArticlesSection";
@@ -605,6 +605,7 @@ export default function EditorialDashboard() {
   const [digest, setDigest] = useState<DailyDigest | null>(null);
   const [articlesApproved, setArticlesApproved] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [pendingCommentCount, setPendingCommentCount] = useState(0);
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [error, setError] = useState("");
 
@@ -654,6 +655,13 @@ export default function EditorialDashboard() {
         router.replace("/login");
       } else {
         setAuthed(true);
+        // Fetch pending comment count for badge
+        fetch("/api/admin/comments?status=pending&page=1")
+          .then((r) => r.json())
+          .then((d: { stats?: { pending?: number } }) => {
+            if (d.stats?.pending !== undefined) setPendingCommentCount(d.stats.pending);
+          })
+          .catch(() => {});
       }
     });
   }, [router]);
@@ -1000,6 +1008,19 @@ export default function EditorialDashboard() {
             {triggerError && (
               <p className="text-xs font-sans" style={{ color: "var(--red)" }}>{triggerError}</p>
             )}
+            <a
+              href="/editorial/comments"
+              className="flex items-center gap-1.5 text-xs font-sans"
+              style={{ color: "var(--ink-m)", textDecoration: "none" }}
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              Comment moderation
+              {pendingCommentCount > 0 && (
+                <span style={{ background: "var(--red)", color: "#fff", fontFamily: "var(--font-jetbrains)", fontSize: "0.55rem", padding: "1px 5px" }}>
+                  {pendingCommentCount}
+                </span>
+              )}
+            </a>
           </div>
         </div>
 
