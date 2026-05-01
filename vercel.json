@@ -10,11 +10,7 @@
     },
     {
       "path": "/api/market-sync",
-      "schedule": "*/15 8-18 * * 1-5"
-    },
-    {
-      "path": "/api/market-sync",
-      "schedule": "0 */2 * * *"
+      "schedule": "0 8 * * 1-5"
     },
     {
       "path": "/api/newsletter/send",
