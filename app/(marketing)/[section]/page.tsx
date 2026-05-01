@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Clock } from "lucide-react";
 import { PILLARS, MOCK_ARTICLES, ECONOMIES, getPillar, formatDateShort } from "@/app/lib/mock-data";
 import { getArticlesByPillar, type SanityArticle } from "@/app/lib/queries";
@@ -102,7 +103,7 @@ function normaliseSanity(a: SanityArticle) {
     publishedAt: a.publishedAt,
     readTime: a.readTime ?? 5,
     pillar: a.pillar?.slug?.current ?? "markets-floor",
-    coverImage: a.coverImage?.asset?.url ?? null,
+    imageUrl: a.heroImageUrl ?? a.coverImage?.asset?.url ?? null,
   };
 }
 
@@ -169,8 +170,17 @@ export default async function SectionPage({ params }: Props) {
                       <p className="text-sm font-sans leading-relaxed" style={{ color: "var(--ink-m)" }}>{featured.excerpt}</p>
                       <Meta date={featured.publishedAt} readTime={featured.readTime} />
                     </div>
-                    <div className="sm:col-span-2 rounded-sm"
-                      style={{ background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)", height: "200px" }} />
+                    <div className="sm:col-span-2 rounded-sm overflow-hidden" style={{ height: "200px", position: "relative", background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)" }}>
+                      {(featured as typeof featured & { imageUrl?: string | null }).imageUrl && (
+                        <Image
+                          src={(featured as typeof featured & { imageUrl?: string | null }).imageUrl!}
+                          alt={featured.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, 40vw"
+                        />
+                      )}
+                    </div>
                   </div>
                 </Link>
               </article>
@@ -178,19 +188,34 @@ export default async function SectionPage({ params }: Props) {
 
             {/* Article grid — 2 col */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
-              {grid.map((article) => (
-                <article key={article.slug} className="group border-b pb-6" style={{ borderColor: "var(--border)" }}>
-                  <Link href={`/${article.pillar}/${article.slug}`}>
-                    <PillarBadge pillar={article.pillar} />
-                    <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
-                      {article.title}
-                    </h3>
-                    <p className="text-sm font-serif italic mt-1" style={{ color: "var(--red)" }}>{article.satiricalHeadline}</p>
-                    <p className="text-xs font-sans mt-2 line-clamp-2 leading-relaxed" style={{ color: "var(--ink-m)" }}>{article.excerpt}</p>
-                    <div className="mt-3"><Meta date={article.publishedAt} readTime={article.readTime} /></div>
-                  </Link>
-                </article>
-              ))}
+              {grid.map((article) => {
+                const imageUrl = (article as typeof article & { imageUrl?: string | null }).imageUrl ?? null;
+                return (
+                  <article key={article.slug} className="group border-b pb-6" style={{ borderColor: "var(--border)" }}>
+                    <Link href={`/${article.pillar}/${article.slug}`}>
+                      {/* Thumbnail */}
+                      <div className="mb-3 overflow-hidden rounded-sm" style={{ position: "relative", paddingTop: "56.25%", background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)" }}>
+                        {imageUrl && (
+                          <Image
+                            src={imageUrl}
+                            alt={article.title}
+                            fill
+                            className="object-cover group-hover:opacity-90 transition-opacity"
+                            sizes="(max-width: 640px) 100vw, 50vw"
+                          />
+                        )}
+                      </div>
+                      <PillarBadge pillar={article.pillar} />
+                      <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
+                        {article.title}
+                      </h3>
+                      <p className="text-sm font-serif italic mt-1" style={{ color: "var(--red)" }}>{article.satiricalHeadline}</p>
+                      <p className="text-xs font-sans mt-2 line-clamp-2 leading-relaxed" style={{ color: "var(--ink-m)" }}>{article.excerpt}</p>
+                      <div className="mt-3"><Meta date={article.publishedAt} readTime={article.readTime} /></div>
+                    </Link>
+                  </article>
+                );
+              })}
             </div>
 
             <div className="text-center mt-10">
