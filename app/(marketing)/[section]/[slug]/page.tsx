@@ -6,6 +6,7 @@ import { Clock, ArrowLeft, Share2, Bookmark, Link2, MessageSquare } from "lucide
 import { MOCK_ARTICLES, PILLARS, getArticleBySlug as getMockArticle, formatDate, formatDateShort } from "@/app/lib/mock-data";
 import { getArticleBySlug as getSanityArticle } from "@/app/lib/queries";
 import ArticleReadTracker from "@/app/components/ArticleReadTracker";
+import CommentSection from "@/app/components/comments/CommentSection";
 
 export const revalidate = 60;
 
@@ -353,12 +354,11 @@ export default async function ArticlePage({ params }: Props) {
               </div>
             )}
 
-            {/* Comments placeholder */}
-            <div className="mt-12 p-6 border" style={{ borderColor: "var(--border)" }}>
-              <p className="eyebrow-muted">Comments</p>
-              <p className="text-sm font-sans mt-2" style={{ color: "var(--ink-m)" }}>Comments are available to subscribers. Sign in to join the conversation.</p>
-              <Link href="/login" className="btn-navy mt-4 inline-block text-sm">Sign in to comment</Link>
-            </div>
+            <CommentSection
+              articleId={slug}
+              articleSlug={slug}
+              articleHeadline={article.title}
+            />
             {/* End sentinel for 80% scroll tracking */}
             <div id="article-end-sentinel" aria-hidden="true" />
           </article>
