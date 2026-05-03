@@ -141,12 +141,19 @@ export async function POST(
   }
 
   // ── moderation ──────────────────────────────────────────────────────────────
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const isAdmin = adminEmail && authorEmail.toLowerCase() === adminEmail.toLowerCase();
+
   let modResult = { approved: false, spamScore: 0, toxicityScore: 0, relevanceScore: 5, reason: "" };
-  try {
-    modResult = await moderateComment(text, articleTitle ?? articleId);
-  } catch (err) {
-    // If moderation fails, hold for manual review
-    console.error("[comments] Moderation error:", (err as Error).message);
+  if (isAdmin) {
+    modResult = { approved: true, spamScore: 0, toxicityScore: 0, relevanceScore: 10, reason: "admin" };
+  } else {
+    try {
+      modResult = await moderateComment(text, articleTitle ?? articleId);
+    } catch (err) {
+      // If moderation fails, hold for manual review
+      console.error("[comments] Moderation error:", (err as Error).message);
+    }
   }
 
   const status = modResult.approved ? "approved" : "pending";
