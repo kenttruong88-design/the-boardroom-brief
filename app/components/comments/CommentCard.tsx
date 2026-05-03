@@ -11,7 +11,6 @@ export interface ExtendedComment extends Comment {
 
 interface Props {
   comment: ExtendedComment;
-  currentUserId?: string;
   fingerprint: string;
   likedIds: Set<string>;
   onReply: (parentId: string) => void;
@@ -65,15 +64,7 @@ function Initials({ name }: { name: string }) {
   );
 }
 
-export default function CommentCard({
-  comment,
-  fingerprint,
-  likedIds,
-  onReply,
-  onLike,
-  onDelete,
-  depth,
-}: Props) {
+export default function CommentCard({ comment, fingerprint, likedIds, onReply, onLike, onDelete, depth }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 

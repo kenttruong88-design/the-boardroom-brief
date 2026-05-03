@@ -78,9 +78,8 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState<SortOrder>("newest");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const [user, setUser] = useState<{ id: string; email: string } | null>(null);
   const [authorName, setAuthorName] = useState("");
-  const [hasProfileName, setHasProfileName] = useState(false);
+  const [authorEmail, setAuthorEmail] = useState("");
   const [body, setBody] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -93,40 +92,6 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
   useEffect(() => {
     setFingerprint(getFingerprint());
     setLikedIds(getLikedSet());
-  }, []);
-
-  // Auth state
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) {
-        setUser({ id: data.user.id, email: data.user.email ?? "" });
-        const name =
-          (data.user.user_metadata?.full_name as string | undefined) ??
-          (data.user.user_metadata?.name as string | undefined) ??
-          "";
-        setAuthorName(name);
-        setHasProfileName(!!name);
-      }
-    });
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_, session) => {
-      if (session?.user) {
-        setUser({ id: session.user.id, email: session.user.email ?? "" });
-        const name =
-          (session.user.user_metadata?.full_name as string | undefined) ??
-          (session.user.user_metadata?.name as string | undefined) ??
-          "";
-        setAuthorName(name);
-        setHasProfileName(!!name);
-      } else {
-        setUser(null);
-        setAuthorName("");
-        setHasProfileName(false);
-      }
-    });
-    return () => subscription.unsubscribe();
   }, []);
 
   // Fetch comments
@@ -224,7 +189,7 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
   // Submit top-level comment
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!body.trim() || !authorName.trim()) return;
+    if (!body.trim() || !authorName.trim() || !authorEmail.trim()) return;
     setSubmitting(true);
     setSubmitError("");
 
@@ -250,7 +215,7 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           authorName,
-          authorEmail: user?.email ?? `guest@tbb`,
+          authorEmail,
           body: savedBody,
           articleTitle: articleHeadline,
         }),
@@ -360,10 +325,6 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
     ta.style.height = `${ta.scrollHeight}px`;
   }
 
-  function handleSignIn() {
-    window.location.href = `/login?next=${encodeURIComponent(window.location.pathname)}`;
-  }
-
   return (
     <section
       style={{
@@ -407,149 +368,105 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
       </div>
 
       {/* ── Comment form ── */}
-      {user ? (
-        <form onSubmit={handleSubmit} className="mb-8">
-          <div className="flex gap-3 items-start">
-            {/* Avatar */}
-            <div
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                flexShrink: 0,
-                background: "var(--navy)",
-                color: "var(--cream)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-jetbrains)",
-                fontSize: "0.65rem",
-                fontWeight: 600,
-                letterSpacing: "0.05em",
-              }}
-            >
-              {authorName
-                ? authorName.slice(0, 2).toUpperCase()
-                : user.email.slice(0, 2).toUpperCase()}
-            </div>
-
-            <div className="flex-1">
-              {/* Name input — hidden only when name came from auth profile */}
-              {!hasProfileName && (
-                <input
-                  type="text"
-                  placeholder="Your display name"
-                  value={authorName}
-                  onChange={(e) => setAuthorName(e.target.value)}
-                  required
-                  className="w-full text-sm font-sans px-3 py-2 mb-2"
-                  style={{
-                    border: "1px solid var(--border)",
-                    background: "#fff",
-                    color: "var(--navy)",
-                    outline: "none",
-                  }}
-                />
-              )}
-
-              {/* Textarea */}
-              <div style={{ position: "relative" }}>
-                <textarea
-                  ref={textareaRef}
-                  value={body}
-                  onChange={handleBodyChange}
-                  placeholder="Add to the discussion…"
-                  required
-                  rows={3}
-                  style={{
-                    width: "100%",
-                    minHeight: 80,
-                    resize: "none",
-                    overflow: "hidden",
-                    border: "1px solid var(--border)",
-                    background: "#fff",
-                    color: "var(--navy)",
-                    padding: "10px 12px",
-                    fontFamily: "var(--font-dm-sans)",
-                    fontSize: "0.875rem",
-                    outline: "none",
-                    lineHeight: 1.6,
-                  }}
-                />
-                {body.length > 1800 && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: 8,
-                      right: 10,
-                      fontFamily: "var(--font-jetbrains)",
-                      fontSize: "0.6rem",
-                      color: body.length > 1950 ? "var(--red)" : "var(--ink-m)",
-                    }}
-                  >
-                    {body.length}/2000
-                  </span>
-                )}
-              </div>
-
-              {submitError && (
-                <p
-                  style={{
-                    fontFamily: "var(--font-dm-sans)",
-                    fontSize: "0.78rem",
-                    color: "var(--red)",
-                    marginTop: 6,
-                  }}
-                >
-                  {submitError}
-                </p>
-              )}
-
-              <div className="flex justify-end mt-2">
-                <button
-                  type="submit"
-                  disabled={submitting || !body.trim() || body.length > 2000}
-                  className="btn-navy"
-                  style={{
-                    fontSize: "0.8rem",
-                    padding: "6px 18px",
-                    opacity:
-                      submitting || !body.trim() ? 0.5 : 1,
-                  }}
-                >
-                  {submitting ? "Posting…" : "Post comment"}
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      ) : (
-        <div
-          className="mb-8 flex items-center justify-between"
-          style={{
-            background: "var(--surface)",
-            border: "1px solid var(--border)",
-            padding: "14px 16px",
-          }}
-        >
-          <span
+      <form onSubmit={handleSubmit} className="mb-8">
+        <div className="flex gap-3 mb-2">
+          <input
+            type="text"
+            placeholder="Name"
+            value={authorName}
+            onChange={(e) => setAuthorName(e.target.value)}
+            required
+            className="flex-1 text-sm font-sans px-3 py-2"
             style={{
+              border: "1px solid var(--border)",
+              background: "#fff",
+              color: "var(--navy)",
+              outline: "none",
+            }}
+          />
+          <input
+            type="email"
+            placeholder="Email (not published)"
+            value={authorEmail}
+            onChange={(e) => setAuthorEmail(e.target.value)}
+            required
+            className="flex-1 text-sm font-sans px-3 py-2"
+            style={{
+              border: "1px solid var(--border)",
+              background: "#fff",
+              color: "var(--navy)",
+              outline: "none",
+            }}
+          />
+        </div>
+
+        <div style={{ position: "relative" }}>
+          <textarea
+            ref={textareaRef}
+            value={body}
+            onChange={handleBodyChange}
+            placeholder="Add to the discussion…"
+            required
+            rows={3}
+            style={{
+              width: "100%",
+              minHeight: 80,
+              resize: "none",
+              overflow: "hidden",
+              border: "1px solid var(--border)",
+              background: "#fff",
+              color: "var(--navy)",
+              padding: "10px 12px",
               fontFamily: "var(--font-dm-sans)",
               fontSize: "0.875rem",
-              color: "var(--ink-m)",
+              outline: "none",
+              lineHeight: 1.6,
+            }}
+          />
+          {body.length > 1800 && (
+            <span
+              style={{
+                position: "absolute",
+                bottom: 8,
+                right: 10,
+                fontFamily: "var(--font-jetbrains)",
+                fontSize: "0.6rem",
+                color: body.length > 1950 ? "var(--red)" : "var(--ink-m)",
+              }}
+            >
+              {body.length}/2000
+            </span>
+          )}
+        </div>
+
+        {submitError && (
+          <p
+            style={{
+              fontFamily: "var(--font-dm-sans)",
+              fontSize: "0.78rem",
+              color: "var(--red)",
+              marginTop: 6,
             }}
           >
-            Sign in to join the discussion
-          </span>
+            {submitError}
+          </p>
+        )}
+
+        <div className="flex justify-end mt-2">
           <button
-            onClick={handleSignIn}
+            type="submit"
+            disabled={submitting || !body.trim() || !authorName.trim() || !authorEmail.trim() || body.length > 2000}
             className="btn-navy"
-            style={{ fontSize: "0.8rem", padding: "6px 16px" }}
+            style={{
+              fontSize: "0.8rem",
+              padding: "6px 18px",
+              opacity: submitting || !body.trim() || !authorName.trim() || !authorEmail.trim() ? 0.5 : 1,
+            }}
           >
-            Sign in
+            {submitting ? "Posting…" : "Post comment"}
           </button>
         </div>
-      )}
+      </form>
 
       {/* ── Comment list ── */}
       {loading ? (
@@ -584,7 +501,6 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
             <div key={comment.id}>
               <CommentCard
                 comment={comment}
-                currentUserId={user?.id}
                 fingerprint={fingerprint}
                 likedIds={likedIds}
                 onLike={handleLike}
@@ -603,8 +519,8 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
                     parentAuthorName={comment.authorName}
                     articleId={articleId}
                     articleHeadline={articleHeadline}
-                    user={user}
-                    authorName={authorName || (user?.email ?? "")}
+                    initialAuthorName={authorName}
+                    initialAuthorEmail={authorEmail}
                     onSubmit={(reply) => {
                       setComments((prev) =>
                         prev.map((c) =>

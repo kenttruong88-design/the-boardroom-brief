@@ -8,8 +8,8 @@ interface Props {
   parentAuthorName: string;
   articleId: string;
   articleHeadline: string;
-  user: { id: string; email: string } | null;
-  authorName: string;
+  initialAuthorName?: string;
+  initialAuthorEmail?: string;
   onSubmit: (reply: ExtendedComment) => void;
   onCancel: () => void;
 }
@@ -19,12 +19,14 @@ export default function ReplyForm({
   parentAuthorName,
   articleId,
   articleHeadline,
-  user,
-  authorName,
+  initialAuthorName = "",
+  initialAuthorEmail = "",
   onSubmit,
   onCancel,
 }: Props) {
   const mention = `@${parentAuthorName} `;
+  const [authorName, setAuthorName] = useState(initialAuthorName);
+  const [authorEmail, setAuthorEmail] = useState(initialAuthorEmail);
   const [body, setBody] = useState(mention);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -33,7 +35,6 @@ export default function ReplyForm({
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.focus();
-      // Place cursor at end
       const len = textareaRef.current.value.length;
       textareaRef.current.setSelectionRange(len, len);
     }
@@ -41,7 +42,6 @@ export default function ReplyForm({
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const val = e.target.value;
-    // Don't let user delete the @mention prefix
     if (!val.startsWith(mention)) {
       setBody(mention);
       return;
@@ -55,7 +55,7 @@ export default function ReplyForm({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const trimmed = body.trim();
-    if (!trimmed || trimmed === mention.trim()) return;
+    if (!trimmed || trimmed === mention.trim() || !authorName.trim() || !authorEmail.trim()) return;
     setError("");
     setSubmitting(true);
 
@@ -71,7 +71,6 @@ export default function ReplyForm({
       _optimistic: true,
     };
 
-    // Optimistically add reply immediately
     onSubmit(optimisticReply);
 
     try {
@@ -80,7 +79,7 @@ export default function ReplyForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           authorName,
-          authorEmail: user?.email ?? `${authorName.toLowerCase().replace(/\s+/g, ".")}@guest.tbb`,
+          authorEmail,
           body: trimmed,
           parentId,
           articleTitle: articleHeadline,
@@ -90,7 +89,6 @@ export default function ReplyForm({
         const data = await res.json() as { error?: string };
         setError(data.error ?? "Failed to post reply.");
       }
-      // The optimistic reply stays; realtime or next refresh will confirm
     } catch {
       setError("Network error. Please try again.");
     } finally {
@@ -108,6 +106,37 @@ export default function ReplyForm({
         marginTop: 8,
       }}
     >
+      <div className="flex gap-2 mb-2">
+        <input
+          type="text"
+          placeholder="Name"
+          value={authorName}
+          onChange={(e) => setAuthorName(e.target.value)}
+          required
+          className="flex-1 text-sm font-sans px-3 py-1.5"
+          style={{
+            border: "1px solid var(--border)",
+            background: "#fff",
+            color: "var(--navy)",
+            outline: "none",
+          }}
+        />
+        <input
+          type="email"
+          placeholder="Email (not published)"
+          value={authorEmail}
+          onChange={(e) => setAuthorEmail(e.target.value)}
+          required
+          className="flex-1 text-sm font-sans px-3 py-1.5"
+          style={{
+            border: "1px solid var(--border)",
+            background: "#fff",
+            color: "var(--navy)",
+            outline: "none",
+          }}
+        />
+      </div>
+
       <textarea
         ref={textareaRef}
         value={body}
@@ -174,13 +203,18 @@ export default function ReplyForm({
         </button>
         <button
           type="submit"
-          disabled={submitting || body.trim() === mention.trim() || body.length > 2000}
+          disabled={
+            submitting ||
+            body.trim() === mention.trim() ||
+            !authorName.trim() ||
+            !authorEmail.trim() ||
+            body.length > 2000
+          }
           className="btn-navy"
           style={{
             fontSize: "0.75rem",
             padding: "5px 14px",
-            opacity:
-              submitting || body.trim() === mention.trim() ? 0.5 : 1,
+            opacity: submitting || body.trim() === mention.trim() || !authorName.trim() || !authorEmail.trim() ? 0.5 : 1,
           }}
         >
           {submitting ? "Posting…" : "Post reply"}

@@ -4,12 +4,10 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Search, Sun, Moon } from "lucide-react";
 import { PILLARS, MOCK_ARTICLES } from "@/app/lib/mock-data";
-import LoginModal from "@/app/components/auth/LoginModal";
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -93,13 +91,6 @@ export default function Navigation() {
             >
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <button
-              onClick={() => setLoginOpen(true)}
-              className="text-sm font-sans transition-colors"
-              style={{ color: "var(--ink-m)" }}
-            >
-              Sign in
-            </button>
             <Link href="/subscribe" className="btn-red">
               Subscribe
             </Link>
@@ -150,9 +141,6 @@ export default function Navigation() {
               5 Continents
             </Link>
             <div className="pt-3">
-              <button onClick={() => { setLoginOpen(true); setMobileOpen(false); }} className="btn-navy block text-center mb-2 w-full">
-                Sign in
-              </button>
               <Link href="/subscribe" className="btn-red block text-center">
                 Subscribe
               </Link>
@@ -160,9 +148,6 @@ export default function Navigation() {
           </div>
         </div>
       )}
-
-      {/* Login Modal */}
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
 
       {/* Search Overlay */}
       {searchOpen && (
