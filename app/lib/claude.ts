@@ -5,49 +5,80 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// ── Model registry ────────────────────────────────────────────────────────────
+// Update here when Anthropic releases new model versions.
+
+export const MODELS = {
+  default:   "claude-sonnet-4-20250514",
+  fast:      "claude-haiku-4-5-20251001",
+  powerful:  "claude-opus-4-6",
+} as const;
+
+export type ModelId = (typeof MODELS)[keyof typeof MODELS];
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
 export interface ClaudeResponse {
   content: string;
   inputTokens: number;
   outputTokens: number;
 }
 
-// Cost per million tokens (claude-sonnet-4-6 pricing)
-const COST_PER_M_INPUT  = 3.00;
-const COST_PER_M_OUTPUT = 15.00;
+// ── Cost table (USD per million tokens) ──────────────────────────────────────
 
-function estimateCost(inputTokens: number, outputTokens: number): number {
+const COST_TABLE: Record<string, { input: number; output: number }> = {
+  [MODELS.default]:  { input: 3.00,  output: 15.00 },
+  [MODELS.fast]:     { input: 0.80,  output: 4.00  },
+  [MODELS.powerful]: { input: 15.00, output: 75.00 },
+};
+
+function estimateCost(model: string, inputTokens: number, outputTokens: number): number {
+  const pricing = COST_TABLE[model] ?? COST_TABLE[MODELS.default];
   return (
-    (inputTokens  / 1_000_000) * COST_PER_M_INPUT +
-    (outputTokens / 1_000_000) * COST_PER_M_OUTPUT
+    (inputTokens  / 1_000_000) * pricing.input +
+    (outputTokens / 1_000_000) * pricing.output
   );
 }
 
-async function logUsage(
+// ── Usage logging ─────────────────────────────────────────────────────────────
+
+export async function logClaudeUsage(
   calledFrom: string,
+  model: string,
   inputTokens: number,
   outputTokens: number
-) {
+): Promise<void> {
   try {
     const supabase = createAdminClient();
     await supabase.from("claude_usage").insert({
-      called_from: calledFrom,
-      input_tokens: inputTokens,
-      output_tokens: outputTokens,
-      estimated_cost: estimateCost(inputTokens, outputTokens),
+      called_from:    calledFrom,
+      model,
+      input_tokens:   inputTokens,
+      output_tokens:  outputTokens,
+      estimated_cost: estimateCost(model, inputTokens, outputTokens),
     });
   } catch {
-    // Non-fatal — don't let logging failure break the caller
+    // Non-fatal — never let logging break the caller
   }
 }
 
+// ── callClaude ────────────────────────────────────────────────────────────────
+
 /**
  * Call Claude with retry logic (3 attempts, exponential backoff).
+ *
+ * @param systemPrompt  System instructions for the call
+ * @param userPrompt    The user message
+ * @param maxTokens     Max tokens for the response (default 1000)
+ * @param calledFrom    Identifier logged to claude_usage (default "unknown")
+ * @param model         Model ID to use (default MODELS.default = Sonnet)
  */
 export async function callClaude(
   systemPrompt: string,
   userPrompt: string,
-  maxTokens = 1024,
-  calledFrom = "unknown"
+  maxTokens = 1000,
+  calledFrom = "unknown",
+  model: string = MODELS.default
 ): Promise<ClaudeResponse> {
   const MAX_ATTEMPTS = 3;
   let lastError: Error | null = null;
@@ -55,7 +86,7 @@ export async function callClaude(
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
       const message = await anthropic.messages.create({
-        model: "claude-sonnet-4-6",
+        model,
         max_tokens: maxTokens,
         system: systemPrompt,
         messages: [{ role: "user", content: userPrompt }],
@@ -64,8 +95,8 @@ export async function callClaude(
       const inputTokens  = message.usage.input_tokens;
       const outputTokens = message.usage.output_tokens;
 
-      // Fire-and-forget usage log
-      logUsage(calledFrom, inputTokens, outputTokens);
+      // Fire-and-forget — don't await logging
+      logClaudeUsage(calledFrom, model, inputTokens, outputTokens);
 
       const content =
         message.content[0].type === "text" ? message.content[0].text : "";
@@ -74,7 +105,6 @@ export async function callClaude(
     } catch (err) {
       lastError = err instanceof Error ? err : new Error(String(err));
       if (attempt < MAX_ATTEMPTS) {
-        // Exponential backoff: 1s, 2s
         await new Promise((r) => setTimeout(r, 1000 * attempt));
       }
     }
@@ -82,6 +112,8 @@ export async function callClaude(
 
   throw lastError ?? new Error("Claude API call failed after 3 attempts");
 }
+
+// ── parseJSON ─────────────────────────────────────────────────────────────────
 
 /**
  * Parse JSON from Claude's response, stripping markdown code fences if present.

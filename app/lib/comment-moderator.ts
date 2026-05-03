@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { MODELS, logClaudeUsage } from "./claude";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -35,11 +36,19 @@ export async function moderateComment(
   const userMsg = `Article: "${articleTitle}"\n\nComment: "${body}"`;
 
   const response = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 256,
+    model: MODELS.fast,
+    max_tokens: 200,
     system: SYSTEM,
     messages: [{ role: "user", content: userMsg }],
   });
+
+  // Log usage — fire-and-forget, keyed so cost dashboard shows Haiku separately
+  logClaudeUsage(
+    "comment-moderator",
+    MODELS.fast,
+    response.usage.input_tokens,
+    response.usage.output_tokens
+  );
 
   const text = response.content
     .filter((b): b is Anthropic.TextBlock => b.type === "text")
@@ -55,7 +64,7 @@ export async function moderateComment(
     reason: string;
   };
 
-  // Auto-reject if spam > 7 or toxicity > 6
+  // Hard-reject if spam > 7 or toxicity > 6, regardless of AI verdict
   const approved =
     parsed.approved &&
     parsed.spamScore <= 7 &&
