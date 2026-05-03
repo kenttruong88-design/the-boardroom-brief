@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { moderateComment } from "@/app/lib/comment-moderator";
+import { sendReplyNotification } from "@/app/lib/comment-notifications";
 import { createHash } from "crypto";
 
 export const maxDuration = 30;
@@ -171,6 +172,15 @@ export async function POST(
 
   if (insertError) {
     return NextResponse.json({ error: insertError.message }, { status: 500 });
+  }
+
+  // Fire reply notification — non-blocking, no await
+  if (inserted.status === "approved" && parentId) {
+    sendReplyNotification({
+      replyId: inserted.id,
+      parentId,
+      articleId,
+    }).catch(() => {});
   }
 
   return NextResponse.json({

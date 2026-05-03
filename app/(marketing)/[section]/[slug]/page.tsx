@@ -7,6 +7,7 @@ import { MOCK_ARTICLES, PILLARS, getArticleBySlug as getMockArticle, formatDate,
 import { getArticleBySlug as getSanityArticle } from "@/app/lib/queries";
 import ArticleReadTracker from "@/app/components/ArticleReadTracker";
 import CommentSection from "@/app/components/comments/CommentSection";
+import { getCommentCounts } from "@/app/lib/comment-counts";
 
 export const revalidate = 60;
 
@@ -96,6 +97,9 @@ export default async function ArticlePage({ params }: Props) {
 
   const pillar = PILLARS.find((p) => p.slug === sectionSlug);
   const related = MOCK_ARTICLES.filter((a) => a.pillar === sectionSlug && a.slug !== slug).slice(0, 3);
+
+  const commentCounts = await getCommentCounts([slug]);
+  const initialCommentCount = commentCounts[slug] ?? 0;
 
   const articleExt = article as typeof article & {
     heroImageUrl?:          string | null;
@@ -358,6 +362,7 @@ export default async function ArticlePage({ params }: Props) {
               articleId={slug}
               articleSlug={slug}
               articleHeadline={article.title}
+              initialCount={initialCommentCount}
             />
             {/* End sentinel for 80% scroll tracking */}
             <div id="article-end-sentinel" aria-hidden="true" />

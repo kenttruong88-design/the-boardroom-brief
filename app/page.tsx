@@ -5,7 +5,8 @@ import MarketTicker from "@/app/components/MarketTicker";
 import EconomySelector from "@/app/components/EconomySelector";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, CONTINENTS, formatDateShort } from "@/app/lib/mock-data";
 import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
-import { Clock, Mic, ArrowRight } from "lucide-react";
+import { Clock, Mic, ArrowRight, MessageSquare } from "lucide-react";
+import { getCommentCounts } from "@/app/lib/comment-counts";
 
 export const revalidate = 60;
 
@@ -90,6 +91,10 @@ export default async function HomePage() {
   const hero = pillarLeads[0];
   const grid = pillarLeads.slice(1);
 
+  // Bulk-fetch comment counts for all visible articles
+  const allSlugs = pillarLeads.map(({ article }) => article.slug);
+  const commentCounts = await getCommentCounts(allSlugs);
+
   return (
     <>
       <MarketTicker />
@@ -156,8 +161,14 @@ export default async function HomePage() {
                     <p className="text-xs font-sans mt-2 leading-relaxed line-clamp-2" style={{ color: "var(--ink-m)" }}>
                       {article.excerpt}
                     </p>
-                    <div className="mt-3">
+                    <div className="mt-3 flex items-center justify-between">
                       <Meta date={article.publishedAt} readTime={article.readTime} isPodcast={pillar.isPodcast} />
+                      {(commentCounts[article.slug] ?? 0) > 0 && (
+                        <span className="flex items-center gap-1" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)", fontSize: "0.6rem" }}>
+                          <MessageSquare className="w-3 h-3" />
+                          {commentCounts[article.slug]}
+                        </span>
+                      )}
                     </div>
                   </Link>
                 </article>

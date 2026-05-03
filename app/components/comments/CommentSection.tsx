@@ -13,6 +13,7 @@ interface Props {
   articleId: string;
   articleSlug: string;
   articleHeadline: string;
+  initialCount?: number;
 }
 
 const LIKED_KEY = "tbb_likes";
@@ -72,7 +73,7 @@ function SortButton({
   );
 }
 
-export default function CommentSection({ articleId, articleHeadline }: Props) {
+export default function CommentSection({ articleId, articleHeadline, initialCount }: Props) {
   const [comments, setComments] = useState<ExtendedComment[]>([]);
   const [loading, setLoading] = useState(true);
   const [sort, setSort] = useState<SortOrder>("newest");
@@ -204,6 +205,10 @@ export default function CommentSection({ articleId, articleHeadline }: Props) {
 
   // Sort & paginate
   const topLevel = comments.filter((c) => !c.parentId);
+  const approvedTopLevel = topLevel.filter((c) => !c._optimistic && !c._pendingApproval);
+  // Use server-rendered count until first client fetch resolves
+  const displayCount = loading ? (initialCount ?? 0) : approvedTopLevel.length;
+
   const sorted = [...topLevel].sort((a, b) => {
     if (sort === "best") return b.likeCount - a.likeCount;
     if (sort === "newest")
@@ -211,7 +216,6 @@ export default function CommentSection({ articleId, articleHeadline }: Props) {
     return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
   });
   const visible = sorted.slice(0, visibleCount);
-  const approvedCount = topLevel.filter((c) => !c._optimistic && !c._pendingApproval).length;
 
   // Submit top-level comment
   async function handleSubmit(e: React.FormEvent) {
@@ -375,7 +379,7 @@ export default function CommentSection({ articleId, articleHeadline }: Props) {
             className="font-serif font-bold"
             style={{ fontSize: "1.1rem", color: "var(--navy)" }}
           >
-            {approvedCount} {approvedCount === 1 ? "comment" : "comments"}
+            {displayCount} {displayCount === 1 ? "comment" : "comments"}
           </h2>
         </div>
 

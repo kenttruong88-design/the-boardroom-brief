@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, MessageSquare } from "lucide-react";
 import { PILLARS, MOCK_ARTICLES, ECONOMIES, getPillar, formatDateShort } from "@/app/lib/mock-data";
 import { getArticlesByPillar, type SanityArticle } from "@/app/lib/queries";
+import { getCommentCounts } from "@/app/lib/comment-counts";
 
 export const revalidate = 60;
 
@@ -135,6 +136,8 @@ export default async function SectionPage({ params }: Props) {
   const featured = displayArticles[0];
   const grid = displayArticles.slice(1);
 
+  const commentCounts = await getCommentCounts(displayArticles.map((a) => a.slug));
+
   return (
     <div style={{ background: "var(--cream)" }}>
 
@@ -168,7 +171,15 @@ export default async function SectionPage({ params }: Props) {
                       </h2>
                       <p className="text-base font-serif italic" style={{ color: "var(--red)" }}>{featured.satiricalHeadline}</p>
                       <p className="text-sm font-sans leading-relaxed" style={{ color: "var(--ink-m)" }}>{featured.excerpt}</p>
-                      <Meta date={featured.publishedAt} readTime={featured.readTime} />
+                      <div className="flex items-center justify-between">
+                        <Meta date={featured.publishedAt} readTime={featured.readTime} />
+                        {(commentCounts[featured.slug] ?? 0) > 0 && (
+                          <span className="flex items-center gap-1" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)", fontSize: "0.6rem" }}>
+                            <MessageSquare className="w-3 h-3" />
+                            {commentCounts[featured.slug]}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <div className="sm:col-span-2 rounded-sm overflow-hidden" style={{ height: "200px", position: "relative", background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)" }}>
                       {(featured as typeof featured & { imageUrl?: string | null }).imageUrl && (
@@ -211,7 +222,15 @@ export default async function SectionPage({ params }: Props) {
                       </h3>
                       <p className="text-sm font-serif italic mt-1" style={{ color: "var(--red)" }}>{article.satiricalHeadline}</p>
                       <p className="text-xs font-sans mt-2 line-clamp-2 leading-relaxed" style={{ color: "var(--ink-m)" }}>{article.excerpt}</p>
-                      <div className="mt-3"><Meta date={article.publishedAt} readTime={article.readTime} /></div>
+                      <div className="mt-3 flex items-center justify-between">
+                        <Meta date={article.publishedAt} readTime={article.readTime} />
+                        {(commentCounts[article.slug] ?? 0) > 0 && (
+                          <span className="flex items-center gap-1" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)", fontSize: "0.6rem" }}>
+                            <MessageSquare className="w-3 h-3" />
+                            {commentCounts[article.slug]}
+                          </span>
+                        )}
+                      </div>
                     </Link>
                   </article>
                 );
