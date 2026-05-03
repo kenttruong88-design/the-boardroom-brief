@@ -3,7 +3,12 @@ import { render } from "@react-email/components";
 import { createAdminClient } from "./supabase-server";
 import CommentReply from "@/emails/comment-reply";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy — instantiated only when a notification is actually sent
+function getResend(): Resend {
+  if (!process.env.RESEND_API_KEY) throw new Error("RESEND_API_KEY not set");
+  return new Resend(process.env.RESEND_API_KEY);
+}
+
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
 const FROM = process.env.RESEND_FROM ?? "The Boardroom Brief <noreply@theboardroombrief.com>";
 
@@ -82,7 +87,7 @@ export async function sendReplyNotification(ctx: ReplyContext): Promise<void> {
       })
     );
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM,
       to: parent.author_email,
       subject: `${reply.author_name} replied to your comment on The Boardroom Brief`,
