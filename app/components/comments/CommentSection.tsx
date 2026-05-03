@@ -80,6 +80,7 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [user, setUser] = useState<{ id: string; email: string } | null>(null);
   const [authorName, setAuthorName] = useState("");
+  const [hasProfileName, setHasProfileName] = useState(false);
   const [body, setBody] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -105,6 +106,7 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
           (data.user.user_metadata?.name as string | undefined) ??
           "";
         setAuthorName(name);
+        setHasProfileName(!!name);
       }
     });
     const {
@@ -117,9 +119,11 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
           (session.user.user_metadata?.name as string | undefined) ??
           "";
         setAuthorName(name);
+        setHasProfileName(!!name);
       } else {
         setUser(null);
         setAuthorName("");
+        setHasProfileName(false);
       }
     });
     return () => subscription.unsubscribe();
@@ -430,8 +434,8 @@ export default function CommentSection({ articleId, articleHeadline, initialCoun
             </div>
 
             <div className="flex-1">
-              {/* Name input if no display name */}
-              {!authorName && (
+              {/* Name input — hidden only when name came from auth profile */}
+              {!hasProfileName && (
                 <input
                   type="text"
                   placeholder="Your display name"
