@@ -122,6 +122,20 @@ export const getArticlesByCountry = cache(async (countrySlug: string, limit = 12
   );
 });
 
+/** Articles published in the last 24 hours — used by the social cron */
+export async function getArticlesPublishedToday(): Promise<SanityArticle[]> {
+  if (!client) return [];
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  return client.fetch(
+    `*[_type == "article" && publishedAt >= $since] | order(publishedAt desc) {
+      _id, title, slug, satiricalHeadline, excerpt, heroImageUrl, publishedAt,
+      pillar->{ name, slug, color },
+      countries[]->{ name, slug, code }
+    }`,
+    { since }
+  );
+}
+
 /** All pillar slugs (for generateStaticParams) */
 export const getAllPillarSlugs = cache(async (): Promise<string[]> => {
   if (!client) return [];

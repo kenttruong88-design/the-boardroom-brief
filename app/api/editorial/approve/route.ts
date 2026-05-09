@@ -1,8 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { createSanityArticle } from "@/app/lib/sanity-write";
+import type { SanityPublishResult } from "@/app/lib/sanity-write";
 import { consumeApprovalToken } from "@/app/lib/approval-tokens";
 import { requireAuth, loadDigest, saveDigest, resolveIndex, todayDate } from "../_helpers";
+import { generateSocialPost } from "@/app/lib/social/content-generator";
+import type { ArticleDraft } from "@/app/lib/agents/types";
+import type { SanityArticle } from "@/app/lib/queries";
 
 // Accepts: POST with body, or GET with ?id=&token= (one-click from email)
 export async function GET(req: Request) {
@@ -61,6 +65,101 @@ export async function POST(req: Request) {
   return NextResponse.json({ success: true, ...result });
 }
 
+// ── Social post queuing ───────────────────────────────────────────────────────
+
+const PILLAR_NAMES: Record<string, string> = {
+  "markets-floor":  "Markets Floor",
+  "macro-mondays":  "Macro Mondays",
+  "c-suite-circus": "C-Suite Circus",
+  "global-office":  "Global Office",
+  "water-cooler":   "Water Cooler",
+};
+
+const SOCIAL_SLOTS = {
+  linkedin: [{ h: 8, m: 30 }, { h: 17, m: 0 }],
+  twitter:  [{ h: 9, m: 0 },  { h: 13, m: 0 }, { h: 17, m: 30 }],
+} as const;
+
+function nextSlot(platform: "linkedin" | "twitter", now: Date): Date {
+  for (const { h, m } of SOCIAL_SLOTS[platform]) {
+    const candidate = new Date(now);
+    candidate.setUTCHours(h, m, 0, 0);
+    if (candidate > now) return candidate;
+  }
+  // Nothing left today — roll to tomorrow's first slot
+  const first = SOCIAL_SLOTS[platform][0];
+  const tomorrow = new Date(now);
+  tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
+  tomorrow.setUTCHours(first.h, first.m, 0, 0);
+  return tomorrow;
+}
+
+async function queueSocialPosts(
+  draft: ArticleDraft,
+  publishResult: SanityPublishResult
+): Promise<void> {
+  const now = new Date();
+  const pillarSlug = draft.pillar;
+
+  const article: SanityArticle = {
+    _id:               publishResult.sanityDocId,
+    title:             draft.headline,
+    slug:              { current: publishResult.slug },
+    satiricalHeadline: draft.satiricalHeadline,
+    excerpt:           draft.body.split("\n\n")[0].slice(0, 300),
+    publishedAt:       now.toISOString(),
+    heroImageUrl:      draft.featuredImage?.heroUrl,
+    pillar: {
+      name: PILLAR_NAMES[pillarSlug] ?? pillarSlug,
+      slug: { current: pillarSlug },
+    },
+    countries: draft.countries.map((c) => ({
+      name: c,
+      slug: { current: c.toLowerCase().replace(/\s+/g, "-") },
+    })),
+  };
+
+  const [li, tw] = await Promise.all([
+    generateSocialPost(article, "linkedin"),
+    generateSocialPost(article, "twitter"),
+  ]);
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const articleUrl = `${siteUrl}/${pillarSlug}/${publishResult.slug}`;
+  const supabase = createAdminClient();
+
+  await Promise.all([
+    supabase.from("social_queue").insert({
+      article_id:       publishResult.sanityDocId,
+      article_slug:     publishResult.slug,
+      article_headline: draft.headline,
+      platform:         "linkedin",
+      content:          li.content,
+      hashtags:         li.hashtags,
+      image_url:        li.imageUrl,
+      article_url:      articleUrl,
+      scheduled_for:    nextSlot("linkedin", now).toISOString(),
+      pillar:           pillarSlug,
+      status:           "pending",
+      generated_by:     "auto",
+    }),
+    supabase.from("social_queue").insert({
+      article_id:       publishResult.sanityDocId,
+      article_slug:     publishResult.slug,
+      article_headline: draft.headline,
+      platform:         "twitter",
+      content:          tw.content,
+      hashtags:         tw.hashtags,
+      image_url:        tw.imageUrl,
+      article_url:      articleUrl,
+      scheduled_for:    nextSlot("twitter", now).toISOString(),
+      pillar:           pillarSlug,
+      status:           "pending",
+      generated_by:     "auto",
+    }),
+  ]);
+}
+
 // ── Shared approval logic ─────────────────────────────────────────────────────
 
 async function approveArticle(
@@ -86,6 +185,9 @@ async function approveArticle(
   } catch (err) {
     return { error: (err as Error).message, status: 500 };
   }
+
+  // Queue social posts after response — non-fatal if it fails
+  after(() => queueSocialPosts(entry.draft, publishResult).catch(() => {}));
 
   const digest = row.digest_json;
   (digest.articles[index] as typeof entry).approved = true;
