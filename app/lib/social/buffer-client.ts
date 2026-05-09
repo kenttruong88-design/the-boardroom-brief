@@ -109,6 +109,42 @@ export async function scheduleBufferPost(
   return postId;
 }
 
+// ─── 2b. createBufferDraft — adds to queue without a scheduled time ──────────
+
+export async function createBufferDraft(
+  profileId: string,
+  content: string,
+  imageUrl?: string
+): Promise<string> {
+  const body = new URLSearchParams();
+  body.append("profile_ids[]", profileId);
+  body.append("text", content);
+  body.append("now", "false");
+  if (imageUrl) body.append("media[photo]", imageUrl);
+
+  const data = await bufferFetch<CreateUpdateResponse>("/updates/create.json", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
+  });
+
+  const postId = data.updates?.[0]?.id;
+  if (!postId) throw new Error(data.error ?? "Buffer did not return a post ID");
+  return postId;
+}
+
+// ─── 2c. getBufferUser — returns plan info ───────────────────────────────────
+
+interface BufferUser {
+  plan?: string;
+  plan_name?: string;
+}
+
+export async function getBufferUser(): Promise<{ plan: string }> {
+  const user = await bufferFetch<BufferUser>("/user.json");
+  return { plan: user.plan ?? user.plan_name ?? "unknown" };
+}
+
 // ─── 3. cancelBufferPost ────────────────────────────────────────────────────
 
 export async function cancelBufferPost(bufferId: string): Promise<void> {
