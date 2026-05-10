@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.bufferapp.com/1";
+const BASE_URL = "https://api.buffer.com";
 
 function token(): string {
   const t = process.env.BUFFER_ACCESS_TOKEN;
@@ -6,31 +6,33 @@ function token(): string {
   return t;
 }
 
-function authHeaders(): Record<string, string> {
-  return { Authorization: `Bearer ${token()}` };
-}
-
-async function bufferFetch<T>(
-  path: string,
-  init?: RequestInit
+async function graphql<T>(
+  query: string,
+  variables?: Record<string, unknown>
 ): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
-    ...init,
-    headers: { ...authHeaders(), ...(init?.headers ?? {}) },
+  const res = await fetch(BASE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token()}`,
+    },
+    body: JSON.stringify({ query, variables }),
   });
 
   if (!res.ok) {
     let message = `Buffer API error ${res.status}`;
     try {
-      const body = await res.json() as { error?: string; message?: string };
-      message = body.error ?? body.message ?? message;
+      const body = await res.json() as { errors?: { message: string }[] };
+      message = body.errors?.[0]?.message ?? message;
     } catch {
       // ignore parse failure
     }
     throw new Error(message);
   }
 
-  return res.json() as Promise<T>;
+  const json = await res.json() as { data: T; errors?: { message: string }[] };
+  if (json.errors?.length) throw new Error(json.errors[0].message);
+  return json.data;
 }
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -49,135 +51,159 @@ export interface BufferAnalytics {
   clicks: number;
 }
 
-// ─── In-memory profile cache (cleared on process restart / cold start) ────────
+// ─── Caches ───────────────────────────────────────────────────────────────────
 
 let profileCache: BufferProfile[] | null = null;
+let orgIdCache: string | null = null;
 
-// ─── 1. getBufferProfiles ────────────────────────────────────────────────────
+// ─── Internal helpers ─────────────────────────────────────────────────────────
 
-interface RawProfile {
-  id: string;
-  service: string;
-  service_username: string;
+async function getOrganizationId(): Promise<string> {
+  if (orgIdCache) return orgIdCache;
+  const data = await graphql<{
+    account: { organizations: { id: string }[] };
+  }>(`
+    query GetOrganization {
+      account {
+        organizations { id }
+      }
+    }
+  `);
+  const orgId = data.account.organizations[0]?.id;
+  if (!orgId) throw new Error("No Buffer organization found for this account");
+  orgIdCache = orgId;
+  return orgId;
 }
+
+async function createPostMutation(input: Record<string, unknown>): Promise<string> {
+  const data = await graphql<{
+    createPost: { post?: { id: string }; message?: string };
+  }>(`
+    mutation CreatePost($input: CreatePostInput!) {
+      createPost(input: $input) {
+        ... on PostActionSuccess {
+          post { id }
+        }
+        ... on MutationError {
+          message
+        }
+      }
+    }
+  `, { input });
+
+  const postId = data.createPost.post?.id;
+  if (!postId) throw new Error(data.createPost.message ?? "Buffer did not return a post ID");
+  return postId;
+}
+
+// ─── 1. getBufferProfiles ─────────────────────────────────────────────────────
 
 export async function getBufferProfiles(): Promise<BufferProfile[]> {
   if (profileCache) return profileCache;
 
-  const raw = await bufferFetch<RawProfile[]>("/profiles.json");
+  const organizationId = await getOrganizationId();
+  const data = await graphql<{
+    channels: { id: string; name: string; service: string }[];
+  }>(`
+    query GetChannels($organizationId: OrganizationId!) {
+      channels(input: { organizationId: $organizationId }) {
+        id
+        name
+        service
+      }
+    }
+  `, { organizationId });
 
-  profileCache = raw.map((p) => ({
-    id: p.id,
-    service: p.service as BufferProfile["service"],
-    serviceUsername: p.service_username,
-  }));
+  const validServices = new Set(["linkedin", "twitter", "instagram"]);
+  profileCache = data.channels
+    .filter((c) => validServices.has(c.service.toLowerCase()))
+    .map((c) => ({
+      id: c.id,
+      service: c.service.toLowerCase() as BufferProfile["service"],
+      serviceUsername: c.name,
+    }));
 
   return profileCache;
 }
 
-// ─── 2. scheduleBufferPost ───────────────────────────────────────────────────
-
-interface CreateUpdateResponse {
-  success: boolean;
-  updates?: { id: string }[];
-  error?: string;
-}
+// ─── 2. scheduleBufferPost ────────────────────────────────────────────────────
 
 export async function scheduleBufferPost(
   profileId: string,
   content: string,
   scheduledAt: Date,
-  imageUrl?: string
+  imageUrl?: string,
+  platform?: string
 ): Promise<string> {
-  const body = new URLSearchParams();
-  body.append("profile_ids[]", profileId);
-  body.append("text", content);
-  body.append("scheduled_at", scheduledAt.toISOString());
-  if (imageUrl) body.append("media[photo]", imageUrl);
-
-  const data = await bufferFetch<CreateUpdateResponse>("/updates/create.json", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body.toString(),
-  });
-
-  const postId = data.updates?.[0]?.id;
-  if (!postId) {
-    throw new Error(data.error ?? "Buffer did not return a post ID");
-  }
-
-  return postId;
+  const input: Record<string, unknown> = {
+    text: content,
+    channelId: profileId,
+    schedulingType: "automatic",
+    mode: "customScheduled",
+    dueAt: scheduledAt.toISOString(),
+  };
+  if (imageUrl) input.assets = { images: [{ url: imageUrl }] };
+  if (platform === "instagram") input.metadata = { instagram: { type: "post", shouldShareToFeed: true } };
+  return createPostMutation(input);
 }
 
-// ─── 2b. createBufferDraft — adds to queue without a scheduled time ──────────
+// ─── 2b. createBufferDraft ────────────────────────────────────────────────────
 
 export async function createBufferDraft(
   profileId: string,
   content: string,
-  imageUrl?: string
+  imageUrl?: string,
+  platform?: string
 ): Promise<string> {
-  const body = new URLSearchParams();
-  body.append("profile_ids[]", profileId);
-  body.append("text", content);
-  body.append("now", "false");
-  if (imageUrl) body.append("media[photo]", imageUrl);
-
-  const data = await bufferFetch<CreateUpdateResponse>("/updates/create.json", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: body.toString(),
-  });
-
-  const postId = data.updates?.[0]?.id;
-  if (!postId) throw new Error(data.error ?? "Buffer did not return a post ID");
-  return postId;
+  const input: Record<string, unknown> = {
+    text: content,
+    channelId: profileId,
+    schedulingType: "automatic",
+    mode: "addToQueue",
+    saveToDraft: true,
+  };
+  if (imageUrl) input.assets = { images: [{ url: imageUrl }] };
+  if (platform === "instagram") input.metadata = { instagram: { type: "post", shouldShareToFeed: true } };
+  return createPostMutation(input);
 }
 
-// ─── 2c. getBufferUser — returns plan info ───────────────────────────────────
-
-interface BufferUser {
-  plan?: string;
-  plan_name?: string;
-}
+// ─── 2c. getBufferUser ────────────────────────────────────────────────────────
 
 export async function getBufferUser(): Promise<{ plan: string }> {
-  const user = await bufferFetch<BufferUser>("/user.json");
-  return { plan: user.plan ?? user.plan_name ?? "unknown" };
+  const data = await graphql<{
+    account: { organizations: { name: string }[] };
+  }>(`
+    query GetAccount {
+      account {
+        organizations { name }
+      }
+    }
+  `);
+  return { plan: data.account.organizations[0]?.name ?? "buffer" };
 }
 
-// ─── 3. cancelBufferPost ────────────────────────────────────────────────────
+// ─── 3. cancelBufferPost ──────────────────────────────────────────────────────
 
 export async function cancelBufferPost(bufferId: string): Promise<void> {
-  await bufferFetch<unknown>(`/updates/${bufferId}/destroy.json`, {
-    method: "DELETE",
-  });
+  await graphql<unknown>(`
+    mutation DeletePost($id: String!) {
+      deletePost(input: { id: $id }) {
+        ... on PostActionSuccess {
+          post { id }
+        }
+        ... on MutationError {
+          message
+        }
+      }
+    }
+  `, { id: bufferId });
 }
 
-// ─── 4. getBufferPostAnalytics ───────────────────────────────────────────────
-
-interface RawUpdate {
-  statistics?: {
-    impressions?: number;
-    reach?: number;
-    clicks?: number;
-    favorites?: number;
-    mentions?: number;
-    reshares?: number;
-    shares?: number;
-  };
-}
+// ─── 4. getBufferPostAnalytics ────────────────────────────────────────────────
 
 export async function getBufferPostAnalytics(
-  bufferId: string
+  _bufferId: string
 ): Promise<BufferAnalytics> {
-  const data = await bufferFetch<RawUpdate>(`/updates/${bufferId}.json`);
-  const s = data.statistics ?? {};
-
-  return {
-    impressions: s.impressions ?? s.reach ?? 0,
-    likes:       s.favorites ?? 0,
-    comments:    s.mentions  ?? 0,
-    shares:      s.reshares  ?? s.shares ?? 0,
-    clicks:      s.clicks    ?? 0,
-  };
+  // Per-post analytics not yet available in the Buffer GraphQL API public beta
+  return { impressions: 0, likes: 0, comments: 0, shares: 0, clicks: 0 };
 }

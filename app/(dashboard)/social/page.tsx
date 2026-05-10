@@ -53,11 +53,12 @@ const PLATFORM_CONFIG: Record<string, { label: string; color: string; bg: string
 };
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
-  pending:   { label: "Pending",   color: "#b45309", bg: "#fffbeb" },
-  sending:   { label: "Sending…",  color: "#1d4ed8", bg: "#eff6ff" },
-  sent:      { label: "Sent",      color: "#15803d", bg: "#f0fdf4" },
-  failed:    { label: "Failed",    color: "#b91c1c", bg: "#fef2f2" },
-  cancelled: { label: "Cancelled", color: "#6b7280", bg: "#f9fafb" },
+  pending_approval: { label: "Awaiting approval", color: "#92400e", bg: "#fef3c7" },
+  pending:          { label: "Pending",            color: "#b45309", bg: "#fffbeb" },
+  sending:          { label: "Sending…",           color: "#1d4ed8", bg: "#eff6ff" },
+  sent:             { label: "Sent",               color: "#15803d", bg: "#f0fdf4" },
+  failed:           { label: "Failed",             color: "#b91c1c", bg: "#fef2f2" },
+  cancelled:        { label: "Cancelled",          color: "#6b7280", bg: "#f9fafb" },
 };
 
 const PILLAR_COLORS: Record<string, string> = {
@@ -129,9 +130,13 @@ function StatusPill({ status }: { status: string }) {
 function PostCard({
   post,
   onUpdated,
+  onApprove,
+  onReject,
 }: {
   post: QueuePost;
   onUpdated: (updated: QueuePost | null) => void;
+  onApprove?: () => void;
+  onReject?: () => void;
 }) {
   const [expanded, setExpanded]           = useState(false);
   const [editing, setEditing]             = useState(false);
@@ -185,7 +190,7 @@ function PostCard({
   }
 
   const preview = post.content.slice(0, 120) + (post.content.length > 120 ? "…" : "");
-  const canAct = post.status === "pending" || post.status === "failed";
+  const canAct = post.status === "pending_approval" || post.status === "pending" || post.status === "failed";
 
   return (
     <div className="mb-3" style={{
@@ -287,6 +292,26 @@ function PostCard({
         {/* Action buttons */}
         {canAct && !editing && (
           <div className="flex items-center gap-2 flex-wrap">
+            {post.status === "pending_approval" && (
+              <>
+                <button onClick={() => setEditing(true)}
+                  className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5"
+                  style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
+                  <Edit2 className="w-3 h-3" /> Edit
+                </button>
+                <button onClick={onApprove} disabled={busy || !onApprove}
+                  className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
+                  style={{ background: "#15803d", color: "#fff", borderRadius: 2 }}>
+                  {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Send className="w-3 h-3" />}
+                  Approve
+                </button>
+                <button onClick={onReject} disabled={busy || !onReject}
+                  className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5 ml-auto"
+                  style={{ color: "#b91c1c" }}>
+                  <X className="w-3 h-3" /> Reject
+                </button>
+              </>
+            )}
             {post.status === "pending" && (
               <>
                 <button onClick={() => setEditing(true)}
@@ -549,6 +574,7 @@ export default function SocialDashboard() {
   const [platform, setPlatform]           = useState<PlatformFilter>("all");
   const [generating, setGenerating]       = useState(false);
   const [generateMsg, setGenerateMsg]     = useState("");
+  const [approvingAll, setApprovingAll]   = useState(false);
 
   // Auth check
   useEffect(() => {
@@ -619,11 +645,40 @@ export default function SocialDashboard() {
   }
 
   function handlePostUpdated(updated: QueuePost | null, oldId: string) {
-    if (!updated) {
-      setTodayPosts((prev) => prev.filter((p) => p.id !== oldId));
-      return;
+    const replace = (prev: QueuePost[]) =>
+      updated ? prev.map((p) => (p.id === updated.id ? updated : p)) : prev.filter((p) => p.id !== oldId);
+    setTodayPosts(replace);
+    setWeekPosts(replace);
+  }
+
+  async function handleApprove(id: string) {
+    const res = await fetch(`/api/social/queue/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "pending" }),
+    });
+    const data = await res.json() as { post?: QueuePost };
+    if (res.ok && data.post) handlePostUpdated(data.post, id);
+  }
+
+  async function handleReject(id: string) {
+    const res = await fetch(`/api/social/queue/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "cancelled" }),
+    });
+    const data = await res.json() as { post?: QueuePost };
+    if (res.ok && data.post) handlePostUpdated(data.post, id);
+  }
+
+  async function handleApproveAll() {
+    setApprovingAll(true);
+    try {
+      await fetch("/api/social/queue/approve-all", { method: "POST" });
+      await fetchData();
+    } finally {
+      setApprovingAll(false);
     }
-    setTodayPosts((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
   }
 
   function handlePostAdded(post: QueuePost) {
@@ -643,7 +698,8 @@ export default function SocialDashboard() {
     );
   }
 
-  // Stats
+  // Derived
+  const approvalPosts = weekPosts.filter((p) => p.status === "pending_approval");
   const sentToday = todayPosts.filter((p) => p.status === "sent").length;
   const scheduledToday = todayPosts.filter((p) => p.status === "pending").length;
   const sentThisWeek = weekPosts.filter((p) => p.status === "sent").length;
@@ -697,11 +753,43 @@ export default function SocialDashboard() {
 
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <StatCard value={approvalPosts.length} label="Awaiting approval" />
           <StatCard value={sentToday} label="Sent today" />
-          <StatCard value={scheduledToday} label="Scheduled today" />
           <StatCard value={sentThisWeek} label="Sent this week" />
           <StatCard value={`${avgEng}%`} label="Avg engagement" sub="last 7 days" />
         </div>
+
+        {/* Awaiting Approval */}
+        {approvalPosts.length > 0 && (
+          <section className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-serif font-bold flex items-center gap-2" style={{ color: "#92400e" }}>
+                <AlertCircle className="w-5 h-5" />
+                Awaiting approval ({approvalPosts.length})
+              </h2>
+              <button onClick={handleApproveAll} disabled={approvingAll}
+                className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2"
+                style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: approvingAll ? 0.6 : 1 }}>
+                {approvingAll ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                Approve all
+              </button>
+            </div>
+            <div className="p-3 mb-4 text-xs font-sans"
+              style={{ background: "#fef3c7", border: "1px solid #fcd34d", color: "#92400e", borderRadius: 2 }}>
+              These posts were auto-generated and are waiting for your approval before they go live.
+              Review each post, edit if needed, then approve — or reject to discard.
+            </div>
+            {approvalPosts.map((post) => (
+              <PostCard
+                key={post.id}
+                post={post}
+                onUpdated={(updated) => handlePostUpdated(updated, post.id)}
+                onApprove={() => handleApprove(post.id)}
+                onReject={() => handleReject(post.id)}
+              />
+            ))}
+          </section>
+        )}
 
         {/* Platform tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">

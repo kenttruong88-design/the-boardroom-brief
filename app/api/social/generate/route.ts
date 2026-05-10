@@ -89,7 +89,7 @@ async function run() {
         article_url:      socialPost.articleUrl,
         scheduled_for:    scheduledFor.toISOString(),
         pillar:           article.pillar?.slug?.current ?? null,
-        status:           "pending",
+        status:           "pending_approval",
         generated_by:     "auto",
       });
 

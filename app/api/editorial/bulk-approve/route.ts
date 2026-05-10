@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { createSanityArticle } from "@/app/lib/sanity-write";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { requireAuth, loadDigest, saveDigest, todayDate } from "../_helpers";
+import { queueSocialPostsForArticle } from "@/app/lib/social/queue-social-posts";
 
 export async function POST(req: Request) {
   const auth = await requireAuth();
@@ -37,6 +38,7 @@ export async function POST(req: Request) {
       entry.sanityDocId = result.sanityDocId;
       publishedUrls.push(result.publishedUrl);
       approvedCount++;
+      after(() => queueSocialPostsForArticle(entry.draft, result).catch(() => {}));
     } catch (err) {
       console.error(`[bulk-approve] Failed for article ${i}:`, (err as Error).message);
       failedCount++;

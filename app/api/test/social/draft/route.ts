@@ -76,11 +76,11 @@ export async function POST(req: Request) {
   }
 
   // Send as draft (no scheduled_at)
-  const bufferId = await createBufferDraft(profile.id, post.content, post.imageUrl ?? undefined);
+  const bufferId = await createBufferDraft(profile.id, post.content, post.imageUrl ?? undefined, body.platform);
 
   // Insert into social_queue with draft_test status — won't be picked up by publisher cron
   const supabase = createAdminClient();
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const pillarSlug = article.pillar?.slug?.current ?? "";
 
   await supabase.from("social_queue").insert({

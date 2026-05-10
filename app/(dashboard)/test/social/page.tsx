@@ -32,8 +32,18 @@ interface PostValidations {
   underCharLimit?: boolean; charCount?: number; remaining?: number;
   // instagram
   hasImage?: boolean; hasLinkInBio?: boolean;
-  // shared
-  hashtagCount?: number;
+}
+
+interface EditorReview {
+  score: number;
+  passed: boolean;
+  toneScore: number;
+  accuracyScore: number;
+  hookScore: number;
+  satireScore: number;
+  originalityScore: number;
+  notes: string;
+  revisionsRequired: string[];
 }
 
 interface PreviewPost {
@@ -42,6 +52,7 @@ interface PreviewPost {
   charCount: number;
   imageUrl: string | null;
   estimatedSlot: string;
+  review: EditorReview | null;
   bufferPayload: { profileId: string; text: string; scheduledAt: string; mediaUrl: string | null };
   validations: PostValidations;
 }
@@ -53,6 +64,13 @@ interface PreviewResult {
   posts: { linkedin?: PreviewPost; twitter?: PreviewPost; instagram?: PreviewPost };
   totalMs: number;
   estimatedCost: string;
+}
+
+interface ArticleOption {
+  id: string;
+  title: string;
+  pillar: string;
+  publishedAt: string;
 }
 
 interface QueueRow {
@@ -167,26 +185,73 @@ function PreviewCard({ platform, post }: { platform: string; post: PreviewPost }
             <>
               {tick(v.hooksBeforeFold ?? false, `Hook before fold (${v.hookLength} chars)`)}
               {tick(v.endsWithQuestion ?? false, "Ends with question")}
-              {tick((v.hashtagCount ?? 0) <= 2, `${v.hashtagCount ?? 0} hashtags (max 2)`)}
             </>
           )}
           {platform === "twitter" && (
             <>
               {tick(v.underCharLimit ?? false, `${v.charCount}/${charLimit} chars (${v.remaining ?? 0} remaining)`)}
-              {tick((v.hashtagCount ?? 0) <= 1, `${v.hashtagCount ?? 0} hashtags (max 1)`)}
             </>
           )}
           {platform === "instagram" && (
             <>
               {tick(v.hasImage ?? false, "Image attached")}
               {tick(v.hasLinkInBio ?? false, "Link in bio text present")}
-              {tick((v.hashtagCount ?? 0) >= 5 && (v.hashtagCount ?? 0) <= 8, `${v.hashtagCount ?? 0} hashtags (5-8)`)}
             </>
           )}
         </div>
 
+        {/* Editor review */}
+        {post.review && (
+          <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border)" }}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-sans font-semibold" style={{ color: "var(--ink-m)" }}>
+                Editor review
+              </span>
+              <span className="text-xs font-mono font-bold px-1.5 py-0.5"
+                style={{
+                  background: post.review.passed ? "#dcfce7" : "#fef2f2",
+                  color: post.review.passed ? "#15803d" : "#b91c1c",
+                  border: `1px solid ${post.review.passed ? "#86efac" : "#fecaca"}`,
+                }}>
+                {post.review.score}/10 {post.review.passed ? "PASS" : "FAIL"}
+              </span>
+            </div>
+            <div className="grid grid-cols-5 gap-1 mb-2">
+              {[
+                ["Tone",     post.review.toneScore],
+                ["Accuracy", post.review.accuracyScore],
+                ["Hook",     post.review.hookScore],
+                ["Satire",   post.review.satireScore],
+                ["Original", post.review.originalityScore],
+              ].map(([label, score]) => (
+                <div key={label as string} className="text-center">
+                  <div className="text-xs font-mono font-bold"
+                    style={{ color: (score as number) >= 7 ? "#15803d" : "#b91c1c" }}>
+                    {score}
+                  </div>
+                  <div className="text-xs font-sans" style={{ color: "var(--ink-m)", fontSize: "10px" }}>
+                    {label}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs font-sans leading-relaxed" style={{ color: "var(--ink-m)" }}>
+              {post.review.notes}
+            </p>
+            {post.review.revisionsRequired.length > 0 && (
+              <ul className="mt-1.5 space-y-0.5">
+                {post.review.revisionsRequired.map((r, i) => (
+                  <li key={i} className="text-xs font-sans" style={{ color: "#b45309" }}>
+                    · {r}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+
         {/* Estimated slot */}
-        <div className="text-xs font-mono" style={{ color: "var(--ink-m)" }}>
+        <div className="text-xs font-mono mt-3" style={{ color: "var(--ink-m)" }}>
           Next slot: {formatTime(post.estimatedSlot)} UTC
         </div>
       </div>
@@ -282,6 +347,7 @@ export default function SocialTestPage() {
   const [preview, setPreview]             = useState<PreviewResult | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [articleId, setArticleId]         = useState("");
+  const [articles, setArticles]           = useState<ArticleOption[]>([]);
   const [queue, setQueue]                 = useState<QueueRow[]>([]);
   const [queueLoading, setQueueLoading]   = useState(false);
   const [showLiveModal, setShowLiveModal] = useState(false);
@@ -330,6 +396,9 @@ export default function SocialTestPage() {
     if (authed) {
       fetchBufferStatus();
       fetchQueue();
+      fetch("/api/test/social/articles")
+        .then((r) => r.json())
+        .then((data) => setArticles(Array.isArray(data) ? data as ArticleOption[] : []));
     }
   }, [authed, fetchBufferStatus, fetchQueue]);
 
@@ -470,13 +539,19 @@ export default function SocialTestPage() {
           </h2>
 
           <div className="flex gap-3 mb-4 flex-wrap">
-            <input
+            <select
               value={articleId}
               onChange={(e) => setArticleId(e.target.value)}
-              placeholder="Sanity article _id (leave blank for most recent)"
-              className="text-sm font-mono p-2 flex-1 min-w-0"
+              className="text-sm font-sans p-2 flex-1 min-w-0"
               style={{ border: "1px solid var(--border)", background: "var(--cream)", color: "var(--ink)" }}
-            />
+            >
+              <option value="">Most recent article</option>
+              {articles.map((a) => (
+                <option key={a.id} value={a.id}>
+                  [{a.pillar}] {a.title}
+                </option>
+              ))}
+            </select>
             <button onClick={handlePreview} disabled={previewLoading}
               className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2"
               style={{ background: "var(--navy)", color: "#fff", borderRadius: 2 }}>

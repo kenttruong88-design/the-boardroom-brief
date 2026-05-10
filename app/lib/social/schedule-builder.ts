@@ -160,7 +160,7 @@ export async function checkDuplicates(
     .from("social_queue")
     .select("article_id, platform")
     .in("article_id", articleIds)
-    .in("status", ["pending", "sent"])
+    .in("status", ["pending_approval", "pending", "sent"])
     .gte("created_at", todayStart.toISOString());
 
   if (!data || data.length === 0) return posts;

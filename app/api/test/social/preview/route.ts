@@ -92,7 +92,7 @@ export async function GET(req: Request) {
     // Buffer not configured — payload will show placeholder profile IDs
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const pillarSlug = article.pillar?.slug?.current ?? "";
   const articleUrl = `${siteUrl}/${pillarSlug}/${article.slug.current}`;
 
@@ -112,6 +112,7 @@ export async function GET(req: Request) {
         imageUrl:     post.imageUrl,
         generatedMs:  ms,
         estimatedSlot: nextSlotFor(platform).toISOString(),
+        review:       post.review,
         bufferPayload: {
           profileId:   profileMap[platform] ?? "not-connected",
           text:        post.content,
@@ -122,19 +123,16 @@ export async function GET(req: Request) {
           ? {
               hooksBeforeFold: (post.content.split("\n")[0] ?? "").length <= 150,
               endsWithQuestion: post.content.trimEnd().endsWith("?"),
-              hashtagCount: post.hashtags.length,
             }
           : platform === "twitter"
           ? {
               underCharLimit: post.content.length <= 215,
               charCount:      post.content.length,
               remaining:      215 - post.content.length,
-              hashtagCount:   post.hashtags.length,
             }
           : {
-              hasImage:      post.imageUrl !== null,
-              hashtagCount:  post.hashtags.length,
-              hasLinkInBio:  post.content.toLowerCase().includes("link in bio"),
+              hasImage:     post.imageUrl !== null,
+              hasLinkInBio: post.content.toLowerCase().includes("link in bio"),
             },
       },
     ])

@@ -13,6 +13,10 @@
       "schedule": "0 7 * * *"
     },
     {
+      "path": "/api/social/generate",
+      "schedule": "0 14 * * *"
+    },
+    {
       "path": "/api/social/publish",
       "schedule": "*/30 * * * *"
     },

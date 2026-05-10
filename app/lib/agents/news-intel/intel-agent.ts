@@ -70,7 +70,7 @@ Find the 3 most relevant stories published in the last 24 hours. For each story 
 Only include stories from the last 24 hours. Return empty array [] if nothing relevant found. Return only valid JSON, no markdown.`;
 
       const response = await client.messages.create({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-haiku-4-5-20251001",   // build phase: swap back to claude-sonnet-4-20250514 for prod
         max_tokens: 1000,
         system: NEWS_INTEL_SYSTEM_PROMPT,
         tools: [

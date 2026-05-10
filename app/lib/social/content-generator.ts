@@ -1,6 +1,10 @@
 import { callClaude, parseJSON, MODELS } from "@/app/lib/claude";
 import { PLATFORM_RULES } from "./platform-rules";
+import { reviewSocialPost, reviseSocialPost } from "./social-review";
+import type { SocialPostReview } from "./social-review";
 import type { SanityArticle } from "@/app/lib/queries";
+
+export type { SocialPostReview };
 
 type Platform = "linkedin" | "twitter" | "instagram";
 
@@ -10,6 +14,7 @@ export interface SocialPost {
   hashtags: string[];
   imageUrl: string | null;
   articleUrl: string;
+  review: SocialPostReview | null;
 }
 
 interface ClaudePostResponse {
@@ -24,7 +29,8 @@ export async function generateSocialPost(
 ): Promise<SocialPost> {
   const rules = PLATFORM_RULES[platform];
   const pillarSlug = article.pillar?.slug?.current ?? "general";
-  const articleUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${pillarSlug}/${article.slug.current}`;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const articleUrl = `${siteUrl}/${pillarSlug}/${article.slug.current}`;
   const excerpt = (article.excerpt ?? "").slice(0, 300);
   const countries = article.countries?.map((c) => c.name).join(", ") ?? "Global";
 
@@ -39,6 +45,8 @@ Article URL: ${articleUrl}
 
 For Twitter: the URL will be appended automatically — write copy only, do not include the URL in your response.
 For LinkedIn and Instagram: end your post with the URL on its own line.
+
+STRICT RULE — No specific market numbers: do not quote any stock prices, index levels, percentage moves, basis points, earnings figures, or any other numerical market data. Describe direction and significance in words (e.g. "surged", "hit a record", "fell sharply") but never cite the actual figure. This prevents publishing stale or incorrect data.
 
 Return only valid JSON:
 {
@@ -62,17 +70,39 @@ Return only valid JSON:
   if (platform === "instagram") {
     imageUrl = article.heroImageUrl ?? null;
   } else if (platform === "linkedin") {
-    // heroImageUrl doubles as thumbnail — SanityArticle doesn't expose separate sizes
     imageUrl = article.heroImageUrl ?? null;
   }
   // twitter: null
 
+  let content = parsed.content;
+  let hashtags = parsed.hashtags;
+
+  // ── Editor review ─────────────────────────────────────────────────────────────
+  let review: SocialPostReview | null = null;
+  try {
+    review = await reviewSocialPost(platform, content, hashtags, article.title);
+
+    if (!review.passed) {
+      const excerpt = (article.excerpt ?? "").slice(0, 300);
+      const revised = await reviseSocialPost(
+        platform, content, hashtags, review, article.title, excerpt
+      );
+      content = revised.content;
+      hashtags = revised.hashtags;
+      // Re-review once after revision
+      review = await reviewSocialPost(platform, content, hashtags, article.title);
+    }
+  } catch (err) {
+    console.warn(`[social] Editor review failed for ${platform}:`, err);
+  }
+
   return {
     platform,
-    content: parsed.content,
-    hashtags: parsed.hashtags,
+    content,
+    hashtags,
     imageUrl,
     articleUrl,
+    review,
   };
 }
 

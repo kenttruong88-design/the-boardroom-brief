@@ -123,7 +123,8 @@ async function run() {
         profileId,
         post.content,
         new Date(post.scheduled_for),
-        post.image_url ?? undefined
+        post.image_url ?? undefined,
+        post.platform
       );
 
       // c. Mark sent

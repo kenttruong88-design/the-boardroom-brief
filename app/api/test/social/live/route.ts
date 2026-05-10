@@ -94,7 +94,8 @@ export async function POST(req: Request) {
         profileId,
         post.content,
         twoMinsFromNow,
-        post.imageUrl ?? undefined
+        post.imageUrl ?? undefined,
+        platform
       );
 
       await supabase.from("social_queue").insert({
