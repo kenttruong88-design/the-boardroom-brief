@@ -26,7 +26,7 @@ export async function GET(req: Request) {
 
   if (dateParam === "7days") {
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    query = query.gte("scheduled_for", weekAgo.toISOString());
+    query = query.gte("created_at", weekAgo.toISOString());
   } else {
     const d = dateParam === "today" ? new Date() : new Date(dateParam);
     const { from, to } = dayRange(d);
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
       article_url:      body.article_url,
       scheduled_for:    body.scheduled_for,
       pillar:           body.pillar ?? null,
-      status:           "pending",
+      status:           "pending_approval",
       generated_by:     "manual",
     })
     .select()

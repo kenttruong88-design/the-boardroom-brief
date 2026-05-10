@@ -39,6 +39,7 @@ export async function queueSocialPostsForArticle(
   const pillarSlug = draft.pillar;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
   const articleUrl = `${siteUrl}/${pillarSlug}/${publishResult.slug}`;
+  const hasImage = !!draft.featuredImage?.heroUrl;
 
   const article: SanityArticle = {
     _id:               publishResult.sanityDocId,
@@ -58,13 +59,10 @@ export async function queueSocialPostsForArticle(
     })),
   };
 
-  const [li, tw, ig] = await Promise.all([
-    generateSocialPost(article, "linkedin"),
-    generateSocialPost(article, "twitter"),
-    generateSocialPost(article, "instagram"),
-  ]);
-
+  // Generate all platforms in parallel; Instagram skipped without a hero image
+  const platformJobs: Promise<void>[] = [];
   const supabase = createAdminClient();
+
   const base = {
     article_id:       publishResult.sanityDocId,
     article_slug:     publishResult.slug,
@@ -75,30 +73,26 @@ export async function queueSocialPostsForArticle(
     generated_by:     "auto",
   };
 
-  await Promise.all([
-    supabase.from("social_queue").insert({
-      ...base,
-      platform:      "linkedin",
-      content:       li.content,
-      hashtags:      li.hashtags,
-      image_url:     li.imageUrl,
-      scheduled_for: nextSlot("linkedin", now).toISOString(),
-    }),
-    supabase.from("social_queue").insert({
-      ...base,
-      platform:      "twitter",
-      content:       tw.content,
-      hashtags:      tw.hashtags,
-      image_url:     tw.imageUrl,
-      scheduled_for: nextSlot("twitter", now).toISOString(),
-    }),
-    supabase.from("social_queue").insert({
-      ...base,
-      platform:      "instagram",
-      content:       ig.content,
-      hashtags:      ig.hashtags,
-      image_url:     ig.imageUrl,
-      scheduled_for: nextSlot("instagram", now).toISOString(),
-    }),
-  ]);
+  for (const platform of ["linkedin", "twitter", ...(hasImage ? ["instagram"] : [])] as const) {
+    platformJobs.push(
+      generateSocialPost(article, platform).then((post) =>
+        supabase.from("social_queue").insert({
+          ...base,
+          platform,
+          content:       post.content,
+          hashtags:      post.hashtags,
+          image_url:     post.imageUrl,
+          scheduled_for: nextSlot(platform, now).toISOString(),
+        }).then(() => undefined)
+      )
+    );
+  }
+
+  // Use allSettled so one platform failure doesn't drop the others
+  const results = await Promise.allSettled(platformJobs);
+  for (const result of results) {
+    if (result.status === "rejected") {
+      console.error("[queue-social-posts] Platform generation failed:", result.reason);
+    }
+  }
 }

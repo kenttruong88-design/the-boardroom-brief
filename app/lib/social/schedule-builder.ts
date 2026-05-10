@@ -130,10 +130,10 @@ export function buildDaySchedule(
     }
   }
 
-  // e. LinkedIn afternoon (optional) — 4+ articles AND an unposted high-value one
+  // e. LinkedIn afternoon (optional) — 4+ articles, use next highest unposted article
   if (articles.length >= 4) {
-    for (const { article, score } of scored) {
-      if (!usedLinkedIn.has(article._id) && score >= 8) {
+    for (const { article } of scored) {
+      if (!usedLinkedIn.has(article._id)) {
         if (tryAssign(article, "linkedin", DAILY_SCHEDULE.linkedin[1])) {
           usedLinkedIn.add(article._id);
         }

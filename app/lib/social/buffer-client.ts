@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.buffer.com";
+const BASE_URL = "https://api.buffer.com/graphql";
 
 function token(): string {
   const t = process.env.BUFFER_ACCESS_TOKEN;
