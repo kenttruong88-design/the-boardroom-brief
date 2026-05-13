@@ -1,14 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const response = NextResponse.next({ request });
 
-  // If Supabase env vars are not configured, skip auth middleware entirely
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!supabaseUrl || !supabaseAnonKey) {
-    // Still protect /dashboard — redirect to login if no auth configured
     if (request.nextUrl.pathname.startsWith("/dashboard")) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
@@ -35,17 +33,14 @@ export async function proxy(request: NextRequest) {
       },
     });
 
-    // Refresh session — required for Server Components to read auth state
     const { data: { user } } = await supabase.auth.getUser();
 
-    // Protect /dashboard routes
     if (request.nextUrl.pathname.startsWith("/dashboard") && !user) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("next", request.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
   } catch {
-    // Auth failure — allow the request through (don't break the site)
     if (request.nextUrl.pathname.startsWith("/dashboard")) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
