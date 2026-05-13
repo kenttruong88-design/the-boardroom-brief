@@ -1,13 +1,20 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
+const PROTECTED_PREFIXES = ["/dashboard", "/social", "/editorial", "/test"];
+
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next({ request });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  const isProtected = PROTECTED_PREFIXES.some((p) =>
+    request.nextUrl.pathname.startsWith(p)
+  );
+
   if (!supabaseUrl || !supabaseAnonKey) {
-    if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    if (isProtected) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
     return response;
@@ -33,15 +40,17 @@ export async function middleware(request: NextRequest) {
       },
     });
 
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (request.nextUrl.pathname.startsWith("/dashboard") && !user) {
+    if (isProtected && !user) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("next", request.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
   } catch {
-    if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    if (isProtected) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/app/lib/supabase-server";
+import { createAdminClient, createServerSupabaseClient } from "@/app/lib/supabase-server";
 import { getArticlesPublishedToday } from "@/app/lib/queries";
 import { buildDaySchedule, checkDuplicates } from "@/app/lib/social/schedule-builder";
 import { generateSocialPost } from "@/app/lib/social/content-generator";
@@ -7,13 +7,26 @@ import { client as sanityClient } from "@/app/lib/sanity";
 
 export const maxDuration = 60;
 
-function isAuthorized(req: Request): boolean {
+async function isAuthorized(req: Request): Promise<boolean> {
   const auth = req.headers.get("authorization");
   const cronHeader = req.headers.get("x-cron-secret");
-  return (
+
+  // Cron / server-to-server calls
+  if (
     auth === `Bearer ${process.env.CRON_SECRET}` ||
     cronHeader === process.env.CRON_SECRET
-  );
+  ) {
+    return true;
+  }
+
+  // Authenticated dashboard users
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    return !!user;
+  } catch {
+    return false;
+  }
 }
 
 function sleep(ms: number) {
@@ -21,12 +34,12 @@ function sleep(ms: number) {
 }
 
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!await isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   return run();
 }
 
 export async function POST(req: Request) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!await isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   return run();
 }
 

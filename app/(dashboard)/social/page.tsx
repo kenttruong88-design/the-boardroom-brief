@@ -630,10 +630,7 @@ export default function SocialDashboard() {
     setGenerating(true);
     setGenerateMsg("");
     try {
-      const res = await fetch("/api/social/generate", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_CRON_SECRET ?? ""}` },
-      });
+      const res = await fetch("/api/social/generate", { method: "POST" });
       const d = await res.json() as { postsGenerated?: number; message?: string };
       setGenerateMsg(d.message ?? `Generated ${d.postsGenerated ?? 0} posts`);
       await fetchData();
