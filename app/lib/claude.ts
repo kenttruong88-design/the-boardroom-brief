@@ -9,7 +9,7 @@ const anthropic = new Anthropic({
 // Update here when Anthropic releases new model versions.
 
 export const MODELS = {
-  default:   "claude-haiku-4-5-20251001",   // build phase: swap back to claude-sonnet-4-20250514 for prod
+  default:   "claude-sonnet-4-6",
   fast:      "claude-haiku-4-5-20251001",
   powerful:  "claude-opus-4-6",
 } as const;
