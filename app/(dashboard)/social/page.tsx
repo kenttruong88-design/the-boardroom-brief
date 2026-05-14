@@ -168,8 +168,8 @@ function PostCard({
   onUpdated: (updated: QueuePost | null) => void;
   onApprove?: () => void;
   onReject?: () => void;
-  onQueueBuffer?: () => void;
-  onPostLive?: () => void;
+  onQueueBuffer?: () => Promise<void>;
+  onPostLive?: () => Promise<void>;
 }) {
   const [expanded, setExpanded]           = useState(false);
   const [editing, setEditing]             = useState(false);
@@ -203,6 +203,18 @@ function PostCard({
     } finally {
       setBusy(false);
     }
+  }
+
+  async function handleQueueBufferClick() {
+    if (!onQueueBuffer) return;
+    setBusy(true);
+    try { await onQueueBuffer(); } finally { setBusy(false); }
+  }
+
+  async function handlePostLiveClick() {
+    if (!onPostLive) return;
+    setBusy(true);
+    try { await onPostLive(); } finally { setBusy(false); }
   }
 
   async function handleSaveEdit() {
@@ -344,13 +356,13 @@ function PostCard({
                   style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
                   <Edit2 className="w-3 h-3" /> Edit
                 </button>
-                <button onClick={onQueueBuffer} disabled={busy || !onQueueBuffer}
+                <button onClick={handleQueueBufferClick} disabled={busy || !onQueueBuffer}
                   className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
                   style={{ background: "#1d4ed8", color: "#fff", borderRadius: 2, opacity: !onQueueBuffer || busy ? 0.5 : 1 }}>
                   {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Clock className="w-3 h-3" />}
                   Queue to Buffer
                 </button>
-                <button onClick={onPostLive} disabled={busy || !onPostLive}
+                <button onClick={handlePostLiveClick} disabled={busy || !onPostLive}
                   className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
                   style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: !onPostLive || busy ? 0.5 : 1 }}>
                   {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
@@ -370,13 +382,13 @@ function PostCard({
                   style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
                   <Edit2 className="w-3 h-3" /> Edit
                 </button>
-                <button onClick={onQueueBuffer} disabled={busy || !onQueueBuffer}
+                <button onClick={handleQueueBufferClick} disabled={busy || !onQueueBuffer}
                   className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
                   style={{ background: "#1d4ed8", color: "#fff", borderRadius: 2, opacity: !onQueueBuffer || busy ? 0.5 : 1 }}>
                   {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Clock className="w-3 h-3" />}
                   Queue to Buffer
                 </button>
-                <button onClick={onPostLive} disabled={busy || !onPostLive}
+                <button onClick={handlePostLiveClick} disabled={busy || !onPostLive}
                   className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
                   style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: !onPostLive || busy ? 0.5 : 1 }}>
                   {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
