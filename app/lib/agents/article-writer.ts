@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { generateArticleImage } from "./image-generator";
 import type { AgentPersona, TopicBrief, ArticleDraft } from "./types";
 
@@ -35,11 +36,12 @@ Return only valid JSON with no markdown, no explanation — just the object:
 }`;
 
   const writeResponse = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: MODELS.fast,
     max_tokens: 2048,
     system: writeSystem,
     messages: [{ role: "user", content: writeUser }],
   });
+  logClaudeUsage("pipeline:article-writer:write", MODELS.fast, writeResponse.usage.input_tokens, writeResponse.usage.output_tokens);
 
   const writeRaw = writeResponse.content
     .filter((b) => b.type === "text")
@@ -90,11 +92,11 @@ Return only valid JSON with no markdown, no explanation — just the object:
 
   const [metaResponse, imageResult] = await Promise.all([
     client.messages.create({
-      model: "claude-haiku-4-5-20251001",
+      model: MODELS.fast,
       max_tokens: 512,
       system: "You are an SEO and content metadata specialist for a financial news publication.",
       messages: [{ role: "user", content: metaUser }],
-    }),
+    }).then((r) => { logClaudeUsage("pipeline:article-writer:seo", MODELS.fast, r.usage.input_tokens, r.usage.output_tokens); return r; }),
     generateArticleImage(partialDraft).catch((err) => {
       // generateArticleImage shouldn't throw (has internal fallback), but guard anyway
       console.error("[article-writer] Unexpected image error:", (err as Error).message);

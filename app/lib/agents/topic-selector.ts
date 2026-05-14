@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import type { AgentPersona, TopicBrief } from "./types";
 
 export interface TopicContext {
@@ -62,11 +63,12 @@ Select 1 to 3 topics to write about today. Return only valid JSON array with no 
 }]`;
 
   const response = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: MODELS.fast,
     max_tokens: 1024,
     messages: [{ role: "user", content: userPrompt }],
     system: systemPrompt,
   });
+  logClaudeUsage("pipeline:topic-selector", MODELS.fast, response.usage.input_tokens, response.usage.output_tokens);
 
   const raw = response.content
     .filter((b) => b.type === "text")

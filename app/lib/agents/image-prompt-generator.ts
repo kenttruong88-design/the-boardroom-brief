@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import type { ArticleDraft } from "./types";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -65,11 +66,12 @@ Do not reference specific real companies by name.
 Return only the prompt text, nothing else.`;
 
   const response = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: MODELS.fast,
     max_tokens: 256,
     system: "You write image generation prompts for editorial illustrations. You create prompts that produce abstract, concept-driven images — never portraits or faces of real people. Always professional, always on-brand.",
     messages: [{ role: "user", content: userPrompt }],
   });
+  logClaudeUsage("pipeline:image-prompt", MODELS.fast, response.usage.input_tokens, response.usage.output_tokens);
 
   return response.content
     .filter((b) => b.type === "text")

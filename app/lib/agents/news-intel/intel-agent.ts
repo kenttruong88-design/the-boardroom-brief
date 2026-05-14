@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import {
   generateHeadlineHash,
@@ -70,7 +71,7 @@ Find the 3 most relevant stories published in the last 24 hours. For each story 
 Only include stories from the last 24 hours. Return empty array [] if nothing relevant found. Return only valid JSON, no markdown.`;
 
       const response = await client.messages.create({
-        model: "claude-haiku-4-5-20251001",   // build phase: swap back to claude-sonnet-4-20250514 for prod
+        model: MODELS.fast,
         max_tokens: 1000,
         system: NEWS_INTEL_SYSTEM_PROMPT,
         tools: [
@@ -81,6 +82,7 @@ Only include stories from the last 24 hours. Return empty array [] if nothing re
         ],
         messages: [{ role: "user", content: userPrompt }],
       });
+      logClaudeUsage("pipeline:news-intel", MODELS.fast, response.usage.input_tokens, response.usage.output_tokens);
 
       // Extract the final text block after tool use
       const textBlocks = response.content.filter((b) => b.type === "text");

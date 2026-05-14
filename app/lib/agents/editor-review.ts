@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { EDITOR_IN_CHIEF_PERSONA } from "./editor";
 import type { AgentPersona, ArticleDraft, EditorReview } from "./types";
 
@@ -42,11 +43,12 @@ Return only valid JSON with no markdown, no explanation — just the object:
 }`;
 
   const response = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: MODELS.fast,
     max_tokens: 1024,
     system: EDITOR_IN_CHIEF_PERSONA.systemPrompt,
     messages: [{ role: "user", content: userPrompt }],
   });
+  logClaudeUsage("pipeline:editor-review:review", MODELS.fast, response.usage.input_tokens, response.usage.output_tokens);
 
   const raw = response.content
     .filter((b) => b.type === "text")
@@ -120,11 +122,12 @@ Rewrite the article addressing all revision notes. Return only valid JSON with n
 }`;
 
   const writeResponse = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: MODELS.fast,
     max_tokens: 2048,
     system: persona.systemPrompt,
     messages: [{ role: "user", content: userPrompt }],
   });
+  logClaudeUsage("pipeline:editor-review:revise", MODELS.fast, writeResponse.usage.input_tokens, writeResponse.usage.output_tokens);
 
   const raw = writeResponse.content
     .filter((b) => b.type === "text")
