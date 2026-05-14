@@ -60,7 +60,7 @@ Return only valid JSON:
     userPrompt,
     1200,
     `social:${platform}`,
-    MODELS.default
+    MODELS.fast
   );
 
   const parsed = parseJSON<ClaudePostResponse>(response.content);

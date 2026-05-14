@@ -144,7 +144,7 @@ Rewrite the post addressing all revision notes. Return only valid JSON:
     userPrompt,
     1200,
     `social:revise:${platform}`,
-    MODELS.default
+    MODELS.fast
   );
 
   return parseJSON<{ content: string; hashtags: string[] }>(response.content);
