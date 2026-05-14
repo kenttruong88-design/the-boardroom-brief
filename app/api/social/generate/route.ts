@@ -5,7 +5,7 @@ import type { SanityArticle } from "@/app/lib/queries";
 import { buildDaySchedule, checkDuplicates, type ScheduledPost } from "@/app/lib/social/schedule-builder";
 import { generateSocialPost } from "@/app/lib/social/content-generator";
 import { getBufferProfiles, scheduleBufferPost } from "@/app/lib/social/buffer-client";
-import { client as sanityClient } from "@/app/lib/sanity";
+import { client as sanityClient, writeClient as sanityWriteClient } from "@/app/lib/sanity";
 
 export const maxDuration = 60;
 
@@ -87,7 +87,8 @@ async function run(req: Request) {
 
   let articles: SanityArticle[];
   if (articleId) {
-    const article = await sanityClient.fetch<SanityArticle | null>(
+    const fetchClient = sanityWriteClient ?? sanityClient;
+    const article = await fetchClient.fetch<SanityArticle | null>(
       `*[_type == "article" && _id == $id][0] {
         _id, title, slug, satiricalHeadline, excerpt, heroImageUrl, publishedAt,
         pillar->{ name, slug, color },
