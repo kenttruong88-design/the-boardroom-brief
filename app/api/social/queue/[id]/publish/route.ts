@@ -38,7 +38,10 @@ export async function POST(
       );
     }
 
-    const scheduledAt = mode === "now" ? new Date() : new Date(post.scheduled_for as string);
+    const now = new Date();
+    const requestedAt = mode === "now" ? now : new Date(post.scheduled_for as string);
+    // Buffer rejects past dueAt — bump to 2 min from now if the slot has passed
+    const scheduledAt = requestedAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : requestedAt;
 
     const bufferPostId = await scheduleBufferPost(
       profile.id,
