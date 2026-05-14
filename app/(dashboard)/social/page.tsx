@@ -370,10 +370,22 @@ function PostCard({
                   style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
                   <Edit2 className="w-3 h-3" /> Edit
                 </button>
+                <button onClick={onQueueBuffer} disabled={busy || !onQueueBuffer}
+                  className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
+                  style={{ background: "#1d4ed8", color: "#fff", borderRadius: 2, opacity: !onQueueBuffer || busy ? 0.5 : 1 }}>
+                  {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Clock className="w-3 h-3" />}
+                  Queue to Buffer
+                </button>
+                <button onClick={onPostLive} disabled={busy || !onPostLive}
+                  className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
+                  style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: !onPostLive || busy ? 0.5 : 1 }}>
+                  {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
+                  Post live
+                </button>
                 <button onClick={() => setRescheduling(!rescheduling)}
                   className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5"
                   style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
-                  <Clock className="w-3 h-3" /> Reschedule
+                  <RefreshCw className="w-3 h-3" /> Reschedule
                 </button>
                 <button onClick={handleCancel} disabled={busy}
                   className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5 ml-auto"
