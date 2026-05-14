@@ -104,6 +104,9 @@ async function run() {
         pillar:           article.pillar?.slug?.current ?? null,
         status:           "pending_approval",
         generated_by:     "auto",
+        review_score:     socialPost.review?.score  ?? null,
+        review_passed:    socialPost.review?.passed ?? null,
+        review_notes:     socialPost.review?.notes  ?? null,
       });
 
       postsGenerated++;

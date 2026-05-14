@@ -80,10 +80,13 @@ export async function queueSocialPostsForArticle(
         supabase.from("social_queue").insert({
           ...base,
           platform,
-          content:       post.content,
-          hashtags:      post.hashtags,
-          image_url:     post.imageUrl,
-          scheduled_for: nextSlot(platform, now).toISOString(),
+          content:        post.content,
+          hashtags:       post.hashtags,
+          image_url:      post.imageUrl,
+          scheduled_for:  nextSlot(platform, now).toISOString(),
+          review_score:   post.review?.score  ?? null,
+          review_passed:  post.review?.passed ?? null,
+          review_notes:   post.review?.notes  ?? null,
         }).then(() => undefined)
       )
     );

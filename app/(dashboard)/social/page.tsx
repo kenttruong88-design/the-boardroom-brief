@@ -34,6 +34,9 @@ interface QueuePost {
   analytics_fetched_at: string | null;
   pillar: string | null;
   created_at: string;
+  review_score: number | null;
+  review_passed: boolean | null;
+  review_notes: string | null;
 }
 
 interface ArticleOption {
@@ -207,6 +210,18 @@ function PostCard({
             <Clock className="inline w-3 h-3 mr-1" />{formatTime(post.scheduled_for)}
           </span>
           <StatusPill status={post.status} />
+          {post.review_score !== null && post.review_score !== undefined && (
+            <span className="text-xs font-mono px-1.5 py-0.5"
+              style={{
+                background: post.review_passed ? "#f0fdf4" : "#fef2f2",
+                border: `1px solid ${post.review_passed ? "#bbf7d0" : "#fecaca"}`,
+                color: post.review_passed ? "#15803d" : "#b91c1c",
+                borderRadius: 2,
+              }}
+              title={post.review_notes ?? undefined}>
+              {post.review_score}/10
+            </span>
+          )}
           {post.pillar && (
             <span className="text-xs font-mono ml-auto" style={{ color: pillarColor }}>{post.pillar}</span>
           )}
@@ -416,6 +431,9 @@ function ManualComposer({
   const [generating, setGenerating]   = useState(false);
   const [submitting, setSubmitting]   = useState(false);
   const [genError, setGenError]       = useState("");
+  const [reviewScore, setReviewScore]   = useState<number | null>(null);
+  const [reviewPassed, setReviewPassed] = useState<boolean | null>(null);
+  const [reviewNotes, setReviewNotes]   = useState<string | null>(null);
 
   async function handleGenerate() {
     if (!articleId) return;
@@ -427,10 +445,13 @@ function ManualComposer({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ articleId, platform }),
       });
-      const data = await res.json() as { content?: string; hashtags?: string[]; error?: string };
+      const data = await res.json() as { content?: string; hashtags?: string[]; error?: string; reviewScore?: number | null; reviewPassed?: boolean | null; reviewNotes?: string | null };
       if (!res.ok) { setGenError(data.error ?? "Generation failed"); return; }
       setContent(data.content ?? "");
       setHashtags((data.hashtags ?? []).join(", "));
+      setReviewScore(data.reviewScore ?? null);
+      setReviewPassed(data.reviewPassed ?? null);
+      setReviewNotes(data.reviewNotes ?? null);
     } catch {
       setGenError("Network error");
     } finally {
@@ -533,6 +554,21 @@ function ManualComposer({
           placeholder="Write or generate post content…"
           className="resize-none" style={{ ...inputStyle }} />
       </div>
+
+      {/* Review result */}
+      {reviewScore !== null && (
+        <div className="flex items-start gap-3 mt-3 p-3 text-xs font-sans"
+          style={{
+            background: reviewPassed ? "#f0fdf4" : "#fef2f2",
+            border: `1px solid ${reviewPassed ? "#bbf7d0" : "#fecaca"}`,
+            borderRadius: 2,
+          }}>
+          <span className="font-semibold shrink-0" style={{ color: reviewPassed ? "#15803d" : "#b91c1c" }}>
+            AI review: {reviewScore}/10 {reviewPassed ? "✓ Passed" : "✗ Failed"}
+          </span>
+          {reviewNotes && <span style={{ color: "var(--ink-m)" }}>{reviewNotes}</span>}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-3 mt-3 md:grid-cols-2">
         {/* Hashtags */}

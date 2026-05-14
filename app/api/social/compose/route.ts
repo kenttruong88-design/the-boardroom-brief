@@ -40,9 +40,12 @@ export async function POST(req: Request) {
   );
 
   return NextResponse.json({
-    content:  post.content,
-    hashtags: post.hashtags,
-    imageUrl: post.imageUrl,
-    articleUrl: post.articleUrl,
+    content:       post.content,
+    hashtags:      post.hashtags,
+    imageUrl:      post.imageUrl,
+    articleUrl:    post.articleUrl,
+    reviewScore:   post.review?.score  ?? null,
+    reviewPassed:  post.review?.passed ?? null,
+    reviewNotes:   post.review?.notes  ?? null,
   });
 }
