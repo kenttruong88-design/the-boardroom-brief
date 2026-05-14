@@ -7,6 +7,7 @@ import {
   Edit2, Clock, BarChart2, Plus, Zap, AlertCircle,
 } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
+import { client as sanityClient } from "@/app/lib/sanity";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -609,13 +610,11 @@ export default function SocialDashboard() {
       }
 
       // Fetch recent Sanity articles for the composer
-      const artRes = await fetch(
-        `https://cdn.sanity.io/data/v1/projects/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/datasets/${process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production"}/query?query=` +
-          encodeURIComponent(`*[_type=="article"]|order(publishedAt desc)[0...20]{_id,title,slug,pillar->{name,slug}}`)
-      );
-      if (artRes.ok) {
-        const d = await artRes.json() as { result?: ArticleOption[] };
-        setArticles(d.result ?? []);
+      if (sanityClient) {
+        const articles = await sanityClient.fetch<ArticleOption[]>(
+          `*[_type=="article"]|order(publishedAt desc)[0...20]{_id,title,slug,pillar->{name,slug}}`
+        );
+        setArticles(articles ?? []);
       }
     } finally {
       setLoading(false);
