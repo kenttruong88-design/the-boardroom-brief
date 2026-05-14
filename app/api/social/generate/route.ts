@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createAdminClient, createServerSupabaseClient } from "@/app/lib/supabase-server";
 import { getArticlesPublishedToday } from "@/app/lib/queries";
 import type { SanityArticle } from "@/app/lib/queries";
-import { buildDaySchedule, checkDuplicates } from "@/app/lib/social/schedule-builder";
+import { buildDaySchedule, checkDuplicates, type ScheduledPost } from "@/app/lib/social/schedule-builder";
 import { generateSocialPost } from "@/app/lib/social/content-generator";
 import { getBufferProfiles, scheduleBufferPost } from "@/app/lib/social/buffer-client";
 import { client as sanityClient } from "@/app/lib/sanity";
@@ -114,8 +114,24 @@ async function run(req: Request) {
   }
 
   // 4. Build schedule and filter duplicates
-  const scheduled = buildDaySchedule(articles, today);
-  const newPosts = await checkDuplicates(scheduled);
+  let scheduled: ScheduledPost[] = buildDaySchedule(articles, today);
+
+  // Test mode fallback: when ?articleId is set and all today's slots have passed,
+  // schedule one post per platform starting 5 minutes from now
+  if (articleId && scheduled.length === 0 && articles.length > 0) {
+    const now = Date.now();
+    (["linkedin", "twitter", "instagram"] as const).forEach((platform, i) => {
+      scheduled.push({
+        article: articles[0],
+        platform,
+        scheduledFor: new Date(now + (i + 1) * 5 * 60 * 1000),
+        slot: "test",
+      });
+    });
+  }
+
+  // Skip duplicate check in test mode so re-runs always generate fresh posts
+  const newPosts = articleId ? scheduled : await checkDuplicates(scheduled);
 
   // 5. Generate content and insert — auto-publish if enabled and score ≥ 7
   let postsGenerated = 0;
