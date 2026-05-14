@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient, createServerSupabaseClient } from "@/app/lib/supabase-server";
 import { getArticlesPublishedToday } from "@/app/lib/queries";
+import type { SanityArticle } from "@/app/lib/queries";
 import { buildDaySchedule, checkDuplicates } from "@/app/lib/social/schedule-builder";
 import { generateSocialPost } from "@/app/lib/social/content-generator";
 import { getBufferProfiles, scheduleBufferPost } from "@/app/lib/social/buffer-client";
@@ -36,15 +37,15 @@ function sleep(ms: number) {
 
 export async function GET(req: Request) {
   if (!await isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return run();
+  return run(req);
 }
 
 export async function POST(req: Request) {
   if (!await isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return run();
+  return run(req);
 }
 
-async function run() {
+async function run(req: Request) {
   const startedAt = Date.now();
 
   if (!sanityClient) {
@@ -80,8 +81,24 @@ async function run() {
     }
   }
 
-  // 3. Fetch today's published articles
-  const articles = await getArticlesPublishedToday();
+  // 3. Fetch articles — ?articleId=xxx overrides the 24-hour window for testing
+  const { searchParams } = new URL(req.url);
+  const articleId = searchParams.get("articleId");
+
+  let articles: SanityArticle[];
+  if (articleId) {
+    const article = await sanityClient.fetch<SanityArticle | null>(
+      `*[_type == "article" && _id == $id][0] {
+        _id, title, slug, satiricalHeadline, excerpt, heroImageUrl, publishedAt,
+        pillar->{ name, slug, color },
+        countries[]->{ name, slug, code }
+      }`,
+      { id: articleId }
+    );
+    articles = article ? [article] : [];
+  } else {
+    articles = await getArticlesPublishedToday();
+  }
 
   if (articles.length === 0) {
     await supabase.from("social_runs").insert({
