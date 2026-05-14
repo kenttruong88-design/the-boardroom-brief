@@ -73,7 +73,8 @@ export async function queueSocialPostsForArticle(
     generated_by:     "auto",
   };
 
-  for (const platform of ["linkedin", "twitter", ...(hasImage ? ["instagram"] : [])] as const) {
+  type Platform = "linkedin" | "twitter" | "instagram";
+  for (const platform of ["linkedin", "twitter", ...(hasImage ? ["instagram"] : [])] as Platform[]) {
     platformJobs.push(
       generateSocialPost(article, platform).then((post) =>
         supabase.from("social_queue").insert({
