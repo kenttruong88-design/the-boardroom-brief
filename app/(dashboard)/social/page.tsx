@@ -161,11 +161,15 @@ function PostCard({
   onUpdated,
   onApprove,
   onReject,
+  onQueueBuffer,
+  onPostLive,
 }: {
   post: QueuePost;
   onUpdated: (updated: QueuePost | null) => void;
   onApprove?: () => void;
   onReject?: () => void;
+  onQueueBuffer?: () => void;
+  onPostLive?: () => void;
 }) {
   const [expanded, setExpanded]           = useState(false);
   const [editing, setEditing]             = useState(false);
@@ -340,11 +344,17 @@ function PostCard({
                   style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
                   <Edit2 className="w-3 h-3" /> Edit
                 </button>
-                <button onClick={onApprove} disabled={busy || !onApprove}
+                <button onClick={onQueueBuffer} disabled={busy || !onQueueBuffer}
                   className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
-                  style={{ background: "#15803d", color: "#fff", borderRadius: 2 }}>
-                  {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Send className="w-3 h-3" />}
-                  Approve
+                  style={{ background: "#1d4ed8", color: "#fff", borderRadius: 2, opacity: !onQueueBuffer || busy ? 0.5 : 1 }}>
+                  {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Clock className="w-3 h-3" />}
+                  Queue to Buffer
+                </button>
+                <button onClick={onPostLive} disabled={busy || !onPostLive}
+                  className="flex items-center gap-1 text-xs font-sans font-semibold px-3 py-1.5"
+                  style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: !onPostLive || busy ? 0.5 : 1 }}>
+                  {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Zap className="w-3 h-3" />}
+                  Post live
                 </button>
                 <button onClick={onReject} disabled={busy || !onReject}
                   className="flex items-center gap-1 text-xs font-sans px-2.5 py-1.5 ml-auto"
@@ -871,6 +881,28 @@ export default function SocialDashboard() {
     if (res.ok && data.post) handlePostUpdated(data.post, id);
   }
 
+  async function handleQueueBuffer(id: string) {
+    const res = await fetch(`/api/social/queue/${id}/publish`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode: "scheduled" }),
+    });
+    const data = await res.json() as { post?: QueuePost; error?: string };
+    if (res.ok && data.post) handlePostUpdated(data.post, id);
+    else if (data.error) alert(`Buffer error: ${data.error}`);
+  }
+
+  async function handlePostLive(id: string) {
+    const res = await fetch(`/api/social/queue/${id}/publish`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode: "now" }),
+    });
+    const data = await res.json() as { post?: QueuePost; error?: string };
+    if (res.ok && data.post) handlePostUpdated(data.post, id);
+    else if (data.error) alert(`Buffer error: ${data.error}`);
+  }
+
   async function handleReject(id: string) {
     const res = await fetch(`/api/social/queue/${id}`, {
       method: "PATCH",
@@ -1017,6 +1049,8 @@ export default function SocialDashboard() {
                 onUpdated={(updated) => handlePostUpdated(updated, post.id)}
                 onApprove={() => handleApprove(post.id)}
                 onReject={() => handleReject(post.id)}
+                onQueueBuffer={() => handleQueueBuffer(post.id)}
+                onPostLive={() => handlePostLive(post.id)}
               />
             ))}
           </section>
@@ -1063,6 +1097,10 @@ export default function SocialDashboard() {
                 key={post.id}
                 post={post}
                 onUpdated={(updated) => handlePostUpdated(updated, post.id)}
+                onApprove={() => handleApprove(post.id)}
+                onReject={() => handleReject(post.id)}
+                onQueueBuffer={() => handleQueueBuffer(post.id)}
+                onPostLive={() => handlePostLive(post.id)}
               />
             ))
           )}
