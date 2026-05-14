@@ -89,14 +89,17 @@ async function run(req: Request) {
   if (articleId) {
     const fetchClient = sanityWriteClient ?? sanityClient;
     const article = await fetchClient.fetch<SanityArticle | null>(
-      `*[_type == "article" && _id == $id][0] {
+      `*[_type == "article" && (_id == $id || slug.current == $id)][0] {
         _id, title, slug, satiricalHeadline, excerpt, heroImageUrl, publishedAt,
         pillar->{ name, slug, color },
         countries[]->{ name, slug, code }
       }`,
       { id: articleId }
     );
-    articles = article ? [article] : [];
+    if (!article) {
+      return NextResponse.json({ error: `No article found with id or slug: ${articleId}` }, { status: 404 });
+    }
+    articles = [article];
   } else {
     articles = await getArticlesPublishedToday();
   }
