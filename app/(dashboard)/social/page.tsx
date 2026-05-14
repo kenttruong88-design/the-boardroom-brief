@@ -749,6 +749,8 @@ export default function SocialDashboard() {
   const [previewArticleId, setPreviewArticleId] = useState("");
   const [preview, setPreview]                   = useState<PreviewResult | null>(null);
   const [previewLoading, setPreviewLoading]     = useState(false);
+  const [autoPostEnabled, setAutoPostEnabled]   = useState(false);
+  const [autoPostToggling, setAutoPostToggling] = useState(false);
 
   // Auth check
   useEffect(() => {
@@ -762,7 +764,7 @@ export default function SocialDashboard() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const [todayRes, weekRes, articlesRes] = await Promise.all([
+      const [todayRes, weekRes, articlesRes, settingsRes] = await Promise.all([
         fetch("/api/social/queue?date=today"),
         fetch("/api/social/queue?date=7days"),
         fetch("/api/editorial/review").then(async (r) => {
@@ -771,6 +773,7 @@ export default function SocialDashboard() {
           const d = await r.json() as { digest?: { articles?: { draft: { headline?: string; featuredImage?: unknown } }[] } };
           return d;
         }),
+        fetch("/api/social/settings"),
       ]);
 
       if (todayRes.ok) {
@@ -780,6 +783,11 @@ export default function SocialDashboard() {
       if (weekRes.ok) {
         const d = await weekRes.json() as { posts: QueuePost[] };
         setWeekPosts(d.posts ?? []);
+      }
+
+      if (settingsRes.ok) {
+        const d = await settingsRes.json() as { auto_post_enabled?: boolean };
+        setAutoPostEnabled(d.auto_post_enabled ?? false);
       }
 
       // Fetch recent Sanity articles for the composer
@@ -810,13 +818,34 @@ export default function SocialDashboard() {
     }
   }
 
+  async function handleToggleAutoPost() {
+    setAutoPostToggling(true);
+    try {
+      const res = await fetch("/api/social/settings", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ auto_post_enabled: !autoPostEnabled }),
+      });
+      const data = await res.json() as { auto_post_enabled?: boolean };
+      if (res.ok) setAutoPostEnabled(data.auto_post_enabled ?? !autoPostEnabled);
+    } finally {
+      setAutoPostToggling(false);
+    }
+  }
+
   async function handleGenerate() {
     setGenerating(true);
     setGenerateMsg("");
     try {
       const res = await fetch("/api/social/generate", { method: "POST" });
-      const d = await res.json() as { postsGenerated?: number; message?: string };
-      setGenerateMsg(d.message ?? `Generated ${d.postsGenerated ?? 0} posts`);
+      const d = await res.json() as { postsGenerated?: number; postsAutoPosted?: number; message?: string };
+      const autoPosted = d.postsAutoPosted ?? 0;
+      setGenerateMsg(
+        d.message ??
+        (autoPosted > 0
+          ? `Generated ${d.postsGenerated ?? 0} posts · ${autoPosted} auto-posted`
+          : `Generated ${d.postsGenerated ?? 0} posts`)
+      );
       await fetchData();
     } catch {
       setGenerateMsg("Failed to generate posts");
@@ -922,6 +951,27 @@ export default function SocialDashboard() {
               style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)" }}>
               <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
               Refresh
+            </button>
+            <button
+              onClick={handleToggleAutoPost}
+              disabled={autoPostToggling}
+              title={autoPostEnabled ? "Auto-post on: posts scoring ≥ 7 go live automatically" : "Auto-post off: all posts require manual approval"}
+              className="flex items-center gap-2 text-sm font-sans px-3 py-2"
+              style={{ border: "1px solid var(--border)", borderRadius: 2, color: "var(--ink)", background: "var(--surface)" }}>
+              {autoPostToggling
+                ? <Loader2 className="w-3.5 h-3.5 animate-spin" style={{ color: "var(--ink-m)" }} />
+                : <Zap className="w-3.5 h-3.5" style={{ color: autoPostEnabled ? "#15803d" : "var(--ink-m)" }} />}
+              <span className="text-xs font-sans">Auto-post</span>
+              <span style={{
+                width: 34, height: 18, borderRadius: 9, flexShrink: 0, position: "relative", display: "inline-flex",
+                background: autoPostEnabled ? "#15803d" : "#d1d5db", transition: "background 0.2s",
+              }}>
+                <span style={{
+                  position: "absolute", top: 2, left: autoPostEnabled ? 16 : 2,
+                  width: 14, height: 14, borderRadius: "50%", background: "#fff",
+                  transition: "left 0.2s", boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
+                }} />
+              </span>
             </button>
             <button onClick={handleGenerate} disabled={generating}
               className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2"

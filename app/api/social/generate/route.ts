@@ -3,15 +3,17 @@ import { createAdminClient, createServerSupabaseClient } from "@/app/lib/supabas
 import { getArticlesPublishedToday } from "@/app/lib/queries";
 import { buildDaySchedule, checkDuplicates } from "@/app/lib/social/schedule-builder";
 import { generateSocialPost } from "@/app/lib/social/content-generator";
+import { getBufferProfiles, scheduleBufferPost } from "@/app/lib/social/buffer-client";
 import { client as sanityClient } from "@/app/lib/sanity";
 
 export const maxDuration = 60;
+
+const AUTO_POST_THRESHOLD = 7.0;
 
 async function isAuthorized(req: Request): Promise<boolean> {
   const auth = req.headers.get("authorization");
   const cronHeader = req.headers.get("x-cron-secret");
 
-  // Cron / server-to-server calls
   if (
     auth === `Bearer ${process.env.CRON_SECRET}` ||
     cronHeader === process.env.CRON_SECRET
@@ -19,7 +21,6 @@ async function isAuthorized(req: Request): Promise<boolean> {
     return true;
   }
 
-  // Authenticated dashboard users
   try {
     const supabase = await createServerSupabaseClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -54,7 +55,32 @@ async function run() {
   const today = new Date();
   const errors: { articleId: string; platform: string; error: string }[] = [];
 
-  // 1. Fetch today's published articles
+  // 1. Read auto-post setting
+  let autoPostEnabled = false;
+  try {
+    const { data } = await supabase
+      .from("social_settings")
+      .select("auto_post_enabled")
+      .eq("id", 1)
+      .single();
+    autoPostEnabled = data?.auto_post_enabled ?? false;
+  } catch {
+    // settings table may not exist yet — default to manual approval
+  }
+
+  // 2. If auto-post is on, pre-fetch Buffer profiles so we can publish inline
+  let profileMap: Record<string, string> = {};
+  if (autoPostEnabled) {
+    try {
+      const profiles = await getBufferProfiles();
+      profileMap = Object.fromEntries(profiles.map((p) => [p.service, p.id]));
+    } catch {
+      // Buffer unavailable — fall back to pending_approval for all posts
+      autoPostEnabled = false;
+    }
+  }
+
+  // 3. Fetch today's published articles
   const articles = await getArticlesPublishedToday();
 
   if (articles.length === 0) {
@@ -67,31 +93,26 @@ async function run() {
       errors: [],
       duration_ms: Date.now() - startedAt,
     });
-    return NextResponse.json({
-      message: "No articles published today, skipping social generation",
-    });
+    return NextResponse.json({ message: "No articles published today, skipping social generation" });
   }
 
-  // 2. Build schedule
+  // 4. Build schedule and filter duplicates
   const scheduled = buildDaySchedule(articles, today);
-
-  // 3. Filter already-queued posts
   const newPosts = await checkDuplicates(scheduled);
 
-  // 4. Generate content and insert into queue
+  // 5. Generate content and insert — auto-publish if enabled and score ≥ 7
   let postsGenerated = 0;
-  const schedule: {
-    platform: string;
-    headline: string;
-    scheduledFor: string;
-    slot: string;
-  }[] = [];
+  let postsAutoPosted = 0;
+  const schedule: { platform: string; headline: string; scheduledFor: string; slot: string; autoPosted: boolean }[] = [];
 
   for (const { article, platform, scheduledFor, slot } of newPosts) {
     try {
       const socialPost = await generateSocialPost(article, platform);
+      const score = socialPost.review?.score ?? 0;
+      const qualifies = autoPostEnabled && score >= AUTO_POST_THRESHOLD;
+      const profileId = profileMap[platform];
 
-      await supabase.from("social_queue").insert({
+      const baseRow = {
         article_id:       article._id,
         article_slug:     article.slug.current,
         article_headline: article.title,
@@ -102,15 +123,47 @@ async function run() {
         article_url:      socialPost.articleUrl,
         scheduled_for:    scheduledFor.toISOString(),
         pillar:           article.pillar?.slug?.current ?? null,
-        status:           "pending_approval",
         generated_by:     "auto",
         review_score:     socialPost.review?.score  ?? null,
         review_passed:    socialPost.review?.passed ?? null,
         review_notes:     socialPost.review?.notes  ?? null,
-      });
+      };
+
+      if (qualifies && profileId) {
+        // Auto-publish directly to Buffer
+        try {
+          const bufferPostId = await scheduleBufferPost(
+            profileId,
+            socialPost.content,
+            scheduledFor,
+            socialPost.imageUrl ?? undefined,
+            platform
+          );
+          await supabase.from("social_queue").insert({
+            ...baseRow,
+            status:           "sent",
+            buffer_post_id:   bufferPostId,
+            sent_at:          new Date().toISOString(),
+          });
+          postsAutoPosted++;
+          schedule.push({ platform, headline: article.title, scheduledFor: scheduledFor.toISOString(), slot, autoPosted: true });
+        } catch (bufferErr) {
+          // Buffer failed — save for manual approval so the post isn't lost
+          await supabase.from("social_queue").insert({ ...baseRow, status: "pending_approval" });
+          errors.push({
+            articleId: article._id,
+            platform,
+            error: `Auto-post failed, queued for approval: ${bufferErr instanceof Error ? bufferErr.message : String(bufferErr)}`,
+          });
+          schedule.push({ platform, headline: article.title, scheduledFor: scheduledFor.toISOString(), slot, autoPosted: false });
+        }
+      } else {
+        // Manual approval flow (score too low, auto-post off, or no Buffer profile)
+        await supabase.from("social_queue").insert({ ...baseRow, status: "pending_approval" });
+        schedule.push({ platform, headline: article.title, scheduledFor: scheduledFor.toISOString(), slot, autoPosted: false });
+      }
 
       postsGenerated++;
-      schedule.push({ platform, headline: article.title, scheduledFor: scheduledFor.toISOString(), slot });
     } catch (err) {
       errors.push({
         articleId: article._id,
@@ -122,17 +175,22 @@ async function run() {
     await sleep(500);
   }
 
-  // 5. Log run
+  // 6. Log run
   await supabase.from("social_runs").insert({
     trigger:         "cron",
     articles_found:  articles.length,
     posts_generated: postsGenerated,
-    posts_queued:    postsGenerated,
-    posts_sent:      0,
+    posts_queued:    postsGenerated - postsAutoPosted,
+    posts_sent:      postsAutoPosted,
     errors,
     duration_ms:     Date.now() - startedAt,
   });
 
-  // 6. Return summary
-  return NextResponse.json({ articlesFound: articles.length, postsGenerated, schedule });
+  return NextResponse.json({
+    articlesFound:    articles.length,
+    postsGenerated,
+    postsAutoPosted,
+    autoPostEnabled,
+    schedule,
+  });
 }
