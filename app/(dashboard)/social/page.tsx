@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   Loader2, Send, RefreshCw, X, ChevronDown, ChevronRight,
   Edit2, Clock, BarChart2, Plus, Zap, AlertCircle,
+  Eye, CheckCircle, XCircle,
 } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
 import { client as sanityClient } from "@/app/lib/sanity";
@@ -44,6 +45,30 @@ interface ArticleOption {
   title: string;
   slug: { current: string };
   pillar?: { name: string; slug: { current: string } };
+}
+
+interface PreviewReview {
+  score: number; passed: boolean;
+  toneScore: number; accuracyScore: number; hookScore: number;
+  satireScore: number; originalityScore: number;
+  notes: string; revisionsRequired: string[];
+}
+
+interface PreviewPost {
+  content: string; hashtags: string[]; charCount: number;
+  imageUrl: string | null; estimatedSlot: string;
+  review: PreviewReview | null;
+  validations: {
+    hooksBeforeFold?: boolean; hookLength?: number; endsWithQuestion?: boolean;
+    underCharLimit?: boolean; charCount?: number; remaining?: number;
+    hasImage?: boolean; hasLinkInBio?: boolean;
+  };
+}
+
+interface PreviewResult {
+  article: { headline: string; pillar: string; articleUrl: string };
+  posts: { linkedin?: PreviewPost; twitter?: PreviewPost; instagram?: PreviewPost };
+  totalMs: number;
 }
 
 type PlatformFilter = "all" | "linkedin" | "twitter" | "instagram";
@@ -414,6 +439,115 @@ function PerformanceTable({ posts }: { posts: QueuePost[] }) {
   );
 }
 
+// ── PreviewCard ───────────────────────────────────────────────────────────────
+
+function tick(ok: boolean, label: string) {
+  return (
+    <div className="flex items-center gap-1.5 text-xs font-sans">
+      {ok
+        ? <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#15803d" }} />
+        : <XCircle    className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#b91c1c" }} />}
+      <span style={{ color: ok ? "#15803d" : "#b91c1c" }}>{label}</span>
+    </div>
+  );
+}
+
+function PreviewCard({ platform, post }: { platform: string; post: PreviewPost }) {
+  const cfg = PLATFORM_CONFIG[platform] ?? { label: platform, color: "#666", bg: "#f5f5f5" };
+  const charLimit = platform === "twitter" ? 215 : platform === "linkedin" ? 3000 : 2200;
+  const overLimit = post.charCount > charLimit;
+  const { validations: v } = post;
+
+  return (
+    <div style={{ border: "1px solid var(--border)", background: "var(--surface)" }} className="flex flex-col">
+      {/* Header */}
+      <div className="px-4 py-3 flex items-center justify-between"
+        style={{ borderBottom: "1px solid var(--border)", background: cfg.bg }}>
+        <span className="text-sm font-sans font-semibold" style={{ color: cfg.color }}>{cfg.label}</span>
+        <span className="text-xs font-mono font-semibold"
+          style={{ color: overLimit ? "#b91c1c" : "#15803d" }}>
+          {post.charCount}/{charLimit}
+        </span>
+      </div>
+
+      <div className="p-4 flex-1 flex flex-col gap-3">
+        {/* Content */}
+        <pre className="text-xs font-sans whitespace-pre-wrap leading-relaxed select-text m-0"
+          style={{ color: "var(--ink)", background: "var(--cream)", padding: "10px", border: "1px solid var(--border)", borderRadius: 2 }}>
+          {post.content}
+        </pre>
+
+        {/* Hashtags */}
+        {post.hashtags.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {post.hashtags.map((t) => (
+              <span key={t} className="text-xs font-mono px-1.5 py-0.5"
+                style={{ background: "var(--cream)", border: "1px solid var(--border)", color: "var(--ink-m)" }}>
+                #{t}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Validations */}
+        <div className="space-y-1">
+          {platform === "linkedin" && (
+            <>
+              {tick(v.hooksBeforeFold ?? false, `Hook before fold (${v.hookLength ?? 0} chars)`)}
+              {tick(v.endsWithQuestion ?? false, "Ends with question")}
+            </>
+          )}
+          {platform === "twitter" && tick(v.underCharLimit ?? false, `${v.charCount ?? 0}/215 chars (${v.remaining ?? 0} remaining)`)}
+          {platform === "instagram" && (
+            <>
+              {tick(v.hasImage ?? false, "Image attached")}
+              {tick(v.hasLinkInBio ?? false, "Link in bio text present")}
+            </>
+          )}
+        </div>
+
+        {/* Review */}
+        {post.review && (
+          <div className="pt-3" style={{ borderTop: "1px solid var(--border)" }}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-sans font-semibold" style={{ color: "var(--ink-m)" }}>Editor review</span>
+              <span className="text-xs font-mono font-bold px-1.5 py-0.5"
+                style={{
+                  background: post.review.passed ? "#dcfce7" : "#fef2f2",
+                  color:      post.review.passed ? "#15803d" : "#b91c1c",
+                  border:     `1px solid ${post.review.passed ? "#86efac" : "#fecaca"}`,
+                }}>
+                {post.review.score}/10 {post.review.passed ? "PASS" : "FAIL"}
+              </span>
+            </div>
+            <div className="grid grid-cols-5 gap-1 mb-2">
+              {([["Tone", post.review.toneScore], ["Accuracy", post.review.accuracyScore], ["Hook", post.review.hookScore], ["Satire", post.review.satireScore], ["Original", post.review.originalityScore]] as [string, number][]).map(([label, score]) => (
+                <div key={label} className="text-center">
+                  <div className="text-xs font-mono font-bold" style={{ color: score >= 7 ? "#15803d" : "#b91c1c" }}>{score}</div>
+                  <div className="font-sans" style={{ color: "var(--ink-m)", fontSize: "10px" }}>{label}</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs font-sans leading-relaxed" style={{ color: "var(--ink-m)" }}>{post.review.notes}</p>
+            {post.review.revisionsRequired.length > 0 && (
+              <ul className="mt-1.5 space-y-0.5">
+                {post.review.revisionsRequired.map((r, i) => (
+                  <li key={i} className="text-xs font-sans" style={{ color: "#b45309" }}>· {r}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+
+        {/* Next slot */}
+        <div className="text-xs font-mono mt-auto" style={{ color: "var(--ink-m)" }}>
+          Next slot: {new Date(post.estimatedSlot).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "UTC" })} UTC
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── ManualComposer ────────────────────────────────────────────────────────────
 
 function ManualComposer({
@@ -612,6 +746,9 @@ export default function SocialDashboard() {
   const [generating, setGenerating]       = useState(false);
   const [generateMsg, setGenerateMsg]     = useState("");
   const [approvingAll, setApprovingAll]   = useState(false);
+  const [previewArticleId, setPreviewArticleId] = useState("");
+  const [preview, setPreview]                   = useState<PreviewResult | null>(null);
+  const [previewLoading, setPreviewLoading]     = useState(false);
 
   // Auth check
   useEffect(() => {
@@ -660,6 +797,18 @@ export default function SocialDashboard() {
   useEffect(() => {
     if (authed) fetchData();
   }, [authed, fetchData]);
+
+  async function handlePreview() {
+    setPreviewLoading(true);
+    setPreview(null);
+    try {
+      const url = `/api/social/preview${previewArticleId ? `?articleId=${previewArticleId}` : ""}`;
+      const res = await fetch(url);
+      if (res.ok) setPreview(await res.json() as PreviewResult);
+    } finally {
+      setPreviewLoading(false);
+    }
+  }
 
   async function handleGenerate() {
     setGenerating(true);
@@ -880,6 +1029,53 @@ export default function SocialDashboard() {
           <div style={{ background: "var(--surface)", border: "1px solid var(--border)" }} className="p-4">
             <PerformanceTable posts={weekPosts} />
           </div>
+        </section>
+
+        {/* Content preview */}
+        <section className="mb-10">
+          <div className="flex items-center gap-2 mb-4">
+            <Eye className="w-5 h-5" style={{ color: "var(--navy)" }} />
+            <h2 className="text-lg font-serif font-bold" style={{ color: "var(--navy)" }}>
+              Content preview
+            </h2>
+          </div>
+
+          <div className="flex gap-3 mb-4 flex-wrap">
+            <select
+              value={previewArticleId}
+              onChange={(e) => setPreviewArticleId(e.target.value)}
+              className="text-sm font-sans p-2 flex-1 min-w-0"
+              style={{ border: "1px solid var(--border)", background: "var(--cream)", color: "var(--ink)", borderRadius: 2 }}>
+              <option value="">Most recent article</option>
+              {articles.map((a) => (
+                <option key={a._id} value={a._id}>
+                  [{a.pillar?.name ?? ""}] {a.title}
+                </option>
+              ))}
+            </select>
+            <button onClick={handlePreview} disabled={previewLoading}
+              className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2"
+              style={{ background: "var(--navy)", color: "#fff", borderRadius: 2, opacity: previewLoading ? 0.6 : 1 }}>
+              {previewLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
+              Generate previews
+            </button>
+          </div>
+
+          {preview && (
+            <>
+              <div className="text-xs font-mono mb-3 flex gap-4 flex-wrap" style={{ color: "var(--ink-m)" }}>
+                <span><strong style={{ color: "var(--ink)" }}>{preview.article.headline}</strong></span>
+                <span>{preview.totalMs}ms</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {(["linkedin", "twitter", "instagram"] as const).map((p) =>
+                  preview.posts[p] ? (
+                    <PreviewCard key={p} platform={p} post={preview.posts[p]!} />
+                  ) : null
+                )}
+              </div>
+            </>
+          )}
         </section>
 
         {/* Manual composer */}
