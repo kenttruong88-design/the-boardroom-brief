@@ -5,7 +5,9 @@ import MorningBrief from "@/emails/morning-brief";
 import type { MorningBriefContent } from "./content-assembler";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
-const FROM = "The Boardroom Brief <brief@theboardroombrief.com>";
+const FROM_NAME  = process.env.FROM_NAME  ?? "The Boardroom Brief";
+const FROM_EMAIL = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
+const FROM = `${FROM_NAME} <${FROM_EMAIL}>`;
 const BATCH_SIZE = 100;
 
 // Placeholders replaced per-subscriber after a single template render

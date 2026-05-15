@@ -47,7 +47,7 @@ export async function GET(req: Request) {
         })
       );
       await resend.emails.send({
-        from: "The Boardroom Brief <brief@theboardroombrief.com>",
+        from: `${process.env.FROM_NAME ?? "The Boardroom Brief"} <${process.env.FROM_EMAIL ?? "onboarding@resend.dev"}>`,
         to: data.email,
         subject: "Welcome to The Boardroom Brief",
         html,
