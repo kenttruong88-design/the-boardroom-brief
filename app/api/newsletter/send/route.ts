@@ -27,13 +27,13 @@ async function runSend() {
   const supabase = createAdminClient();
   const resend = new Resend(resendKey);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
+  const startedAt = new Date();
 
   // ── 1. Fetch confirmed subscribers ──────────────────────────────────────────
   const { data: subscribers, error: subError } = await supabase
     .from("subscribers")
     .select("email")
-    .eq("confirmed", true)
-    .is("unsubscribed_at", null);
+    .eq("status", "confirmed");
 
   if (subError) {
     return NextResponse.json({ error: subError.message }, { status: 500 });
@@ -158,11 +158,18 @@ async function runSend() {
   }
 
   // ── 6. Log send to newsletter_sends ─────────────────────────────────────
+  const completedAt = new Date();
   await supabase.from("newsletter_sends").insert({
-    article_ids: articleIds,
+    send_date: startedAt.toISOString().split("T")[0],
+    subject,
+    articles_included: articleIds,
     subscriber_count: emails.length,
-    success_count: successCount,
-    failure_count: failureCount,
+    sent_count: successCount,
+    failed_count: failureCount,
+    status: "sent",
+    started_at: startedAt.toISOString(),
+    completed_at: completedAt.toISOString(),
+    duration_ms: completedAt.getTime() - startedAt.getTime(),
   });
 
   return NextResponse.json({
