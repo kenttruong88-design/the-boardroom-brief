@@ -1,3 +1,8 @@
 {
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/newsletter/send",
+      "schedule": "30 7 * * *"
+    }
+  ]
 }

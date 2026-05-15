@@ -1,201 +1,124 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase-server";
-import { client as sanityClient } from "@/app/lib/sanity";
-import MorningBrief, { type MarketSnapshotItem, type NewsletterArticle } from "@/emails/morning-brief";
+import { assembleMorningBrief } from "@/app/lib/newsletter/content-assembler";
+import { sendMorningBrief } from "@/app/lib/newsletter/sender";
 
-const BATCH_SIZE = 100;
-
-const PILLAR_COLORS: Record<string, string> = {
-  "markets-floor":  "#1e40af",
-  "macro-mondays":  "#7c3aed",
-  "c-suite-circus": "#0f766e",
-  "global-office":  "#b45309",
-  "water-cooler":   "#b8960c",
-};
+export const maxDuration = 300;
 
 function isAuthorized(req: Request): boolean {
-  const secret = req.headers.get("x-newsletter-secret") ?? req.headers.get("authorization")?.replace("Bearer ", "");
+  const secret =
+    req.headers.get("x-newsletter-secret") ??
+    req.headers.get("authorization")?.replace("Bearer ", "");
   return secret === process.env.CRON_SECRET;
 }
 
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return runSend();
-}
-
-async function runSend() {
-  const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
-    return NextResponse.json({ error: "RESEND_API_KEY not configured" }, { status: 500 });
+  if (!isAuthorized(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const supabase = createAdminClient();
-  const resend = new Resend(resendKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
-  const startedAt = new Date();
-
-  // ── 1. Fetch confirmed subscribers ──────────────────────────────────────────
-  const { data: subscribers, error: subError } = await supabase
-    .from("subscribers")
-    .select("email")
-    .eq("status", "confirmed");
-
-  if (subError) {
-    return NextResponse.json({ error: subError.message }, { status: 500 });
-  }
-
-  const emails = (subscribers ?? []).map((s: { email: string }) => s.email);
-
-  // ── 2. Fetch articles from Sanity (last 24h, fallback to 48h) ──────────────
-  let articles: NewsletterArticle[] = [];
-  if (sanityClient) {
-    const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const since48h = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
-
-    const query = (since: string) => `
-      *[_type == "article" && publishedAt > "${since}"] | order(featured desc, publishedAt desc) [0...5] {
-        _id,
-        title,
-        slug,
-        satiricalHeadline,
-        excerpt,
-        mainImage { asset->{ url } },
-        author->{ name },
-        pillar->{ name, slug }
-      }
-    `;
-
-    let raw = await sanityClient.fetch(query(since24h));
-    if (raw.length < 2) {
-      raw = await sanityClient.fetch(query(since48h));
-    }
-
-    articles = raw.map((a: {
-      _id: string;
-      title: string;
-      slug: { current: string };
-      satiricalHeadline?: string;
-      excerpt?: string;
-      mainImage?: { asset?: { url?: string } };
-      author?: { name?: string };
-      pillar?: { name: string; slug: { current: string } };
-    }) => {
-      const pillarSlug = a.pillar?.slug?.current ?? "markets-floor";
-      return {
-        headline: a.title,
-        satiricalHeadline: a.satiricalHeadline ?? "",
-        excerpt: a.excerpt ?? "",
-        url: `${siteUrl}/${pillarSlug}/${a.slug.current}`,
-        pillar: a.pillar?.name ?? "The Boardroom Brief",
-        pillarColor: PILLAR_COLORS[pillarSlug] ?? "#c8391a",
-        imageUrl: a.mainImage?.asset?.url ?? undefined,
-        author: a.author?.name ?? undefined,
-      };
-    });
-  }
-
-  if (articles.length === 0) {
-    articles = [{
-      headline: "The Boardroom Brief — Today's Edition",
-      satiricalHeadline: "Five stories. Zero jargon. Probably.",
-      excerpt: "Visit the site for today's full coverage.",
-      url: siteUrl,
-      pillar: "The Boardroom Brief",
-      pillarColor: "#c8391a",
-    }];
-  }
-
-  // ── 3. Fetch market data from market_cache ────────────────────────────────
-  const markets: MarketSnapshotItem[] = [];
-  try {
-    const { data: cacheRows } = await supabase
-      .from("market_cache")
-      .select("symbol, name, price, change_pct")
-      .in("symbol", ["SPY", "DAX", "ISF", "EWJ", "C:XAUUSD", "X:BTCUSD"])
-      .order("pulled_at", { ascending: false });
-
-    if (cacheRows && cacheRows.length > 0) {
-      const seen = new Set<string>();
-      for (const row of cacheRows as { symbol: string; name: string; price: number; change_pct: number }[]) {
-        if (seen.has(row.symbol)) continue;
-        seen.add(row.symbol);
-        markets.push({
-          symbol: row.symbol.replace("C:", "").replace("X:", ""),
-          name: row.name,
-          price: row.price.toLocaleString("en-US", { maximumFractionDigits: 2 }),
-          changePct: `${row.change_pct >= 0 ? "+" : ""}${row.change_pct.toFixed(2)}%`,
-          direction: row.change_pct > 0 ? "up" : row.change_pct < 0 ? "down" : "flat",
-        });
-      }
-    }
-  } catch { /* use template defaults */ }
-
-  // ── 4. Render email template ─────────────────────────────────────────────
-  const date = new Date().toLocaleDateString("en-US", {
-    weekday: "long", year: "numeric", month: "long", day: "numeric",
-  });
-
-  const html = await render(
-    MorningBrief({
-      date,
-      marketSnapshot: markets.length > 0 ? markets : undefined,
-      articles,
-      unsubscribeUrl: `${siteUrl}/unsubscribe`,
-      preferencesUrl: `${siteUrl}/preferences`,
-    })
-  );
-
-  const subject = `The Boardroom Brief — ${date}`;
-  const articleIds = articles.map((a) => a.url).filter(Boolean);
-
-  // ── 5. Send in batches of 100 ────────────────────────────────────────────
-  let successCount = 0;
-  let failureCount = 0;
-
-  for (let i = 0; i < emails.length; i += BATCH_SIZE) {
-    const batch = emails.slice(i, i + BATCH_SIZE);
-    const results = await Promise.allSettled(
-      batch.map((to: string) =>
-        resend.emails.send({
-          from: "The Boardroom Brief <brief@theboardroombrief.com>",
-          to,
-          subject,
-          html,
-        })
-      )
-    );
-    for (const r of results) {
-      if (r.status === "fulfilled") successCount++;
-      else failureCount++;
-    }
-  }
-
-  // ── 6. Log send to newsletter_sends ─────────────────────────────────────
-  const completedAt = new Date();
-  await supabase.from("newsletter_sends").insert({
-    send_date: startedAt.toISOString().split("T")[0],
-    subject,
-    articles_included: articleIds,
-    subscriber_count: emails.length,
-    sent_count: successCount,
-    failed_count: failureCount,
-    status: "sent",
-    started_at: startedAt.toISOString(),
-    completed_at: completedAt.toISOString(),
-    duration_ms: completedAt.getTime() - startedAt.getTime(),
-  });
-
-  return NextResponse.json({
-    sent: successCount,
-    failed: failureCount,
-    subscribers: emails.length,
-    articles: articleIds.length,
-  });
+  return runSend(req);
 }
 
 export async function POST(req: Request) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return runSend();
+  if (!isAuthorized(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  return runSend(req);
+}
+
+async function runSend(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const force = searchParams.get("force") === "true";
+  const dateParam = searchParams.get("date"); // YYYY-MM-DD
+
+  const sendDate = dateParam ?? new Date().toISOString().split("T")[0];
+  const targetDate = dateParam ? new Date(`${dateParam}T07:00:00Z`) : new Date();
+
+  const supabase = createAdminClient();
+  const startedAt = new Date();
+
+  // ── a. Idempotency check ─────────────────────────────────────────────────
+  const { data: existing } = await supabase
+    .from("newsletter_sends")
+    .select("id, status")
+    .eq("send_date", sendDate)
+    .single();
+
+  if (existing?.status === "sent" && !force) {
+    return NextResponse.json({ message: "Already sent today", sendDate });
+  }
+
+  // ── b. Upsert newsletter_sends row as 'pending' ─────────────────────────
+  let sendId: string;
+
+  if (existing) {
+    sendId = existing.id as string;
+    await supabase
+      .from("newsletter_sends")
+      .update({ status: "pending", error: null, started_at: startedAt.toISOString() })
+      .eq("id", sendId);
+  } else {
+    const { data: inserted, error: insertError } = await supabase
+      .from("newsletter_sends")
+      .insert({ send_date: sendDate, status: "pending", started_at: startedAt.toISOString() })
+      .select("id")
+      .single();
+
+    if (insertError || !inserted) {
+      return NextResponse.json({ error: "Failed to create send record" }, { status: 500 });
+    }
+    sendId = inserted.id as string;
+  }
+
+  try {
+    // ── c. Assemble content ────────────────────────────────────────────────
+    const content = await assembleMorningBrief(targetDate);
+
+    // ── d. Update send record with subject and article list ────────────────
+    await supabase
+      .from("newsletter_sends")
+      .update({
+        subject: content.subject,
+        articles_included: content.articles.map((a) => a.url),
+        status: "sending",
+      })
+      .eq("id", sendId);
+
+    // ── e. Send ────────────────────────────────────────────────────────────
+    const { sentCount, failedCount } = await sendMorningBrief(content, sendId);
+
+    // ── f. Mark complete ───────────────────────────────────────────────────
+    const completedAt = new Date();
+    await supabase
+      .from("newsletter_sends")
+      .update({
+        status: "sent",
+        subscriber_count: sentCount + failedCount,
+        sent_count: sentCount,
+        failed_count: failedCount,
+        completed_at: completedAt.toISOString(),
+        duration_ms: completedAt.getTime() - startedAt.getTime(),
+      })
+      .eq("id", sendId);
+
+    // ── g. Response ────────────────────────────────────────────────────────
+    return NextResponse.json({
+      success: true,
+      sendDate,
+      subscriberCount: sentCount + failedCount,
+      sentCount,
+      failedCount,
+      subject: content.subject,
+      articlesIncluded: content.articles.map((a) => a.headline),
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    await supabase
+      .from("newsletter_sends")
+      .update({ status: "failed", error: message })
+      .eq("id", sendId);
+
+    console.error("[newsletter/send]", err);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
