@@ -3,7 +3,7 @@ import { createAdminClient } from "@/app/lib/supabase-server";
 import { randomBytes } from "crypto";
 import { Resend } from "resend";
 import { render } from "@react-email/components";
-import Confirmation from "@/emails/confirmation";
+import NewsletterConfirmation from "@/emails/newsletter-confirmation";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -12,10 +12,12 @@ function isValidEmail(email: string) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { email, segments, source } = body as {
+    const { email, firstName, segments, source, sourceArticleSlug } = body as {
       email?: string;
+      firstName?: string;
       segments?: string[];
       source?: string;
+      sourceArticleSlug?: string;
     };
 
     if (!email || !isValidEmail(email)) {
@@ -24,47 +26,58 @@ export async function POST(req: Request) {
 
     const supabase = createAdminClient();
 
-    // Check if already subscribed
     const { data: existing } = await supabase
       .from("subscribers")
-      .select("id, confirmed")
+      .select("id, status")
       .eq("email", email)
       .single();
 
-    if (existing?.confirmed) {
+    if (existing?.status === "confirmed") {
       return NextResponse.json({ message: "already_subscribed" });
     }
 
     const token = randomBytes(32).toString("hex");
+    const now = new Date().toISOString();
 
     if (existing) {
-      // Re-send confirmation
       await supabase
         .from("subscribers")
-        .update({ confirmation_token: token, segments: segments ?? [] })
+        .update({
+          confirmation_token: token,
+          confirmation_sent_at: now,
+          segments: segments ?? existing,
+          status: "pending",
+        })
         .eq("email", email);
     } else {
       await supabase.from("subscribers").insert({
         email,
-        confirmed: false,
+        first_name: firstName ?? null,
+        status: "pending",
         confirmation_token: token,
-        plan: "free",
-        segments: segments ?? [],
+        confirmation_sent_at: now,
+        segments: segments ?? ["{all}"],
         source: source ?? "website",
+        source_article_slug: sourceArticleSlug ?? null,
       });
     }
 
-    // Send confirmation email via Resend + React Email template
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
       const confirmUrl = `${siteUrl}/api/confirm?token=${token}`;
       const resend = new Resend(resendKey);
-      const html = await render(Confirmation({ confirmUrl, email }));
+      const html = await render(
+        NewsletterConfirmation({
+          firstName,
+          confirmUrl,
+          previewText: "One click to confirm — then the Morning Brief begins.",
+        })
+      );
       await resend.emails.send({
-        from: "The Alignment Times <brief@thealignmenttimes.com>",
+        from: "The Boardroom Brief <brief@theboardroombrief.com>",
         to: [email],
-        subject: "Confirm your subscription — The Alignment Times",
+        subject: "Confirm your Boardroom Brief subscription",
         html,
       });
     }

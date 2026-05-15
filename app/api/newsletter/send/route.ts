@@ -3,16 +3,23 @@ import { Resend } from "resend";
 import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { client as sanityClient } from "@/app/lib/sanity";
-import MorningBrief, { type MarketItem, type ArticleItem } from "@/emails/morning-brief";
+import MorningBrief, { type MarketSnapshotItem, type NewsletterArticle } from "@/emails/morning-brief";
 
 const BATCH_SIZE = 100;
+
+const PILLAR_COLORS: Record<string, string> = {
+  "markets-floor":  "#1e40af",
+  "macro-mondays":  "#7c3aed",
+  "c-suite-circus": "#0f766e",
+  "global-office":  "#b45309",
+  "water-cooler":   "#b8960c",
+};
 
 function isAuthorized(req: Request): boolean {
   const secret = req.headers.get("x-newsletter-secret") ?? req.headers.get("authorization")?.replace("Bearer ", "");
   return secret === process.env.CRON_SECRET;
 }
 
-// Vercel Cron hits GET
 export async function GET(req: Request) {
   if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   return runSend();
@@ -26,7 +33,7 @@ async function runSend() {
 
   const supabase = createAdminClient();
   const resend = new Resend(resendKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
   const startedAt = new Date();
 
   // ── 1. Fetch confirmed subscribers ──────────────────────────────────────────
@@ -42,18 +49,20 @@ async function runSend() {
   const emails = (subscribers ?? []).map((s: { email: string }) => s.email);
 
   // ── 2. Fetch articles from Sanity (last 24h, fallback to 48h) ──────────────
-  let articles: ArticleItem[] = [];
+  let articles: NewsletterArticle[] = [];
   if (sanityClient) {
     const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     const since48h = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
 
     const query = (since: string) => `
-      *[_type == "article" && publishedAt > "${since}"] | order(featured desc, publishedAt desc) [0...4] {
+      *[_type == "article" && publishedAt > "${since}"] | order(featured desc, publishedAt desc) [0...5] {
         _id,
         title,
         slug,
         satiricalHeadline,
         excerpt,
+        mainImage { asset->{ url } },
+        author->{ name },
         pillar->{ name, slug }
       }
     `;
@@ -64,33 +73,42 @@ async function runSend() {
     }
 
     articles = raw.map((a: {
-      _id: string; title: string; slug: { current: string };
-      satiricalHeadline?: string; excerpt?: string;
+      _id: string;
+      title: string;
+      slug: { current: string };
+      satiricalHeadline?: string;
+      excerpt?: string;
+      mainImage?: { asset?: { url?: string } };
+      author?: { name?: string };
       pillar?: { name: string; slug: { current: string } };
-    }) => ({
-      title: a.title,
-      satiricalHeadline: a.satiricalHeadline ?? "",
-      excerpt: a.excerpt ?? "",
-      pillar: a.pillar?.name ?? "The Alignment Times",
-      pillarSlug: a.pillar?.slug?.current ?? "markets-floor",
-      slug: a.slug.current,
-    }));
+    }) => {
+      const pillarSlug = a.pillar?.slug?.current ?? "markets-floor";
+      return {
+        headline: a.title,
+        satiricalHeadline: a.satiricalHeadline ?? "",
+        excerpt: a.excerpt ?? "",
+        url: `${siteUrl}/${pillarSlug}/${a.slug.current}`,
+        pillar: a.pillar?.name ?? "The Boardroom Brief",
+        pillarColor: PILLAR_COLORS[pillarSlug] ?? "#c8391a",
+        imageUrl: a.mainImage?.asset?.url ?? undefined,
+        author: a.author?.name ?? undefined,
+      };
+    });
   }
 
-  // Fallback article if Sanity is empty
   if (articles.length === 0) {
     articles = [{
-      title: "The Alignment Times — Today's Edition",
+      headline: "The Boardroom Brief — Today's Edition",
       satiricalHeadline: "Five stories. Zero jargon. Probably.",
       excerpt: "Visit the site for today's full coverage.",
-      pillar: "The Alignment Times",
-      pillarSlug: "markets-floor",
-      slug: "",
+      url: siteUrl,
+      pillar: "The Boardroom Brief",
+      pillarColor: "#c8391a",
     }];
   }
 
-  // ── 3. Fetch market data from market_cache ───────────────────────────────
-  const markets: MarketItem[] = [];
+  // ── 3. Fetch market data from market_cache ────────────────────────────────
+  const markets: MarketSnapshotItem[] = [];
   try {
     const { data: cacheRows } = await supabase
       .from("market_cache")
@@ -108,14 +126,13 @@ async function runSend() {
           name: row.name,
           price: row.price.toLocaleString("en-US", { maximumFractionDigits: 2 }),
           changePct: `${row.change_pct >= 0 ? "+" : ""}${row.change_pct.toFixed(2)}%`,
-          up: row.change_pct >= 0,
+          direction: row.change_pct > 0 ? "up" : row.change_pct < 0 ? "down" : "flat",
         });
       }
     }
   } catch { /* use template defaults */ }
 
-  // ── 4. Render email template ────────────────────────────────────────────────
-  const [leadArticle, ...rest] = articles;
+  // ── 4. Render email template ─────────────────────────────────────────────
   const date = new Date().toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
@@ -123,28 +140,26 @@ async function runSend() {
   const html = await render(
     MorningBrief({
       date,
-      markets: markets.length > 0 ? markets : undefined,
-      leadArticle,
-      articles: rest,
+      marketSnapshot: markets.length > 0 ? markets : undefined,
+      articles,
       unsubscribeUrl: `${siteUrl}/unsubscribe`,
-      preferencesUrl: `${siteUrl}/welcome`,
-      siteUrl,
+      preferencesUrl: `${siteUrl}/preferences`,
     })
   );
 
-  const subject = `The Alignment Times — ${date}`;
+  const subject = `The Boardroom Brief — ${date}`;
+  const articleIds = articles.map((a) => a.url).filter(Boolean);
 
   // ── 5. Send in batches of 100 ────────────────────────────────────────────
   let successCount = 0;
   let failureCount = 0;
-  const articleIds = articles.map((a) => a.slug).filter(Boolean);
 
   for (let i = 0; i < emails.length; i += BATCH_SIZE) {
     const batch = emails.slice(i, i + BATCH_SIZE);
     const results = await Promise.allSettled(
       batch.map((to: string) =>
         resend.emails.send({
-          from: "The Alignment Times <brief@thealignmenttimes.com>",
+          from: "The Boardroom Brief <brief@theboardroombrief.com>",
           to,
           subject,
           html,
