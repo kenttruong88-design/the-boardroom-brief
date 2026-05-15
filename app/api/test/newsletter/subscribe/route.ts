@@ -6,7 +6,7 @@ import { render } from "@react-email/components";
 import NewsletterConfirmation from "@/emails/newsletter-confirmation";
 
 export async function POST(req: Request) {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return NextResponse.json({ error: "Test routes are disabled in production" }, { status: 403 });
   }
 

@@ -5,7 +5,7 @@ import { render } from "@react-email/components";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export async function GET() {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return new Response(JSON.stringify({ error: "Test routes are disabled in production" }), {
       status: 403,
       headers: { "Content-Type": "application/json" },

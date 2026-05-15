@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createAdminClient } from "@/app/lib/supabase-server";
 
 export async function GET() {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return NextResponse.json({ error: "Test routes are disabled in production" }, { status: 403 });
   }
 

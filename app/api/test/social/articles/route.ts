@@ -4,7 +4,7 @@ import { getLatestArticles } from "@/app/lib/queries";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return NextResponse.json({ error: "Not available in production" }, { status: 403 });
   }
 

@@ -67,7 +67,7 @@ const MOCK_MARKET_SNAPSHOT: MarketSnapshotItem[] = [
 type TemplateName = "confirmation" | "welcome" | "morning-brief" | "unsubscribe";
 
 export async function GET(req: Request) {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return new Response(JSON.stringify({ error: "Test routes are disabled in production" }), {
       status: 403,
       headers: { "Content-Type": "application/json" },

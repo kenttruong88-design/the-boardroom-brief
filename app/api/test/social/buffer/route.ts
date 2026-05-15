@@ -4,7 +4,7 @@ import { getBufferProfiles, getBufferUser } from "@/app/lib/social/buffer-client
 const EXPECTED_PLATFORMS = ["linkedin", "twitter", "instagram"] as const;
 
 export async function GET() {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return NextResponse.json({ error: "Test routes are disabled in production" }, { status: 403 });
   }
 

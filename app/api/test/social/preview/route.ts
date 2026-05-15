@@ -50,7 +50,7 @@ async function checkUrl(url: string): Promise<boolean> {
 }
 
 export async function GET(req: Request) {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.ENABLE_TEST_ROUTES) {
     return NextResponse.json({ error: "Test routes are disabled in production" }, { status: 403 });
   }
 
