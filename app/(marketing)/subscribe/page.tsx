@@ -1,138 +1,190 @@
-"use client";
+import Link from "next/link";
+import SubscribeForm from "@/app/components/newsletter/SubscribeForm";
+import { getLatestArticles } from "@/app/lib/queries";
+import { createAdminClient } from "@/app/lib/supabase-server";
 
-import { useState } from "react";
-import { Mail, Check } from "lucide-react";
+export const revalidate = 300;
 
-export default function SubscribePage() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMsg("");
-
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "subscribe-page" }),
-      });
-      const data = await res.json() as { message?: string; error?: string };
-
-      if (!res.ok) {
-        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
-        setStatus("error");
-      } else {
-        setStatus("success");
-      }
-    } catch {
-      setErrorMsg("Something went wrong. Please try again.");
-      setStatus("error");
-    }
+async function getSubscriberCount(): Promise<number> {
+  try {
+    const supabase = createAdminClient();
+    const { count } = await supabase
+      .from("subscribers")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "confirmed");
+    return count ?? 0;
+  } catch {
+    return 0;
   }
+}
+
+export default async function SubscribePage() {
+  const [subscriberCount, latestArticles] = await Promise.all([
+    getSubscriberCount(),
+    getLatestArticles(1),
+  ]);
+
+  const sampleArticle = latestArticles[0] ?? null;
 
   return (
     <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
-      <div className="container-editorial py-20">
+      <div className="container-editorial py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
 
-        {/* Header */}
-        <div className="text-center mb-12 max-w-2xl mx-auto">
-          <p className="eyebrow mb-3">Daily Newsletter</p>
-          <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-4" style={{ color: "var(--navy)" }}>
-            Five stories. Every morning. Free.
-          </h1>
-          <p className="text-lg font-sans" style={{ color: "var(--ink-m)" }}>
-            The Alignment Times delivers economic intelligence across five continents — markets, policy, and power — straight to your inbox before the market opens.
-          </p>
-        </div>
+          {/* ── Left column: 60% ─────────────────────────────────────────── */}
+          <div className="lg:col-span-3">
+            <p className="eyebrow mb-4">The Morning Brief</p>
+            <h1
+              className="text-4xl sm:text-5xl font-serif font-bold leading-tight mb-5"
+              style={{ color: "var(--navy)" }}
+            >
+              The business news your colleagues are already reading.
+            </h1>
+            <p
+              className="text-lg font-sans leading-relaxed mb-10"
+              style={{ color: "var(--ink-m)" }}
+            >
+              Daily financial satire for senior professionals. Real markets,
+              real news, served with a dry corporate twist.
+            </p>
 
-        {/* Form card */}
-        <div className="max-w-md mx-auto">
-          {status === "success" ? (
-            <div className="text-center p-10" style={{ background: "var(--navy)" }}>
-              <div
-                className="w-14 h-14 flex items-center justify-center mx-auto mb-5"
-                style={{ background: "var(--red)", borderRadius: "2px" }}
-              >
-                <Mail className="w-7 h-7 text-white" />
-              </div>
-              <h2 className="text-2xl font-serif font-bold mb-3" style={{ color: "var(--cream)" }}>
-                Check your inbox
-              </h2>
-              <p className="text-sm font-sans" style={{ color: "rgba(245,240,232,0.7)" }}>
-                We sent a confirmation link to <strong style={{ color: "var(--cream)" }}>{email}</strong>. Click it to activate your subscription.
-              </p>
+            {/* What you get */}
+            <div className="mb-10">
+              <p className="eyebrow-muted mb-5">Every weekday morning:</p>
+              <ul className="space-y-3">
+                {[
+                  {
+                    icon: "📈",
+                    label: "Market snapshot",
+                    desc: "Key indices before you open Slack",
+                  },
+                  {
+                    icon: "📰",
+                    label: "3–5 articles",
+                    desc: "Across our 5 coverage pillars",
+                  },
+                  {
+                    icon: "☕",
+                    label: "One Water Cooler item",
+                    desc: "Safe to share in the group chat",
+                  },
+                  {
+                    icon: "✉️",
+                    label: "In your inbox by 7:30 AM UTC",
+                    desc: "",
+                  },
+                ].map((item) => (
+                  <li key={item.label} className="flex items-start gap-3">
+                    <span className="text-lg leading-snug flex-shrink-0">
+                      {item.icon}
+                    </span>
+                    <span className="text-base font-sans" style={{ color: "var(--ink)" }}>
+                      <strong>{item.label}</strong>
+                      {item.desc && (
+                        <span style={{ color: "var(--ink-m)" }}>
+                          {" "}
+                          — {item.desc}
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ) : (
-            <div className="p-8" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="eyebrow-muted block mb-2">Your email address</label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    required
-                    className="w-full text-base font-sans px-4 py-3 outline-none"
-                    style={{
-                      background: "var(--cream)",
-                      border: "1px solid var(--border)",
-                      color: "var(--ink)",
-                      borderRadius: "2px",
-                    }}
-                  />
-                </div>
 
-                {status === "error" && (
-                  <p className="text-sm font-sans" style={{ color: "var(--red)" }}>{errorMsg}</p>
-                )}
+            {/* Social proof */}
+            {subscriberCount > 0 && (
+              <p className="text-sm font-sans mb-10" style={{ color: "var(--ink-m)" }}>
+                <span style={{ color: "var(--navy)", fontWeight: 600 }}>
+                  Join {subscriberCount.toLocaleString()} professionals
+                </span>{" "}
+                who start their morning here.
+              </p>
+            )}
 
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="btn-red w-full flex items-center justify-center gap-2 disabled:opacity-60"
+            {/* Sample article card */}
+            {sampleArticle && (
+              <div>
+                <p className="eyebrow-muted mb-3">Latest from the Brief</p>
+                <Link
+                  href={`/${sampleArticle.pillar?.slug?.current ?? "markets-floor"}/${sampleArticle.slug.current}`}
+                  className="block group"
                 >
-                  <Mail className="w-4 h-4" />
-                  {status === "loading" ? "Subscribing…" : "Subscribe — it's free"}
-                </button>
-              </form>
-
-              <p className="text-xs font-sans text-center mt-4" style={{ color: "var(--ink-m)" }}>
-                No spam. No paid tiers. Unsubscribe any time.
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* What you get */}
-        <div className="max-w-2xl mx-auto mt-16">
-          <div className="rule-thick mb-8" />
-          <h2 className="text-xl font-serif font-bold mb-6 text-center" style={{ color: "var(--navy)" }}>
-            What's in every edition
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { title: "Markets Floor", body: "Indices, forex, and commodities — what moved and why." },
-              { title: "C-Suite Circus", body: "Executive moves, boardroom strategy, and corporate theatre." },
-              { title: "Global Office", body: "International business, geopolitics, and trade." },
-              { title: "Water Cooler", body: "Corporate culture and workplace absurdity, served dry." },
-              { title: "Off The Record", body: "Podcast picks — unfiltered conversations on leadership." },
-              { title: "5 Continents", body: "One macro signal per region, every morning." },
-            ].map((item) => (
-              <div key={item.title} className="flex items-start gap-3 p-4" style={{ border: "1px solid var(--border)" }}>
-                <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "var(--red)" }} />
-                <div>
-                  <p className="text-sm font-sans font-semibold" style={{ color: "var(--navy)" }}>{item.title}</p>
-                  <p className="text-sm font-sans mt-0.5" style={{ color: "var(--ink-m)" }}>{item.body}</p>
-                </div>
+                  <div
+                    className="p-5 transition-colors"
+                    style={{
+                      border: "1px solid var(--border)",
+                      background: "var(--surface)",
+                    }}
+                  >
+                    <span
+                      className="eyebrow mb-2 inline-block"
+                      style={{ color: "var(--red)" }}
+                    >
+                      {sampleArticle.pillar?.name ?? "Markets Floor"}
+                    </span>
+                    <h3
+                      className="font-serif font-bold text-lg leading-snug mb-2 group-hover:opacity-70 transition-opacity"
+                      style={{ color: "var(--navy)" }}
+                    >
+                      {sampleArticle.title}
+                    </h3>
+                    {sampleArticle.satiricalHeadline && (
+                      <p
+                        className="font-serif italic text-sm"
+                        style={{ color: "var(--red)" }}
+                      >
+                        {sampleArticle.satiricalHeadline}
+                      </p>
+                    )}
+                    <p className="text-xs font-sans mt-2 group-hover:opacity-70 transition-opacity" style={{ color: "var(--red)" }}>
+                      Read this article →
+                    </p>
+                  </div>
+                </Link>
               </div>
-            ))}
+            )}
           </div>
-        </div>
 
+          {/* ── Right column: 40% ────────────────────────────────────────── */}
+          <div className="lg:col-span-2">
+            <div className="lg:sticky lg:top-6">
+              <div
+                className="p-8"
+                style={{ background: "var(--navy)", borderRadius: "2px" }}
+              >
+                <p
+                  className="eyebrow-gold mb-3"
+                  style={{ color: "var(--gold)" }}
+                >
+                  Free newsletter
+                </p>
+                <h2
+                  className="font-serif font-bold text-xl mb-2"
+                  style={{ color: "var(--cream)" }}
+                >
+                  Start tomorrow morning.
+                </h2>
+                <p
+                  className="text-sm font-sans mb-6"
+                  style={{ color: "rgba(245,240,232,0.6)" }}
+                >
+                  One email. Five stories. No noise.
+                </p>
+
+                <SubscribeForm source="subscribe-page" dark />
+
+                <p
+                  className="text-xs font-sans text-center mt-5"
+                  style={{ color: "rgba(245,240,232,0.3)" }}
+                >
+                  No spam. Unsubscribe anytime. GDPR compliant.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PILLARS } from "@/app/lib/mock-data";
+import SubscribeForm from "@/app/components/newsletter/SubscribeForm";
 
 export default function Footer() {
   return (
@@ -85,24 +86,7 @@ export default function Footer() {
             >
               The five stories every executive needs before 8am. Free, always.
             </p>
-            <form className="space-y-2">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="w-full text-sm font-sans px-4 py-2.5 outline-none transition-colors"
-                style={{
-                  background: "rgba(255,255,255,0.07)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  color: "var(--cream)",
-                }}
-              />
-              <button
-                type="submit"
-                className="w-full btn-red text-center"
-              >
-                Get the brief
-              </button>
-            </form>
+            <SubscribeForm compact source="footer" />
           </div>
         </div>
 

@@ -8,6 +8,7 @@ import { getArticleBySlug as getSanityArticle } from "@/app/lib/queries";
 import ArticleReadTracker from "@/app/components/ArticleReadTracker";
 import CommentSection from "@/app/components/comments/CommentSection";
 import { getCommentCounts } from "@/app/lib/comment-counts";
+import SubscribeForm from "@/app/components/newsletter/SubscribeForm";
 
 export const revalidate = 60;
 
@@ -266,6 +267,28 @@ export default async function ArticlePage({ params }: Props) {
               <p>
                 For executives navigating capital allocation decisions, the message is clear: cost of capital is normalising at higher levels than the post-GFC era. Balance sheet discipline and cash flow visibility are being rewarded by investors in ways not seen since the early 2000s.
               </p>
+
+              {/* In-article subscribe prompt */}
+              <div
+                className="my-8 p-6"
+                style={{ background: "var(--navy)", borderRadius: "2px" }}
+              >
+                <p className="eyebrow-gold mb-1" style={{ color: "var(--gold)" }}>
+                  The Morning Brief
+                </p>
+                <p
+                  className="font-serif font-bold text-base mb-4"
+                  style={{ color: "var(--cream)" }}
+                >
+                  Enjoying this? Get it in your inbox.
+                </p>
+                <SubscribeForm
+                  source="article"
+                  articleSlug={slug}
+                  compact={false}
+                  dark
+                />
+              </div>
               <p>
                 Companies that locked in long-duration debt at pandemic-era rates have a meaningful competitive advantage. That window is now closed. The remaining question is not whether rates come down, but how slowly.
               </p>
