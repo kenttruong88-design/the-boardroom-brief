@@ -87,10 +87,10 @@ export default function RootLayout({
               <LazyLoginModal />
 
               <div className="min-h-screen flex flex-col">
-                <Header />
-
-                {/* TickerBar — lazy, client-only; market data is always live */}
+                {/* TickerBar — above the masthead, client-only */}
                 <LazyTickerBar />
+
+                <Header />
 
                 <main className="flex-1">
                   {children}

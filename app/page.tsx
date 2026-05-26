@@ -1,5 +1,4 @@
 import Link from "next/link";
-import MarketTicker from "@/app/components/MarketTicker";
 import EconomySelector from "@/app/components/EconomySelector";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, CONTINENTS, formatDateShort } from "@/app/lib/mock-data";
 import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
@@ -95,8 +94,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <MarketTicker />
-
       <main style={{ background: "var(--cream)" }}>
         <div className="container-editorial py-8">
 

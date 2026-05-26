@@ -5,11 +5,9 @@ import { useState } from "react";
 import { Menu, X, Sun, Moon, Search } from "lucide-react";
 import { NAV_LINKS } from "@/app/lib/nav";
 import { useTheme } from "@/app/components/ThemeProvider";
-import { useAuth } from "@/app/components/auth/AuthProvider";
 
 export default function Header() {
   const { darkMode, toggleDark } = useTheme();
-  const { user, openLogin } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -39,7 +37,7 @@ export default function Header() {
               className="font-headline font-black text-navy-500 dark:text-cream-100 tracking-tight leading-none block hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
               style={{ fontSize: "clamp(1.5rem, 4vw, 2.25rem)" }}
             >
-              The Boardroom Brief
+              The Alignment Times
             </span>
           </Link>
 
@@ -59,21 +57,6 @@ export default function Header() {
             >
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            {user ? (
-              <Link
-                href="/account"
-                className="hidden sm:inline-flex items-center font-body text-xs font-bold tracking-widest uppercase px-3 py-1.5 border border-navy-500 dark:border-cream-200 text-navy-500 dark:text-cream-100 no-underline hover:bg-navy-500 hover:text-cream-100 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
-              >
-                Account
-              </Link>
-            ) : (
-              <button
-                onClick={openLogin}
-                className="hidden sm:inline-flex items-center font-body text-xs font-bold tracking-widest uppercase px-3 py-1.5 border border-navy-500 dark:border-cream-200 text-navy-500 dark:text-cream-100 hover:bg-navy-500 hover:text-cream-100 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
-              >
-                Sign in
-              </button>
-            )}
             <Link
               href="/subscribe"
               className="inline-flex items-center font-body text-xs font-bold tracking-widest uppercase px-3 py-1.5 bg-red-500 text-cream-100 no-underline hover:bg-navy-500 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
@@ -131,15 +114,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-3 flex gap-2">
-              {!user && (
-                <button
-                  onClick={() => { openLogin(); setMobileOpen(false); }}
-                  className="flex-1 font-body text-xs font-bold tracking-widest uppercase py-2.5 border border-navy-500 dark:border-cream-200 text-navy-500 dark:text-cream-100 hover:bg-navy-500 hover:text-cream-100 transition-colors duration-[120ms]"
-                >
-                  Sign in
-                </button>
-              )}
+            <div className="pt-3">
               <Link
                 href="/subscribe"
                 onClick={() => setMobileOpen(false)}
