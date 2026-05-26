@@ -118,6 +118,15 @@ const config: Config = {
         rule:       "#d4cebe",
         "rule-dark": "#2d3d4d",
       },
+      keyframes: {
+        "ticker-scroll": {
+          from: { transform: "translateX(0)" },
+          to:   { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        ticker: "ticker-scroll 45s linear infinite",
+      },
     },
   },
   plugins: [],
