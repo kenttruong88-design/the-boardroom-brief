@@ -6,6 +6,7 @@ import {
   Share2,
   FlaskConical,
   LayoutGrid,
+  Mail,
 } from "lucide-react";
 
 const LINKS = [
@@ -26,6 +27,12 @@ const LINKS = [
     icon: MessageSquare,
     label: "Comments",
     description: "Moderate reader comments",
+  },
+  {
+    href: "/newsletter",
+    icon: Mail,
+    label: "Newsletter",
+    description: "Subscriber stats, send history, and email test lab",
   },
   {
     href: "/social",
