@@ -9,5 +9,5 @@ export const NAV_LINKS: NavLink[] = [
   { label: "C-Suite Circus", href: "/c-suite-circus" },
   { label: "Global Office",  href: "/global-office" },
   { label: "Water Cooler",   href: "/water-cooler" },
-  { label: "Economies",      href: "/economies" },
+  { label: "Off the Record", href: "/off-the-record" },
 ];
