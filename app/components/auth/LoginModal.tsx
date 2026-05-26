@@ -3,13 +3,17 @@
 import { useState } from "react";
 import { X, Mail, Link2, Globe } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
+import { useAuth } from "@/app/components/auth/AuthProvider";
 
 interface Props {
-  open: boolean;
-  onClose: () => void;
+  open?: boolean;
+  onClose?: () => void;
 }
 
-export default function LoginModal({ open, onClose }: Props) {
+export default function LoginModal({ open: openProp, onClose: onCloseProp }: Props = {}) {
+  const auth = useAuth();
+  const open    = openProp    ?? auth.loginOpen;
+  const onClose = onCloseProp ?? auth.closeLogin;
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
