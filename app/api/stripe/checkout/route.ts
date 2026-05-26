@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, ipKey } from "@/app/lib/rate-limit";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
 export async function POST(req: NextRequest) {
+  if (!rateLimit(ipKey(req, "stripe:checkout"), 5, 10 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many requests." }, { status: 429 });
+  }
+
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   if (!stripeKey) {
     return NextResponse.json({ error: "Stripe not configured" }, { status: 503 });

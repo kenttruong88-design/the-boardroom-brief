@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/app/lib/supabase-server";
+import { requireAuth } from "@/app/api/editorial/_helpers";
 
 export async function GET(req: Request) {
+  const auth = await requireAuth();
+  if (auth instanceof NextResponse) return auth;
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status") ?? "all";
   const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10));

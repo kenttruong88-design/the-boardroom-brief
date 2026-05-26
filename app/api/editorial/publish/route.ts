@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { writeClient } from "@/app/lib/sanity";
 import type { ArticleDraft } from "@/app/lib/agents/types";
+import { requireAuth } from "@/app/api/editorial/_helpers";
 
 function slugify(text: string) {
   return text
@@ -11,6 +12,9 @@ function slugify(text: string) {
 }
 
 export async function POST(req: Request) {
+  const auth = await requireAuth();
+  if (auth instanceof NextResponse) return auth;
+
   if (!writeClient) {
     return NextResponse.json({ error: "Sanity write client not configured" }, { status: 500 });
   }

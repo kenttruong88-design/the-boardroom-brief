@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { callClaude, parseJSON } from "@/app/lib/claude";
+import { rateLimit, ipKey } from "@/app/lib/rate-limit";
 
 const SYSTEM_PROMPT = `You are an SEO specialist for a financial news publication. Generate metadata that balances search intent with the site's editorial voice.`;
 
@@ -10,6 +11,10 @@ interface SeoResult {
 }
 
 export async function POST(req: Request) {
+  if (!rateLimit(ipKey(req, "ai:seo"), 20, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many requests." }, { status: 429 });
+  }
+
   try {
     const { headline, satiricalHeadline, excerpt, pillar, countries } = await req.json() as {
       headline: string;

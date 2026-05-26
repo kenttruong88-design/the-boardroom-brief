@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
 import { callClaude, parseJSON } from "@/app/lib/claude";
+import { rateLimit, ipKey } from "@/app/lib/rate-limit";
 
 const SYSTEM_PROMPT = `You are the headline writer for The Alignment Times, a financial news site with a dry, satirical corporate culture twist. Your headlines acknowledge real financial news while adding a wry observation about office life, corporate-speak, or professional absurdity. Tone: The Economist meets The Onion. Safe for professional sharing. Never crude. Always informed. The humor should make a CFO chuckle, not cringe.`;
 
 export async function POST(req: Request) {
+  if (!rateLimit(ipKey(req, "ai:headlines"), 20, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many requests." }, { status: 429 });
+  }
+
   try {
     const { headline, excerpt, pillar, countries } = await req.json() as {
       headline: string;

@@ -4,12 +4,17 @@ import { randomBytes } from "crypto";
 import { Resend } from "resend";
 import { render } from "@react-email/components";
 import NewsletterConfirmation from "@/emails/newsletter-confirmation";
+import { rateLimit, ipKey } from "@/app/lib/rate-limit";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 export async function POST(req: Request) {
+  if (!rateLimit(ipKey(req, "subscribe"), 5, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+  }
+
   try {
     const body = await req.json();
     const { email, firstName, segments, source, sourceArticleSlug } = body as {
