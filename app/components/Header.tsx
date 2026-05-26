@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, Sun, Moon, Search } from "lucide-react";
 import { NAV_LINKS } from "@/app/lib/nav";
 import { useTheme } from "@/app/components/ThemeProvider";
+import SearchOverlay from "@/app/components/SearchOverlay";
 
 export default function Header() {
   const { darkMode, toggleDark } = useTheme();
@@ -13,7 +14,18 @@ export default function Header() {
   const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
+
+  // Cmd+K / Ctrl+K opens search from anywhere on the page
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <header className={`bg-cream-100 dark:bg-navy-500 sticky top-0 z-40${isHome ? " border-b-2 border-navy-500 dark:border-cream-200" : ""}`}>
@@ -49,7 +61,8 @@ export default function Header() {
             <button
               onClick={() => setSearchOpen(true)}
               className="p-1 text-ink-muted dark:text-cream-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
-              aria-label="Search"
+              aria-label="Search (⌘K)"
+              title="Search (⌘K)"
             >
               <Search className="w-4 h-4" />
             </button>
@@ -131,34 +144,7 @@ export default function Header() {
       )}
 
       {/* ── Search overlay ────────────────────────────────────────── */}
-      {searchOpen && (
-        <div
-          className="fixed inset-0 z-50 flex flex-col"
-          style={{ background: "rgba(15,25,35,0.8)" }}
-          onClick={(e) => e.target === e.currentTarget && setSearchOpen(false)}
-        >
-          <div className="bg-cream-100 dark:bg-navy-500 border-b border-rule dark:border-rule-dark">
-            <div className="site-container py-4 flex items-center gap-3">
-              <Search className="w-5 h-5 shrink-0 text-ink-muted dark:text-cream-300" />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search articles…"
-                autoFocus
-                className="flex-1 font-body text-base bg-transparent text-ink dark:text-cream-100 placeholder:text-ink-faint dark:placeholder:text-cream-500 outline-none"
-                onKeyDown={(e) => e.key === "Escape" && setSearchOpen(false)}
-              />
-              <button
-                onClick={() => setSearchOpen(false)}
-                className="text-ink-muted dark:text-cream-300 hover:text-red-500 transition-colors duration-[120ms]"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }
