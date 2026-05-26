@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+﻿import Anthropic from "@anthropic-ai/sdk";
 import { MODELS, logClaudeUsage } from "./claude";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -11,7 +11,7 @@ export interface ModerationResult {
   reason: string;
 }
 
-const SYSTEM = `You are a comment moderator for The Boardroom Brief, a satirical business news site. Evaluate each comment and return a JSON object — nothing else.
+const SYSTEM = `You are a comment moderator for The Alignment Times, a satirical business news site. Evaluate each comment and return a JSON object — nothing else.
 
 Rules:
 - Approve thoughtful, on-topic, or witty comments even if critical

@@ -1,4 +1,4 @@
-import {
+﻿import {
   Body,
   Button,
   Container,
@@ -34,7 +34,7 @@ export default function CommentReply({
   replyAuthorName = "Another reader",
   replyBody = "Their reply here.",
   articleTitle = "Article Title",
-  articleUrl = "https://theboardroombrief.com",
+  articleUrl = "https://alignmenttimes.com",
   commentId = "",
 }: CommentReplyProps) {
   const readUrl = commentId ? `${articleUrl}#comment-${commentId}` : articleUrl;
@@ -42,14 +42,14 @@ export default function CommentReply({
   return (
     <Html lang="en">
       <Head />
-      <Preview>{replyAuthorName} replied to your comment on The Boardroom Brief</Preview>
+      <Preview>{replyAuthorName} replied to your comment on The Alignment Times</Preview>
       <Body style={{ backgroundColor: CREAM, fontFamily: "Georgia, 'Times New Roman', serif", margin: 0, padding: 0 }}>
         <Container style={{ maxWidth: "600px", margin: "0 auto", backgroundColor: CREAM }}>
 
           {/* Masthead */}
           <Section style={{ backgroundColor: NAVY, padding: "24px 24px", borderBottom: `3px solid ${RED}` }}>
             <Heading style={{ color: CREAM, fontSize: "22px", fontFamily: "Georgia, serif", margin: "0 0 4px", fontWeight: "700" }}>
-              The Boardroom Brief
+              The Alignment Times
             </Heading>
             <Text style={{ color: "rgba(245,240,232,0.5)", fontSize: "11px", fontFamily: "Arial, sans-serif", margin: 0, textTransform: "uppercase", letterSpacing: "0.08em" }}>
               Comment Notification
@@ -113,7 +113,7 @@ export default function CommentReply({
           {/* Footer */}
           <Section style={{ padding: "16px 24px", backgroundColor: "#e8e2d8", borderTop: `1px solid ${BORDER}` }}>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: "0 0 4px" }}>
-              You received this because you commented on The Boardroom Brief.
+              You received this because you commented on The Alignment Times.
             </Text>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
               To stop receiving reply notifications, update your{" "}

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { render } from "@react-email/components";
 import { assembleMorningBrief } from "@/app/lib/newsletter/content-assembler";
@@ -45,7 +45,7 @@ export async function GET(req: Request) {
 
   const resend = new Resend(resendKey);
   const { data, error } = await resend.emails.send({
-    from: `${process.env.FROM_NAME ?? "The Boardroom Brief"} <${process.env.FROM_EMAIL ?? "onboarding@resend.dev"}>`,
+    from: `${process.env.FROM_NAME ?? "The Alignment Times"} <${process.env.FROM_EMAIL ?? "onboarding@resend.dev"}>`,
     to: [email],
     subject: `[TEST] ${content.subject}`,
     html,

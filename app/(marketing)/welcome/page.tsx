@@ -1,11 +1,11 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 
 interface Props {
   searchParams: Promise<{ subscribed?: string; email?: string }>;
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
 
 export default async function WelcomePage({ searchParams }: Props) {
   const params = await searchParams;
@@ -63,7 +63,7 @@ export default async function WelcomePage({ searchParams }: Props) {
                     },
                     {
                       step: "2",
-                      text: "Add brief@theboardroombrief.com to your contacts so we don't land in spam.",
+                      text: "Add hello@alignmenttimes.com to your contacts so we don't land in spam.",
                     },
                     {
                       step: "3",
@@ -106,7 +106,7 @@ export default async function WelcomePage({ searchParams }: Props) {
               >
                 <p className="eyebrow-muted mb-2">Know someone who&apos;d enjoy this?</p>
                 <p className="text-sm font-sans mb-4" style={{ color: "var(--ink-m)" }}>
-                  Share The Boardroom Brief with a colleague.
+                  Share The Alignment Times with a colleague.
                 </p>
                 <a
                   href={shareUrl}
@@ -127,7 +127,7 @@ export default async function WelcomePage({ searchParams }: Props) {
                   className="text-4xl font-serif font-bold mb-4"
                   style={{ color: "var(--navy)" }}
                 >
-                  Welcome to The Boardroom Brief.
+                  Welcome to The Alignment Times.
                 </h1>
                 <p className="text-lg font-sans mb-8" style={{ color: "var(--ink-m)" }}>
                   Daily financial news with a dry corporate culture twist.

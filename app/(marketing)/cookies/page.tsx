@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import EditorialPage from "@/app/components/editorial-page/EditorialPage";
 
 const LAST_UPDATED = "26 May 2026";
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@boardroombrief.com";
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@alignmenttimes.com";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | The Boardroom Brief",
-  description: "A complete and honest list of the cookies used by The Boardroom Brief.",
+  title: "Cookie Policy | The Alignment Times",
+  description: "A complete and honest list of the cookies used by The Alignment Times.",
   robots: { index: false, follow: false },
 };
 

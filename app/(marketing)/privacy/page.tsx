@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import EditorialPage from "@/app/components/editorial-page/EditorialPage";
 
 const LAST_UPDATED = "26 May 2026";
 
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@boardroombrief.com";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://boardroombrief.com";
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@alignmenttimes.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | The Boardroom Brief",
-  description: "How The Boardroom Brief collects, uses, and protects your personal data.",
+  title: "Privacy Policy | The Alignment Times",
+  description: "How The Alignment Times collects, uses, and protects your personal data.",
   robots: { index: false, follow: false },
 };
 
@@ -39,13 +39,13 @@ export default function PrivacyPage() {
         <section id="who-we-are">
           <h2>1. Who we are</h2>
           <p>
-            The Boardroom Brief is an independent financial news publication operating at{" "}
+            The Alignment Times is an independent financial news publication operating at{" "}
             <a href={SITE_URL} target="_blank" rel="noopener noreferrer">{SITE_URL}</a>.
             We cover business news, financial markets, and corporate culture across the
             world&apos;s 30 largest economies.
           </p>
           <p>
-            For data protection purposes, The Boardroom Brief is the data controller.
+            For data protection purposes, The Alignment Times is the data controller.
             If you have any questions about how we handle your data, contact us at{" "}
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
           </p>
@@ -134,7 +134,7 @@ export default function PrivacyPage() {
 
         <section id="third-parties">
           <h2>6. Third-party services</h2>
-          <p>We use the following services to operate The Boardroom Brief:</p>
+          <p>We use the following services to operate The Alignment Times:</p>
           <ul>
             <li>
               <strong>Supabase</strong> (database and authentication) —{" "}
@@ -252,7 +252,7 @@ export default function PrivacyPage() {
         <section id="contact">
           <h2>11. Contact</h2>
           <p>
-            <strong>Data controller:</strong> The Boardroom Brief
+            <strong>Data controller:</strong> The Alignment Times
             <br />
             <strong>Email:</strong>{" "}
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>

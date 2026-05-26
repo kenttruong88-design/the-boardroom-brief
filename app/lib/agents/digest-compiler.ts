@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+﻿import { Resend } from "resend";
 import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { generateApprovalTokens } from "@/app/lib/approval-tokens";
@@ -66,7 +66,7 @@ export async function sendDailyDigestEmail(digest: DailyDigest): Promise<void> {
   const html = await render(DailyDigestEmail({ digest, siteUrl, approvalTokens }));
 
   const passedCount = digest.passedArticles;
-  const subject = `[${passedCount} article${passedCount !== 1 ? "s" : ""} ready] Boardroom Brief digest — ${digest.date}`;
+  const subject = `[${passedCount} article${passedCount !== 1 ? "s" : ""} ready] Alignment Times digest — ${digest.date}`;
 
   const resend = new Resend(resendKey);
   const { error } = await resend.emails.send({

@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+﻿import Anthropic from "@anthropic-ai/sdk";
 import { EDITOR_IN_CHIEF_PERSONA } from "@/app/lib/agents/editor";
 import { callClaude, parseJSON, MODELS } from "@/app/lib/claude";
 import { PLATFORM_RULES } from "./platform-rules";
@@ -31,7 +31,7 @@ export async function reviewSocialPost(
     ? `\nHASHTAGS: ${hashtags.map((h) => `#${h}`).join(" ")}`
     : "";
 
-  const userPrompt = `Review this ${platform} social media post for The Boardroom Brief.
+  const userPrompt = `Review this ${platform} social media post for The Alignment Times.
 
 PLATFORM: ${platform}
 ARTICLE HEADLINE: ${articleHeadline}
@@ -40,7 +40,7 @@ ${content}${hashtagLine}
 
 Score across five dimensions (1-10 each). Apply the same editorial standards as articles, adapted for social media:
 
-- Tone (1-10): Does it match The Boardroom Brief voice for ${platform}? Dry, informed, professionally safe — The Economist meets The Onion.
+- Tone (1-10): Does it match The Alignment Times voice for ${platform}? Dry, informed, professionally safe — The Economist meets The Onion.
 - Accuracy (1-10): Are all facts grounded in the article? No invented claims.
 - Hook quality (1-10): Does the opening line stop the scroll? Would a CFO pause mid-feed?
 - Satirical sharpness (1-10): Is the humour intelligent and earned? Punches at institutions, never individuals.

@@ -1,4 +1,4 @@
-import {
+﻿import {
   Body,
   Button,
   Container,
@@ -33,11 +33,11 @@ interface Props {
 
 export default function NewsletterWelcome({
   firstName,
-  preferencesUrl = "https://theboardroombrief.com/preferences",
+  preferencesUrl = "https://alignmenttimes.com/preferences",
   sampleArticle = {
     headline: "Fed Holds Rates, Signals Caution, Refuses to Commit to Anything Specific",
     satiricalHeadline: "Central bank opts for maximum optionality, minimum clarity.",
-    url: "https://theboardroombrief.com",
+    url: "https://alignmenttimes.com",
   },
 }: Props) {
   const headline = firstName
@@ -47,14 +47,14 @@ export default function NewsletterWelcome({
   return (
     <Html lang="en">
       <Head />
-      <Preview>Welcome to The Boardroom Brief. The quarterly review starts Monday.</Preview>
+      <Preview>Welcome to The Alignment Times. The quarterly review starts Monday.</Preview>
       <Body style={{ backgroundColor: CREAM, fontFamily: "Georgia, 'Times New Roman', serif", margin: 0, padding: 0 }}>
         <Container style={{ maxWidth: "600px", margin: "0 auto", backgroundColor: CREAM }}>
 
           {/* Masthead */}
           <Section style={{ backgroundColor: NAVY, padding: "28px 24px 24px", borderBottom: `3px solid ${RED}` }}>
             <Text style={{ color: GOLD, fontSize: "10px", fontFamily: "Arial, sans-serif", letterSpacing: "3px", textTransform: "uppercase", margin: "0 0 10px" }}>
-              The Boardroom Brief
+              The Alignment Times
             </Text>
             <Heading style={{ color: CREAM, fontSize: "30px", fontFamily: "Georgia, serif", margin: "0 0 6px", fontWeight: "700", letterSpacing: "-0.5px" }}>
               Welcome to the Brief
@@ -135,7 +135,7 @@ export default function NewsletterWelcome({
               Avoid the spam folder
             </Text>
             <Text style={{ color: "#333", fontSize: "13px", fontFamily: "Arial, sans-serif", lineHeight: "1.6", margin: 0 }}>
-              Add <strong>brief@theboardroombrief.com</strong> to your contacts. It takes 10 seconds and ensures the Brief lands in your inbox, not the quarterly bin.
+              Add <strong>hello@alignmenttimes.com</strong> to your contacts. It takes 10 seconds and ensures the Brief lands in your inbox, not the quarterly bin.
             </Text>
           </Section>
 
@@ -144,12 +144,12 @@ export default function NewsletterWelcome({
             <Text style={{ color: MUTED, fontSize: "11px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: "0 0 8px" }}>
               <Link href={preferencesUrl} style={{ color: MUTED, textDecoration: "underline" }}>Manage preferences</Link>
               {"  ·  "}
-              <Link href="https://theboardroombrief.com/unsubscribe" style={{ color: MUTED, textDecoration: "underline" }}>Unsubscribe</Link>
+              <Link href="https://alignmenttimes.com/unsubscribe" style={{ color: MUTED, textDecoration: "underline" }}>Unsubscribe</Link>
               {"  ·  "}
-              <Link href="https://theboardroombrief.com" style={{ color: MUTED, textDecoration: "underline" }}>Visit site</Link>
+              <Link href="https://alignmenttimes.com" style={{ color: MUTED, textDecoration: "underline" }}>Visit site</Link>
             </Text>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
-              © {new Date().getFullYear()} The Boardroom Brief. All rights reserved.
+              © {new Date().getFullYear()} The Alignment Times. All rights reserved.
             </Text>
           </Section>
 

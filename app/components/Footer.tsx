@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -47,7 +47,7 @@ export default function Footer() {
                   className="font-headline font-black text-cream-100 tracking-tight leading-none block transition-colors duration-[120ms] group-hover:text-red-400"
                   style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.875rem)" }}
                 >
-                  The Boardroom Brief
+                  The Alignment Times
                 </span>
               </Link>
               <div className="mt-3 h-px bg-rule-dark" />
@@ -59,13 +59,13 @@ export default function Footer() {
             </p>
 
             <p className="font-body text-sm text-cream-400 leading-relaxed max-w-xs">
-              The Boardroom Brief is a satirical publication. Any resemblance
+              The Alignment Times is a satirical publication. Any resemblance
               to actual financial advice is purely coincidental and frankly
               alarming.
             </p>
 
             <p className="font-data text-[11px] text-cream-500 tracking-wide leading-relaxed">
-              © {year} The Boardroom Brief. All rights reserved.<br />
+              © {year} The Alignment Times. All rights reserved.<br />
               Independent financial news with a corporate twist.
             </p>
           </div>

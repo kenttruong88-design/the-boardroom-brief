@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -256,7 +256,7 @@ function SendRow({ send }: { send: Send }) {
         <td className="py-3 px-3 max-w-xs">
           <span className="text-xs font-sans" style={{ color: "var(--ink)" }}>
             {send.subject
-              ? send.subject.replace(" | The Boardroom Brief", "")
+              ? send.subject.replace(" | The Alignment Times", "")
               : <span style={{ color: "var(--ink-m)" }}>—</span>}
           </span>
         </td>

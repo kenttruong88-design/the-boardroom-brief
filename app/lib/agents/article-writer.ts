@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+﻿import Anthropic from "@anthropic-ai/sdk";
 import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { generateArticleImage } from "./image-generator";
 import type { AgentPersona, TopicBrief, ArticleDraft } from "./types";
@@ -17,9 +17,9 @@ export async function writeArticle(
 
   const writeSystem = `${persona.systemPrompt}
 
-You are now in WRITING mode. Write the full article based on the brief provided. Write in your established voice. Be specific — use the data points provided. Do not pad. Do not hedge unnecessarily. The Boardroom Brief reader is smart and busy.`;
+You are now in WRITING mode. Write the full article based on the brief provided. Write in your established voice. Be specific — use the data points provided. Do not pad. Do not hedge unnecessarily. The Alignment Times reader is smart and busy.`;
 
-  const writeUser = `Write a full article for The Boardroom Brief.
+  const writeUser = `Write a full article for The Alignment Times.
 
 Section: ${persona.pillar}
 Working title: ${topic.title}

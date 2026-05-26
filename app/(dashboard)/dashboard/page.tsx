@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import {
   Newspaper,
   Rss,
@@ -55,7 +55,7 @@ export default function DashboardPage() {
           className="text-3xl font-serif font-bold mb-1"
           style={{ color: "var(--navy)" }}
         >
-          The Boardroom Brief
+          The Alignment Times
         </h1>
         <p
           className="text-sm font-sans mb-10"

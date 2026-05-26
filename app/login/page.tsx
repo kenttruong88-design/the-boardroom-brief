@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -96,7 +96,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
           <p className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: "var(--ink-m)" }}>
-            The Boardroom Brief
+            The Alignment Times
           </p>
           <h1 className="text-2xl font-serif font-bold" style={{ color: "var(--navy)" }}>
             Editorial Access

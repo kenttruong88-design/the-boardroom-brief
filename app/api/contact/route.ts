@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import { Resend } from "resend";
 import { adminClient } from "@/app/lib/supabase/admin";
@@ -118,9 +118,9 @@ export async function POST(request: NextRequest) {
   const editorEmail =
     process.env.EDITOR_EMAIL ??
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ??
-    "hello@boardroombrief.com";
+    "hello@alignmenttimes.com";
 
-  const fromAddress = "The Boardroom Brief <brief@boardroombrief.com>";
+  const fromAddress = "The Alignment Times <hello@alignmenttimes.com>";
   const timestamp = new Date().toLocaleString("en-GB", {
     dateStyle: "long",
     timeStyle: "short",
@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
     resend.emails.send({
       from: fromAddress,
       to: safeEmail,
-      subject: "We received your message — The Boardroom Brief",
+      subject: "We received your message — The Alignment Times",
       html: `
         <p>Hi ${safeName},</p>
         <p>
@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
           ${editorEmail}.
         </p>
         <p style="color:#7a7a7a;font-size:13px;">
-          &mdash; The Boardroom Brief
+          &mdash; The Alignment Times
         </p>
       `.trim(),
     }),

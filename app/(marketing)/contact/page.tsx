@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import EditorialPage from "@/app/components/editorial-page/EditorialPage";
 import ContactForm from "./ContactForm";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://boardroombrief.com";
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@boardroombrief.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@alignmenttimes.com";
 
 // Derive domain from SITE_URL for display (strip protocol)
 const domain = SITE_URL.replace(/^https?:\/\//, "");
 
 export const metadata: Metadata = {
-  title: "Contact | The Boardroom Brief",
-  description: "Get in touch with The Boardroom Brief editorial team.",
+  title: "Contact | The Alignment Times",
+  description: "Get in touch with The Alignment Times editorial team.",
   openGraph: {
-    title: "Contact | The Boardroom Brief",
-    description: "Get in touch with The Boardroom Brief editorial team.",
+    title: "Contact | The Alignment Times",
+    description: "Get in touch with The Alignment Times editorial team.",
     type: "website",
   },
 };

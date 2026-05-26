@@ -1,4 +1,4 @@
-# Newsletter — Environment Variables
+﻿# Newsletter — Environment Variables
 
 Required for the newsletter system to function in production.
 
@@ -9,10 +9,10 @@ Required for the newsletter system to function in production.
 | `RESEND_API_KEY` | resend.com → API Keys | `re_...` |
 | `RESEND_WEBHOOK_SECRET` | resend.com → Webhooks → signing secret | `whsec_...` |
 | `EDITOR_EMAIL` | Your email address | `you@yourdomain.com` |
-| `NEXT_PUBLIC_SITE_URL` | Your production domain | `https://theboardroombrief.com` |
+| `NEXT_PUBLIC_SITE_URL` | Your production domain | `https://alignmenttimes.com` |
 | `CRON_SECRET` | Generate with `openssl rand -hex 32` | `abc123...` |
 
-`FROM_EMAIL` and `FROM_NAME` are hardcoded in the sender (`brief@theboardroombrief.com` / `The Boardroom Brief`). Update `app/lib/newsletter/sender.ts` if your sending address changes.
+`FROM_EMAIL` and `FROM_NAME` are hardcoded in the sender (`hello@alignmenttimes.com` / `The Alignment Times`). Update `app/lib/newsletter/sender.ts` if your sending address changes.
 
 ## Resend dashboard setup
 

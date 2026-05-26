@@ -1,11 +1,11 @@
-import { Resend } from "resend";
+﻿import { Resend } from "resend";
 import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import MorningBrief from "@/emails/morning-brief";
 import type { MorningBriefContent } from "./content-assembler";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
-const FROM_NAME  = process.env.FROM_NAME  ?? "The Boardroom Brief";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
+const FROM_NAME  = process.env.FROM_NAME  ?? "The Alignment Times";
 const FROM_EMAIL = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
 const FROM = `${FROM_NAME} <${FROM_EMAIL}>`;
 const BATCH_SIZE = 100;

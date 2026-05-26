@@ -1,5 +1,5 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// THE BOARDROOM BRIEF — Supabase Database types
+﻿// ─────────────────────────────────────────────────────────────────────────────
+// The Alignment Times — Supabase Database types
 //
 // Reflects the schema defined in supabase/migrations/.
 // Re-generate after schema changes with:

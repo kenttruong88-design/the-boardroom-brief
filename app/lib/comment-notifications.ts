@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+﻿import { Resend } from "resend";
 import { render } from "@react-email/components";
 import { createAdminClient } from "./supabase-server";
 import CommentReply from "@/emails/comment-reply";
@@ -9,8 +9,8 @@ function getResend(): Resend {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
-const FROM = process.env.RESEND_FROM ?? "The Boardroom Brief <noreply@theboardroombrief.com>";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
+const FROM = process.env.RESEND_FROM ?? "The Alignment Times <noreply@alignmenttimes.com>";
 
 interface ReplyContext {
   /** The new reply comment's DB id */
@@ -90,7 +90,7 @@ export async function sendReplyNotification(ctx: ReplyContext): Promise<void> {
     await getResend().emails.send({
       from: FROM,
       to: parent.author_email,
-      subject: `${reply.author_name} replied to your comment on The Boardroom Brief`,
+      subject: `${reply.author_name} replied to your comment on The Alignment Times`,
       html,
     });
   } catch (err) {

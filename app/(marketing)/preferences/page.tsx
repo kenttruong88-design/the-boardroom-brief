@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/app/lib/supabase-server";
+﻿import { createAdminClient } from "@/app/lib/supabase-server";
 import PreferencesForm from "@/app/components/newsletter/PreferencesForm";
 import Link from "next/link";
 
@@ -72,7 +72,7 @@ export default async function PreferencesPage({ searchParams }: Props) {
 
           <div className="mb-10">
             <p className="eyebrow mb-3" style={{ color: "var(--red)" }}>
-              The Boardroom Brief
+              The Alignment Times
             </p>
             <h1
               className="text-3xl font-serif font-bold mb-2"

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { randomBytes } from "crypto";
 import { Resend } from "resend";
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
       const confirmUrl = `${siteUrl}/api/confirm?token=${token}`;
       const resend = new Resend(resendKey);
       const html = await render(
@@ -75,9 +75,9 @@ export async function POST(req: Request) {
         })
       );
       await resend.emails.send({
-        from: `${process.env.FROM_NAME ?? "The Boardroom Brief"} <${process.env.FROM_EMAIL ?? "onboarding@resend.dev"}>`,
+        from: `${process.env.FROM_NAME ?? "The Alignment Times"} <${process.env.FROM_EMAIL ?? "onboarding@resend.dev"}>`,
         to: [email],
-        subject: "Confirm your Boardroom Brief subscription",
+        subject: "Confirm your Alignment Times subscription",
         html,
       });
     }

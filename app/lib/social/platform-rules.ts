@@ -1,4 +1,4 @@
-export interface PlatformRule {
+﻿export interface PlatformRule {
   maxChars: number;
   idealChars: number;
   imageOptional?: boolean;
@@ -13,7 +13,7 @@ export const PLATFORM_RULES: Record<"linkedin" | "twitter" | "instagram", Platfo
     maxChars: 3000,
     idealChars: 900,
     imageOptional: true,
-    systemPrompt: `You write LinkedIn posts for The Boardroom Brief.
+    systemPrompt: `You write LinkedIn posts for The Alignment Times.
 Your audience: senior professionals, CFOs, VPs, founders.
 Rules:
 - Hook in the FIRST LINE before the fold (under 150 chars) — this is what appears before 'see more'. Make it stop-scrolling.
@@ -31,7 +31,7 @@ Tone: authoritative, dry wit, safe to share from a work laptop.`,
     maxChars: 240,
     idealChars: 200,
     imageOptional: true,
-    systemPrompt: `You write Twitter/X posts for The Boardroom Brief.
+    systemPrompt: `You write Twitter/X posts for The Alignment Times.
 Rules:
 - Under 240 chars including the link (reserve 25 chars for URL)
   So your actual copy must be under 215 chars
@@ -48,7 +48,7 @@ Tone: punchy, dry, devastating in under 200 chars.`,
     maxChars: 2200,
     idealChars: 700,
     imageRequired: true,
-    systemPrompt: `You write Instagram captions for The Boardroom Brief.
+    systemPrompt: `You write Instagram captions for The Alignment Times.
 Rules:
 - More conversational than LinkedIn — slightly warmer
 - First line must hook before the fold (under 125 chars)

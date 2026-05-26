@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+﻿import Anthropic from "@anthropic-ai/sdk";
 import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import {
@@ -14,7 +14,7 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ── System prompt ─────────────────────────────────────────────────────────────
 
-const NEWS_INTEL_SYSTEM_PROMPT = `You are the News Intelligence Agent for The Boardroom Brief, a financial satire news site covering the top 30 global economies. Your job is to find the most relevant, interesting, and potentially satirisable business and financial news stories from today.
+const NEWS_INTEL_SYSTEM_PROMPT = `You are the News Intelligence Agent for The Alignment Times, a financial satire news site covering the top 30 global economies. Your job is to find the most relevant, interesting, and potentially satirisable business and financial news stories from today.
 
 You are looking for stories that fit these content pillars:
 - Markets Floor: stocks, indices, forex, commodities, earnings

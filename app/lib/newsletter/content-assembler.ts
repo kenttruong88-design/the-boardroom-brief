@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/app/lib/supabase-server";
+﻿import { createAdminClient } from "@/app/lib/supabase-server";
 import { client as sanityClient } from "@/app/lib/sanity";
 import { callClaude, MODELS } from "@/app/lib/claude";
 import type { MarketSnapshotItem, NewsletterArticle } from "@/emails/morning-brief";
@@ -47,7 +47,7 @@ interface SanityRaw {
 // ── Public API ────────────────────────────────────────────────────────────────
 
 export async function assembleMorningBrief(date: Date): Promise<MorningBriefContent> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theboardroombrief.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
   const dateStr = date.toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
@@ -122,7 +122,7 @@ async function fetchArticles(
     satiricalHeadline: a.satiricalHeadline ?? "",
     excerpt: a.excerpt ?? "",
     url: a.url,
-    pillar: a.pillar?.name ?? "The Boardroom Brief",
+    pillar: a.pillar?.name ?? "The Alignment Times",
     pillarColor: a.pillar?.color ?? PILLAR_COLORS[a.pillarSlug] ?? "#c8391a",
     imageUrl: a.heroImageUrl ?? undefined,
     author: a.author ?? undefined,
@@ -163,7 +163,7 @@ async function generateIntroText(
 
   try {
     const { content } = await callClaude(
-      `You write the opening 2-3 sentences of The Boardroom Brief morning newsletter. Dry, informed, never cheesy. Reference what actually happened in markets overnight. Tone: a smart colleague who read all the news before you woke up.`,
+      `You write the opening 2-3 sentences of The Alignment Times morning newsletter. Dry, informed, never cheesy. Reference what actually happened in markets overnight. Tone: a smart colleague who read all the news before you woke up.`,
       userPrompt,
       150,
       "newsletter/intro",
@@ -176,8 +176,8 @@ async function generateIntroText(
 }
 
 function buildSubject(lead: NewsletterArticle | null): string {
-  if (!lead) return "The Boardroom Brief — Today's Edition";
+  if (!lead) return "The Alignment Times — Today's Edition";
   const candidate = (lead.satiricalHeadline || lead.headline).trim();
   const truncated = candidate.length > 60 ? candidate.slice(0, 57) + "…" : candidate;
-  return `${truncated} | The Boardroom Brief`;
+  return `${truncated} | The Alignment Times`;
 }

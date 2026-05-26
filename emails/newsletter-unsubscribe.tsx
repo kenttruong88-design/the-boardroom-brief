@@ -1,4 +1,4 @@
-import {
+﻿import {
   Body,
   Button,
   Container,
@@ -28,9 +28,9 @@ interface Props {
 
 export default function NewsletterUnsubscribe({
   firstName,
-  resubscribeUrl = "https://theboardroombrief.com/subscribe",
-  feedbackUrl = "https://theboardroombrief.com/feedback",
-  siteUrl = "https://theboardroombrief.com",
+  resubscribeUrl = "https://alignmenttimes.com/subscribe",
+  feedbackUrl = "https://alignmenttimes.com/feedback",
+  siteUrl = "https://alignmenttimes.com",
 }: Props) {
   const headline = firstName
     ? `${firstName}, consider this your exit interview.`
@@ -39,14 +39,14 @@ export default function NewsletterUnsubscribe({
   return (
     <Html lang="en">
       <Head />
-      <Preview>You've been unsubscribed from The Boardroom Brief.</Preview>
+      <Preview>You've been unsubscribed from The Alignment Times.</Preview>
       <Body style={{ backgroundColor: CREAM, fontFamily: "Georgia, 'Times New Roman', serif", margin: 0, padding: 0 }}>
         <Container style={{ maxWidth: "600px", margin: "0 auto", backgroundColor: CREAM }}>
 
           {/* Masthead */}
           <Section style={{ backgroundColor: NAVY, padding: "28px 24px 24px", borderBottom: `3px solid ${RED}` }}>
             <Text style={{ color: GOLD, fontSize: "10px", fontFamily: "Arial, sans-serif", letterSpacing: "3px", textTransform: "uppercase", margin: "0 0 10px" }}>
-              The Boardroom Brief
+              The Alignment Times
             </Text>
             <Heading style={{ color: CREAM, fontSize: "30px", fontFamily: "Georgia, serif", margin: "0 0 6px", fontWeight: "700", letterSpacing: "-0.5px" }}>
               You've been unsubscribed.
@@ -66,7 +66,7 @@ export default function NewsletterUnsubscribe({
             </Heading>
             <Hr style={{ borderColor: BORDER, margin: "0 0 24px" }} />
             <Text style={{ color: "#333", fontSize: "15px", fontFamily: "Georgia, serif", lineHeight: "1.7", margin: "0 0 16px" }}>
-              You've been removed from The Boardroom Brief mailing list. No further Morning Briefs will be sent to this address.
+              You've been removed from The Alignment Times mailing list. No further Morning Briefs will be sent to this address.
             </Text>
             <Text style={{ color: "#333", fontSize: "15px", fontFamily: "Georgia, serif", lineHeight: "1.7", margin: "0 0 32px" }}>
               Changed your mind? You can resubscribe at any time — no hard feelings, and no onboarding call required.
@@ -116,7 +116,7 @@ export default function NewsletterUnsubscribe({
               <Link href={`${siteUrl}/privacy`} style={{ color: MUTED, textDecoration: "underline" }}>Privacy</Link>
             </Text>
             <Text style={{ color: "#aaa", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
-              © {new Date().getFullYear()} The Boardroom Brief. All rights reserved.
+              © {new Date().getFullYear()} The Alignment Times. All rights reserved.
             </Text>
           </Section>
 

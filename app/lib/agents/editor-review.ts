@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+﻿import Anthropic from "@anthropic-ai/sdk";
 import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { EDITOR_IN_CHIEF_PERSONA } from "./editor";
 import type { AgentPersona, ArticleDraft, EditorReview } from "./types";
@@ -19,7 +19,7 @@ export async function reviewArticle(
   draft: ArticleDraft,
   articleIndex = 0
 ): Promise<EditorReview> {
-  const userPrompt = `Review this article from ${draft.agentName} for The Boardroom Brief.
+  const userPrompt = `Review this article from ${draft.agentName} for The Alignment Times.
 
 HEADLINE: ${draft.headline}
 SATIRICAL SUBHEADLINE: ${draft.satiricalHeadline}

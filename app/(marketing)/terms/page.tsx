@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import EditorialPage from "@/app/components/editorial-page/EditorialPage";
 
 const LAST_UPDATED = "26 May 2026";
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@boardroombrief.com";
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@alignmenttimes.com";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | The Boardroom Brief",
-  description: "Terms and conditions for using The Boardroom Brief.",
+  title: "Terms of Service | The Alignment Times",
+  description: "Terms and conditions for using The Alignment Times.",
   robots: { index: false, follow: false },
 };
 
@@ -35,7 +35,7 @@ export default function TermsPage() {
         <section id="acceptance">
           <h2>1. Acceptance</h2>
           <p>
-            By accessing or using The Boardroom Brief, you agree to be bound by these
+            By accessing or using The Alignment Times, you agree to be bound by these
             Terms of Service. If you do not agree to these terms, please do not use
             the site.
           </p>
@@ -48,7 +48,7 @@ export default function TermsPage() {
         <section id="what-we-provide">
           <h2>2. What we provide</h2>
           <p>
-            The Boardroom Brief is an independent news and commentary publication.
+            The Alignment Times is an independent news and commentary publication.
             Content is provided for informational and entertainment purposes only.
           </p>
           <p>
@@ -63,7 +63,7 @@ export default function TermsPage() {
           <h2>3. Content and intellectual property</h2>
           <p>
             All original editorial content — articles, headlines, analysis, satire,
-            graphics, and commentary — is owned by The Boardroom Brief and is protected
+            graphics, and commentary — is owned by The Alignment Times and is protected
             by copyright law.
           </p>
           <p>You may:</p>
@@ -87,7 +87,7 @@ export default function TermsPage() {
         <section id="comments">
           <h2>4. User-generated content (comments)</h2>
           <p>
-            By posting a comment on The Boardroom Brief, you grant us a non-exclusive,
+            By posting a comment on The Alignment Times, you grant us a non-exclusive,
             royalty-free licence to display, reproduce, and moderate that comment on
             the site. You retain ownership of your comments, but you are solely
             responsible for their content.
@@ -139,7 +139,7 @@ export default function TermsPage() {
         <section id="liability">
           <h2>7. Limitation of liability</h2>
           <p>
-            To the maximum extent permitted by applicable law, The Boardroom Brief
+            To the maximum extent permitted by applicable law, The Alignment Times
             and its contributors, editors, and operators shall not be liable for any
             direct, indirect, incidental, special, or consequential losses or damages
             arising from:

@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import EditorialPage from "@/app/components/editorial-page/EditorialPage";
 
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@boardroombrief.com";
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@alignmenttimes.com";
 
 export const metadata: Metadata = {
-  title: "About | The Boardroom Brief — Financial News With a Corporate Twist",
+  title: "About | The Alignment Times — Financial News With a Corporate Twist",
   description:
-    "The Boardroom Brief is an independent financial publication covering markets, macroeconomics, and corporate culture across the world's 30 largest economies.",
+    "The Alignment Times is an independent financial publication covering markets, macroeconomics, and corporate culture across the world's 30 largest economies.",
   openGraph: {
-    title: "About | The Boardroom Brief",
+    title: "About | The Alignment Times",
     description:
       "Independent financial news covering markets, macroeconomics, and corporate culture across the world's 30 largest economies.",
     type: "website",
@@ -50,7 +50,7 @@ const PILLARS = [
     icon: "💧",
     name: "Water Cooler",
     description:
-      "Where satire meets the spreadsheet. The Boardroom Brief's culture desk covers business news with the wit of people who have survived one too many town halls.",
+      "Where satire meets the spreadsheet. The Alignment Times's culture desk covers business news with the wit of people who have survived one too many town halls.",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function AboutPage() {
   return (
     <EditorialPage
       eyebrow="About"
-      headline="About The Boardroom Brief"
+      headline="About The Alignment Times"
     >
       <div className="space-y-16 md:space-y-20">
 
@@ -139,7 +139,7 @@ export default function AboutPage() {
               style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)" }}
             >
               &ldquo;We believe financial news doesn&apos;t have to be either impenetrable
-              or dumbed down. The Boardroom Brief covers markets, macroeconomics,
+              or dumbed down. The Alignment Times covers markets, macroeconomics,
               and corporate culture with the rigour of a business publication
               and the wit of people who have sat through too many all-hands
               meetings.&rdquo;
@@ -238,7 +238,7 @@ export default function AboutPage() {
           </div>
           <div className="prose-editorial border-t border-rule dark:border-rule-dark pt-8">
             <p>
-              The Boardroom Brief is independent. We are not funded by financial
+              The Alignment Times is independent. We are not funded by financial
               institutions, brokerages, or any party with a commercial interest in
               the markets we cover. Our journalism is funded by readers, not
               by the subjects we write about.
@@ -314,7 +314,7 @@ export default function AboutPage() {
               Advertise with us
             </h2>
             <p className="font-prose text-lg text-ink-muted dark:text-cream-300 leading-loose max-w-[600px] mb-6">
-              The Boardroom Brief reaches senior professionals across 30 economies.
+              The Alignment Times reaches senior professionals across 30 economies.
               If your brand belongs in that conversation, we&apos;d like to hear from you.
             </p>
             <Link

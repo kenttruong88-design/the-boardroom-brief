@@ -1,4 +1,4 @@
-import {
+﻿import {
   Body,
   Button,
   Column,
@@ -77,7 +77,7 @@ const DEFAULT_ARTICLES: NewsletterArticle[] = [
     headline: "Fed Holds Rates, Signals Caution, Refuses to Commit to Anything Specific",
     satiricalHeadline: "Central bank opts for maximum optionality, minimum clarity.",
     excerpt: "The Federal Reserve held interest rates steady at its latest meeting, citing a complex macroeconomic environment. Officials described the path forward as 'data dependent' — central bank for 'we have no idea either'.",
-    url: "https://theboardroombrief.com/markets-floor/fed-holds-rates",
+    url: "https://alignmenttimes.com/markets-floor/fed-holds-rates",
     pillar: "Markets Floor",
     pillarColor: "#1e40af",
   },
@@ -85,7 +85,7 @@ const DEFAULT_ARTICLES: NewsletterArticle[] = [
     headline: "NVIDIA's Enterprise AI Push Signals Spending Surge",
     satiricalHeadline: "Everyone is buying GPUs. Nobody knows exactly why.",
     excerpt: "Enterprise AI adoption accelerates as NVIDIA reports record data centre revenue.",
-    url: "https://theboardroombrief.com/markets-floor/nvidia-enterprise",
+    url: "https://alignmenttimes.com/markets-floor/nvidia-enterprise",
     pillar: "Markets Floor",
     pillarColor: "#1e40af",
   },
@@ -93,7 +93,7 @@ const DEFAULT_ARTICLES: NewsletterArticle[] = [
     headline: "China's Q1 GDP Rebound Surprises Analysts",
     satiricalHeadline: "Economists were wrong again. They are handling it with dignity.",
     excerpt: "China's economy expanded faster than forecast in the first quarter, defying expectations of a continued slowdown.",
-    url: "https://theboardroombrief.com/macro-mondays/china-gdp",
+    url: "https://alignmenttimes.com/macro-mondays/china-gdp",
     pillar: "Macro Mondays",
     pillarColor: "#7c3aed",
   },
@@ -103,7 +103,7 @@ const DEFAULT_WATER_COOLER: NewsletterArticle = {
   headline: "The 47-Slide Deck That Could Have Been a Bullet Point",
   satiricalHeadline: "Consultants defend their methodology. The client nods. Nobody learns anything.",
   excerpt: "An internal study has confirmed what everyone already suspected: the length of a presentation is inversely correlated with the quality of its insights.",
-  url: "https://theboardroombrief.com/water-cooler/slides",
+  url: "https://alignmenttimes.com/water-cooler/slides",
   pillar: "Water Cooler",
   pillarColor: "#b8960c",
 };
@@ -123,8 +123,8 @@ export default function MorningBrief({
   articles = DEFAULT_ARTICLES,
   waterCoolerItem = DEFAULT_WATER_COOLER,
   introText = "Markets are open, inboxes are full, and somewhere a senior vice president is rescheduling a call that could have been an email. Here is what you actually need to know.",
-  unsubscribeUrl = "https://theboardroombrief.com/unsubscribe",
-  preferencesUrl = "https://theboardroombrief.com/preferences",
+  unsubscribeUrl = "https://alignmenttimes.com/unsubscribe",
+  preferencesUrl = "https://alignmenttimes.com/preferences",
   sponsorContent,
 }: Props) {
   const [leadArticle, ...restArticles] = articles;
@@ -144,7 +144,7 @@ export default function MorningBrief({
             <Row>
               <Column style={{ padding: "10px 24px" }}>
                 <Text style={{ color: GOLD, fontSize: "9px", fontFamily: "Arial, sans-serif", letterSpacing: "3px", textTransform: "uppercase", margin: 0 }}>
-                  The Boardroom Brief
+                  The Alignment Times
                 </Text>
               </Column>
               <Column style={{ padding: "10px 24px", textAlign: "right" }}>
@@ -369,17 +369,17 @@ export default function MorningBrief({
           {/* i. Footer */}
           <Section style={{ padding: "20px 24px 16px", backgroundColor: "#e8e2d8" }}>
             <Text style={{ color: MUTED, fontSize: "11px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: "0 0 8px" }}>
-              <Link href="https://theboardroombrief.com" style={{ color: MUTED, textDecoration: "underline" }}>View in browser</Link>
+              <Link href="https://alignmenttimes.com" style={{ color: MUTED, textDecoration: "underline" }}>View in browser</Link>
               {"  ·  "}
               <Link href={preferencesUrl} style={{ color: MUTED, textDecoration: "underline" }}>Preferences</Link>
               {"  ·  "}
               <Link href={unsubscribeUrl} style={{ color: MUTED, textDecoration: "underline" }}>Unsubscribe</Link>
             </Text>
             <Text style={{ color: "#999", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: "0 0 6px" }}>
-              The Boardroom Brief · 123 Example Street · London, EC2A 4PQ · United Kingdom
+              The Alignment Times · 123 Example Street · London, EC2A 4PQ · United Kingdom
             </Text>
             <Text style={{ color: "#bbb", fontSize: "10px", fontFamily: "Arial, sans-serif", textAlign: "center", margin: 0 }}>
-              You're receiving this because you subscribed at theboardroombrief.com. © {new Date().getFullYear()} The Boardroom Brief.
+              You're receiving this because you subscribed at alignmenttimes.com. © {new Date().getFullYear()} The Alignment Times.
             </Text>
           </Section>
 

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans, JetBrains_Mono, Crimson_Pro } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -52,12 +52,12 @@ const crimsonPro = Crimson_Pro({
 
 export const metadata: Metadata = {
   title: {
-    default: "The Boardroom Brief",
-    template: "%s — The Boardroom Brief",
+    default: "The Alignment Times",
+    template: "%s — The Alignment Times",
   },
   description:
     "Financial intelligence for the discerning executive. Satire for everyone else.",
-  metadataBase: new URL("https://boardroombrief.com"),
+  metadataBase: new URL("https://alignmenttimes.com"),
 };
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
