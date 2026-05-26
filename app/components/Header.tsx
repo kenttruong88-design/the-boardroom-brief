@@ -2,18 +2,21 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, Sun, Moon, Search } from "lucide-react";
 import { NAV_LINKS } from "@/app/lib/nav";
 import { useTheme } from "@/app/components/ThemeProvider";
 
 export default function Header() {
   const { darkMode, toggleDark } = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   return (
-    <header className="bg-cream-100 dark:bg-navy-500 sticky top-0 z-40">
+    <header className={`bg-cream-100 dark:bg-navy-500 sticky top-0 z-40${isHome ? " border-b-2 border-navy-500 dark:border-cream-200" : ""}`}>
       {/* ── Masthead ───────────────────────────────────────────────── */}
       <div className="site-container">
         <div className="flex items-center justify-between py-8 border-b border-rule dark:border-rule-dark">
