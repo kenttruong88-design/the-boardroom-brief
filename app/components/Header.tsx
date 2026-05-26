@@ -16,7 +16,7 @@ export default function Header() {
     <header className="bg-cream-100 dark:bg-navy-500 border-b-2 border-navy-500 dark:border-cream-200 sticky top-0 z-40">
       {/* ── Masthead ───────────────────────────────────────────────── */}
       <div className="site-container">
-        <div className="flex items-center justify-between py-3 border-b border-rule dark:border-rule-dark">
+        <div className="flex items-center justify-between py-8 border-b border-rule dark:border-rule-dark">
 
           {/* Left: date */}
           <span
@@ -35,7 +35,7 @@ export default function Header() {
           <Link href="/" className="no-underline">
             <span
               className="font-headline font-black text-navy-500 dark:text-cream-100 tracking-tight leading-none block hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
-              style={{ fontSize: "clamp(3.5rem, 9vw, 5.5rem)" }}
+              style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
             >
               The Alignment Times
             </span>
