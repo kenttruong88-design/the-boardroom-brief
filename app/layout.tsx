@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans, JetBrains_Mono, Crimson_Pro } from "next/font/google";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -11,26 +9,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import PlausibleScript from "@/app/components/analytics/PlausibleScript";
 import PostHogProvider from "@/app/components/analytics/PostHogProvider";
-
-// ─── Lazy-loaded client components ───────────────────────────────────────────
-// These are deferred so they don't block the initial HTML/CSS paint.
-// TickerBar is the heaviest client bundle (~400 LOC + chart SVG logic).
-// LoginModal is conditionally visible and never needed on first paint.
-
-const TickerBar = dynamic(() => import("@/app/components/TickerBar"), {
-  ssr: false,          // market data is always live; SSR adds no value
-  loading: () => (
-    <div
-      className="h-10 bg-navy-500 dark:bg-navy-600 border-b border-navy-400 dark:border-navy-500"
-      aria-hidden="true"
-    />
-  ),
-})
-
-const LoginModal = dynamic(
-  () => import("@/app/components/auth/LoginModal"),
-  { ssr: false }       // auth modal is never needed server-side
-)
+import { LazyTickerBar, LazyLoginModal } from "@/app/components/ClientShell";
 
 // ─── Google Fonts ─────────────────────────────────────────────────────────────
 
@@ -104,25 +83,14 @@ export default function RootLayout({
         <PostHogProvider>
           <ThemeProvider>
             <AuthProvider>
-              {/* LoginModal — lazy, only needed when user opens it */}
-              <Suspense fallback={null}>
-                <LoginModal />
-              </Suspense>
+              {/* LoginModal — lazy, only rendered client-side */}
+              <LazyLoginModal />
 
               <div className="min-h-screen flex flex-col">
                 <Header />
 
-                {/* TickerBar — lazy + ssr:false; market data is always live */}
-                <Suspense
-                  fallback={
-                    <div
-                      className="h-10 bg-navy-500 dark:bg-navy-600 border-b border-navy-400 dark:border-navy-500"
-                      aria-hidden="true"
-                    />
-                  }
-                >
-                  <TickerBar />
-                </Suspense>
+                {/* TickerBar — lazy, client-only; market data is always live */}
+                <LazyTickerBar />
 
                 <main className="flex-1">
                   {children}
