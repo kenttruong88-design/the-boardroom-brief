@@ -13,7 +13,7 @@ export default function Header() {
   const [query, setQuery] = useState("");
 
   return (
-    <header className="bg-cream-100 dark:bg-navy-500 border-b-2 border-navy-500 dark:border-cream-200 sticky top-0 z-40">
+    <header className="bg-cream-100 dark:bg-navy-500 sticky top-0 z-40">
       {/* ── Masthead ───────────────────────────────────────────────── */}
       <div className="site-container">
         <div className="flex items-center justify-between py-8 border-b border-rule dark:border-rule-dark">
