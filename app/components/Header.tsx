@@ -16,10 +16,23 @@ export default function Header() {
     <header className="bg-cream-100 dark:bg-navy-500 border-b-2 border-navy-500 dark:border-cream-200 sticky top-0 z-40">
       {/* ── Masthead ───────────────────────────────────────────────── */}
       <div className="site-container">
-        <div className="flex items-stretch justify-between py-8 border-b border-rule dark:border-rule-dark">
+        <div className="flex items-center justify-between py-8 border-b border-rule dark:border-rule-dark">
 
-          {/* Left: wordmark — bottom-aligned */}
-          <Link href="/" className="no-underline flex items-end">
+          {/* Left: date */}
+          <span
+            className="hidden sm:block font-data text-[11px] tracking-wide text-ink-faint dark:text-cream-500"
+            suppressHydrationWarning
+          >
+            {new Date().toLocaleDateString("en-GB", {
+              weekday: "long",
+              day:     "numeric",
+              month:   "long",
+              year:    "numeric",
+            })}
+          </span>
+
+          {/* Centre: wordmark */}
+          <Link href="/" className="no-underline">
             <span
               className="font-headline font-black text-navy-500 dark:text-cream-100 tracking-tight leading-none block hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
               style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
@@ -28,51 +41,35 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Right: actions top, date bottom */}
-          <div className="flex flex-col items-end justify-between">
-            {/* Actions row */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="p-1 text-ink-muted dark:text-cream-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
-                aria-label="Search"
-              >
-                <Search className="w-4 h-4" />
-              </button>
-              <button
-                onClick={toggleDark}
-                className="p-1 text-ink-muted dark:text-cream-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
-                aria-label="Toggle dark mode"
-              >
-                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              </button>
-              <Link
-                href="/subscribe"
-                className="inline-flex items-center font-body text-xs font-bold tracking-widest uppercase px-3 py-1.5 bg-red-500 text-cream-100 no-underline hover:bg-navy-500 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
-              >
-                Subscribe
-              </Link>
-              <button
-                className="sm:hidden p-1 text-navy-500 dark:text-cream-100"
-                onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label="Open menu"
-              >
-                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-
-            {/* Date — bottom-right */}
-            <span
-              className="hidden sm:block font-data text-[11px] tracking-wide text-ink-faint dark:text-cream-500"
-              suppressHydrationWarning
+          {/* Right: actions */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="p-1 text-ink-muted dark:text-cream-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
+              aria-label="Search"
             >
-              {new Date().toLocaleDateString("en-GB", {
-                weekday: "long",
-                day:     "numeric",
-                month:   "long",
-                year:    "numeric",
-              })}
-            </span>
+              <Search className="w-4 h-4" />
+            </button>
+            <button
+              onClick={toggleDark}
+              className="p-1 text-ink-muted dark:text-cream-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+            <Link
+              href="/subscribe"
+              className="inline-flex items-center font-body text-xs font-bold tracking-widest uppercase px-3 py-1.5 bg-red-500 text-cream-100 no-underline hover:bg-navy-500 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
+            >
+              Subscribe
+            </Link>
+            <button
+              className="sm:hidden p-1 text-navy-500 dark:text-cream-100"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Open menu"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
 
