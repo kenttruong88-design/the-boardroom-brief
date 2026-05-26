@@ -10,6 +10,7 @@ import Footer from "@/app/components/Footer";
 import PlausibleScript from "@/app/components/analytics/PlausibleScript";
 import PostHogProvider from "@/app/components/analytics/PostHogProvider";
 import { LazyTickerBar, LazyLoginModal } from "@/app/components/ClientShell";
+import CookieBanner from "@/app/components/CookieBanner";
 
 // ─── Google Fonts ─────────────────────────────────────────────────────────────
 
@@ -101,6 +102,8 @@ export default function RootLayout({
             </AuthProvider>
           </ThemeProvider>
         </PostHogProvider>
+
+        <CookieBanner />
 
         {/* Vercel Web Analytics + Speed Insights — zero-config, edge-injected */}
         <Analytics />
