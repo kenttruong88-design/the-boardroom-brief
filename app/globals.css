@@ -77,6 +77,19 @@
   --accent:           var(--color-red);
   --accent-secondary: var(--color-gold);
 
+  /* ─── Legacy CSS variable aliases ──────────────
+     Old components (Navigation, LoginModal, etc.) still reference these.
+     Keep them until those components are migrated to Tailwind classes.
+     ─────────────────────────────────────────────── */
+  --navy:    var(--color-navy);
+  --cream:   var(--color-cream);
+  --red:     var(--color-red);
+  --gold:    var(--color-gold);
+  --ink:     var(--color-ink);
+  --ink-m:   var(--color-ink-muted);
+  --ink-f:   var(--color-ink-faint);
+  --border:  var(--color-rule);
+
   /* ─── Typography Scale ──────────────────────── */
 
   /* Font families */
@@ -540,6 +553,96 @@
   .dark .prose-editorial td {
     border-bottom-color: var(--color-rule-dark);
     color: var(--color-cream-200);
+  }
+
+  /* ─── Legacy utility classes ───────────────────
+     Keep until old components (Navigation, page.tsx, etc.)
+     are migrated to the new design system.
+     ─────────────────────────────────────────────── */
+
+  .container-editorial {
+    @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+
+  .eyebrow-gold {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .eyebrow-muted {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .btn-red {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-red);
+    color: var(--color-cream);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-editorial);
+  }
+
+  .btn-red:hover {
+    background-color: var(--color-red-600);
+    color: var(--color-cream);
+    text-decoration: none;
+  }
+
+  .btn-navy {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-navy);
+    color: var(--color-cream);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-editorial);
+  }
+
+  .btn-navy:hover {
+    background-color: var(--color-navy-400);
+    color: var(--color-cream);
+    text-decoration: none;
+  }
+
+  .pillar-badge {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border: 1px solid currentColor;
   }
 
   /* ─── Article Page Typography ───────────────── */

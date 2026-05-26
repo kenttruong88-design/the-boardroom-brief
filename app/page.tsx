@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Navigation from "@/app/components/Navigation";
-import Footer from "@/app/components/Footer";
 import MarketTicker from "@/app/components/MarketTicker";
 import EconomySelector from "@/app/components/EconomySelector";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, CONTINENTS, formatDateShort } from "@/app/lib/mock-data";
@@ -98,7 +96,6 @@ export default async function HomePage() {
   return (
     <>
       <MarketTicker />
-      <Navigation />
 
       <main style={{ background: "var(--cream)" }}>
         <div className="container-editorial py-8">
@@ -237,8 +234,6 @@ export default async function HomePage() {
 
         </div>
       </main>
-
-      <Footer />
     </>
   );
 }
