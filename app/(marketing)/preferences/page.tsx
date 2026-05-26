@@ -1,4 +1,4 @@
-﻿import { createAdminClient } from "@/app/lib/supabase-server";
+import { createAdminClient } from "@/app/lib/supabase-server";
 import PreferencesForm from "@/app/components/newsletter/PreferencesForm";
 import Link from "next/link";
 
@@ -33,15 +33,20 @@ export default async function PreferencesPage({ searchParams }: Props) {
 
   if (!token) {
     return (
-      <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
-        <div className="container-editorial py-32 text-center">
-          <h1 className="text-2xl font-serif font-bold mb-4" style={{ color: "var(--navy)" }}>
+      <div className="min-h-screen bg-cream-100 dark:bg-navy-500">
+        <div className="site-container py-32 text-center">
+          <h1 className="font-headline font-black text-2xl text-navy-500 dark:text-cream-100 tracking-tight mb-4">
             Preferences link required
           </h1>
-          <p className="text-sm font-sans mb-6" style={{ color: "var(--ink-m)" }}>
+          <p className="font-body text-sm text-ink-muted dark:text-cream-300 mb-6">
             Use the link from your Morning Brief email to manage your preferences.
           </p>
-          <Link href="/subscribe" className="btn-red">Subscribe to get started</Link>
+          <Link
+            href="/subscribe"
+            className="inline-block font-body text-xs font-bold tracking-widest uppercase px-5 py-2.5 bg-red-500 text-cream-100 no-underline hover:bg-navy-500 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
+          >
+            Subscribe to get started
+          </Link>
         </div>
       </div>
     );
@@ -51,55 +56,57 @@ export default async function PreferencesPage({ searchParams }: Props) {
 
   if (!subscriber) {
     return (
-      <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
-        <div className="container-editorial py-32 text-center">
-          <h1 className="text-2xl font-serif font-bold mb-4" style={{ color: "var(--navy)" }}>
+      <div className="min-h-screen bg-cream-100 dark:bg-navy-500">
+        <div className="site-container py-32 text-center">
+          <h1 className="font-headline font-black text-2xl text-navy-500 dark:text-cream-100 tracking-tight mb-4">
             Link expired or not found
           </h1>
-          <p className="text-sm font-sans mb-6" style={{ color: "var(--ink-m)" }}>
+          <p className="font-body text-sm text-ink-muted dark:text-cream-300 mb-6">
             This preferences link is invalid. Check the most recent Morning Brief for a valid link.
           </p>
-          <Link href="/subscribe" className="btn-red">Subscribe</Link>
+          <Link
+            href="/subscribe"
+            className="inline-block font-body text-xs font-bold tracking-widest uppercase px-5 py-2.5 bg-red-500 text-cream-100 no-underline hover:bg-navy-500 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms]"
+          >
+            Subscribe
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{ background: "var(--cream)", minHeight: "100vh" }}>
-      <div className="container-editorial py-16">
+    <div className="min-h-screen bg-cream-100 dark:bg-navy-500">
+      <div className="site-container py-16">
         <div className="max-w-2xl mx-auto">
 
           <div className="mb-10">
-            <p className="eyebrow mb-3" style={{ color: "var(--red)" }}>
+            <p className="font-body text-xs font-bold tracking-widest uppercase text-red-500 mb-3">
               The Alignment Times
             </p>
-            <h1
-              className="text-3xl font-serif font-bold mb-2"
-              style={{ color: "var(--navy)" }}
-            >
+            <h1 className="font-headline font-black text-3xl text-navy-500 dark:text-cream-100 tracking-tight mb-2">
               Your preferences
             </h1>
-            <p className="text-sm font-sans" style={{ color: "var(--ink-m)" }}>
+            <p className="font-body text-sm text-ink-muted dark:text-cream-300">
               Managing preferences for{" "}
-              <strong style={{ color: "var(--ink)" }}>{subscriber.email}</strong>
+              <strong className="text-ink dark:text-cream-100">{subscriber.email}</strong>
             </p>
           </div>
 
           <PreferencesForm subscriber={subscriber} token={token} />
 
-          <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
-            <p className="text-xs font-sans" style={{ color: "var(--ink-m)" }}>
+          <div className="mt-8 pt-6 border-t border-rule dark:border-rule-dark">
+            <p className="font-body text-xs text-ink-muted dark:text-cream-500">
               Want to stop receiving the Brief entirely?{" "}
               <Link
                 href={`/api/newsletter/unsubscribe?token=${token}`}
-                className="underline hover:opacity-70 transition-opacity"
-                style={{ color: "var(--ink-m)" }}
+                className="underline hover:text-red-500 transition-colors duration-[120ms]"
               >
                 Unsubscribe
               </Link>
             </p>
           </div>
+
         </div>
       </div>
     </div>

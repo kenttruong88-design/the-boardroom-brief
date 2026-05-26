@@ -9,16 +9,17 @@ const PILLARS = [
   { slug: "c-suite-circus", name: "C-Suite Circus" },
   { slug: "global-office",  name: "Global Office"  },
   { slug: "water-cooler",   name: "Water Cooler"   },
+  { slug: "off-the-record", name: "Off the Record" },
 ];
 
 const ECONOMIES = [
   // Americas
-  { slug: "united-states", name: "United States" },
-  { slug: "canada",        name: "Canada"        },
-  { slug: "mexico",        name: "Mexico"        },
-  { slug: "brazil",        name: "Brazil"        },
-  { slug: "argentina",     name: "Argentina"     },
-  { slug: "colombia",      name: "Colombia"      },
+  { slug: "united-states",  name: "United States"  },
+  { slug: "canada",         name: "Canada"         },
+  { slug: "mexico",         name: "Mexico"         },
+  { slug: "brazil",         name: "Brazil"         },
+  { slug: "argentina",      name: "Argentina"      },
+  { slug: "colombia",       name: "Colombia"       },
   // Europe
   { slug: "united-kingdom", name: "United Kingdom" },
   { slug: "germany",        name: "Germany"        },
@@ -29,24 +30,24 @@ const ECONOMIES = [
   { slug: "switzerland",    name: "Switzerland"    },
   { slug: "sweden",         name: "Sweden"         },
   // Middle East
-  { slug: "saudi-arabia", name: "Saudi Arabia" },
-  { slug: "uae",          name: "UAE"          },
-  { slug: "turkey",       name: "Turkey"       },
+  { slug: "saudi-arabia",   name: "Saudi Arabia"   },
+  { slug: "uae",            name: "UAE"            },
+  { slug: "turkey",         name: "Turkey"         },
   // Africa
-  { slug: "south-africa", name: "South Africa" },
-  { slug: "nigeria",      name: "Nigeria"      },
-  { slug: "egypt",        name: "Egypt"        },
+  { slug: "south-africa",   name: "South Africa"   },
+  { slug: "nigeria",        name: "Nigeria"        },
+  { slug: "egypt",          name: "Egypt"          },
   // Asia-Pacific
-  { slug: "japan",       name: "Japan"        },
-  { slug: "china",       name: "China"        },
-  { slug: "india",       name: "India"        },
-  { slug: "south-korea", name: "South Korea"  },
-  { slug: "australia",   name: "Australia"    },
-  { slug: "singapore",   name: "Singapore"    },
-  { slug: "indonesia",   name: "Indonesia"    },
-  { slug: "thailand",    name: "Thailand"     },
-  { slug: "taiwan",      name: "Taiwan"       },
-  { slug: "malaysia",    name: "Malaysia"     },
+  { slug: "japan",          name: "Japan"          },
+  { slug: "china",          name: "China"          },
+  { slug: "india",          name: "India"          },
+  { slug: "south-korea",    name: "South Korea"    },
+  { slug: "australia",      name: "Australia"      },
+  { slug: "singapore",      name: "Singapore"      },
+  { slug: "indonesia",      name: "Indonesia"      },
+  { slug: "thailand",       name: "Thailand"       },
+  { slug: "taiwan",         name: "Taiwan"         },
+  { slug: "malaysia",       name: "Malaysia"       },
 ];
 
 interface Subscriber {
@@ -70,12 +71,8 @@ export default function PreferencesForm({ subscriber, token }: Props) {
   const [segments, setSegments] = useState<string[]>(
     allSegments ? PILLARS.map((p) => p.slug) : (subscriber.segments ?? [])
   );
-  const [allEconomies, setAllEconomies] = useState(
-    !subscriber.economies?.length
-  );
-  const [economies, setEconomies] = useState<string[]>(
-    subscriber.economies ?? []
-  );
+  const [allEconomies, setAllEconomies] = useState(!subscriber.economies?.length);
+  const [economies, setEconomies] = useState<string[]>(subscriber.economies ?? []);
   const [frequency, setFrequency] = useState(subscriber.frequency ?? "daily");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -126,144 +123,113 @@ export default function PreferencesForm({ subscriber, token }: Props) {
     }
   }
 
-  const sectionClass = "p-6 border-b";
-  const sectionStyle = { borderColor: "var(--border)" };
-  const labelClass = "flex items-center gap-2 cursor-pointer text-sm font-sans";
+  const eyebrow = "font-body text-xs font-bold tracking-widest uppercase text-red-500 mb-1";
+  const hint = "font-body text-sm text-ink-muted dark:text-cream-300";
+  const checkLabel = "flex items-center gap-2.5 cursor-pointer font-body text-sm text-ink dark:text-cream-100";
+  const sectionClass = "p-6 border-b border-rule dark:border-rule-dark";
 
   return (
     <form onSubmit={handleSave}>
-      <div
-        className="rounded-sm overflow-hidden"
-        style={{ border: "1px solid var(--border)", background: "var(--surface)" }}
-      >
+      <div className="border border-rule dark:border-rule-dark bg-cream-200 dark:bg-navy-400 overflow-hidden">
 
-        {/* ── Content preferences ── */}
-        <div className={sectionClass} style={sectionStyle}>
-          <p className="eyebrow mb-1" style={{ color: "var(--red)" }}>
-            Content preferences
-          </p>
-          <p className="text-sm font-sans mb-5" style={{ color: "var(--ink-m)" }}>
-            Which sections do you want in your Morning Brief?
-          </p>
+        {/* Content preferences */}
+        <div className={sectionClass}>
+          <p className={eyebrow}>Content preferences</p>
+          <p className={`${hint} mb-5`}>Which sections do you want in your Morning Brief?</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {PILLARS.map((pillar) => (
-              <label key={pillar.slug} className={labelClass}>
+              <label key={pillar.slug} className={checkLabel}>
                 <input
                   type="checkbox"
                   checked={segments.includes(pillar.slug)}
                   onChange={() => toggleSegment(pillar.slug)}
-                  className="w-4 h-4 accent-red-600"
-                  style={{ accentColor: "var(--red)" }}
+                  className="w-4 h-4 accent-red-500"
                 />
-                <span style={{ color: "var(--ink)" }}>{pillar.name}</span>
+                {pillar.name}
               </label>
             ))}
           </div>
         </div>
 
-        {/* ── Economy focus ── */}
-        <div className={sectionClass} style={sectionStyle}>
-          <p className="eyebrow mb-1" style={{ color: "var(--red)" }}>
-            Economy focus
-          </p>
-          <p className="text-sm font-sans mb-4" style={{ color: "var(--ink-m)" }}>
-            Which economies matter most to you?
-          </p>
+        {/* Economy focus */}
+        <div className={sectionClass}>
+          <p className={eyebrow}>Economy focus</p>
+          <p className={`${hint} mb-4`}>Which economies matter most to you?</p>
 
-          {/* All economies toggle */}
-          <label className={`${labelClass} mb-5 pb-4`} style={{ borderBottom: "1px solid var(--border)" }}>
+          <label className={`${checkLabel} mb-4 pb-4 border-b border-rule dark:border-rule-dark`}>
             <input
               type="checkbox"
               checked={allEconomies}
               onChange={() => setAllEconomies((v) => !v)}
-              className="w-4 h-4"
-              style={{ accentColor: "var(--red)" }}
+              className="w-4 h-4 accent-red-500"
             />
-            <span className="font-semibold" style={{ color: "var(--navy)" }}>
-              All economies
-            </span>
+            <span className="font-semibold text-navy-500 dark:text-cream-100">All economies</span>
           </label>
 
           {!allEconomies && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {ECONOMIES.map((economy) => (
-                <label key={economy.slug} className={labelClass}>
+                <label key={economy.slug} className={checkLabel}>
                   <input
                     type="checkbox"
                     checked={economies.includes(economy.slug)}
                     onChange={() => toggleEconomy(economy.slug)}
-                    className="w-4 h-4"
-                    style={{ accentColor: "var(--red)" }}
+                    className="w-4 h-4 accent-red-500"
                   />
-                  <span style={{ color: "var(--ink)" }}>{economy.name}</span>
+                  {economy.name}
                 </label>
               ))}
             </div>
           )}
         </div>
 
-        {/* ── Frequency ── */}
-        <div className={sectionClass} style={sectionStyle}>
-          <p className="eyebrow mb-1" style={{ color: "var(--red)" }}>
-            Frequency
-          </p>
-          <p className="text-sm font-sans mb-4" style={{ color: "var(--ink-m)" }}>
-            How often would you like to receive the Brief?
-          </p>
+        {/* Frequency */}
+        <div className={sectionClass}>
+          <p className={eyebrow}>Frequency</p>
+          <p className={`${hint} mb-4`}>How often would you like to receive the Brief?</p>
           <div className="space-y-3">
             {[
-              { value: "daily", label: "Daily", desc: "Monday to Friday" },
-              { value: "weekly", label: "Weekly digest", desc: "Fridays only" },
+              { value: "daily",  label: "Daily",          desc: "Monday to Friday" },
+              { value: "weekly", label: "Weekly digest",   desc: "Fridays only"    },
             ].map((opt) => (
-              <label key={opt.value} className={labelClass}>
+              <label key={opt.value} className={checkLabel}>
                 <input
                   type="radio"
                   name="frequency"
                   value={opt.value}
                   checked={frequency === opt.value}
                   onChange={() => setFrequency(opt.value)}
-                  className="w-4 h-4"
-                  style={{ accentColor: "var(--red)" }}
+                  className="w-4 h-4 accent-red-500"
                 />
-                <span style={{ color: "var(--ink)" }}>
+                <span>
                   <strong>{opt.label}</strong>
-                  <span style={{ color: "var(--ink-m)" }}> — {opt.desc}</span>
+                  <span className="text-ink-muted dark:text-cream-300"> — {opt.desc}</span>
                 </span>
               </label>
             ))}
           </div>
         </div>
 
-        {/* ── Personal ── */}
+        {/* Personal */}
         <div className="p-6">
-          <p className="eyebrow mb-1" style={{ color: "var(--red)" }}>
-            Personal
-          </p>
-          <p className="text-sm font-sans mb-4" style={{ color: "var(--ink-m)" }}>
-            Used to personalise your morning greeting.
-          </p>
+          <p className={eyebrow}>Personal</p>
+          <p className={`${hint} mb-4`}>Used to personalise your morning greeting.</p>
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First name (optional)"
-            className="w-full sm:w-64 text-sm font-sans px-4 py-2.5 outline-none"
-            style={{
-              background: "var(--cream)",
-              border: "1px solid var(--border)",
-              color: "var(--ink)",
-              borderRadius: "2px",
-            }}
+            className="w-full sm:w-64 font-body text-sm px-4 py-2.5 outline-none bg-cream-100 dark:bg-navy-500 border border-rule dark:border-rule-dark text-ink dark:text-cream-100 placeholder:text-ink-faint dark:placeholder:text-cream-500"
           />
         </div>
       </div>
 
-      {/* ── Save bar ── */}
+      {/* Save bar */}
       <div className="flex items-center gap-4 mt-6">
         <button
           type="submit"
           disabled={saving}
-          className="btn-red flex items-center gap-2 disabled:opacity-60"
+          className="flex items-center gap-2 font-body text-xs font-bold tracking-widest uppercase px-5 py-2.5 bg-red-500 text-cream-100 hover:bg-navy-500 dark:hover:bg-cream-200 dark:hover:text-navy-500 transition-colors duration-[120ms] disabled:opacity-60"
         >
           {saving ? (
             <><Loader2 className="w-4 h-4 animate-spin" /> Saving…</>
@@ -273,15 +239,13 @@ export default function PreferencesForm({ subscriber, token }: Props) {
         </button>
 
         {saved && (
-          <span className="flex items-center gap-1.5 text-sm font-sans" style={{ color: "#16a34a" }}>
+          <span className="flex items-center gap-1.5 font-body text-sm text-green-600 dark:text-green-400">
             <CheckCircle2 className="w-4 h-4" /> Saved
           </span>
         )}
 
         {error && (
-          <span className="text-sm font-sans" style={{ color: "var(--red)" }}>
-            {error}
-          </span>
+          <span className="font-body text-sm text-red-500">{error}</span>
         )}
       </div>
     </form>
