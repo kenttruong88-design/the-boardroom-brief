@@ -3,13 +3,14 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Loader2, Send, Download, ChevronDown, ChevronRight, RefreshCw,
+  Loader2, Send, Download, ChevronDown, ChevronRight, RefreshCw, FlaskConical,
 } from "lucide-react";
 import { createClient } from "@/app/lib/supabase";
 import {
   LineChart, Line, BarChart, Bar,
   XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from "recharts";
+import TestLab from "@/app/components/newsletter/TestLab";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -354,6 +355,7 @@ export default function NewsletterDashboard() {
   const [subFilter, setSubFilter]   = useState<StatusFilter>("all");
   const [sendNowLoading, setSendNowLoading] = useState(false);
   const [sendNowResult, setSendNowResult]   = useState("");
+  const [tab, setTab]                       = useState<"overview" | "test-lab">("overview");
 
   useEffect(() => {
     const supabase = createClient();
@@ -489,8 +491,38 @@ export default function NewsletterDashboard() {
           </div>
         </div>
 
+        {/* ── Tab nav ── */}
+        <div className="flex gap-0 mb-8" style={{ borderBottom: "1px solid var(--border)" }}>
+          {([
+            { key: "overview",  label: "Overview",  icon: null },
+            { key: "test-lab",  label: "Test Lab",  icon: <FlaskConical className="w-3.5 h-3.5" /> },
+          ] as { key: "overview" | "test-lab"; label: string; icon: React.ReactNode }[]).map(({ key, label, icon }) => {
+            const active = tab === key;
+            return (
+              <button
+                key={key}
+                onClick={() => setTab(key)}
+                className="flex items-center gap-1.5 text-xs font-sans font-semibold px-4 py-2.5 -mb-px"
+                style={{
+                  color:        active ? "var(--navy)" : "var(--ink-m)",
+                  borderBottom: active ? "2px solid var(--navy)" : "2px solid transparent",
+                  background:   "transparent",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {icon}
+                {label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ── Test Lab ── */}
+        {tab === "test-lab" && <TestLab />}
+
         {/* ── Stats row ── */}
-        <section className="mb-10">
+        {tab === "overview" && <section className="mb-10">
           {statsLoading && !stats ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {[...Array(6)].map((_, i) => (
@@ -533,10 +565,10 @@ export default function NewsletterDashboard() {
               />
             </div>
           ) : null}
-        </section>
+        </section>}
 
         {/* ── Send history table ── */}
-        <section className="mb-10">
+        {tab === "overview" && <section className="mb-10">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-serif font-bold" style={{ color: "var(--navy)" }}>
               Send history
@@ -589,10 +621,10 @@ export default function NewsletterDashboard() {
               </tbody>
             </table>
           </div>
-        </section>
+        </section>}
 
         {/* ── Subscriber growth chart ── */}
-        <section className="mb-10">
+        {tab === "overview" && <section className="mb-10">
           <h2 className="text-lg font-serif font-bold mb-4" style={{ color: "var(--navy)" }}>
             Subscriber growth — last 90 days
           </h2>
@@ -603,10 +635,10 @@ export default function NewsletterDashboard() {
               <div className="h-48 animate-pulse" style={{ background: "var(--border)" }} />
             )}
           </div>
-        </section>
+        </section>}
 
         {/* ── Subscriber list ── */}
-        <section>
+        {tab === "overview" && <section>
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div>
               <h2 className="text-lg font-serif font-bold" style={{ color: "var(--navy)" }}>
@@ -755,7 +787,7 @@ export default function NewsletterDashboard() {
               </div>
             </div>
           )}
-        </section>
+        </section>}
 
       </div>
     </div>
