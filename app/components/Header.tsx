@@ -35,7 +35,7 @@ export default function Header() {
           <Link href="/" className="no-underline">
             <span
               className="font-headline font-black text-navy-500 dark:text-cream-100 tracking-tight leading-none block hover:text-red-500 dark:hover:text-red-400 transition-colors duration-[120ms]"
-              style={{ fontSize: "clamp(1.75rem, 4.5vw, 2.75rem)" }}
+              style={{ fontSize: "clamp(3.5rem, 9vw, 5.5rem)" }}
             >
               The Alignment Times
             </span>
