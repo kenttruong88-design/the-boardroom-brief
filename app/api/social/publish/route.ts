@@ -105,14 +105,14 @@ async function run() {
     }
 
     // a. Claim the row to prevent double-sends on overlapping cron runs
-    const { count } = await supabase
+    const { data: claimed } = await supabase
       .from("social_queue")
       .update({ status: "sending" })
       .eq("id", post.id)
       .eq("status", "pending") // only succeeds if nobody else claimed it first
-      .select("id", { count: "exact", head: true });
+      .select("id");
 
-    if (!count) {
+    if (!claimed || claimed.length === 0) {
       // Another cron instance already claimed this post
       continue;
     }

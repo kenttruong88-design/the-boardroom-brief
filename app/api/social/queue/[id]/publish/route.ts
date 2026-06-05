@@ -38,15 +38,15 @@ export async function POST(
 
     // 3. Atomic claim: transition to 'sending' only if status + no buffer_post_id match.
     // Prevents double-sends from concurrent clicks or retries.
-    const { count } = await supabase
+    const { data: claimed } = await supabase
       .from("social_queue")
       .update({ status: "sending" })
       .eq("id", id)
       .in("status", ["pending_approval", "pending"])
       .is("buffer_post_id", null)
-      .select("id", { count: "exact", head: true });
+      .select("id");
 
-    if (!count) {
+    if (!claimed || claimed.length === 0) {
       return NextResponse.json(
         { error: "Post is already being processed or has been sent" },
         { status: 409 }

@@ -2,6 +2,36 @@ import { createAdminClient } from "@/app/lib/supabase-server";
 import { getArticlesByPillar } from "@/app/lib/queries";
 import type { TopicContext } from "./topic-selector";
 
+/** Fetch zero-result search queries from last 7 days — content gaps worth covering. */
+async function getSearchGaps(supabase: ReturnType<typeof createAdminClient>): Promise<string[]> {
+  try {
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    const { data } = await supabase
+      .from("search_analytics")
+      .select("query")
+      .eq("result_count", 0)
+      .gte("created_at", sevenDaysAgo)
+      .order("created_at", { ascending: false })
+      .limit(200);
+
+    if (!data || data.length === 0) return [];
+
+    // Count and deduplicate, return top gaps
+    const counts: Record<string, number> = {};
+    for (const row of data) {
+      const key = row.query.toLowerCase().trim();
+      counts[key] = (counts[key] ?? 0) + 1;
+    }
+
+    return Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([query]) => query);
+  } catch {
+    return [];
+  }
+}
+
 // Static trending topics — replace with live Google Trends proxy when ready
 const TRENDING_TOPICS: string[] = [
   "AI adoption and productivity impact across industries",
@@ -110,6 +140,9 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
     // earnings_covered table may not exist yet — proceed with empty list
   }
 
+  // ── 5. Search gaps (zero-result queries readers searched for) ────────────────
+  const searchGaps = await getSearchGaps(supabase);
+
   return {
     todayDate,
     recentArticleTitles,
@@ -117,5 +150,6 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
     macroSnapshot,
     recentEarnings,
     trendingTopics: TRENDING_TOPICS,
+    searchGaps,
   };
 }

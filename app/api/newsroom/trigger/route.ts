@@ -73,11 +73,13 @@ export async function POST(req: Request) {
     }).catch(async (err) => {
       console.error("[trigger] Background pipeline request failed:", err);
       // Mark job failed if we couldn't even start it
-      await supabase
-        .from("pipeline_jobs")
-        .update({ status: "failed", error: (err as Error).message })
-        .eq("id", jobId)
-        .catch(() => {});
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await (supabase as any)
+          .from("pipeline_jobs")
+          .update({ status: "failed", error: (err as Error).message })
+          .eq("id", jobId);
+      } catch { /* ignore */ }
     });
   });
 

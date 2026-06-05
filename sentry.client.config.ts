@@ -30,7 +30,7 @@ Sentry.init({
 
   beforeSend(event) {
     if (event.request?.cookies) {
-      event.request.cookies = "[filtered]";
+      event.request.cookies = {};
     }
     return event;
   },

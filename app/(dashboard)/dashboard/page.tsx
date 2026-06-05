@@ -7,6 +7,7 @@ import {
   FlaskConical,
   LayoutGrid,
   Mail,
+  Search,
 } from "lucide-react";
 
 const LINKS = [
@@ -51,6 +52,12 @@ const LINKS = [
     icon: FlaskConical,
     label: "Social test",
     description: "Test the social media pipeline end-to-end",
+  },
+  {
+    href: "/search",
+    icon: Search,
+    label: "Search analytics",
+    description: "Top queries, zero-result gaps, 7-day volume",
   },
 ];
 

@@ -9,6 +9,7 @@ export interface TopicContext {
   macroSnapshot: object;            // from Supabase macro_cache
   recentEarnings: object[];         // from earnings_covered last 48hrs
   trendingTopics: string[];         // from Google Trends proxy or static list
+  searchGaps?: string[];            // zero-result search queries — content gaps
 }
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -24,6 +25,7 @@ export async function selectTopics(
     macroSnapshot,
     recentEarnings,
     trendingTopics,
+    searchGaps = [],
   } = context;
 
   const systemPrompt = `${persona.systemPrompt}
@@ -51,7 +53,8 @@ ${recentEarnings.length > 0 ? JSON.stringify(recentEarnings, null, 2) : "No rece
 
 Trending global business topics:
 ${trendingTopics.map((t) => `- ${t}`).join("\n")}
-
+${searchGaps.length > 0 ? `\nReader search gaps (queries that returned no results — consider covering):
+${searchGaps.map((g) => `- ${g}`).join("\n")}` : ""}
 Select 1 to 3 topics to write about today. Return only valid JSON array with no markdown, no explanation — just the array:
 [{
   "title": "working headline (not final)",
