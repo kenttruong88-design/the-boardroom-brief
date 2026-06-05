@@ -55,7 +55,5 @@ export async function GET(req: Request) {
     } catch { /* welcome email failure shouldn't block redirect */ }
   }
 
-  return NextResponse.redirect(
-    `${siteUrl}/welcome?subscribed=true&email=${encodeURIComponent(data.email)}`
-  );
+  return NextResponse.redirect(`${siteUrl}/welcome?subscribed=true`);
 }

@@ -18,17 +18,22 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function isAuthorized(req: Request): boolean {
+  const secret =
+    req.headers.get("x-cron-secret") ??
+    req.headers.get("authorization")?.replace("Bearer ", "");
+  return secret === process.env.CRON_SECRET;
+}
+
 export async function GET(req: Request) {
-  const authHeader = req.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   return runPipeline(req, null);
 }
 
 export async function POST(req: Request) {
-  const secret = req.headers.get("x-cron-secret");
-  if (secret !== process.env.CRON_SECRET) {
+  if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const jobId = req.headers.get("x-job-id") ?? null;

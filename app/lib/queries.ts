@@ -158,3 +158,18 @@ export const getAllCountrySlugs = cache(async (): Promise<string[]> => {
   const countries = await client.fetch(`*[_type == "country"]{ "slug": slug.current }`);
   return countries.map((c: { slug: string }) => c.slug);
 });
+
+/** Fetch multiple articles by slug in one GROQ query — used by admin endpoints. */
+export async function getArticlesBySlugBatch(
+  slugs: string[]
+): Promise<{ slug: string; title: string; pillarSlug: string }[]> {
+  if (!client || slugs.length === 0) return [];
+  return client.fetch(
+    `*[_type == "article" && slug.current in $slugs]{
+      "slug": slug.current,
+      title,
+      "pillarSlug": pillar->slug.current
+    }`,
+    { slugs }
+  );
+}

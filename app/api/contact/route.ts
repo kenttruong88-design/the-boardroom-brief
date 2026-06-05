@@ -19,6 +19,15 @@ function err(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function hashIp(ip: string): string {
   return createHash("sha256")
     .update(ip + (process.env.IP_HASH_SALT ?? "tbb-contact"))
@@ -134,12 +143,12 @@ export async function POST(request: NextRequest) {
       to: editorEmail,
       subject: `[Contact] ${safeSubject} from ${safeName}`,
       html: `
-        <p><strong>Name:</strong> ${safeName}</p>
-        <p><strong>Email:</strong> ${safeEmail}</p>
-        <p><strong>Subject:</strong> ${safeSubject}</p>
+        <p><strong>Name:</strong> ${escapeHtml(safeName)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
+        <p><strong>Subject:</strong> ${escapeHtml(safeSubject)}</p>
         <p><strong>Message:</strong></p>
         <blockquote style="border-left:3px solid #c8391a;padding-left:12px;margin:8px 0;">
-          ${safeMessage.replace(/\n/g, "<br>")}
+          ${escapeHtml(safeMessage).replace(/\n/g, "<br>")}
         </blockquote>
         <p style="color:#7a7a7a;font-size:13px;">Sent at ${timestamp} UTC</p>
       `.trim(),
@@ -154,7 +163,7 @@ export async function POST(request: NextRequest) {
         <p>Hi ${safeName},</p>
         <p>
           Thanks for getting in touch. We received your message about
-          &ldquo;${safeSubject}&rdquo; and will respond within 2 business days.
+          &ldquo;${escapeHtml(safeSubject)}&rdquo; and will respond within 2 business days.
         </p>
         <p>
           If your enquiry is urgent, you can also reach us directly at

@@ -22,7 +22,7 @@ export interface Comment {
 // ── helpers ───────────────────────────────────────────────────────────────────
 
 function hashIp(ip: string): string {
-  return createHash("sha256").update(ip + (process.env.CRON_SECRET ?? "salt")).digest("hex").slice(0, 16);
+  return createHash("sha256").update(ip + (process.env.IP_HASH_SALT ?? "tbb-comments")).digest("hex").slice(0, 16);
 }
 
 function getIp(req: Request): string {

@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
     const { data: existing } = await supabase
       .from("subscribers")
-      .select("id, status")
+      .select("id, status, segments")
       .eq("email", email)
       .single();
 
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
         .update({
           confirmation_token: token,
           confirmation_sent_at: now,
-          segments: segments ?? existing,
+          segments: segments ?? existing.segments ?? ["{all}"],
           status: "pending",
         })
         .eq("email", email);

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/app/api/editorial/_helpers";
 import { createAdminClient } from "@/app/lib/supabase-server";
-import { getArticleBySlug } from "@/app/lib/queries";
+import { getArticlesBySlugBatch } from "@/app/lib/queries";
 
 export const maxDuration = 30;
 
@@ -105,21 +105,14 @@ export async function GET(req: Request) {
   const typedRows = (rows ?? []) as RowType[];
   const uniqueSlugs = [...new Set(typedRows.map((r) => r.article_id))];
   const articleMap: Record<string, { title: string; pillarSlug: string }> = {};
-  await Promise.allSettled(
-    uniqueSlugs.map(async (slug) => {
-      try {
-        const article = await getArticleBySlug(slug);
-        if (article) {
-          articleMap[slug] = {
-            title: article.title,
-            pillarSlug: article.pillar?.slug?.current ?? "",
-          };
-        }
-      } catch {
-        // ignore — show slug as fallback
-      }
-    })
-  );
+  try {
+    const articles = await getArticlesBySlugBatch(uniqueSlugs);
+    for (const a of articles) {
+      articleMap[a.slug] = { title: a.title, pillarSlug: a.pillarSlug ?? "" };
+    }
+  } catch {
+    // ignore — show slug as fallback
+  }
 
   const comments: AdminComment[] = typedRows.map((r) => ({
     id: r.id,

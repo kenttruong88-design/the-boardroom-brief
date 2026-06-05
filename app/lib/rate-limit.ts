@@ -39,7 +39,7 @@ export function ipKey(req: Request, suffix: string): string {
     req.headers.get("x-real-ip") ??
     "unknown";
   const hash = createHash("sha256")
-    .update(ip + (process.env.CRON_SECRET ?? "rl-salt"))
+    .update(ip + (process.env.IP_HASH_SALT ?? "rl-salt"))
     .digest("hex")
     .slice(0, 16);
   return `${hash}:${suffix}`;

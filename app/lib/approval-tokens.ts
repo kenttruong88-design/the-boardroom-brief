@@ -17,35 +17,35 @@ export async function generateApprovalTokens(
     return { article_id: articleId, digest_date: digestDate, token, expires_at: expiresAt };
   });
 
+  // Conflict on (article_id, digest_date) so re-running the pipeline for the same
+  // day replaces the old token, invalidating any already-sent email links.
   await supabase
     .from("approval_tokens")
-    .upsert(rows, { onConflict: "token", ignoreDuplicates: true });
+    .upsert(rows, { onConflict: "article_id,digest_date" });
 
   return tokens;
 }
 
 /** Validates a one-click token. Returns articleId + digestDate if valid.
- *  Marks the token as used atomically. */
+ *  Atomically marks the token used — concurrent calls with the same token
+ *  will get null on all but the first. */
 export async function consumeApprovalToken(
   token: string
 ): Promise<{ articleId: string; digestDate: string } | null> {
   const supabase = createAdminClient();
 
+  // Single atomic UPDATE: only succeeds if the token exists, is not used,
+  // and has not expired. Returns the row if exactly 1 row was updated.
   const { data, error } = await supabase
     .from("approval_tokens")
-    .select("id, article_id, digest_date, expires_at, used_at")
+    .update({ used_at: new Date().toISOString() })
     .eq("token", token)
+    .is("used_at", null)
+    .gt("expires_at", new Date().toISOString())
+    .select("article_id, digest_date")
     .single();
 
   if (error || !data) return null;
-  if (data.used_at) return null; // already used
-  if (new Date(data.expires_at) < new Date()) return null; // expired
-
-  // Mark used
-  await supabase
-    .from("approval_tokens")
-    .update({ used_at: new Date().toISOString() })
-    .eq("id", data.id);
 
   return { articleId: data.article_id, digestDate: data.digest_date };
 }

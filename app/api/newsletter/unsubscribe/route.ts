@@ -6,7 +6,8 @@ export async function GET(req: Request) {
   const token = searchParams.get("token");
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
 
-  if (!token) {
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!token || !UUID_RE.test(token)) {
     return NextResponse.redirect(`${siteUrl}/unsubscribed?error=missing_token`);
   }
 
