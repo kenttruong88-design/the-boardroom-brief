@@ -11,6 +11,7 @@ import PlausibleScript from "@/app/components/analytics/PlausibleScript";
 import PostHogProvider from "@/app/components/analytics/PostHogProvider";
 import { LazyTickerBar, LazyLoginModal } from "@/app/components/ClientShell";
 import CookieBanner from "@/app/components/CookieBanner";
+import { ErrorBoundary } from "@/app/components/ErrorBoundary";
 
 // ─── Google Fonts ─────────────────────────────────────────────────────────────
 
@@ -89,15 +90,23 @@ export default function RootLayout({
 
               <div className="min-h-screen flex flex-col">
                 {/* TickerBar — above the masthead, client-only */}
-                <LazyTickerBar />
+                <ErrorBoundary name="ticker-bar">
+                  <LazyTickerBar />
+                </ErrorBoundary>
 
-                <Header />
+                <ErrorBoundary name="header">
+                  <Header />
+                </ErrorBoundary>
 
                 <main className="flex-1">
-                  {children}
+                  <ErrorBoundary name="main-content">
+                    {children}
+                  </ErrorBoundary>
                 </main>
 
-                <Footer />
+                <ErrorBoundary name="footer">
+                  <Footer />
+                </ErrorBoundary>
               </div>
             </AuthProvider>
           </ThemeProvider>

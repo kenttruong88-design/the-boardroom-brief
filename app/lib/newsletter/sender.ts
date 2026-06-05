@@ -1,4 +1,5 @@
 ﻿import { Resend } from "resend";
+import * as Sentry from "@sentry/nextjs";
 import { render } from "@react-email/components";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import MorningBrief from "@/emails/morning-brief";
@@ -85,6 +86,10 @@ export async function sendMorningBrief(
 
     if (batchError || responses.length === 0) {
       failedCount += batch.length;
+      Sentry.captureException(batchError ?? new Error("Resend batch returned empty responses"), {
+        tags: { service: "resend" },
+        extra: { batchNumber: Math.floor(i / BATCH_SIZE) + 1, batchSize: batch.length, sendId },
+      });
     } else {
       const logRows: {
         send_id: string;

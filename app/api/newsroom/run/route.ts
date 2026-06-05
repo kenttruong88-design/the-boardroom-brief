@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { withCronMonitoring } from "@/app/lib/sentry-cron";
 import { JOURNALIST_PERSONAS } from "@/app/lib/agents/personas";
 import { buildDailyContext } from "@/app/lib/agents/context-builder";
 import { selectTopics } from "@/app/lib/agents/topic-selector";
@@ -29,7 +30,15 @@ export async function GET(req: Request) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return runPipeline(req, null);
+  return withCronMonitoring(
+    {
+      monitorSlug: "newsroom-daily-run",
+      schedule: "0 4 * * *",
+      checkinMargin: 10,
+      maxRuntime: 90,
+    },
+    () => runPipeline(req, null)
+  );
 }
 
 export async function POST(req: Request) {

@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import * as Sentry from "@sentry/nextjs";
 import { createAdminClient } from "./supabase-server";
 
 const anthropic = new Anthropic({
@@ -110,7 +111,12 @@ export async function callClaude(
     }
   }
 
-  throw lastError ?? new Error("Claude API call failed after 3 attempts");
+  const finalError = lastError ?? new Error("Claude API call failed after 3 attempts");
+  Sentry.captureException(finalError, {
+    tags: { service: "claude-api", model },
+    extra: { calledFrom, maxTokens },
+  });
+  throw finalError;
 }
 
 // ── parseJSON ─────────────────────────────────────────────────────────────────

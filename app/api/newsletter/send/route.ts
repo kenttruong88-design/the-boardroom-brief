@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { assembleMorningBrief } from "@/app/lib/newsletter/content-assembler";
 import { sendMorningBrief } from "@/app/lib/newsletter/sender";
+import { withCronMonitoring } from "@/app/lib/sentry-cron";
 
 export const maxDuration = 300;
 
@@ -16,7 +17,15 @@ export async function GET(req: Request) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return runSend(req);
+  return withCronMonitoring(
+    {
+      monitorSlug: "newsletter-morning-brief",
+      schedule: "30 7 * * *",
+      checkinMargin: 10,
+      maxRuntime: 30,
+    },
+    () => runSend(req)
+  );
 }
 
 export async function POST(req: Request) {

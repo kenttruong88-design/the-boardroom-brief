@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/nextjs";
+
 const BASE_URL = "https://api.buffer.com/graphql";
 
 function token(): string {
@@ -27,7 +29,9 @@ async function graphql<T>(
     } catch {
       // ignore parse failure
     }
-    throw new Error(message);
+    const error = new Error(message);
+    Sentry.captureException(error, { tags: { service: "buffer" } });
+    throw error;
   }
 
   const json = await res.json() as { data: T; errors?: { message: string }[] };

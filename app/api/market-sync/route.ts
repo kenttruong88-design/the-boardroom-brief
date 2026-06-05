@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { fetchAllMarketData } from "@/app/lib/market-fetcher";
 import { createAdminClient } from "@/app/lib/supabase-server";
+import { withCronMonitoring } from "@/app/lib/sentry-cron";
 
 // Protected with a secret header — set CRON_SECRET in env vars
 export async function POST(req: Request) {
@@ -17,7 +18,15 @@ export async function GET(req: Request) {
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return runSync();
+  return withCronMonitoring(
+    {
+      monitorSlug: "market-data-sync",
+      schedule: "*/15 8-18 * * 1-5",
+      checkinMargin: 3,
+      maxRuntime: 5,
+    },
+    () => runSync()
+  );
 }
 
 async function runSync() {
