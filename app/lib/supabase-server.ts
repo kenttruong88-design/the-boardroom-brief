@@ -27,7 +27,10 @@ export async function createServerSupabaseClient() {
   });
 }
 
-/** Admin client — service role, bypasses RLS. Server-side only. */
+/** Admin client — service role, bypasses RLS. Server-side only.
+ *  No Database generic — the types file is a partial snapshot and would cause
+ *  build errors for tables not yet listed. Regenerate with:
+ *    npx supabase gen types typescript --project-id <id> > app/lib/supabase/types.ts */
 export function createAdminClient() {
   return createClient(supabaseUrl, supabaseServiceKey, {
     auth: { autoRefreshToken: false, persistSession: false },
