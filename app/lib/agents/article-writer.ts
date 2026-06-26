@@ -1,4 +1,4 @@
-﻿import Anthropic from "@anthropic-ai/sdk";
+import Anthropic from "@anthropic-ai/sdk";
 import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import { generateArticleImage } from "./image-generator";
 import type { AgentPersona, TopicBrief, ArticleDraft } from "./types";
@@ -9,23 +9,105 @@ function stripFences(raw: string): string {
   return raw.replace(/```(?:json)?\s*/gi, "").replace(/```\s*/g, "").trim();
 }
 
+// ── Option 2: Research step using web_search ─────────────────────────────────
+// If the topic brief has a sourceUrl, search for the story before writing.
+// This gives the journalist full article context rather than just the summary.
+
+async function researchStory(topic: TopicBrief): Promise<string> {
+  if (!topic.sourceUrl) return "";
+
+  try {
+    const researchResponse = await client.messages.create({
+      model: MODELS.fast,
+      max_tokens: 1000,
+      system: `You are a research assistant for a financial news publication. 
+Search for the story at the given URL or by headline and extract:
+- The most important facts, numbers, and named individuals
+- Any direct quotes from key figures
+- Key context that makes this story significant
+- Any follow-up reporting or reactions published today
+
+Be concise and factual. Return a short research brief (200-300 words) the journalist can write from.`,
+      tools: [
+        {
+          type: "web_search_20250305" as const,
+          name: "web_search",
+        },
+      ],
+      messages: [
+        {
+          role: "user",
+          content: `Research this story for a journalist who needs to write about it:\n\nHeadline: ${topic.title}\nSource URL: ${topic.sourceUrl}\n\nSearch for the story and any related coverage from the last 24 hours. Extract the key facts the journalist should include.`,
+        },
+      ],
+    });
+    logClaudeUsage("pipeline:article-writer:research", MODELS.fast, researchResponse.usage.input_tokens, researchResponse.usage.output_tokens);
+
+    const textBlocks = researchResponse.content.filter((b) => b.type === "text");
+    if (textBlocks.length === 0) return "";
+
+    return textBlocks
+      .map((b) => (b as { type: "text"; text: string }).text)
+      .join("")
+      .trim();
+  } catch (err) {
+    // Research is best-effort — proceed without it if it fails
+    console.warn("[article-writer] Research step failed:", (err as Error).message);
+    return "";
+  }
+}
+
+// ── writeArticle ──────────────────────────────────────────────────────────────
+
 export async function writeArticle(
   persona: AgentPersona,
   topic: TopicBrief
 ): Promise<ArticleDraft> {
-  // ── CALL 1 — Write the article body ─────────────────────────────────────────
+
+  // ── STEP 0 — Research (Option 2: web_search for source story) ────────────────
+  // Run research in parallel with nothing else — it must complete before writing.
+  const researchContext = await researchStory(topic);
+
+  // ── STEP 1 — Write the article body ─────────────────────────────────────────
 
   const writeSystem = `${persona.systemPrompt}
 
-You are now in WRITING mode. Write the full article based on the brief provided. Write in your established voice. Be specific — use the data points provided. Do not pad. Do not hedge unnecessarily. The Alignment Times reader is smart and busy.`;
+You are now in WRITING mode. Write the full article based on the brief and research provided.
+
+Rules:
+- Write in your established voice
+- Use the exact data points, names, and numbers from the brief and research — do not round or approximate
+- If a direct quote is provided, use it (attribute it correctly)
+- Do not pad. Do not hedge unnecessarily
+- The Alignment Times reader is smart and busy
+- No markdown headers, no bullet points — this is journalism`;
+
+  // Build the source material block from what we have
+  const sourceLines: string[] = [];
+
+  if (topic.keyFacts && topic.keyFacts.length > 0) {
+    sourceLines.push(`Key facts from the source story:\n${topic.keyFacts.map((f) => `  - ${f}`).join("\n")}`);
+  }
+
+  if (topic.notableQuote) {
+    sourceLines.push(`Notable quote (use this verbatim if it fits): "${topic.notableQuote}"`);
+  }
+
+  if (researchContext) {
+    sourceLines.push(`Research brief (fresh context from web search):\n${researchContext}`);
+  }
+
+  const sourceMaterialBlock = sourceLines.length > 0
+    ? `\n\nSource material:\n${sourceLines.join("\n\n")}`
+    : "";
 
   const writeUser = `Write a full article for The Alignment Times.
 
 Section: ${persona.pillar}
 Working title: ${topic.title}
 Your angle: ${topic.angle}
-Key data points to include: ${topic.dataPoints.join(", ")}
-Target word count: ${topic.wordCount}
+Data points to include: ${topic.dataPoints.join(", ")}
+Target word count: ${topic.wordCount}${sourceMaterialBlock}
 
 Return only valid JSON with no markdown, no explanation — just the object:
 {
@@ -58,9 +140,6 @@ Return only valid JSON with no markdown, no explanation — just the object:
   const { headline, satiricalHeadline, body } = writeResult;
   const excerpt = body.replace(/\n+/g, " ").slice(0, 150);
 
-  // ── Build partial draft for image generation prompt ──────────────────────────
-  // Image prompt only needs headline, pillar, body, countries — no tags yet.
-
   const partialDraft: ArticleDraft = {
     pillar:            persona.pillar,
     agentName:         persona.name,
@@ -76,7 +155,7 @@ Return only valid JSON with no markdown, no explanation — just the object:
     countries:         [],
   };
 
-  // ── CALLS 2 & 3 — SEO metadata + image generation in parallel ───────────────
+  // ── STEP 2 — SEO metadata + image generation in parallel ─────────────────────
 
   const metaUser = `Article headline: ${headline}
 Article excerpt (first 150 chars of body): ${excerpt}
@@ -96,9 +175,11 @@ Return only valid JSON with no markdown, no explanation — just the object:
       max_tokens: 512,
       system: "You are an SEO and content metadata specialist for a financial news publication.",
       messages: [{ role: "user", content: metaUser }],
-    }).then((r) => { logClaudeUsage("pipeline:article-writer:seo", MODELS.fast, r.usage.input_tokens, r.usage.output_tokens); return r; }),
+    }).then((r) => {
+      logClaudeUsage("pipeline:article-writer:seo", MODELS.fast, r.usage.input_tokens, r.usage.output_tokens);
+      return r;
+    }),
     generateArticleImage(partialDraft).catch((err) => {
-      // generateArticleImage shouldn't throw (has internal fallback), but guard anyway
       console.error("[article-writer] Unexpected image error:", (err as Error).message);
       return null;
     }),
@@ -115,8 +196,6 @@ Return only valid JSON with no markdown, no explanation — just the object:
     tags: string[];
     tone: "satire" | "straight" | "hybrid";
   };
-
-  // ── Assemble final draft ─────────────────────────────────────────────────────
 
   const draft: ArticleDraft = {
     pillar:            persona.pillar,

@@ -29,7 +29,7 @@ export interface ClaudeResponse {
 
 const COST_TABLE: Record<string, { input: number; output: number }> = {
   [MODELS.default]:  { input: 3.00,  output: 15.00 },
-  [MODELS.fast]:     { input: 0.80,  output: 4.00  },
+  [MODELS.fast]:     { input: 1.00,  output: 5.00  },
   [MODELS.powerful]: { input: 15.00, output: 75.00 },
 };
 

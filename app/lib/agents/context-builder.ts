@@ -2,7 +2,7 @@ import { createAdminClient } from "@/app/lib/supabase-server";
 import { getArticlesByPillar } from "@/app/lib/queries";
 import type { TopicContext } from "./topic-selector";
 
-/** Fetch zero-result search queries from last 7 days — content gaps worth covering. */
+/** Fetch zero-result search queries from last 7 days -- content gaps worth covering. */
 async function getSearchGaps(supabase: ReturnType<typeof createAdminClient>): Promise<string[]> {
   try {
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
@@ -16,7 +16,6 @@ async function getSearchGaps(supabase: ReturnType<typeof createAdminClient>): Pr
 
     if (!data || data.length === 0) return [];
 
-    // Count and deduplicate, return top gaps
     const counts: Record<string, number> = {};
     for (const row of data) {
       const key = row.query.toLowerCase().trim();
@@ -32,7 +31,49 @@ async function getSearchGaps(supabase: ReturnType<typeof createAdminClient>): Pr
   }
 }
 
-// Static trending topics — replace with live Google Trends proxy when ready
+/** Fetch top breaking stories from news_feed for this pillar (populated by the intel agent). */
+async function getNewsFeedStories(
+  supabase: ReturnType<typeof createAdminClient>,
+  pillarSlug: string
+): Promise<TopicContext["newsFeedStories"]> {
+  try {
+    const { data } = await supabase
+      .from("news_feed")
+      .select("headline, summary, url, source_name, relevance_score, satirical_score, key_facts, notable_quote, suggested_angle")
+      .or(`pillar.eq.${pillarSlug},pillar.eq.general`)
+      .gt("expires_at", new Date().toISOString())
+      .order("relevance_score", { ascending: false })
+      .limit(10);
+
+    if (!data || data.length === 0) return [];
+
+    return data.map((row: {
+      headline: string;
+      summary: string;
+      url: string | null;
+      source_name: string | null;
+      relevance_score: number;
+      satirical_score: number;
+      key_facts: string[] | null;
+      notable_quote: string | null;
+      suggested_angle: string | null;
+    }) => ({
+      headline:       row.headline,
+      summary:        row.summary,
+      url:            row.url ?? undefined,
+      sourceName:     row.source_name ?? undefined,
+      relevanceScore: row.relevance_score,
+      satiricalScore: row.satirical_score,
+      keyFacts:       row.key_facts ?? [],
+      notableQuote:   row.notable_quote ?? undefined,
+      suggestedAngle: row.suggested_angle ?? undefined,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+// Static trending topics -- fallback when news_feed is empty
 const TRENDING_TOPICS: string[] = [
   "AI adoption and productivity impact across industries",
   "Interest rate decisions and central bank forward guidance",
@@ -50,106 +91,122 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
   const todayDate = new Date().toISOString().split("T")[0];
   const supabase = createAdminClient();
 
-  // ── 1. Recent article titles from Sanity (last 7 days, same pillar) ──────────
-  let recentArticleTitles: string[] = [];
-  try {
-    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-    const articles = await getArticlesByPillar(pillarSlug, 20);
-    recentArticleTitles = articles
-      .filter((a) => a.publishedAt >= sevenDaysAgo)
-      .map((a) => a.title);
-  } catch {
-    // Sanity unavailable — proceed with empty list
-  }
+  const [
+    recentArticleTitles,
+    marketSnapshotRaw,
+    macroSnapshotRaw,
+    recentEarnings,
+    searchGaps,
+    newsFeedStories,
+  ] = await Promise.all([
 
-  // ── 2. Market snapshot from Supabase market_cache (top 10 symbols) ───────────
-  let marketSnapshot: object = {};
-  try {
-    const { data } = await supabase
-      .from("market_cache")
-      .select("symbol, name, price, change_pct, pulled_at")
-      .order("pulled_at", { ascending: false })
-      .limit(10);
+    // ── 1. Recent article titles from Sanity (last 7 days, same pillar) ──────
+    (async (): Promise<string[]> => {
+      try {
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+        const articles = await getArticlesByPillar(pillarSlug, 20);
+        return articles
+          .filter((a) => a.publishedAt >= sevenDaysAgo)
+          .map((a) => a.title);
+      } catch {
+        return [];
+      }
+    })(),
 
-    if (data && data.length > 0) {
-      marketSnapshot = data.reduce(
-        (acc: Record<string, unknown>, row: { symbol: string; name: string; price: number; change_pct: number; pulled_at: string }) => ({
-          ...acc,
-          [row.symbol]: {
-            name: row.name,
-            price: row.price,
-            changePct: row.change_pct,
-            asOf: row.pulled_at,
-          },
-        }),
-        {} as Record<string, unknown>
-      );
-    }
-  } catch {
-    // Supabase unavailable — proceed with empty snapshot
-  }
+    // ── 2. Market snapshot from market_cache (top 10 symbols) ────────────────
+    (async (): Promise<object> => {
+      try {
+        const { data } = await supabase
+          .from("market_cache")
+          .select("symbol, name, price, change_pct, pulled_at")
+          .order("pulled_at", { ascending: false })
+          .limit(10);
 
-  // ── 3. Macro snapshot from Supabase macro_cache (latest per country) ─────────
-  let macroSnapshot: object = {};
-  try {
-    const { data } = await supabase
-      .from("macro_cache")
-      .select("country_slug, indicator, value, period, pulled_at")
-      .order("pulled_at", { ascending: false })
-      .limit(30);
+        if (!data || data.length === 0) return {};
 
-    if (data && data.length > 0) {
-      const seen = new Set<string>();
-      const deduped = data.filter((row: { country_slug: string; indicator: string; value: number; period: string; pulled_at: string }) => {
-        const key = `${row.country_slug}:${row.indicator}`;
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
+        return data.reduce(
+          (acc: Record<string, unknown>, row: { symbol: string; name: string; price: number; change_pct: number; pulled_at: string }) => ({
+            ...acc,
+            [row.symbol]: {
+              name:      row.name,
+              price:     row.price,
+              changePct: row.change_pct,
+              asOf:      row.pulled_at,
+            },
+          }),
+          {} as Record<string, unknown>
+        );
+      } catch {
+        return {};
+      }
+    })(),
 
-      macroSnapshot = deduped.reduce(
-        (acc: Record<string, unknown>, row: { country_slug: string; indicator: string; value: number; period: string; pulled_at: string }) => ({
-          ...acc,
-          [`${row.country_slug}/${row.indicator}`]: {
-            value: row.value,
-            period: row.period,
-            asOf: row.pulled_at,
-          },
-        }),
-        {} as Record<string, unknown>
-      );
-    }
-  } catch {
-    // macro_cache table may not exist yet — proceed with empty snapshot
-  }
+    // ── 3. Macro snapshot from macro_cache (latest per country) ──────────────
+    (async (): Promise<object> => {
+      try {
+        const { data } = await supabase
+          .from("macro_cache")
+          .select("country_slug, indicator, value, period, pulled_at")
+          .order("pulled_at", { ascending: false })
+          .limit(30);
 
-  // ── 4. Recent earnings from earnings_covered (last 48 hours) ─────────────────
-  let recentEarnings: object[] = [];
-  try {
-    const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
-    const { data } = await supabase
-      .from("earnings_covered")
-      .select("ticker, company_name, reported_at, eps_actual, eps_estimate, revenue_actual, revenue_estimate, beat")
-      .gte("reported_at", fortyEightHoursAgo)
-      .order("reported_at", { ascending: false });
+        if (!data || data.length === 0) return {};
 
-    if (data && data.length > 0) {
-      recentEarnings = data;
-    }
-  } catch {
-    // earnings_covered table may not exist yet — proceed with empty list
-  }
+        const seen = new Set<string>();
+        const deduped = data.filter((row: { country_slug: string; indicator: string }) => {
+          const key = `${row.country_slug}:${row.indicator}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
 
-  // ── 5. Search gaps (zero-result queries readers searched for) ────────────────
-  const searchGaps = await getSearchGaps(supabase);
+        return deduped.reduce(
+          (acc: Record<string, unknown>, row: { country_slug: string; indicator: string; value: number; period: string; pulled_at: string }) => ({
+            ...acc,
+            [`${row.country_slug}/${row.indicator}`]: {
+              value:  row.value,
+              period: row.period,
+              asOf:   row.pulled_at,
+            },
+          }),
+          {} as Record<string, unknown>
+        );
+      } catch {
+        return {};
+      }
+    })(),
+
+    // ── 4. Recent earnings from earnings_covered (last 48 hours) ─────────────
+    (async (): Promise<object[]> => {
+      try {
+        const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
+        const { data } = await supabase
+          .from("earnings_covered")
+          .select("ticker, company_name, reported_at, eps_actual, eps_estimate, revenue_actual, revenue_estimate, beat")
+          .gte("reported_at", fortyEightHoursAgo)
+          .order("reported_at", { ascending: false });
+
+        return data ?? [];
+      } catch {
+        return [];
+      }
+    })(),
+
+    // ── 5. Search gaps (zero-result reader queries) ───────────────────────────
+    getSearchGaps(supabase),
+
+    // ── 6. Breaking news from news_feed (populated by the intel agent) ────────
+    getNewsFeedStories(supabase, pillarSlug),
+  ]);
 
   return {
     todayDate,
     recentArticleTitles,
-    marketSnapshot,
-    macroSnapshot,
+    marketSnapshot:  marketSnapshotRaw,
+    macroSnapshot:   macroSnapshotRaw,
     recentEarnings,
-    trendingTopics: TRENDING_TOPICS,
+    trendingTopics:  TRENDING_TOPICS,
     searchGaps,
+    newsFeedStories,
   };
 }

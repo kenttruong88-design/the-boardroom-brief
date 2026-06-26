@@ -10,6 +10,16 @@ export interface TopicBrief {
   angle: string;
   dataPoints: string[];
   wordCount: number;
+  /** Countries this article covers (economy slugs) */
+  countries?: string[];
+  /** Relevant market tickers */
+  marketSymbols?: string[];
+  /** Source URL of the breaking news story this is based on (from news_feed) */
+  sourceUrl?: string;
+  /** Concrete facts extracted by the intel agent — journalist uses these verbatim */
+  keyFacts?: string[];
+  /** Direct quote from the source story, if any */
+  notableQuote?: string;
 }
 
 export interface FeaturedImage {

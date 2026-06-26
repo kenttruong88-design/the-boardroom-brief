@@ -12,6 +12,12 @@ export interface RawStory {
   marketSymbols?: string[];
   relevanceScore?: number;
   satiricalScore?: number;
+  /** Specific facts/numbers extracted by the intel agent (Option 1) */
+  keyFacts?: string[];
+  /** Direct quote from the story, if any */
+  notableQuote?: string;
+  /** Editorial angle suggested by the intel agent */
+  suggestedAngle?: string;
 }
 
 // ── generateHeadlineHash ──────────────────────────────────────────────────────

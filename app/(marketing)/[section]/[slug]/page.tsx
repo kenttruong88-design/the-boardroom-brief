@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, ArrowLeft, Share2, Bookmark, Link2, MessageSquare } from "lucide-react";
+import { Clock, ArrowLeft, Bookmark } from "lucide-react";
 import { MOCK_ARTICLES, PILLARS, getArticleBySlug as getMockArticle, formatDate, formatDateShort } from "@/app/lib/mock-data";
 import { getArticleBySlug as getSanityArticle } from "@/app/lib/queries";
 import ArticleReadTracker from "@/app/components/ArticleReadTracker";
-import CommentSection from "@/app/components/comments/CommentSection";
 import { getCommentCounts } from "@/app/lib/comment-counts";
 import SubscribeForm from "@/app/components/newsletter/SubscribeForm";
+import ShareButtons from "@/app/components/article/ShareButtons";
+import PaywallGate from "@/app/components/article/PaywallGate";
+import AdUnit from "@/app/components/AdUnit";
+import CommentSectionLoader from "@/app/components/article/CommentSectionLoader";
 
 export const revalidate = 60;
 
@@ -170,20 +173,14 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* Floating social share — desktop left edge */}
           <div className="hidden xl:flex flex-col items-center gap-3 absolute -left-14 top-0">
-            {[
-              { icon: <Link2 className="w-4 h-4" />,         title: "LinkedIn" },
-              { icon: <MessageSquare className="w-4 h-4" />, title: "X / Twitter" },
-              { icon: <Share2 className="w-4 h-4" />,       title: "Copy link" },
-              { icon: <Bookmark className="w-4 h-4" />,     title: "Bookmark" },
-            ].map((btn) => (
-              <button key={btn.title}
-                className="w-9 h-9 flex items-center justify-center border transition-colors hover:border-red-accent"
-                style={{ border: "1px solid var(--border)", color: "var(--ink-m)" }}
-                title={btn.title}
-              >
-                {btn.icon}
-              </button>
-            ))}
+            <ShareButtons url={canonicalUrl} title={article.title} slug={slug} variant="floating" />
+            <button
+              className="w-9 h-9 flex items-center justify-center border transition-colors hover:border-red-500"
+              style={{ border: "1px solid var(--border)", color: "var(--ink-m)" }}
+              title="Bookmark"
+            >
+              <Bookmark className="w-4 h-4" />
+            </button>
           </div>
 
           {/* Main article */}
@@ -202,7 +199,7 @@ export default async function ArticlePage({ params }: Props) {
                     alt={heroImageAlt}
                     className="object-cover"
                     priority
-                    sizes="100vw"
+                    sizes="(max-width: 1024px) 100vw, 800px"
                   />
                   {/* Gradient overlay — dark bottom for legible headline */}
                   <div style={{
@@ -245,7 +242,7 @@ export default async function ArticlePage({ params }: Props) {
                   </span>
                 </div>
                 <div className="flex xl:hidden items-center gap-2">
-                  <button className="p-2 border" style={{ border: "1px solid var(--border)", color: "var(--ink-m)", borderRadius: "2px" }}><Share2 className="w-4 h-4" /></button>
+                  <ShareButtons url={canonicalUrl} title={article.title} slug={slug} variant="inline" />
                   <button className="p-2 border" style={{ border: "1px solid var(--border)", color: "var(--ink-m)", borderRadius: "2px" }}><Bookmark className="w-4 h-4" /></button>
                 </div>
               </div>
@@ -298,21 +295,7 @@ export default async function ArticlePage({ params }: Props) {
               </p>
 
               {/* Paywall gate */}
-              <div className="border-t pt-10 mt-10" style={{ borderColor: "var(--border)" }}>
-                <div className="p-10 text-center" style={{ background: "var(--navy)" }}>
-                  <p className="eyebrow-gold mb-3" style={{ color: "var(--gold)" }}>Subscriber Only</p>
-                  <h3 className="text-xl font-serif font-bold mb-3" style={{ color: "var(--cream)" }}>
-                    Continue reading with a free account
-                  </h3>
-                  <p className="text-sm font-sans mb-6" style={{ color: "rgba(245,240,232,0.6)" }}>
-                    Unlimited access to The Alignment Times — free for a limited time.
-                  </p>
-                  <div className="flex gap-3 justify-center">
-                    <Link href="/subscribe" className="btn-red">Subscribe free</Link>
-                    <Link href="/login" className="btn-outline" style={{ border: "1px solid rgba(255,255,255,0.25)", color: "var(--cream)" }}>Sign in</Link>
-                  </div>
-                </div>
-              </div>
+              <PaywallGate slug={slug} />
             </div>
 
             {/* Image credit — positioned bottom-right of hero, only for non-default sources */}
@@ -381,7 +364,10 @@ export default async function ArticlePage({ params }: Props) {
               </div>
             )}
 
-            <CommentSection
+            {/* Inline ad — between article content and comments */}
+            <AdUnit adSlot="REPLACE_WITH_INLINE_SLOT_ID" slot="inline" className="my-8" />
+
+            <CommentSectionLoader
               articleId={slug}
               articleSlug={slug}
               articleHeadline={article.title}
@@ -446,6 +432,9 @@ export default async function ArticlePage({ params }: Props) {
                   <button type="submit" className="btn-red w-full text-sm">Subscribe</button>
                 </form>
               </div>
+
+              {/* Sidebar ad */}
+              <AdUnit adSlot="REPLACE_WITH_SIDEBAR_SLOT_ID" slot="sidebar" />
 
             </div>
           </aside>

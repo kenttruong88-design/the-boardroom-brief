@@ -1,12 +1,24 @@
 {
   "crons": [
     {
+      "path": "/api/newsroom/news-intel",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/newsroom/run",
+      "schedule": "0 4 * * *"
+    },
+    {
       "path": "/api/newsletter/send",
       "schedule": "30 7 * * *"
     },
     {
       "path": "/api/cron/update-comment-counts",
       "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/market-sync",
+      "schedule": "*/15 8-18 * * 1-5"
     }
   ]
 }
