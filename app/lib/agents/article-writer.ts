@@ -106,7 +106,7 @@ Rules:
 Section: ${persona.pillar}
 Working title: ${topic.title}
 Your angle: ${topic.angle}
-Data points to include: ${topic.dataPoints.join(", ")}
+Data points to include: ${(topic.dataPoints ?? []).join(", ")}
 Target word count: ${topic.wordCount}${sourceMaterialBlock}
 
 Return only valid JSON with no markdown, no explanation — just the object:
@@ -130,12 +130,15 @@ Return only valid JSON with no markdown, no explanation — just the object:
     .map((b) => (b as { type: "text"; text: string }).text)
     .join("");
 
-  const writeResult = JSON.parse(stripFences(writeRaw)) as {
-    headline: string;
-    satiricalHeadline: string;
-    body: string;
-    pullQuote: string;
-  };
+  let writeResult: { headline: string; satiricalHeadline: string; body: string; pullQuote: string };
+  try {
+    writeResult = JSON.parse(stripFences(writeRaw));
+  } catch (err) {
+    throw new Error(
+      `[article-writer] Failed to parse write response for "${topic.title}": ${(err as Error).message}. ` +
+      `Raw (first 300): ${writeRaw.slice(0, 300)}`
+    );
+  }
 
   const { headline, satiricalHeadline, body } = writeResult;
   const excerpt = body.replace(/\n+/g, " ").slice(0, 150);
@@ -190,12 +193,14 @@ Return only valid JSON with no markdown, no explanation — just the object:
     .map((b) => (b as { type: "text"; text: string }).text)
     .join("");
 
-  const metaResult = JSON.parse(stripFences(metaRaw)) as {
-    seoTitle: string;
-    seoDescription: string;
-    tags: string[];
-    tone: "satire" | "straight" | "hybrid";
-  };
+  // SEO parse is non-fatal — fall back to empty values so the written body is not lost
+  let metaResult: { seoTitle: string; seoDescription: string; tags: string[]; tone: "satire" | "straight" | "hybrid" };
+  try {
+    metaResult = JSON.parse(stripFences(metaRaw));
+  } catch (err) {
+    console.error(`[article-writer] SEO parse failed for "${headline}" — using empty metadata:`, (err as Error).message);
+    metaResult = { seoTitle: headline.slice(0, 60), seoDescription: "", tags: [], tone: "hybrid" };
+  }
 
   const draft: ArticleDraft = {
     pillar:            persona.pillar,

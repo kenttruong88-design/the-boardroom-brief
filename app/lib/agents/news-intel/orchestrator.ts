@@ -11,7 +11,7 @@
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { PILLAR_RSS_CONFIGS, GENERAL_BREAKING_QUERY } from "./search-queries";
 import { fetchPillarFeeds, fetchRSSFeed } from "./rss-fetcher";
-import { scorePillarStories, storeStories } from "./intel-agent";
+import { scorePillarStories, storeStories, type StoreResult } from "./intel-agent";
 import type { RawStory } from "./deduplicator";
 
 export interface NewsIntelResult {
@@ -111,17 +111,18 @@ export async function runNewsIntelAgent(): Promise<NewsIntelResult> {
 
   console.log("[news-intel] Step 3: Storing stories…");
   let storiesStored = 0;
+  let duplicatesSkipped = 0;
 
   try {
-    storiesStored = await storeStories(allStories);
-    console.log(`[news-intel] Stored ${storiesStored}/${storiesFound} stories.`);
+    const result: StoreResult = await storeStories(allStories);
+    storiesStored = result.stored;
+    duplicatesSkipped = result.duplicatesSkipped;
+    console.log(`[news-intel] Stored ${storiesStored}/${storiesFound} stories (${duplicatesSkipped} duplicates).`);
   } catch (err) {
     const msg = `Store failed: ${(err as Error).message}`;
     console.error(`[news-intel] ${msg}`);
     errors.push(msg);
   }
-
-  const duplicatesSkipped = storiesFound - storiesStored;
 
   // ── STEP 4 — Cleanup expired stories ────────────────────────────────────────
 

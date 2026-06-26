@@ -6,7 +6,11 @@ import { join } from "path";
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
 function isAuthorised(req: NextRequest): boolean {
-  const secret = process.env.CRON_SECRET ?? "boardroom-cron";
+  const secret = process.env.CRON_SECRET;
+  if (!secret) {
+    console.error("[publish-articles] CRON_SECRET env var is not set");
+    return false;
+  }
   const bearer = req.headers.get("authorization") ?? "";
   const header = req.headers.get("x-cron-secret") ?? "";
   return bearer === `Bearer ${secret}` || header === secret;
@@ -138,11 +142,11 @@ async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
 }
 
 async function ensureCountries(client: ReturnType<typeof getSanityClient>, countries: string[]) {
-  for (const c of countries) {
+  await Promise.all(countries.map((c) => {
     const cid = "country-" + slugify(c);
-    await client.createIfNotExists({ _id: cid, _type: "country",
+    return client.createIfNotExists({ _id: cid, _type: "country",
       name: c, slug: { _type: "slug", current: cid.replace("country-", "") } });
-  }
+  }));
 }
 
 async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
@@ -182,7 +186,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
 
-  const COUNT = parseInt(req.nextUrl.searchParams.get("count") ?? "2");
+  const COUNT = Math.min(parseInt(req.nextUrl.searchParams.get("count") ?? "2") || 2, 10);
 
   try {
     const client = getSanityClient();

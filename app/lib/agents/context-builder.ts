@@ -1,5 +1,5 @@
 import { createAdminClient } from "@/app/lib/supabase-server";
-import { getArticlesByPillar } from "@/app/lib/queries";
+import { client as sanityClient } from "@/app/lib/sanity";
 import type { TopicContext } from "./topic-selector";
 
 /** Fetch zero-result search queries from last 7 days -- content gaps worth covering. */
@@ -104,10 +104,13 @@ export async function buildDailyContext(pillarSlug: string): Promise<TopicContex
     (async (): Promise<string[]> => {
       try {
         const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-        const articles = await getArticlesByPillar(pillarSlug, 20);
-        return articles
-          .filter((a) => a.publishedAt >= sevenDaysAgo)
-          .map((a) => a.title);
+        const articles = await sanityClient?.fetch<{ title: string }[]>(
+          `*[_type == "article" && pillar->slug.current == $pillarSlug && publishedAt >= $since]
+           | order(publishedAt desc) [0...20] { title }`,
+          { pillarSlug, since: sevenDaysAgo },
+          { next: { revalidate: 60 } }
+        ) ?? [];
+        return articles.map((a) => a.title);
       } catch {
         return [];
       }

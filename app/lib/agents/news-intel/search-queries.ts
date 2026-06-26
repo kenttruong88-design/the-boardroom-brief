@@ -22,40 +22,40 @@ export const PILLAR_RSS_CONFIGS: PillarRSSConfig[] = [
     pillar: "markets-floor",
     label: "Financial markets: stocks, indices, forex, commodities, earnings results, IPOs, crypto",
     queries: [
-      "stock market earnings results IPO today 2026",
-      "forex currency gold oil commodities crypto market 2026",
+      "stock market earnings results IPO today",
+      "forex currency gold oil commodities crypto market",
     ],
   },
   {
     pillar: "macro-mondays",
     label: "Macroeconomics: central bank decisions, inflation, GDP, unemployment, fiscal policy, sovereign debt",
     queries: [
-      "central bank interest rate decision inflation CPI 2026",
-      "GDP growth recession unemployment fiscal deficit sovereign debt 2026",
+      "central bank interest rate decision inflation CPI",
+      "GDP growth recession unemployment fiscal deficit sovereign debt",
     ],
   },
   {
     pillar: "c-suite-circus",
     label: "Corporate: CEO appointments and departures, M&A deals, layoffs, quarterly earnings beats/misses, boardroom drama",
     queries: [
-      "CEO fired resigned appointed merger acquisition corporate 2026",
-      "layoffs restructuring earnings quarterly results corporate scandal 2026",
+      "CEO fired resigned appointed merger acquisition corporate",
+      "layoffs restructuring earnings quarterly results corporate scandal",
     ],
   },
   {
     pillar: "global-office",
     label: "Workplace: return-to-office mandates, remote work policy, labour unions, worker rights, productivity trends",
     queries: [
-      "return to office remote work policy mandate 2026",
-      "labour union strike workers rights workplace productivity 2026",
+      "return to office remote work policy mandate",
+      "labour union strike workers rights workplace productivity",
     ],
   },
   {
     pillar: "water-cooler",
     label: "Workplace culture: LinkedIn drama, corporate buzzwords, CEO social media controversies, absurd corporate behaviour",
     queries: [
-      "LinkedIn viral corporate cringe CEO social media controversy 2026",
-      "corporate buzzword wellness burnout hustle culture absurd 2026",
+      "LinkedIn viral corporate cringe CEO social media controversy",
+      "corporate buzzword wellness burnout hustle culture absurd",
     ],
   },
 ];
@@ -65,4 +65,4 @@ export const PILLAR_RSS_CONFIGS: PillarRSSConfig[] = [
  * Available to all journalist agents via the context builder.
  */
 export const GENERAL_BREAKING_QUERY =
-  "major breaking business news corporate today 2026";
+  "major breaking business news corporate today";

@@ -34,6 +34,15 @@ export async function scorePillarStories(
 ): Promise<RawStory[]> {
   if (items.length === 0) return [];
 
+  // Build a URL lookup from original RSS items so we never use Claude's fabricated URLs
+  const urlByHeadline = new Map<string, string>();
+  for (const item of items) {
+    if (item.url) {
+      const key = item.headline.toLowerCase().replace(/[^a-z0-9]/g, "");
+      urlByHeadline.set(key, item.url);
+    }
+  }
+
   const headlineList = items
     .map(
       (item, i) =>
@@ -45,7 +54,13 @@ export async function scorePillarStories(
 
   const systemPrompt = `You are the News Intelligence Agent for The Alignment Times, a financial satire publication covering the top 30 global economies.
 
-Your job: from a batch of today's news headlines, select the most relevant and potentially satirisable stories for a specific content pillar. Be a sharp editorial eye — skip press releases, skip fluffy content, prioritise stories that a senior professional would find important or delightfully absurd.`;
+Your job: from a batch of today's news headlines, select the most relevant and potentially satirisable stories for a specific content pillar. Be a sharp editorial eye — skip press releases, skip fluffy content, prioritise stories that a senior professional would find important or delightfully absurd.
+
+CRITICAL RULES FOR FACTS:
+- Only include keyFacts and notableQuote that are explicitly stated in the headline or snippet provided. Do NOT use your training knowledge to fill in facts.
+- If the snippet does not contain a direct quote, set notableQuote to null.
+- If the snippet does not contain specific numbers or named facts, set keyFacts to [].
+- It is better to return fewer facts than to fabricate any.`;
 
   const userPrompt = `Content pillar: ${pillarLabel}
 
@@ -94,7 +109,13 @@ Return empty array [] if none of the headlines fit the pillar. Return only valid
     const cleaned = raw.replace(/```(?:json)?\s*/gi, "").replace(/```\s*/g, "").trim();
     if (!cleaned || cleaned === "[]") return [];
 
-    const parsed = JSON.parse(cleaned) as Array<{
+    const parsed = JSON.parse(cleaned);
+    if (!Array.isArray(parsed)) {
+      console.warn(`[intel-agent] Expected JSON array, got ${typeof parsed} for pillar "${pillar}"`);
+      return [];
+    }
+
+    type ScoredItem = {
       headline: string;
       summary: string;
       url?: string;
@@ -106,26 +127,32 @@ Return empty array [] if none of the headlines fit the pillar. Return only valid
       keyFacts?: string[];
       notableQuote?: string | null;
       suggestedAngle?: string;
-    }>;
+    };
 
-    return parsed
+    return (parsed as ScoredItem[])
       .filter((s) => s.headline && s.summary)
-      .map((s) => ({
-        headline:       s.headline,
-        summary:        s.summary,
-        url:            s.url && s.url.length > 5 ? s.url : undefined,
-        sourceName:     s.sourceName,
-        pillar,
-        region,
-        countries:      s.countries ?? [],
-        marketSymbols:  s.marketSymbols ?? [],
-        relevanceScore: s.relevanceScore ?? 5,
-        satiricalScore: s.satiricalScore ?? 3,
-        headlineHash:   generateHeadlineHash(s.headline),
-        keyFacts:       s.keyFacts?.filter(Boolean) ?? [],
-        notableQuote:   s.notableQuote ?? undefined,
-        suggestedAngle: s.suggestedAngle ?? undefined,
-      }));
+      .map((s) => {
+        // Use original RSS URL instead of Claude's reconstructed one (prevents hallucinated URLs)
+        const headlineKey = s.headline.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const resolvedUrl = urlByHeadline.get(headlineKey);
+
+        return {
+          headline:       s.headline,
+          summary:        s.summary,
+          url:            resolvedUrl,
+          sourceName:     s.sourceName,
+          pillar,
+          region,
+          countries:      s.countries ?? [],
+          marketSymbols:  s.marketSymbols ?? [],
+          relevanceScore: s.relevanceScore ?? 5,
+          satiricalScore: s.satiricalScore ?? 3,
+          headlineHash:   generateHeadlineHash(s.headline),
+          keyFacts:       s.keyFacts?.filter(Boolean) ?? [],
+          notableQuote:   s.notableQuote ?? undefined,
+          suggestedAngle: s.suggestedAngle ?? undefined,
+        };
+      });
   } catch (err) {
     console.error(`[intel-agent] Scoring failed for pillar "${pillar}":`, (err as Error).message);
     return [];
@@ -134,17 +161,23 @@ Return empty array [] if none of the headlines fit the pillar. Return only valid
 
 // ── storeStories ──────────────────────────────────────────────────────────────
 
-export async function storeStories(stories: RawStory[]): Promise<number> {
-  if (stories.length === 0) return 0;
+export interface StoreResult {
+  stored: number;
+  duplicatesSkipped: number;
+}
+
+export async function storeStories(stories: RawStory[]): Promise<StoreResult> {
+  if (stories.length === 0) return { stored: 0, duplicatesSkipped: 0 };
 
   const supabase = createAdminClient();
 
   const existingHashes = await getExistingHashes();
   const newStories = filterNewStories(stories, existingHashes);
+  const duplicatesSkipped = stories.length - newStories.length;
 
   if (newStories.length === 0) {
     console.log("[intel-agent] All stories already in feed — nothing to store.");
-    return 0;
+    return { stored: 0, duplicatesSkipped };
   }
 
   const rows = newStories.map((s) => ({
@@ -176,7 +209,7 @@ export async function storeStories(stories: RawStory[]): Promise<number> {
   const stored = data?.length ?? 0;
   console.log(
     `[intel-agent] Stored ${stored}/${newStories.length} new stories ` +
-    `(${stories.length - newStories.length} duplicates skipped).`
+    `(${duplicatesSkipped} duplicates skipped).`
   );
-  return stored;
+  return { stored, duplicatesSkipped };
 }

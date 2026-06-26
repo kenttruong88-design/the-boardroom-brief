@@ -135,8 +135,14 @@ Return only valid JSON array with no markdown:
   const cleaned = raw.replace(/```(?:json)?\s*/gi, "").replace(/```\s*/g, "").trim();
 
   try {
-    const parsed = JSON.parse(cleaned) as TopicBrief[];
-    return Array.isArray(parsed) ? parsed : [];
+    const parsed = JSON.parse(cleaned) as TopicBrief[] | TopicBrief;
+    if (Array.isArray(parsed)) return parsed;
+    // Claude occasionally returns a single object instead of a 1-element array
+    if (parsed && typeof parsed === "object") {
+      console.warn("[topic-selector] Claude returned single object — wrapping in array");
+      return [parsed as TopicBrief];
+    }
+    return [];
   } catch {
     console.error("[topic-selector] JSON parse failed:", cleaned.slice(0, 200));
     return [];
