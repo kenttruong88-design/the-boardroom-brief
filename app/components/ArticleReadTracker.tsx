@@ -14,10 +14,15 @@ export default function ArticleReadTracker({ slug, section, articleId }: Props) 
   const sentRef = useRef(false);
   const posthog = usePostHog();
 
+  // Fire article_view once on mount
+  useEffect(() => {
+    posthog?.capture("article_view", { slug, section, articleId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (sentRef.current) return;
 
-    // Track 80% scroll as "article read complete"
     const sentinel = document.getElementById("article-end-sentinel");
     if (!sentinel) return;
 
@@ -26,13 +31,8 @@ export default function ArticleReadTracker({ slug, section, articleId }: Props) 
         if (entries[0].isIntersecting && !sentRef.current) {
           sentRef.current = true;
 
-          // PostHog event
           posthog?.capture("article_read_complete", { slug, section, articleId });
-
-          // Plausible event
           events.articleReadComplete(slug, section);
-
-          // Increment article_views in Supabase via API
           fetch(`/api/articles/${articleId}/view`, { method: "POST" }).catch(() => {});
 
           observer.disconnect();

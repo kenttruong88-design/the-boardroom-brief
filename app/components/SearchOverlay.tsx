@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { usePostHog } from "posthog-js/react";
 import { Search, X, Loader2, FileText, Clock, ArrowRight } from "lucide-react";
 import type { AlgoliaArticle } from "@/app/lib/algolia";
 
@@ -69,6 +70,7 @@ function Highlight({ html, fallback }: { html?: string; fallback: string }) {
 
 export default function SearchOverlay({ onClose }: Props) {
   const router = useRouter();
+  const posthog = usePostHog();
   const [query, setQuery]           = useState("");
   const [pillarFilter, setPillar]   = useState<string | null>(null);
   const [hits, setHits]             = useState<Hit[]>([]);
@@ -125,6 +127,7 @@ export default function SearchOverlay({ onClose }: Props) {
     const q = query.trim();
     if (q.length < 2) return;
     saveRecent(q);
+    posthog?.capture("search_performed", { query: q, pillar: pillarFilter ?? "all", result_count: hits.length });
     const params = new URLSearchParams({ q });
     if (pillarFilter) params.set("pillar", pillarFilter);
     router.push(`/search?${params}`);
