@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import EconomySelector from "@/app/components/EconomySelector";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, CONTINENTS, formatDateShort } from "@/app/lib/mock-data";
 import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
@@ -34,7 +35,7 @@ function normaliseSanity(a: SanityArticle) {
     publishedAt: a.publishedAt,
     readTime: a.readTime ?? 5,
     pillar: a.pillar?.slug?.current ?? "markets-floor",
-    coverImage: a.coverImage?.asset?.url ?? null,
+    coverImage: a.heroImageUrl ?? a.coverImage?.asset?.url ?? null,
     featured: false,
   };
 }
@@ -117,7 +118,20 @@ export default async function HomePage() {
                       </p>
                       <Meta date={hero.article.publishedAt} readTime={hero.article.readTime} />
                     </div>
-                    <div className="rounded-sm" style={{ background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)", height: "320px" }} />
+                    {hero.article.coverImage ? (
+                      <div className="relative rounded-sm overflow-hidden" style={{ height: "320px" }}>
+                        <Image
+                          src={hero.article.coverImage}
+                          alt={hero.article.title}
+                          fill
+                          className="object-cover"
+                          priority
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="rounded-sm" style={{ background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)", height: "320px" }} />
+                    )}
                   </div>
                 </Link>
               </article>
