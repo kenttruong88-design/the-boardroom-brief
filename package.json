@@ -39,6 +39,7 @@
     "resend": "^6.10.0",
     "sanity": "^5.19.0",
     "stripe": "^22.0.1",
+    "styled-components": "^6.4.3",
     "svix": "^1.93.0"
   },
   "devDependencies": {
