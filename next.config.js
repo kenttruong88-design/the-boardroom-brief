@@ -6,6 +6,12 @@ const { withSentryConfig } = require("@sentry/nextjs");
 
 const nextConfig = {
   reactStrictMode: true,
+  // Bundle content/global-office/*.md into the publish-articles serverless function
+  experimental: {
+    outputFileTracingIncludes: {
+      "/api/cron/publish-articles": ["./content/global-office/*.md"],
+    },
+  },
   turbopack: {
     root: __dirname,
   },
