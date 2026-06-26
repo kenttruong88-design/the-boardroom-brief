@@ -36,7 +36,8 @@ async function ensurePillarExists(pillarSlug: string): Promise<string> {
 
 export async function createSanityArticle(
   draft: ArticleDraft,
-  status: "published" | "draft" = "published"
+  status: "published" | "draft" = "published",
+  reviewScore?: number
 ): Promise<SanityPublishResult> {
   if (!writeClient) {
     throw new Error("Sanity write client not configured — check SANITY_API_TOKEN");
@@ -70,6 +71,7 @@ export async function createSanityArticle(
     agentName: draft.agentName,
     featured: false,
     status,
+    ...(reviewScore !== undefined && { reviewScore }),
   };
 
   if (draft.featuredImage) {

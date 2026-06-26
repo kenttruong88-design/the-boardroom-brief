@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     if (!entry.review.passed || entry.review.score < 7.0) continue;
 
     try {
-      const result = await createSanityArticle(entry.draft, "published");
+      const result = await createSanityArticle(entry.draft, "published", entry.review.score);
       entry.approved = true;
       entry.sanityDocId = result.sanityDocId;
       publishedUrls.push(result.publishedUrl);

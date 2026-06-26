@@ -63,21 +63,41 @@ const CURATED: Record<string, string> = {
 };
 
 export default async function HomePage() {
-  // Build a map of pillar → top article, using Sanity if available else mock
-  let sanityByPillar: Record<string, ArticleLead> = {};
+  // Fetch latest articles from Sanity
+  let sanityArticles: SanityArticle[] = [];
   try {
-    const sanityArticles = await getLatestArticles(20);
-    for (const a of sanityArticles) {
-      const pillarSlug = a.pillar?.slug?.current;
-      if (pillarSlug && !sanityByPillar[pillarSlug]) {
-        sanityByPillar[pillarSlug] = normaliseSanity(a);
-      }
-    }
+    sanityArticles = await getLatestArticles(20);
   } catch { /* fall through */ }
 
-  // 1 lead story per pillar, excluding Macro Mondays
+  // ── Hero: highest-reviewed article from the last 7 days ─────────────────────
+  // Falls back to featured flag, then most recent, then mock data.
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const recentSanity = sanityArticles.filter((a) => a.publishedAt >= sevenDaysAgo);
+  const heroPool = recentSanity.length > 0 ? recentSanity : sanityArticles.slice(0, 5);
+
+  const heroSanity = heroPool.sort((a, b) => {
+    // featured > reviewScore > publishedAt
+    if (a.featured !== b.featured) return a.featured ? -1 : 1;
+    return (b.reviewScore ?? 0) - (a.reviewScore ?? 0) || b.publishedAt.localeCompare(a.publishedAt);
+  })[0];
+
+  // ── Grid: one article per pillar (excluding hero's pillar) ──────────────────
+  const sanityByPillar: Record<string, ArticleLead> = {};
+  for (const a of sanityArticles) {
+    const pillarSlug = a.pillar?.slug?.current;
+    if (pillarSlug && !sanityByPillar[pillarSlug]) {
+      sanityByPillar[pillarSlug] = normaliseSanity(a);
+    }
+  }
+
+  const heroArticle: ArticleLead = heroSanity
+    ? normaliseSanity(heroSanity)
+    : (MOCK_ARTICLES.find((a) => a.slug === CURATED["markets-floor"]) ?? MOCK_ARTICLES[0]);
+
+  const heroPillarSlug = heroArticle.pillar;
+
   const pillarLeads: { pillar: (typeof PILLARS)[0]; article: ArticleLead }[] = PILLARS
-    .filter((p) => p.slug !== "macro-mondays")
+    .filter((p) => p.slug !== "macro-mondays" && p.slug !== heroPillarSlug)
     .flatMap((pillar) => {
       const article: ArticleLead | undefined =
         sanityByPillar[pillar.slug] ??
@@ -86,8 +106,8 @@ export default async function HomePage() {
       return article ? [{ pillar, article }] : [];
     });
 
-  const hero = pillarLeads[0];
-  const grid = pillarLeads.slice(1);
+  const hero = { pillar: PILLARS.find((p) => p.slug === heroPillarSlug) ?? PILLARS[0], article: heroArticle };
+  const grid = pillarLeads;
 
   // Bulk-fetch comment counts for all visible articles
   const allSlugs = pillarLeads.map(({ article }) => article.slug);

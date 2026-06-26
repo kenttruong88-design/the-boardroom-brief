@@ -15,6 +15,7 @@ export interface SanityArticle {
   publishedAt: string;
   readTime?: number;
   featured?: boolean;
+  reviewScore?: number;
   heroImageUrl?: string;
   coverImage?: { asset: { url: string }; alt?: string };
   pillar?: { name: string; slug: { current: string }; color?: string };
@@ -48,6 +49,7 @@ const ARTICLE_CARD = `
   publishedAt,
   readTime,
   featured,
+  reviewScore,
   heroImageUrl,
   coverImage { asset->{ url }, alt },
   pillar->{ name, slug, color },
