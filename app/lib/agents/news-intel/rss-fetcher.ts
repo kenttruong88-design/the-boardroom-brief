@@ -15,9 +15,9 @@ export interface RSSItem {
 // ── XML helpers ───────────────────────────────────────────────────────────────
 
 function extractTag(xml: string, tag: string): string {
-  // Handles both CDATA and plain text variants
-  const cdataRe = new RegExp(`<${tag}[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/${tag}>`, "i");
-  const plainRe  = new RegExp(`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, "i");
+  // String.raw preserves backslashes so \[, \s, \S are passed correctly to RegExp
+  const cdataRe = new RegExp(String.raw`<${tag}[^>]*><!\[CDATA\[([\s\S]*?)\]\]><\/${tag}>`, "i");
+  const plainRe  = new RegExp(String.raw`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, "i");
   const m = xml.match(cdataRe) ?? xml.match(plainRe);
   return (m?.[1] ?? "").trim();
 }
