@@ -146,7 +146,7 @@ export async function scheduleBufferPost(
     mode: "customScheduled",
     dueAt: scheduledAt.toISOString(),
   };
-  if (imageUrl) input.assets = { images: [{ url: imageUrl }] };
+  if (imageUrl) input.assets = [{ image: { url: imageUrl } }];
   if (platform === "instagram") input.metadata = { instagram: { type: "post", shouldShareToFeed: true } };
   return createPostMutation(input);
 }
@@ -166,7 +166,7 @@ export async function createBufferDraft(
     mode: "addToQueue",
     saveToDraft: true,
   };
-  if (imageUrl) input.assets = { images: [{ url: imageUrl }] };
+  if (imageUrl) input.assets = [{ image: { url: imageUrl } }];
   if (platform === "instagram") input.metadata = { instagram: { type: "post", shouldShareToFeed: true } };
   return createPostMutation(input);
 }
