@@ -79,12 +79,16 @@ export async function POST(req: Request) {
           previewText: "One click to confirm — then the Morning Brief begins.",
         })
       );
-      await resend.emails.send({
+      const { error: sendError } = await resend.emails.send({
         from: `${process.env.FROM_NAME ?? "The Alignment Times"} <${process.env.FROM_EMAIL ?? "onboarding@resend.dev"}>`,
         to: [email],
         subject: "Confirm your Alignment Times subscription",
         html,
       });
+      if (sendError) {
+        console.error("[subscribe] Resend error:", sendError);
+        return NextResponse.json({ error: "Failed to send confirmation email. Please try again." }, { status: 502 });
+      }
     }
 
     return NextResponse.json({ message: "confirmation_sent" });

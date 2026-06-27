@@ -119,7 +119,7 @@ async function runWeeklyDigest() {
     const batch = emails.slice(i, i + 100);
     const results = await Promise.allSettled(
       batch.map((to: string) => resend.emails.send({
-        from: "The Alignment Times <brief@thealignmenttimes.com>",
+        from: "The Alignment Times <brief@alignmenttimes.com>",
         to,
         subject: `The Alignment Times — Weekly Digest (${weekLabel})`,
         html,

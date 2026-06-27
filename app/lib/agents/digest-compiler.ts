@@ -70,7 +70,7 @@ export async function sendDailyDigestEmail(digest: DailyDigest): Promise<void> {
 
   const resend = new Resend(resendKey);
   const { error } = await resend.emails.send({
-    from: "The Alignment Times Editorial <editorial@thealignmenttimes.com>",
+    from: "The Alignment Times Editorial <editorial@alignmenttimes.com>",
     to: [editorEmail],
     subject,
     html,
