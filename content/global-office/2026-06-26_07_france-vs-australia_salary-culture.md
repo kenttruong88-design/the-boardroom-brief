@@ -28,44 +28,82 @@ sources:
     - r/expats — expats comparing Australian salary culture to French norms
 ---
 
-# Negotiated in Brussels, Decided in Canberra: Salary Culture in France vs. Australia
+# Two Countries, One Payslip, Zero Consensus: Salary Culture in France vs. Australia
+
+🇫🇷 France · 🇦🇺 Australia
 
 *By Priya Mehta, The Global Office*
 
-France has over 700 active sectoral collective agreements governing wages across its economy, a 35-hour legal working week from which overtime premiums are calculated, and a national minimum wage (*SMIC*) that is updated at least annually and to which three million employees are currently pinned. Australia has a national minimum wage reviewed annually by an independent tribunal, an elaborate system of industry-specific "modern awards" covering minimum pay by occupation, and enterprise bargaining agreements negotiated company by company. Both systems are complex. Both contain the word "collective" in their descriptions. The experience of working inside them is, however, substantially different, in ways that matter to anyone considering which country to take a salary in.
+France has over 700 active sectoral collective agreements governing wages, a 35-hour legal working week with overtime premiums baked in by law, and a national minimum wage that is updated at least annually — to which three million employees are currently pinned. Australia has a minimum wage reviewed annually by an independent tribunal, over 120 industry-specific "modern awards" covering minimum pay by occupation, and enterprise bargaining agreements negotiated company by company. Both systems deploy the word "collective" with some frequency. The experience of working inside them is, however, substantially different — in ways that matter to anyone weighing which country to take a salary in, negotiate a salary in, or politely refuse to discuss a salary in.
 
 ![France vs Australia — Salary culture pay structures](https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop)
-*Illustration: The Alignment Times / The Global Office*
+*Photo: Pexels*
 
-## France: The Architecture of Protection
+---
 
-The French salary system is structured from the top down: a national SMIC (currently €1,867.02 gross monthly as of June 2026, netting to approximately €1,477 after social contributions) establishes the absolute floor, above which over 700 sectoral *conventions collectives de branche* impose their own higher minimums by industry. In consulting, technology, and financial services, the collective agreement minimums for qualified roles routinely exceed the SMIC from the moment of hiring. The system is designed to ensure that wages in any industry cannot be undercut below a collectively agreed threshold, regardless of what any individual employer might prefer to pay.
+### Do's & Don'ts
 
-Above this floor, individual salaries are negotiated, but within a cultural context that is notably different from the Anglophone world. Salary discussions in French corporate culture are private, formal, and approached with what one might charitably call discretion and less charitably call opacity. Asking a colleague what they earn is roughly equivalent to asking their weight — technically answerable but socially discouraged. This norm coexists, somewhat uncomfortably, with France's implementation of the EU Pay Transparency Directive, which requires employers to disclose salary ranges and is gradually introducing information rights that the culture has not yet accommodated.
+#### 🇫🇷 France
+| ✅ Do | ❌ Don't |
+|---|---|
+| Wait for the annual review cycle to raise salary | Ask for a raise more than once a year — that's when you become annoying |
+| Research your *convention collective de branche* before negotiating | Assume your gross figure is what you'll spend — deductions are significant |
+| Keep your salary private among colleagues | Ask colleagues what they earn — this is still broadly considered rude |
+| Expect salaries to be quoted in gross (*brut*) and know your net | Conflate the 35-hour week with working 35 hours — it's a baseline, not a ceiling |
+| Come to your annual review prepared with market data and a clear argument | Sidestep your manager and approach their boss about compensation |
+| Know which collective agreement governs your role and sector | Expect the employer to volunteer information about pay ranges proactively |
 
-The 35-hour working week — enshrined in law since 2000 — shapes compensation in ways that are often misunderstood. It does not mean French workers always work 35 hours; it means that hours beyond 35 attract overtime premiums of 10–25%, depending on sectoral agreements. In practice, many professional employees work more and receive time-off in lieu or additional pay. The structural effect, however, is that the cost of overwork is visible and accounted for in French employment, which is not universally true elsewhere.
+#### 🇦🇺 Australia
+| ✅ Do | ❌ Don't |
+|---|---|
+| Ask what others are earning — it's legal, common, and often useful | Confuse your award rate with your total package — superannuation (11.5%) sits on top |
+| Negotiate actively and bring competing offers to the table | Accept the first offer as fixed — most employers expect a counter |
+| Know which modern award covers your role before signing anything | Assume casual loading (25%) compensates for everything it actually doesn't |
+| Discuss pay openly with colleagues — pay secrecy clauses are now unenforceable | Forget that states can vary: regional pay is often lower than metro rates |
+| Request salary reviews at performance milestones, not just annually | Underestimate enterprise bargaining agreements — an EBA can exceed your award significantly |
+| Check the Fair Work Ombudsman pay calculator to verify your entitlements | Assume you're underpaid without checking your applicable award rate first |
 
-France scores 86 on Hofstede's Uncertainty Avoidance, reflecting a preference for structured, rule-bound systems — and the salary architecture reflects this: elaborate, protective, and not particularly amenable to ad hoc renegotiation. An employee who wants a salary increase in France typically waits for the annual review cycle, argues on the basis of performance and market benchmarks, and accepts that the framework they are negotiating within is more powerful than any individual advocacy.
+---
 
-## Australia: The Competitive Floor
+## France
 
-Australia's approach to wages is less architecturally elaborate and, in certain respects, more pragmatic. The national minimum wage ($26.44 per hour, $1,004.90 per week after the 2026 Fair Work Commission decision, effective July 1, 2026) is reviewed annually by an independent tribunal — the Fair Work Commission — which weighs economic conditions, inflation, and the needs of low-paid workers. The 2026 review awarded a 4.75% increase, applying to approximately 21% of the workforce covered by the minimum wage or modern awards.
+The French salary system is structured from the top down. The national SMIC — currently €1,867.02 gross monthly as of June 2026, netting to approximately €1,477 after social contributions — establishes the absolute floor, above which over 700 sectoral *conventions collectives de branche* impose their own higher minimums by industry. In consulting, technology, and financial services, collective agreement minimums for qualified roles routinely exceed the SMIC from the moment of hiring. The system's intention is unambiguous: wages in any industry cannot be undercut below a collectively agreed threshold, regardless of what any individual employer might prefer.
 
-Modern awards govern minimum pay and conditions by industry and occupation across the country — there are over 120 of them, covering everything from the restaurant industry to professional engineers. Above these floors, enterprise bargaining agreements (EBAs) negotiate pay and conditions at the company level, subject to a "Better Off Overall Test" that ensures no worker is worse off under an EBA than under their applicable award. The effect is a layered system: national floor, industry minimum, company-level agreement, and individual contract, each providing a different level of protection.
+Above this floor, individual salaries are negotiated — but within a cultural context that Anglophone expats consistently describe as startling. Salary discussions in French corporate life are private, formal, and approached with what one might charitably call discretion, or less charitably call opacity. Asking a colleague what they earn is roughly equivalent to asking their weight: technically answerable, socially inadvisable. This norm coexists, somewhat uncomfortably, with France's implementation of the EU Pay Transparency Directive, which is gradually introducing salary disclosure rights that the culture has not yet fully accommodated. A 2024 survey by HelloWork found that 54% of French workers were now comfortable discussing pay at work — up from 17% in 2019 — which suggests the taboo is cracking, just not gone.
 
-The cultural register of salary in Australia is markedly more open than in France. Australia scores 90 on Hofstede's Individualism and 51 on Uncertainty Avoidance — meaning that individual negotiation is normalized, and discussion of pay is considerably less taboo. "What are you on?" is a reasonable Australian workplace question in a way that "Combien vous gagnez?" is not in France. This transparency has been reinforced by a tight labor market — unemployment running around 4.1% in 2025 — in which workers have had genuine leverage to negotiate, and competing offers have been a normal feature of salary conversations.
+The 35-hour working week, enshrined since 2000, shapes compensation in ways that are frequently misunderstood. It does not mean French workers clock off at 35 hours; it means that hours beyond 35 attract overtime premiums of 10–25%, depending on the applicable sectoral agreement. Many professional employees work more and receive time-off in lieu or additional pay. The structural effect, however, is that the cost of overwork is visible, accounted for, and priced into employment in France — which is not universally true elsewhere.
 
-Australian average gross income of approximately AUD 95,726 ($60,000 USD equivalent) exceeds French average gross earnings of approximately €39,800 ($44,000 USD), a gap that narrows in purchasing power parity terms but remains meaningful in absolute terms. The gap partly reflects Australia's high minimum wages by global standards, partly the labor market composition (significant high-wage mining, finance, and professional services sectors), and partly the different tax and social contribution structures that make gross-to-net conversions non-trivial to compare.
+## Australia
 
-## The Reckoning: Who Gets More, and For What?
+Australia's approach to wages is less architecturally elaborate and, in certain respects, more refreshingly direct. The national minimum wage of $26.44 per hour (effective July 1, 2026, after the Fair Work Commission's 4.75% increase) is reviewed annually by an independent body that weighs inflation, economic conditions, and the needs of low-paid workers. Over 120 modern awards then set industry- and occupation-specific floors above this national minimum. Enterprise bargaining agreements, negotiated at the company level, must pass a "Better Off Overall Test" ensuring no worker is worse off under an EBA than under their applicable award. The result is a layered system: national floor, industry floor, company-level agreement, individual contract — each providing a different tier of protection.
 
-France's system protects workers at the floor more comprehensively than Australia's, particularly through the density of sectoral agreements and the legal weight of collective bargaining outcomes. The tradeoff is a labor market that moves slowly: hiring is more considered, redundancy is expensive, and employers navigate a regulatory landscape that can deter the kind of rapid workforce scaling that Australian companies manage with relative ease.
+The cultural register of salary in Australia is markedly more open than in France. Australia scores 90 on Hofstede's Individualism scale and 51 on Uncertainty Avoidance, meaning individual negotiation is normalized and pay transparency is no longer just tolerated — it's legally protected. Since June 2023, pay secrecy clauses in new contracts have been unenforceable. Workers can now freely disclose or discuss their remuneration without fear of reprisal. "What are you on?" is a reasonable workplace question in Australia in a way that "Combien vous gagnez?" simply is not in France. Australia's average gross full-time weekly earnings reached AUD 2,051.10 in late 2025 — annualizing to roughly AUD 106,657 — and the country ranks 8th globally for net monthly salary.
 
-Australia's system is more flexible, with faster hiring and termination processes, more individual variation in pay outcomes, and greater dependence on market conditions to determine what workers actually earn. One expat who had worked in both countries noted on an online forum that Australia felt like salary was something you negotiated in real time — competitive, transparent, responsive to market — while France felt like salary was something the system had already determined and you were merely confirming.
+Migrants make up 26.3% of Australia's workforce, though data shows international workers earn a median annual income of AUD 45,351 — below the overall national average of AUD 52,388 — with variation by sector and state. The gap partly reflects entry points into the labor market and concentration in lower-wage industries, though opportunities for upward mobility exist across professional, technical, and financial services.
+
+## The Reckoning
+
+France's system protects workers at the floor more comprehensively than Australia's, particularly through the density of sectoral agreements and the legal weight of collective bargaining outcomes. The tradeoff is a labor market that moves slowly: hiring is considered and deliberate, redundancy is expensive, and employers navigate a regulatory landscape that can deter the kind of rapid workforce scaling that Australian companies manage with relative ease.
+
+Australia's system is more flexible, with faster hiring and termination processes, more individual variation in pay outcomes, and greater dependence on market conditions to determine what workers actually earn. One expat who had worked in both countries noted online that Australia felt like salary was something you negotiated in real time — competitive, transparent, responsive to the market — while France felt like salary was something the system had already largely decided, and you were merely confirming the number that the collective agreement and your employer had pre-arranged between them.
 
 ![Salary culture contrast — France and Australia](https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop)
-*Illustration: The Alignment Times / The Global Office*
+*Photo: Pexels*
 
-## Priya's Take
+### The Part the Brochure Left Out
 
-France has built a salary system designed to ensure that collective agreements protect workers from the worst outcomes of individual negotiation in markets where employers have disproportionate power. Australia has built a salary system designed to let market conditions and individual negotiation establish outcomes, with a floor that is itself among the world's highest. Both approaches are internally coherent. The French version offers security that can feel, to outsiders, like inflexibility. The Australian version offers opportunity that can feel, to insiders, like uncertainty. What both countries share is the discovery that floors and transparency, however structured, do not by themselves produce the feeling of being adequately compensated — which turns out to be primarily a relative concern, and not resolved by any particular architecture.
+> <small>*The Local France — "I would feel ashamed to tell someone how much money I make, especially if it is less than them," said Alexia, a Parisian salesperson. "Some people are afraid to negotiate their salary and might end up earning less than colleagues doing the same job. This is mainly why I would not talk about money at work."*</small>
+
+> <small>*The Local France — "I don't mind telling someone how much I make, I know it is not much, but we all have money issues," said Etan, in his twenties. His parents, he added, would never discuss theirs — a generational fault line running straight through the salary taboo.*</small>
+
+> <small>*Quora — An expat asked whether €80,000 gross in Paris was a "good salary." The consensus: yes, comfortably above average — but the actual number that lands in your account each month will be meaningfully lower than you expect. Factor in social charges, income tax at source, and the fact that French salaries are always quoted brut.*</small>
+
+> <small>*Expatica Australia — Migrants in Australia earn a median annual income of AUD 45,351 against a national average of AUD 52,388. The Fair Work Act gives all workers — regardless of visa status — the same minimum wage protections. In practice, hospitality and agriculture see the most underpayment investigations by the Fair Work Ombudsman.*</small>
+
+> <small>*vanztravel.com (France vs Australia work culture comparison) — "Money is discussed far more openly in Australia, with job advertisements often including salary ranges and it being common to talk openly about pay with colleagues. In France, talking about money remains largely taboo — salary is often considered a private matter." The observation has been made by expats moving in both directions: the French find Australia alarming; Australians find France confusing.*</small>
+
+### Conclusion
+
+France has built a salary system designed to ensure that collective agreements protect workers from the worst outcomes of individual negotiation in markets where employers have structural advantages. Australia has built a system designed to let market conditions and individual negotiation establish outcomes, with a floor that is itself among the world's highest. Both approaches are internally coherent. The French version offers security that can feel, to outsiders, like inflexibility. The Australian version offers opportunity that can feel, to insiders, like uncertainty.
+
+What both countries share is the eventual discovery that floors and frameworks, however well-engineered, do not by themselves produce the feeling of being adequately compensated. That turns out to be a relative concern — one determined by what your colleagues earn, what you suspect they earn, and how much of that information anyone is actually willing to share. On that last point, France and Australia have arrived at opposite conclusions, and neither seems particularly close to reconsidering.
