@@ -145,8 +145,8 @@ export async function scheduleBufferPost(
     schedulingType: "automatic",
     mode: "customScheduled",
     dueAt: scheduledAt.toISOString(),
+    assets: imageUrl ? [{ image: { url: imageUrl } }] : [],
   };
-  if (imageUrl) input.assets = [{ image: { url: imageUrl } }];
   if (platform === "instagram") input.metadata = { instagram: { type: "post", shouldShareToFeed: true } };
   return createPostMutation(input);
 }
@@ -165,8 +165,8 @@ export async function createBufferDraft(
     schedulingType: "automatic",
     mode: "addToQueue",
     saveToDraft: true,
+    assets: imageUrl ? [{ image: { url: imageUrl } }] : [],
   };
-  if (imageUrl) input.assets = [{ image: { url: imageUrl } }];
   if (platform === "instagram") input.metadata = { instagram: { type: "post", shouldShareToFeed: true } };
   return createPostMutation(input);
 }
