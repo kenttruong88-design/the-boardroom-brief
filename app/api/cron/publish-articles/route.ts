@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@sanity/client";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
+import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -149,11 +150,41 @@ async function ensureCountries(client: ReturnType<typeof getSanityClient>, count
   }));
 }
 
+async function fetchImageBuffer(url: string): Promise<Buffer | null> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(15_000) });
+    if (!res.ok) return null;
+    return Buffer.from(await res.arrayBuffer());
+  } catch {
+    return null;
+  }
+}
+
 async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
   const docId = `article-${article.slug}`;
   const countryRefs = article.countries.map(c => ({
     _type: "reference", _ref: "country-" + slugify(c), _key: key(),
   }));
+
+  // Upload the frontmatter Pexels image to Cloudinary so we get proper
+  // responsive variants (heroUrl, ogImageUrl, thumbnailUrl) on our CDN —
+  // same treatment as AI-pipeline articles.
+  let heroImageUrl = article.heroUrl;
+  let ogImage      = article.ogUrl || article.heroUrl;
+  if (article.heroUrl) {
+    try {
+      const buf = await fetchImageBuffer(article.heroUrl);
+      if (buf) {
+        const cdn = await uploadToCloudinary(buf, article.slug, "global-office");
+        heroImageUrl = cdn.heroUrl;
+        ogImage      = cdn.ogImageUrl;
+        console.log(`[publish-articles] Cloudinary upload ok: ${cdn.publicId}`);
+      }
+    } catch (err) {
+      console.warn("[publish-articles] Cloudinary upload failed, using raw Pexels URL:", (err as Error).message);
+    }
+  }
+
   await client.createOrReplace({
     _id: docId, _type: "article",
     title:       article.title,
@@ -168,7 +199,8 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     featured:    false,
     aiGenerated: true,
     agentName:   "Priya Mehta",
-    ogImage:     article.ogUrl || article.heroUrl,
+    heroImageUrl,
+    ogImage,
     imageGeneratedWith: "pexels",
     seoDescription: article.seoDesc,
   });
