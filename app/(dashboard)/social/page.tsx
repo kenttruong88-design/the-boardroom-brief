@@ -780,6 +780,8 @@ export default function SocialDashboard() {
   const [generating, setGenerating]       = useState(false);
   const [generateMsg, setGenerateMsg]     = useState("");
   const [approvingAll, setApprovingAll]   = useState(false);
+  const [queueingAll, setQueueingAll]     = useState(false);
+  const [postingLiveAll, setPostingLiveAll] = useState(false);
   const [previewArticleId, setPreviewArticleId] = useState("");
   const [preview, setPreview]                   = useState<PreviewResult | null>(null);
   const [previewLoading, setPreviewLoading]     = useState(false);
@@ -947,6 +949,46 @@ export default function SocialDashboard() {
     }
   }
 
+  async function handleQueueAll() {
+    setQueueingAll(true);
+    try {
+      const res = await fetch("/api/social/queue/bulk-publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode: "scheduled" }),
+      });
+      const d = await res.json() as { sent?: number; failed?: number; error?: string };
+      if (!res.ok) { alert(`Queue all failed: ${d.error}`); return; }
+      setGenerateMsg(`Queued ${d.sent ?? 0} posts to Buffer${d.failed ? ` · ${d.failed} failed` : ""}`);
+      await fetchData();
+    } catch {
+      alert("Network error queuing posts");
+    } finally {
+      setQueueingAll(false);
+    }
+  }
+
+  async function handlePostLiveAll() {
+    const pendingCount = weekPosts.filter((p) => p.status === "pending_approval").length;
+    if (!confirm(`Post all ${pendingCount} pending posts live to Buffer right now?`)) return;
+    setPostingLiveAll(true);
+    try {
+      const res = await fetch("/api/social/queue/bulk-publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode: "now" }),
+      });
+      const d = await res.json() as { sent?: number; failed?: number; error?: string };
+      if (!res.ok) { alert(`Post live all failed: ${d.error}`); return; }
+      setGenerateMsg(`Posted ${d.sent ?? 0} live${d.failed ? ` · ${d.failed} failed` : ""}`);
+      await fetchData();
+    } catch {
+      alert("Network error posting live");
+    } finally {
+      setPostingLiveAll(false);
+    }
+  }
+
   function handlePostAdded(post: QueuePost) {
     const today = new Date().toISOString().split("T")[0];
     if (post.scheduled_for.startsWith(today)) {
@@ -1054,12 +1096,26 @@ export default function SocialDashboard() {
                 <AlertCircle className="w-5 h-5" />
                 Awaiting approval ({approvalPosts.length})
               </h2>
-              <button onClick={handleApproveAll} disabled={approvingAll}
-                className="flex items-center gap-1.5 text-sm font-sans font-semibold px-4 py-2"
-                style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: approvingAll ? 0.6 : 1 }}>
-                {approvingAll ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                Approve all
-              </button>
+              <div className="flex items-center gap-2">
+                <button onClick={handleApproveAll} disabled={approvingAll || queueingAll || postingLiveAll}
+                  className="flex items-center gap-1.5 text-sm font-sans font-semibold px-3 py-2"
+                  style={{ border: "1px solid #15803d", color: "#15803d", borderRadius: 2, background: "var(--surface)", opacity: approvingAll ? 0.6 : 1 }}>
+                  {approvingAll ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
+                  Approve all
+                </button>
+                <button onClick={handleQueueAll} disabled={queueingAll || approvingAll || postingLiveAll}
+                  className="flex items-center gap-1.5 text-sm font-sans font-semibold px-3 py-2"
+                  style={{ background: "#1d4ed8", color: "#fff", borderRadius: 2, opacity: queueingAll ? 0.6 : 1 }}>
+                  {queueingAll ? <Loader2 className="w-4 h-4 animate-spin" /> : <Clock className="w-4 h-4" />}
+                  Queue all
+                </button>
+                <button onClick={handlePostLiveAll} disabled={postingLiveAll || approvingAll || queueingAll}
+                  className="flex items-center gap-1.5 text-sm font-sans font-semibold px-3 py-2"
+                  style={{ background: "#15803d", color: "#fff", borderRadius: 2, opacity: postingLiveAll ? 0.6 : 1 }}>
+                  {postingLiveAll ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
+                  Post live all
+                </button>
+              </div>
             </div>
             <div className="p-3 mb-4 text-xs font-sans"
               style={{ background: "#fef3c7", border: "1px solid #fcd34d", color: "#92400e", borderRadius: 2 }}>
