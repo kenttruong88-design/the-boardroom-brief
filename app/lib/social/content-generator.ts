@@ -8,6 +8,40 @@ export type { SocialPostReview };
 
 type Platform = "linkedin" | "twitter" | "instagram";
 
+// ── Hashtag fallbacks per pillar + platform ───────────────────────────────────
+// Used to pad up to the minimum when Claude returns fewer than required.
+
+const PILLAR_HASHTAGS: Record<string, string[]> = {
+  "markets-floor":  ["StockMarket", "Finance", "Investing", "Markets", "FinTwit", "Stocks", "Trading"],
+  "macro-mondays":  ["MacroEconomics", "Economics", "CentralBank", "Inflation", "GlobalEconomy", "FederalReserve"],
+  "c-suite-circus": ["Business", "Corporate", "Leadership", "CEO", "MergersAndAcquisitions", "BoardroomNews"],
+  "global-office":  ["WorkplaceCulture", "FutureOfWork", "RemoteWork", "GlobalBusiness", "HR", "WorkLife"],
+  "water-cooler":   ["CorporateLife", "OfficeHumour", "WorkHumour", "LinkedIn", "BusinessCulture", "Corporate"],
+  "general":        ["BusinessNews", "Finance", "Economics", "Corporate", "GlobalBusiness"],
+};
+
+const PLATFORM_MIN_HASHTAGS: Record<Platform, number> = {
+  linkedin:  3,
+  twitter:   3,
+  instagram: 5,
+};
+
+function padHashtags(hashtags: string[], pillarSlug: string, platform: Platform): string[] {
+  const min = PLATFORM_MIN_HASHTAGS[platform];
+  if (hashtags.length >= min) return hashtags;
+  const existing = new Set(hashtags.map(h => h.toLowerCase()));
+  const fallbacks = PILLAR_HASHTAGS[pillarSlug] ?? PILLAR_HASHTAGS["general"];
+  const padded = [...hashtags];
+  for (const tag of fallbacks) {
+    if (padded.length >= min) break;
+    if (!existing.has(tag.toLowerCase())) {
+      padded.push(tag);
+      existing.add(tag.toLowerCase());
+    }
+  }
+  return padded;
+}
+
 export interface SocialPost {
   platform: Platform;
   content: string;
@@ -95,6 +129,9 @@ Return only valid JSON:
   } catch (err) {
     console.warn(`[social] Editor review failed for ${platform}:`, err);
   }
+
+  // Enforce minimum hashtag count — pad with pillar-specific fallbacks if needed
+  hashtags = padHashtags(hashtags, pillarSlug, platform);
 
   return {
     platform,

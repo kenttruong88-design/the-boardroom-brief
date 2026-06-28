@@ -22,7 +22,7 @@ export async function POST(
     // 1. Fetch current row
     const { data: post, error: fetchErr } = await supabase
       .from("social_queue")
-      .select("id, platform, content, image_url, scheduled_for, status, buffer_post_id")
+      .select("id, platform, content, hashtags, image_url, scheduled_for, status, buffer_post_id")
       .eq("id", id)
       .single();
 
@@ -70,11 +70,16 @@ export async function POST(
     const scheduledAt = requestedAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : requestedAt;
 
     // 6. Call Buffer — revert claim on failure so the post can be retried
+    const tags = (post.hashtags as string[] | null) ?? [];
+    const finalText = tags.length
+      ? `${post.content as string}\n\n${tags.map((t: string) => `#${t}`).join(" ")}`
+      : (post.content as string);
+
     let bufferPostId: string;
     try {
       bufferPostId = await scheduleBufferPost(
         profile.id,
-        post.content as string,
+        finalText,
         scheduledAt,
         (post.image_url as string | null) ?? undefined,
         post.platform as string

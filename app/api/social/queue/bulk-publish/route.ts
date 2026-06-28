@@ -11,6 +11,7 @@ interface QueueRow {
   id: string;
   platform: string;
   content: string;
+  hashtags: string[] | null;
   image_url: string | null;
   scheduled_for: string;
   status: string;
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
   // Fetch all pending_approval posts oldest-first so earlier slots get today's capacity
   const { data: posts, error: fetchErr } = await supabase
     .from("social_queue")
-    .select("id, platform, content, image_url, scheduled_for, status")
+    .select("id, platform, content, hashtags, image_url, scheduled_for, status")
     .eq("status", "pending_approval")
     .is("buffer_post_id", null)
     .order("scheduled_for", { ascending: true });
@@ -108,10 +109,15 @@ export async function POST(req: Request) {
       const requestedAt = mode === "now" ? now : new Date(post.scheduled_for);
       const scheduledAt = requestedAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : requestedAt;
 
+      const tags = post.hashtags ?? [];
+      const finalText = tags.length
+        ? `${post.content}\n\n${tags.map((t: string) => `#${t}`).join(" ")}`
+        : post.content;
+
       try {
         const bufferPostId = await scheduleBufferPost(
           profile.id,
-          post.content,
+          finalText,
           scheduledAt,
           post.image_url ?? undefined,
           post.platform
