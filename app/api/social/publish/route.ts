@@ -48,22 +48,43 @@ export async function POST(req: Request) {
   return run();
 }
 
+const DAILY_CAP = 10;
+
 async function run() {
   const startedAt = Date.now();
   const supabase = createAdminClient();
   const now = new Date();
 
+  // 1. Enforce daily cap — count posts already sent today
+  const todayStart = new Date(now);
+  todayStart.setUTCHours(0, 0, 0, 0);
+
+  const { count: sentToday } = await supabase
+    .from("social_queue")
+    .select("*", { count: "exact", head: true })
+    .eq("status", "sent")
+    .gte("sent_at", todayStart.toISOString());
+
+  const remaining = DAILY_CAP - (sentToday ?? 0);
+  if (remaining <= 0) {
+    return NextResponse.json({
+      message: `Daily cap reached (${DAILY_CAP}/day). Posts will resume tomorrow.`,
+      sentToday: sentToday ?? 0,
+    });
+  }
+
   const windowStart = new Date(now.getTime() - 30 * 60 * 1000); // now - 30 min
   const windowEnd   = new Date(now.getTime() +  5 * 60 * 1000); // now + 5 min
 
-  // 1. Fetch due posts
+  // 2. Fetch due posts — capped to remaining daily slots
   const { data: duePosts, error: fetchError } = await supabase
     .from("social_queue")
     .select("id, article_id, article_headline, platform, content, hashtags, image_url, article_url, scheduled_for")
     .eq("status", "pending")
     .gte("scheduled_for", windowStart.toISOString())
     .lte("scheduled_for", windowEnd.toISOString())
-    .order("scheduled_for", { ascending: true });
+    .order("scheduled_for", { ascending: true })
+    .limit(remaining);
 
   if (fetchError) {
     return NextResponse.json({ error: fetchError.message }, { status: 500 });
@@ -71,12 +92,12 @@ async function run() {
 
   const posts = (duePosts ?? []) as QueueRow[];
 
-  // 2. Nothing due
+  // 3. Nothing due
   if (posts.length === 0) {
     return NextResponse.json({ message: "No posts due", checked_at: now.toISOString() });
   }
 
-  // 3. Build platform → Buffer profile ID map
+  // 4. Build platform → Buffer profile ID map
   let profileMap: Record<string, string> = {};
   const warnings: string[] = [];
 
@@ -90,7 +111,7 @@ async function run() {
     warnings.push(`Buffer profiles unavailable: ${err instanceof Error ? err.message : String(err)}`);
   }
 
-  // 4. Publish each due post
+  // 5. Publish each due post
   const details: PostDetail[] = [];
   let postsSent = 0;
   let postsFailed = 0;
@@ -149,7 +170,7 @@ async function run() {
     }
   }
 
-  // 5. Log run
+  // 6. Log run
   await supabase.from("social_runs").insert({
     trigger:         "cron",
     articles_found:  0,   // publish run — articles already queued
@@ -160,6 +181,6 @@ async function run() {
     duration_ms:     Date.now() - startedAt,
   });
 
-  // 6. Return summary
-  return NextResponse.json({ postsSent, postsFailed, warnings, details });
+  // 7. Return summary
+  return NextResponse.json({ postsSent, postsFailed, sentToday: (sentToday ?? 0) + postsSent, dailyCap: DAILY_CAP, warnings, details });
 }

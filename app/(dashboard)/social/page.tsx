@@ -957,9 +957,12 @@ export default function SocialDashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mode: "scheduled" }),
       });
-      const d = await res.json() as { sent?: number; failed?: number; error?: string };
+      const d = await res.json() as { sent?: number; deferred?: number; failed?: number; deferredByDay?: Record<string, number>; error?: string };
       if (!res.ok) { alert(`Queue all failed: ${d.error}`); return; }
-      setGenerateMsg(`Queued ${d.sent ?? 0} posts to Buffer${d.failed ? ` · ${d.failed} failed` : ""}`);
+      const parts = [`Queued ${d.sent ?? 0} to Buffer today`];
+      if (d.deferred) parts.push(`${d.deferred} deferred across future days`);
+      if (d.failed) parts.push(`${d.failed} failed`);
+      setGenerateMsg(parts.join(" · "));
       await fetchData();
     } catch {
       alert("Network error queuing posts");
@@ -970,7 +973,7 @@ export default function SocialDashboard() {
 
   async function handlePostLiveAll() {
     const pendingCount = weekPosts.filter((p) => p.status === "pending_approval").length;
-    if (!confirm(`Post all ${pendingCount} pending posts live to Buffer right now?`)) return;
+    if (!confirm(`Post all ${pendingCount} pending posts to Buffer now? Posts over today's 10/day cap will be scheduled for tomorrow onwards.`)) return;
     setPostingLiveAll(true);
     try {
       const res = await fetch("/api/social/queue/bulk-publish", {
@@ -978,9 +981,12 @@ export default function SocialDashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mode: "now" }),
       });
-      const d = await res.json() as { sent?: number; failed?: number; error?: string };
+      const d = await res.json() as { sent?: number; deferred?: number; failed?: number; error?: string };
       if (!res.ok) { alert(`Post live all failed: ${d.error}`); return; }
-      setGenerateMsg(`Posted ${d.sent ?? 0} live${d.failed ? ` · ${d.failed} failed` : ""}`);
+      const parts = [`Posted ${d.sent ?? 0} live`];
+      if (d.deferred) parts.push(`${d.deferred} deferred to tomorrow+`);
+      if (d.failed) parts.push(`${d.failed} failed`);
+      setGenerateMsg(parts.join(" · "));
       await fetchData();
     } catch {
       alert("Network error posting live");
