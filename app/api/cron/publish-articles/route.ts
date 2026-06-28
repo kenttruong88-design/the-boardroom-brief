@@ -4,6 +4,39 @@ import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
 
+// ── Pillar configs ────────────────────────────────────────────────────────────
+
+interface PillarConfig {
+  id: string;
+  name: string;
+  contentDir: string;
+  authorId: string;
+  authorName: string;
+  authorSlug: string;
+  authorBio: string;
+}
+
+const PILLAR_CONFIGS: PillarConfig[] = [
+  {
+    id: "global-office",
+    name: "The Global Office",
+    contentDir: "global-office",
+    authorId: "author-priya-mehta",
+    authorName: "Priya Mehta",
+    authorSlug: "priya-mehta",
+    authorBio: "Staff writer for The Alignment Times covering global work and life culture.",
+  },
+  {
+    id: "out-of-office",
+    name: "Out of Office",
+    contentDir: "out-of-office",
+    authorId: "author-suki-nakamura",
+    authorName: "Suki Nakamura",
+    authorSlug: "suki-nakamura",
+    authorBio: "Relocated 14 times. Has eaten in 60 countries. Will tell you exactly which cities deserve to exist and why your favourite restaurant is completely wrong.",
+  },
+];
+
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
 function isAuthorised(req: NextRequest): boolean {
@@ -96,7 +129,7 @@ interface Article {
   readTime: number; blocks: object[]; seoDesc: string;
 }
 
-function parseArticle(filePath: string): Article | null {
+function parseArticle(filePath: string, config: PillarConfig): Article | null {
   const text  = readFileSync(filePath, "utf8");
   const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return null;
@@ -126,20 +159,28 @@ function parseArticle(filePath: string): Article | null {
   const blocks    = markdownToBlocks(noTitle);
   const cStr      = countries.slice(0, 2).join(" vs ");
   const subject   = (fm.subject ?? "") as string;
-  const seoDesc   = `${cStr}: ${subject}. Analysis by Priya Mehta for The Alignment Times.`.slice(0, 160);
+  const seoDesc   = `${cStr}: ${subject}. By ${config.authorName} for The Alignment Times.`.slice(0, 160);
 
   return { title, slug, excerpt, subject, countries, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc };
 }
 
-async function ensurePillar(client: ReturnType<typeof getSanityClient>) {
-  await client.createIfNotExists({ _id: "global-office", _type: "pillar",
-    name: "The Global Office", slug: { _type: "slug", current: "global-office" } });
+async function ensurePillar(client: ReturnType<typeof getSanityClient>, config: PillarConfig) {
+  await client.createIfNotExists({
+    _id: config.id,
+    _type: "pillar",
+    name: config.name,
+    slug: { _type: "slug", current: config.id },
+  });
 }
 
-async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
-  await client.createIfNotExists({ _id: "author-priya-mehta", _type: "author",
-    name: "Priya Mehta", slug: { _type: "slug", current: "priya-mehta" },
-    bio: "Staff writer for The Alignment Times covering global work and life culture." });
+async function ensureAuthor(client: ReturnType<typeof getSanityClient>, config: PillarConfig) {
+  await client.createIfNotExists({
+    _id: config.authorId,
+    _type: "author",
+    name: config.authorName,
+    slug: { _type: "slug", current: config.authorSlug },
+    bio: config.authorBio,
+  });
 }
 
 async function ensureCountries(client: ReturnType<typeof getSanityClient>, countries: string[]) {
@@ -160,28 +201,29 @@ async function fetchImageBuffer(url: string): Promise<Buffer | null> {
   }
 }
 
-async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
+async function publishArticle(
+  client: ReturnType<typeof getSanityClient>,
+  article: Article,
+  config: PillarConfig
+): Promise<string> {
   const docId = `article-${article.slug}`;
   const countryRefs = article.countries.map(c => ({
     _type: "reference", _ref: "country-" + slugify(c), _key: key(),
   }));
 
-  // Upload the frontmatter Pexels image to Cloudinary so we get proper
-  // responsive variants (heroUrl, ogImageUrl, thumbnailUrl) on our CDN —
-  // same treatment as AI-pipeline articles.
   let heroImageUrl = article.heroUrl;
   let ogImage      = article.ogUrl || article.heroUrl;
   if (article.heroUrl) {
     try {
       const buf = await fetchImageBuffer(article.heroUrl);
       if (buf) {
-        const cdn = await uploadToCloudinary(buf, article.slug, "global-office");
+        const cdn = await uploadToCloudinary(buf, article.slug, config.id);
         heroImageUrl = cdn.heroUrl;
         ogImage      = cdn.ogImageUrl;
         console.log(`[publish-articles] Cloudinary upload ok: ${cdn.publicId}`);
       }
     } catch (err) {
-      console.warn("[publish-articles] Cloudinary upload failed, using raw Pexels URL:", (err as Error).message);
+      console.warn("[publish-articles] Cloudinary upload failed, using raw URL:", (err as Error).message);
     }
   }
 
@@ -191,24 +233,26 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     slug:        { _type: "slug", current: article.slug },
     excerpt:     article.excerpt,
     body:        article.blocks,
-    pillar:      { _type: "reference", _ref: "global-office" },
-    author:      { _type: "reference", _ref: "author-priya-mehta" },
+    pillar:      { _type: "reference", _ref: config.id },
+    author:      { _type: "reference", _ref: config.authorId },
     countries:   countryRefs,
     publishedAt: article.pubDt,
     readTime:    article.readTime,
     featured:    false,
     aiGenerated: true,
-    agentName:   "Priya Mehta",
+    agentName:   config.authorName,
     heroImageUrl,
     ogImage,
     imageGeneratedWith: "pexels",
     seoDescription: article.seoDesc,
   });
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
   try {
-    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.REVALIDATE_SECRET ?? ""}&path=/global-office`, { method: "POST" });
+    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.REVALIDATE_SECRET ?? ""}&path=/${config.id}`, { method: "POST" });
   } catch { /* non-fatal */ }
-  return `${siteUrl}/global-office/${article.slug}`;
+
+  return `${siteUrl}/${config.id}/${article.slug}`;
 }
 
 // ── Route handler ─────────────────────────────────────────────────────────────
@@ -221,51 +265,66 @@ export async function GET(req: NextRequest) {
   const COUNT = Math.min(parseInt(req.nextUrl.searchParams.get("count") ?? "2") || 2, 10);
 
   try {
-    const client = getSanityClient();
+    const sanity = getSanityClient();
+    const allResults: { pillar: string; published: number; remaining: number; articles: { title: string; url: string }[] }[] = [];
 
-    // Query Sanity for already-published Global Office slugs (no local tracking file needed)
-    const existing: { slug: { current: string } }[] = await client.fetch(
-      `*[_type == "article" && pillar._ref == "global-office"]{ slug }`
-    );
-    const publishedSlugs = new Set(existing.map(d => d.slug.current));
+    for (const config of PILLAR_CONFIGS) {
+      // Query Sanity for already-published slugs for this pillar
+      const existing: { slug: { current: string } }[] = await sanity.fetch(
+        `*[_type == "article" && pillar._ref == $pillarId]{ slug }`,
+        { pillarId: config.id }
+      );
+      const publishedSlugs = new Set(existing.map(d => d.slug.current));
 
-    // Read .md files from content/global-office/
-    const contentDir = join(process.cwd(), "content", "global-office");
-    const allFiles   = readdirSync(contentDir).filter(f => f.endsWith(".md")).sort();
-
-    // Find unpublished: parse slug from file, check against Sanity
-    const candidates: { filename: string; article: Article }[] = [];
-    for (const filename of allFiles) {
-      const article = parseArticle(join(contentDir, filename));
-      if (!article) continue;
-      if (!publishedSlugs.has(article.slug)) {
-        candidates.push({ filename, article });
+      // Read .md files from the content directory
+      const contentDir = join(process.cwd(), "content", config.contentDir);
+      let allFiles: string[] = [];
+      try {
+        allFiles = readdirSync(contentDir).filter(f => f.endsWith(".md")).sort();
+      } catch {
+        // Directory doesn't exist yet — skip this pillar silently
+        console.log(`[publish-articles] No content dir for ${config.id}, skipping.`);
+        continue;
       }
+
+      const candidates: { filename: string; article: Article }[] = [];
+      for (const filename of allFiles) {
+        const article = parseArticle(join(contentDir, filename), config);
+        if (!article) continue;
+        if (!publishedSlugs.has(article.slug)) {
+          candidates.push({ filename, article });
+        }
+      }
+
+      if (!candidates.length) {
+        console.log(`[publish-articles] ${config.id}: all articles already published.`);
+        allResults.push({ pillar: config.id, published: 0, remaining: 0, articles: [] });
+        continue;
+      }
+
+      const toPublish = candidates.slice(0, COUNT);
+      console.log(`[publish-articles] ${config.id}: ${candidates.length} unpublished, publishing ${toPublish.length}.`);
+
+      await ensurePillar(sanity, config);
+      await ensureAuthor(sanity, config);
+
+      const results: { title: string; url: string }[] = [];
+      for (const { article } of toPublish) {
+        await ensureCountries(sanity, article.countries);
+        const url = await publishArticle(sanity, article, config);
+        results.push({ title: article.title, url });
+        console.log(`[publish-articles] Published: ${article.title}`);
+      }
+
+      allResults.push({
+        pillar: config.id,
+        published: results.length,
+        remaining: candidates.length - results.length,
+        articles: results,
+      });
     }
 
-    if (!candidates.length) {
-      return NextResponse.json({ message: "All articles already published", published: 0 });
-    }
-
-    const toPublish = candidates.slice(0, COUNT);
-    console.log(`[publish-articles] ${candidates.length} unpublished. Publishing ${toPublish.length}.`);
-
-    await ensurePillar(client);
-    await ensureAuthor(client);
-
-    const results: { title: string; url: string }[] = [];
-    for (const { article } of toPublish) {
-      await ensureCountries(client, article.countries);
-      const url = await publishArticle(client, article);
-      results.push({ title: article.title, url });
-      console.log(`[publish-articles] Published: ${article.title}`);
-    }
-
-    return NextResponse.json({
-      published:  results.length,
-      remaining:  candidates.length - results.length,
-      articles:   results,
-    });
+    return NextResponse.json({ pillars: allResults });
   } catch (err) {
     console.error("[publish-articles]", err);
     return NextResponse.json({ error: (err as Error).message }, { status: 500 });

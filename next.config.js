@@ -9,7 +9,10 @@ const nextConfig = {
   // Bundle content/global-office/*.md into the publish-articles serverless function
   experimental: {
     outputFileTracingIncludes: {
-      "/api/cron/publish-articles": ["./content/global-office/*.md"],
+      "/api/cron/publish-articles": [
+        "./content/global-office/*.md",
+        "./content/out-of-office/*.md",
+      ],
     },
   },
   turbopack: {
