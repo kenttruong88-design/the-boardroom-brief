@@ -15,9 +15,12 @@ async function fetchImageBuffer(url: string): Promise<Buffer | null> {
   }
 }
 
-export async function POST() {
-  const auth = await requireAuth();
-  if (auth instanceof NextResponse) return auth;
+export async function POST(req: Request) {
+  const cronSecret = req.headers.get("x-cron-secret");
+  if (cronSecret !== process.env.CRON_SECRET) {
+    const auth = await requireAuth();
+    if (auth instanceof NextResponse) return auth;
+  }
 
   if (!client || !writeClient) {
     return NextResponse.json({ error: "Sanity not configured" }, { status: 500 });
