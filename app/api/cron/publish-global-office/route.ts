@@ -79,20 +79,45 @@ function markdownToBlocks(body: string) {
     const h2 = para.match(/^##\s+(.+)/);
     if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
 
-    // Markdown table — convert each data row to two bullet points (Do / Don't)
+    // Markdown table — render as ✅ Do / ❌ Don't labeled sections
     if (/^\|/.test(para)) {
       const rows = para.split("\n").map(l => l.trim()).filter(l => l.startsWith("|"));
+
+      // Find header row to identify which column is Do vs Don't
+      const headerRow = rows.find(r => /✅|Do/.test(r) || /❌|Don't/.test(r));
+      const headerCells = headerRow
+        ? headerRow.split("|").map(c => c.trim()).filter(Boolean)
+        : [];
+      const doCol   = headerCells.findIndex(c => /✅|^Do$/.test(c));
+      const dontCol = headerCells.findIndex(c => /❌|Don't/.test(c));
+
+      const doItems:   string[] = [];
+      const dontItems: string[] = [];
+
       for (const row of rows) {
-        if (/^\|[\s\-:|]+\|/.test(row)) continue; // separator row
-        const cells = row.split("|").map(c => c.trim()).filter(Boolean);
-        if (cells.length < 1) continue;
-        const isHeader = cells.some(c => /✅|❌|Do$|Don't/.test(c));
-        if (isHeader) continue;
-        for (const cell of cells) {
-          const text = cell.replace(/<[^>]+>/g, "").trim();
-          if (!text) continue;
-          blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [], children: parseInline(text) });
+        if (/^\|[\s\-:|]+\|/.test(row)) continue; // separator
+        const cells = row.split("|").map(c => c.trim().replace(/<[^>]+>/g, "").trim()).filter(Boolean);
+        if (!cells.length) continue;
+        // Skip the header row itself
+        if (cells.some(c => /✅|❌|^Do$/.test(c))) continue;
+
+        if (doCol >= 0 && dontCol >= 0) {
+          if (cells[doCol])   doItems.push(cells[doCol]);
+          if (cells[dontCol]) dontItems.push(cells[dontCol]);
+        } else {
+          // Fallback: no header detected — treat col 0 as Do, col 1 as Don't
+          if (cells[0]) doItems.push(cells[0]);
+          if (cells[1]) dontItems.push(cells[1]);
         }
+      }
+
+      if (doItems.length) {
+        blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: [{ _type: "span", _key: key(), text: "✅ Do", marks: ["strong"] }] });
+        for (const text of doItems) blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [], children: parseInline(text) });
+      }
+      if (dontItems.length) {
+        blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: [{ _type: "span", _key: key(), text: "❌ Don't", marks: ["strong"] }] });
+        for (const text of dontItems) blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [], children: parseInline(text) });
       }
       continue;
     }
