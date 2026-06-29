@@ -42,6 +42,13 @@ export const PILLARS = [
     bg: "bg-emerald-50",
     isPodcast: true,
   },
+  {
+    slug: "out-of-office",
+    name: "Out of Office",
+    description: "Life outside the desk — travel, culture, and everything that makes you a more interesting colleague on Monday",
+    color: "text-teal-700 border-teal-700",
+    bg: "bg-teal-50",
+  },
 ];
 
 export const MOCK_ARTICLES = [
