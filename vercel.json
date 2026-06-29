@@ -27,6 +27,14 @@
     {
       "path": "/api/social/publish",
       "schedule": "*/15 8-18 * * *"
+    },
+    {
+      "path": "/api/cron/publish-out-of-office",
+      "schedule": "30 9 * * *"
+    },
+    {
+      "path": "/api/cron/publish-global-office",
+      "schedule": "0 10 * * *"
     }
   ]
 }

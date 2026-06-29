@@ -10,4 +10,5 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Global Office",  href: "/global-office" },
   { label: "Water Cooler",   href: "/water-cooler" },
   { label: "Off the Record", href: "/off-the-record" },
+  { label: "Out of Office",  href: "/out-of-office" },
 ];

@@ -1,0 +1,224 @@
+import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@sanity/client";
+import { readFileSync, readdirSync } from "fs";
+import { join } from "path";
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+
+function isAuthorised(req: NextRequest): boolean {
+  const secret = process.env.CRON_SECRET ?? "boardroom-cron";
+  const bearer = req.headers.get("authorization") ?? "";
+  const header = req.headers.get("x-cron-secret") ?? "";
+  return bearer === `Bearer ${secret}` || header === secret;
+}
+
+// ── Config ────────────────────────────────────────────────────────────────────
+
+const PILLAR_ID   = "out-of-office";
+const PILLAR_NAME = "Out of Office";
+const AUTHOR_ID   = "author-danny-fisk";
+const AUTHOR_NAME = "Danny Fisk";
+const CONTENT_DIR = "content/out-of-office";
+
+// ── Sanity client ─────────────────────────────────────────────────────────────
+
+function getSanityClient() {
+  return createClient({
+    projectId:  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "e8dwtkci",
+    dataset:    process.env.NEXT_PUBLIC_SANITY_DATASET    ?? "production",
+    apiVersion: "2024-01-01",
+    useCdn:     false,
+    token:      process.env.SANITY_API_TOKEN,
+  });
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+let _k = 0;
+const key = () => `k${++_k}`;
+
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 96);
+}
+
+function parseInline(text: string) {
+  const spans: object[] = [];
+  const re = /\*\*(.+?)\*\*|\*(.+?)\*|([^*]+)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m[1]) spans.push({ _type: "span", _key: key(), text: m[1], marks: ["strong"] });
+    else if (m[2]) spans.push({ _type: "span", _key: key(), text: m[2], marks: ["em"] });
+    else if (m[3]) spans.push({ _type: "span", _key: key(), text: m[3], marks: [] });
+  }
+  return spans.length ? spans : [{ _type: "span", _key: key(), text, marks: [] }];
+}
+
+function markdownToBlocks(body: string) {
+  const blocks: object[] = [];
+  for (let para of body.split(/\n{2,}/)) {
+    para = para.trim();
+    if (!para || /^!\[/.test(para)) continue;
+    const h3 = para.match(/^###\s+(.+)/);
+    const h2 = para.match(/^##\s+(.+)/);
+    if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
+    if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
+    const merged = para.split("\n").map((l: string) => l.trim()).filter(Boolean).join(" ");
+    if (!merged || /^!\[/.test(merged)) continue;
+    blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
+  }
+  return blocks;
+}
+
+function parseFrontmatter(raw: string): Record<string, string | Record<string, string>> {
+  const fm: Record<string, string | Record<string, string>> = {};
+  const lines = raw.split("\n");
+  let i = 0;
+  while (i < lines.length) {
+    const nested = lines[i].match(/^(\w+):\s*$/);
+    if (nested) {
+      const block: Record<string, string> = {};
+      i++;
+      while (i < lines.length && /^\s{2}/.test(lines[i])) {
+        const kv = lines[i].trim().match(/^(\w+):\s*(.*)/);
+        if (kv) block[kv[1]] = kv[2].trim();
+        i++;
+      }
+      fm[nested[1]] = block;
+      continue;
+    }
+    const kv = lines[i].match(/^(\w[\w_]*):\s*(.*)/);
+    if (kv) fm[kv[1]] = kv[2].trim();
+    i++;
+  }
+  return fm;
+}
+
+interface Article {
+  title: string; slug: string; excerpt: string;
+  heroUrl: string; ogUrl: string; pubDt: string;
+  readTime: number; blocks: object[]; seoDesc: string;
+}
+
+function parseArticle(filePath: string): Article | null {
+  const text  = readFileSync(filePath, "utf8");
+  const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return null;
+
+  const fm      = parseFrontmatter(match[1]);
+  const bodyMd  = match[2].trim();
+  const titleM  = bodyMd.match(/^#\s+(.+)$/m);
+  const title   = titleM ? titleM[1].trim() : filePath.split("/").pop()!.replace(/-/g, " ");
+  const noTitle = bodyMd.replace(/^#\s+.+\n*/m, "").trim();
+  const excerpt = (noTitle.split(/\n{2,}/)[0] ?? "")
+    .replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1")
+    .replace(/!\[.*?\]\(.*?\)/g, "").replace(/^#+\s+/, "").trim().slice(0, 300);
+
+  const images  = (fm.images ?? {}) as Record<string, string>;
+  const heroUrl = images.hero ?? "";
+  const ogUrl   = images.body ?? heroUrl;
+
+  const dateStr = (fm.date ?? new Date().toISOString().split("T")[0]) as string;
+  const pubDt   = new Date(`${dateStr}T08:00:00Z`).toISOString();
+
+  const wordCount = parseInt(fm.word_count as string) || bodyMd.split(/\s+/).length;
+  const readTime  = Math.max(1, Math.round(wordCount / 200));
+  const slug      = slugify(title);
+  const blocks    = markdownToBlocks(noTitle);
+  const seoDesc   = `${title}. By ${AUTHOR_NAME} for The Alignment Times.`.slice(0, 160);
+
+  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc };
+}
+
+async function ensurePillar(client: ReturnType<typeof getSanityClient>) {
+  await client.createIfNotExists({ _id: PILLAR_ID, _type: "pillar",
+    name: PILLAR_NAME, slug: { _type: "slug", current: PILLAR_ID } });
+}
+
+async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
+  await client.createIfNotExists({ _id: AUTHOR_ID, _type: "author",
+    name: AUTHOR_NAME, slug: { _type: "slug", current: "danny-fisk" },
+    bio: "Staff writer for The Alignment Times covering workplace culture and life outside the office." });
+}
+
+async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
+  const docId = `article-ooo-${article.slug}`;
+  await client.createOrReplace({
+    _id: docId, _type: "article",
+    title:       article.title,
+    slug:        { _type: "slug", current: article.slug },
+    excerpt:     article.excerpt,
+    body:        article.blocks,
+    pillar:      { _type: "reference", _ref: PILLAR_ID },
+    author:      { _type: "reference", _ref: AUTHOR_ID },
+    publishedAt: article.pubDt,
+    readTime:    article.readTime,
+    featured:    false,
+    aiGenerated: false,
+    agentName:   AUTHOR_NAME,
+    ogImage:     article.ogUrl || article.heroUrl,
+    seoDescription: article.seoDesc,
+  });
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
+  try {
+    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.REVALIDATE_SECRET ?? ""}&path=/out-of-office`, { method: "POST" });
+  } catch { /* non-fatal */ }
+  return `${siteUrl}/out-of-office/${article.slug}`;
+}
+
+// ── Route handler ─────────────────────────────────────────────────────────────
+
+export async function GET(req: NextRequest) {
+  if (!isAuthorised(req)) {
+    return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
+  }
+
+  const COUNT = parseInt(req.nextUrl.searchParams.get("count") ?? "4");
+
+  try {
+    const client = getSanityClient();
+
+    // Query Sanity for already-published out-of-office slugs
+    const existing: { slug: { current: string } }[] = await client.fetch(
+      `*[_type == "article" && pillar._ref == "${PILLAR_ID}" && _id match "article-ooo-*"]{ slug }`
+    );
+    const publishedSlugs = new Set(existing.map(d => d.slug.current));
+
+    const contentDir = join(process.cwd(), CONTENT_DIR);
+    const allFiles   = readdirSync(contentDir).filter(f => f.endsWith(".md")).sort();
+
+    const candidates: { filename: string; article: Article }[] = [];
+    for (const filename of allFiles) {
+      const article = parseArticle(join(contentDir, filename));
+      if (!article) continue;
+      if (!publishedSlugs.has(article.slug)) {
+        candidates.push({ filename, article });
+      }
+    }
+
+    if (!candidates.length) {
+      return NextResponse.json({ message: "All out-of-office articles already published", published: 0 });
+    }
+
+    const toPublish = candidates.slice(0, COUNT);
+    console.log(`[publish-out-of-office] ${candidates.length} unpublished. Publishing ${toPublish.length}.`);
+
+    await ensurePillar(client);
+    await ensureAuthor(client);
+
+    const results: { title: string; url: string }[] = [];
+    for (const { article } of toPublish) {
+      const url = await publishArticle(client, article);
+      results.push({ title: article.title, url });
+      console.log(`[publish-out-of-office] Published: ${article.title}`);
+    }
+
+    return NextResponse.json({
+      published: results.length,
+      remaining: candidates.length - results.length,
+      articles:  results,
+    });
+  } catch (err) {
+    console.error("[publish-out-of-office]", err);
+    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
+  }
+}
