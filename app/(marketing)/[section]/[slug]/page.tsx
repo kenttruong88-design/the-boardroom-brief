@@ -41,11 +41,69 @@ async function resolveArticle(slug: string) {
         imagePhotographerName: sanity.imagePhotographerName ?? null,
         imagePhotographerUrl:  sanity.imagePhotographerUrl ?? null,
         imagePexelsUrl:        sanity.imagePexelsUrl ?? null,
+        body:                  sanity.body ?? null,
         _fromSanity: true,
       };
     }
   } catch { /* fall through */ }
   return getMockArticle(slug) ?? null;
+}
+
+// ── Portable Text renderer ────────────────────────────────────────────────────
+
+type PTSpan = { _key: string; _type: string; marks: string[]; text: string };
+type PTBlock = { _key: string; _type: string; style?: string; listItem?: string; children: PTSpan[] };
+
+function renderSpans(children: PTSpan[]) {
+  return children.map((span) => {
+    if (span.marks.includes("strong") && span.marks.includes("em"))
+      return <strong key={span._key}><em>{span.text}</em></strong>;
+    if (span.marks.includes("strong")) return <strong key={span._key}>{span.text}</strong>;
+    if (span.marks.includes("em"))     return <em key={span._key}>{span.text}</em>;
+    return <span key={span._key}>{span.text}</span>;
+  });
+}
+
+function renderBlocks(blocks: PTBlock[]) {
+  const out: React.ReactNode[] = [];
+  let bullets: React.ReactNode[] = [];
+
+  const flushList = (key: string) => {
+    if (bullets.length) {
+      out.push(<ul key={`ul-${key}`} className="list-disc pl-6 space-y-1 my-2">{bullets}</ul>);
+      bullets = [];
+    }
+  };
+
+  for (const block of blocks) {
+    if (block._type !== "block") continue;
+    const content = renderSpans(block.children ?? []);
+
+    if (block.listItem === "bullet") {
+      bullets.push(<li key={block._key}>{content}</li>);
+      continue;
+    }
+    flushList(block._key);
+
+    switch (block.style) {
+      case "h2":
+        out.push(<h2 key={block._key} className="text-xl font-serif font-bold mt-8 mb-2" style={{ color: "var(--navy)" }}>{content}</h2>);
+        break;
+      case "h3":
+        out.push(<h3 key={block._key} className="text-lg font-serif font-semibold mt-6 mb-1" style={{ color: "var(--navy)" }}>{content}</h3>);
+        break;
+      case "h4":
+        out.push(<h4 key={block._key} className="text-base font-serif font-semibold mt-4 mb-1" style={{ color: "var(--navy)" }}>{content}</h4>);
+        break;
+      case "blockquote":
+        out.push(<blockquote key={block._key} className="pull-quote">{content}</blockquote>);
+        break;
+      default:
+        out.push(<p key={block._key}>{content}</p>);
+    }
+  }
+  flushList("end");
+  return out;
 }
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
@@ -251,48 +309,27 @@ export default async function ArticlePage({ params }: Props) {
 
             {/* Article body */}
             <div className="font-sans text-base leading-relaxed space-y-5" style={{ color: "var(--ink)" }}>
-              <p className="drop-cap">
-                {article.excerpt} Markets are digesting a complex mix of signals as central banks navigate the final stretch of the tightening cycle. The interplay between stubborn core inflation, resilient labour markets, and slowing growth is forcing policymakers into increasingly difficult tradeoffs — the kind that require press conferences and carefully calibrated ambiguity.
-              </p>
-              <p>
-                The latest readings point to a bifurcated economy. Services inflation remains elevated, driven by wage growth and sticky shelter costs, while goods deflation has largely run its course. This creates a challenging environment for central bank communication — which, if you have followed central bank communication for any length of time, was already challenging enough.
-              </p>
-              <blockquote className="pull-quote">
-                "The path back to 2% remains bumpy. We are committed to getting there. Also, please stop asking us when."
-              </blockquote>
-              <h2 className="text-xl font-serif font-bold mt-8" style={{ color: "var(--navy)" }}>What the data shows</h2>
-              <p>
-                For executives navigating capital allocation decisions, the message is clear: cost of capital is normalising at higher levels than the post-GFC era. Balance sheet discipline and cash flow visibility are being rewarded by investors in ways not seen since the early 2000s.
-              </p>
-
-              {/* In-article subscribe prompt */}
-              <div
-                className="my-8 p-6"
-                style={{ background: "var(--navy)", borderRadius: "2px" }}
-              >
-                <p className="eyebrow-gold mb-1" style={{ color: "var(--gold)" }}>
-                  The Morning Brief
-                </p>
-                <p
-                  className="font-serif font-bold text-base mb-4"
-                  style={{ color: "var(--cream)" }}
-                >
-                  Enjoying this? Get it in your inbox.
-                </p>
-                <SubscribeForm
-                  source="article"
-                  articleSlug={slug}
-                  compact={false}
-                  dark
-                />
-              </div>
-              <p>
-                Companies that locked in long-duration debt at pandemic-era rates have a meaningful competitive advantage. That window is now closed. The remaining question is not whether rates come down, but how slowly.
-              </p>
-              <h2 className="text-xl font-serif font-bold mt-8" style={{ color: "var(--navy)" }}>The boardroom implication</h2>
-              <p>
-                Three things to watch: the next core PCE print, any revision to forward guidance language, and whether the Fed's dot plot shifts at the June meeting. If you are building a capital plan that assumes rates return to 2% territory before 2027, you may wish to revisit those assumptions with a beverage of your choosing.
-              </p>
+              {(() => {
+                const body = (articleExt as { body?: unknown[] | null }).body;
+                if (body?.length) {
+                  const blocks = body as PTBlock[];
+                  const mid = Math.ceil(blocks.length / 2);
+                  return (
+                    <>
+                      {renderBlocks(blocks.slice(0, mid))}
+                      {/* In-article subscribe prompt */}
+                      <div className="my-8 p-6" style={{ background: "var(--navy)", borderRadius: "2px" }}>
+                        <p className="eyebrow-gold mb-1" style={{ color: "var(--gold)" }}>The Morning Brief</p>
+                        <p className="font-serif font-bold text-base mb-4" style={{ color: "var(--cream)" }}>Enjoying this? Get it in your inbox.</p>
+                        <SubscribeForm source="article" articleSlug={slug} compact={false} dark />
+                      </div>
+                      {renderBlocks(blocks.slice(mid))}
+                    </>
+                  );
+                }
+                // Fallback for mock articles without body
+                return <p className="drop-cap">{article.excerpt}</p>;
+              })()}
 
               {/* Paywall gate */}
               <PaywallGate slug={slug} />
