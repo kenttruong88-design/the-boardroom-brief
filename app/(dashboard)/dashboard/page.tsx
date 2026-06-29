@@ -8,9 +8,16 @@ import {
   LayoutGrid,
   Mail,
   Search,
+  Activity,
 } from "lucide-react";
 
 const LINKS = [
+  {
+    href: "/activity",
+    icon: Activity,
+    label: "Daily activity",
+    description: "Articles, social posts, newsletter, comments, subscribers — today at a glance",
+  },
   {
     href: "/editorial",
     icon: LayoutGrid,
