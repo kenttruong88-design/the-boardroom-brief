@@ -30,6 +30,7 @@ const PILLAR_COLORS: Record<string, string> = {
   "c-suite-circus": "#0f766e",
   "global-office":  "#b45309",
   "water-cooler":   "#b8960c",
+  "out-of-office":  "#0f766e",
 };
 
 interface SanityRaw {

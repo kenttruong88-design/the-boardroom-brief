@@ -17,6 +17,7 @@ const PILLAR_HASHTAGS: Record<string, string[]> = {
   "c-suite-circus": ["Business", "Corporate", "Leadership", "CEO", "MergersAndAcquisitions", "BoardroomNews"],
   "global-office":  ["WorkplaceCulture", "FutureOfWork", "RemoteWork", "GlobalBusiness", "HR", "WorkLife"],
   "water-cooler":   ["CorporateLife", "OfficeHumour", "WorkHumour", "LinkedIn", "BusinessCulture", "Corporate"],
+  "out-of-office":  ["Travel", "WorkLifeBalance", "CultureShock", "Expat", "DigitalNomad", "OutOfOffice", "Lifestyle"],
   "general":        ["BusinessNews", "Finance", "Economics", "Corporate", "GlobalBusiness"],
 };
 
