@@ -110,8 +110,8 @@ function renderSpans(children: PTSpan[]) {
   });
 }
 
-function renderBlocks(blocks: PTBlock[]) {
-  const processed = collapseDosDonts(blocks);
+function renderBlocks(blocks: PTBlock[], alreadyProcessed = false) {
+  const processed = alreadyProcessed ? blocks : collapseDosDonts(blocks);
   const out: React.ReactNode[] = [];
   let bullets: React.ReactNode[] = [];
 
@@ -383,18 +383,18 @@ export default async function ArticlePage({ params }: Props) {
               {(() => {
                 const body = (articleExt as { body?: unknown[] | null }).body;
                 if (body?.length) {
-                  const blocks = body as PTBlock[];
+                  const blocks = collapseDosDonts(body as PTBlock[]);
                   const mid = Math.ceil(blocks.length / 2);
                   return (
                     <>
-                      {renderBlocks(blocks.slice(0, mid))}
+                      {renderBlocks(blocks.slice(0, mid), true)}
                       {/* In-article subscribe prompt */}
                       <div className="my-8 p-6" style={{ background: "var(--navy)", borderRadius: "2px" }}>
                         <p className="eyebrow-gold mb-1" style={{ color: "var(--gold)" }}>The Morning Brief</p>
                         <p className="font-serif font-bold text-base mb-4" style={{ color: "var(--cream)" }}>Enjoying this? Get it in your inbox.</p>
                         <SubscribeForm source="article" articleSlug={slug} compact={false} dark />
                       </div>
-                      {renderBlocks(blocks.slice(mid))}
+                      {renderBlocks(blocks.slice(mid), true)}
                     </>
                   );
                 }
