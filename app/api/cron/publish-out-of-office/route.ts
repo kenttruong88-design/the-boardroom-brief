@@ -217,7 +217,7 @@ export async function GET(req: NextRequest) {
   try {
     const client = getSanityClient();
     const existing: { slug: { current: string } }[] = await client.fetch(
-      `*[_type == "article" && pillar._ref == "${PILLAR_ID}" && _id match "article-ooo-*"]{ slug }`
+      `*[_type == "article" && pillar._ref == "${PILLAR_ID}"]{ slug }`
     );
     const publishedSlugs = new Set(existing.map(d => d.slug.current));
     const contentDir = join(process.cwd(), CONTENT_DIR);
