@@ -87,13 +87,35 @@ function markdownToBlocks(body: string) {
   const blocks: object[] = [];
   for (let para of body.split(/\n{2,}/)) {
     para = para.trim();
-    if (!para || /^!\[/.test(para)) continue;
+    if (!para || /^\!\[/.test(para)) continue;
+
+    // Headings
+    const h4 = para.match(/^####\s+(.+)/);
     const h3 = para.match(/^###\s+(.+)/);
     const h2 = para.match(/^##\s+(.+)/);
+    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h4[1]) }); continue; }
     if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
     if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
+
+    // Markdown table: multiple lines with pipe characters
+    const lines = para.split("\n");
+    const tableLines = lines.filter((l: string) => l.includes("|"));
+    if (tableLines.length > 1) {
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        if (/^\|[-|\s:]+\|$/.test(trimmed)) continue; // skip |---|---| rows
+        const cells = trimmed.split("|").map((c: string) => c.trim()).filter(Boolean);
+        if (cells.length === 0) continue;
+        const text = cells.join("  |  ");
+        if (text.trim()) blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(text) });
+      }
+      continue;
+    }
+
+    // Normal paragraph
     const merged = para.split("\n").map((l: string) => l.trim()).filter(Boolean).join(" ");
-    if (!merged || /^!\[/.test(merged)) continue;
+    if (!merged || /^\!\[/.test(merged)) continue;
     blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
   }
   return blocks;

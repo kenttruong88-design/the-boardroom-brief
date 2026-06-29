@@ -3,8 +3,6 @@ import { createClient } from "@sanity/client";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 
-// ── Auth ──────────────────────────────────────────────────────────────────────
-
 function isAuthorised(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET ?? "boardroom-cron";
   const bearer = req.headers.get("authorization") ?? "";
@@ -12,15 +10,11 @@ function isAuthorised(req: NextRequest): boolean {
   return bearer === `Bearer ${secret}` || header === secret;
 }
 
-// ── Config ────────────────────────────────────────────────────────────────────
-
 const PILLAR_ID   = "out-of-office";
 const PILLAR_NAME = "Out of Office";
-const AUTHOR_ID   = "author-danny-fisk";
-const AUTHOR_NAME = "Danny Fisk";
+const AUTHOR_ID   = "author-suki-nakamura";
+const AUTHOR_NAME = "Suki Nakamura";
 const CONTENT_DIR = "content/out-of-office";
-
-// ── Sanity client ─────────────────────────────────────────────────────────────
 
 function getSanityClient() {
   return createClient({
@@ -32,8 +26,6 @@ function getSanityClient() {
   });
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
 let _k = 0;
 const key = () => `k${++_k}`;
 
@@ -43,7 +35,7 @@ function slugify(text: string): string {
 
 function parseInline(text: string) {
   const spans: object[] = [];
-  const re = /\*\*(.+?)\*\*|\*(.+?)\*|([^*]+)/g;
+  const re = /[*][*](.+?)[*][*]|[*](.+?)[*]|([^*]+)/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(text)) !== null) {
     if (m[1]) spans.push({ _type: "span", _key: key(), text: m[1], marks: ["strong"] });
@@ -55,94 +47,70 @@ function parseInline(text: string) {
 
 function markdownToBlocks(body: string) {
   const blocks: object[] = [];
-
   for (let para of body.split(/\n{2,}/)) {
     para = para.trim();
-    if (!para) continue;
+    if (!para || para.startsWith("![")) continue;
 
-    // Horizontal rules — skip
-    if (/^-{3,}$/.test(para)) continue;
-
-    // Images and captions — skip
-    if (/^!\[/.test(para)) continue;
-    if (/^\*(?:Photo|Illustration):/.test(para)) continue;
-
-    // H4
-    const h4 = para.match(/^####\s+(.+)/);
-    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h4", markDefs: [], children: parseInline(h4[1]) }); continue; }
-
-    // H3
-    const h3 = para.match(/^###\s+(.+)/);
-    if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
-
-    // H2
-    const h2 = para.match(/^##\s+(.+)/);
-    if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
-
-    // Markdown table — render as ✅ Do / ❌ Don't labeled sections
-    if (/^\|/.test(para)) {
-      const rows = para.split("\n").map(l => l.trim()).filter(l => l.startsWith("|"));
-
-      // Find header row to identify which column is Do vs Don't
-      const headerRow = rows.find(r => /✅|Do/.test(r) || /❌|Don't/.test(r));
-      const headerCells = headerRow
-        ? headerRow.split("|").map(c => c.trim()).filter(Boolean)
-        : [];
-      const doCol   = headerCells.findIndex(c => /✅|^Do$/.test(c));
-      const dontCol = headerCells.findIndex(c => /❌|Don't/.test(c));
-
-      const doItems:   string[] = [];
-      const dontItems: string[] = [];
-
-      for (const row of rows) {
-        if (/^\|[\s\-:|]+\|/.test(row)) continue; // separator
-        const cells = row.split("|").map(c => c.trim().replace(/<[^>]+>/g, "").trim()).filter(Boolean);
-        if (!cells.length) continue;
-        // Skip the header row itself
-        if (cells.some(c => /✅|❌|^Do$/.test(c))) continue;
-
-        if (doCol >= 0 && dontCol >= 0) {
-          if (cells[doCol])   doItems.push(cells[doCol]);
-          if (cells[dontCol]) dontItems.push(cells[dontCol]);
-        } else {
-          // Fallback: no header detected — treat col 0 as Do, col 1 as Don't
-          if (cells[0]) doItems.push(cells[0]);
-          if (cells[1]) dontItems.push(cells[1]);
-        }
-      }
-
-      if (doItems.length) {
-        blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: [{ _type: "span", _key: key(), text: "✅ Do", marks: ["strong"] }] });
-        for (const text of doItems) blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [], children: parseInline(text) });
-      }
-      if (dontItems.length) {
-        blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: [{ _type: "span", _key: key(), text: "❌ Don't", marks: ["strong"] }] });
-        for (const text of dontItems) blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [], children: parseInline(text) });
-      }
-      continue;
-    }
-
-    // Blockquotes (> lines) and <small> quote blocks
-    if (/^>/.test(para) || /<small>/.test(para)) {
-      const text = para
-        .split("\n")
-        .map(l => l.replace(/^>\s*/, "").replace(/<\/?small>/g, "").replace(/^\*\s*/, "").trim())
-        .filter(Boolean)
-        .join(" ")
-        .trim();
+    // Blockquote (Voice from the Real World sections)
+    if (para.startsWith(">")) {
+      const text = para.split("\n").map(l => l.replace(/^>\s?/, "").trim()).filter(Boolean).join(" ");
       if (text) blocks.push({ _type: "block", _key: key(), style: "blockquote", markDefs: [], children: parseInline(text) });
       continue;
     }
 
-    // Regular paragraph — filter out image lines and captions within mixed paras
-    const textLines = para.split("\n")
-      .map(l => l.trim())
-      .filter(l => l && !/^!\[/.test(l) && !/^\*(?:Photo|Illustration):/.test(l));
-    if (!textLines.length) continue;
-    const merged = textLines.join(" ");
-    if (merged) blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
-  }
+    const h4 = para.match(/^#{4}\s+(.+)/);
+    const h3 = para.match(/^#{3}\s+(.+)/);
+    const h2 = para.match(/^#{2}\s+(.+)/);
+    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h4", markDefs: [], children: parseInline(h4[1]) }); continue; }
+    if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
+    if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
 
+    // Markdown table — detect Do/Don't columns and split into separate sections
+    const lines = para.split("\n");
+    if (lines.filter((l: string) => l.includes("|")).length > 1) {
+      const tableLines = lines.map((l: string) => l.trim()).filter(Boolean);
+      const headerLine = tableLines[0] ?? "";
+      const isDosDonts = /do[''s]*/i.test(headerLine) && /don[''t]*/i.test(headerLine);
+
+      if (isDosDonts) {
+        const rows: [string, string][] = [];
+        for (let i = 2; i < tableLines.length; i++) {
+          const t = tableLines[i];
+          if (!t || /^[|][-|\s:]+[|]$/.test(t)) continue;
+          const cells = t.split("|").map((c: string) => c.trim()).filter(Boolean);
+          if (cells.length >= 2) rows.push([cells[0], cells[1]]);
+        }
+        if (rows.length) {
+          blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [],
+            children: [{ _type: "span", _key: key(), text: "✅ Do", marks: ["strong"] }] });
+          for (const [doItem] of rows) {
+            blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [],
+              children: parseInline(doItem) });
+          }
+          blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [],
+            children: [{ _type: "span", _key: key(), text: "❌ Don't", marks: ["strong"] }] });
+          for (const [, dontItem] of rows) {
+            if (dontItem) blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [],
+              children: parseInline(dontItem) });
+          }
+        }
+      } else {
+        for (const line of tableLines) {
+          const t = line.trim();
+          if (!t || /^[|][-|\s:]+[|]$/.test(t)) continue;
+          const cells = t.split("|").map((c: string) => c.trim()).filter(Boolean);
+          if (cells.length) blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [],
+            children: parseInline(cells.join("  —  ")) });
+        }
+      }
+      continue;
+    }
+
+    const merged = lines.map((l: string) => l.trim()).filter(Boolean).join(" ");
+    if (merged && !merged.startsWith("![")) {
+      blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
+    }
+  }
   return blocks;
 }
 
@@ -180,29 +148,24 @@ function parseArticle(filePath: string): Article | null {
   const text  = readFileSync(filePath, "utf8");
   const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return null;
-
   const fm      = parseFrontmatter(match[1]);
   const bodyMd  = match[2].trim();
   const titleM  = bodyMd.match(/^#\s+(.+)$/m);
   const title   = titleM ? titleM[1].trim() : filePath.split("/").pop()!.replace(/-/g, " ");
   const noTitle = bodyMd.replace(/^#\s+.+\n*/m, "").trim();
   const excerpt = (noTitle.split(/\n{2,}/)[0] ?? "")
-    .replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1")
+    .replace(/[*][*](.+?)[*][*]/g, "$1").replace(/[*](.+?)[*]/g, "$1")
     .replace(/!\[.*?\]\(.*?\)/g, "").replace(/^#+\s+/, "").trim().slice(0, 300);
-
   const images  = (fm.images ?? {}) as Record<string, string>;
   const heroUrl = images.hero ?? "";
   const ogUrl   = images.body ?? heroUrl;
-
   const dateStr = (fm.date ?? new Date().toISOString().split("T")[0]) as string;
   const pubDt   = new Date(`${dateStr}T08:00:00Z`).toISOString();
-
   const wordCount = parseInt(fm.word_count as string) || bodyMd.split(/\s+/).length;
   const readTime  = Math.max(1, Math.round(wordCount / 200));
   const slug      = slugify(title);
   const blocks    = markdownToBlocks(noTitle);
   const seoDesc   = `${title}. By ${AUTHOR_NAME} for The Alignment Times.`.slice(0, 160);
-
   return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc };
 }
 
@@ -213,91 +176,71 @@ async function ensurePillar(client: ReturnType<typeof getSanityClient>) {
 
 async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
   await client.createIfNotExists({ _id: AUTHOR_ID, _type: "author",
-    name: AUTHOR_NAME, slug: { _type: "slug", current: "danny-fisk" },
-    bio: "Staff writer for The Alignment Times covering workplace culture and life outside the office." });
+    name: AUTHOR_NAME, slug: { _type: "slug", current: "suki-nakamura" },
+    bio: "Relocated 14 times. Has eaten in 60 countries. Covers food, cities, and life outside the desk." });
 }
 
 async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
   const docId = `article-ooo-${article.slug}`;
   await client.createOrReplace({
     _id: docId, _type: "article",
-    title:       article.title,
-    slug:        { _type: "slug", current: article.slug },
-    excerpt:     article.excerpt,
-    body:        article.blocks,
-    pillar:      { _type: "reference", _ref: PILLAR_ID },
-    author:      { _type: "reference", _ref: AUTHOR_ID },
+    title: article.title,
+    slug: { _type: "slug", current: article.slug },
+    excerpt: article.excerpt,
+    body: article.blocks,
+    pillar: { _type: "reference", _ref: PILLAR_ID },
+    author: { _type: "reference", _ref: AUTHOR_ID },
     publishedAt: article.pubDt,
-    readTime:    article.readTime,
-    featured:    false,
+    readTime: article.readTime,
+    featured: false,
     aiGenerated: false,
-    agentName:   AUTHOR_NAME,
-    ogImage:     article.ogUrl || article.heroUrl,
+    agentName: AUTHOR_NAME,
+    ogImage: article.ogUrl || article.heroUrl,
     seoDescription: article.seoDesc,
   });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
   try {
     await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
-      });
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
+    });
   } catch { /* non-fatal */ }
   return `${siteUrl}/out-of-office/${article.slug}`;
 }
-
-// ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function GET(req: NextRequest) {
   if (!isAuthorised(req)) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-
   const COUNT = parseInt(req.nextUrl.searchParams.get("count") ?? "4");
-
   try {
     const client = getSanityClient();
-
-    // Query Sanity for already-published out-of-office slugs
     const existing: { slug: { current: string } }[] = await client.fetch(
       `*[_type == "article" && pillar._ref == "${PILLAR_ID}" && _id match "article-ooo-*"]{ slug }`
     );
     const publishedSlugs = new Set(existing.map(d => d.slug.current));
-
     const contentDir = join(process.cwd(), CONTENT_DIR);
-    const allFiles   = readdirSync(contentDir).filter(f => f.endsWith(".md")).sort();
-
+    const allFiles = readdirSync(contentDir).filter(f => f.endsWith(".md")).sort();
     const candidates: { filename: string; article: Article }[] = [];
     for (const filename of allFiles) {
       const article = parseArticle(join(contentDir, filename));
       if (!article) continue;
-      if (!publishedSlugs.has(article.slug)) {
-        candidates.push({ filename, article });
-      }
+      if (!publishedSlugs.has(article.slug)) candidates.push({ filename, article });
     }
-
     if (!candidates.length) {
       return NextResponse.json({ message: "All out-of-office articles already published", published: 0 });
     }
-
     const toPublish = candidates.slice(0, COUNT);
-    console.log(`[publish-out-of-office] ${candidates.length} unpublished. Publishing ${toPublish.length}.`);
-
     await ensurePillar(client);
     await ensureAuthor(client);
-
     const results: { title: string; url: string }[] = [];
     for (const { article } of toPublish) {
       const url = await publishArticle(client, article);
       results.push({ title: article.title, url });
       console.log(`[publish-out-of-office] Published: ${article.title}`);
     }
-
-    return NextResponse.json({
-      published: results.length,
-      remaining: candidates.length - results.length,
-      articles:  results,
-    });
+    return NextResponse.json({ published: results.length, remaining: candidates.length - results.length, articles: results });
   } catch (err) {
     console.error("[publish-out-of-office]", err);
     return NextResponse.json({ error: (err as Error).message }, { status: 500 });

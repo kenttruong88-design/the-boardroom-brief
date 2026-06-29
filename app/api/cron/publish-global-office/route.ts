@@ -221,32 +221,30 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
   const docId = `article-go-${article.slug}`;
   await client.createOrReplace({
     _id: docId, _type: "article",
-    title:       article.title,
-    slug:        { _type: "slug", current: article.slug },
-    excerpt:     article.excerpt,
-    body:        article.blocks,
-    pillar:      { _type: "reference", _ref: PILLAR_ID },
-    author:      { _type: "reference", _ref: AUTHOR_ID },
-    publishedAt: article.pubDt,
-    readTime:    article.readTime,
-    featured:    false,
-    aiGenerated: false,
-    agentName:   AUTHOR_NAME,
-    ogImage:     article.ogUrl || article.heroUrl,
+    title:          article.title,
+    slug:           { _type: "slug", current: article.slug },
+    excerpt:        article.excerpt,
+    body:           article.blocks,
+    pillar:         { _type: "reference", _ref: PILLAR_ID },
+    author:         { _type: "reference", _ref: AUTHOR_ID },
+    publishedAt:    article.pubDt,
+    readTime:       article.readTime,
+    featured:       false,
+    aiGenerated:    false,
+    agentName:      AUTHOR_NAME,
+    ogImage:        article.ogUrl || article.heroUrl,
     seoDescription: article.seoDesc,
   });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
   try {
     await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
-      });
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
+    });
   } catch { /* non-fatal */ }
   return `${siteUrl}/global-office/${article.slug}`;
 }
-
-// ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function GET(req: NextRequest) {
   if (!isAuthorised(req)) {
@@ -270,9 +268,7 @@ export async function GET(req: NextRequest) {
     for (const filename of allFiles) {
       const article = parseArticle(join(contentDir, filename));
       if (!article) continue;
-      if (!publishedSlugs.has(article.slug)) {
-        candidates.push({ filename, article });
-      }
+      if (!publishedSlugs.has(article.slug)) candidates.push({ filename, article });
     }
 
     if (!candidates.length) {
@@ -292,11 +288,7 @@ export async function GET(req: NextRequest) {
       console.log(`[publish-global-office] Published: ${article.title}`);
     }
 
-    return NextResponse.json({
-      published: results.length,
-      remaining: candidates.length - results.length,
-      articles:  results,
-    });
+    return NextResponse.json({ published: results.length, remaining: candidates.length - results.length, articles: results });
   } catch (err) {
     console.error("[publish-global-office]", err);
     return NextResponse.json({ error: (err as Error).message }, { status: 500 });
