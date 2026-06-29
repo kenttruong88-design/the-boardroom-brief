@@ -52,7 +52,53 @@ async function resolveArticle(slug: string) {
 // ── Portable Text renderer ────────────────────────────────────────────────────
 
 type PTSpan = { _key: string; _type: string; marks: string[]; text: string };
-type PTBlock = { _key: string; _type: string; style?: string; listItem?: string; children: PTSpan[] };
+type PTBlock = { _key: string; _type: string; style?: string; listItem?: string; children: PTSpan[]; rows?: [string, string][] };
+
+// Detect ✅ Do / ❌ Don't bullet pattern and collapse into a table block
+function collapseDosDonts(blocks: PTBlock[]): PTBlock[] {
+  const out: PTBlock[] = [];
+  let i = 0;
+  while (i < blocks.length) {
+    const b = blocks[i];
+    const isDoHeader =
+      b._type === "block" && !b.listItem &&
+      b.children?.length === 1 &&
+      b.children[0].marks?.includes("strong") &&
+      b.children[0].text === "✅ Do";
+
+    if (isDoHeader) {
+      const doItems: string[] = [];
+      i++;
+      while (i < blocks.length && blocks[i].listItem === "bullet") {
+        doItems.push((blocks[i].children ?? []).map((s) => s.text).join(""));
+        i++;
+      }
+      const isDontHeader =
+        i < blocks.length &&
+        blocks[i]._type === "block" &&
+        !blocks[i].listItem &&
+        blocks[i].children?.length === 1 &&
+        blocks[i].children[0].marks?.includes("strong") &&
+        blocks[i].children[0].text === "❌ Don't";
+
+      if (isDontHeader) {
+        const dontItems: string[] = [];
+        i++;
+        while (i < blocks.length && blocks[i].listItem === "bullet") {
+          dontItems.push((blocks[i].children ?? []).map((s) => s.text).join(""));
+          i++;
+        }
+        const len = Math.max(doItems.length, dontItems.length);
+        const rows: [string, string][] = Array.from({ length: len }, (_, j) => [doItems[j] ?? "", dontItems[j] ?? ""]);
+        out.push({ _key: b._key, _type: "dosDontsTable", children: [], rows });
+        continue;
+      }
+    }
+    out.push(b);
+    i++;
+  }
+  return out;
+}
 
 function renderSpans(children: PTSpan[]) {
   return children.map((span) => {
@@ -65,6 +111,7 @@ function renderSpans(children: PTSpan[]) {
 }
 
 function renderBlocks(blocks: PTBlock[]) {
+  const processed = collapseDosDonts(blocks);
   const out: React.ReactNode[] = [];
   let bullets: React.ReactNode[] = [];
 
@@ -75,7 +122,31 @@ function renderBlocks(blocks: PTBlock[]) {
     }
   };
 
-  for (const block of blocks) {
+  for (const block of processed) {
+    if (block._type === "dosDontsTable") {
+      flushList(block._key);
+      const rows = block.rows ?? [];
+      out.push(
+        <table key={block._key} className="dos-donts-table">
+          <thead>
+            <tr>
+              <th>✅ Do</th>
+              <th>❌ Don&apos;t</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([doItem, dontItem], idx) => (
+              <tr key={idx}>
+                <td>{doItem}</td>
+                <td>{dontItem}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+      continue;
+    }
+
     if (block._type !== "block") continue;
     const content = renderSpans(block.children ?? []);
 
