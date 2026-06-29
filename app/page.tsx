@@ -34,7 +34,7 @@ function normaliseSanity(a: SanityArticle) {
     excerpt: a.excerpt ?? "",
     publishedAt: a.publishedAt,
     readTime: a.readTime ?? 5,
-    pillar: a.pillar?.slug?.current ?? "markets-floor",
+    pillar: a.pillar?.slug?.current ?? "",
     coverImage: a.heroImageUrl ?? a.coverImage?.asset?.url ?? null,
     featured: false,
   };
@@ -72,13 +72,13 @@ export default async function HomePage() {
   // ── Hero: highest-reviewed article from the last 7 days ─────────────────────
   // Falls back to featured flag, then most recent, then mock data.
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-  const recentSanity = sanityArticles.filter((a) => a.publishedAt >= sevenDaysAgo);
-  const heroPool = recentSanity.length > 0 ? recentSanity : sanityArticles.slice(0, 5);
+  const recentSanity = sanityArticles.filter((a) => a.publishedAt >= sevenDaysAgo && a.pillar?.slug?.current);
+  const heroPool = recentSanity.length > 0 ? recentSanity : sanityArticles.filter((a) => a.pillar?.slug?.current).slice(0, 5);
 
   const heroSanity = heroPool.sort((a, b) => {
-    // featured > reviewScore > publishedAt
+    // featured first, then always newest
     if (a.featured !== b.featured) return a.featured ? -1 : 1;
-    return (b.reviewScore ?? 0) - (a.reviewScore ?? 0) || b.publishedAt.localeCompare(a.publishedAt);
+    return b.publishedAt.localeCompare(a.publishedAt);
   })[0];
 
   // ── Grid: one article per pillar (excluding hero's pillar) ──────────────────
