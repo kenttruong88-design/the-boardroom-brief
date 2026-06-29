@@ -106,20 +106,38 @@ function markdownToBlocks(body) {
 
   for (let para of paras) {
     para = para.trim();
-    if (!para || /^!\[/.test(para)) continue;   // skip image lines
+    if (!para || /^!\[/.test(para)) continue;
 
+    // ── Headings ──────────────────────────────────────────────────────────────
+    const h4 = para.match(/^####\s+(.+)/);
     const h3 = para.match(/^###\s+(.+)/);
     const h2 = para.match(/^##\s+(.+)/);
-    if (h3) {
-      blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) });
-      continue;
-    }
-    if (h2) {
-      blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) });
+    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h4[1]) }); continue; }
+    if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
+    if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
+
+    // ── Markdown table ────────────────────────────────────────────────────────
+    // Detected when multiple lines contain | characters
+    const lines = para.split("\n");
+    const tableLines = lines.filter(l => l.includes("|"));
+    if (tableLines.length > 1) {
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        // Skip separator rows like |---|---|
+        if (/^\|[-|\s:]+\|$/.test(trimmed)) continue;
+        // Extract cells, strip empty first/last from leading/trailing pipes
+        const cells = trimmed.split("|").map(c => c.trim()).filter(Boolean);
+        if (cells.length === 0) continue;
+        const text = cells.join("  |  ");
+        if (text.trim()) {
+          blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(text) });
+        }
+      }
       continue;
     }
 
-    // Merge multi-line paragraph
+    // ── Normal paragraph ──────────────────────────────────────────────────────
     const merged = para.split("\n").map(l => l.trim()).filter(Boolean).join(" ");
     if (!merged || /^!\[/.test(merged)) continue;
     blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
