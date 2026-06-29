@@ -175,7 +175,7 @@ async function run() {
     trigger:         "cron",
     articles_found:  0,   // publish run — articles already queued
     posts_generated: 0,
-    posts_queued:    0,
+    posts_queued:    posts.length,
     posts_sent:      postsSent,
     errors:          details.filter((d) => d.status === "failed"),
     duration_ms:     Date.now() - startedAt,

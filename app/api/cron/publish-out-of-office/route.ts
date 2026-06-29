@@ -207,7 +207,7 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
+      body: JSON.stringify({ _type: "article", slug: { current: article.slug }, pillarSlug: PILLAR_ID }),
     });
   } catch { /* non-fatal */ }
   return `${siteUrl}/out-of-office/${article.slug}`;

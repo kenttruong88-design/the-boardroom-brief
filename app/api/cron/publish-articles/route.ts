@@ -258,7 +258,7 @@ async function publishArticle(
     await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
+      body: JSON.stringify({ _type: "article", slug: { current: article.slug }, pillarSlug: config.id }),
     });
   } catch { /* non-fatal */ }
 

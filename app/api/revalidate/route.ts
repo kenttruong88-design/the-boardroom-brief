@@ -10,15 +10,19 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { _type, slug } = body;
+    const { _type, slug, pillarSlug } = body;
 
     // Revalidate based on document type
     if (_type === "article") {
       revalidatePath("/");
       if (slug?.current) {
-        // Revalidate all section pages — we don't know the exact pillar from the webhook body
-        revalidatePath("/[section]", "page");
-        revalidatePath("/[section]/[slug]", "page");
+        if (pillarSlug) {
+          revalidatePath(`/${pillarSlug}`, "page");
+          revalidatePath(`/${pillarSlug}/${slug.current}`, "page");
+        } else {
+          revalidatePath("/[section]", "page");
+          revalidatePath("/[section]/[slug]", "page");
+        }
       }
     } else if (_type === "pillar") {
       revalidatePath("/");
