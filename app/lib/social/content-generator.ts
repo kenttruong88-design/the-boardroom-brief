@@ -144,10 +144,28 @@ Return only valid JSON:
   };
 }
 
+// Which platforms each pillar posts to.
+// Twitter  → stocks & macro (humour/satire)
+// LinkedIn → corporate culture & office demeanor
+// Instagram → Out of Office & workplace relationships
+const PILLAR_PLATFORMS: Record<string, Platform[]> = {
+  "markets-floor":  ["twitter"],
+  "macro-mondays":  ["twitter"],
+  "c-suite-circus": ["linkedin"],
+  "global-office":  ["linkedin"],
+  "water-cooler":   ["linkedin", "instagram"],
+  "out-of-office":  ["instagram"],
+};
+
+export function platformsForPillar(pillarSlug: string): Platform[] {
+  return PILLAR_PLATFORMS[pillarSlug] ?? ["linkedin"];
+}
+
 export async function generateAllPlatformPosts(
   article: SanityArticle
 ): Promise<SocialPost[]> {
-  const platforms: Platform[] = ["linkedin", "twitter", "instagram"];
+  const pillarSlug = article.pillar?.slug?.current ?? "general";
+  const platforms = platformsForPillar(pillarSlug);
 
   return Promise.all(
     platforms.map((platform, i) =>
