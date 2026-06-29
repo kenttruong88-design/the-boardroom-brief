@@ -15,6 +15,30 @@ const PILLAR_NAMES: Record<string, string> = {
   "water-cooler":   "Water Cooler",
 };
 
+const AUTHOR_REGISTRY: Record<string, { slug: string; role: string; bio: string }> = {
+  "Rex Volkov":     { slug: "rex-volkov",     role: "Senior Markets Correspondent",    bio: "Former Bloomberg terminal operator with 20 years watching traders make the same mistakes. Covers markets, indices, forex, and commodities." },
+  "Ingrid Holt":    { slug: "ingrid-holt",    role: "Macroeconomics Editor",           bio: "Former ECB research economist who left because the memos kept getting ignored. Covers GDP, inflation, central bank policy across 30 economies." },
+  "Miles Bancroft": { slug: "miles-bancroft", role: "Corporate Affairs Correspondent", bio: "Ex-McKinsey consultant who has sat in enough boardrooms to know how the sausage is made. Covers M&A, executive strategy, and earnings calls." },
+  "Priya Mehta":    { slug: "priya-mehta",    role: "Global Workplace Correspondent",  bio: "Raised across Mumbai, Amsterdam, Seoul, and São Paulo before settling nowhere in particular. Covers corporate culture and global labour trends." },
+  "Danny Fisk":     { slug: "danny-fisk",     role: "Culture Desk",                    bio: "Covers LinkedIn cringe, corporate buzzwords, and the shared absurdity of professional life." },
+  "Suki Nakamura":  { slug: "suki-nakamura",  role: "Out of Office",                   bio: "Relocated 14 times. Has eaten in 60 countries. Covers food, cities, and life outside the desk." },
+};
+
+async function ensureAuthorExists(agentName: string): Promise<string | null> {
+  const meta = AUTHOR_REGISTRY[agentName];
+  if (!meta) return null;
+  const authorId = `author-${meta.slug}`;
+  await writeClient!.createIfNotExists({
+    _id: authorId,
+    _type: "author",
+    name: agentName,
+    slug: { _type: "slug", current: meta.slug },
+    role: meta.role,
+    bio: meta.bio,
+  });
+  return authorId;
+}
+
 function slugify(text: string) {
   return text
     .toLowerCase()
@@ -46,7 +70,8 @@ export async function createSanityArticle(
   const slug = slugify(draft.headline);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
 
-  const pillarId = await ensurePillarExists(draft.pillar);
+  const pillarId  = await ensurePillarExists(draft.pillar);
+  const authorId  = await ensureAuthorExists(draft.agentName);
 
   const doc: Record<string, unknown> = {
     _type: "article",
@@ -61,7 +86,8 @@ export async function createSanityArticle(
       markDefs: [],
       children: [{ _type: "span", _key: `s${i}`, text: para, marks: [] }],
     })),
-    pillar: { _type: "reference", _ref: pillarId },
+    pillar:  { _type: "reference", _ref: pillarId },
+    ...(authorId && { author: { _type: "reference", _ref: authorId } }),
     seoTitle: draft.seoTitle,
     seoDescription: draft.seoDescription,
     tags: draft.tags,
@@ -89,10 +115,11 @@ export async function createSanityArticle(
   const created = await writeClient.createOrReplace(docWithId);
 
   // Trigger ISR revalidation — non-fatal if it fails
-  await fetch(
-    `${siteUrl}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/${draft.pillar}`,
-    { method: "POST" }
-  ).catch(() => {});
+  await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ _type: "article", slug: { current: slug } }),
+  }).catch(() => {});
 
   return {
     sanityDocId: created._id,
