@@ -96,7 +96,7 @@ function renderBlocks(blocks: PTBlock[]) {
         out.push(<h4 key={block._key} className="text-base font-serif font-semibold mt-4 mb-1" style={{ color: "var(--navy)" }}>{content}</h4>);
         break;
       case "blockquote":
-        out.push(<blockquote key={block._key} className="pull-quote">{content}</blockquote>);
+        out.push(<blockquote key={block._key} className="testimonial-quote">{content}</blockquote>);
         break;
       default:
         out.push(<p key={block._key}>{content}</p>);
