@@ -25,7 +25,7 @@ const PILLAR_PLATFORMS: Record<string, ("linkedin" | "twitter" | "instagram")[]>
   "c-suite-circus": ["linkedin"],
   "global-office":  ["linkedin"],
   "out-of-office":  ["instagram"],
-  "water-cooler":   ["instagram"],
+  "water-cooler":   ["linkedin", "instagram"],
 };
 
 function nextSlot(platform: "linkedin" | "twitter" | "instagram", now: Date): Date {

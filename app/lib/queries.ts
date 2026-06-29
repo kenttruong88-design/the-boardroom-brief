@@ -65,7 +65,7 @@ export const getLatestArticles = cache(async (limit = 10): Promise<SanityArticle
   if (!client) return [];
   return client.fetch(
     `*[_type == "article"] | order(publishedAt desc) [0...$limit] { ${ARTICLE_CARD} }`,
-    { limit: limit - 1 },
+    { limit },
     { next: { revalidate: 60 } }
   );
 });
@@ -75,7 +75,7 @@ export const getFeaturedArticles = cache(async (limit = 5): Promise<SanityArticl
   if (!client) return [];
   return client.fetch(
     `*[_type == "article" && featured == true] | order(publishedAt desc) [0...$limit] { ${ARTICLE_CARD} }`,
-    { limit: limit - 1 },
+    { limit },
     { next: { revalidate: 60 } }
   );
 });

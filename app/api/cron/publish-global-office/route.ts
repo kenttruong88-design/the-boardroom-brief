@@ -6,7 +6,11 @@ import { join } from "path";
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
 function isAuthorised(req: NextRequest): boolean {
-  const secret = process.env.CRON_SECRET ?? "boardroom-cron";
+  const secret = process.env.CRON_SECRET;
+  if (!secret) {
+    console.error("[publish-global-office] CRON_SECRET env var is not set");
+    return false;
+  }
   const bearer = req.headers.get("authorization") ?? "";
   const header = req.headers.get("x-cron-secret") ?? "";
   return bearer === `Bearer ${secret}` || header === secret;

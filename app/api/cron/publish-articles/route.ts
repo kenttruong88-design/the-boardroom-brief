@@ -16,26 +16,10 @@ interface PillarConfig {
   authorBio: string;
 }
 
-const PILLAR_CONFIGS: PillarConfig[] = [
-  {
-    id: "global-office",
-    name: "The Global Office",
-    contentDir: "global-office",
-    authorId: "author-priya-mehta",
-    authorName: "Priya Mehta",
-    authorSlug: "priya-mehta",
-    authorBio: "Staff writer for The Alignment Times covering global work and life culture.",
-  },
-  {
-    id: "out-of-office",
-    name: "Out of Office",
-    contentDir: "out-of-office",
-    authorId: "author-suki-nakamura",
-    authorName: "Suki Nakamura",
-    authorSlug: "suki-nakamura",
-    authorBio: "Relocated 14 times. Has eaten in 60 countries. Will tell you exactly which cities deserve to exist and why your favourite restaurant is completely wrong.",
-  },
-];
+// global-office and out-of-office have their own dedicated crons
+// (publish-global-office and publish-out-of-office) — do not add them here
+// to avoid duplicate Sanity documents with conflicting IDs.
+const PILLAR_CONFIGS: PillarConfig[] = [];
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -93,7 +77,7 @@ function markdownToBlocks(body: string) {
     const h4 = para.match(/^####\s+(.+)/);
     const h3 = para.match(/^###\s+(.+)/);
     const h2 = para.match(/^##\s+(.+)/);
-    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h4[1]) }); continue; }
+    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h4", markDefs: [], children: parseInline(h4[1]) }); continue; }
     if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
     if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
 
