@@ -262,7 +262,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
 
-  const COUNT = Math.min(parseInt(req.nextUrl.searchParams.get("count") ?? "2") || 2, 10);
+  const COUNT = Math.min(parseInt(req.nextUrl.searchParams.get("count") ?? "4") || 4, 10);
 
   try {
     const sanity = getSanityClient();
