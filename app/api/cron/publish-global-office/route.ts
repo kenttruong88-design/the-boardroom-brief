@@ -55,17 +55,69 @@ function parseInline(text: string) {
 
 function markdownToBlocks(body: string) {
   const blocks: object[] = [];
+
   for (let para of body.split(/\n{2,}/)) {
     para = para.trim();
-    if (!para || /^!\[/.test(para)) continue;
+    if (!para) continue;
+
+    // Horizontal rules — skip
+    if (/^-{3,}$/.test(para)) continue;
+
+    // Images and captions — skip
+    if (/^!\[/.test(para)) continue;
+    if (/^\*(?:Photo|Illustration):/.test(para)) continue;
+
+    // H4
+    const h4 = para.match(/^####\s+(.+)/);
+    if (h4) { blocks.push({ _type: "block", _key: key(), style: "h4", markDefs: [], children: parseInline(h4[1]) }); continue; }
+
+    // H3
     const h3 = para.match(/^###\s+(.+)/);
-    const h2 = para.match(/^##\s+(.+)/);
     if (h3) { blocks.push({ _type: "block", _key: key(), style: "h3", markDefs: [], children: parseInline(h3[1]) }); continue; }
+
+    // H2
+    const h2 = para.match(/^##\s+(.+)/);
     if (h2) { blocks.push({ _type: "block", _key: key(), style: "h2", markDefs: [], children: parseInline(h2[1]) }); continue; }
-    const merged = para.split("\n").map((l: string) => l.trim()).filter(Boolean).join(" ");
-    if (!merged || /^!\[/.test(merged)) continue;
-    blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
+
+    // Markdown table — convert each data row to two bullet points (Do / Don't)
+    if (/^\|/.test(para)) {
+      const rows = para.split("\n").map(l => l.trim()).filter(l => l.startsWith("|"));
+      for (const row of rows) {
+        if (/^\|[\s\-:|]+\|/.test(row)) continue; // separator row
+        const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+        if (cells.length < 1) continue;
+        const isHeader = cells.some(c => /✅|❌|Do$|Don't/.test(c));
+        if (isHeader) continue;
+        for (const cell of cells) {
+          const text = cell.replace(/<[^>]+>/g, "").trim();
+          if (!text) continue;
+          blocks.push({ _type: "block", _key: key(), style: "normal", listItem: "bullet", level: 1, markDefs: [], children: parseInline(text) });
+        }
+      }
+      continue;
+    }
+
+    // Blockquotes (> lines) and <small> quote blocks
+    if (/^>/.test(para) || /<small>/.test(para)) {
+      const text = para
+        .split("\n")
+        .map(l => l.replace(/^>\s*/, "").replace(/<\/?small>/g, "").replace(/^\*\s*/, "").trim())
+        .filter(Boolean)
+        .join(" ")
+        .trim();
+      if (text) blocks.push({ _type: "block", _key: key(), style: "blockquote", markDefs: [], children: parseInline(text) });
+      continue;
+    }
+
+    // Regular paragraph — filter out image lines and captions within mixed paras
+    const textLines = para.split("\n")
+      .map(l => l.trim())
+      .filter(l => l && !/^!\[/.test(l) && !/^\*(?:Photo|Illustration):/.test(l));
+    if (!textLines.length) continue;
+    const merged = textLines.join(" ");
+    if (merged) blocks.push({ _type: "block", _key: key(), style: "normal", markDefs: [], children: parseInline(merged) });
   }
+
   return blocks;
 }
 
