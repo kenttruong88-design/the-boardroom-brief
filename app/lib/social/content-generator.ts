@@ -64,7 +64,7 @@ export async function generateSocialPost(
 ): Promise<SocialPost> {
   const rules = PLATFORM_RULES[platform];
   const pillarSlug = article.pillar?.slug?.current ?? "general";
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
   const articleUrl = `${siteUrl}/${pillarSlug}/${article.slug.current}`;
   const excerpt = (article.excerpt ?? "").slice(0, 300);
   const countries = article.countries?.map((c) => c.name).join(", ") ?? "Global";

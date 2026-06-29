@@ -51,9 +51,11 @@ export async function POST(req: Request) {
     const created = await writeClient.create(doc);
 
     // Trigger ISR revalidation
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.REVALIDATE_SECRET}&path=/${draft.pillar}`, {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
+    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _type: "article", slug: { current: doc.slug.current }, pillarSlug: draft.pillar }),
     }).catch(() => {}); // non-fatal
 
     return NextResponse.json({ published: true, id: created._id, slug: doc.slug.current });

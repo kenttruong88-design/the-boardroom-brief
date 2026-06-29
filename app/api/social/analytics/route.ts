@@ -5,12 +5,14 @@ import { getBufferPostAnalytics } from "@/app/lib/social/buffer-client";
 export const maxDuration = 60;
 
 function isAuthorized(req: Request): boolean {
+  const secret = process.env.CRON_SECRET;
+  if (!secret) {
+    console.error("[social/analytics] CRON_SECRET env var is not set");
+    return false;
+  }
   const auth = req.headers.get("authorization");
   const cronHeader = req.headers.get("x-cron-secret");
-  return (
-    auth === `Bearer ${process.env.CRON_SECRET}` ||
-    cronHeader === process.env.CRON_SECRET
-  );
+  return auth === `Bearer ${secret}` || cronHeader === secret;
 }
 
 function sleep(ms: number) {
