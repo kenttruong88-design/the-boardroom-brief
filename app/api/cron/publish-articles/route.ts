@@ -249,7 +249,11 @@ async function publishArticle(
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
   try {
-    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.REVALIDATE_SECRET ?? ""}&path=/${config.id}`, { method: "POST" });
+    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _type: "article", slug: { current: article.slug } }),
+    });
   } catch { /* non-fatal */ }
 
   return `${siteUrl}/${config.id}/${article.slug}`;
