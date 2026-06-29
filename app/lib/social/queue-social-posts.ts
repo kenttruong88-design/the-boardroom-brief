@@ -13,10 +13,20 @@ const PILLAR_NAMES: Record<string, string> = {
 };
 
 const SOCIAL_SLOTS = {
-  linkedin:  [{ h: 8,  m: 30 }, { h: 17, m: 0  }],
-  twitter:   [{ h: 9,  m: 0  }, { h: 13, m: 0  }, { h: 17, m: 30 }],
-  instagram: [{ h: 12, m: 0  }],
+  linkedin:  [{ h: 7,  m: 0  }, { h: 12, m: 0  }],
+  twitter:   [{ h: 12, m: 0  }, { h: 16, m: 0  }, { h: 20, m: 0  }],
+  instagram: [{ h: 11, m: 0  }],
 } as const;
+
+// Pillar → platform routing: each pillar posts to ONE platform only
+const PILLAR_PLATFORMS: Record<string, ("linkedin" | "twitter" | "instagram")[]> = {
+  "markets-floor":  ["twitter"],
+  "macro-mondays":  ["twitter"],
+  "c-suite-circus": ["linkedin"],
+  "global-office":  ["linkedin"],
+  "out-of-office":  ["instagram"],
+  "water-cooler":   ["instagram"],
+};
 
 function nextSlot(platform: "linkedin" | "twitter" | "instagram", now: Date): Date {
   for (const { h, m } of SOCIAL_SLOTS[platform]) {
@@ -59,7 +69,9 @@ export async function queueSocialPostsForArticle(
     })),
   };
 
-  // Generate all platforms in parallel; Instagram skipped without a hero image
+  // Route to the correct platform(s) for this pillar
+  const platforms = PILLAR_PLATFORMS[pillarSlug] ?? ["linkedin", "twitter"];
+
   const platformJobs: Promise<void>[] = [];
   const supabase = createAdminClient();
 
@@ -74,7 +86,7 @@ export async function queueSocialPostsForArticle(
   };
 
   type Platform = "linkedin" | "twitter" | "instagram";
-  for (const platform of ["linkedin", "twitter", ...(hasImage ? ["instagram"] : [])] as Platform[]) {
+  for (const platform of platforms as Platform[]) {
     platformJobs.push(
       generateSocialPost(article, platform).then((post) =>
         supabase.from("social_queue").insert({
