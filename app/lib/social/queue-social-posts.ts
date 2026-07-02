@@ -47,7 +47,7 @@ export async function queueSocialPostsForArticle(
 ): Promise<void> {
   const now = new Date();
   const pillarSlug = draft.pillar;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thealignmenttimes.com";
   const articleUrl = `${siteUrl}/${pillarSlug}/${publishResult.slug}`;
   const hasImage = !!draft.featuredImage?.heroUrl;
 
