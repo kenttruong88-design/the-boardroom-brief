@@ -5,7 +5,7 @@ import { createAdminClient } from "@/app/lib/supabase-server";
 import MorningBrief from "@/emails/morning-brief";
 import type { MorningBriefContent } from "./content-assembler";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thealignmenttimes.com";
 const FROM_NAME  = process.env.FROM_NAME  ?? "The Alignment Times";
 const FROM_EMAIL = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
 const FROM = `${FROM_NAME} <${FROM_EMAIL}>`;
@@ -45,7 +45,21 @@ export async function sendMorningBrief(
 
   if (fetchError) throw new Error(`Subscriber fetch failed: ${fetchError.message}`);
 
-  const subscribers = (rows ?? []) as Subscriber[];
+  // Exclude subscribers already successfully delivered for this sendId, so a
+  // forced/retried run after a partial failure doesn't re-send to people who
+  // already got it.
+  const { data: alreadySent, error: alreadySentError } = await supabase
+    .from("newsletter_send_log")
+    .select("subscriber_id")
+    .eq("send_id", sendId)
+    .eq("status", "sent");
+
+  if (alreadySentError) {
+    console.error("[newsletter/sender] Failed to load already-sent recipients — proceeding without dedup:", alreadySentError.message);
+  }
+  const alreadySentIds = new Set((alreadySent ?? []).map((r) => r.subscriber_id as string));
+
+  const subscribers = ((rows ?? []) as Subscriber[]).filter((s) => !alreadySentIds.has(s.id));
 
   // Render once with placeholder URLs — avoids N renders for large lists
   const baseHtml = await render(
@@ -123,7 +137,14 @@ export async function sendMorningBrief(
       });
 
       if (logRows.length > 0) {
-        await supabase.from("newsletter_send_log").insert(logRows);
+        const { error: logError } = await supabase.from("newsletter_send_log").insert(logRows);
+        if (logError) {
+          console.error(`[newsletter/sender] Failed to persist send_log rows for batch ${Math.floor(i / BATCH_SIZE) + 1}:`, logError.message);
+          Sentry.captureException(new Error(`newsletter_send_log insert failed: ${logError.message}`), {
+            tags: { service: "supabase" },
+            extra: { batchNumber: Math.floor(i / BATCH_SIZE) + 1, sendId },
+          });
+        }
       }
     }
 
@@ -133,15 +154,27 @@ export async function sendMorningBrief(
     }
   }
 
+  // Recipients already delivered in an earlier attempt at this sendId (excluded
+  // above) still count toward the cumulative total for the day.
+  const cumulativeSentCount = alreadySentIds.size + sentCount;
+
   // ── c. Update newsletter_sends with final counts and batch IDs ────────────
-  await supabase
+  const { error: finalUpdateError } = await supabase
     .from("newsletter_sends")
     .update({
-      sent_count: sentCount,
+      sent_count: cumulativeSentCount,
       failed_count: failedCount,
       resend_batch_ids: batchIds,
     })
     .eq("id", sendId);
 
-  return { sentCount, failedCount, batchIds, lastError };
+  if (finalUpdateError) {
+    console.error("[newsletter/sender] Failed to persist final send counts:", finalUpdateError.message);
+    Sentry.captureException(new Error(`newsletter_sends final update failed: ${finalUpdateError.message}`), {
+      tags: { service: "supabase" },
+      extra: { sendId, cumulativeSentCount, failedCount },
+    });
+  }
+
+  return { sentCount: cumulativeSentCount, failedCount, batchIds, lastError };
 }

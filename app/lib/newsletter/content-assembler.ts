@@ -48,7 +48,7 @@ interface SanityRaw {
 // ── Public API ────────────────────────────────────────────────────────────────
 
 export async function assembleMorningBrief(date: Date): Promise<MorningBriefContent> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://alignmenttimes.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thealignmenttimes.com";
   const dateStr = date.toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
@@ -68,12 +68,13 @@ export async function assembleMorningBrief(date: Date): Promise<MorningBriefCont
 
 async function fetchMarketSnapshot(): Promise<MarketSnapshotItem[]> {
   const supabase = createAdminClient();
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("market_cache")
     .select("symbol, name, price, change_pct")
     .in("symbol", SNAPSHOT_SYMBOLS)
     .order("pulled_at", { ascending: false });
 
+  if (error) console.error("[newsletter/content-assembler] market_cache fetch failed:", error.message);
   if (!data?.length) return [];
 
   const rows = data as { symbol: string; name: string; price: number; change_pct: number }[];

@@ -62,10 +62,11 @@ async function runSend(req: Request) {
 
   if (existing) {
     sendId = existing.id as string;
-    await supabase
+    const { error: resetError } = await supabase
       .from("newsletter_sends")
       .update({ status: "pending", error: null, started_at: startedAt.toISOString() })
       .eq("id", sendId);
+    if (resetError) console.error("[newsletter/send] Failed to reset send row to pending:", resetError.message);
   } else {
     const { data: inserted, error: insertError } = await supabase
       .from("newsletter_sends")
@@ -84,7 +85,7 @@ async function runSend(req: Request) {
     const content = await assembleMorningBrief(targetDate);
 
     // ── d. Update send record with subject and article list ────────────────
-    await supabase
+    const { error: subjectUpdateError } = await supabase
       .from("newsletter_sends")
       .update({
         subject: content.subject,
@@ -92,45 +93,66 @@ async function runSend(req: Request) {
         status: "sending",
       })
       .eq("id", sendId);
+    if (subjectUpdateError) console.error("[newsletter/send] Failed to persist subject/articles:", subjectUpdateError.message);
 
     // ── e. Send ────────────────────────────────────────────────────────────
     const { sentCount, failedCount, lastError } = await sendMorningBrief(content, sendId);
 
     // ── f. Mark complete ───────────────────────────────────────────────────
-    // A batch where every recipient failed is not a successful send, even
-    // though nothing threw — reflect that in status so it surfaces without
-    // having to cross-reference Sentry against subscriber counts.
+    // Distinguish every outcome that isn't a clean full success, so status
+    // never says "sent" for a day that actually needs attention:
+    //   - no_recipients: nobody matched (confirmed + daily) — could be a
+    //     legitimate empty list, or an accidental audience-loss incident.
+    //   - failed: every attempted recipient failed.
+    //   - partial_failed: some succeeded, some didn't — still recoverable
+    //     by re-running (retries skip already-succeeded recipients).
+    //   - sent: full success.
     const completedAt = new Date();
+    const noRecipients = sentCount === 0 && failedCount === 0;
     const allFailed = failedCount > 0 && sentCount === 0;
-    await supabase
+    const partialFailed = sentCount > 0 && failedCount > 0;
+    const status = noRecipients ? "no_recipients" : allFailed ? "failed" : partialFailed ? "partial_failed" : "sent";
+    const errorNote = noRecipients
+      ? "No confirmed daily subscribers matched — verify this is expected before treating today as sent."
+      : allFailed || partialFailed
+        ? lastError ?? `${failedCount} of ${sentCount + failedCount} send(s) failed — see Resend/Sentry for cause.`
+        : null;
+
+    const { error: completeUpdateError } = await supabase
       .from("newsletter_sends")
       .update({
-        status: allFailed ? "failed" : "sent",
+        status,
         subscriber_count: sentCount + failedCount,
         sent_count: sentCount,
         failed_count: failedCount,
         completed_at: completedAt.toISOString(),
         duration_ms: completedAt.getTime() - startedAt.getTime(),
-        ...(allFailed ? { error: lastError ?? `All ${failedCount} send(s) failed — see Resend/Sentry for cause.` } : {}),
+        error: errorNote,
       })
       .eq("id", sendId);
+    if (completeUpdateError) console.error("[newsletter/send] Failed to persist final send outcome:", completeUpdateError.message);
 
     // ── g. Response ────────────────────────────────────────────────────────
     return NextResponse.json({
-      success: !allFailed,
+      success: status === "sent",
+      status,
       sendDate,
       subscriberCount: sentCount + failedCount,
       sentCount,
       failedCount,
       subject: content.subject,
       articlesIncluded: content.articles.map((a) => a.headline),
+      ...(errorNote ? { error: errorNote } : {}),
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    await supabase
+    const { error: failureUpdateError } = await supabase
       .from("newsletter_sends")
       .update({ status: "failed", error: message })
       .eq("id", sendId);
+    if (failureUpdateError) {
+      console.error("[newsletter/send] Failed to persist failure status (this send's outcome is now unrecorded):", failureUpdateError.message);
+    }
 
     console.error("[newsletter/send]", err);
     return NextResponse.json({ error: message }, { status: 500 });
