@@ -19,6 +19,7 @@ export interface SendResult {
   sentCount: number;
   failedCount: number;
   batchIds: string[];
+  lastError?: string;
 }
 
 interface Subscriber {
@@ -62,6 +63,7 @@ export async function sendMorningBrief(
   let sentCount = 0;
   let failedCount = 0;
   const batchIds: string[] = [];
+  let lastError: string | undefined;
 
   // ── b. Batches of 100 ────────────────────────────────────────────────────
   for (let i = 0; i < subscribers.length; i += BATCH_SIZE) {
@@ -86,6 +88,10 @@ export async function sendMorningBrief(
 
     if (batchError || responses.length === 0) {
       failedCount += batch.length;
+      lastError = batchError
+        ? `${batchError.name ?? "ResendError"}: ${batchError.message ?? String(batchError)}`
+        : "Resend batch returned empty responses";
+      console.error(`[newsletter/sender] Batch ${Math.floor(i / BATCH_SIZE) + 1} failed:`, lastError);
       Sentry.captureException(batchError ?? new Error("Resend batch returned empty responses"), {
         tags: { service: "resend" },
         extra: { batchNumber: Math.floor(i / BATCH_SIZE) + 1, batchSize: batch.length, sendId },
@@ -137,5 +143,5 @@ export async function sendMorningBrief(
     })
     .eq("id", sendId);
 
-  return { sentCount, failedCount, batchIds };
+  return { sentCount, failedCount, batchIds, lastError };
 }
