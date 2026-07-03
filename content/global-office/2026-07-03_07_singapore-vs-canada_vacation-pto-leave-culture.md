@@ -91,4 +91,3 @@ The irony cuts against instinct in both directions. Singapore's system looks sti
 ### Conclusion
 
 If you're moving to Singapore, don't be discouraged by the 14-day statutory ceiling — negotiate for market-standard leave upfront, and expect the system's use-it-or-lose-it rule to actually get you off your desk. If you're moving to Canada, don't assume the generous escalator solves the problem for you — check your province's specific minimum, and then actually build the discipline to use it, because apparently half your future colleagues won't. The honest version for a friend: in Singapore, ask for more than the law requires. In Canada, take what the law already gives you — nobody else seems to be doing it for you.
-      
