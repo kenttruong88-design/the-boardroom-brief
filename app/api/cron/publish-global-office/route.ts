@@ -239,14 +239,17 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     ogImage:        article.ogUrl || article.heroUrl,
     seoDescription: article.seoDesc,
   });
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thealignmenttimes.com";
   try {
-    await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
+    const res = await fetch(`${siteUrl}/api/revalidate?secret=${process.env.SANITY_WEBHOOK_SECRET ?? ""}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ _type: "article", slug: { current: article.slug }, pillarSlug: PILLAR_ID }),
     });
-  } catch { /* non-fatal */ }
+    if (!res.ok) console.warn(`[publish-global-office] Revalidate returned ${res.status} for ${article.slug}`);
+  } catch (err) {
+    console.warn(`[publish-global-office] Revalidate fetch failed for ${article.slug}:`, err);
+  }
   return `${siteUrl}/global-office/${article.slug}`;
 }
 
@@ -286,13 +289,25 @@ export async function GET(req: NextRequest) {
     await ensureAuthor(client);
 
     const results: { title: string; url: string }[] = [];
-    for (const { article } of toPublish) {
-      const url = await publishArticle(client, article);
-      results.push({ title: article.title, url });
-      console.log(`[publish-global-office] Published: ${article.title}`);
+    const failures: { filename: string; error: string }[] = [];
+    for (const { filename, article } of toPublish) {
+      try {
+        const url = await publishArticle(client, article);
+        results.push({ title: article.title, url });
+        console.log(`[publish-global-office] Published: ${article.title}`);
+      } catch (err) {
+        console.error(`[publish-global-office] Failed to publish ${filename}:`, err);
+        failures.push({ filename, error: (err as Error).message });
+      }
     }
 
-    return NextResponse.json({ published: results.length, remaining: candidates.length - results.length, articles: results });
+    return NextResponse.json({
+      published: results.length,
+      failed: failures.length,
+      remaining: candidates.length - results.length,
+      articles: results,
+      ...(failures.length ? { failures } : {}),
+    });
   } catch (err) {
     console.error("[publish-global-office]", err);
     return NextResponse.json({ error: (err as Error).message }, { status: 500 });
