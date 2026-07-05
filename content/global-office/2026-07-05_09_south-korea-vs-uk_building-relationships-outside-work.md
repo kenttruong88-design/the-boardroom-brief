@@ -7,8 +7,8 @@ countries: South Korea, UK
 subject: Building relationships outside of work
 word_count: 1210
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/3182767/pexels-photo-3182767.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/23885852/pexels-photo-23885852.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [InterNations Expat Insider 2024, Snapchat/Stylist global friendship study, Heineken/Book of Man loneliness research, Korea Herald, Springer (jeong scholarship), Hofstede Insights]
   forums: [Quora, Internations, r/korea, r/AskUK]

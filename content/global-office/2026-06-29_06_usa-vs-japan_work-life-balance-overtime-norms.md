@@ -8,7 +8,7 @@ subject: Work-life balance and overtime norms
 word_count: 1200
 images:
   hero: https://images.pexels.com/photos/7793664/pexels-photo-7793664.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/3532924/pexels-photo-3532924.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/3791134/pexels-photo-3791134.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - OECD Better Life Index — Japan work-life balance score 3.4/10; US 1,791 annual hours worked

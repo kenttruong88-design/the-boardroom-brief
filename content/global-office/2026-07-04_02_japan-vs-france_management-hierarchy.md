@@ -7,8 +7,8 @@ countries: Japan, France
 subject: Management hierarchy and boss-employee relationships
 word_count: 1230
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/7654487/pexels-photo-7654487.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7640478/pexels-photo-7640478.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Hofstede Insights, OECD employment data, Ipsos, EU-Japan Centre for Industrial Cooperation, The Local France, World Business Culture]
   forums: [r/japanlife, Quora, Expat Forum (expatforum.com), The Local France, Internations Tokyo]

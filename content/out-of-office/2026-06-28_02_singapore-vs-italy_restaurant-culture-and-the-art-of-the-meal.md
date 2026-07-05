@@ -7,7 +7,7 @@ countries: Singapore, Italy
 subject: Restaurant culture and the art of the meal
 word_count: 1200
 images:
-  hero: https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/16557597/pexels-photo-16557597.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

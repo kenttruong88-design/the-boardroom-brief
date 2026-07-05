@@ -7,7 +7,7 @@ countries: South Korea, UK
 subject: Startup vs. corporate mindset
 word_count: 1260
 images:
-  hero: https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/7413842/pexels-photo-7413842.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

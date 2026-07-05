@@ -8,7 +8,7 @@ subject: Fashion culture — dress norms in society and everyday life
 word_count: 960
 images:
   hero: https://images.pexels.com/photos/35121631/pexels-photo-35121631.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/4530793/pexels-photo-4530793.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8122037/pexels-photo-8122037.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Vogue Singapore — Singapore style story

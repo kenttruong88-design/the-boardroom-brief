@@ -7,8 +7,8 @@ countries: USA, Japan
 subject: Having children — parental leave, childcare support, and career impact of parenthood
 word_count: 1260
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/6624358/pexels-photo-6624358.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/29041789/pexels-photo-29041789.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [JILPT 2025 paternity leave study, Statista, US Department of Labor FMLA eligibility brief, EPI childcare costs, Care.com 2026 Cost of Care Report, Nippon.com, Tokyo Metropolitan Government, Hofstede Insights]
   forums: [r/japanlife, r/daddit, Quora, Internations Tokyo]

@@ -7,7 +7,7 @@ countries: Greece, USA
 subject: Neighbourhood and community life
 word_count: ~1200
 images:
-  hero: https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/3267338/pexels-photo-3267338.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/2611386/pexels-photo-2611386.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

@@ -7,7 +7,7 @@ countries: Thailand, Norway
 subject: Weather and how locals cope
 word_count: ~1200
 images:
-  hero: https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/13115126/pexels-photo-13115126.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

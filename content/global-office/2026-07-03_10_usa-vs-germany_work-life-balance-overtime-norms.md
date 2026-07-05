@@ -7,8 +7,8 @@ countries: USA, Germany
 subject: Work-life balance and overtime norms
 word_count: 1300
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/8370960/pexels-photo-8370960.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8901177/pexels-photo-8901177.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - US Bureau of Labor Statistics — average weekly hours, private nonfarm payrolls, 2026

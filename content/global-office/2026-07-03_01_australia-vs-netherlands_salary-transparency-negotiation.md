@@ -7,8 +7,8 @@ countries: Australia, Netherlands
 subject: Salary transparency and negotiation culture
 word_count: 1250
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/7640793/pexels-photo-7640793.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7876740/pexels-photo-7876740.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Workplace Gender Equality Agency (WGEA) — Employer Gender Pay Gaps Report, published 3 March 2026

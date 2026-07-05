@@ -7,7 +7,7 @@ countries: USA, Japan
 subject: Gender dynamics in the workplace
 word_count: 1270
 images:
-  hero: https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/9301312/pexels-photo-9301312.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/1181715/pexels-photo-1181715.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

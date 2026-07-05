@@ -7,8 +7,8 @@ countries: Germany, South Korea
 subject: Salary culture — pay structures, compensation norms, and expectations
 word_count: 1300
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/15543028/pexels-photo-15543028.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/6693665/pexels-photo-6693665.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - German Federal Statistical Office (Destatis) — collective bargaining coverage and Tarifvertrag data

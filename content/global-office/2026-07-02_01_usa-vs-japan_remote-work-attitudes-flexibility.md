@@ -8,7 +8,7 @@ subject: Remote work attitudes and flexibility policies
 word_count: 1250
 images:
   hero: https://images.pexels.com/photos/4050302/pexels-photo-4050302.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/5918384/pexels-photo-5918384.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - OECD Employment Outlook 2025 — Japan country note

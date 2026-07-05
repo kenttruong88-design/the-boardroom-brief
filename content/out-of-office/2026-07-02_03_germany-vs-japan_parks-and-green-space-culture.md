@@ -8,7 +8,7 @@ subject: Parks and green space culture
 word_count: ~1200
 images:
   hero: https://images.pexels.com/photos/1298684/pexels-photo-1298684.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/32103395/pexels-photo-32103395.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Federal Office for Nature Conservation Germany (BfN) — Urban Green Space Report 2023

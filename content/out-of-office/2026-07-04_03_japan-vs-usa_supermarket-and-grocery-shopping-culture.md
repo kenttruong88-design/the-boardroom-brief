@@ -8,7 +8,7 @@ subject: Supermarket and grocery shopping culture
 word_count: ~1200
 images:
   hero: https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/4198226/pexels-photo-4198226.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Japan Ministry of Agriculture, Forestry and Fisheries — food retail and freshness standards

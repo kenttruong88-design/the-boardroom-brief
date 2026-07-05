@@ -7,8 +7,8 @@ countries: Brazil, Sweden
 subject: Salary culture — pay structures, compensation norms, and expectations
 word_count: 1240
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/4968659/pexels-photo-4968659.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8927507/pexels-photo-8927507.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [ETUI 2025 Sweden collective bargaining report, Swedish National Mediation Office, OECD/AIAS ICTWSS, Brazil CLT guides (Boundless, Asanify, Europortage), Hofstede Insights]
   forums: [Quora, The Local Sweden, r/TillSverige, Internations São Paulo]

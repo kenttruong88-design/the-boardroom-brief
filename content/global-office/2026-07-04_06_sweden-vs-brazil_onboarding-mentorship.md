@@ -7,8 +7,8 @@ countries: Sweden, Brazil
 subject: Onboarding and mentorship practices
 word_count: 1200
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/5989927/pexels-photo-5989927.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7581032/pexels-photo-7581032.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [SHRM mentoring research, Arbetsmiljöverket (Swedish Work Environment Authority) provisions, Brazilian CLT employment law, Hofstede Insights, Globalization Partners onboarding guidance]
   forums: [r/TillSverige, Quora, Internations Stockholm, The Local Sweden, r/expats]

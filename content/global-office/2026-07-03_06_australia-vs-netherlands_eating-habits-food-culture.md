@@ -7,8 +7,8 @@ countries: Australia, Netherlands
 subject: Eating habits and food culture
 word_count: 1250
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/4964958/pexels-photo-4964958.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8102207/pexels-photo-8102207.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Remitly — meal time guides for Australia and the Netherlands

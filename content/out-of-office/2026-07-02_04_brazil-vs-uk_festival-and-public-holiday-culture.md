@@ -7,7 +7,7 @@ countries: Brazil, UK
 subject: Festival and public holiday culture
 word_count: ~1200
 images:
-  hero: https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/25949482/pexels-photo-25949482.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/2086143/pexels-photo-2086143.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

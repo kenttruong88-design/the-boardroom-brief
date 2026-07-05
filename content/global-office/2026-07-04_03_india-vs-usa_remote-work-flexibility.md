@@ -7,8 +7,8 @@ countries: India, USA
 subject: Remote work attitudes and flexibility policies
 word_count: 1220
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/7278608/pexels-photo-7278608.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8546999/pexels-photo-8546999.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Gallup, Hofstede Insights, company RTO policies (TCS, Infosys, Wipro), NASSCOM commentary, US federal RTO reporting]
   forums: [r/developersIndia, Quora, Blind, Remote Indian community, HackerNews]

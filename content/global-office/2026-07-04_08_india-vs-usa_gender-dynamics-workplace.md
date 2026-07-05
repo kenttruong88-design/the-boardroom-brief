@@ -7,8 +7,8 @@ countries: India, USA
 subject: Gender dynamics in the workplace
 word_count: 1250
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/8070690/pexels-photo-8070690.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7640429/pexels-photo-7640429.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [World Bank / ILO labour force data, India PLFS & PIB, Maternity Benefit Act 1961 (2017 amendment), POSH Act 2013, Pew Research Center, EPI, Payscale gender pay gap report, National Partnership for Women & Families]
   forums: [r/TwoXIndia, Quora, Blind, Internations Bangalore, HackerNews]

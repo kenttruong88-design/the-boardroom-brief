@@ -8,7 +8,7 @@ subject: Language barrier experiences
 word_count: ~1200
 images:
   hero: https://images.pexels.com/photos/2609462/pexels-photo-2609462.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/31680679/pexels-photo-31680679.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Ethnologue — Language Use in Italy Report 2024

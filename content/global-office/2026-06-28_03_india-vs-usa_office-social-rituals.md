@@ -7,7 +7,7 @@ countries: India, USA
 subject: Office social rituals — lunches, after-work, team events
 word_count: 1240
 images:
-  hero: https://images.pexels.com/photos/7688435/pexels-photo-7688435.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/8102204/pexels-photo-8102204.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/7652145/pexels-photo-7652145.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

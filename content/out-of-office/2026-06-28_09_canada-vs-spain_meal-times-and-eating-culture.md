@@ -8,7 +8,7 @@ subject: Meal times and eating culture
 word_count: 1200
 images:
   hero: https://images.pexels.com/photos/1579739/pexels-photo-1579739.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/36824888/pexels-photo-36824888.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Statistics Canada — Canadian eating habits and meal patterns survey 2024

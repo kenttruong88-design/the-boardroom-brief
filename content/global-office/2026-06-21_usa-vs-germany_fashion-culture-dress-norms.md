@@ -6,8 +6,8 @@ countries: USA, Germany
 subject: Fashion culture — dress norms in society and everyday life
 word_count: 1380
 images:
-  hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/defaults/global-office-default
-  body: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/defaults/global-office-default
+  hero: https://images.pexels.com/photos/7255719/pexels-photo-7255719.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7610408/pexels-photo-7610408.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   note: "Images pending generation — sandbox network blocked during scheduled run. Prompts: (1) Split composition vintage travel poster: left side shows American street scene with casual athleisure clothing racks, athletic sneakers, bold signage; right side shows German city with elegant minimalist boutique, dark neutral clothing, leather shoes, understated window display. Berlin and New York skyline silhouettes. Vintage travel poster aesthetic, flat illustration, warm ochre and terracotta palette. (2) Flat editorial illustration: contrast between an American wardrobe overflowing with bright logo-covered garments and fast fashion shopping bags versus a German wardrobe of dark neutral quality pieces, minimal branding, leather goods, one well-crafted coat. Side-by-side open wardrobe composition."
 sources:
   official:

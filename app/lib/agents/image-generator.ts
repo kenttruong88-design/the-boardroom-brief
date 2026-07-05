@@ -46,6 +46,7 @@ const PILLAR_SEARCH_TERMS: Record<string, string> = {
   "c-suite-circus": "corporate office business",
   "global-office":  "office workplace",
   "water-cooler":   "coffee office casual",
+  "out-of-office":  "travel lifestyle culture city",
 };
 
 const PILLAR_DEFAULT_IDS: Record<string, string> = {
@@ -54,6 +55,7 @@ const PILLAR_DEFAULT_IDS: Record<string, string> = {
   "c-suite-circus": "boardroom-brief/defaults/c-suite-circus-default",
   "global-office":  "boardroom-brief/defaults/global-office-default",
   "water-cooler":   "boardroom-brief/defaults/water-cooler-default",
+  "out-of-office":  "boardroom-brief/defaults/out-of-office-default",
 };
 
 // ── 1. Flux Schnell via Replicate ─────────────────────────────────────────────
@@ -98,6 +100,11 @@ export async function generateWithFlux(prompt: string): Promise<Buffer> {
 
 // ── 2. Pexels fallback ────────────────────────────────────────────────────────
 
+// Tracks photo IDs already used this process lifetime so a single batch run
+// (which generates many articles back to back) doesn't keep picking the same
+// top search result for similar queries.
+const usedPexelsIds = new Set<string>();
+
 export async function fetchPexelsImage(
   keywords: string[],
   pillar: string
@@ -113,7 +120,7 @@ export async function fetchPexelsImage(
   const q = encodeURIComponent(`${keywordPart} ${pillarTerms}`.trim());
 
   const searchRes = await fetch(
-    `https://api.pexels.com/v1/search?query=${q}&orientation=landscape&per_page=5&size=large`,
+    `https://api.pexels.com/v1/search?query=${q}&orientation=landscape&per_page=15&size=large`,
     { headers: { Authorization: key } }
   );
 
@@ -124,6 +131,7 @@ export async function fetchPexelsImage(
 
   const data = await searchRes.json() as {
     photos: Array<{
+      id: number;
       src: { large2x: string };
       photographer: string;
       photographer_url: string;
@@ -131,11 +139,14 @@ export async function fetchPexelsImage(
     }>;
   };
 
-  const photo = data.photos?.[0];
+  // Prefer a photo we haven't used yet this run; fall back to the top result
+  // (still better than returning nothing) if every candidate is already used.
+  const photo = data.photos?.find((p) => !usedPexelsIds.has(String(p.id))) ?? data.photos?.[0];
   if (!photo) {
     console.warn("[image-generator] Pexels returned no results");
     return null;
   }
+  usedPexelsIds.add(String(photo.id));
 
   const imgRes = await fetch(photo.src.large2x);
   if (!imgRes.ok) {

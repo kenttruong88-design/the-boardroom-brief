@@ -7,8 +7,8 @@ countries: Brazil, Sweden
 subject: Bonding culture — social cohesion, team bonding, and communal connection
 word_count: 1220
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/15543209/pexels-photo-15543209.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8553862/pexels-photo-8553862.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Hofstede Insights, Cultural Atlas (SBS) Brazil, The Local Sweden loneliness data, InterNations Expat Insider friendship rankings, Aeon (Swedish individualism essay), Swedish public health loneliness studies]
   forums: [The Local Sweden, Quora, r/TillSverige, Internations São Paulo]

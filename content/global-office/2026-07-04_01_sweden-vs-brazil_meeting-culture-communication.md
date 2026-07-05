@@ -7,8 +7,8 @@ countries: Sweden, Brazil
 subject: Meeting culture and communication styles
 word_count: 1210
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/9301902/pexels-photo-9301902.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/4344114/pexels-photo-4344114.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [OECD Employment Outlook, Hofstede Insights, World Business Culture, Cultural Atlas (SBS), The Local Sweden]
   forums: [r/sweden, r/expats, Quora, The Local Sweden, Internations São Paulo]

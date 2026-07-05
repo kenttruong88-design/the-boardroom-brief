@@ -7,8 +7,8 @@ countries: France, Australia
 subject: Dress code and workplace formality
 word_count: 1180
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/12955934/pexels-photo-12955934.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/37906244/pexels-photo-37906244.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Indeed Hiring Lab Australia 2025, people2people 2023 survey, SEEK Employer, Expatica France, Hofstede Insights, CPA Australia INTHEBLACK]
   forums: [r/france, Quora, Internations Paris, Expat Focus]

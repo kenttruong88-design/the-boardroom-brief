@@ -7,8 +7,8 @@ countries: UK, China
 subject: Performance reviews and feedback culture
 word_count: 1220
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/15543048/pexels-photo-15543048.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/5439376/pexels-photo-5439376.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [CIPD performance management research, Hofstede Insights, British Council cross-cultural communication reporting, Emerald / IIM Ranchi Journal of Management Studies, Harvard Business Review]
   forums: [r/UKJobs, Quora, Blind, Internations Beijing, HackerNews]

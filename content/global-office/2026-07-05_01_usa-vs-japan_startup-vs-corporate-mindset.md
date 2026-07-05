@@ -7,8 +7,8 @@ countries: USA, Japan
 subject: Startup vs. corporate mindset
 word_count: 1230
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/7413910/pexels-photo-7413910.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7413916/pexels-photo-7413916.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Speeda Japan Startup Finance 2025, JETRO Invest Japan Report 2025, US Census Bureau Business Formation Statistics, Recruit Works 2025 survey, Hofstede Insights, StartupBlink 2025 Index]
   forums: [Quora, Hacker News, Medium (Mistletoe intern blog), r/japanlife]

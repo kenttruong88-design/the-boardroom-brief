@@ -7,8 +7,8 @@ countries: USA, Germany
 subject: Fashion culture — dress norms in society and everyday life
 word_count: 1250
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/8468809/pexels-photo-8468809.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/6538850/pexels-photo-6538850.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Broken Arrow Wear / Sprout Blog — 2026 US business casual statistics (41% of workers dress business casual)

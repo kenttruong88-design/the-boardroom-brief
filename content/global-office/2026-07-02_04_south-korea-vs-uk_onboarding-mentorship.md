@@ -8,7 +8,7 @@ subject: Onboarding and mentorship practices
 word_count: 1210
 images:
   hero: https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8069015/pexels-photo-8069015.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Korea Chamber of Commerce and Industry — mentorship and young entrepreneur success rates

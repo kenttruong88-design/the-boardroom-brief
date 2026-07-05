@@ -8,7 +8,7 @@ subject: Living culture — costs of living, childcare, welfare systems, insuran
 word_count: 1300
 images:
   hero: https://images.pexels.com/photos/6457515/pexels-photo-6457515.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/18067562/pexels-photo-18067562.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/36151569/pexels-photo-36151569.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Numbeo 2025 — Cost of Living Comparison India vs United States (US 274% more expensive)

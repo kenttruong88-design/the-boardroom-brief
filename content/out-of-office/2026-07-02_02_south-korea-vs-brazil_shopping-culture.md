@@ -7,8 +7,8 @@ countries: South Korea, Brazil
 subject: Shopping culture (malls vs markets vs online)
 word_count: ~1200
 images:
-  hero: https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/8390144/pexels-photo-8390144.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/17051853/pexels-photo-17051853.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Statistics Korea — Retail and E-commerce Trends 2024

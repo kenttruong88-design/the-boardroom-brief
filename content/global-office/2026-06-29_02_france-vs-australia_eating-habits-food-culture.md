@@ -7,7 +7,7 @@ countries: France, Australia
 subject: Eating habits and food culture
 word_count: 1180
 images:
-  hero: https://images.pexels.com/photos/31517300/pexels-photo-31517300.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/8102206/pexels-photo-8102206.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/5491012/pexels-photo-5491012.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

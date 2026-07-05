@@ -7,8 +7,8 @@ countries: Singapore, Canada
 subject: Living culture — cost of living, childcare, welfare, insurance, residential systems
 word_count: 1300
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/6393146/pexels-photo-6393146.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/27304446/pexels-photo-27304446.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Singapore ECDA — childcare subsidy tables (effective 1 January 2026) and 2027 income threshold expansion

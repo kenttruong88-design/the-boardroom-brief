@@ -8,7 +8,7 @@ subject: Banking and bureaucracy
 word_count: ~1200
 images:
   hero: https://images.pexels.com/photos/3943746/pexels-photo-3943746.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/18556288/pexels-photo-18556288.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - State Bank of Vietnam — Financial Services Access Report 2024

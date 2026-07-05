@@ -7,8 +7,8 @@ countries: Germany, South Korea
 subject: Bonding culture — social cohesion, team bonding, and communal connection
 word_count: 1300
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/6340688/pexels-photo-6340688.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8550846/pexels-photo-8550846.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Edstellar / Germany Handbook — Feierabendbier and after-work bonding norms

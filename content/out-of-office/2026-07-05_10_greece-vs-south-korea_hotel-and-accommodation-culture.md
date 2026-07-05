@@ -8,7 +8,7 @@ subject: Hotel and accommodation culture
 word_count: ~1200
 images:
   hero: https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/37431912/pexels-photo-37431912.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Hellenic Chamber of Hotels — accommodation classification and capacity data

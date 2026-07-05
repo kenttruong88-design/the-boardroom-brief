@@ -7,8 +7,8 @@ countries: France, Australia
 subject: Fashion culture — dress norms in society and everyday life
 word_count: 1200
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/6535369/pexels-photo-6535369.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/6592399/pexels-photo-6592399.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [IMARC Australia activewear market report, Australian textile consumption data (MOJO News/Seamless), French anti-fast-fashion legislation coverage, Bonjour Paris, Hofstede Insights]
   forums: [r/AskFrance, Quora, Internations Sydney, Bonjour Paris community]

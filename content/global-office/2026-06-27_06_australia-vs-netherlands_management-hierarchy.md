@@ -7,7 +7,7 @@ countries: Australia, Netherlands
 subject: Management hierarchy and boss-employee relationships
 word_count: 980
 images:
-  hero: https://images.pexels.com/photos/32082430/pexels-photo-32082430.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/7654609/pexels-photo-7654609.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/6248963/pexels-photo-6248963.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:

@@ -7,8 +7,8 @@ countries: UK, China
 subject: Generational differences in workplace norms
 word_count: 1230
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/7793247/pexels-photo-7793247.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8837269/pexels-photo-8837269.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Deloitte UK Gen Z & Millennial Survey, PwC UK Hopes & Fears, Brookings Institution on tangping, Zhaopin workforce surveys, Hofstede Insights, Dojo UK generational study]
   forums: [r/UKJobs, Quora, HackerNews, Internations Shanghai, Blind]

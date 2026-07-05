@@ -7,8 +7,8 @@ countries: Singapore, Canada
 subject: Vacation, PTO, and leave culture
 word_count: 1250
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/6518847/pexels-photo-6518847.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/9301835/pexels-photo-9301835.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Singapore Ministry of Manpower (MOM) — statutory annual leave rules (Employment Act)

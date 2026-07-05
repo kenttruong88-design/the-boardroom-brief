@@ -7,8 +7,8 @@ countries: China, Germany
 subject: Vacation, PTO, and leave culture
 word_count: 1240
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/31709064/pexels-photo-31709064.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8468516/pexels-photo-8468516.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [China Labor Contract Law / State Council holiday schedules, Bundesurlaubsgesetz, Destatis, China Briefing, Hofstede Insights, deutschland.de]
   forums: [r/chinalife, Quora, Internations Shanghai, The Local Germany, echinacities forum]

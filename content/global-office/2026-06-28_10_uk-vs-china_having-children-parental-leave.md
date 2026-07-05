@@ -8,7 +8,7 @@ subject: Having children — parental leave, childcare support, and career impac
 word_count: 1260
 images:
   hero: https://images.pexels.com/photos/1181625/pexels-photo-1181625.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/32082430/pexels-photo-32082430.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/11369182/pexels-photo-11369182.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - zety.com UK 2024 — 75% of UK mothers face career setbacks, 42% earnings reduction five years post-birth

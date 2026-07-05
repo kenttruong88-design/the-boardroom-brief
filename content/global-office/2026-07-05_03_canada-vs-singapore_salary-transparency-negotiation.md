@@ -7,8 +7,8 @@ countries: Canada, Singapore
 subject: Salary transparency and negotiation culture
 word_count: 1220
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/7433869/pexels-photo-7433869.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7964245/pexels-photo-7964245.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [BC Pay Transparency Act (gov.bc.ca), Ontario pay transparency rules 2026 (Robert Half, Achkar Law), Chief of Staff Asia, NodeFlair, Hofstede Insights, Statistics Canada]
   forums: [Quora, Singapore Expats Forum, r/PersonalFinanceCanada, Blind]

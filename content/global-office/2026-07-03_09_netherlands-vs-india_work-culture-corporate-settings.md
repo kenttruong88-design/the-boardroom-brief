@@ -7,8 +7,8 @@ countries: Netherlands, India
 subject: Work culture in corporate settings
 word_count: 1300
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7654119/pexels-photo-7654119.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Expatica / GradGuide — Dutch business culture and flat hierarchy conventions

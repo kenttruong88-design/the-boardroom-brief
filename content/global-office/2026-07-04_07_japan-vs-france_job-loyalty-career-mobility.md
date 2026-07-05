@@ -7,8 +7,8 @@ countries: Japan, France
 subject: Job loyalty vs. career mobility
 word_count: 1230
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/7793095/pexels-photo-7793095.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8554414/pexels-photo-8554414.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [OECD Employment Outlook 2025, Statista employment data, French Code du travail (CDI/CDD), Fortune, Hofstede Insights]
   forums: [r/japanlife, Quora, Blind, The Local France, Internations Paris]

@@ -7,8 +7,8 @@ countries: China, Germany
 subject: Office social rituals — lunches, after-work, team events
 word_count: 1210
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/8102234/pexels-photo-8102234.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/6519407/pexels-photo-6519407.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Hofstede Insights, Foreign Policy on Chinese work culture, Akteos intercultural guides, Rivermate cultural guides, echinacities]
   forums: [r/chinalife, Quora, Internations Frankfurt, The Local Germany, Blind]

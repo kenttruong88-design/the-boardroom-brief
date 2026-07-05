@@ -7,7 +7,7 @@ subject: Meeting culture and communication styles
 word_count: 1350
 images:
   hero: https://images.pexels.com/photos/7869111/pexels-photo-7869111.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/32082430/pexels-photo-32082430.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/7888803/pexels-photo-7888803.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Hofstede Insights — Singapore vs Canada cultural dimensions (Power Distance: 74 vs 39; Individualism: 20 vs 80; Uncertainty Avoidance: 8 vs 48)

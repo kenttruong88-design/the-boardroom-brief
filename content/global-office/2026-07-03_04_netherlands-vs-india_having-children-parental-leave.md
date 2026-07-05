@@ -7,8 +7,8 @@ countries: Netherlands, India
 subject: Having children — parental leave, childcare support, and career impact of parenthood
 word_count: 1300
 images:
-  hero: not generated — Replicate/Cloudinary credentials unavailable in this run
-  body: not generated — Replicate/Cloudinary credentials unavailable in this run
+  hero: https://images.pexels.com/photos/6393347/pexels-photo-6393347.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/3845341/pexels-photo-3845341.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Government.nl / UWV — birth leave (geboorteverlof) and paid parental leave (ouderschapsverlof) rules

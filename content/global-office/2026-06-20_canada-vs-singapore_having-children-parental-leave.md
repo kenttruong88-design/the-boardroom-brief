@@ -6,8 +6,8 @@ countries: Canada, Singapore
 subject: Having children — parental leave, childcare support, and career impact of parenthood
 word_count: 1320
 images:
-  hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/defaults/global-office-default
-  body: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/defaults/global-office-default
+  hero: https://images.pexels.com/photos/6393367/pexels-photo-6393367.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/6624374/pexels-photo-6624374.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   note: "Images pending generation — sandbox network blocked during scheduled run. Prompts: (1) Vintage travel poster split Canada/Singapore parental leave hero; (2) editorial split panel Canada calendar/waitlist vs Singapore baby bonus/tuition books."
 sources:
   official:

@@ -8,7 +8,7 @@ subject: Expat cost of living and city lifestyle
 word_count: 1200
 images:
   hero: https://images.pexels.com/photos/1486213/pexels-photo-1486213.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
-  body: https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/37760470/pexels-photo-37760470.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
     - Mercer Cost of Living Survey 2024 — Dubai and Stockholm rankings

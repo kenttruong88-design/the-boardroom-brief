@@ -62,16 +62,19 @@ export async function POST(req: Request) {
       continue;
     }
 
-    const isGlobalOffice = article.pillar?._ref === "global-office";
+    const isAlreadyCloudinary = sourceUrl.startsWith("https://res.cloudinary.com/");
 
-    if (isGlobalOffice) {
-      // Download Pexels image and push through Cloudinary for responsive variants
+    if (!isAlreadyCloudinary) {
+      // Raw source image (Pexels, etc.) — download and push through Cloudinary for
+      // responsive variants and so we don't depend on the source host staying
+      // reachable or allow-listed in next.config.js image remotePatterns.
       try {
         const buf = await fetchImageBuffer(sourceUrl);
         if (!buf) throw new Error(`Failed to fetch image from ${sourceUrl}`);
 
+        const pillar = article.pillar?._ref ?? "water-cooler";
         const slug = article.slug?.current ?? article._id.replace("article-", "");
-        const cdn = await uploadToCloudinary(buf, slug, "global-office");
+        const cdn = await uploadToCloudinary(buf, slug, pillar);
 
         await writeClient
           .patch(article._id)
@@ -103,7 +106,7 @@ export async function POST(req: Request) {
       // Small pause between Cloudinary uploads to avoid rate limits
       await new Promise((r) => setTimeout(r, 300));
     } else {
-      // AI-pipeline articles: ogImage is already a Cloudinary URL — just promote it
+      // Already a Cloudinary URL — just promote it, no re-upload needed
       try {
         await writeClient
           .patch(article._id)

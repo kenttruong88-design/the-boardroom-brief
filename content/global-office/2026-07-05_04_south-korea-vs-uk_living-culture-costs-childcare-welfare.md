@@ -7,8 +7,8 @@ countries: South Korea, UK
 subject: Living culture — costs of living, childcare, welfare systems, insurance, and residential systems
 word_count: 1290
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/3943733/pexels-photo-3943733.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/19410342/pexels-photo-19410342.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [Expatistan (Oct 2025 London/Seoul comparison), House of Commons Library CBP-8054, CPAG Cost of a Child 2025, Korea Real Estate Board via DNK, NHIS guides, Numbeo, Hofstede Insights]
   forums: [r/korea, Quora, Internations Seoul, r/london]

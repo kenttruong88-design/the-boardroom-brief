@@ -7,8 +7,8 @@ countries: Canada, Singapore
 subject: Eating habits and food culture
 word_count: 1230
 images:
-  hero: "[IMAGE_1 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
-  body: "[IMAGE_2 placeholder — generation skipped: REPLICATE/CLOUDINARY credentials missing]"
+  hero: https://images.pexels.com/photos/8102235/pexels-photo-8102235.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  body: https://images.pexels.com/photos/8102218/pexels-photo-8102218.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official: [UNESCO ICH inscription 2020, NEA 2018 hawker poll via SG101, Statistics Canada food spending tables, Canada Food Price Report coverage, Numbeo, Hofstede Insights]
   forums: [r/askSingapore, Quora, Internations Vancouver, Hacker News]
