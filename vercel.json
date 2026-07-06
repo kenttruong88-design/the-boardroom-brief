@@ -29,11 +29,11 @@
       "schedule": "*/15 8-18 * * *"
     },
     {
-      "path": "/api/cron/publish-out-of-office",
+      "path": "/api/cron/publish-out-of-office?count=12",
       "schedule": "30 9 * * *"
     },
     {
-      "path": "/api/cron/publish-global-office",
+      "path": "/api/cron/publish-global-office?count=12",
       "schedule": "0 10 * * *"
     }
   ]
