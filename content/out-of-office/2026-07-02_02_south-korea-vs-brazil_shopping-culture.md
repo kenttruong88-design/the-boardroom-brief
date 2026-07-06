@@ -90,4 +90,4 @@ The shopping cultures of South Korea and Brazil are mirror images of each other'
 
 Expats relocating to either country tend to adapt quickly and, more relevantly, tend to miss their adopted shopping culture when they leave. The Seoul expat misses the same-day delivery for approximately the rest of their life. The São Paulo expat misses the *feira* every single Sunday until they find a farmers market that is a pale and inadequate substitute.
 
-This is the correct order of priorities: live well first, shop efficiently second. Brazil, infuriatingly, has the right idea
+This is the correct order of priorities: live well first, shop efficiently second. Brazil, infuriatingly, has the right idea.

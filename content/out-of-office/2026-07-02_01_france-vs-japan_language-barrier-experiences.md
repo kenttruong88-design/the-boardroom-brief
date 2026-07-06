@@ -96,4 +96,4 @@ The language barrier is never just about vocabulary. In France, it is about cult
 
 Neither country will kill you. Both will, at some point, require you to mime something in a shop. The French mime will be observed with mild contempt. The Japanese mime will trigger a team meeting. Pack accordingly — and for Japan, pack the translation app before anything else.
 
-Suki Nakamura has relocated fourteen times, ordered from menus in forty languages, and has been silently judged by a Parisian waiter as recently as last spring. She has no regrets
+Suki Nakamura has relocated fourteen times, ordered from menus in forty languages, and has been silently judged by a Parisian waiter as recently as last spring. She has no regrets.

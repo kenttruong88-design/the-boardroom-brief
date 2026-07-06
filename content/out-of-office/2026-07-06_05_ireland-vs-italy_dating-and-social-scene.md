@@ -7,7 +7,7 @@ countries: Ireland, Italy
 subject: Dating and social scene
 word_count: ~1200
 images:
-  hero: https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
+  hero: https://images.pexels.com/photos/3009783/pexels-photo-3009783.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
   body: https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop
 sources:
   official:
@@ -30,7 +30,7 @@ Irish flirting is a cryptographic exercise conducted under a strict national pol
 
 Italy does not do subtext; Italy does opera. An Italian who finds you attractive will inform you of this within ninety seconds, in complete sentences, possibly with historical references. The compliments are baroque, the eye contact is structural, and dinner will be arranged with a confidence that suggests the restaurant, the table, and possibly the names of your future children have already been selected. It is the most direct romantic culture in Europe operating inside the least independent domestic arrangement in Europe — because that magnificent creature across the table is, statistically, quite likely to be living with his mother. One country can't say it. The other can't stop saying it.
 
-![Hero image](https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop)
+![Hero image](https://images.pexels.com/photos/3009783/pexels-photo-3009783.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop)
 *Photo: Pexels*
 
 ## Do's & Don'ts

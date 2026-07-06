@@ -90,4 +90,4 @@ Both Germany and Japan have figured out that a park is not just a gap in the urb
 
 The German park says: you are free, you are welcome, bring the barbecue, stay until dark, the beer is cold. The Japanese park says: look at this carefully; it will not always be here. These are different lessons from the same patch of grass. One of them will make you more relaxed. The other will make you more alive to the present moment.
 
-Ideally, arrange to have both in your life. Failing that, note that the Munich beer garden closes in October and plan according
+Ideally, arrange to have both in your life. Failing that, note that the Munich beer garden closes in October and plan accordingly.

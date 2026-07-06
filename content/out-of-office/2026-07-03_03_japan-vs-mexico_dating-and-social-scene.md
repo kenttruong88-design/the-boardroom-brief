@@ -90,4 +90,4 @@ Strip the folklore away and the comparison is about risk. Japan has built a cour
 
 The practical advice writes itself. In Japan: be patient, be consistent, and treat the confession as the real first date. In Mexico: relax, learn to dance, and understand that when the mother starts feeding you, negotiations have already concluded. In both countries, the foreigners who fail are the ones who insist on importing their own rulebook. The rulebook is the culture. Read it before you play.
 
-Suki Nakamura has been formally confessed to once, retroactively couple-ified by a Oaxacan grandmother once, and remains unclear which experience unsettled her more. She has relocated fourteen times, occasionally for reasons related to the above
+Suki Nakamura has been formally confessed to once, retroactively couple-ified by a Oaxacan grandmother once, and remains unclear which experience unsettled her more. She has relocated fourteen times, occasionally for reasons related to the above.

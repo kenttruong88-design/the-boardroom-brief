@@ -100,4 +100,4 @@ Meal times are not a trivial cultural detail — they are the skeleton of the da
 
 Canada gives you flexibility, urban food diversity, and a schedule that fits a North American working life. Spain gives you a daily structure in which food is the main event rather than a scheduled interruption, and the social architecture of lunch and dinner is built to match.
 
-Moving to Spain requires a body clock reset that takes approximately three months and is non-negotiable. Moving from Spain to Canada requires the same in reverse, and several Spanish expats have reported this as the more difficult direction. This is the most honest endorsement of the Spanish meal schedule I can off
+Moving to Spain requires a body clock reset that takes approximately three months and is non-negotiable. Moving from Spain to Canada requires the same in reverse, and several Spanish expats have reported this as the more difficult direction. This is the most honest endorsement of the Spanish meal schedule I can offer.

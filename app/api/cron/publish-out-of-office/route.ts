@@ -199,7 +199,10 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     featured: false,
     aiGenerated: false,
     agentName: AUTHOR_NAME,
+    heroImageUrl: article.heroUrl || article.ogUrl,
+    heroImageAlt: article.title,
     ogImage: article.ogUrl || article.heroUrl,
+    imageGeneratedWith: "pexels",
     seoDescription: article.seoDesc,
   });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thealignmenttimes.com";

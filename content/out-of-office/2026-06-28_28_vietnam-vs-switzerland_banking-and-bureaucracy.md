@@ -92,4 +92,4 @@ Banking and bureaucracy are not glamorous subjects and no one moved abroad hopin
 
 Vietnam is building its infrastructure in real time, with impressive speed and some interesting gaps. The country is betting on mobile and digital and is winning that bet, while the legacy paper requirements sort themselves out behind the scenes. Living in Vietnam as an expat means learning to operate in both systems simultaneously: download the app, but also bring the folder.
 
-Switzerland has finished building its infrastructure. It was finished some time ago. It is waiting for you to comply. Bring the folder, bring a backup folder, and arrive on time
+Switzerland has finished building its infrastructure. It was finished some time ago. It is waiting for you to comply. Bring the folder, bring a backup folder, and arrive on time.

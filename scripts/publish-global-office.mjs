@@ -281,6 +281,8 @@ async function publishArticle(article) {
     featured:         false,
     aiGenerated:      true,
     agentName:        "Priya Mehta",
+    heroImageUrl:     article.heroUrl || article.ogUrl,
+    heroImageAlt:     article.title,
     ogImage:          article.ogUrl || article.heroUrl,
     imageGeneratedWith: "pexels",
     seoDescription:   article.seoDesc,
