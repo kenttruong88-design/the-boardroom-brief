@@ -102,4 +102,4 @@ Singapore and Italy will both feed you better than you expect and in ways you di
 
 The lesson from both is the same, stated differently: food is not peripheral. In Singapore, it is the primary organising principle of social life. In Italy, it is the calendar. Ignore either country's food culture and you have not moved to Singapore or Italy — you have moved to a version of your previous life with better weather.
 
-Do the queue. Linger at the table. Order what they tell you to order. Both countries know what they're doing.
+Do the queue. Linger at the table. Order what they tell you to order. Both countries know what they're doing

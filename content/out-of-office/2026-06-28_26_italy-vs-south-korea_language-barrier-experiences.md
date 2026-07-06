@@ -94,4 +94,4 @@ The language barrier tells you who you are almost as much as it tells you who th
 
 In South Korea, the barrier reveals your patience — whether you can function competently in a country that has done everything reasonable to accommodate you while you slowly, slowly work toward the language competence you need for the life you actually want. The country is remarkably forgiving during the process. It is also entirely clear about what that process involves.
 
-Neither country will meet you entirely in your language. Both, in their different ways, will make it worth learning theirs.
+Neither country will meet you entirely in your language. Both, in their different ways, will make it worth learning theirs

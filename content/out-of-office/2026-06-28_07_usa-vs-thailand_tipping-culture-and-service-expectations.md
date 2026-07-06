@@ -104,4 +104,4 @@ Tipping culture reveals the underlying economics of a service industry, and the 
 
 America has decided the customer will fund the difference. Thailand has decided the employer will fund the baseline and the customer's gratitude is genuinely voluntary. One system produces anxiety, iPad arithmetic, and a social contract that nobody signed but everyone follows. The other produces one of the most reliably pleasant service experiences on earth, at prices that make the tip calculation seem, in retrospect, like a fairly expensive solution to a problem that had other options.
 
-Go to Thailand. Eat well. Leave a small tip if you were genuinely happy. Nobody will rotate a screen at you to make the case.
+Go to Thailand. Eat well. Leave a small tip if you were genuinely happy. Nobody will rotate a screen at you to make the case

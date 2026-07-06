@@ -94,4 +94,4 @@ Weather, more than almost anything else about a country, shapes what daily life 
 
 Thailand has built a life around heat — a life of morning markets, afternoon shade, evening streets, and a refrigerated infrastructure that makes the whole thing survivable and often beautiful. Norway has built a life around cold — a life of outdoor commitment, excellent coats, and the philosophical position that winter is not an obstacle but a season, and seasons are to be lived in.
 
-You can find this either motivating or exhausting. Thailand will be hot regardless of your feelings. Norway will be dark. Both countries will wait for you to decide what to do about it.
+You can find this either motivating or exhausting. Thailand will be hot regardless of your feelings. Norway will be dark. Both countries will wait for you to decide what to do about it

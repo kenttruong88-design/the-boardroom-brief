@@ -96,4 +96,4 @@ Festival culture is where a nation's values become audible. Brazil's festivals s
 
 If you are choosing where to live on the basis of public holidays alone — which would be a strange criterion but not an irrational one — the data is clear. Brazil has more of them, they are bigger, they are louder, they are warmer, and they come with rum. The UK has Glastonbury, the Edinburgh Fringe, and the quiet triumph of the bank holiday barbecue successfully lit despite the weather.
 
-The rum wins. It was always going to be the rum.
+The rum wins. It was always going to be the rum

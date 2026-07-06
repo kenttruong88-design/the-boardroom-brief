@@ -102,4 +102,4 @@ Moving to Dubai or Stockholm with an accurate picture of the costs is considerab
 
 The question to ask yourself is not which is cheaper — they are the same, roughly, at the total cost level — but which trade-off suits the season of life you are currently in. Dubai is a city for acceleration: earning, spending, experiencing, and leaving with a passport full of stamps and a savings account that required discipline to grow. Stockholm is a city for settling: building something longer-term, raising children in a system designed to support it, and accepting that the darkness in January is the price of a city that takes your collective wellbeing seriously.
 
-Both are correct choices. Neither is as cheap as the brochure suggested.
+Both are correct choices. Neither is as cheap as the brochure suggested
