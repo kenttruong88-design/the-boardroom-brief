@@ -66,7 +66,7 @@ export const ARTICLE_FOR_INDEX_GROQ = `{
   "pillarColor": pillar->color,
   publishedAt,
   featured,
-  heroImageUrl,
+  "heroImageUrl": coalesce(heroImageUrl, ogImage),
   "tags": tags[]->name,
   "countries": coalesce(countries, []),
   "authorPersona": coalesce(agentName, null),

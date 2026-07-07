@@ -62,6 +62,14 @@ export async function POST(req: Request) {
       continue;
     }
 
+    if (!sourceUrl.startsWith("https://")) {
+      // Not a real URL (e.g. leftover "[IMAGE placeholder — generation skipped...]"
+      // text from content authored without image credentials) — nothing to
+      // re-host. Leave heroImageUrl unset so it's still findable for a real fix.
+      skipped.push(article._id);
+      continue;
+    }
+
     const isAlreadyCloudinary = sourceUrl.startsWith("https://res.cloudinary.com/");
 
     if (!isAlreadyCloudinary) {

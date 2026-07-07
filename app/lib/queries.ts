@@ -50,7 +50,7 @@ const ARTICLE_CARD = `
   readTime,
   featured,
   reviewScore,
-  heroImageUrl,
+  "heroImageUrl": coalesce(heroImageUrl, ogImage),
   coverImage { asset->{ url }, alt },
   pillar->{ name, slug, color },
   author->{ name, slug },
@@ -99,7 +99,6 @@ export const getArticleBySlug = cache(async (slug: string): Promise<SanityArticl
       body,
       seoTitle,
       seoDescription,
-      heroImageUrl,
       heroImageAlt,
       ogImage,
       imagePrompt,
@@ -130,7 +129,7 @@ export async function getArticlesPublishedToday(): Promise<SanityArticle[]> {
   const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   return client.fetch(
     `*[_type == "article" && publishedAt >= $since] | order(publishedAt desc) {
-      _id, title, slug, satiricalHeadline, excerpt, heroImageUrl, publishedAt,
+      _id, title, slug, satiricalHeadline, excerpt, "heroImageUrl": coalesce(heroImageUrl, ogImage), publishedAt,
       pillar->{ name, slug, color },
       countries[]->{ name, slug, code }
     }`,
