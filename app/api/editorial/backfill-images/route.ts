@@ -1,9 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { requireAuth } from "@/app/api/editorial/_helpers";
 import { client, writeClient } from "@/app/lib/sanity";
 import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
 
 export const maxDuration = 300;
+
+function isCronAuthorised(req: Request): boolean {
+  const secret = process.env.CRON_SECRET;
+  if (!secret) return false;
+  const bearer = req.headers.get("authorization") ?? "";
+  const header = req.headers.get("x-cron-secret") ?? "";
+  return bearer === `Bearer ${secret}` || header === secret;
+}
 
 async function fetchImageBuffer(url: string): Promise<Buffer | null> {
   try {
@@ -15,13 +23,24 @@ async function fetchImageBuffer(url: string): Promise<Buffer | null> {
   }
 }
 
+/** Scheduled entry point — Vercel Cron calls scheduled paths via GET. */
+export async function GET(req: NextRequest) {
+  if (!isCronAuthorised(req)) {
+    return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
+  }
+  return runBackfill();
+}
+
+/** Manual/admin entry point — triggered from the editorial UI. */
 export async function POST(req: Request) {
-  const cronSecret = req.headers.get("x-cron-secret");
-  if (cronSecret !== process.env.CRON_SECRET) {
+  if (!isCronAuthorised(req)) {
     const auth = await requireAuth();
     if (auth instanceof NextResponse) return auth;
   }
+  return runBackfill();
+}
 
+async function runBackfill() {
   if (!client || !writeClient) {
     return NextResponse.json({ error: "Sanity not configured" }, { status: 500 });
   }
