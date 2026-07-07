@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@sanity/client";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
+import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
 
 function isAuthorised(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
@@ -184,8 +185,38 @@ async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
     bio: "Relocated 14 times. Has eaten in 60 countries. Covers food, cities, and life outside the desk." });
 }
 
+
+async function fetchImageBuffer(url: string): Promise<Buffer | null> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(15_000) });
+    if (!res.ok) return null;
+    return Buffer.from(await res.arrayBuffer());
+  } catch {
+    return null;
+  }
+}
+
 async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
   const docId = `article-ooo-${article.slug}`;
+
+  // Same image pipeline as publish-articles: pull the Pexels source through
+  // Cloudinary for responsive variants; fall back to the raw URL on failure.
+  let heroImageUrl = article.heroUrl || article.ogUrl;
+  let ogImage      = article.ogUrl || article.heroUrl;
+  if (heroImageUrl) {
+    try {
+      const buf = await fetchImageBuffer(heroImageUrl);
+      if (buf) {
+        const cdn = await uploadToCloudinary(buf, article.slug, PILLAR_ID);
+        heroImageUrl = cdn.heroUrl;
+        ogImage      = cdn.ogImageUrl;
+        console.log(`[publish-out-of-office] Cloudinary upload ok: ${cdn.publicId}`);
+      }
+    } catch (err) {
+      console.warn("[publish-out-of-office] Cloudinary upload failed, using raw URL:", (err as Error).message);
+    }
+  }
+
   await client.createOrReplace({
     _id: docId, _type: "article",
     title: article.title,
@@ -199,9 +230,9 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     featured: false,
     aiGenerated: false,
     agentName: AUTHOR_NAME,
-    heroImageUrl: article.heroUrl || article.ogUrl,
+    heroImageUrl,
     heroImageAlt: article.title,
-    ogImage: article.ogUrl || article.heroUrl,
+    ogImage,
     imageGeneratedWith: "pexels",
     seoDescription: article.seoDesc,
   });
