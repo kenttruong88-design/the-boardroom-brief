@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@sanity/client";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
-import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
+import { generateArticleImage } from "@/app/lib/agents/image-generator";
+import type { ArticleDraft } from "@/app/lib/agents/types";
 
 function isAuthorised(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
@@ -147,6 +148,7 @@ interface Article {
   title: string; slug: string; excerpt: string;
   heroUrl: string; ogUrl: string; pubDt: string;
   readTime: number; blocks: object[]; seoDesc: string;
+  countries: string[]; subject: string;
 }
 
 function parseArticle(filePath: string): Article | null {
@@ -171,7 +173,9 @@ function parseArticle(filePath: string): Article | null {
   const slug      = slugify(title);
   const blocks    = markdownToBlocks(noTitle);
   const seoDesc   = `${title}. By ${AUTHOR_NAME} for The Alignment Times.`.slice(0, 160);
-  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc };
+  const countries = ((fm.countries as string) ?? "").split(",").map(s => s.trim()).filter(Boolean);
+  const subject   = (fm.subject as string) ?? "";
+  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc, countries, subject };
 }
 
 async function ensurePillar(client: ReturnType<typeof getSanityClient>) {
@@ -186,35 +190,44 @@ async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
 }
 
 
-async function fetchImageBuffer(url: string): Promise<Buffer | null> {
-  try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(15_000) });
-    if (!res.ok) return null;
-    return Buffer.from(await res.arrayBuffer());
-  } catch {
-    return null;
-  }
-}
-
 async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
   const docId = `article-ooo-${article.slug}`;
 
-  // Same image pipeline as publish-articles: pull the Pexels source through
-  // Cloudinary for responsive variants; fall back to the raw URL on failure.
+  // Same image line as the newsroom pillars (see app/lib/agents/image-generator.ts):
+  // 1. Flux Schnell via Replicate (AI-generated, prompt written from the article)
+  // 2. Pexels API search fallback
+  // 3. Pillar default image
+  // All variants served through Cloudinary. The frontmatter Pexels URL is only
+  // used if the entire pipeline throws unexpectedly.
   let heroImageUrl = article.heroUrl || article.ogUrl;
   let ogImage      = article.ogUrl || article.heroUrl;
-  if (heroImageUrl) {
-    try {
-      const buf = await fetchImageBuffer(heroImageUrl);
-      if (buf) {
-        const cdn = await uploadToCloudinary(buf, article.slug, PILLAR_ID);
-        heroImageUrl = cdn.heroUrl;
-        ogImage      = cdn.ogImageUrl;
-        console.log(`[publish-out-of-office] Cloudinary upload ok: ${cdn.publicId}`);
-      }
-    } catch (err) {
-      console.warn("[publish-out-of-office] Cloudinary upload failed, using raw URL:", (err as Error).message);
-    }
+  let imageGeneratedWith = "pexels";
+  let imagePrompt: string | null = null;
+  let imagePhotographerName: string | null = null;
+  let imagePhotographerUrl: string | null = null;
+  let imagePexelsUrl: string | null = null;
+  try {
+    const draft = {
+      pillar:    PILLAR_ID,
+      agentName: AUTHOR_NAME,
+      headline:  article.title,
+      body:      article.excerpt,
+      tags:      [article.subject, ...article.countries].filter(Boolean),
+      countries: article.countries,
+      satiricalHeadline: "", seoTitle: "", seoDescription: "",
+      tone: "straight", marketSymbols: [], topicBrief: {},
+    } as unknown as ArticleDraft;
+    const img = await generateArticleImage(draft);
+    heroImageUrl          = img.heroUrl;
+    ogImage               = img.ogImageUrl;
+    imageGeneratedWith    = img.source;
+    imagePrompt           = img.generatedPrompt ?? null;
+    imagePhotographerName = img.photographerName ?? null;
+    imagePhotographerUrl  = img.photographerUrl ?? null;
+    imagePexelsUrl        = img.pexelsPageUrl ?? null;
+    console.log(`[publish-out-of-office] Image via ${img.source}: ${img.publicId}`);
+  } catch (err) {
+    console.warn("[publish-out-of-office] Image pipeline failed, using frontmatter URL:", (err as Error).message);
   }
 
   await client.createOrReplace({
@@ -233,7 +246,11 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     heroImageUrl,
     heroImageAlt: article.title,
     ogImage,
-    imageGeneratedWith: "pexels",
+    imageGeneratedWith,
+    imagePrompt,
+    imagePhotographerName,
+    imagePhotographerUrl,
+    imagePexelsUrl,
     seoDescription: article.seoDesc,
   });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.thealignmenttimes.com";

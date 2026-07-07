@@ -34,6 +34,12 @@ const PILLAR_STYLE_TEMPLATES: Record<string, {
     mood:     "curious, cultural, warm, inviting",
     negative: "photography, people's faces, cold or corporate",
   },
+  "out-of-office": {
+    style:    "vintage travel poster aesthetic, street scenes, landmarks, food stalls, trams and trains, flat illustration with texture",
+    palette:  "sunset orange, teal, sand, warm cream",
+    mood:     "wanderlust, playful, cosmopolitan, a little wry",
+    negative: "photography, people's faces, corporate imagery, dark or gloomy",
+  },
   "water-cooler": {
     style:    "bold graphic design, pop art, coffee cup, office plant, retro corporate aesthetic, flat design with texture",
     palette:  "bright coral, yellow, white, black",
