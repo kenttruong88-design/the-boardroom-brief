@@ -100,14 +100,14 @@ Both Japan and Germany have built public environments that function at a level o
 
 ## What Nobody Warned You About
 
-<small>*"Three months in Tokyo and I finally understood why everyone was looking at me on the train. I was eating a banana. A banana. The shame has not left me."*
-— Reddit r/japanlife</small>
+*"Three months in Tokyo and I finally understood why everyone was looking at me on the train. I was eating a banana. A banana. The shame has not left me."*
+— Reddit r/japanlife
 
-<small>*"My German neighbour knocked on my door to tell me my recycling was wrong. Not aggressive, just... thorough. He brought a laminated chart. We are friends now. I think."*
-— Internations Frankfurt</small>
+*"My German neighbour knocked on my door to tell me my recycling was wrong. Not aggressive, just... thorough. He brought a laminated chart. We are friends now. I think."*
+— Internations Frankfurt
 
-<small>*"The silence in a Japanese restaurant is not uncomfortable, it's just relentless. By week three I had stopped talking at normal volume everywhere. My family thought I'd had some kind of episode when I came home."*
-— expat.com, Tokyo newcomers forum</small>
+*"The silence in a Japanese restaurant is not uncomfortable, it's just relentless. By week three I had stopped talking at normal volume everywhere. My family thought I'd had some kind of episode when I came home."*
+— expat.com, Tokyo newcomers forum
 
 ---
 

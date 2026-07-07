@@ -96,15 +96,15 @@ British fashion culture produces more variation, more eccentricity, and consider
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — On appearance pressure in South Korea: "Korea has a standardized culture with standard ways you should look, act, think, and be. The more Korean you look, the more these standards will be applied to you... If you don't fit, and if you don't change in response to the pressure, it can get very brutal."*</small>
+> *Quora — On appearance pressure in South Korea: "Korea has a standardized culture with standard ways you should look, act, think, and be. The more Korean you look, the more these standards will be applied to you... If you don't fit, and if you don't change in response to the pressure, it can get very brutal."*
 
-> <small>*Melody of Her Seoul (expat blog, Seoul) — "In Korea, plus sizes start around a US size 8–10... People here generally consider anything above a size 8 as large. You might hear comments from well-meaning older folks telling you how much 'prettier' you'd be if you lost a few pounds. Here's the thing — everyone has something they want to change here. If it's not their weight, it's their skin tone or muscle shape."*</small>
+> *Melody of Her Seoul (expat blog, Seoul) — "In Korea, plus sizes start around a US size 8–10... People here generally consider anything above a size 8 as large. You might hear comments from well-meaning older folks telling you how much 'prettier' you'd be if you lost a few pounds. Here's the thing — everyone has something they want to change here. If it's not their weight, it's their skin tone or muscle shape."*
 
-> <small>*The Girl with a Big Bag (Aurora Krom, six years in South Korea) — "Whether it was older women on the subway giving me a once-over like I was dressed for a nightclub, or the constant curious stares in public spaces, the feeling of being watched was always there... In Korea, clothing choices are read and judged differently. Cleavage is a big no — you'll rarely see low-cut tops in public. But short shorts and miniskirts? Completely normal."*</small>
+> *The Girl with a Big Bag (Aurora Krom, six years in South Korea) — "Whether it was older women on the subway giving me a once-over like I was dressed for a nightclub, or the constant curious stares in public spaces, the feeling of being watched was always there... In Korea, clothing choices are read and judged differently. Cleavage is a big no — you'll rarely see low-cut tops in public. But short shorts and miniskirts? Completely normal."*
 
-> <small>*HubPages / 'Dress as a Marker of Class in Britain' — "The upper classes tend to prefer natural fibres like cotton, silk and cashmere... The more matte the fabric, the more likely it is to be worn by someone from the middle classes or above. The working classes prefer shinier, synthetic fabrics. If wearing designer wear, the upper-middles will have discreet logos — if Kevin and Tracey buy designer wear, they will have flashy, obvious, ostentatious labelling to make sure everyone knows."*</small>
+> *HubPages / 'Dress as a Marker of Class in Britain' — "The upper classes tend to prefer natural fibres like cotton, silk and cashmere... The more matte the fabric, the more likely it is to be worn by someone from the middle classes or above. The working classes prefer shinier, synthetic fabrics. If wearing designer wear, the upper-middles will have discreet logos — if Kevin and Tracey buy designer wear, they will have flashy, obvious, ostentatious labelling to make sure everyone knows."*
 
-> <small>*r/AskEurope — On comparing British and Korean fashion culture: the UK felt like "anything goes as long as it's not bothering anyone," while Korea felt like "everything is noticed and assessed."*</small>
+> *r/AskEurope — On comparing British and Korean fashion culture: the UK felt like "anything goes as long as it's not bothering anyone," while Korea felt like "everything is noticed and assessed."*
 
 ---
 

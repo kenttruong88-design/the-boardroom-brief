@@ -80,13 +80,13 @@ The irony is that Australia's food culture, often stereotyped internationally as
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — An expat who moved to Australia years ago and later described regrets about the transition specifically cited barbecue gender dynamics as a friction point, noting that men tended to cluster outside around the grill while women stayed inside — a social pattern the "bring a plate" etiquette didn't prepare her for.*</small>
+> *Quora — An expat who moved to Australia years ago and later described regrets about the transition specifically cited barbecue gender dynamics as a friction point, noting that men tended to cluster outside around the grill while women stayed inside — a social pattern the "bring a plate" etiquette didn't prepare her for.*
 
-> <small>*learndutch.org (foreigner testimonials) — Someone coming from a culture with an elaborate packed-lunch tradition described genuine confusion watching Dutch colleagues eat the same thin sandwich daily without apparent fatigue, until a Dutch coworker explained plainly: "Lunch is fuel — I eat it because I need energy," not for variety or pleasure.*</small>
+> *learndutch.org (foreigner testimonials) — Someone coming from a culture with an elaborate packed-lunch tradition described genuine confusion watching Dutch colleagues eat the same thin sandwich daily without apparent fatigue, until a Dutch coworker explained plainly: "Lunch is fuel — I eat it because I need energy," not for variety or pleasure.*
 
-> <small>*DutchReview reader account — A newcomer described their first day at a Dutch office expecting a proper meal and instead being served an overpriced, minimally-topped sandwich, calling the adjustment to Dutch lunch culture comparable to adjusting to Dutch weather — something you don't enjoy at first but eventually stop noticing.*</small>
+> *DutchReview reader account — A newcomer described their first day at a Dutch office expecting a proper meal and instead being served an overpriced, minimally-topped sandwich, calling the adjustment to Dutch lunch culture comparable to adjusting to Dutch weather — something you don't enjoy at first but eventually stop noticing.*
 
-> <small>*Quora — Multiple respondents comparing Australian and American barbecue culture noted that the Australian version is fundamentally about communal contribution rather than a single host providing everything, meaning the social expectation to "bring a plate" isn't politeness — it's how the event is actually organized.*</small>
+> *Quora — Multiple respondents comparing Australian and American barbecue culture noted that the Australian version is fundamentally about communal contribution rather than a single host providing everything, meaning the social expectation to "bring a plate" isn't politeness — it's how the event is actually organized.*
 
 ### Conclusion
 

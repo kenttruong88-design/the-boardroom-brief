@@ -86,11 +86,11 @@ Estonia wins, comprehensively — the three-minute tax return against the six-we
 
 ## What Nobody Warned You About
 
-<small>*"My Berlin Anmeldung appointment was six weeks out, so my bank account was blocked, so I couldn't pay my deposit, so I nearly lost the flat I needed for the Anmeldung. The circle of German life."* — Reddit r/germany</small>
+*"My Berlin Anmeldung appointment was six weeks out, so my bank account was blocked, so I couldn't pay my deposit, so I nearly lost the flat I needed for the Anmeldung. The circle of German life."* — Reddit r/germany
 
-<small>*"Filed my Estonian taxes on the tram between two stops. Checked twice because it felt illegal. The state had pre-filled everything. It just wanted my approval. Like a good butler."* — Reddit r/Estonia</small>
+*"Filed my Estonian taxes on the tram between two stops. Checked twice because it felt illegal. The state had pre-filled everything. It just wanted my approval. Like a good butler."* — Reddit r/Estonia
 
-<small>*"Nobody warns you that German offices reply to emails by POST. I emailed a question. Eleven days later a letter arrived answering it. The letter told me to respond by fax."* — Internations Berlin</small>
+*"Nobody warns you that German offices reply to emails by POST. I emailed a question. Eleven days later a letter arrived answering it. The letter told me to respond by fax."* — Internations Berlin
 
 ## Conclusion
 

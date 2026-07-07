@@ -86,15 +86,15 @@ Expats transitioning between the two countries consistently report the same adju
 
 ### The Part the Brochure Left Out
 
-> <small>*Singapore Expats Forum — "I came from London wearing what I considered perfectly decent work trousers and was told, very politely, by a colleague on day two that I might want to consider something a bit more 'put together.' In Singapore, 'business casual' means something closer to what I'd wear to a wedding back home."*</small>
+> *Singapore Expats Forum — "I came from London wearing what I considered perfectly decent work trousers and was told, very politely, by a colleague on day two that I might want to consider something a bit more 'put together.' In Singapore, 'business casual' means something closer to what I'd wear to a wedding back home."*
 
-> <small>*Quora — "The thing that surprised me most about working in a Singapore bank was that women were not permitted to wear trousers Monday through Thursday. I'd heard Singapore was strict but I didn't think that extended to trouser legislation. This was eventually relaxed, but it took longer than anyone will admit."*</small>
+> *Quora — "The thing that surprised me most about working in a Singapore bank was that women were not permitted to wear trousers Monday through Thursday. I'd heard Singapore was strict but I didn't think that extended to trouser legislation. This was eventually relaxed, but it took longer than anyone will admit."*
 
-> <small>*r/expats — "Moved from Toronto to Singapore for a finance role and spent the first month slightly overdressed by Canadian standards and slightly underdressed by Singaporean ones. There is apparently a calibration period. Nobody tells you about it in the relocation package."*</small>
+> *r/expats — "Moved from Toronto to Singapore for a finance role and spent the first month slightly overdressed by Canadian standards and slightly underdressed by Singaporean ones. There is apparently a calibration period. Nobody tells you about it in the relocation package."*
 
-> <small>*Randstad Canada — "Startup tech companies encourage workers to dress and feel as comfortable as possible. Employers compete to attract top candidates by offering a casual dress code as a perk. In these environments, someone in a suit is either a job applicant or an employee with an important client meeting."*</small>
+> *Randstad Canada — "Startup tech companies encourage workers to dress and feel as comfortable as possible. Employers compete to attract top candidates by offering a casual dress code as a perk. In these environments, someone in a suit is either a job applicant or an employee with an important client meeting."*
 
-> <small>*r/canada — "I work in Vancouver tech. My manager wears the same hoodie three days a week. My director wore shorts to the all-hands last summer. I came from a consulting background in Asia and it took me six months to stop instinctively reaching for a blazer every morning. The blazer is now in storage."*</small>
+> *r/canada — "I work in Vancouver tech. My manager wears the same hoodie three days a week. My director wore shorts to the all-hands last summer. I came from a consulting background in Asia and it took me six months to stop instinctively reaching for a blazer every morning. The blazer is now in storage."*
 
 ### Conclusion
 

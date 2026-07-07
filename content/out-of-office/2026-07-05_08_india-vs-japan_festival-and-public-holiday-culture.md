@@ -80,11 +80,11 @@ But festivals exist to interrupt life, and India interrupts harder. A culture th
 
 ## What Nobody Warned You About
 
-<small>*"Nobody warns you that Diwali cleaning is a competitive sport. My mother-in-law found dust on top of a door frame. I was on a chair at 11pm re-cleaning doors in a house that was already clean. Ten out of ten, would celebrate again."* — Reddit r/india</small>
+*"Nobody warns you that Diwali cleaning is a competitive sport. My mother-in-law found dust on top of a door frame. I was on a chair at 11pm re-cleaning doors in a house that was already clean. Ten out of ten, would celebrate again."* — Reddit r/india
 
-<small>*"Golden Week rookie mistake: I decided to 'just drive' to Kyoto. The traffic report said 38km jam. I thought it was a typo. It was an underestimate."* — Reddit r/japanlife</small>
+*"Golden Week rookie mistake: I decided to 'just drive' to Kyoto. The traffic report said 38km jam. I thought it was a typo. It was an underestimate."* — Reddit r/japanlife
 
-<small>*"Played Holi once in a white kurta as instructed. Three years later the kurta is still pink in places and so, faintly, is one of my ears. Worth it."* — Internations Mumbai</small>
+*"Played Holi once in a white kurta as instructed. Three years later the kurta is still pink in places and so, faintly, is one of my ears. Worth it."* — Internations Mumbai
 
 ## Conclusion
 

@@ -74,15 +74,15 @@ For the arriving expatriate, the operational difference is stark. In Japan, your
 
 ## The Part the Brochure Left Out
 
-> <small>*r/japanlife — A foreign engineer described resigning from a traditional Tokyo firm: two counteroffers, a department head's speech about family, a colleague who stopped greeting him, and a farewell party of genuine warmth — all four stages, he noted, within nine days.*</small>
+> *r/japanlife — A foreign engineer described resigning from a traditional Tokyo firm: two counteroffers, a department head's speech about family, a colleague who stopped greeting him, and a farewell party of genuine warmth — all four stages, he noted, within nine days.*
 
-> <small>*Quora — A French consultant explained to an American asker why she wouldn't leave a job she openly disliked: her CDI had just cleared the bank's threshold for a Paris mortgage. "In France you do not quit a CDI. You convert it" — into a rupture conventionnelle, ideally, with severance funding the sabbatical.*</small>
+> *Quora — A French consultant explained to an American asker why she wouldn't leave a job she openly disliked: her CDI had just cleared the bank's threshold for a Paris mortgage. "In France you do not quit a CDI. You convert it" — into a rupture conventionnelle, ideally, with severance funding the sabbatical.*
 
-> <small>*Blind — A verified employee at a Japanese multinational's US arm observed the two loyalty systems colliding: Tokyo HQ read his four employers in ten years as a character flaw; his American manager read a Japanese colleague's 18-year tenure as lack of ambition. Neither could be talked out of it.*</small>
+> *Blind — A verified employee at a Japanese multinational's US arm observed the two loyalty systems colliding: Tokyo HQ read his four employers in ten years as a character flaw; his American manager read a Japanese colleague's 18-year tenure as lack of ambition. Neither could be talked out of it.*
 
-> <small>*The Local France — A British reader recounted apartment-hunting in Lyon with a permanent UK contract and a salary 40% above the local norm, and losing every flat to candidates holding French CDIs. Her agent's advice: "Here, the contract is the salary."*</small>
+> *The Local France — A British reader recounted apartment-hunting in Lyon with a permanent UK contract and a salary 40% above the local norm, and losing every flat to candidates holding French CDIs. Her agent's advice: "Here, the contract is the salary."*
 
-> <small>*Internations Paris — A Japanese expatriate at a French bank said the revelation was hearing colleagues savage the company at lunch, then work diligently all afternoon. In Japan, he said, criticism that open would mean someone was leaving; in France it meant they were staying forever.*</small>
+> *Internations Paris — A Japanese expatriate at a French bank said the revelation was hearing colleagues savage the company at lunch, then work diligently all afternoon. In Japan, he said, criticism that open would mean someone was leaving; in France it meant they were staying forever.*
 
 ---
 

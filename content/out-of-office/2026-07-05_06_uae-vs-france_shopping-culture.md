@@ -80,11 +80,11 @@ But strip away the climate alibi and ask what each culture leaves you with. The 
 
 ## What Nobody Warned You About
 
-<small>*"Nobody tells you Dubai Mall requires a strategy. I once agreed to 'meet by the fountain' and we found each other 50 minutes later. There are apps for navigating it. Plural."* — Reddit r/dubai</small>
+*"Nobody tells you Dubai Mall requires a strategy. I once agreed to 'meet by the fountain' and we found each other 50 minutes later. There are apps for navigating it. Plural."* — Reddit r/dubai
 
-<small>*"I forgot to say bonjour in a Paris pharmacy once. The pharmacist said 'BONJOUR' back with such force that I apologised in three languages."* — Quora, living-in-France thread</small>
+*"I forgot to say bonjour in a Paris pharmacy once. The pharmacist said 'BONJOUR' back with such force that I apologised in three languages."* — Quora, living-in-France thread
 
-<small>*"My fromager refused to sell me the cheese I asked for because it 'would not be ready until Saturday' and my dinner was Friday. He chose a different cheese. He was right. I trust him more than my doctor."* — Internations Paris</small>
+*"My fromager refused to sell me the cheese I asked for because it 'would not be ready until Saturday' and my dinner was Friday. He chose a different cheese. He was right. I trust him more than my doctor."* — Internations Paris
 
 ## Conclusion
 

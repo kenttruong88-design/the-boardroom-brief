@@ -75,15 +75,15 @@ The irony: Singapore's disloyal system produces intense short-term performance, 
 
 ## The Part the Brochure Left Out
 
-> <small>*r/askSingapore — A local engineer laid out the arithmetic that governs the island: colleagues who stayed loyal for five years averaged small annual increments, while every job-hopper he knew cleared 15–20 per cent per move — "loyalty is a luxury good here, and I cannot afford luxury goods."*</small>
+> *r/askSingapore — A local engineer laid out the arithmetic that governs the island: colleagues who stayed loyal for five years averaged small annual increments, while every job-hopper he knew cleared 15–20 per cent per move — "loyalty is a luxury good here, and I cannot afford luxury goods."*
 
-> <small>*Quora — A Singaporean who relocated to Vancouver wrote that she prepared for tough interview questions about her three employers in seven years, and instead faced a hiring manager who had been at the same company for nineteen years and spoke of it the way one speaks of a marriage — with pride, fatigue, and no plans to leave.*</small>
+> *Quora — A Singaporean who relocated to Vancouver wrote that she prepared for tough interview questions about her three employers in seven years, and instead faced a hiring manager who had been at the same company for nineteen years and spoke of it the way one speaks of a marriage — with pride, fatigue, and no plans to leave.*
 
-> <small>*Internations Singapore — A Canadian banker in Singapore said the culture shock was resignation season: the week after bonuses landed, three of his eight-person team gave notice in the same fortnight, and his boss's reaction was not betrayal but scheduling — backfills were posted before the farewell lunch.*</small>
+> *Internations Singapore — A Canadian banker in Singapore said the culture shock was resignation season: the week after bonuses landed, three of his eight-person team gave notice in the same fortnight, and his boss's reaction was not betrayal but scheduling — backfills were posted before the farewell lunch.*
 
-> <small>*Blind — A tech worker with stints in both countries noted that his Singapore offer negotiations opened with his current comp and ended 18 per cent above it in a week, while his Toronto negotiation involved two months, one apologetic HR call, and a final offer 4 per cent above internal band "as an exception."*</small>
+> *Blind — A tech worker with stints in both countries noted that his Singapore offer negotiations opened with his current comp and ended 18 per cent above it in a week, while his Toronto negotiation involved two months, one apologetic HR call, and a final offer 4 per cent above internal band "as an exception."*
 
-> <small>*r/PersonalFinanceCanada — One commenter who left a bank after 12 years for a startup warned others to do the severance math first: by moving voluntarily, he'd walked away from what his lawyer estimated was a year's salary in accumulated notice entitlement — "my loyalty had a cash value and I donated it."*</small>
+> *r/PersonalFinanceCanada — One commenter who left a bank after 12 years for a startup warned others to do the severance math first: by moving voluntarily, he'd walked away from what his lawyer estimated was a year's salary in accumulated notice entitlement — "my loyalty had a cash value and I donated it."*
 
 ---
 

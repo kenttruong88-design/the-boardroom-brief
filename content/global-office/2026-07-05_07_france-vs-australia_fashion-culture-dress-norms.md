@@ -72,13 +72,13 @@ The two countries agree on exactly one principle — clothes carry meaning — a
 
 ## The Part the Brochure Left Out
 
-> <small>*r/AskFrance — In threads asking whether Parisians really judge clothing, French respondents tend to answer with anthropological patience: nobody cares what brand you wear, but sweatpants outside the gym are read as a message — roughly, "I have given up" — and the reader cannot un-receive it.*</small>
+> *r/AskFrance — In threads asking whether Parisians really judge clothing, French respondents tend to answer with anthropological patience: nobody cares what brand you wear, but sweatpants outside the gym are read as a message — roughly, "I have given up" — and the reader cannot un-receive it.*
 
-> <small>*Quora — An Australian who spent two years in Paris wrote that the real shock wasn't the elegance but the consistency: her elderly neighbour dressed for the boulangerie the way Australians dress for a christening, every single day, and by year two she had started ironing clothes she once considered ironing-proof.*</small>
+> *Quora — An Australian who spent two years in Paris wrote that the real shock wasn't the elegance but the consistency: her elderly neighbour dressed for the boulangerie the way Australians dress for a christening, every single day, and by year two she had started ironing clothes she once considered ironing-proof.*
 
-> <small>*Internations Sydney — A French banker's wife described her first Sydney school pickup: a sea of activewear, not one handbag, and a warmth toward her that noticeably increased after she retired her heels — advice she now passes to arriving compatriots as "dress like you might swim later."*</small>
+> *Internations Sydney — A French banker's wife described her first Sydney school pickup: a sea of activewear, not one handbag, and a warmth toward her that noticeably increased after she retired her heels — advice she now passes to arriving compatriots as "dress like you might swim later."*
 
-> <small>*Bonjour Paris community — A contributor comparing the two aesthetics noted that Parisian simplicity means silk, lace hints, and red lipstick while Australian simplicity means bold prints ready for beach or bar — the same word, "simple," describing two entirely different civilisations.*</small>
+> *Bonjour Paris community — A contributor comparing the two aesthetics noted that Parisian simplicity means silk, lace hints, and red lipstick while Australian simplicity means bold prints ready for beach or bar — the same word, "simple," describing two entirely different civilisations.*
 
 ---
 

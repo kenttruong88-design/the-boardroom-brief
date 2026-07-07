@@ -82,11 +82,11 @@ The deeper difference is psychological, and expats only notice it after a year: 
 
 ## What Nobody Warned You About
 
-<small>*"Broke my arm in Valencia as an uninsured tourist. Surgery, two nights, physio plan. The bill was €890 and the administrator apologised while handing it to me. In the US my deductible alone was $6,000. I cried at the desk and she thought it was the pain."* — Reddit r/expats</small>
+*"Broke my arm in Valencia as an uninsured tourist. Surgery, two nights, physio plan. The bill was €890 and the administrator apologised while handing it to me. In the US my deductible alone was $6,000. I cried at the desk and she thought it was the pain."* — Reddit r/expats
 
-<small>*"The American skill nobody talks about: I negotiated my ER bill down from $3,200 to $900 with one phone call by asking for the itemised version. The first number is a vibe, not a price."* — Reddit r/expats</small>
+*"The American skill nobody talks about: I negotiated my ER bill down from $3,200 to $900 with one phone call by asking for the itemised version. The first number is a vibe, not a price."* — Reddit r/expats
 
-<small>*"Spanish public system saved my husband's life in 11 days from diagnosis, total cost zero. But I waited five months for a routine dermatology appointment. Then I got private insurance for €60/month and the wait became three days. That's the whole system in one anecdote."* — Internations Madrid</small>
+*"Spanish public system saved my husband's life in 11 days from diagnosis, total cost zero. But I waited five months for a routine dermatology appointment. Then I got private insurance for €60/month and the wait became three days. That's the whole system in one anecdote."* — Internations Madrid
 
 ## Conclusion
 

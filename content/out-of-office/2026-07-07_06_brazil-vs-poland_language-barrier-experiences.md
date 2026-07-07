@@ -82,11 +82,11 @@ But note what each barrier does to you. Brazil's warmth means you can thrive wit
 
 ## What Nobody Warned You About
 
-<small>*"Got lost in Salvador with zero Portuguese. A woman closed her market stall, walked me 15 minutes to my hostel, introduced me to the receptionist, and left before I could buy her a coffee. We exchanged maybe six mutually understood words the entire time."* — Reddit r/Brazil</small>
+*"Got lost in Salvador with zero Portuguese. A woman closed her market stall, walked me 15 minutes to my hostel, introduced me to the receptionist, and left before I could buy her a coffee. We exchanged maybe six mutually understood words the entire time."* — Reddit r/Brazil
 
-<small>*"Three years of Polish study. THREE. Ordered 'two beers' with the wrong case ending and my brother-in-law still tells the story at Christmas. In Polish. Which I now understand — so I get to relive it annually in the original."* — Reddit r/poland</small>
+*"Three years of Polish study. THREE. Ordered 'two beers' with the wrong case ending and my brother-in-law still tells the story at Christmas. In Polish. Which I now understand — so I get to relive it annually in the original."* — Reddit r/poland
 
-<small>*"The day my Warsaw barista stopped switching to English was better than my promotion. I told my wife. She's Polish. She cried. Then she corrected my grammar."* — Internations Warsaw</small>
+*"The day my Warsaw barista stopped switching to English was better than my promotion. I told my wife. She's Polish. She cried. Then she corrected my grammar."* — Internations Warsaw
 
 ## Conclusion
 

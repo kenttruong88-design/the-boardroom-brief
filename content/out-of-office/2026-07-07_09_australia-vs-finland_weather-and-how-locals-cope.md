@@ -80,11 +80,11 @@ So: the verdict splits by what you fear. If you fear discomfort, choose Australi
 
 ## What Nobody Warned You About
 
-<small>*"Moved from Manchester to Brisbane. Got sunburnt through a car window in my first week. THROUGH THE WINDOW. My dermatologist now knows me by name and greets me with a sigh."* — Reddit r/australia</small>
+*"Moved from Manchester to Brisbane. Got sunburnt through a car window in my first week. THROUGH THE WINDOW. My dermatologist now knows me by name and greets me with a sigh."* — Reddit r/australia
 
-<small>*"My first kaamos I white-knuckled it like a hero and was a wreck by January. My Finnish colleague looked at me and said 'lamp, vitamin, sauna, swim' — four words, no verbs. I obeyed. Second winter was fine. Finns don't give advice twice."* — Internations Helsinki</small>
+*"My first kaamos I white-knuckled it like a hero and was a wreck by January. My Finnish colleague looked at me and said 'lamp, vitamin, sauna, swim' — four words, no verbs. I obeyed. Second winter was fine. Finns don't give advice twice."* — Internations Helsinki
 
-<small>*"The ice swimming thing: nobody tells you the scream is involuntary and everyone politely ignores it. Then the sauna. Then, God help me, you go back in the lake. Voluntarily. By February I was doing it before work."* — Reddit r/Finland</small>
+*"The ice swimming thing: nobody tells you the scream is involuntary and everyone politely ignores it. Then the sauna. Then, God help me, you go back in the lake. Voluntarily. By February I was doing it before work."* — Reddit r/Finland
 
 ## Conclusion
 

@@ -74,15 +74,15 @@ The ironies stack neatly. Germany, the country with a global reputation for indu
 
 ## The Part the Brochure Left Out
 
-> <small>*r/chinalife — A foreign employee in Shenzhen described his first tiaoxiu experience: elated by the eight-day October holiday until he checked the calendar and found the two Saturdays flanking it had been declared workdays. His colleagues found his outrage charming, then briefly considered it, then went back to work.*</small>
+> *r/chinalife — A foreign employee in Shenzhen described his first tiaoxiu experience: elated by the eight-day October holiday until he checked the calendar and found the two Saturdays flanking it had been declared workdays. His colleagues found his outrage charming, then briefly considered it, then went back to work.*
 
-> <small>*Quora — An engineer at a Hamburg firm, recently arrived from Shanghai, wrote that the strangest moment of her first German year was her manager reprimanding her — gently, with a printout — for having six vacation days at risk of expiring, and instructing her to be gone before March.*</small>
+> *Quora — An engineer at a Hamburg firm, recently arrived from Shanghai, wrote that the strangest moment of her first German year was her manager reprimanding her — gently, with a printout — for having six vacation days at risk of expiring, and instructing her to be gone before March.*
 
-> <small>*Internations Shanghai — An Italian supply-chain manager noted that his contract's fifteen leave days looked generous until he learned the price of using them: every day off preceded and followed by apology messages in three WeChat groups, and one video call taken, memorably, on a chairlift.*</small>
+> *Internations Shanghai — An Italian supply-chain manager noted that his contract's fifteen leave days looked generous until he learned the price of using them: every day off preceded and followed by apology messages in three WeChat groups, and one video call taken, memorably, on a chairlift.*
 
-> <small>*The Local Germany — A reader recounted falling ill mid-holiday in Portugal, visiting a doctor at her German colleague's insistence, and having four vacation days restored to her balance on return. She described the feeling as "discovering a cheat code, except it's just the law."*</small>
+> *The Local Germany — A reader recounted falling ill mid-holiday in Portugal, visiting a doctor at her German colleague's insistence, and having four vacation days restored to her balance on return. She described the feeling as "discovering a cheat code, except it's just the law."*
 
-> <small>*echinacities forum — A teacher in Chengdu advised newcomers to treat the February and October Golden Weeks as non-optional travel lotteries: book sixty days out or stay home, because the alternative is standing-room tickets and hotels priced like Fashion Week.*</small>
+> *echinacities forum — A teacher in Chengdu advised newcomers to treat the February and October Golden Weeks as non-optional travel lotteries: book sixty days out or stay home, because the alternative is standing-room tickets and hotels priced like Fashion Week.*
 
 ---
 

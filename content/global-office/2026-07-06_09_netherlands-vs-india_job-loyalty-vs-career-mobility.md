@@ -74,15 +74,15 @@ The mirror irony: the Netherlands, with every legal reason to stay put, produces
 
 ## The Part the Brochure Left Out
 
-> <small>*r/developersIndia — An engineer described the appraisal-season ritual with weary precision: a 6 per cent increment letter in April, three interviews in May, a 38 per cent offer in June, and a 60-day notice period during which his manager alternated between counteroffers and guilt — "the whole industry does this annually, like migration season, and HR acts surprised every year."*</small>
+> *r/developersIndia — An engineer described the appraisal-season ritual with weary precision: a 6 per cent increment letter in April, three interviews in May, a 38 per cent offer in June, and a 60-day notice period during which his manager alternated between counteroffers and guilt — "the whole industry does this annually, like migration season, and HR acts surprised every year."*
 
-> <small>*Quora — An Indian developer who moved to Eindhoven wrote that his first Dutch resignation stunned him in reverse: no counteroffer, no exit-interview interrogation, just his manager saying the new role sounded good and booking a farewell lunch — "I had prepared for a battle and received a greeting card."*</small>
+> *Quora — An Indian developer who moved to Eindhoven wrote that his first Dutch resignation stunned him in reverse: no counteroffer, no exit-interview interrogation, just his manager saying the new role sounded good and booking a farewell lunch — "I had prepared for a battle and received a greeting card."*
 
-> <small>*Internations Amsterdam — An Indian product manager said the 30% expat tax ruling quietly shaped her loyalty math in the Netherlands: switching employers meant re-checking the ruling's transfer, a piece of paperwork she called "the only thing in this country that ever made me hesitate to resign."*</small>
+> *Internations Amsterdam — An Indian product manager said the 30% expat tax ruling quietly shaped her loyalty math in the Netherlands: switching employers meant re-checking the ruling's transfer, a piece of paperwork she called "the only thing in this country that ever made me hesitate to resign."*
 
-> <small>*Blind — A techie who has worked in Pune and Rotterdam compared notice periods: 90 days in India, where the company fought to keep him until the final morning, versus one month in the Netherlands, where his team had reassigned his projects within a week — "one country grips you, the other waves."*</small>
+> *Blind — A techie who has worked in Pune and Rotterdam compared notice periods: 90 days in India, where the company fought to keep him until the final morning, versus one month in the Netherlands, where his team had reassigned his projects within a week — "one country grips you, the other waves."*
 
-> <small>*r/thenetherlands — A Dutch engineer responding to an Indian newcomer's question about job-hopping stigma put the local view plainly: nobody cares, the pension moves with you, and the only person who remembers your tenure is you — advice the newcomer called "the most relaxing sentence ever said to me about employment."*</small>
+> *r/thenetherlands — A Dutch engineer responding to an Indian newcomer's question about job-hopping stigma put the local view plainly: nobody cares, the pension moves with you, and the only person who remembers your tenure is you — advice the newcomer called "the most relaxing sentence ever said to me about employment."*
 
 ---
 

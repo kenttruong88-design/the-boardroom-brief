@@ -74,15 +74,15 @@ The board rooms tell the punchline: Germany needed a legal quota to put women on
 
 ## The Part the Brochure Left Out
 
-> <small>*r/germany — An American engineer in Bavaria described the double-take of her first year back from leave: HR was impeccable, her job was legally waiting, and her manager was sincerely puzzled that she wanted full-time hours "with a small child at home" — a sentence, she noted, that no one had ever said to her husband.*</small>
+> *r/germany — An American engineer in Bavaria described the double-take of her first year back from leave: HR was impeccable, her job was legally waiting, and her manager was sincerely puzzled that she wanted full-time hours "with a small child at home" — a sentence, she noted, that no one had ever said to her husband.*
 
-> <small>*Quora — A German consultant who moved to Chicago wrote that what shocked her wasn't the twelve unpaid weeks — she'd read about those — but the colleague answering emails from the maternity ward, "voluntarily, at 2am, and everyone called her a rockstar rather than an emergency."*</small>
+> *Quora — A German consultant who moved to Chicago wrote that what shocked her wasn't the twelve unpaid weeks — she'd read about those — but the colleague answering emails from the maternity ward, "voluntarily, at 2am, and everyone called her a rockstar rather than an emergency."*
 
-> <small>*Internations Berlin — An American mother said the Kita hunt consumed more energy than her actual job search: fourteen months of paid leave sounded dreamy until she understood it partly existed because a daycare place before age two was, in her Berlin district, a lottery win.*</small>
+> *Internations Berlin — An American mother said the Kita hunt consumed more energy than her actual job search: fourteen months of paid leave sounded dreamy until she understood it partly existed because a daycare place before age two was, in her Berlin district, a lottery win.*
 
-> <small>*Blind — A woman in tech who transferred from Frankfurt to Seattle noted the trade in one line: in Germany she had rights and no momentum; in the US she had momentum and no rights — and her honest advice was to have the baby in Germany and the career in America, "timing flexible."*</small>
+> *Blind — A woman in tech who transferred from Frankfurt to Seattle noted the trade in one line: in Germany she had rights and no momentum; in the US she had momentum and no rights — and her honest advice was to have the baby in Germany and the career in America, "timing flexible."*
 
-> <small>*r/AskWomenOver30 — A commenter who worked in both countries offered the warning she wished she'd had: the German part-time contract she signed "for two years, while the kids are small" was in its ninth year, her pension projection had noticed, and none of the excellent legal protections she enjoyed had ever asked whether she still wanted them.*</small>
+> *r/AskWomenOver30 — A commenter who worked in both countries offered the warning she wished she'd had: the German part-time contract she signed "for two years, while the kids are small" was in its ninth year, her pension projection had noticed, and none of the excellent legal protections she enjoyed had ever asked whether she still wanted them.*
 
 ---
 

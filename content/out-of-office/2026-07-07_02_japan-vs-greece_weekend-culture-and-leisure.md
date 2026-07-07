@@ -82,11 +82,11 @@ Greece wins, and it isn't particularly close. Not because the beaches are good �
 
 ## What Nobody Warned You About
 
-<small>*"Suggested 'let's just see where the day takes us' to my Japanese girlfriend. She researched three possible spontaneous routes and printed a backup plan. The date was flawless. I have never felt so lovingly defeated."* — Reddit r/japanlife</small>
+*"Suggested 'let's just see where the day takes us' to my Japanese girlfriend. She researched three possible spontaneous routes and printed a backup plan. The date was flawless. I have never felt so lovingly defeated."* — Reddit r/japanlife
 
-<small>*"Was invited to 'quick lunch' in Thessaloniki at 2pm. Left at 9:30pm. Nobody acknowledged this was long. I checked my phone once and my host's mother looked at me like I'd spat on the floor."* — Internations Athens</small>
+*"Was invited to 'quick lunch' in Thessaloniki at 2pm. Left at 9:30pm. Nobody acknowledged this was long. I checked my phone once and my host's mother looked at me like I'd spat on the floor."* — Internations Athens
 
-<small>*"August in Athens is post-apocalyptic. My local bakery, pharmacy and both mechanics left notes saying 'back in September.' Not a date. Just September."* — Reddit r/greece</small>
+*"August in Athens is post-apocalyptic. My local bakery, pharmacy and both mechanics left notes saying 'back in September.' Not a date. Just September."* — Reddit r/greece
 
 ## Conclusion
 

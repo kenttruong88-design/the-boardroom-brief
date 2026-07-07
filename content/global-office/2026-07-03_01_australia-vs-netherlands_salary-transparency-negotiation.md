@@ -81,15 +81,15 @@ The second irony is timing. Australia's transparency regime is already live and 
 
 ### The Part the Brochure Left Out
 
-> <small>*r/expats — One American who relocated to Amsterdam for a tech role described spending three interview rounds without a number on the table, only to realize afterward that the company's internal CAO scale would have told them the range from day one, if anyone had thought to ask directly instead of waiting to be told.*</small>
+> *r/expats — One American who relocated to Amsterdam for a tech role described spending three interview rounds without a number on the table, only to realize afterward that the company's internal CAO scale would have told them the range from day one, if anyone had thought to ask directly instead of waiting to be told.*
 
-> <small>*Quora — A respondent working in Sydney corporate finance noted that the biggest adjustment for colleagues arriving from Asia and the US wasn't the number itself but the format — Australians expect you to name a range anchored to market data and then negotiate the whole package, not just haggle over one figure.*</small>
+> *Quora — A respondent working in Sydney corporate finance noted that the biggest adjustment for colleagues arriving from Asia and the US wasn't the number itself but the format — Australians expect you to name a range anchored to market data and then negotiate the whole package, not just haggle over one figure.*
 
-> <small>*iamexpat.nl (Netherlands expat career forum) — A recurring theme in reader comments is that newcomers leave real money on the table by not knowing to ask about the 30% ruling before signing, with some estimating the gap at five figures annually once tax treatment is factored in.*</small>
+> *iamexpat.nl (Netherlands expat career forum) — A recurring theme in reader comments is that newcomers leave real money on the table by not knowing to ask about the 30% ruling before signing, with some estimating the gap at five figures annually once tax treatment is factored in.*
 
-> <small>*Quora — Another respondent flagged that in Australian workplaces, advertised salaries are conventionally understood as exclusive of superannuation unless stated otherwise, a distinction that trips up almost every candidate moving from a market where super doesn't exist as a separate line item.*</small>
+> *Quora — Another respondent flagged that in Australian workplaces, advertised salaries are conventionally understood as exclusive of superannuation unless stated otherwise, a distinction that trips up almost every candidate moving from a market where super doesn't exist as a separate line item.*
 
-> <small>*r/expats — A Dutch-based commenter advised that pushing hard on base salary alone, while ignoring vacation days, pension contributions, and the customary 13th-month payment, is a rookie mistake — in a CAO-governed system, those levers often move further than the base number ever will.*</small>
+> *r/expats — A Dutch-based commenter advised that pushing hard on base salary alone, while ignoring vacation days, pension contributions, and the customary 13th-month payment, is a rookie mistake — in a CAO-governed system, those levers often move further than the base number ever will.*
 
 ### Conclusion
 

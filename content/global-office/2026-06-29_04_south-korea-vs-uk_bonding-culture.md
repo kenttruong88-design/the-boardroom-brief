@@ -88,15 +88,15 @@ For foreigners, Korea's system is exhausting but legible. The UK system is appar
 
 ### The Part the Brochure Left Out
 
-> <small>*r/korea — One expat who transferred from London described their first hoesik as "a masterclass in things they don't put in the job offer." Three rounds of soju, a norebang session, and a 2am taxi home later, they understood why Korean colleagues budgeted their weekends differently, and why no one at work looked particularly surprised on Monday morning.*</small>
+> *r/korea — One expat who transferred from London described their first hoesik as "a masterclass in things they don't put in the job offer." Three rounds of soju, a norebang session, and a 2am taxi home later, they understood why Korean colleagues budgeted their weekends differently, and why no one at work looked particularly surprised on Monday morning.*
 
-> <small>*Quora — A foreign professional who worked at a major Korean conglomerate wrote that the single most useful thing he did in his first month was learn to pour drinks correctly — for others, always, before himself, with two hands. "It cost me nothing and it bought me more social capital than three months of good work performance."*</small>
+> *Quora — A foreign professional who worked at a major Korean conglomerate wrote that the single most useful thing he did in his first month was learn to pour drinks correctly — for others, always, before himself, with two hands. "It cost me nothing and it bought me more social capital than three months of good work performance."*
 
-> <small>*Internations Seoul — A Canadian marketing director described her first Korean performance review as smooth and well-received, but noted that her relationships with team members were noticeably cooler than her Korean colleagues' — until she attended two consecutive hoesik events. "Something changed after the second one. I can't point to what. But suddenly people asked me about my weekend. That had not happened before."*</small>
+> *Internations Seoul — A Canadian marketing director described her first Korean performance review as smooth and well-received, but noted that her relationships with team members were noticeably cooler than her Korean colleagues' — until she attended two consecutive hoesik events. "Something changed after the second one. I can't point to what. But suddenly people asked me about my weekend. That had not happened before."*
 
-> <small>*r/unitedkingdom — An American who relocated to London for a fintech role was puzzled for several months by what he called "the pub paradox" — colleagues who were efficient and professional all day, then became unexpectedly candid about career frustrations, management problems, and personal anxieties after two pints. "Things got said at the pub that would never be said in the office, and nobody ever acknowledged them the next day. It was like a parallel social track."*</small>
+> *r/unitedkingdom — An American who relocated to London for a fintech role was puzzled for several months by what he called "the pub paradox" — colleagues who were efficient and professional all day, then became unexpectedly candid about career frustrations, management problems, and personal anxieties after two pints. "Things got said at the pub that would never be said in the office, and nobody ever acknowledged them the next day. It was like a parallel social track."*
 
-> <small>*juggle.jobs — A non-drinking Muslim professional in a London law firm wrote about navigating UK workplace social culture without alcohol. The firm had technically moved to "inclusive" socials, but the after-work pub remained the default, and being the person who ordered sparkling water "never quite felt invisible in the way the inclusion policy suggested it would."*</small>
+> *juggle.jobs — A non-drinking Muslim professional in a London law firm wrote about navigating UK workplace social culture without alcohol. The firm had technically moved to "inclusive" socials, but the after-work pub remained the default, and being the person who ordered sparkling water "never quite felt invisible in the way the inclusion policy suggested it would."*
 
 ---
 

@@ -80,11 +80,11 @@ But food shopping is not only logistics, and here Mexico exposes something Germa
 
 ## What Nobody Warned You About
 
-<small>*"Two years in Berlin and I still break into a light sweat at the checkout. I've started arranging my items on the belt in bagging order like I'm defusing a bomb."* — Reddit r/germany</small>
+*"Two years in Berlin and I still break into a light sweat at the checkout. I've started arranging my items on the belt in bagging order like I'm defusing a bomb."* — Reddit r/germany
 
-<small>*"The señora at my tianguis asked when I was eating the mangoes, picked three, and told me which day to eat each one. She was right about all three."* — Reddit r/mexicoexpats</small>
+*"The señora at my tianguis asked when I was eating the mangoes, picked three, and told me which day to eat each one. She was right about all three."* — Reddit r/mexicoexpats
 
-<small>*"Nobody warns you that German Sundays mean NOTHING is open. My first month I ate mustard on crackers for dinner and thought about my life choices."* — Internations Berlin</small>
+*"Nobody warns you that German Sundays mean NOTHING is open. My first month I ate mustard on crackers for dinner and thought about my life choices."* — Internations Berlin
 
 ## Conclusion
 

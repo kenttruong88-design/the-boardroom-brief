@@ -80,11 +80,11 @@ But stand back and the two are cousins, not opposites. Both are Catholic culture
 
 ## What Nobody Warned You About
 
-<small>*"My first Día de Muertos I was invited to a family's cemetery vigil in Oaxaca. I expected sadness and got tamales, mezcal, grandma's stories and four hours of laughter next to the grave. I cried anyway. They expected that too and had napkins ready."* — Internations Mexico City</small>
+*"My first Día de Muertos I was invited to a family's cemetery vigil in Oaxaca. I expected sadness and got tamales, mezcal, grandma's stories and four hours of laughter next to the grave. I cried anyway. They expected that too and had napkins ready."* — Internations Mexico City
 
-<small>*"Nobody warns you that Guadalupe-Reyes is REAL. I scheduled a project deadline for December 19th my first year in CDMX. My colleagues still bring it up. As comedy."* — Reddit r/mexico</small>
+*"Nobody warns you that Guadalupe-Reyes is REAL. I scheduled a project deadline for December 19th my first year in CDMX. My colleagues still bring it up. As comedy."* — Reddit r/mexico
 
-<small>*"Spent Paddy's Day in Dingle instead of Dublin. The parade was a tractor, two donkeys, the entire primary school dressed as sea creatures, and it lapped the town twice because it was too short. Best day of my life and I've been to Glastonbury."* — Reddit r/ireland</small>
+*"Spent Paddy's Day in Dingle instead of Dublin. The parade was a tractor, two donkeys, the entire primary school dressed as sea creatures, and it lapped the town twice because it was too short. Best day of my life and I've been to Glastonbury."* — Reddit r/ireland
 
 ## Conclusion
 

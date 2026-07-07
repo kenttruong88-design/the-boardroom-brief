@@ -90,15 +90,15 @@ This creates specific collision points. French professionals who move to Austral
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — An Australian who relocated to Lyon for a consulting role described her first French office lunch as "a revelation and then an inconvenience." The food was excellent; the two-hour duration meant she had to restructure her entire afternoon. Three months in, she had fully converted and considered her previous desk-lunch habits to be evidence of some kind of former psychic damage.*</small>
+> *Quora — An Australian who relocated to Lyon for a consulting role described her first French office lunch as "a revelation and then an inconvenience." The food was excellent; the two-hour duration meant she had to restructure her entire afternoon. Three months in, she had fully converted and considered her previous desk-lunch habits to be evidence of some kind of former psychic damage.*
 
-> <small>*r/france — A British expat noted that she had been in Paris for two years before she understood that refusing a cheese board was a social statement, not a personal dietary preference. "I said no once and my host literally asked if I was feeling unwell. I now just take a small piece of whatever and move it around."*</small>
+> *r/france — A British expat noted that she had been in Paris for two years before she understood that refusing a cheese board was a social statement, not a personal dietary preference. "I said no once and my host literally asked if I was feeling unwell. I now just take a small piece of whatever and move it around."*
 
-> <small>*Internations France — A Canadian professional in Bordeaux wrote that the most disorienting adjustment was not the language or the bureaucracy but the fact that grocery stores close on Sundays and that planning meals in advance was simply expected. He had come from a culture where food was available at almost any hour; the French concept of planned, structured nourishment took genuine cognitive rewiring.*</small>
+> *Internations France — A Canadian professional in Bordeaux wrote that the most disorienting adjustment was not the language or the bureaucracy but the fact that grocery stores close on Sundays and that planning meals in advance was simply expected. He had come from a culture where food was available at almost any hour; the French concept of planned, structured nourishment took genuine cognitive rewiring.*
 
-> <small>*r/australia — A French graphic designer who moved to Melbourne described her initial relief at the café culture — "I thought, these people understand coffee, they understand sitting" — followed by dawning confusion when she discovered that weekend brunch started at 9am and was often eaten with something called a "Big Brekky" that appeared to contain an entire livestock inventory.*</small>
+> *r/australia — A French graphic designer who moved to Melbourne described her initial relief at the café culture — "I thought, these people understand coffee, they understand sitting" — followed by dawning confusion when she discovered that weekend brunch started at 9am and was often eaten with something called a "Big Brekky" that appeared to contain an entire livestock inventory.*
 
-> <small>*teamblind.com — A tech worker who had stints in both Paris and Sydney noted the workplace contrast sharply: in Paris, a working lunch was a contradiction in terms; in Sydney, eating at one's desk was so normalised that ordering from Uber Eats during a video call was considered unremarkable, at least below the VP level.*</small>
+> *teamblind.com — A tech worker who had stints in both Paris and Sydney noted the workplace contrast sharply: in Paris, a working lunch was a contradiction in terms; in Sydney, eating at one's desk was so normalised that ordering from Uber Eats during a video call was considered unremarkable, at least below the VP level.*
 
 ---
 

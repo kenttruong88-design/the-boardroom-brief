@@ -86,11 +86,11 @@ But mind the asterisk: Thailand's marble lobby exists *because* someone can be t
 
 ## What Nobody Warned You About
 
-<small>*"Tore my ACL in Chiang Mai. MRI same afternoon, surgeon consult next morning, operation that week, total cost less than my US deductible. I got a follow-up call from the hospital asking if I was happy. I nearly cried."* — Reddit r/Thailand</small>
+*"Tore my ACL in Chiang Mai. MRI same afternoon, surgeon consult next morning, operation that week, total cost less than my US deductible. I got a follow-up call from the hospital asking if I was happy. I nearly cried."* — Reddit r/Thailand
 
-<small>*"Moved to Nova Scotia in 2021. Joined the family doctor registry. It is 2026. I have a good life, a house, a child born here. The registry and I remain in a long-distance relationship."* — Reddit r/AskACanadian</small>
+*"Moved to Nova Scotia in 2021. Joined the family doctor registry. It is 2026. I have a good life, a house, a child born here. The registry and I remain in a long-distance relationship."* — Reddit r/AskACanadian
 
-<small>*"Nobody tells you Thai private hospitals will happily run every test you can afford. Went in with a cough, was offered a 'wellness package' with a cardiac panel. The care is excellent. The upselling is also excellent."* — Internations Bangkok</small>
+*"Nobody tells you Thai private hospitals will happily run every test you can afford. Went in with a cough, was offered a 'wellness package' with a cardiac panel. The care is excellent. The upselling is also excellent."* — Internations Bangkok
 
 ## Conclusion
 

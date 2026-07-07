@@ -80,11 +80,11 @@ But Suki's rule of courtship applies: judge the culture by year three, not week 
 
 ## What Nobody Warned You About
 
-<small>*"Dated an Irish guy for four months before realising we were dating. When I asked, he said 'sure what else would we be at?' That was the most romantic thing he ever said."* — Internations Dublin</small>
+*"Dated an Irish guy for four months before realising we were dating. When I asked, he said 'sure what else would we be at?' That was the most romantic thing he ever said."* — Internations Dublin
 
-<small>*"An Italian man told me my eyes reminded him of the sea near his grandmother's village. We had known each other for six minutes. Reader, it worked."* — Reddit r/italy</small>
+*"An Italian man told me my eyes reminded him of the sea near his grandmother's village. We had known each other for six minutes. Reader, it worked."* — Reddit r/italy
 
-<small>*"Irish flirting is just two people calling each other gobshites with increasing tenderness until someone's ma asks when the wedding is."* — Reddit r/ireland</small>
+*"Irish flirting is just two people calling each other gobshites with increasing tenderness until someone's ma asks when the wedding is."* — Reddit r/ireland
 
 ## Conclusion
 

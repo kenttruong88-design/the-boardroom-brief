@@ -80,11 +80,11 @@ But which barrier is better? Also Vietnam's, and this is the finding that matter
 
 ## What Nobody Warned You About
 
-<small>*"Six months of Duolingo and my first real Spaniard hit me with an Andalusian accent at 400 words a minute with half the consonants missing. I understood 'hola.'"* — Reddit r/Spain</small>
+*"Six months of Duolingo and my first real Spaniard hit me with an Andalusian accent at 400 words a minute with half the consonants missing. I understood 'hola.'"* — Reddit r/Spain
 
-<small>*"I tried to say 'this soup is delicious' to the lady at my local phở place. Whatever I actually said made her sit down laughing. I've eaten there every day since. We still don't share a language. She saves me the good table."* — Reddit r/VietNam</small>
+*"I tried to say 'this soup is delicious' to the lady at my local phở place. Whatever I actually said made her sit down laughing. I've eaten there every day since. We still don't share a language. She saves me the good table."* — Reddit r/VietNam
 
-<small>*"Nobody warns you that Spanish bureaucracy is its own dialect. I speak C1 Spanish and the empadronamiento form defeated me like a boss battle."* — Internations Madrid</small>
+*"Nobody warns you that Spanish bureaucracy is its own dialect. I speak C1 Spanish and the empadronamiento form defeated me like a boss battle."* — Internations Madrid
 
 ## Conclusion
 

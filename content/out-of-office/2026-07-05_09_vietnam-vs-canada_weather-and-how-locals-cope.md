@@ -80,11 +80,11 @@ So Canada wins on degree of difficulty — but Vietnam wins on style points, and
 
 ## What Nobody Warned You About
 
-<small>*"The monsoon in Saigon is so punctual that I've genuinely used it as an excuse to leave meetings. 'Have to go before the rain.' Everyone nods. It's 3:40pm. They know."* — Reddit r/VietNam</small>
+*"The monsoon in Saigon is so punctual that I've genuinely used it as an excuse to leave meetings. 'Have to go before the rain.' Everyone nods. It's 3:40pm. They know."* — Reddit r/VietNam
 
-<small>*"Nobody warns you that at -40 your eyelashes freeze together when you blink. Not painful, just deeply weird. You learn to blink strategically."* — Reddit r/canada</small>
+*"Nobody warns you that at -40 your eyelashes freeze together when you blink. Not painful, just deeply weird. You learn to blink strategically."* — Reddit r/canada
 
-<small>*"Hanoi winter destroyed every leather item I owned via mould, and I'm from Scotland. I did not know weather could be damp in a new way. It can."* — Internations Hanoi</small>
+*"Hanoi winter destroyed every leather item I owned via mould, and I'm from Scotland. I did not know weather could be damp in a new way. It can."* — Internations Hanoi
 
 ## Conclusion
 

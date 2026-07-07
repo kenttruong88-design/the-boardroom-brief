@@ -87,15 +87,15 @@ Both observations contain something true. Australia builds relationships through
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — "The difficulty of making Dutch friends is a common expat forum topic. Expats consider the Dutch to be blunt and rude. But you can see it another way — no time wasting, no fake smiles and politeness. You know where you stand."* — commenter on 'Is it true it's difficult to make friends for expats in the Netherlands?'</small>
+> *Quora — "The difficulty of making Dutch friends is a common expat forum topic. Expats consider the Dutch to be blunt and rude. But you can see it another way — no time wasting, no fake smiles and politeness. You know where you stand."* — commenter on 'Is it true it's difficult to make friends for expats in the Netherlands?'
 
-> <small>*TurningDutch (expat blog, Netherlands) — "I have seen the complaint of closed social circles quite often. The locals tend to make their friends very early in life and aren't particularly interested in opening their social circles. I used to find it a bit strange, but honestly I don't really have the proper time to devote to new friendships anyway."* — reader comment, turningdutch.com</small>
+> *TurningDutch (expat blog, Netherlands) — "I have seen the complaint of closed social circles quite often. The locals tend to make their friends very early in life and aren't particularly interested in opening their social circles. I used to find it a bit strange, but honestly I don't really have the proper time to devote to new friendships anyway."* — reader comment, turningdutch.com
 
-> <small>*DutchReview — "Making friends in the Netherlands as an expat can be truly difficult. Many said their first friends came from work — the borrel is the easiest icebreaker available. Once you're in, the friendships that form tend to be remarkably solid."* — DutchReview expat guide, 2026</small>
+> *DutchReview — "Making friends in the Netherlands as an expat can be truly difficult. Many said their first friends came from work — the borrel is the easiest icebreaker available. Once you're in, the friendships that form tend to be remarkably solid."* — DutchReview expat guide, 2026
 
-> <small>*Pararius Expat Guide (Netherlands relocation resource) — "While the Dutch communication style — characterised by its directness — might initially surprise newcomers, it's crucial to recognise this as a reflection of the culture's value on honesty and clarity, not a sign of rudeness. In the Netherlands, this directness sets the stage for meaningful connections."* — pararius.com</small>
+> *Pararius Expat Guide (Netherlands relocation resource) — "While the Dutch communication style — characterised by its directness — might initially surprise newcomers, it's crucial to recognise this as a reflection of the culture's value on honesty and clarity, not a sign of rudeness. In the Netherlands, this directness sets the stage for meaningful connections."* — pararius.com
 
-> <small>*Australia Unwrapped — "Australian friendliness functions as basic social courtesy, not a signal of intimacy. It keeps the environment comfortable but does not automatically open the door to deeper emotional access. Repeated low-pressure interactions matter more than one intense bonding moment — depth arrives quietly."* — australiaunwrapped.com</small>
+> *Australia Unwrapped — "Australian friendliness functions as basic social courtesy, not a signal of intimacy. It keeps the environment comfortable but does not automatically open the door to deeper emotional access. Repeated low-pressure interactions matter more than one intense bonding moment — depth arrives quietly."* — australiaunwrapped.com
 
 ### Conclusion
 

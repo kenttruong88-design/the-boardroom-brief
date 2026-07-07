@@ -88,15 +88,15 @@ It is worth noting that the German and Korean systems fail differently, which ma
 
 ### The Part the Brochure Left Out
 
-> <small>*r/germany — "My company now has a salary transparency policy. I discovered my male colleague with two fewer years of experience earns €8k more than me. HR said it's because he 'negotiated better.' Apparently the transparency law's purpose is to make the gap visible, not to fix it."*</small>
+> *r/germany — "My company now has a salary transparency policy. I discovered my male colleague with two fewer years of experience earns €8k more than me. HR said it's because he 'negotiated better.' Apparently the transparency law's purpose is to make the gap visible, not to fix it."*
 
-> <small>*Quora — "I was asked for my salary expectation in a German interview. I gave a range. They offered the bottom of the range. I asked for the top. They said they'd 'come back to me' and went silent for three weeks. I got the job. The lesson: in Germany, silence does not mean no."*</small>
+> *Quora — "I was asked for my salary expectation in a German interview. I gave a range. They offered the bottom of the range. I asked for the top. They said they'd 'come back to me' and went silent for three weeks. I got the job. The lesson: in Germany, silence does not mean no."*
 
-> <small>*Expat.com (Germany forum) — "Don't accept the first offer. My husband was modest and found out his colleague with less experience got paid more simply because he asked for it. The company has a range — they will always offer the bottom, and they expect you to push."* — Canadian expat, posted in expat.com Germany forum</small>
+> *Expat.com (Germany forum) — "Don't accept the first offer. My husband was modest and found out his colleague with less experience got paid more simply because he asked for it. The company has a range — they will always offer the bottom, and they expect you to push."* — Canadian expat, posted in expat.com Germany forum
 
-> <small>*Expat.com (Germany forum) — "For a foreigner: get a German tax adviser. Do not try to figure out the tax system yourself. It is written in German, it is counterintuitive, and doing it wrong is a criminal offense. This is not hyperbole."* — beppi, Germany/Singapore expert, Expat.com</small>
+> *Expat.com (Germany forum) — "For a foreigner: get a German tax adviser. Do not try to figure out the tax system yourself. It is written in German, it is counterintuitive, and doing it wrong is a criminal offense. This is not hyperbole."* — beppi, Germany/Singapore expert, Expat.com
 
-> <small>*r/korea — "A colleague explained the salary system to me: your starting salary is set by which university you attended and which tier of company you joined. After that, it goes up every year automatically. I asked what happens if you perform exceptionally. He looked at me like I had asked what happens if gravity reverses. You get the same raise as everyone else."*</small>
+> *r/korea — "A colleague explained the salary system to me: your starting salary is set by which university you attended and which tier of company you joined. After that, it goes up every year automatically. I asked what happens if you perform exceptionally. He looked at me like I had asked what happens if gravity reverses. You get the same raise as everyone else."*
 
 ### Conclusion
 

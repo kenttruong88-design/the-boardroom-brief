@@ -84,11 +84,11 @@ Both are true. Only one of them is Carnival.
 
 ## What Nobody Warned You About
 
-<small>*"I went to Carnival in Olinda thinking I'd read enough about it. I had not read enough about it. There is no ceiling on the amount of preparation that would have been adequate. I also had the best four days of my adult life."* — Reddit r/brazil</small>
+*"I went to Carnival in Olinda thinking I'd read enough about it. I had not read enough about it. There is no ceiling on the amount of preparation that would have been adequate. I also had the best four days of my adult life."* — Reddit r/brazil
 
-<small>*"Bank holiday Mondays in the UK have a specific atmosphere I can only describe as 'determined enjoyment in difficult conditions.' Everyone is trying very hard to have a good time despite the weather, the crowds, and the fact that everywhere good is fully booked. I have come to love this about the British."* — Internations London</small>
+*"Bank holiday Mondays in the UK have a specific atmosphere I can only describe as 'determined enjoyment in difficult conditions.' Everyone is trying very hard to have a good time despite the weather, the crowds, and the fact that everywhere good is fully booked. I have come to love this about the British."* — Internations London
 
-<small>*"The UK Christmas period is genuinely festive and considerably better than I expected. The problem is it lasts about three weeks and then January arrives and is twelve weeks long. Brazil does not have this problem."* — expat.com</small>
+*"The UK Christmas period is genuinely festive and considerably better than I expected. The problem is it lasts about three weeks and then January arrives and is twelve weeks long. Brazil does not have this problem."* — expat.com
 
 ## Conclusion
 

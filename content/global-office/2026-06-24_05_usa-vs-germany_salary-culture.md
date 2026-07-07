@@ -86,15 +86,15 @@ One expat who moved from Munich to New York described the contrast in a forum po
 
 ### The Part the Brochure Left Out
 
-> <small>*Reddit (r/germany) — "I moved from Austin to Berlin for a 'lifestyle upgrade.' My net salary is lower, my rent is lower, my stress is lower. But every time I look at my Payslip and see the deductions column, I have a small crisis. Nobody told me 40% was not an exaggeration."*</small>
+> *Reddit (r/germany) — "I moved from Austin to Berlin for a 'lifestyle upgrade.' My net salary is lower, my rent is lower, my stress is lower. But every time I look at my Payslip and see the deductions column, I have a small crisis. Nobody told me 40% was not an exaggeration."*
 
-> <small>*Reddit (r/financialindependence) — "The US salary system is great if you are disciplined, lucky, and never get sick. Germany's system is great if you are none of those things. I have been both kinds of person and I now live in Germany."*</small>
+> *Reddit (r/financialindependence) — "The US salary system is great if you are disciplined, lucky, and never get sick. Germany's system is great if you are none of those things. I have been both kinds of person and I now live in Germany."*
 
-> <small>*Quora — "I've worked senior engineering roles in both countries. In the US, I earned 2.5x my German salary gross. Net of health insurance, 401(k) contributions I had to actively manage, and the two months I spent uninsured between jobs, the real gap was closer to 1.6x. Germany's floor is not glamorous. The floor is the point."*</small>
+> *Quora — "I've worked senior engineering roles in both countries. In the US, I earned 2.5x my German salary gross. Net of health insurance, 401(k) contributions I had to actively manage, and the two months I spent uninsured between jobs, the real gap was closer to 1.6x. Germany's floor is not glamorous. The floor is the point."*
 
-> <small>*The Local Germany — Germany does not require companies to list salary ranges in job postings, though EU pay transparency rules taking effect in 2026 will begin to change this. In the meantime, Germans navigating salary conversations have historically done so without the baseline information Americans take for granted from sites like Glassdoor and Levels.fyi.*</small>
+> *The Local Germany — Germany does not require companies to list salary ranges in job postings, though EU pay transparency rules taking effect in 2026 will begin to change this. In the meantime, Germans navigating salary conversations have historically done so without the baseline information Americans take for granted from sites like Glassdoor and Levels.fyi.*
 
-> <small>*Blind (teamblind.com) — "Senior SDE at Amazon: $381K Seattle, $176K Berlin. That's the headline. What the headline doesn't say is that the Berlin person has statutory sick leave, statutory vacation they are contractually expected to take, and a manager who does not email them at 11pm. People are pricing different things."*</small>
+> *Blind (teamblind.com) — "Senior SDE at Amazon: $381K Seattle, $176K Berlin. That's the headline. What the headline doesn't say is that the Berlin person has statutory sick leave, statutory vacation they are contractually expected to take, and a manager who does not email them at 11pm. People are pricing different things."*
 
 ### Conclusion
 

@@ -89,15 +89,15 @@ Workers who move from Singapore to Canada often describe a jarring transition: t
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — expat in Singapore on workplace harmony: "Everyone was very nice to each other — until they weren't, and even then they were still technically nice. It took me six months to understand that 'let's think about it' meant no."*</small>
+> *Quora — expat in Singapore on workplace harmony: "Everyone was very nice to each other — until they weren't, and even then they were still technically nice. It took me six months to understand that 'let's think about it' meant no."*
 
-> <small>*r/singapore — on team bonding events: "The KTV nights aren't really optional. My manager doesn't track attendance, but he absolutely tracks who wasn't there. I've learned to show up, order a Coke, and sing one song badly. That's enough."*</small>
+> *r/singapore — on team bonding events: "The KTV nights aren't really optional. My manager doesn't track attendance, but he absolutely tracks who wasn't there. I've learned to show up, order a Coke, and sing one song badly. That's enough."*
 
-> <small>*Travel Culture Life (Victoria Om) — on Canada's social architecture: "Making genuine, lasting friendships as an adult feels nearly impossible in Canada. While Canadians are undeniably kind and courteous, this same politeness often keeps relationships at surface level. The result is a nation full of people who are surrounded by friendly faces but still feel genuinely lonely."*</small>
+> *Travel Culture Life (Victoria Om) — on Canada's social architecture: "Making genuine, lasting friendships as an adult feels nearly impossible in Canada. While Canadians are undeniably kind and courteous, this same politeness often keeps relationships at surface level. The result is a nation full of people who are surrounded by friendly faces but still feel genuinely lonely."*
 
-> <small>*r/canada — on the newcomer experience: "Back home there was always someone at your door. Here, people ask 'how are you?' at work and genuinely mean it — but they also genuinely don't expect you to answer. I've been here three years and I consider two colleagues actual friends. That would have taken three weeks back home."*</small>
+> *r/canada — on the newcomer experience: "Back home there was always someone at your door. Here, people ask 'how are you?' at work and genuinely mean it — but they also genuinely don't expect you to answer. I've been here three years and I consider two colleagues actual friends. That would have taken three weeks back home."*
 
-> <small>*Pacific Prime (expat guide, 2026) — on Singapore's collectivist workplace: "Disagreeing with the group's decision or boasting about individual achievement is frowned upon. Group members cooperate to meet company goals — the social cost of not participating in team rituals is very real, even when it's never explicitly stated."*</small>
+> *Pacific Prime (expat guide, 2026) — on Singapore's collectivist workplace: "Disagreeing with the group's decision or boasting about individual achievement is frowned upon. Group members cooperate to meet company goals — the social cost of not participating in team rituals is very real, even when it's never explicitly stated."*
 
 ### Conclusion
 

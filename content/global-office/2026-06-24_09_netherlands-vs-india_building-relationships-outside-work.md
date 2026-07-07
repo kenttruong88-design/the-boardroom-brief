@@ -94,15 +94,15 @@ Indian expats in the Netherlands consistently report the same dual experience: g
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — "I've lived in the Netherlands for over 20 years and can count the number of Dutch friends on one hand. A Dutch colleague once explained it: they made all their real friends in school or uni, so they don't have time for new people, especially expats who might be gone at the end of a contract. He wasn't alone — several other Dutch colleagues agreed. The cold casualness of the discussion revealed something about Dutchness that I still struggle with."*</small>
+> *Quora — "I've lived in the Netherlands for over 20 years and can count the number of Dutch friends on one hand. A Dutch colleague once explained it: they made all their real friends in school or uni, so they don't have time for new people, especially expats who might be gone at the end of a contract. He wasn't alone — several other Dutch colleagues agreed. The cold casualness of the discussion revealed something about Dutchness that I still struggle with."*
 
-> <small>*DutchReview comments — "This is my 16th year here. My social life was more active when I had a Dutch boyfriend — but those turned out to be his friends, I found out afterwards. I wouldn't recommend this place for making friends. They really make clear what your place is as an expat."*</small>
+> *DutchReview comments — "This is my 16th year here. My social life was more active when I had a Dutch boyfriend — but those turned out to be his friends, I found out afterwards. I wouldn't recommend this place for making friends. They really make clear what your place is as an expat."*
 
-> <small>*Quora — "The Dutch are lovely when you meet them in a pub or at a festival. But friendship there is often based on a quid pro quo concept: this Friday dinner at your place, next time at ours. In my Italian family, if friends happened to be there at dinnertime, they stayed. In a typical Dutch home, you'd be sent home. I have experienced that many times."*</small>
+> *Quora — "The Dutch are lovely when you meet them in a pub or at a festival. But friendship there is often based on a quid pro quo concept: this Friday dinner at your place, next time at ours. In my Italian family, if friends happened to be there at dinnertime, they stayed. In a typical Dutch home, you'd be sent home. I have experienced that many times."*
 
-> <small>*Internations Expat Insider Survey — The Netherlands ranks 56th out of 68 countries for 'finding friends' and sits in the bottom 10 globally for making local friends — despite ranking 13th as a place to work. The gap between professional ease and social access is, by any measure, one of the widest in the developed world.*</small>
+> *Internations Expat Insider Survey — The Netherlands ranks 56th out of 68 countries for 'finding friends' and sits in the bottom 10 globally for making local friends — despite ranking 13th as a place to work. The gap between professional ease and social access is, by any measure, one of the widest in the developed world.*
 
-> <small>*Quora — "In India, my colleague invited me to his cousin's wedding two weeks after I joined. I barely knew his name. By the end of that weekend I knew his mother's opinion of his career choices, his sister's MBA plans, and which aunty to avoid at the buffet. It was overwhelming. It was also the reason I didn't feel alone for a single day of that posting."*</small>
+> *Quora — "In India, my colleague invited me to his cousin's wedding two weeks after I joined. I barely knew his name. By the end of that weekend I knew his mother's opinion of his career choices, his sister's MBA plans, and which aunty to avoid at the buffet. It was overwhelming. It was also the reason I didn't feel alone for a single day of that posting."*
 
 ---
 

@@ -78,11 +78,11 @@ Japan has the more beautiful parks. Germany has the more useful ones. Both socie
 
 ## What Nobody Warned You About
 
-<small>*"First summer in Berlin: I saw a man read an entire novel at a fountain, barefoot, with a picnic, and I realised I had been wasting my summers in every city I'd previously lived in."* — Reddit r/germany</small>
+*"First summer in Berlin: I saw a man read an entire novel at a fountain, barefoot, with a picnic, and I realised I had been wasting my summers in every city I'd previously lived in."* — Reddit r/germany
 
-<small>*"I assumed hanami would be a gentle, quiet thing. It is not. It is ten thousand people in a park, at least five separate group singalongs, and an impressive volume of convenience store beer. I loved every second of it and nothing in my nature documentary expectations had prepared me."* — Reddit r/japanlife</small>
+*"I assumed hanami would be a gentle, quiet thing. It is not. It is ten thousand people in a park, at least five separate group singalongs, and an impressive volume of convenience store beer. I loved every second of it and nothing in my nature documentary expectations had prepared me."* — Reddit r/japanlife
 
-<small>*"Shinjuku Gyoen has a no-alcohol policy and enforces it. Found this out the wrong way. Japan will gently and firmly redirect you if you have misunderstood the rules."* — expat.com</small>
+*"Shinjuku Gyoen has a no-alcohol policy and enforces it. Found this out the wrong way. Japan will gently and firmly redirect you if you have misunderstood the rules."* — expat.com
 
 ## Conclusion
 

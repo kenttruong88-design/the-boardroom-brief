@@ -80,13 +80,13 @@ The paradox is that the Netherlands' flat structure looks chaotic in the room �
 
 ### The Part the Brochure Left Out
 
-> <small>*iamexpat.nl — A newcomer described the specific culture shock of realizing that "if you grew up in a system where respect equals silence," Dutch directness feels deeply unfamiliar — not wrong, just a completely different operating assumption about what respect actually looks like in a meeting.*</small>
+> *iamexpat.nl — A newcomer described the specific culture shock of realizing that "if you grew up in a system where respect equals silence," Dutch directness feels deeply unfamiliar — not wrong, just a completely different operating assumption about what respect actually looks like in a meeting.*
 
-> <small>*Quora — A respondent answering "What is wrong with corporate culture in India?" pointed to the gap between stated openness to ideas and actual practice, describing junior employees who technically could speak up in meetings but had learned, through experience, that doing so rarely changed the outcome once a senior voice had already weighed in.*</small>
+> *Quora — A respondent answering "What is wrong with corporate culture in India?" pointed to the gap between stated openness to ideas and actual practice, describing junior employees who technically could speak up in meetings but had learned, through experience, that doing so rarely changed the outcome once a senior voice had already weighed in.*
 
-> <small>*InsourceIndia (workplace culture resource) — Guidance aimed at foreign managers working with Indian teams recommended creating private, informal channels specifically because junior team members with strong technical opinions would frequently stay silent in group calls involving leadership or international clients, not from lack of confidence but from learned deference.*</small>
+> *InsourceIndia (workplace culture resource) — Guidance aimed at foreign managers working with Indian teams recommended creating private, informal channels specifically because junior team members with strong technical opinions would frequently stay silent in group calls involving leadership or international clients, not from lack of confidence but from learned deference.*
 
-> <small>*Quora — A Dutch workplace veteran described the internal Dutch-language chat and hallway conversation as a quieter form of exclusion for non-Dutch-speaking hires, noting that fluent English in official meetings didn't guarantee inclusion in the informal conversations where a lot of real decision-shaping actually happened.*</small>
+> *Quora — A Dutch workplace veteran described the internal Dutch-language chat and hallway conversation as a quieter form of exclusion for non-Dutch-speaking hires, noting that fluent English in official meetings didn't guarantee inclusion in the informal conversations where a lot of real decision-shaping actually happened.*
 
 ### Conclusion
 

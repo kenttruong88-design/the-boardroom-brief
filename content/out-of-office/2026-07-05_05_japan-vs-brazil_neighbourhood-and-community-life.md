@@ -80,11 +80,11 @@ But I keep returning to one test: in which neighbourhood would you rather have y
 
 ## What Nobody Warned You About
 
-<small>*"I put my rubbish out on the wrong day once in Osaka. It was returned to my door with a polite note AND the correct schedule highlighted. I have never felt shame like it. I have also never done it again."* — Reddit r/japanlife</small>
+*"I put my rubbish out on the wrong day once in Osaka. It was returned to my door with a polite note AND the correct schedule highlighted. I have never felt shame like it. I have also never done it again."* — Reddit r/japanlife
 
-<small>*"Our condominio WhatsApp group has 214 members and more political intrigue than the actual government. The last síndico election involved a printed manifesto."* — Reddit r/Brazil</small>
+*"Our condominio WhatsApp group has 214 members and more political intrigue than the actual government. The last síndico election involved a printed manifesto."* — Reddit r/Brazil
 
-<small>*"The porteiro knew I'd broken up with my boyfriend before my mother did. He was also nicer about it."* — Internations São Paulo</small>
+*"The porteiro knew I'd broken up with my boyfriend before my mother did. He was also nicer about it."* — Internations São Paulo
 
 ## Conclusion
 

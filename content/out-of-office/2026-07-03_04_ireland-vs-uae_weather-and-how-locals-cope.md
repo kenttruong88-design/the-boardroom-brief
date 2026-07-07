@@ -78,11 +78,11 @@ There is also the small matter of honesty. Irish weather never pretends. Dubai i
 
 ## What Nobody Warned You About
 
-<small>*"Moved from Spain to Galway. Asked my neighbour if the rain ever stops. He looked at the sky, genuinely considered it, and said 'it did once, in 1995, and nobody knew what to do.' I've been here six years now. He wasn't joking."* — Reddit r/ireland</small>
+*"Moved from Spain to Galway. Asked my neighbour if the rain ever stops. He looked at the sky, genuinely considered it, and said 'it did once, in 1995, and nobody knew what to do.' I've been here six years now. He wasn't joking."* — Reddit r/ireland
 
-<small>*"Nobody warns you about August car interiors in Dubai. My sunglasses warped. My phone displayed a temperature warning and shut down. The seatbelt buckle branded me like livestock. I now own oven gloves and keep them in the door pocket, and I no longer find this strange."* — Reddit r/dubai</small>
+*"Nobody warns you about August car interiors in Dubai. My sunglasses warped. My phone displayed a temperature warning and shut down. The seatbelt buckle branded me like livestock. I now own oven gloves and keep them in the door pocket, and I no longer find this strange."* — Reddit r/dubai
 
-<small>*"My Dublin GP didn't even test me. She just said 'you live here, take the vitamin D.' Apparently the entire country is running on supplements and spite from November to February."* — Internations Dublin</small>
+*"My Dublin GP didn't even test me. She just said 'you live here, take the vitamin D.' Apparently the entire country is running on supplements and spite from November to February."* — Internations Dublin
 
 ## Conclusion
 

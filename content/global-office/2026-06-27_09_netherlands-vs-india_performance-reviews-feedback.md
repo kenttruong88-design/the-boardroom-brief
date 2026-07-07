@@ -93,15 +93,15 @@ Expats navigating both environments describe predictable adjustments in each dir
 
 ### The Part the Brochure Left Out
 
-> <small>*Financial Mechanic (expat blog, Netherlands) — An American software engineer working in Amsterdam wrote: "I keep waiting to be offended by a blunt or straightforward critique by a Dutch coworker, as I've been told to expect, but so far that hasn't happened yet. Instead, I find that people are generally direct and helpful, a delightful combination." The shock, it turns out, was in the anticipation.*</small>
+> *Financial Mechanic (expat blog, Netherlands) — An American software engineer working in Amsterdam wrote: "I keep waiting to be offended by a blunt or straightforward critique by a Dutch coworker, as I've been told to expect, but so far that hasn't happened yet. Instead, I find that people are generally direct and helpful, a delightful combination." The shock, it turns out, was in the anticipation.*
 
-> <small>*Undutchables (Netherlands recruitment platform) — "A Dutch person will not beat around the bush in order to tell a colleague or even their boss that he or she is not doing their work properly. No reason to be shocked! Being direct is actually seen as being honest and efficient and you will probably be thanked for your feedback." The Dutch, apparently, expect gratitude for telling you what's wrong.*</small>
+> *Undutchables (Netherlands recruitment platform) — "A Dutch person will not beat around the bush in order to tell a colleague or even their boss that he or she is not doing their work properly. No reason to be shocked! Being direct is actually seen as being honest and efficient and you will probably be thanked for your feedback." The Dutch, apparently, expect gratitude for telling you what's wrong.*
 
-> <small>*Quora — On the question of honesty in Indian performance reviews, one commenter observed: "There is no honest in performance reviews, which is why people dislike them." The phrasing is rough; the diagnosis is not.*</small>
+> *Quora — On the question of honesty in Indian performance reviews, one commenter observed: "There is no honest in performance reviews, which is why people dislike them." The phrasing is rough; the diagnosis is not.*
 
-> <small>*AbleVentures (India HR research, 2026) — "When so much rides on one meeting that happens once a year, the review stops being about development and becomes about negotiation, justification, and damage control. The result is a process most managers dread, most employees distrust, and most organisations quietly know is not working, yet very few have replaced." The annual appraisal as a structural hostage situation.*</small>
+> *AbleVentures (India HR research, 2026) — "When so much rides on one meeting that happens once a year, the review stops being about development and becomes about negotiation, justification, and damage control. The result is a process most managers dread, most employees distrust, and most organisations quietly know is not working, yet very few have replaced." The annual appraisal as a structural hostage situation.*
 
-> <small>*Pararius expat guide (Netherlands) — Multiple internationals report that Dutch feedback initially reads as rude, then, over time, becomes the thing they miss most when they leave. "Once I understood the culture," one expat noted, "I realised the Dutch were being respectful. I just didn't recognise it." The learning curve is steep. The landing is soft.*</small>
+> *Pararius expat guide (Netherlands) — Multiple internationals report that Dutch feedback initially reads as rude, then, over time, becomes the thing they miss most when they leave. "Once I understood the culture," one expat noted, "I realised the Dutch were being respectful. I just didn't recognise it." The learning curve is steep. The landing is soft.*
 
 ### Conclusion
 

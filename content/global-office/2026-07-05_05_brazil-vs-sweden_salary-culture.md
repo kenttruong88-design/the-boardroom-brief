@@ -72,13 +72,13 @@ Brazil individualises through complexity; Sweden collectivises through simplicit
 
 ## The Part the Brochure Left Out
 
-> <small>*Quora — An engineer with ten years' experience posted a Stockholm offer of 45,000 SEK plus a lunch card, asking if it was good; the consensus reply captured Sweden in one line — it is more than enough to live on, close to the national average, and no, they will probably not go much higher, because nobody's offer goes much higher.*</small>
+> *Quora — An engineer with ten years' experience posted a Stockholm offer of 45,000 SEK plus a lunch card, asking if it was good; the consensus reply captured Sweden in one line — it is more than enough to live on, close to the national average, and no, they will probably not go much higher, because nobody's offer goes much higher.*
 
-> <small>*The Local Sweden — A recurring theme in its salary coverage and reader discussions: foreign professionals discovering Swedish taxes are semi-public — anyone can call the tax agency and learn a colleague's taxable income — yet asking someone their salary at fika remains a deeper faux pas than in countries where pay is secret.*</small>
+> *The Local Sweden — A recurring theme in its salary coverage and reader discussions: foreign professionals discovering Swedish taxes are semi-public — anyone can call the tax agency and learn a colleague's taxable income — yet asking someone their salary at fika remains a deeper faux pas than in countries where pay is secret.*
 
-> <small>*r/TillSverige — An American developer wrote that the hardest adjustment wasn't the pay cut on paper but recalibrating what pay was for: once childcare fees capped at pocket change, healthcare stopped being a budget line, and pension contributions ran silently in the background, the missing salary turned out to be doing its job somewhere else.*</small>
+> *r/TillSverige — An American developer wrote that the hardest adjustment wasn't the pay cut on paper but recalibrating what pay was for: once childcare fees capped at pocket change, healthcare stopped being a budget line, and pension contributions ran silently in the background, the missing salary turned out to be doing its job somewhere else.*
 
-> <small>*Internations São Paulo — A German manager recounted nearly rejecting a strong Brazilian offer because the base looked thin, until a local colleague walked her through the 13th salary, vacation third, meal cards, and the employer health plan for her whole family — after which the offer was, by her own arithmetic, the best she'd ever received.*</small>
+> *Internations São Paulo — A German manager recounted nearly rejecting a strong Brazilian offer because the base looked thin, until a local colleague walked her through the 13th salary, vacation third, meal cards, and the employer health plan for her whole family — after which the offer was, by her own arithmetic, the best she'd ever received.*
 
 ---
 

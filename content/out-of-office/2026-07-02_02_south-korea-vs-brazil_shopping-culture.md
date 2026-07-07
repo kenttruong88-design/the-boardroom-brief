@@ -78,11 +78,11 @@ What South Korea proves is that retail friction can be entirely engineered away.
 
 ## What Nobody Warned You About
 
-<small>*"The moment my ARC arrived, I lost two weeks to Korean online shopping. There is no other way to describe what happened. The apps are specifically designed to make you forget time."* — Internations Seoul</small>
+*"The moment my ARC arrived, I lost two weeks to Korean online shopping. There is no other way to describe what happened. The apps are specifically designed to make you forget time."* — Internations Seoul
 
-<small>*"Nobody told me that in Brazil, going to the supermarket takes an hour minimum not because it's big but because you will run into your neighbour, your building's security guard, and someone who knows your colleague, and stopping to talk is not optional."* — Reddit r/brazil</small>
+*"Nobody told me that in Brazil, going to the supermarket takes an hour minimum not because it's big but because you will run into your neighbour, your building's security guard, and someone who knows your colleague, and stopping to talk is not optional."* — Reddit r/brazil
 
-<small>*"Tried to return something at a Korean department store. Worked perfectly. Then tried to return something bought on a Korean app as a foreigner. Five business days, two phone calls, and a form I could not read. Both experiences are true."* — expat.com</small>
+*"Tried to return something at a Korean department store. Worked perfectly. Then tried to return something bought on a Korean app as a foreigner. Five business days, two phone calls, and a form I could not read. Both experiences are true."* — expat.com
 
 ## Conclusion
 

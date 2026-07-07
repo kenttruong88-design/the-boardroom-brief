@@ -80,11 +80,11 @@ But hotels are not an engineering problem; they are a homesickness problem. Ever
 
 ## What Nobody Warned You About
 
-<small>*"Stayed three nights at a family hotel in Crete. On departure the owner's mother cried, gave me a litre of olive oil, and made me promise to email when I landed. I've had relationships with less aftercare."* — Reddit r/GreeceTravel</small>
+*"Stayed three nights at a family hotel in Crete. On departure the owner's mother cried, gave me a litre of olive oil, and made me promise to email when I landed. I've had relationships with less aftercare."* — Reddit r/GreeceTravel
 
-<small>*"Nobody tells you Korean love motels are just... the best hotels? £35 got me a room with a two-metre TV, a jacuzzi and a hair styler that costs £400 retail. The 'seedy' reputation is doing unpaid PR for savvy travellers."* — Reddit r/korea</small>
+*"Nobody tells you Korean love motels are just... the best hotels? £35 got me a room with a two-metre TV, a jacuzzi and a hair styler that costs £400 retail. The 'seedy' reputation is doing unpaid PR for savvy travellers."* — Reddit r/korea
 
-<small>*"Slept in a jjimjilbang between flights. Woke up at 3am in matching pyjamas next to 40 strangers, all of us on a warm floor, weirdly at peace. Cheaper than the airport hotel and I'd pick it again."* — Quora, Korea travel thread</small>
+*"Slept in a jjimjilbang between flights. Woke up at 3am in matching pyjamas next to 40 strangers, all of us on a warm floor, weirdly at peace. Cheaper than the airport hotel and I'd pick it again."* — Quora, Korea travel thread
 
 ## Conclusion
 

@@ -87,15 +87,15 @@ One theme that recurs in parenting forums across both countries is the same disc
 
 ### The Part the Brochure Left Out
 
-> <small>*Mumsnet (Living Overseas) — "Be aware of childcare costs too — citizens and some visas get CCS which can cover almost half the cost. If not it's expensive with one and more so if you're planning a second. Daily fees unsubsidised where we are come to $165 per child per day. Also consider maternity leave — you need to have been employed for 10 of the past 12 months to access the government one, and this may be dependent on your visa."*</small>
+> *Mumsnet (Living Overseas) — "Be aware of childcare costs too — citizens and some visas get CCS which can cover almost half the cost. If not it's expensive with one and more so if you're planning a second. Daily fees unsubsidised where we are come to $165 per child per day. Also consider maternity leave — you need to have been employed for 10 of the past 12 months to access the government one, and this may be dependent on your visa."*
 
-> <small>*Quora — On Australia's parental leave policy: "The scheme sounds generous until you calculate what minimum wage actually covers in a city where the median rent eats most of it. The months before childcare starts are financially the most brutal — you're not earning, and you're not yet paying for care, so people assume you're fine."*</small>
+> *Quora — On Australia's parental leave policy: "The scheme sounds generous until you calculate what minimum wage actually covers in a city where the median rent eats most of it. The months before childcare starts are financially the most brutal — you're not earning, and you're not yet paying for care, so people assume you're fine."*
 
-> <small>*DutchReview (reader comments) — "It's incredibly frustrating to say '100% pay, capped at €223.40 per day' — that's NOT 100% THEN. Higher earners take a real hit and the communications around it are deliberately vague."*</small>
+> *DutchReview (reader comments) — "It's incredibly frustrating to say '100% pay, capped at €223.40 per day' — that's NOT 100% THEN. Higher earners take a real hit and the communications around it are deliberately vague."*
 
-> <small>*DutchReview (reader comments) — An expat from India wrote: "Netherlands has the worst support for new mothers across the globe compared to what I expected. High taxes, crazy daycare costs, 16 weeks leave — and no support from government in terms of real maternity income. Even a country like Poland offers a year of leave. Quite angry at the Dutch government for taxing so high and not being supportive."*</small>
+> *DutchReview (reader comments) — An expat from India wrote: "Netherlands has the worst support for new mothers across the globe compared to what I expected. High taxes, crazy daycare costs, 16 weeks leave — and no support from government in terms of real maternity income. Even a country like Poland offers a year of leave. Quite angry at the Dutch government for taxing so high and not being supportive."*
 
-> <small>*IamExpat — "Demand for early childhood education in the Netherlands is high and waiting lists may be up to six months long. It is best to register your child as early as possible — which may be before it is even born. You should also consider registering with more than one centre until you get a spot."*</small>
+> *IamExpat — "Demand for early childhood education in the Netherlands is high and waiting lists may be up to six months long. It is best to register your child as early as possible — which may be before it is even born. You should also consider registering with more than one centre until you get a spot."*
 
 ### Conclusion
 

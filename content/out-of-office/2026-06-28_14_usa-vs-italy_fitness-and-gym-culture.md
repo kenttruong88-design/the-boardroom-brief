@@ -96,14 +96,14 @@ The American gym infrastructure wins on ambition, on variety, on the sheer commi
 
 ## What Nobody Warned You About
 
-<small>*"Moved from New York to Milan and kept looking for a SoulCycle equivalent for six months. Eventually a colleague just started taking me on the passeggiata every evening. I've lost four kilos and I haven't been to a gym once. I feel slightly betrayed by everything I previously believed."*
-— American expats in Italy, expat.com</small>
+*"Moved from New York to Milan and kept looking for a SoulCycle equivalent for six months. Eventually a colleague just started taking me on the passeggiata every evening. I've lost four kilos and I haven't been to a gym once. I feel slightly betrayed by everything I previously believed."*
+— American expats in Italy, expat.com
 
-<small>*"The Italian trainer at my palestra gave me unsolicited form corrections for three weeks before I realised this was affection. In an American gym, a stranger offering feedback is a threat. Here it is a relationship beginning."*
-— Internations Milan</small>
+*"The Italian trainer at my palestra gave me unsolicited form corrections for three weeks before I realised this was affection. In an American gym, a stranger offering feedback is a threat. Here it is a relationship beginning."*
+— Internations Milan
 
-<small>*"American gym culture in January is something you have to experience to understand. Every machine occupied, motivational music at medical intervention volumes, everyone on a plan they found online. By February 15th it's fine again."*
-— Reddit r/xxfitness</small>
+*"American gym culture in January is something you have to experience to understand. Every machine occupied, motivational music at medical intervention volumes, everyone on a plan they found online. By February 15th it's fine again."*
+— Reddit r/xxfitness
 
 ---
 

@@ -82,11 +82,11 @@ Don't get sick without reading this first.
 
 ## What Nobody Warned You About
 
-<small>*"I arrived in Sydney with a minor infection and walked into a GP as a new permanent resident. They bulk-billed me, prescribed antibiotics, and I paid nothing. I stood outside the pharmacy slightly tearful. Where I'm from this would have cost several hundred dollars."* — Reddit r/australia</small>
+*"I arrived in Sydney with a minor infection and walked into a GP as a new permanent resident. They bulk-billed me, prescribed antibiotics, and I paid nothing. I stood outside the pharmacy slightly tearful. Where I'm from this would have cost several hundred dollars."* — Reddit r/australia
 
-<small>*"Brazilian private healthcare: the diagnostic lab called me at 9am with blood results from a test I did at 8am. The quality, when you have access, is astonishing. The key words are 'when you have access.'"* — Internations São Paulo</small>
+*"Brazilian private healthcare: the diagnostic lab called me at 9am with blood results from a test I did at 8am. The quality, when you have access, is astonishing. The key words are 'when you have access.'"* — Internations São Paulo
 
-<small>*"Nobody told me Australian dental wasn't covered by Medicare. I found out at my first dentist appointment when they handed me a bill. I now have dental insurance and a strong personal policy on asking questions in advance."* — expat.com Australia</small>
+*"Nobody told me Australian dental wasn't covered by Medicare. I found out at my first dentist appointment when they handed me a bill. I now have dental insurance and a strong personal policy on asking questions in advance."* — expat.com Australia
 
 ## Conclusion
 

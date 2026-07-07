@@ -86,11 +86,11 @@ Japan wins. Buy less, buy today, eat better. The kayak was never going to fit in
 
 ## What Nobody Warned You About
 
-<small>*"The half-price sticker guy at my local supermarket has a following. We know his schedule. We pretend to browse. The moment that sticker roll comes out, twelve strangers move as one. Total silence. It's beautiful."* — Reddit r/japanlife</small>
+*"The half-price sticker guy at my local supermarket has a following. We know his schedule. We pretend to browse. The moment that sticker roll comes out, twelve strangers move as one. Total silence. It's beautiful."* — Reddit r/japanlife
 
-<small>*"Took my Japanese mother-in-law to a Texas H-E-B. She stood in the cereal aisle for a full minute, then asked me, very quietly, 'Who is all this for?' I still don't have an answer."* — Reddit r/Costco</small>
+*"Took my Japanese mother-in-law to a Texas H-E-B. She stood in the cereal aisle for a full minute, then asked me, very quietly, 'Who is all this for?' I still don't have an answer."* — Reddit r/Costco
 
-<small>*"Nobody warns you that in Japan the cashier will never touch your bagging. You bag at a separate counter. I held up a queue of eleven people trying to pack my groceries at the till like an animal."* — Internations Tokyo</small>
+*"Nobody warns you that in Japan the cashier will never touch your bagging. You bag at a separate counter. I held up a queue of eleven people trying to pack my groceries at the till like an animal."* — Internations Tokyo
 
 ## Conclusion
 

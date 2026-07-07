@@ -81,13 +81,13 @@ The genuine irony is generational and reversed from what either country's reputa
 
 ### The Part the Brochure Left Out
 
-> <small>*Reddit (aggregated via Scoop Upworthy) — A German professional who relocated to the US for his wife's career described being genuinely stunned to discover that the 5-to-6 weeks of PTO he'd always considered a baseline standard was, in America, treated as an exceptional perk rather than a default expectation.*</small>
+> *Reddit (aggregated via Scoop Upworthy) — A German professional who relocated to the US for his wife's career described being genuinely stunned to discover that the 5-to-6 weeks of PTO he'd always considered a baseline standard was, in America, treated as an exceptional perk rather than a default expectation.*
 
-> <small>*Quora — A respondent debating whether to leave work on time when colleagues stay late described the social pressure explicitly: staying is often less about the actual workload and more about being seen staying, a distinction that doesn't exist in the same way in cultures where departure time isn't read as a loyalty signal.*</small>
+> *Quora — A respondent debating whether to leave work on time when colleagues stay late described the social pressure explicitly: staying is often less about the actual workload and more about being seen staying, a distinction that doesn't exist in the same way in cultures where departure time isn't read as a loyalty signal.*
 
-> <small>*move2europe.eu (expat community resource) — An American expat account described the specific moment of realizing nobody expected a reply to a work email sent after 6pm as "a small revelation," noting that the absence of anxiety about ignoring after-hours messages took longer to adjust to than any language barrier.*</small>
+> *move2europe.eu (expat community resource) — An American expat account described the specific moment of realizing nobody expected a reply to a work email sent after 6pm as "a small revelation," noting that the absence of anxiety about ignoring after-hours messages took longer to adjust to than any language barrier.*
 
-> <small>*The Local (thelocal.de) — Coverage of EU working-time rulings highlighted that German employers are increasingly required to systematically record daily working hours, meaning behaviors casually normalized in American work culture — checking email at breakfast, taking a boss's call during personal time — are now formally classified as recorded work under German and EU law.*</small>
+> *The Local (thelocal.de) — Coverage of EU working-time rulings highlighted that German employers are increasingly required to systematically record daily working hours, meaning behaviors casually normalized in American work culture — checking email at breakfast, taking a boss's call during personal time — are now formally classified as recorded work under German and EU law.*
 
 ### Conclusion
 

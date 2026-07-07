@@ -86,15 +86,15 @@ The American model offers freedom that Japanese workers increasingly envy — th
 
 ### The Part the Brochure Left Out
 
-> <small>*r/japanlife — "I skipped my first nomikai because I had a legitimate prior commitment. Three months later I found out I'd been quietly removed from a cross-team project. Nobody said anything. Nobody had to."*</small>
+> *r/japanlife — "I skipped my first nomikai because I had a legitimate prior commitment. Three months later I found out I'd been quietly removed from a cross-team project. Nobody said anything. Nobody had to."*
 
-> <small>*Quora — "Refusing a boss's nomikai invitation in a traditional Japanese company is like refusing a meeting that's been coded as social. The refusal is noted. The coding as 'social' means it cannot be acknowledged. This is the whole point." — Former Tokyo-based finance manager*</small>
+> *Quora — "Refusing a boss's nomikai invitation in a traditional Japanese company is like refusing a meeting that's been coded as social. The refusal is noted. The coding as 'social' means it cannot be acknowledged. This is the whole point." — Former Tokyo-based finance manager*
 
-> <small>*Japan Dev — "My coworker spent six months being professionally invisible to our department head. Then they sat next to each other at the year-end party, the manager got slightly drunk and candid, and within a month my coworker was on the best project of the year. This is not a fluke. This is the system working as designed."*</small>
+> *Japan Dev — "My coworker spent six months being professionally invisible to our department head. Then they sat next to each other at the year-end party, the manager got slightly drunk and candid, and within a month my coworker was on the best project of the year. This is not a fluke. This is the system working as designed."*
 
-> <small>*Expat Japan — "The thing nobody tells you: you don't have to drink. You just have to show up, pour for others, participate in the toast with your oolong tea, and stay until the first venue ends. The alcohol is incidental. The attendance is the message."*</small>
+> *Expat Japan — "The thing nobody tells you: you don't have to drink. You just have to show up, pour for others, participate in the toast with your oolong tea, and stay until the first venue ends. The alcohol is incidental. The attendance is the message."*
 
-> <small>*r/japanlife — "Coming from a US office where 'team building' meant a Slack poll about your favorite movie, the first nomikai was genuinely disorienting. By the second one I understood it was basically the only place real information moved in our company."*</small>
+> *r/japanlife — "Coming from a US office where 'team building' meant a Slack poll about your favorite movie, the first nomikai was genuinely disorienting. By the second one I understood it was basically the only place real information moved in our company."*
 
 ### Conclusion
 

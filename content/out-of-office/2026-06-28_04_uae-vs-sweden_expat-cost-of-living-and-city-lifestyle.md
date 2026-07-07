@@ -88,11 +88,11 @@ The expat who does three years in Dubai and then moves to Stockholm frequently r
 
 ## What Nobody Warned You About
 
-> <small>*Reddit r/dubai — "The cheque system for rent nearly broke me. I paid my annual rent in two post-dated cheques, which meant I had to have six months' rent sitting in my account on day one. Nobody told me this before I arrived. I was living off rice for three weeks while my bank transfer cleared and my landlord waited for a cheque I technically didn't have yet. Get the full rent situation explained to you before you sign anything."*</small>
+> *Reddit r/dubai — "The cheque system for rent nearly broke me. I paid my annual rent in two post-dated cheques, which meant I had to have six months' rent sitting in my account on day one. Nobody told me this before I arrived. I was living off rice for three weeks while my bank transfer cleared and my landlord waited for a cheque I technically didn't have yet. Get the full rent situation explained to you before you sign anything."*
 
-> <small>*Reddit r/sweden — "The personnummer queue is the first real test of your patience in Sweden. Without it you cannot get a bank account, cannot get a phone plan, cannot access most services. I waited eleven weeks. During that time I paid for everything in cash I had brought from home. Sweden is very efficient once you are in the system. Getting into the system is a different Sweden entirely."*</small>
+> *Reddit r/sweden — "The personnummer queue is the first real test of your patience in Sweden. Without it you cannot get a bank account, cannot get a phone plan, cannot access most services. I waited eleven weeks. During that time I paid for everything in cash I had brought from home. Sweden is very efficient once you are in the system. Getting into the system is a different Sweden entirely."*
 
-> <small>*Internations Stockholm — "Nobody warned me about the January effect. December in Stockholm is dark but festive — Christmas markets, candles everywhere, a genuine atmosphere. January is dark with no mitigation. February is dark with the additional insult of being February. By March you understand why Swedes are so enthusiastic about the first day that feels like spring. I bought a SAD lamp. It helped. I wish someone had told me to buy it in October."*</small>
+> *Internations Stockholm — "Nobody warned me about the January effect. December in Stockholm is dark but festive — Christmas markets, candles everywhere, a genuine atmosphere. January is dark with no mitigation. February is dark with the additional insult of being February. By March you understand why Swedes are so enthusiastic about the first day that feels like spring. I bought a SAD lamp. It helped. I wish someone had told me to buy it in October."*
 
 ---
 

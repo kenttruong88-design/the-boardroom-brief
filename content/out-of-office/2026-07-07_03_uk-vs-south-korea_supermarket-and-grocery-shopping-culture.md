@@ -82,11 +82,11 @@ So Korea takes it — but note the cost printed on the receipt. Korean convenien
 
 ## What Nobody Warned You About
 
-<small>*"Ordered groceries at 11:40pm as an experiment. They were outside my door at 6:52am. I have lived in London, Berlin and Chicago and I now understand those were developing markets."* — Reddit r/Living_in_Korea</small>
+*"Ordered groceries at 11:40pm as an experiment. They were outside my door at 6:52am. I have lived in London, Berlin and Chicago and I now understand those were developing markets."* — Reddit r/Living_in_Korea
 
-<small>*"Nobody prepares you for the emotional violence of the Tesco self-checkout announcing 'approval needed' over one avocado, and the entire queue turning to assess your character."* — Reddit r/CasualUK</small>
+*"Nobody prepares you for the emotional violence of the Tesco self-checkout announcing 'approval needed' over one avocado, and the entire queue turning to assess your character."* — Reddit r/CasualUK
 
-<small>*"Block of cheddar at E-Mart: ₩14,000. I stood there doing currency conversion three times hoping I was wrong. I now have cheese muled in by visiting relatives like contraband."* — Internations Seoul</small>
+*"Block of cheddar at E-Mart: ₩14,000. I stood there doing currency conversion three times hoping I was wrong. I now have cheese muled in by visiting relatives like contraband."* — Internations Seoul
 
 ## Conclusion
 

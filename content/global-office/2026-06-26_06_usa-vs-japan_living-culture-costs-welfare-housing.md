@@ -96,15 +96,15 @@ The American system's tradeoffs are also real, simply different in character: hi
 
 ### The Part the Brochure Left Out
 
-> <small>*Reddit (r/japanlife) — "I moved from Chicago to Osaka three years ago. My US employer-sponsored plan cost me $480/month with a $3,000 deductible. In Japan I pay about ¥18,000/month in National Health Insurance and my last clinic visit was ¥2,400. I genuinely felt like I'd been robbed in slow motion for a decade without knowing it."*</small>
+> *Reddit (r/japanlife) — "I moved from Chicago to Osaka three years ago. My US employer-sponsored plan cost me $480/month with a $3,000 deductible. In Japan I pay about ¥18,000/month in National Health Insurance and my last clinic visit was ¥2,400. I genuinely felt like I'd been robbed in slow motion for a decade without knowing it."*
 
-> <small>*Reddit (r/japanlife) — "The apartment was half the price of my Seattle studio and twice the size. The part no one tells you is that you might spend four months finding it. My first seven applications were declined because I'm not Japanese. A guarantor company and a bilingual agent eventually cracked it, but it wasn't painless."*</small>
+> *Reddit (r/japanlife) — "The apartment was half the price of my Seattle studio and twice the size. The part no one tells you is that you might spend four months finding it. My first seven applications were declined because I'm not Japanese. A guarantor company and a bilingual agent eventually cracked it, but it wasn't painless."*
 
-> <small>*Quora (What is the cost of living in Japan compared to the US?) — "People call Japan expensive and I don't understand why. My grocery bill in Nagoya is about 60% of what I was spending in suburban Maryland. The myth persists because tourists go to Ginza and eat at hotel restaurants. Locals eat at konbini and kissaten and spend very little."*</small>
+> *Quora (What is the cost of living in Japan compared to the US?) — "People call Japan expensive and I don't understand why. My grocery bill in Nagoya is about 60% of what I was spending in suburban Maryland. The myth persists because tourists go to Ginza and eat at hotel restaurants. Locals eat at konbini and kissaten and spend very little."*
 
-> <small>*Unseen Japan (reader survey on housing discrimination, 2024) — One reader responded by showing a list of fourteen consecutive rental rejections — all explicitly citing her nationality. Another wrote: "I bought my house because I was refused for being foreign, refused for having kids, refused for being a single mom, refused for having pets. I just said f\*ck it and bought instead."*</small>
+> *Unseen Japan (reader survey on housing discrimination, 2024) — One reader responded by showing a list of fourteen consecutive rental rejections — all explicitly citing her nationality. Another wrote: "I bought my house because I was refused for being foreign, refused for having kids, refused for being a single mom, refused for having pets. I just said f\*ck it and bought instead."*
 
-> <small>*Quora (How expensive is life in Japan for foreigners?) — "The thing that surprised me most coming from the US wasn't the price of anything specific — it was the absence of financial dread. I'm not one bad month away from losing my health coverage. I'm not calculating whether a doctor visit is worth it. That psychological shift alone is worth more than any salary comparison."*</small>
+> *Quora (How expensive is life in Japan for foreigners?) — "The thing that surprised me most coming from the US wasn't the price of anything specific — it was the absence of financial dread. I'm not one bad month away from losing my health coverage. I'm not calculating whether a doctor visit is worth it. That psychological shift alone is worth more than any salary comparison."*
 
 ---
 

@@ -101,15 +101,15 @@ The divergence is most vivid in the gap between what official systems offer and 
 
 ## The Part the Brochure Left Out
 
-> <small>*r/expats — Moved from the UK to Toronto with a three-month-old. Put the baby on four childcare waitlists the week we landed. Eighteen months later, still waiting on all four. The parental leave policy is genuinely great. The infrastructure to hand the baby to someone else when it ends is not.*</small>
+> *r/expats — Moved from the UK to Toronto with a three-month-old. Put the baby on four childcare waitlists the week we landed. Eighteen months later, still waiting on all four. The parental leave policy is genuinely great. The infrastructure to hand the baby to someone else when it ends is not.*
 
-> <small>*r/singapore — The Baby Bonus money lands in your account and feels like a windfall. Then you price out infant care as a foreigner without PR and realize the subsidy you read about applies to citizens. You are paying full rack rate — S$2,000 a month — while your Singaporean colleague two desks over is paying S$400. Same building, same baby age, completely different financial reality.*</small>
+> *r/singapore — The Baby Bonus money lands in your account and feels like a windfall. Then you price out infant care as a foreigner without PR and realize the subsidy you read about applies to citizens. You are paying full rack rate — S$2,000 a month — while your Singaporean colleague two desks over is paying S$400. Same building, same baby age, completely different financial reality.*
 
-> <small>*r/canada — I took the full eighteen months. My partner took four months. By the time I went back, my role had been reorganized, my manager had changed, and the project I'd been leading had a new lead. HR was warm about it. The math was not.*</small>
+> *r/canada — I took the full eighteen months. My partner took four months. By the time I went back, my role had been reorganized, my manager had changed, and the project I'd been leading had a new lead. HR was warm about it. The math was not.*
 
-> <small>*r/singapore — The tuition thing crept up on us. We were not going to do it. Then our kid started primary school and within six weeks three other parents in the class had arranged subject tutors. By term two we had a Chinese tutor and a math tutor. We are Canadian. We did not move to Singapore to do this. And yet here we are.*</small>
+> *r/singapore — The tuition thing crept up on us. We were not going to do it. Then our kid started primary school and within six weeks three other parents in the class had arranged subject tutors. By term two we had a Chinese tutor and a math tutor. We are Canadian. We did not move to Singapore to do this. And yet here we are.*
 
-> <small>*r/IWantOut — Comparing Canada and Singapore for starting a family: Canada gives you time. Singapore gives you money and structure. Neither gives you a society that has solved the underlying problem, which is that having children is expensive, career-limiting, and logistically complicated in any city where both parents need to work. The policy documents are very optimistic about this.*</small>
+> *r/IWantOut — Comparing Canada and Singapore for starting a family: Canada gives you time. Singapore gives you money and structure. Neither gives you a society that has solved the underlying problem, which is that having children is expensive, career-limiting, and logistically complicated in any city where both parents need to work. The policy documents are very optimistic about this.*
 
 ---
 

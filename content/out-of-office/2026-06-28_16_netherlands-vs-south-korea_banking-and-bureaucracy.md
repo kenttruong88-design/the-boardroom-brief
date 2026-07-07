@@ -96,14 +96,14 @@ The Netherlands wins on accessibility — the system was at least designed with 
 
 ## What Nobody Warned You About
 
-<small>*"The Dutch DigiD app is actually very good. Getting the DigiD took me six weeks, required a letter sent to an address I didn't have yet, and involved a second appointment after the first appointment produced a form that needed to be submitted before the second appointment could occur. After all that, very good app."*
-— Reddit r/Netherlands</small>
+*"The Dutch DigiD app is actually very good. Getting the DigiD took me six weeks, required a letter sent to an address I didn't have yet, and involved a second appointment after the first appointment produced a form that needed to be submitted before the second appointment could occur. After all that, very good app."*
+— Reddit r/Netherlands
 
-<small>*"The Korean immigration office has a ticketing system, an information desk, a form-checking station, and then the actual counter, and each of these is a queue. I did not bring snacks to my first appointment. I brought snacks to my second."*
-— expat.com, Seoul newcomers</small>
+*"The Korean immigration office has a ticketing system, an information desk, a form-checking station, and then the actual counter, and each of these is a queue. I did not bring snacks to my first appointment. I brought snacks to my second."*
+— expat.com, Seoul newcomers
 
-<small>*"My Korean bank account works beautifully now. Setting it up required my ARC, my passport, a letter from my employer, proof of address, two forms of ID, and an explanation of my purpose in Korea that was verified against my visa classification. Worth it. Mostly."*
-— Internations Seoul</small>
+*"My Korean bank account works beautifully now. Setting it up required my ARC, my passport, a letter from my employer, proof of address, two forms of ID, and an explanation of my purpose in Korea that was verified against my visa classification. Worth it. Mostly."*
+— Internations Seoul
 
 ---
 

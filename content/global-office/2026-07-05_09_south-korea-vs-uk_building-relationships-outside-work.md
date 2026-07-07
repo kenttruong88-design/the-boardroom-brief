@@ -72,13 +72,13 @@ The two systems fail newcomers in mirror-image ways. Korea offers warmth without
 
 ## The Part the Brochure Left Out
 
-> <small>*Quora — In a widely-answered thread on why foreigners struggle to make friends in Korea, Korean respondents were disarmingly frank: their closest circles formed decades ago at school, their calendars belong to those circles, and the foreigner is competing not against unfriendliness but against a fully-booked heart.*</small>
+> *Quora — In a widely-answered thread on why foreigners struggle to make friends in Korea, Korean respondents were disarmingly frank: their closest circles formed decades ago at school, their calendars belong to those circles, and the foreigner is competing not against unfriendliness but against a fully-booked heart.*
 
-> <small>*r/korea — Long-term expats describe the "pet foreigner" arc as a rite of passage: one poster reported three years of constant dinner invitations that never became friendship until he joined a hiking club, climbed with the same ajusshis every Sunday for a year, and was one day informed — not asked — that he was coming on the group's Jeju trip.*</small>
+> *r/korea — Long-term expats describe the "pet foreigner" arc as a rite of passage: one poster reported three years of constant dinner invitations that never became friendship until he joined a hiking club, climbed with the same ajusshis every Sunday for a year, and was one day informed — not asked — that he was coming on the group's Jeju trip.*
 
-> <small>*Internations — The UK's persistently weak "Finding Friends" ranking in the Expat Insider survey comes with a recurring commentary theme: expats report British colleagues who are funny, kind, and warm for eight hours a day, then vanish into lives that have had no vacancies since approximately 2009.*</small>
+> *Internations — The UK's persistently weak "Finding Friends" ranking in the Expat Insider survey comes with a recurring commentary theme: expats report British colleagues who are funny, kind, and warm for eight hours a day, then vanish into lives that have had no vacancies since approximately 2009.*
 
-> <small>*r/AskUK — Asked how adults actually make friends, British posters converge on one answer with unnerving consistency: you don't, unless something recurring forces it — and the most-upvoted practical advice is almost always the same: same pub, same night, every week, and in eighteen months you'll have a funeral-worthy friend without either of you ever acknowledging it.*</small>
+> *r/AskUK — Asked how adults actually make friends, British posters converge on one answer with unnerving consistency: you don't, unless something recurring forces it — and the most-upvoted practical advice is almost always the same: same pub, same night, every week, and in eighteen months you'll have a funeral-worthy friend without either of you ever acknowledging it.*
 
 ---
 

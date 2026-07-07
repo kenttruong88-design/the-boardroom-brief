@@ -72,13 +72,13 @@ The deep difference is where each society stores its trust. Brazil stores it in 
 
 ## The Part the Brochure Left Out
 
-> <small>*Quora — A European who moved to São Paulo wrote that the genuinely disorienting part wasn't the friendliness but its speed: colleagues she'd known a week asked about her mother's health by name, and when she fell ill, three co-workers appeared at her flat with soup and medicine, unrequested — a warmth she described as "wonderful and slightly like being adopted by force."*</small>
+> *Quora — A European who moved to São Paulo wrote that the genuinely disorienting part wasn't the friendliness but its speed: colleagues she'd known a week asked about her mother's health by name, and when she fell ill, three co-workers appeared at her flat with soup and medicine, unrequested — a warmth she described as "wonderful and slightly like being adopted by force."*
 
-> <small>*r/TillSverige — The subreddit's perennial "how do I make Swedish friends" threads have a stock answer refined over years: join a förening, any förening — one long-timer reported that two years of Wednesday floorball produced deeper friendships than two hundred after-works, because Swedes bond through recurring structure, never through spontaneity.*</small>
+> *r/TillSverige — The subreddit's perennial "how do I make Swedish friends" threads have a stock answer refined over years: join a förening, any förening — one long-timer reported that two years of Wednesday floorball produced deeper friendships than two hundred after-works, because Swedes bond through recurring structure, never through spontaneity.*
 
-> <small>*The Local Sweden — Its data reporting on loneliness notes that foreigners report fewer close friendships than natives, and its comment threads add the texture: multiple readers describe Swedish neighbours who avoided the shared stairwell to skip small talk — then quietly shovelled the newcomer's snow all winter without ever mentioning it.*</small>
+> *The Local Sweden — Its data reporting on loneliness notes that foreigners report fewer close friendships than natives, and its comment threads add the texture: multiple readers describe Swedish neighbours who avoided the shared stairwell to skip small talk — then quietly shovelled the newcomer's snow all winter without ever mentioning it.*
 
-> <small>*Internations São Paulo — A Swedish engineer posted that his adjustment ran in reverse: after a year of churrascos, spontaneous visits, and eleven WhatsApp groups, he flew home for Christmas and found the silence of his parents' house physically loud — his advice to arriving Scandinavians was to surrender early, because Brazil will not respect your calendar and you will be happier once it doesn't.*</small>
+> *Internations São Paulo — A Swedish engineer posted that his adjustment ran in reverse: after a year of churrascos, spontaneous visits, and eleven WhatsApp groups, he flew home for Christmas and found the silence of his parents' house physically loud — his advice to arriving Scandinavians was to surrender early, because Brazil will not respect your calendar and you will be happier once it doesn't.*
 
 ---
 

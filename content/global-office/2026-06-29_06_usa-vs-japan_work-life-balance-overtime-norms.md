@@ -90,15 +90,15 @@ The practical difference for someone moving between these countries: American ov
 
 ### The Part the Brochure Left Out
 
-> <small>*r/japanlife — A US tech worker who transferred to a Japanese company described his first performance review feedback: he was praised for his output but gently told that leaving the office at 5:30pm "made his colleagues feel he was not a team player." He had been producing more than anyone else in the team. "The hours are the communication," he wrote. "The work is almost secondary."*</small>
+> *r/japanlife — A US tech worker who transferred to a Japanese company described his first performance review feedback: he was praised for his output but gently told that leaving the office at 5:30pm "made his colleagues feel he was not a team player." He had been producing more than anyone else in the team. "The hours are the communication," he wrote. "The work is almost secondary."*
 
-> <small>*Quora — A Japanese professional who moved to San Francisco for a startup wrote about her initial shock at American workplace performativity around overwork: "People would casually mention working all weekend, or send emails at midnight, not as complaints but as status signals. In Japan, overwork is shameful and hidden. In America, it was a brag."*</small>
+> *Quora — A Japanese professional who moved to San Francisco for a startup wrote about her initial shock at American workplace performativity around overwork: "People would casually mention working all weekend, or send emails at midnight, not as complaints but as status signals. In Japan, overwork is shameful and hidden. In America, it was a brag."*
 
-> <small>*Internations Japan — A British professional in Tokyo described the sabisu zangyo discovery: "I left at 6:30 for the first two months. My official contract said 9-6. Then I noticed that nobody else left before 8, and that my manager was always the last one out. I was not doing anything wrong legally. But I was sending a social signal I did not know I was sending."*</small>
+> *Internations Japan — A British professional in Tokyo described the sabisu zangyo discovery: "I left at 6:30 for the first two months. My official contract said 9-6. Then I noticed that nobody else left before 8, and that my manager was always the last one out. I was not doing anything wrong legally. But I was sending a social signal I did not know I was sending."*
 
-> <small>*japanlivinglife.com — Several foreign employees reported that the generational gap in Japanese offices is now significant enough to require reading the room carefully: younger Japanese colleagues in tech companies may genuinely leave at 6pm, while older managers in the same building follow entirely different norms. "The company is having two cultures simultaneously," one respondent wrote, "and nobody has formally announced which one is winning."*</small>
+> *japanlivinglife.com — Several foreign employees reported that the generational gap in Japanese offices is now significant enough to require reading the room carefully: younger Japanese colleagues in tech companies may genuinely leave at 6pm, while older managers in the same building follow entirely different norms. "The company is having two cultures simultaneously," one respondent wrote, "and nobody has formally announced which one is winning."*
 
-> <small>*r/antiwork — An American who had worked in Japan, Germany, and the US described the US as the only country where he felt actual social pressure to not take his allotted vacation days. "In Japan there was pressure around hours but vacation was respected. In the US, the number was unlimited and the expectation was that I would use none of it."*</small>
+> *r/antiwork — An American who had worked in Japan, Germany, and the US described the US as the only country where he felt actual social pressure to not take his allotted vacation days. "In Japan there was pressure around hours but vacation was respected. In the US, the number was unlimited and the expectation was that I would use none of it."*
 
 ---
 

@@ -80,11 +80,11 @@ The sting: France's system assumes you exist only when documented; India's incre
 
 ## What Nobody Warned You About
 
-<small>*"The bank wanted proof of address. The landlord wanted a French bank account. The electricity company wanted both. I broke the loop by crying in a BNP branch and I'm not ashamed."* — Internations Paris</small>
+*"The bank wanted proof of address. The landlord wanted a French bank account. The electricity company wanted both. I broke the loop by crying in a BNP branch and I'm not ashamed."* — Internations Paris
 
-<small>*"My 70-year-old sabziwala takes UPI but my bank branch needed me to physically visit to update my phone number. In writing. With a photocopy of my passport. India contains multitudes."* — Reddit r/india</small>
+*"My 70-year-old sabziwala takes UPI but my bank branch needed me to physically visit to update my phone number. In writing. With a photocopy of my passport. India contains multitudes."* — Reddit r/india
 
-<small>*"France rejected my dossier because the photocopy was 'too dark.' The photocopy. Of a document they issued."* — Reddit r/france</small>
+*"France rejected my dossier because the photocopy was 'too dark.' The photocopy. Of a document they issued."* — Reddit r/france
 
 ## Conclusion
 

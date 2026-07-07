@@ -74,15 +74,15 @@ The irony: China's "family" workplace is hierarchical kinship — belonging with
 
 ## The Part the Brochure Left Out
 
-> <small>*r/chinalife — A British teacher in Chongqing described the Friday 4pm announcement of a "voluntary" team dinner that evening as the single largest adjustment of his expat life — bigger than the language — because declining twice, he learned, had quietly reclassified him from family to vendor.*</small>
+> *r/chinalife — A British teacher in Chongqing described the Friday 4pm announcement of a "voluntary" team dinner that evening as the single largest adjustment of his expat life — bigger than the language — because declining twice, he learned, had quietly reclassified him from family to vendor.*
 
-> <small>*Quora — A Chinese engineer who moved to Munich wrote that after eight months of correct, friendly, five-o'clock-sharp colleagues, a teammate inviting him hiking on a Saturday felt "like a promotion" — and that German friendship, once it arrived, came with a loyalty his Shanghai office would have recognised.*</small>
+> *Quora — A Chinese engineer who moved to Munich wrote that after eight months of correct, friendly, five-o'clock-sharp colleagues, a teammate inviting him hiking on a Saturday felt "like a promotion" — and that German friendship, once it arrived, came with a loyalty his Shanghai office would have recognised.*
 
-> <small>*Internations Frankfurt — An American manager recounted proposing casual Thursday drinks to her German team: three accepted via calendar invite for a date eleven days later, attended for exactly ninety minutes, and thanked her formally. The event was, by local standards, a triumph.*</small>
+> *Internations Frankfurt — An American manager recounted proposing casual Thursday drinks to her German team: three accepted via calendar invite for a date eleven days later, attended for exactly ninety minutes, and thanked her formally. The event was, by local standards, a triumph.*
 
-> <small>*Blind — An employee at a Chinese tech firm's Berlin office described the collision: HQ's expectation of monthly team dinners met German labour law and the Feierabend, producing a compromise "mandatory fun" lunch — 12:00 to 13:00, hotpot, attendance high, everyone home by six.*</small>
+> *Blind — An employee at a Chinese tech firm's Berlin office described the collision: HQ's expectation of monthly team dinners met German labour law and the Feierabend, producing a compromise "mandatory fun" lunch — 12:00 to 13:00, hotpot, attendance high, everyone home by six.*
 
-> <small>*The Local Germany — A reader confessed her birthday-cake error: she waited to be celebrated, while the office waited for her to cater. Her colleague broke the standoff on day three by explaining the rule, adding consolingly that a newcomer forgetting it was "the most normal mistake we have."*</small>
+> *The Local Germany — A reader confessed her birthday-cake error: she waited to be celebrated, while the office waited for her to cater. Her colleague broke the standoff on day three by explaining the rule, adding consolingly that a newcomer forgetting it was "the most normal mistake we have."*
 
 ---
 

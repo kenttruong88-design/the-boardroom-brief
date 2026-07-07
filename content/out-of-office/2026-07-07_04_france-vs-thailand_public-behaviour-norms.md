@@ -82,11 +82,11 @@ Which is why, for the visitor, France is easier: its rules are strict but *disco
 
 ## What Nobody Warned You About
 
-<small>*"Took me eight months in Paris to realise the bakery woman wasn't rude — I was. I started saying bonjour first and it was like a cheat code. She remembers my order now. We are, by Parisian standards, engaged."* — Internations Paris</small>
+*"Took me eight months in Paris to realise the bakery woman wasn't rude — I was. I started saying bonjour first and it was like a cheat code. She remembers my order now. We are, by Parisian standards, engaged."* — Internations Paris
 
-<small>*"Watched a tourist scream at a Bangkok airline counter for twenty minutes. The agent smiled the whole time and typed nothing. NOTHING. The quiet guy behind him got rebooked in four minutes."* — Reddit r/Thailand</small>
+*"Watched a tourist scream at a Bangkok airline counter for twenty minutes. The agent smiled the whole time and typed nothing. NOTHING. The quiet guy behind him got rebooked in four minutes."* — Reddit r/Thailand
 
-<small>*"In France I got told off by a stranger for talking too loudly — to my own mother — on a train. In Thailand nobody would ever say it. They'd just move carriages and think it. I honestly can't decide which is worse."* — Reddit r/France</small>
+*"In France I got told off by a stranger for talking too loudly — to my own mother — on a train. In Thailand nobody would ever say it. They'd just move carriages and think it. I honestly can't decide which is worse."* — Reddit r/France
 
 ## Conclusion
 

@@ -80,11 +80,11 @@ But efficiency is only a virtue when the thing being made efficient deserves to 
 
 ## What Nobody Warned You About
 
-<small>*"The cashier at Albert Heijn scans faster than any human should be able to move. Bagging your own groceries becomes a competitive sport you didn't sign up for and are constantly losing."* — Reddit r/Netherlands</small>
+*"The cashier at Albert Heijn scans faster than any human should be able to move. Bagging your own groceries becomes a competitive sport you didn't sign up for and are constantly losing."* — Reddit r/Netherlands
 
-<small>*"My pazar tomato guy noticed I hadn't come for two weeks and asked my neighbour if I was ill. I've had gym memberships with less follow-up."* — Internations Istanbul</small>
+*"My pazar tomato guy noticed I hadn't come for two weeks and asked my neighbour if I was ill. I've had gym memberships with less follow-up."* — Internations Istanbul
 
-<small>*"Moved from Izmir to Utrecht. The supermarkets here are very clean and very organised and the tomatoes taste of refrigerated sadness."* — expat.com Netherlands forum</small>
+*"Moved from Izmir to Utrecht. The supermarkets here are very clean and very organised and the tomatoes taste of refrigerated sadness."* — expat.com Netherlands forum
 
 ## Conclusion
 

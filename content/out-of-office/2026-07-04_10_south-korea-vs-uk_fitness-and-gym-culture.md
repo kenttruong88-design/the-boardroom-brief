@@ -86,11 +86,11 @@ Korea wins the workout. Britain wins the turnout.
 
 ## What Nobody Warned You About
 
-<small>*"Got smoked on Bukhansan by a grandmother in full North Face. At the summit she opened a picnic — kimbap, fruit, makgeolli — offered me some out of pity, and started DESCENDING before I'd caught my breath. I think about her weekly."* — Reddit r/korea</small>
+*"Got smoked on Bukhansan by a grandmother in full North Face. At the summit she opened a picnic — kimbap, fruit, makgeolli — offered me some out of pity, and started DESCENDING before I'd caught my breath. I think about her weekly."* — Reddit r/korea
 
-<small>*"My UK gym direct debit survived two house moves, a breakup and a pandemic. I've been four times this year. It's not a membership anymore, it's a tithe."* — Reddit r/gymuk</small>
+*"My UK gym direct debit survived two house moves, a breakup and a pandemic. I've been four times this year. It's not a membership anymore, it's a tithe."* — Reddit r/gymuk
 
-<small>*"Nobody warns you that the jjimjilbang is mandatory. My Korean gym friends consider the workout unfinished without the sauna. Fitness here has a cool-down, a social hour and a dress code. In pyjamas."* — Internations Seoul</small>
+*"Nobody warns you that the jjimjilbang is mandatory. My Korean gym friends consider the workout unfinished without the sauna. Fitness here has a cool-down, a social hour and a dress code. In pyjamas."* — Internations Seoul
 
 ## Conclusion
 

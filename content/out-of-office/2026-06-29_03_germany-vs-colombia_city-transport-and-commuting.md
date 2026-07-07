@@ -90,11 +90,11 @@ German commuters know exactly when their train should arrive and have the data t
 
 ## What Nobody Warned You About
 
-<small>*"I blocked the left side of a Berlin escalator by accident on my first week. Four people said something to me. One of them was a child. I have not done it since."* — Reddit r/germany</small>
+*"I blocked the left side of a Berlin escalator by accident on my first week. Four people said something to me. One of them was a child. I have not done it since."* — Reddit r/germany
 
-<small>*"TransMilenio during rush hour in Bogotá has to be experienced to be believed. I have been on packed Tokyo metro, packed Mumbai local trains — TransMilenio is a different category of full. There is no word for how full it is. You simply have to accept that it is happening to you."* — Internations Bogotá</small>
+*"TransMilenio during rush hour in Bogotá has to be experienced to be believed. I have been on packed Tokyo metro, packed Mumbai local trains — TransMilenio is a different category of full. There is no word for how full it is. You simply have to accept that it is happening to you."* — Internations Bogotá
 
-<small>*"The Medellín cable car has the best view of any public transit in the world and it costs less than a coffee. I took it every weekend just for the view. My Colombian colleagues could not understand why I was so moved by the bus."* — expat.com Colombia</small>
+*"The Medellín cable car has the best view of any public transit in the world and it costs less than a coffee. I took it every weekend just for the view. My Colombian colleagues could not understand why I was so moved by the bus."* — expat.com Colombia
 
 ---
 

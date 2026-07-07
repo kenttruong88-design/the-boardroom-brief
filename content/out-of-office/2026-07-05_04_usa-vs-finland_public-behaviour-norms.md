@@ -80,11 +80,11 @@ I'll rule this one on honesty grounds. Both cultures are performing, but only on
 
 ## What Nobody Warned You About
 
-<small>*"I'm American and I asked a Finnish colleague how his weekend was. He thought about it for a genuinely long time and said 'why?' We're good friends now. It took four years."* — Reddit r/Finland</small>
+*"I'm American and I asked a Finnish colleague how his weekend was. He thought about it for a genuinely long time and said 'why?' We're good friends now. It took four years."* — Reddit r/Finland
 
-<small>*"Moved to Texas from Germany. A stranger at the grocery store complimented my shoes, asked about my accent, and invited me to a barbecue in under 90 seconds. I attended. There were 40 people. I never saw him again."* — Reddit r/AskAnAmerican</small>
+*"Moved to Texas from Germany. A stranger at the grocery store complimented my shoes, asked about my accent, and invited me to a barbecue in under 90 seconds. I attended. There were 40 people. I never saw him again."* — Reddit r/AskAnAmerican
 
-<small>*"The bus stop spacing is real. I once stood 'too close' — about 1.5 metres — and the man ahead of me moved forward. I have never felt so perceived."* — Internations Helsinki</small>
+*"The bus stop spacing is real. I once stood 'too close' — about 1.5 metres — and the man ahead of me moved forward. I have never felt so perceived."* — Internations Helsinki
 
 ## Conclusion
 

@@ -92,15 +92,15 @@ The practical consequence for someone moving between these countries: in Brazil,
 
 ### The Part the Brochure Left Out
 
-> <small>*r/sweden — A British professional who moved to Gothenburg for a product role described her first Swedish July as "the most disorienting professional month of my life." Her entire team was unreachable for four weeks. Her UK training had told her that availability was professionalism. Her Swedish colleagues would have found the reverse disturbing. "I spent the first two weeks quietly panicking and the last two weeks understanding why they did it."*</small>
+> *r/sweden — A British professional who moved to Gothenburg for a product role described her first Swedish July as "the most disorienting professional month of my life." Her entire team was unreachable for four weeks. Her UK training had told her that availability was professionalism. Her Swedish colleagues would have found the reverse disturbing. "I spent the first two weeks quietly panicking and the last two weeks understanding why they did it."*
 
-> <small>*Quora — A Brazilian HR director described the one-third vacation bonus as one of the least-understood aspects of Brazilian compensation for foreign employers: "Companies arrive thinking 'we'll give great salary and no bonus' and discover Brazilian employees have a legally mandated one-third bonus on top of their vacation pay. It's not negotiable. It is the law."*</small>
+> *Quora — A Brazilian HR director described the one-third vacation bonus as one of the least-understood aspects of Brazilian compensation for foreign employers: "Companies arrive thinking 'we'll give great salary and no bonus' and discover Brazilian employees have a legally mandated one-third bonus on top of their vacation pay. It's not negotiable. It is the law."*
 
-> <small>*Internations Sweden — A German professional who relocated to Stockholm described the social pressure around not checking email during vacation as more intense than the social pressure around checking it in Germany. "In Germany, you were praised for being reachable on holiday. In Sweden, you were gently told that if you needed to be reachable, you had not managed your workload properly. Both were true. They were just different kinds of true."*</small>
+> *Internations Sweden — A German professional who relocated to Stockholm described the social pressure around not checking email during vacation as more intense than the social pressure around checking it in Germany. "In Germany, you were praised for being reachable on holiday. In Sweden, you were gently told that if you needed to be reachable, you had not managed your workload properly. Both were true. They were just different kinds of true."*
 
-> <small>*careersweden.com — An expat who moved from the US to a Swedish manufacturing company described spending his first July emailing clients and getting auto-responders from everyone: the CEO, his entire team, three external agencies, and the IT helpdesk. "I was the only one in the building. I felt extremely efficient. I achieved nothing."*</small>
+> *careersweden.com — An expat who moved from the US to a Swedish manufacturing company described spending his first July emailing clients and getting auto-responders from everyone: the CEO, his entire team, three external agencies, and the IT helpdesk. "I was the only one in the building. I felt extremely efficient. I achieved nothing."*
 
-> <small>*europortage.com — A French professional in São Paulo described her confusion at the thirteenth salary: "In France, a thirteenth month is a company bonus — some give it, some don't. In Brazil, it is mandatory by law and paid in two tranches. My Brazilian colleagues assumed I knew this. I did not know this. It was the nicest surprise I had in my first year."*</small>
+> *europortage.com — A French professional in São Paulo described her confusion at the thirteenth salary: "In France, a thirteenth month is a company bonus — some give it, some don't. In Brazil, it is mandatory by law and paid in two tranches. My Brazilian colleagues assumed I knew this. I did not know this. It was the nicest surprise I had in my first year."*
 
 ---
 

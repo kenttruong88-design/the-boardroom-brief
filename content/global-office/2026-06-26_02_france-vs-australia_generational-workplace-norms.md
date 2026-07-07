@@ -90,15 +90,15 @@ The irony is that both systems contain their own trap. The French framework prot
 
 ### The Part the Brochure Left Out
 
-> <small>*The Local France — An Australian reader summed up her experience in France succinctly: "In France people work to live and not live to work." She then discovered that her working hours in Paris were not especially different from London — just later, and with a better lunch.*</small>
+> *The Local France — An Australian reader summed up her experience in France succinctly: "In France people work to live and not live to work." She then discovered that her working hours in Paris were not especially different from London — just later, and with a better lunch.*
 
-> <small>*Quora — A commenter on a thread about finding work as a young person in France noted: "It is much harder for young people here than in other European countries. The CDI is the golden ticket, but it takes years to get one, and in the meantime you cannot rent a decent apartment, let alone get a mortgage. People outside France don't understand this part."*</small>
+> *Quora — A commenter on a thread about finding work as a young person in France noted: "It is much harder for young people here than in other European countries. The CDI is the golden ticket, but it takes years to get one, and in the meantime you cannot rent a decent apartment, let alone get a mortgage. People outside France don't understand this part."*
 
-> <small>*Expat in France — A French national who had built her career in London before returning home described the experience as a reverse culture shock: "I had never really worked in France before. Being French, people did not expect my confusion — I didn't have the foreigner's excuse anymore. The presenteeism was the thing that hit me hardest. Your work is done, but you stay. You have to stay."*</small>
+> *Expat in France — A French national who had built her career in London before returning home described the experience as a reverse culture shock: "I had never really worked in France before. Being French, people did not expect my confusion — I didn't have the foreigner's excuse anymore. The presenteeism was the thing that hit me hardest. Your work is done, but you stay. You have to stay."*
 
-> <small>*HRD Australia — Australian HR publication HCA Magazine reported that Gen Z workers "are not scared to constructively critique" and "could create more lateral hierarchies." Managers interviewed described this as both energising and, occasionally, exhausting — particularly for Boomer colleagues who interpret directness as disrespect.*</small>
+> *HRD Australia — Australian HR publication HCA Magazine reported that Gen Z workers "are not scared to constructively critique" and "could create more lateral hierarchies." Managers interviewed described this as both energising and, occasionally, exhausting — particularly for Boomer colleagues who interpret directness as disrespect.*
 
-> <small>*r/australia — In a thread on generational workplace friction, one commenter wrote: "The tall poppy thing cuts both ways. We'll cut down the boss who acts like they're better than everyone, but we'll also cut down the 24-year-old who announces their 'personal brand' in a team meeting. The culture rewards contribution, not performance of ambition."*</small>
+> *r/australia — In a thread on generational workplace friction, one commenter wrote: "The tall poppy thing cuts both ways. We'll cut down the boss who acts like they're better than everyone, but we'll also cut down the 24-year-old who announces their 'personal brand' in a team meeting. The culture rewards contribution, not performance of ambition."*
 
 ### Conclusion
 

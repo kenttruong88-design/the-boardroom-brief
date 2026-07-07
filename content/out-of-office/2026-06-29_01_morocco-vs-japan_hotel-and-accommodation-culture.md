@@ -92,11 +92,11 @@ The riad is generous to excess. The ryokan is precise to perfection. Both will s
 
 ## What Nobody Warned You About
 
-<small>*"I booked the cheapest riad in Marrakech medina because the photos were stunning. The courtyard had a drainage problem, the Wi-Fi didn't reach the room, and the 'traditional breakfast' was a bread roll and instant coffee. Read the reviews. Read ALL the reviews."* — Reddit r/travel</small>
+*"I booked the cheapest riad in Marrakech medina because the photos were stunning. The courtyard had a drainage problem, the Wi-Fi didn't reach the room, and the 'traditional breakfast' was a bread roll and instant coffee. Read the reviews. Read ALL the reviews."* — Reddit r/travel
 
-<small>*"At the ryokan I didn't realise the meal was served IN my room and I'd gone to the restaurant area in my yukata asking where dinner was. The staff were so gracious about redirecting me but I genuinely wanted to dissolve into the tatami."* — Internations Tokyo</small>
+*"At the ryokan I didn't realise the meal was served IN my room and I'd gone to the restaurant area in my yukata asking where dinner was. The staff were so gracious about redirecting me but I genuinely wanted to dissolve into the tatami."* — Internations Tokyo
 
-<small>*"The riad owner in Fes remembered on day three that I'd mentioned I didn't eat meat on day one and had secretly adjusted every breakfast they'd prepared for me. Nobody announced it. It just happened. That's the hospitality standard."* — expat.com Morocco</small>
+*"The riad owner in Fes remembered on day three that I'd mentioned I didn't eat meat on day one and had secretly adjusted every breakfast they'd prepared for me. Nobody announced it. It just happened. That's the hospitality standard."* — expat.com Morocco
 
 ---
 

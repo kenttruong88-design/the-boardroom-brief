@@ -82,11 +82,11 @@ If you want a language to learn in a country that will cheer you on: Italy. If y
 
 ## What Nobody Warned You About
 
-<small>*"In Italy, I once tried to order a coffee in the wrong order (you pay first, then order at the bar) and the entire process broke down spectacularly. Three people helped me simultaneously. I left with the correct coffee and an invitation to someone's home."* — Internations Rome</small>
+*"In Italy, I once tried to order a coffee in the wrong order (you pay first, then order at the bar) and the entire process broke down spectacularly. Three people helped me simultaneously. I left with the correct coffee and an invitation to someone's home."* — Internations Rome
 
-<small>*"Korean is hard but Hangul really does take two days. Read the signs. Even if you don't know what they say, suddenly the city makes spatial sense. It's weirdly motivating."* — Reddit r/korea</small>
+*"Korean is hard but Hangul really does take two days. Read the signs. Even if you don't know what they say, suddenly the city makes spatial sense. It's weirdly motivating."* — Reddit r/korea
 
-<small>*"South Korean customer service when you don't speak Korean: extraordinary. Korean social life when you don't speak Korean: very lonely for longer than you'd want. Learn the language."* — expat.com Seoul</small>
+*"South Korean customer service when you don't speak Korean: extraordinary. Korean social life when you don't speak Korean: very lonely for longer than you'd want. Learn the language."* — expat.com Seoul
 
 ## Conclusion
 

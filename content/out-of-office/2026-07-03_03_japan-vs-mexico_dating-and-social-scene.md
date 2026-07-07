@@ -78,11 +78,11 @@ I'll take Mexico, narrowly, and for one reason: the infrastructure of joy. A dat
 
 ## What Nobody Warned You About
 
-<small>*"Dated a Japanese guy for what I THOUGHT was two months. Mentioned him as my boyfriend to a mutual friend. Word got back. He was mortified — 'but I haven't confessed yet.' We then had the most formal conversation of my life, after which we were officially together. Reader, I married the paperwork."* — Reddit r/japanlife</small>
+*"Dated a Japanese guy for what I THOUGHT was two months. Mentioned him as my boyfriend to a mutual friend. Word got back. He was mortified — 'but I haven't confessed yet.' We then had the most formal conversation of my life, after which we were officially together. Reader, I married the paperwork."* — Reddit r/japanlife
 
-<small>*"First date in CDMX: he brought two friends 'so it wouldn't be awkward.' Second date: his sister came. Third date: lunch at his mum's. I'm from Finland. I have never recovered and I never want to."* — Reddit r/MexicoCity</small>
+*"First date in CDMX: he brought two friends 'so it wouldn't be awkward.' Second date: his sister came. Third date: lunch at his mum's. I'm from Finland. I have never recovered and I never want to."* — Reddit r/MexicoCity
 
-<small>*"The nomikai is the only place my Japanese coworkers become chatty, and everything said there is diplomatically forgotten by morning. It's like Vegas, but with better manners and worse karaoke."* — Internations Tokyo</small>
+*"The nomikai is the only place my Japanese coworkers become chatty, and everything said there is diplomatically forgotten by morning. It's like Vegas, but with better manners and worse karaoke."* — Internations Tokyo
 
 ## Conclusion
 

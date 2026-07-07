@@ -92,15 +92,15 @@ Both ecosystems are growing, which complicates any clean verdict. Australia's ta
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — An Australian founder who relocated to the US reflected that back home, pitching with conviction read as arrogance. "You learn to dial it back so far that investors stop believing you. Then you move abroad and have to relearn how to sell."*</small>
+> *Quora — An Australian founder who relocated to the US reflected that back home, pitching with conviction read as arrogance. "You learn to dial it back so far that investors stop believing you. Then you move abroad and have to relearn how to sell."*
 
-> <small>*Reddit (r/expats) — A software engineer who moved from Melbourne to Amsterdam described being genuinely startled at their first all-hands meeting: a junior developer interrupted the CTO mid-sentence to push back on a product decision. "Nobody flinched. That was the culture. I'd been trained for years to wait my turn."*</small>
+> *Reddit (r/expats) — A software engineer who moved from Melbourne to Amsterdam described being genuinely startled at their first all-hands meeting: a junior developer interrupted the CTO mid-sentence to push back on a product decision. "Nobody flinched. That was the culture. I'd been trained for years to wait my turn."*
 
-> <small>*Expat.com — An American expat in Amsterdam noted that the Dutch workplace is "incredibly casual, especially in startups," with C-level executives regularly sitting down one-on-one with employees at any level. The disorientation, she wrote, was not the flatness — it was discovering that flat hierarchies still have politics, just without the org chart to map them.*</small>
+> *Expat.com — An American expat in Amsterdam noted that the Dutch workplace is "incredibly casual, especially in startups," with C-level executives regularly sitting down one-on-one with employees at any level. The disorientation, she wrote, was not the flatness — it was discovering that flat hierarchies still have politics, just without the org chart to map them.*
 
-> <small>*Pararius Expat Guide — A guide to Dutch work culture notes that expats consistently struggle with one specific gap: internal meetings revert to Dutch the moment the group shrinks. "You can be fluent in the job and still miss 40% of what actually gets decided."*</small>
+> *Pararius Expat Guide — A guide to Dutch work culture notes that expats consistently struggle with one specific gap: internal meetings revert to Dutch the moment the group shrinks. "You can be fluent in the job and still miss 40% of what actually gets decided."*
 
-> <small>*Hacker News — A commenter on a thread about tall poppy syndrome observed that the condition is self-aware in Australia in a way that makes it harder to fix: "Everyone knows it exists, everyone agrees it's bad, and everyone still does it. It's the most politely enforced conformity I've ever encountered."*</small>
+> *Hacker News — A commenter on a thread about tall poppy syndrome observed that the condition is self-aware in Australia in a way that makes it harder to fix: "Everyone knows it exists, everyone agrees it's bad, and everyone still does it. It's the most politely enforced conformity I've ever encountered."*
 
 ### Conclusion
 

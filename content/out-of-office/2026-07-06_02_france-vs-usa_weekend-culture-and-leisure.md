@@ -80,11 +80,11 @@ The French understood something structural: rest doesn't survive as a personal c
 
 ## What Nobody Warned You About
 
-<small>*"Three years in Paris and I still panic-buy on Saturdays like a wartime housewife. Sunday shopping withdrawal is real and nobody prepares you for it."* — Internations Paris</small>
+*"Three years in Paris and I still panic-buy on Saturdays like a wartime housewife. Sunday shopping withdrawal is real and nobody prepares you for it."* — Internations Paris
 
-<small>*"My French brother-in-law watched me answer a work Slack on a Saturday and looked at me the way you'd look at someone eating out of a bin."* — Reddit r/France</small>
+*"My French brother-in-law watched me answer a work Slack on a Saturday and looked at me the way you'd look at someone eating out of a bin."* — Reddit r/France
 
-<small>*"American weekends are just weekdays with different chores. I did the math and my 'day off' had eleven scheduled items. Eleven."* — Reddit r/AskAnAmerican</small>
+*"American weekends are just weekdays with different chores. I did the math and my 'day off' had eleven scheduled items. Eleven."* — Reddit r/AskAnAmerican
 
 ## Conclusion
 

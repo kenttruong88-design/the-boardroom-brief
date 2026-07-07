@@ -80,15 +80,15 @@ Both systems are, structurally, redistributive — Singapore through subsidy and
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — An Employment Pass holder in Singapore laid out a full monthly budget — S$2,000 HDB rent, S$300–350 taxis, S$350–400 eating out, S$167 supplementary hospitalization insurance — and noted the total, S$4,500–6,500 for a couple, surprised him more than any single line item.*</small>
+> *Quora — An Employment Pass holder in Singapore laid out a full monthly budget — S$2,000 HDB rent, S$300–350 taxis, S$350–400 eating out, S$167 supplementary hospitalization insurance — and noted the total, S$4,500–6,500 for a couple, surprised him more than any single line item.*
 
-> <small>*r/expats — A commenter flagged that the Additional Buyer's Stamp Duty of 60 percent for foreigners purchasing Singapore property isn't advertised anywhere near as clearly as the childcare subsidy schemes, and catches newcomers who assumed renting was a temporary phase rather than the long-term plan.*</small>
+> *r/expats — A commenter flagged that the Additional Buyer's Stamp Duty of 60 percent for foreigners purchasing Singapore property isn't advertised anywhere near as clearly as the childcare subsidy schemes, and catches newcomers who assumed renting was a temporary phase rather than the long-term plan.*
 
-> <small>*expatfocus.com community account — A newcomer to Ontario described registering with the province's family-doctor matching portal within a week of arrival on the advice of another expat, only to still wait several months, and said the real adjustment wasn't the system's cost but learning to treat urgent care and walk-in clinics as the default rather than the backup.*</small>
+> *expatfocus.com community account — A newcomer to Ontario described registering with the province's family-doctor matching portal within a week of arrival on the advice of another expat, only to still wait several months, and said the real adjustment wasn't the system's cost but learning to treat urgent care and walk-in clinics as the default rather than the backup.*
 
-> <small>*Quora — Another respondent noted that Singapore's Certificate of Entitlement system means a family arriving with a car-ownership mindset from the US or Australia needs to recalibrate entirely — public transit, not a car, is the default plan, and treating a vehicle as a near-term purchase is a common and expensive miscalculation.*</small>
+> *Quora — Another respondent noted that Singapore's Certificate of Entitlement system means a family arriving with a car-ownership mindset from the US or Australia needs to recalibrate entirely — public transit, not a car, is the default plan, and treating a vehicle as a near-term purchase is a common and expensive miscalculation.*
 
-> <small>*r/expats — A Canadian-based commenter pointed out that $10-a-day childcare is often discussed nationally as though it's already universal, when in practice it depends entirely on which province you land in — checking the current rate before accepting a job offer, not after, was their strongest piece of advice.*</small>
+> *r/expats — A Canadian-based commenter pointed out that $10-a-day childcare is often discussed nationally as though it's already universal, when in practice it depends entirely on which province you land in — checking the current rate before accepting a job offer, not after, was their strongest piece of advice.*
 
 ### Conclusion
 

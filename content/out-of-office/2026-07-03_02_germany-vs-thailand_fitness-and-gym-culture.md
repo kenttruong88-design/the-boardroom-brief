@@ -78,11 +78,11 @@ Germany asks: have you filled in the form? Thailand asks: are you coming tonight
 
 ## What Nobody Warned You About
 
-<small>*"Cancelled my German gym membership when I moved to Denmark. They wanted my new rental contract, my employer letter, AND my Abmeldung. My gym required more paperwork to leave than Denmark required to let me in."* — Reddit r/germany</small>
+*"Cancelled my German gym membership when I moved to Denmark. They wanted my new rental contract, my employer letter, AND my Abmeldung. My gym required more paperwork to leave than Denmark required to let me in."* — Reddit r/germany
 
-<small>*"Went to Phuket for a two-week Muay Thai holiday. That was eight months ago. I've cancelled my flight home twice. My trainer is 52, smokes, and could still knock me out with either hand."* — Reddit r/Thailand</small>
+*"Went to Phuket for a two-week Muay Thai holiday. That was eight months ago. I've cancelled my flight home twice. My trainer is 52, smokes, and could still knock me out with either hand."* — Reddit r/Thailand
 
-<small>*"The 7pm aerobics class in Lumphini Park is run by a man in a headset who has more charisma than every SoulCycle instructor combined. Cost: free. The woman next to me was 70 and outlasted me comfortably."* — expat.com</small>
+*"The 7pm aerobics class in Lumphini Park is run by a man in a headset who has more charisma than every SoulCycle instructor combined. Cost: free. The woman next to me was 70 and outlasted me comfortably."* — expat.com
 
 ## Conclusion
 

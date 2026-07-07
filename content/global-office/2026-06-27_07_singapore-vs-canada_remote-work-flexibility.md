@@ -94,15 +94,15 @@ StatCan data adds a further wrinkle: hybrid workers in Canada actually report th
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — On why remote work hasn't fully caught on in Singapore: "There's a performance element to being present that I hadn't encountered before moving here. Logging off at 5pm feels bold whether you do it from the office or from home. The FWA guidelines help on paper, but the cultural math hasn't changed."*</small>
+> *Quora — On why remote work hasn't fully caught on in Singapore: "There's a performance element to being present that I hadn't encountered before moving here. Logging off at 5pm feels bold whether you do it from the office or from home. The FWA guidelines help on paper, but the cultural math hasn't changed."*
 
-> <small>*r/singapore — On the new FWA rules: "My company responded to my request within the two months. They said no. Technically compliant. This is Singapore — the process now exists; whether the culture follows is a separate problem that will take a generation."*</small>
+> *r/singapore — On the new FWA rules: "My company responded to my request within the two months. They said no. Technically compliant. This is Singapore — the process now exists; whether the culture follows is a separate problem that will take a generation."*
 
-> <small>*Servcorp Singapore Business Blog — On the RTO-versus-flexibility standoff in 2025: "More companies are losing talent when inflexible return-to-office policy requirements meet resistance, creating opportunities for employers offering alternative arrangements." The consultants have noticed what the HR departments are still debating.*</small>
+> *Servcorp Singapore Business Blog — On the RTO-versus-flexibility standoff in 2025: "More companies are losing talent when inflexible return-to-office policy requirements meet resistance, creating opportunities for employers offering alternative arrangements." The consultants have noticed what the HR departments are still debating.*
 
-> <small>*r/canada — On hybrid ambiguity: "I negotiated two days from home before I started. My manager changed six months in. New manager, new rules. There's no framework here — it's just a handshake on top of another handshake."*</small>
+> *r/canada — On hybrid ambiguity: "I negotiated two days from home before I started. My manager changed six months in. New manager, new rules. There's no framework here — it's just a handshake on top of another handshake."*
 
-> <small>*Robert Half Canada, 2026 — Via survey data: "Of those not looking for a new job, 38 per cent said they aren't interested in looking because they don't want to lose their current level of flexibility." Retention through fear of losing something you were never formally promised is a fragile equilibrium.*</small>
+> *Robert Half Canada, 2026 — Via survey data: "Of those not looking for a new job, 38 per cent said they aren't interested in looking because they don't want to lose their current level of flexibility." Retention through fear of losing something you were never formally promised is a fragile equilibrium.*
 
 ### Conclusion
 

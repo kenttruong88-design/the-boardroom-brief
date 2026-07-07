@@ -90,15 +90,15 @@ In a Dutch workplace, the same junior employee is more likely to say, in the mee
 
 ### The Part the Brochure Left Out
 
-> <small>*Reddit (r/Netherlands) — "My first week at a Dutch company I disagreed with my team lead in a standup. I was expecting to be pulled aside later. Instead he said 'good point, let's revisit the timeline.' I almost fell off my chair. Coming from a UK firm, that would have been a career-limiting move."*</small>
+> *Reddit (r/Netherlands) — "My first week at a Dutch company I disagreed with my team lead in a standup. I was expecting to be pulled aside later. Instead he said 'good point, let's revisit the timeline.' I almost fell off my chair. Coming from a UK firm, that would have been a career-limiting move."*
 
-> <small>*Quora — "Work culture in the Netherlands" — "Calling your boss by his first name and stating out in the open that you think his project planning is anything but a good idea in the middle of the meeting is not only acceptable — it's expected. I came from India and it took me six months to stop apologising before I spoke."*</small>
+> *Quora — "Work culture in the Netherlands" — "Calling your boss by his first name and stating out in the open that you think his project planning is anything but a good idea in the middle of the meeting is not only acceptable — it's expected. I came from India and it took me six months to stop apologising before I spoke."*
 
-> <small>*IamExpat.nl — Oz Butun, Director at Philips Innovation Service, recounting his transition to Dutch management: "Without a strict hierarchy, I was afraid I wasn't going to meet my deadlines and that decisions would never get made. Working in Dutch company culture actually made me a better manager. I was used to telling people what to do. Now I engage with the team and reach out more to pick their brains — which actually takes some weight off my shoulders."*</small>
+> *IamExpat.nl — Oz Butun, Director at Philips Innovation Service, recounting his transition to Dutch management: "Without a strict hierarchy, I was afraid I wasn't going to meet my deadlines and that decisions would never get made. Working in Dutch company culture actually made me a better manager. I was used to telling people what to do. Now I engage with the team and reach out more to pick their brains — which actually takes some weight off my shoulders."*
 
-> <small>*Reddit (r/australia) — "Australian managers will say 'we decided as a team' and then you find out later it was already decided before the meeting. The informality is real but don't confuse it with actual shared power. They're not the same thing."*</small>
+> *Reddit (r/australia) — "Australian managers will say 'we decided as a team' and then you find out later it was already decided before the meeting. The informality is real but don't confuse it with actual shared power. They're not the same thing."*
 
-> <small>*HRKatha (reporting on a viral Reddit post, r/Netherlands) — A Dutch employee at a US tech company was questioned by his New York-based manager for logging off at 5pm, not replying to weekend emails, and declining late-night calls. He escalated to Dutch HR. The disciplinary threat was rejected, the out-of-hours contact stopped, and the post became a flashpoint for discussion about European versus American work norms. The Dutch response was not indignation. It was paperwork.*</small>
+> *HRKatha (reporting on a viral Reddit post, r/Netherlands) — A Dutch employee at a US tech company was questioned by his New York-based manager for logging off at 5pm, not replying to weekend emails, and declining late-night calls. He escalated to Dutch HR. The disciplinary threat was rejected, the out-of-hours contact stopped, and the post became a flashpoint for discussion about European versus American work norms. The Dutch response was not indignation. It was paperwork.*
 
 ### Conclusion
 

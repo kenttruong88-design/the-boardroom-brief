@@ -80,11 +80,11 @@ But the real verdict is psychological. Singapore solved its weather and lost a c
 
 ## What Nobody Warned You About
 
-<small>*"Nobody warned me the aircon in Singapore offices is ARCTIC. I moved to the equator and bought my first cardigan. The equator!"* — Internations Singapore</small>
+*"Nobody warned me the aircon in Singapore offices is ARCTIC. I moved to the equator and bought my first cardigan. The equator!"* — Internations Singapore
 
-<small>*"British weather small talk isn't about weather. Took me two years to realise 'bit grey today' means 'I acknowledge you exist and wish you well.' It's beautiful, actually."* — Reddit r/CasualUK</small>
+*"British weather small talk isn't about weather. Took me two years to realise 'bit grey today' means 'I acknowledge you exist and wish you well.' It's beautiful, actually."* — Reddit r/CasualUK
 
-<small>*"The 4pm storm here is so punctual I've stopped checking the forecast and started checking my watch."* — Reddit r/singapore</small>
+*"The 4pm storm here is so punctual I've stopped checking the forecast and started checking my watch."* — Reddit r/singapore
 
 ## Conclusion
 

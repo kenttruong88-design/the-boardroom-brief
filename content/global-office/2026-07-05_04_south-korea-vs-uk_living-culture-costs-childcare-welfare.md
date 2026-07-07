@@ -72,13 +72,13 @@ The comparison defeats the usual arithmetic. Numbeo and Expatistan agree Seoul i
 
 ## The Part the Brochure Left Out
 
-> <small>*r/korea — A long-running theme in housing threads: expats who fell in love with jeonse's rent-free arithmetic until reading about deposit fraud cases, and now recite the checklist like a catechism — registered move-in date, priority claim, HUG insurance, landlord's mortgage certificate — before wiring anything.*</small>
+> *r/korea — A long-running theme in housing threads: expats who fell in love with jeonse's rent-free arithmetic until reading about deposit fraud cases, and now recite the checklist like a catechism — registered move-in date, priority claim, HUG insurance, landlord's mortgage certificate — before wiring anything.*
 
-> <small>*Quora — A parent living in Seoul described taking their son to a paediatric clinic, walking out with an examination and prescriptions for about ₩12,000 — nine dollars — and spending the evening recalculating what their family had paid for equivalent visits back home.*</small>
+> *Quora — A parent living in Seoul described taking their son to a paediatric clinic, walking out with an examination and prescriptions for about ₩12,000 — nine dollars — and spending the evening recalculating what their family had paid for equivalent visits back home.*
 
-> <small>*Internations Seoul — A recurring piece of advice for arriving professionals: make employer housing support the first negotiation item, not salary — a company that shoulders the jeonse deposit or key money is worth more than a 10% pay bump, and locals know it.*</small>
+> *Internations Seoul — A recurring piece of advice for arriving professionals: make employer housing support the first negotiation item, not salary — a company that shoulders the jeonse deposit or key money is worth more than a 10% pay bump, and locals know it.*
 
-> <small>*r/london — A parent posted that their second child's nursery place would consume their entire post-tax salary, prompting the thread's most-upvoted reply: London childcare is a means test for whether both parents' careers deserve to survive — with the 2025 funded-hours expansion the first answer that wasn't simply "no."*</small>
+> *r/london — A parent posted that their second child's nursery place would consume their entire post-tax salary, prompting the thread's most-upvoted reply: London childcare is a means test for whether both parents' careers deserve to survive — with the 2025 funded-hours expansion the first answer that wasn't simply "no."*
 
 ---
 

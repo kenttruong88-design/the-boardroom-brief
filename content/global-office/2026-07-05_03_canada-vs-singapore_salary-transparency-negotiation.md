@@ -72,13 +72,13 @@ The two systems solve the same problem from opposite ends. Canada legislates the
 
 ## The Part the Brochure Left Out
 
-> <small>*Singapore Expats Forum — One member described the bind of a new employer demanding payslips while their current contract contained a salary confidentiality clause; the forum's collective verdict was that the practice is standard, the clause is rarely enforced, and refusing the payslip usually costs more than the clause ever would.*</small>
+> *Singapore Expats Forum — One member described the bind of a new employer demanding payslips while their current contract contained a salary confidentiality clause; the forum's collective verdict was that the practice is standard, the clause is rarely enforced, and refusing the payslip usually costs more than the clause ever would.*
 
-> <small>*Quora — In a thread on whether sharing salaries with colleagues is legal in Singapore despite contract clauses, respondents converged on an awkward truth: it is not against the law, but more than one contributor knew someone whose bonus conversation went mysteriously cold after HR learned numbers had circulated.*</small>
+> *Quora — In a thread on whether sharing salaries with colleagues is legal in Singapore despite contract clauses, respondents converged on an awkward truth: it is not against the law, but more than one contributor knew someone whose bonus conversation went mysteriously cold after HR learned numbers had circulated.*
 
-> <small>*r/PersonalFinanceCanada — A recurring confession genre: posters who discovered via a BC job posting that their own role was being advertised at $15,000 above their current salary, and used the screenshot — successfully — as the entire body of their raise request.*</small>
+> *r/PersonalFinanceCanada — A recurring confession genre: posters who discovered via a BC job posting that their own role was being advertised at $15,000 above their current salary, and used the screenshot — successfully — as the entire body of their raise request.*
 
-> <small>*Blind — Tech workers relocating from Toronto to Singapore repeatedly flag the same surprise: offers arrive as a percentage bump on last drawn pay rather than a market rate for the role, so arriving underpaid means staying underpaid unless you switch employers — which is precisely why Singapore tech job-hopping is so brisk.*</small>
+> *Blind — Tech workers relocating from Toronto to Singapore repeatedly flag the same surprise: offers arrive as a percentage bump on last drawn pay rather than a market rate for the role, so arriving underpaid means staying underpaid unless you switch employers — which is precisely why Singapore tech job-hopping is so brisk.*
 
 ---
 

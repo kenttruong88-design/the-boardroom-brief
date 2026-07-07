@@ -84,11 +84,11 @@ The real question is what you want your commute to be. Japan has decided it shou
 
 ## What Nobody Warned You About
 
-<small>*"I moved from Istanbul to Tokyo and spent the first month apologising to people on trains for existing. In Istanbul you'd elbow someone out of the way and that's fine. Here I breathed too loudly and a woman visibly flinched."* — Reddit r/movingtojapan</small>
+*"I moved from Istanbul to Tokyo and spent the first month apologising to people on trains for existing. In Istanbul you'd elbow someone out of the way and that's fine. Here I breathed too loudly and a woman visibly flinched."* — Reddit r/movingtojapan
 
-<small>*"The dolmuş is either the best or worst thing about Istanbul depending on how late you are and how confident you are in your Turkish. I've been taken on some genuinely creative routes."* — expat.com Istanbul forums</small>
+*"The dolmuş is either the best or worst thing about Istanbul depending on how late you are and how confident you are in your Turkish. I've been taken on some genuinely creative routes."* — expat.com Istanbul forums
 
-<small>*"Tokyo trains announce the name of the approaching station, then the name again, then the name in English, then remind you to take your belongings, then thank you for riding. Istanbul buses announce nothing. You just have to know. I prefer Tokyo but I'm a coward."* — Internations Tokyo</small>
+*"Tokyo trains announce the name of the approaching station, then the name again, then the name in English, then remind you to take your belongings, then thank you for riding. Istanbul buses announce nothing. You just have to know. I prefer Tokyo but I'm a coward."* — Internations Tokyo
 
 ## Conclusion
 

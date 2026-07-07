@@ -74,13 +74,13 @@ The irony runs both directions. American startups preach flatness while worshipp
 
 ## The Part the Brochure Left Out
 
-> <small>*Quora — A foreigner who joined a Japanese company described the disorientation of honorifics in an ostensibly casual startup: management wore sneakers and answered Slack at midnight, but addressing a senior colleague without the -san suffix still produced a small, unmistakable frost in the room.*</small>
+> *Quora — A foreigner who joined a Japanese company described the disorientation of honorifics in an ostensibly casual startup: management wore sneakers and answered Slack at midnight, but addressing a senior colleague without the -san suffix still produced a small, unmistakable frost in the room.*
 
-> <small>*Hacker News — In a long thread on Japan's software industry, a commenter who had worked inside Japanese firms argued the real constraint wasn't talent but the penalty for mistakes: consensus-based design meant no individual ever owned a failure, which also meant no individual could ever take a real risk.*</small>
+> *Hacker News — In a long thread on Japan's software industry, a commenter who had worked inside Japanese firms argued the real constraint wasn't talent but the penalty for mistakes: consensus-based design meant no individual ever owned a failure, which also meant no individual could ever take a real risk.*
 
-> <small>*Medium (Mistletoe intern blog) — An intern at a Tokyo startup wrote that the atmosphere was far more relaxed than the corporate Japan of legend — friendly conversations with top management, self-set deadlines — but noted she was still expected to outwork everyone around her as the price of that freedom.*</small>
+> *Medium (Mistletoe intern blog) — An intern at a Tokyo startup wrote that the atmosphere was far more relaxed than the corporate Japan of legend — friendly conversations with top management, self-set deadlines — but noted she was still expected to outwork everyone around her as the price of that freedom.*
 
-> <small>*r/japanlife — A recurring theme among expats in the subreddit's work threads: the biggest shock at Japanese startups isn't the hours, it's the meetings — by the time anything reaches the conference room, the decision has already been made one-on-one, and the foreigner who argues in the meeting itself has misread the entire event.*</small>
+> *r/japanlife — A recurring theme among expats in the subreddit's work threads: the biggest shock at Japanese startups isn't the hours, it's the meetings — by the time anything reaches the conference room, the decision has already been made one-on-one, and the foreigner who argues in the meeting itself has misread the entire event.*
 
 ---
 

@@ -81,11 +81,11 @@ But honesty compels a caveat. The Spanish weekend requires the Spanish infrastru
 
 ## What Nobody Warned You About
 
-<small>*"My Spanish in-laws once had lunch from 2pm to 9pm. I asked when we would do the activity. Lunch WAS the activity. Lunch is always the activity."* — Reddit r/spain</small>
+*"My Spanish in-laws once had lunch from 2pm to 9pm. I asked when we would do the activity. Lunch WAS the activity. Lunch is always the activity."* — Reddit r/spain
 
-<small>*"Dated a Korean girl who sent me a shared calendar invite for our Saturday. Four locations, timed. It was the best date of my life and I've never been more tired."* — Reddit r/korea</small>
+*"Dated a Korean girl who sent me a shared calendar invite for our Saturday. Four locations, timed. It was the best date of my life and I've never been more tired."* — Reddit r/korea
 
-<small>*"Nobody tells you Spanish Sundays mean NOTHING is open. I lived on petrol station croissants my entire first month in Madrid."* — Internations Madrid</small>
+*"Nobody tells you Spanish Sundays mean NOTHING is open. I lived on petrol station croissants my entire first month in Madrid."* — Internations Madrid
 
 ## Conclusion
 

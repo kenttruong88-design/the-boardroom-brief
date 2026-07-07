@@ -86,11 +86,11 @@ I'll say this: I have never once left a German Sunday feeling more alive than wh
 
 ## What Nobody Warned You About
 
-<small>*"Nobody tells you the Sunday thing is total. My first month in Berlin I ran out of food on a Saturday night and genuinely considered whether petrol station bread was a meal. It was. It is."* — Reddit r/germany</small>
+*"Nobody tells you the Sunday thing is total. My first month in Berlin I ran out of food on a Saturday night and genuinely considered whether petrol station bread was a meal. It was. It is."* — Reddit r/germany
 
-<small>*"Married into a Filipino family. 'Quick lunch with my parents' means 35 people, a whole roast pig, and you WILL sing. There is no opting out of the singing. I know that now."* — Reddit r/Philippines</small>
+*"Married into a Filipino family. 'Quick lunch with my parents' means 35 people, a whole roast pig, and you WILL sing. There is no opting out of the singing. I know that now."* — Reddit r/Philippines
 
-<small>*"My German neighbour reported me for returning glass bottles to the recycling bin on a Sunday. The sound of the bottles. That was the complaint."* — expat.com Germany forum</small>
+*"My German neighbour reported me for returning glass bottles to the recycling bin on a Sunday. The sound of the bottles. That was the complaint."* — expat.com Germany forum
 
 ## Conclusion
 

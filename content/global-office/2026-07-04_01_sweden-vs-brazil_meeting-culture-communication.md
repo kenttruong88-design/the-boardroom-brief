@@ -76,15 +76,15 @@ Which is the deeper irony: Sweden's flat, punctual, hyper-structured meetings ar
 
 ## The Part the Brochure Left Out
 
-> <small>*r/sweden — An American developer described presenting a proposal to dead silence, assuming it had bombed, and talking faster to compensate. A colleague later explained the silence meant people were considering it. The proposal passed — three meetings later.*</small>
+> *r/sweden — An American developer described presenting a proposal to dead silence, assuming it had bombed, and talking faster to compensate. A colleague later explained the silence meant people were considering it. The proposal passed — three meetings later.*
 
-> <small>*Quora — A project manager who moved from Rio to Gothenburg wrote that the hardest adjustment was discovering that her Swedish team had "aligned" on a decision at fika before the meeting she had spent two days preparing for; the meeting itself was a formality she had mistaken for the arena.*</small>
+> *Quora — A project manager who moved from Rio to Gothenburg wrote that the hardest adjustment was discovering that her Swedish team had "aligned" on a decision at fika before the meeting she had spent two days preparing for; the meeting itself was a formality she had mistaken for the arena.*
 
-> <small>*Internations São Paulo — A Dutch consultant recounted scheduling four client meetings in one São Paulo day, an itinerary local colleagues found hilarious. He completed two. The second ran ninety minutes over and ended with a dinner invitation, which, he was told, was the actual progress.*</small>
+> *Internations São Paulo — A Dutch consultant recounted scheduling four client meetings in one São Paulo day, an itinerary local colleagues found hilarious. He completed two. The second ran ninety minutes over and ended with a dinner invitation, which, he was told, was the actual progress.*
 
-> <small>*The Local Sweden — A British manager noted that pushing for a decision in his first Stockholm meeting earned him a gentle lecture about anchoring: he was advised to speak to each stakeholder individually first, which he described as "lobbying, but with cinnamon buns."*</small>
+> *The Local Sweden — A British manager noted that pushing for a decision in his first Stockholm meeting earned him a gentle lecture about anchoring: he was advised to speak to each stakeholder individually first, which he described as "lobbying, but with cinnamon buns."*
 
-> <small>*r/expats — A Brazilian engineer in Malmö said the pleasant surprise was that when a Swedish meeting ends at 15:00, you are actually free at 15:00 — no lingering, no "quick sync" ambush — and nobody messages you after 17:00, ever.*</small>
+> *r/expats — A Brazilian engineer in Malmö said the pleasant surprise was that when a Swedish meeting ends at 15:00, you are actually free at 15:00 — no lingering, no "quick sync" ambush — and nobody messages you after 17:00, ever.*
 
 ---
 

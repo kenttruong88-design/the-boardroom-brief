@@ -82,11 +82,11 @@ But commuting is also a portrait of a society, and here the picture complicates.
 
 ## What Nobody Warned You About
 
-<small>*"Three years in São Paulo and my proudest achievement is boarding the Linha Vermelha at Sé station during rush hour while holding a birthday cake. The cake survived. I did not, spiritually."* — Reddit r/saopaulo</small>
+*"Three years in São Paulo and my proudest achievement is boarding the Linha Vermelha at Sé station during rush hour while holding a birthday cake. The cake survived. I did not, spiritually."* — Reddit r/saopaulo
 
-<small>*"Moved to Amsterdam thinking cycling would be idyllic. Nobody told me about the intersection near Centraal where four bike lanes merge and everyone plays chicken with a calm that can only be described as sociopathic."* — Internations Amsterdam</small>
+*"Moved to Amsterdam thinking cycling would be idyllic. Nobody told me about the intersection near Centraal where four bike lanes merge and everyone plays chicken with a calm that can only be described as sociopathic."* — Internations Amsterdam
 
-<small>*"My bike was stolen in Utrecht. I reported it, bought another, and the police officer nodded like I'd completed a local citizenship requirement."* — Reddit r/Netherlands</small>
+*"My bike was stolen in Utrecht. I reported it, bought another, and the police officer nodded like I'd completed a local citizenship requirement."* — Reddit r/Netherlands
 
 ## Conclusion
 

@@ -92,15 +92,15 @@ The reverse surprise applies to Japanese professionals arriving in the US: the a
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — One American who relocated to Tokyo for a tech company wrote that her first week at the office was marked by a quiet but unmistakeable observation: her Japanese colleagues' shoes were uniformly polished. Hers were clean but scuffed. Nobody said anything. But she noticed everyone noticed, and she bought shoe polish that weekend.*</small>
+> *Quora — One American who relocated to Tokyo for a tech company wrote that her first week at the office was marked by a quiet but unmistakeable observation: her Japanese colleagues' shoes were uniformly polished. Hers were clean but scuffed. Nobody said anything. But she noticed everyone noticed, and she bought shoe polish that weekend.*
 
-> <small>*r/japanlife — A user from California who had been in Tokyo for eight months described the season-change ritual with bewilderment: "It's literally a scheduled date. On a certain week, everyone switches from summer to autumn clothes, even if it's still 28 degrees out. I wore a short-sleeved shirt two weeks into October and my manager actually asked if I was feeling all right."*</small>
+> *r/japanlife — A user from California who had been in Tokyo for eight months described the season-change ritual with bewilderment: "It's literally a scheduled date. On a certain week, everyone switches from summer to autumn clothes, even if it's still 28 degrees out. I wore a short-sleeved shirt two weeks into October and my manager actually asked if I was feeling all right."*
 
-> <small>*Japan Living Life (japanlivinglife.com) — A British professional working in a Tokyo financial firm described the shoe-removal dynamic as "the thing no career guide warned me about" — specifically, discovering halfway through a client visit to a traditional restaurant that she was wearing mismatched socks, and spending the rest of the meeting with her feet carefully concealed under the table.*</small>
+> *Japan Living Life (japanlivinglife.com) — A British professional working in a Tokyo financial firm described the shoe-removal dynamic as "the thing no career guide warned me about" — specifically, discovering halfway through a client visit to a traditional restaurant that she was wearing mismatched socks, and spending the rest of the meeting with her feet carefully concealed under the table.*
 
-> <small>*Internations Tokyo — A German expat who had worked in both New York and Tokyo noted that in the US, dressing distinctively earned positive attention from colleagues. In Japan, the same instinct — colourful tie, pattern shirt — prompted gentle but unmistakeable suggestions from her Japanese manager that she "might want to blend in a little more, especially with clients." She describes it as "the most diplomatically delivered style note of my career."*</small>
+> *Internations Tokyo — A German expat who had worked in both New York and Tokyo noted that in the US, dressing distinctively earned positive attention from colleagues. In Japan, the same instinct — colourful tie, pattern shirt — prompted gentle but unmistakeable suggestions from her Japanese manager that she "might want to blend in a little more, especially with clients." She describes it as "the most diplomatically delivered style note of my career."*
 
-> <small>*r/japanlife — An Australian in his first corporate role in Osaka described buying an entirely new wardrobe within three weeks of arrival: "I thought I dressed well in Melbourne. In Osaka I looked like I'd come from a barbecue. My suits were the wrong cut, my ties were the wrong width, and apparently the fact that I owned no black leather shoes was something people found quietly alarming."*</small>
+> *r/japanlife — An Australian in his first corporate role in Osaka described buying an entirely new wardrobe within three weeks of arrival: "I thought I dressed well in Melbourne. In Osaka I looked like I'd come from a barbecue. My suits were the wrong cut, my ties were the wrong width, and apparently the fact that I owned no black leather shoes was something people found quietly alarming."*
 
 ---
 

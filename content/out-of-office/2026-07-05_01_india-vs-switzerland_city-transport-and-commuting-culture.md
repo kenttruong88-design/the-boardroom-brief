@@ -82,11 +82,11 @@ So: move your body with the Swiss. But if you want to remember that a city is ma
 
 ## What Nobody Warned You About
 
-<small>*"I've commuted in Mumbai for six years. The train friends are real — the same group has saved my seat, my job interview and once, genuinely, my wedding. Try getting that from a Swiss quiet carriage."* — Reddit r/mumbai</small>
+*"I've commuted in Mumbai for six years. The train friends are real — the same group has saved my seat, my job interview and once, genuinely, my wedding. Try getting that from a Swiss quiet carriage."* — Reddit r/mumbai
 
-<small>*"My train in Zurich was 4 minutes late and the man next to me wrote down the time in a small notebook. I have never felt such secondhand menace."* — Reddit r/Switzerland</small>
+*"My train in Zurich was 4 minutes late and the man next to me wrote down the time in a small notebook. I have never felt such secondhand menace."* — Reddit r/Switzerland
 
-<small>*"The Delhi Metro is genuinely nicer than anything in my home country and I'm from Germany. Nobody back home believes me."* — Internations Delhi</small>
+*"The Delhi Metro is genuinely nicer than anything in my home country and I'm from Germany. Nobody back home believes me."* — Internations Delhi
 
 ## Conclusion
 

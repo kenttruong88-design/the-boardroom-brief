@@ -88,11 +88,11 @@ Community requires imposition. It requires showing up in each other's lives with
 
 ## What Nobody Warned You About
 
-<small>*"I moved to a small hill town in Umbria and within two weeks my upstairs neighbour had introduced me to the baker, the pharmacist, her sister, and a man named Giorgio whose role in the community I still haven't determined but who appears at every event. I was not consulted about any of these introductions. I now feel safer here than anywhere I've ever lived."* — Reddit r/italy</small>
+*"I moved to a small hill town in Umbria and within two weeks my upstairs neighbour had introduced me to the baker, the pharmacist, her sister, and a man named Giorgio whose role in the community I still haven't determined but who appears at every event. I was not consulted about any of these introductions. I now feel safer here than anywhere I've ever lived."* — Reddit r/italy
 
-<small>*"Toronto is the friendliest city I've lived in where I know the fewest people after two years. Everyone is genuinely nice. Nobody becomes your friend by accident. You have to schedule it. You have to mean it. I was not prepared for this."* — Internations Toronto</small>
+*"Toronto is the friendliest city I've lived in where I know the fewest people after two years. Everyone is genuinely nice. Nobody becomes your friend by accident. You have to schedule it. You have to mean it. I was not prepared for this."* — Internations Toronto
 
-<small>*"My Italian landlord brought me soup when I was sick without my having told her I was sick. I was impressed and also mildly alarmed by what else she knew. I am choosing to feel loved."* — expat.com Canada</small>
+*"My Italian landlord brought me soup when I was sick without my having told her I was sick. I was impressed and also mildly alarmed by what else she knew. I am choosing to feel loved."* — expat.com Canada
 
 ---
 

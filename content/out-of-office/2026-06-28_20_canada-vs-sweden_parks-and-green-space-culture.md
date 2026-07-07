@@ -96,14 +96,14 @@ Canada wins on scale and drama — the mountains, the lakes, the sheer vertigino
 
 ## What Nobody Warned You About
 
-<small>*"First Canadian national park, first bear encounter. It was a black bear, 40 metres away, eating berries, completely uninterested in me. My bear spray was on my pack. It should have been in my hand. I read the bear safety literature properly after that, and now it is always in my hand."*
-— Reddit r/canada</small>
+*"First Canadian national park, first bear encounter. It was a black bear, 40 metres away, eating berries, completely uninterested in me. My bear spray was on my pack. It should have been in my hand. I read the bear safety literature properly after that, and now it is always in my hand."*
+— Reddit r/canada
 
-<small>*"Allemansrätten took me a year to actually believe. I kept expecting someone to ask me to leave the lake I was swimming in. Nobody did. It turns out Sweden just works like this. I have never felt more trusted by a country I didn't grow up in."*
-— expat.com, Moving to Sweden</small>
+*"Allemansrätten took me a year to actually believe. I kept expecting someone to ask me to leave the lake I was swimming in. Nobody did. It turns out Sweden just works like this. I have never felt more trusted by a country I didn't grow up in."*
+— expat.com, Moving to Sweden
 
-<small>*"Swedish chanterelle season is a revelation. The forest has them everywhere, they are free, and your Swedish colleagues will quietly compete about who found the best location. Nobody shares the location. The mushrooms are shared. The location is personal."*
-— Internations Stockholm</small>
+*"Swedish chanterelle season is a revelation. The forest has them everywhere, they are free, and your Swedish colleagues will quietly compete about who found the best location. Nobody shares the location. The mushrooms are shared. The location is personal."*
+— Internations Stockholm
 
 ---
 

@@ -80,11 +80,11 @@ Both countries sort themselves out eventually. Switzerland does it with a filing
 
 ## What Nobody Warned You About
 
-<small>*"I tried to open a Swiss bank account at three different banks before PostFinance. Nobody explicitly rejected me — they just required additional documents that required other documents that required the first document again. Switzerland wins at bureaucratic recursion."* — Internations Zurich</small>
+*"I tried to open a Swiss bank account at three different banks before PostFinance. Nobody explicitly rejected me — they just required additional documents that required other documents that required the first document again. Switzerland wins at bureaucratic recursion."* — Internations Zurich
 
-<small>*"Vietnam digital payments: I paid for bánh mì at a street stall by scanning a QR code taped to a piece of cardboard. The vendor had a better payments setup than my local newsagent in London."* — Reddit r/VietNam</small>
+*"Vietnam digital payments: I paid for bánh mì at a street stall by scanning a QR code taped to a piece of cardboard. The vendor had a better payments setup than my local newsagent in London."* — Reddit r/VietNam
 
-<small>*"The Anmeldung is real and the deadline is real and the fine for missing it is also very real and issued with the calm efficiency of people who have been issuing fines since 1848."* — expat.com Switzerland</small>
+*"The Anmeldung is real and the deadline is real and the fine for missing it is also very real and issued with the calm efficiency of people who have been issuing fines since 1848."* — expat.com Switzerland
 
 ## Conclusion
 

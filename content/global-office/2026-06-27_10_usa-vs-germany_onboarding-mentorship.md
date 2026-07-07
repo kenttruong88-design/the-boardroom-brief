@@ -99,15 +99,15 @@ Expats moving from Germany to the US frequently describe the shock of American i
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — "What is it like starting a new job in Germany as an expat?" One respondent described arriving at a Munich engineering firm to find a printed welcome folder, a named contact for every department, and a three-month plan already drafted. 'In the US I once started a job and my laptop wasn't even ordered yet. Here they had booked my German language class before I'd signed the lease on my apartment.'*</small>
+> *Quora — "What is it like starting a new job in Germany as an expat?" One respondent described arriving at a Munich engineering firm to find a printed welcome folder, a named contact for every department, and a three-month plan already drafted. 'In the US I once started a job and my laptop wasn't even ordered yet. Here they had booked my German language class before I'd signed the lease on my apartment.'*
 
-> <small>*The Local Germany — Barbara Sametinger, a US-born intercultural trainer based in Freiburg who coaches international corporations in Germany, notes: 'Germans tend to keep their private and professional lives strictly separate. Don't be disappointed if colleagues don't join you for a drink after work — that's not how trust is built here. It accumulates slowly and means considerably more when it arrives.'*</small>
+> *The Local Germany — Barbara Sametinger, a US-born intercultural trainer based in Freiburg who coaches international corporations in Germany, notes: 'Germans tend to keep their private and professional lives strictly separate. Don't be disappointed if colleagues don't join you for a drink after work — that's not how trust is built here. It accumulates slowly and means considerably more when it arrives.'*
 
-> <small>*Move2Europe — American expats adjusting to German work culture consistently report a guilt-ridden first month: 'I kept waiting for someone to tell me I was slacking. I left at 5pm and nobody noticed — or rather, they noticed and approved. The first time I realised my manager had gone home before me I genuinely didn't know what to do with myself.'*</small>
+> *Move2Europe — American expats adjusting to German work culture consistently report a guilt-ridden first month: 'I kept waiting for someone to tell me I was slacking. I left at 5pm and nobody noticed — or rather, they noticed and approved. The first time I realised my manager had gone home before me I genuinely didn't know what to do with myself.'*
 
-> <small>*r/germany — A thread on starting a first job in Germany generated dozens of responses; the recurring theme among international hires was the relief of explicit structure. 'My onboarding plan had week-by-week objectives for three months. I knew exactly what was expected. In my previous job in California I spent the first six weeks trying to figure out what my job actually was.'*</small>
+> *r/germany — A thread on starting a first job in Germany generated dozens of responses; the recurring theme among international hires was the relief of explicit structure. 'My onboarding plan had week-by-week objectives for three months. I knew exactly what was expected. In my previous job in California I spent the first six weeks trying to figure out what my job actually was.'*
 
-> <small>*r/cscareerquestions — An engineer describing the reverse transition, from a German company to a US startup, put it bluntly: 'Day one in Germany: printed handbook, assigned mentor, lunch organised with the team. Day one at the startup: here's your laptop password, Slack is over there, stand-up is at 10. Figure it out.'*</small>
+> *r/cscareerquestions — An engineer describing the reverse transition, from a German company to a US startup, put it bluntly: 'Day one in Germany: printed handbook, assigned mentor, lunch organised with the team. Day one at the startup: here's your laptop password, Slack is over there, stand-up is at 10. Figure it out.'*
 
 ### Conclusion
 

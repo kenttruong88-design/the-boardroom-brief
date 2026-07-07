@@ -80,11 +80,11 @@ But here is the sting: Japan's perfection has a price tag written in human hours
 
 ## What Nobody Warned You About
 
-<small>*"My train in Tokyo was 40 seconds late and the conductor apologised twice over the tannoy. I'm from the UK. I nearly cried."* — Reddit r/Tokyo</small>
+*"My train in Tokyo was 40 seconds late and the conductor apologised twice over the tannoy. I'm from the UK. I nearly cried."* — Reddit r/Tokyo
 
-<small>*"The Central Line in summer is the closest a commuter can legally get to being slow-cooked. TfL measured 31°C in the carriage and just... published it. Like a menu."* — Reddit r/london</small>
+*"The Central Line in summer is the closest a commuter can legally get to being slow-cooked. TfL measured 31°C in the carriage and just... published it. Like a menu."* — Reddit r/london
 
-<small>*"Nobody tells you the last train home in Tokyo is midnight. My first month I spent more on capsule hotels than food."* — Internations Tokyo</small>
+*"Nobody tells you the last train home in Tokyo is midnight. My first month I spent more on capsule hotels than food."* — Internations Tokyo
 
 ## Conclusion
 

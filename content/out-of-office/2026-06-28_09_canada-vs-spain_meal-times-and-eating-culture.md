@@ -86,11 +86,11 @@ Neither is wrong. One of them produces a more pleasant daily experience of eatin
 
 ## What Nobody Warned You About
 
-> <small>*Reddit r/spain — "My first week in Madrid I tried to eat dinner at 8pm. One restaurant was closed, one had four tables occupied by tourists who also thought 8pm was dinner time, and one looked at me with polite concern and suggested I come back at nine-thirty. By week three I had recalibrated entirely. I now eat at 10pm and consider 9pm an early night. I have no idea how I'll ever move back."*</small>
+> *Reddit r/spain — "My first week in Madrid I tried to eat dinner at 8pm. One restaurant was closed, one had four tables occupied by tourists who also thought 8pm was dinner time, and one looked at me with polite concern and suggested I come back at nine-thirty. By week three I had recalibrated entirely. I now eat at 10pm and consider 9pm an early night. I have no idea how I'll ever move back."*
 
-> <small>*Internations Madrid — "The menú del día changed my relationship with lunch. I had never eaten a three-course meal at 2pm in my working life. Now I eat three courses at 2pm, drink a glass of wine, have a coffee, and return to work feeling like I have accomplished something important. My afternoon productivity is the same. My life quality is dramatically higher. I now understand why Spain works this way."*</small>
+> *Internations Madrid — "The menú del día changed my relationship with lunch. I had never eaten a three-course meal at 2pm in my working life. Now I eat three courses at 2pm, drink a glass of wine, have a coffee, and return to work feeling like I have accomplished something important. My afternoon productivity is the same. My life quality is dramatically higher. I now understand why Spain works this way."*
 
-> <small>*The Local Spain — "I made the mistake of telling my Spanish colleagues I was going home for a 'quick dinner' at 6:30pm on a Friday. The look. The collective concern. One person asked if I was unwell. I explained this was just when I normally ate dinner. They looked at me the way you look at someone who has said something that makes sense in their context but is nonetheless deeply wrong."*</small>
+> *The Local Spain — "I made the mistake of telling my Spanish colleagues I was going home for a 'quick dinner' at 6:30pm on a Friday. The look. The collective concern. One person asked if I was unwell. I explained this was just when I normally ate dinner. They looked at me the way you look at someone who has said something that makes sense in their context but is nonetheless deeply wrong."*
 
 ---
 

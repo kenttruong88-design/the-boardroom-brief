@@ -80,11 +80,11 @@ But observe both places at 11pm and the ledger complicates. Singapore's perfecti
 
 ## What Nobody Warned You About
 
-<small>*"A tissue packet on a table is legally binding here. I watched a man defend a stranger's chope like it was his own property. Beautiful, honestly."* — Reddit r/singapore</small>
+*"A tissue packet on a table is legally binding here. I watched a man defend a stranger's chope like it was his own property. Beautiful, honestly."* — Reddit r/singapore
 
-<small>*"My Spanish neighbours threw a party until 3am. I complained. The next week they invited me. I now understand this is the only correct resolution mechanism in Spain."* — Reddit r/spain</small>
+*"My Spanish neighbours threw a party until 3am. I complained. The next week they invited me. I now understand this is the only correct resolution mechanism in Spain."* — Reddit r/spain
 
-<small>*"I drank water on the MRT my first week and three separate aunties materialised to inform me. Not rudely. Efficiently."* — Internations Singapore</small>
+*"I drank water on the MRT my first week and three separate aunties materialised to inform me. Not rudely. Efficiently."* — Internations Singapore
 
 ## Conclusion
 

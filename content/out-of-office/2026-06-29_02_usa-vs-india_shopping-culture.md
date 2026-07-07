@@ -88,11 +88,11 @@ The American system is optimised for outcomes. The Indian system is optimised fo
 
 ## What Nobody Warned You About
 
-<small>*"I tried to negotiate at a department store in Delhi mall and the salesperson called their manager. The manager apologised to me on behalf of the salesperson, explained the price was fixed, and then offered me a free gift with purchase. Nobody knew what was happening."* — Reddit r/india</small>
+*"I tried to negotiate at a department store in Delhi mall and the salesperson called their manager. The manager apologised to me on behalf of the salesperson, explained the price was fixed, and then offered me a free gift with purchase. Nobody knew what was happening."* — Reddit r/india
 
-<small>*"Moving from New York to Mumbai, I spent two weeks being unable to buy anything in the market because I felt awkward negotiating. Then a local colleague took me out, spent forty-five minutes on a purchase I'd have done in three, paid less than me, got two extra items thrown in, and exchanged phone numbers with the vendor. I went back to the market the next day and bought nothing for a different reason."* — Internations Mumbai</small>
+*"Moving from New York to Mumbai, I spent two weeks being unable to buy anything in the market because I felt awkward negotiating. Then a local colleague took me out, spent forty-five minutes on a purchase I'd have done in three, paid less than me, got two extra items thrown in, and exchanged phone numbers with the vendor. I went back to the market the next day and bought nothing for a different reason."* — Internations Mumbai
 
-<small>*"Americans don't realise how strange the tax-not-included thing is until they live abroad. You hand over the shelf price of $19.99 and get handed $17.26 in change and a receipt you didn't ask for. Every single time."* — expat.com India</small>
+*"Americans don't realise how strange the tax-not-included thing is until they live abroad. You hand over the shelf price of $19.99 and get handed $17.26 in change and a receipt you didn't ask for. Every single time."* — expat.com India
 
 ---
 

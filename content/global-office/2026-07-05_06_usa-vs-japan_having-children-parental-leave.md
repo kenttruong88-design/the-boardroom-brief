@@ -72,13 +72,13 @@ The countries have opposite failure modes. America's system is stingy but flexib
 
 ## The Part the Brochure Left Out
 
-> <small>*r/japanlife — Veteran parents in the daycare threads describe the hoikuen application as a competitive sport with a scoring rubric: dual full-time incomes, no grandparents nearby, and documented overtime all earn points, and families have been known to time job changes around the April intake the way athletes time training cycles.*</small>
+> *r/japanlife — Veteran parents in the daycare threads describe the hoikuen application as a competitive sport with a scoring rubric: dual full-time incomes, no grandparents nearby, and documented overtime all earn points, and families have been known to time job changes around the April intake the way athletes time training cycles.*
 
-> <small>*Quora — A father who moved from California to Tokyo wrote that the paperwork shocked him twice: first when he learned he was entitled to months of paid leave no American employer had ever offered him, and again when a senior colleague quietly suggested he take "a week or two, maybe" so as not to burden the team.*</small>
+> *Quora — A father who moved from California to Tokyo wrote that the paperwork shocked him twice: first when he learned he was entitled to months of paid leave no American employer had ever offered him, and again when a senior colleague quietly suggested he take "a week or two, maybe" so as not to burden the team.*
 
-> <small>*Internations Tokyo — An expat mother reported that the municipal support — child allowance payments, free checkups, nearly free medical care for children — was better than anything she'd had in Boston, but that no orientation session warned her a shortened-hours contract would remove her from the promotion pool with no formal announcement.*</small>
+> *Internations Tokyo — An expat mother reported that the municipal support — child allowance payments, free checkups, nearly free medical care for children — was better than anything she'd had in Boston, but that no orientation session warned her a shortened-hours contract would remove her from the promotion pool with no formal announcement.*
 
-> <small>*r/daddit — An American father summarised his daycare math to general recognition: infant care for two children cost more than his mortgage, his wife's entire salary went to it for two years, and the family's actual parental leave policy was "grandma."*</small>
+> *r/daddit — An American father summarised his daycare math to general recognition: infant care for two children cost more than his mortgage, his wife's entire salary went to it for two years, and the family's actual parental leave policy was "grandma."*
 
 ---
 

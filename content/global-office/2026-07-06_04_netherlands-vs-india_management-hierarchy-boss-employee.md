@@ -74,15 +74,15 @@ The deeper asymmetry is what each system spends its overhead on. The Netherlands
 
 ## The Part the Brochure Left Out
 
-> <small>*Quora — An Indian engineer in the Netherlands wrote that the turning point of his first year was his Dutch boss telling him, with visible exasperation, to stop being so reverent — he had been treating the man with what he considered basic professional respect, and it was being received as a performance that made everyone uncomfortable.*</small>
+> *Quora — An Indian engineer in the Netherlands wrote that the turning point of his first year was his Dutch boss telling him, with visible exasperation, to stop being so reverent — he had been treating the man with what he considered basic professional respect, and it was being received as a performance that made everyone uncomfortable.*
 
-> <small>*r/developersIndia — A returnee from Amsterdam described the reverse shock: back in Gurgaon, he questioned a VP's timeline in a sprint review "the normal Dutch way" and the room went so quiet he could hear the AC — his own manager later thanked him for the input and asked him never to deliver it that way again.*</small>
+> *r/developersIndia — A returnee from Amsterdam described the reverse shock: back in Gurgaon, he questioned a VP's timeline in a sprint review "the normal Dutch way" and the room went so quiet he could hear the AC — his own manager later thanked him for the input and asked him never to deliver it that way again.*
 
-> <small>*Internations Amsterdam — An Indian project lead said the hardest habit to unlearn was pre-clearing everything: she kept asking her Dutch director for approval on decisions that were hers to make, until he started replying with a single line — "What do you think?" — which she initially read as a test and eventually understood was the entire management philosophy.*</small>
+> *Internations Amsterdam — An Indian project lead said the hardest habit to unlearn was pre-clearing everything: she kept asking her Dutch director for approval on decisions that were hers to make, until he started replying with a single line — "What do you think?" — which she initially read as a test and eventually understood was the entire management philosophy.*
 
-> <small>*HackerNews — A Dutch consultant who spent three years managing a Hyderabad team wrote that his sprint retrospectives produced nothing until he switched to one-on-one walks with no notebook; the same engineers who had "no blockers" in the meeting turned out to be carrying a detailed, accurate list of everything wrong with his architecture.*</small>
+> *HackerNews — A Dutch consultant who spent three years managing a Hyderabad team wrote that his sprint retrospectives produced nothing until he switched to one-on-one walks with no notebook; the same engineers who had "no blockers" in the meeting turned out to be carrying a detailed, accurate list of everything wrong with his architecture.*
 
-> <small>*r/expats — One commenter's summary after working under both systems: "In the Netherlands your boss won't save you because that would insult you. In India your boss will save you, and you will owe them, and everyone is fine with that arrangement except your Dutch colleagues, who find it feudal."*</small>
+> *r/expats — One commenter's summary after working under both systems: "In the Netherlands your boss won't save you because that would insult you. In India your boss will save you, and you will owe them, and everyone is fine with that arrangement except your Dutch colleagues, who find it feudal."*
 
 ---
 

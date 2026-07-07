@@ -74,15 +74,15 @@ The irony is that both cultures are, by their own lights, being considerate. Ger
 
 ## The Part the Brochure Left Out
 
-> <small>*r/korea — A German automotive engineer posted that his first month in Seoul was a string of meetings that ended in what he took as agreement, followed by weeks of nothing; a Korean colleague eventually explained that the agreement had been to keep considering it, which everyone but him had understood.*</small>
+> *r/korea — A German automotive engineer posted that his first month in Seoul was a string of meetings that ended in what he took as agreement, followed by weeks of nothing; a Korean colleague eventually explained that the agreement had been to keep considering it, which everyone but him had understood.*
 
-> <small>*Quora — A Korean product manager who transferred to Berlin wrote that her first design review left her close to tears — three colleagues dismantled her proposal line by line — until the same three cheerfully invited her to lunch, having apparently already forgotten the meeting she would remember for years.*</small>
+> *Quora — A Korean product manager who transferred to Berlin wrote that her first design review left her close to tears — three colleagues dismantled her proposal line by line — until the same three cheerfully invited her to lunch, having apparently already forgotten the meeting she would remember for years.*
 
-> <small>*Internations Seoul — A Frankfurt-trained consultant said the advice that saved him was to stop counting meetings as progress: "The meeting is the theatre. The decision happens at dinner. If you skip the dinner, you were never in the negotiation."*</small>
+> *Internations Seoul — A Frankfurt-trained consultant said the advice that saved him was to stop counting meetings as progress: "The meeting is the theatre. The decision happens at dinner. If you skip the dinner, you were never in the negotiation."*
 
-> <small>*Blind — An engineer at a Korean conglomerate's German subsidiary described the standing translation problem: Korean HQ read German candour as insubordination, the Germans read Korean report formats as evasion, and the local office's real job was rewriting each side's emails for the other.*</small>
+> *Blind — An engineer at a Korean conglomerate's German subsidiary described the standing translation problem: Korean HQ read German candour as insubordination, the Germans read Korean report formats as evasion, and the local office's real job was rewriting each side's emails for the other.*
 
-> <small>*r/germany — One Korean expat's hard-won advice for newcomers to German offices: when they ask for your honest opinion, they mean it literally — the trapdoor you're bracing for isn't there, and hedging for two paragraphs before your actual point only annoys them.*</small>
+> *r/germany — One Korean expat's hard-won advice for newcomers to German offices: when they ask for your honest opinion, they mean it literally — the trapdoor you're bracing for isn't there, and hedging for two paragraphs before your actual point only annoys them.*
 
 ---
 

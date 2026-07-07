@@ -74,15 +74,15 @@ Practically: in Japan, influence flows through patience and pre-alignment; the w
 
 ## The Part the Brochure Left Out
 
-> <small>*r/japanlife — An engineer at a mid-sized Osaka firm described spending three weeks visiting nine desks to socialise a minor process change, only for the approval meeting to last four minutes. His senpai congratulated him: the four minutes were the proof he had done it correctly.*</small>
+> *r/japanlife — An engineer at a mid-sized Osaka firm described spending three weeks visiting nine desks to socialise a minor process change, only for the approval meeting to last four minutes. His senpai congratulated him: the four minutes were the proof he had done it correctly.*
 
-> <small>*Quora — A French project lead who transferred to Yokohama wrote that her instinct to debate her manager's plan in the team meeting — normal in Paris, practically a compliment — produced a silence so total she assumed the interpreter had failed. A colleague later advised her to raise objections one-on-one, over coffee, ideally as questions.*</small>
+> *Quora — A French project lead who transferred to Yokohama wrote that her instinct to debate her manager's plan in the team meeting — normal in Paris, practically a compliment — produced a silence so total she assumed the interpreter had failed. A colleague later advised her to raise objections one-on-one, over coffee, ideally as questions.*
 
-> <small>*Expat Forum — A long-running thread titled "French bosses are weird" includes an American's account of a boss who never once said his work was good, but promoted him twice; praise, a French colleague explained, is for exceptional circumstances, and the promotion was the sentence.*</small>
+> *Expat Forum — A long-running thread titled "French bosses are weird" includes an American's account of a boss who never once said his work was good, but promoted him twice; praise, a French colleague explained, is for exceptional circumstances, and the promotion was the sentence.*
 
-> <small>*The Local France — One reader recounted being gently scolded for eating a sandwich at her desk, not for untidiness but on principle: her manager considered skipping lunch a sign of poor organisation, "and possibly a sad life."*</small>
+> *The Local France — One reader recounted being gently scolded for eating a sandwich at her desk, not for untidiness but on principle: her manager considered skipping lunch a sign of poor organisation, "and possibly a sad life."*
 
-> <small>*Internations Tokyo — A German manager said the surprise wasn't the hierarchy but its direction of care: his Japanese boss tracked his apartment search, his commute, and once his cold, with a solicitude no German employer would risk. Paternalism, he noted, is the interest paid on obedience.*</small>
+> *Internations Tokyo — A German manager said the surprise wasn't the hierarchy but its direction of care: his Japanese boss tracked his apartment search, his commute, and once his cold, with a solicitude no German employer would risk. Paternalism, he noted, is the interest paid on obedience.*
 
 ---
 

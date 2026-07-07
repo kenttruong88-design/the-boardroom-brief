@@ -97,15 +97,15 @@ The practical difference for the expat is one of scale and pace. In Brazil, you 
 
 ### The Part the Brochure Left Out
 
-> <small>*Expat.com (Brazil forum) — "Most of my Brazilian family cooks beef until it is thoroughly dead with not a hint of pink in it. I'm not even sure they call it red meat."*</small>
+> *Expat.com (Brazil forum) — "Most of my Brazilian family cooks beef until it is thoroughly dead with not a hint of pink in it. I'm not even sure they call it red meat."*
 
-> <small>*Expat.com (Brazil forum) — "The custom I have the most difficulty with is people trying to serve more food on my plate after I've served myself with everything I wanted. My wife is learning slowly. It is hospitality. I understand this. It is still a lot of beans."*</small>
+> *Expat.com (Brazil forum) — "The custom I have the most difficulty with is people trying to serve more food on my plate after I've served myself with everything I wanted. My wife is learning slowly. It is hospitality. I understand this. It is still a lot of beans."*
 
-> <small>*Quora — "Brazil's food culture isn't really about what you eat. It's about how long you sit there together after you've eaten. The meal ends when the conversation does, not when the plates are clear."*</small>
+> *Quora — "Brazil's food culture isn't really about what you eat. It's about how long you sit there together after you've eaten. The meal ends when the conversation does, not when the plates are clear."*
 
-> <small>*Study in Sweden (Jazmin, Peruvian student) — "Swedes eat dinner between 4pm and 6pm. When I tell my Nordic friends I eat at 8pm or 10pm, their faces say it all: pure disbelief. My stomach is still on Lima time."*</small>
+> *Study in Sweden (Jazmin, Peruvian student) — "Swedes eat dinner between 4pm and 6pm. When I tell my Nordic friends I eat at 8pm or 10pm, their faces say it all: pure disbelief. My stomach is still on Lima time."*
 
-> <small>*Smartly.se (expat guide to Swedish workplace culture) — "Fika has become the main reason people come into the office. Teams align their in-office days around shared fika rather than around meetings. This is not a joke. This is how Swedish workplaces function in 2026."*</small>
+> *Smartly.se (expat guide to Swedish workplace culture) — "Fika has become the main reason people come into the office. Teams align their in-office days around shared fika rather than around meetings. This is not a joke. This is how Swedish workplaces function in 2026."*
 
 ---
 

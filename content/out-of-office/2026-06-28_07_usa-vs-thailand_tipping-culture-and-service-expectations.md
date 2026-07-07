@@ -90,11 +90,11 @@ Neither system is wrong. One of them is more expensive, more anxious, and more s
 
 ## What Nobody Warned You About
 
-> <small>*Reddit r/Thailand — "I tipped an equivalent of $10 USD at a local restaurant in Chiang Mai where the bill came to 300 baht. The server ran after me with the change, absolutely certain I had made a mistake. When I explained it was a tip, she looked at me with such genuine gratitude and surprise that I felt like I had accidentally done something significant. In America that would have been a 15% tip. Context is everything."*</small>
+> *Reddit r/Thailand — "I tipped an equivalent of $10 USD at a local restaurant in Chiang Mai where the bill came to 300 baht. The server ran after me with the change, absolutely certain I had made a mistake. When I explained it was a tip, she looked at me with such genuine gratitude and surprise that I felt like I had accidentally done something significant. In America that would have been a 15% tip. Context is everything."*
 
-> <small>*Reddit r/personalfinance — "I calculated that I spend approximately $4,200 per year in tips in New York. That's $350 a month. I don't begrudge individual servers any of it — they need it — but the system that requires this calculation to be made by each individual customer rather than built into the price is genuinely strange once you start living outside of it."*</small>
+> *Reddit r/personalfinance — "I calculated that I spend approximately $4,200 per year in tips in New York. That's $350 a month. I don't begrudge individual servers any of it — they need it — but the system that requires this calculation to be made by each individual customer rather than built into the price is genuinely strange once you start living outside of it."*
 
-> <small>*Internations Bangkok — "The most disorienting thing about Thai service isn't how good it is — it's how relaxed it is. In America, service has an urgency to it because the server is managing multiple tables and their income depends on throughput. Thai service at a good restaurant is attentive but unhurried, because there's no financial pressure to turn the table. You genuinely can sit for three hours and nobody will make you feel like an inconvenience."*</small>
+> *Internations Bangkok — "The most disorienting thing about Thai service isn't how good it is — it's how relaxed it is. In America, service has an urgency to it because the server is managing multiple tables and their income depends on throughput. Thai service at a good restaurant is attentive but unhurried, because there's no financial pressure to turn the table. You genuinely can sit for three hours and nobody will make you feel like an inconvenience."*
 
 ---
 

@@ -84,11 +84,11 @@ If you are relocating long-term, France eventually rewards the effort. If you ar
 
 ## What Nobody Warned You About
 
-<small>*"I speak B2 French and a Parisian pharmacist still answered my question in English. When I persisted in French she gave me a look I will carry to the grave."* — Reddit r/france</small>
+*"I speak B2 French and a Parisian pharmacist still answered my question in English. When I persisted in French she gave me a look I will carry to the grave."* — Reddit r/france
 
-<small>*"Three years in Tokyo, intermediate Japanese, and my building still leaves official notices without furigana. I photograph everything and run it through an app. It works about 80% of the time. The other 20% is adventure."* — Reddit r/movingtojapan</small>
+*"Three years in Tokyo, intermediate Japanese, and my building still leaves official notices without furigana. I photograph everything and run it through an app. It works about 80% of the time. The other 20% is adventure."* — Reddit r/movingtojapan
 
-<small>*"In Japan, I once watched two members of staff spend fifteen minutes trying to communicate that the item I wanted was out of stock. In France, a waiter once communicated the same information using only eyebrows. Different approaches."* — Internations Tokyo</small>
+*"In Japan, I once watched two members of staff spend fifteen minutes trying to communicate that the item I wanted was out of stock. In France, a waiter once communicated the same information using only eyebrows. Different approaches."* — Internations Tokyo
 
 ## Conclusion
 

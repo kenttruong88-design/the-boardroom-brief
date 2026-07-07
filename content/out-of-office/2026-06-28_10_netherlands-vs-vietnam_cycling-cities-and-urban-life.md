@@ -90,11 +90,11 @@ Both are places where two wheels are the right answer. They just require differe
 
 ## What Nobody Warned You About
 
-> <small>*Internations Amsterdam — "I had my first bike stolen in eleven days. My second in six weeks. Both were locked. Both were in what I thought were reasonable places. A Dutch colleague eventually explained the bike theft ecosystem to me with the detachment of someone describing weather. 'Yes, bikes get stolen. You get a cheaper bike. You chain it more securely. Eventually you stop caring because a Dutch bike costs sixty euros second-hand.' I now have a bike that cost sixty euros second-hand. Nobody has stolen it."*</small>
+> *Internations Amsterdam — "I had my first bike stolen in eleven days. My second in six weeks. Both were locked. Both were in what I thought were reasonable places. A Dutch colleague eventually explained the bike theft ecosystem to me with the detachment of someone describing weather. 'Yes, bikes get stolen. You get a cheaper bike. You chain it more securely. Eventually you stop caring because a Dutch bike costs sixty euros second-hand.' I now have a bike that cost sixty euros second-hand. Nobody has stolen it."*
 
-> <small>*expat.com Hanoi — "Crossing the street in Hanoi was the most frightening thing I did in my first month, and I had moved cities three times before. The technique that worked for me: find a local, ask them to cross with you, observe carefully, then try it yourself. The first successful solo crossing felt like something significant. Three months later I was crossing six-lane roads while checking my phone and somehow this seemed reasonable."*</small>
+> *expat.com Hanoi — "Crossing the street in Hanoi was the most frightening thing I did in my first month, and I had moved cities three times before. The technique that worked for me: find a local, ask them to cross with you, observe carefully, then try it yourself. The first successful solo crossing felt like something significant. Three months later I was crossing six-lane roads while checking my phone and somehow this seemed reasonable."*
 
-> <small>*Reddit r/Netherlands — "Nobody prepares you for the tram-bike-pedestrian interaction zones in central Amsterdam. They are a three-dimensional chess problem that locals navigate by instinct and that tourists fail at in ways that cause traffic delays, glares, and occasional mild collisions. My advice: stand still, look in all directions, wait for a local to provide a template, and then follow them exactly. Do not improvise."*</small>
+> *Reddit r/Netherlands — "Nobody prepares you for the tram-bike-pedestrian interaction zones in central Amsterdam. They are a three-dimensional chess problem that locals navigate by instinct and that tourists fail at in ways that cause traffic delays, glares, and occasional mild collisions. My advice: stand still, look in all directions, wait for a local to provide a template, and then follow them exactly. Do not improvise."*
 
 ---
 

@@ -74,15 +74,15 @@ The cultural reckoning is starker. In Amsterdam, the system's default is that yo
 
 ## The Part the Brochure Left Out
 
-> <small>*r/australia — One long-tenured public servant described long service leave as the country's best-kept secret until you have it: three months at full pay after a decade, which he spent driving the coast — while his UK-born wife kept asking what the catch was. There is no catch. There is only the decade.*</small>
+> *r/australia — One long-tenured public servant described long service leave as the country's best-kept secret until you have it: three months at full pay after a decade, which he spent driving the coast — while his UK-born wife kept asking what the catch was. There is no catch. There is only the decade.*
 
-> <small>*Quora — An Australian who moved to Utrecht wrote that his manager scheduled a meeting in his first spring specifically to ask when he was taking his summer weeks — not whether — and seemed mildly alarmed that he hadn't booked anything, "like I'd confessed to skipping dentist appointments."*</small>
+> *Quora — An Australian who moved to Utrecht wrote that his manager scheduled a meeting in his first spring specifically to ask when he was taking his summer weeks — not whether — and seemed mildly alarmed that he hadn't booked anything, "like I'd confessed to skipping dentist appointments."*
 
-> <small>*Internations Amsterdam — A newcomer said May's vakantiegeld hit her account before anyone had explained it, and her Dutch colleagues' reaction to her plan to save it was gentle group disapproval: it is, she was told, for the holiday — saving it is legal but weird.*</small>
+> *Internations Amsterdam — A newcomer said May's vakantiegeld hit her account before anyone had explained it, and her Dutch colleagues' reaction to her plan to save it was gentle group disapproval: it is, she was told, for the holiday — saving it is legal but weird.*
 
-> <small>*HackerNews — A developer who worked in both countries noted the email cultures: his Dutch teammate's out-of-office simply named a colleague and a return date three weeks away, while his Sydney manager took "leave" during which he joined two calls and apologised for the surf noise on a third.*</small>
+> *HackerNews — A developer who worked in both countries noted the email cultures: his Dutch teammate's out-of-office simply named a colleague and a return date three weeks away, while his Sydney manager took "leave" during which he joined two calls and apologised for the surf noise on a third.*
 
-> <small>*r/Netherlands — An Australian expat's practical warning: Dutch statutory leave days expire mid-next-year, and HR will not chase you — she lost four days in her first year because she was saving them "for later, Australian-style," a concept the system is actively designed to prevent.*</small>
+> *r/Netherlands — An Australian expat's practical warning: Dutch statutory leave days expire mid-next-year, and HR will not chase you — she lost four days in her first year because she was saving them "for later, Australian-style," a concept the system is actively designed to prevent.*
 
 ---
 

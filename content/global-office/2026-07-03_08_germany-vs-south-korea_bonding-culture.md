@@ -81,13 +81,13 @@ The irony is structural: Germany's bonding ritual is smaller in scale (a beer, a
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — A respondent describing German work culture noted that colleagues rarely become close friends quickly, and that the "default setting is absolute compartmentalization" — genuine friendship does form, but newcomers expecting instant camaraderie from a Feierabendbier invitation are usually disappointed by how gradual the actual bonding process is.*</small>
+> *Quora — A respondent describing German work culture noted that colleagues rarely become close friends quickly, and that the "default setting is absolute compartmentalization" — genuine friendship does form, but newcomers expecting instant camaraderie from a Feierabendbier invitation are usually disappointed by how gradual the actual bonding process is.*
 
-> <small>*Formatera.com personal account — An expat who struggled initially with German workplace social distance described eventually realizing that consistent, if infrequent, participation in scheduled events (coffee breaks, occasional after-work drinks) mattered more than trying to manufacture closeness through extra effort or oversharing.*</small>
+> *Formatera.com personal account — An expat who struggled initially with German workplace social distance described eventually realizing that consistent, if infrequent, participation in scheduled events (coffee breaks, occasional after-work drinks) mattered more than trying to manufacture closeness through extra effort or oversharing.*
 
-> <small>*YourKorea.Life expat guidance — A foreign professional's account of their first hoesik described being visibly relieved to learn that turning away when drinking with a senior, rather than declining outright, was an accepted middle ground — small enough to seem respectful, without requiring full participation in heavier drinking rounds.*</small>
+> *YourKorea.Life expat guidance — A foreign professional's account of their first hoesik described being visibly relieved to learn that turning away when drinking with a senior, rather than declining outright, was an accepted middle ground — small enough to seem respectful, without requiring full participation in heavier drinking rounds.*
 
-> <small>*Korea Times reporting (2026) — Interviews with younger Korean employees cited in coverage of the generational shift described actively pushing back on mandatory-feeling hoesik attendance, framing the change not as disrespect for the tradition but as a demand that participation actually be optional, matching what companies already claim it is.*</small>
+> *Korea Times reporting (2026) — Interviews with younger Korean employees cited in coverage of the generational shift described actively pushing back on mandatory-feeling hoesik attendance, framing the change not as disrespect for the tradition but as a demand that participation actually be optional, matching what companies already claim it is.*
 
 ### Conclusion
 

@@ -82,11 +82,11 @@ The sting is that each nation is terrible precisely where it believes itself cha
 
 ## What Nobody Warned You About
 
-<small>*"Dated a British guy for four months. Asked where we stood. He said 'well, you're here, aren't you?' and looked genuinely proud of the emotional labour involved. Reader, that was his proposal. We're married."* — Reddit r/AskUK</small>
+*"Dated a British guy for four months. Asked where we stood. He said 'well, you're here, aren't you?' and looked genuinely proud of the emotional labour involved. Reader, that was his proposal. We're married."* — Reddit r/AskUK
 
-<small>*"My German date said 'I don't think we fit, but the restaurant was a good choice.' At the time I was devastated. Two years and one German girlfriend later, I get it — that was mercy at industrial efficiency."* — Internations Berlin</small>
+*"My German date said 'I don't think we fit, but the restaurant was a good choice.' At the time I was devastated. Two years and one German girlfriend later, I get it — that was mercy at industrial efficiency."* — Internations Berlin
 
-<small>*"German bf here. Took me a year to accept 'the pasta is good' is his 'I love you.' Meanwhile one text I sent with no full stop triggered a relationship inquiry. Bilingual doesn't cover it."* — Reddit r/germany</small>
+*"German bf here. Took me a year to accept 'the pasta is good' is his 'I love you.' Meanwhile one text I sent with no full stop triggered a relationship inquiry. Bilingual doesn't cover it."* — Reddit r/germany
 
 ## Conclusion
 

@@ -92,15 +92,15 @@ Brazil's opacity problem runs the other direction. Workers who do not know what 
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — On Swedish salary transparency: "In Sweden, tax returns are public record — you can go to the Tax Office and look up what anyone earns. But in practice, people rarely do this, and actually asking a colleague directly what they make is still considered quite awkward. The transparency exists in the infrastructure, not necessarily in the conversation."*</small>
+> *Quora — On Swedish salary transparency: "In Sweden, tax returns are public record — you can go to the Tax Office and look up what anyone earns. But in practice, people rarely do this, and actually asking a colleague directly what they make is still considered quite awkward. The transparency exists in the infrastructure, not necessarily in the conversation."*
 
-> <small>*The Local Sweden — From a reader survey on working as an international in Sweden: "I perceive a lack of ambition — the so-called Jantelagen, no salary increases, everybody is equal, something that discourages ambitious people. You hear about it, but to experience it really shows you the difference in values."*</small>
+> *The Local Sweden — From a reader survey on working as an international in Sweden: "I perceive a lack of ambition — the so-called Jantelagen, no salary increases, everybody is equal, something that discourages ambitious people. You hear about it, but to experience it really shows you the difference in values."*
 
-> <small>*r/sweden — On the annual lönesamtal: "The process felt procedurally safe — structured, calm, no drama. But the cultural norm against self-advocacy meant that I left without asking for what I actually deserved. I knew it. My manager probably knew it. Neither of us said anything."*</small>
+> *r/sweden — On the annual lönesamtal: "The process felt procedurally safe — structured, calm, no drama. But the cultural norm against self-advocacy meant that I left without asking for what I actually deserved. I knew it. My manager probably knew it. Neither of us said anything."*
 
-> <small>*r/brazil — On the new equal pay law: "The law exists. Enforcement is another matter. Salaries are still deeply private here, and nobody wants to be the one who breaks that norm — not employees, not HR, and certainly not the employers who benefit from it."*</small>
+> *r/brazil — On the new equal pay law: "The law exists. Enforcement is another matter. Salaries are still deeply private here, and nobody wants to be the one who breaks that norm — not employees, not HR, and certainly not the employers who benefit from it."*
 
-> <small>*Swedifier.com — On salary mobility in Sweden: "Many international professionals start with a low salary believing they will earn better chances to negotiate once they prove their worth. After years, that raise never comes. The only real leverage in the Swedish system is leaving."*</small>
+> *Swedifier.com — On salary mobility in Sweden: "Many international professionals start with a low salary believing they will earn better chances to negotiate once they prove their worth. After years, that raise never comes. The only real leverage in the Swedish system is leaving."*
 
 ### Conclusion
 

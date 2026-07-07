@@ -84,11 +84,11 @@ So the verdict hinges on what you're for. If you want frictionless living, the N
 
 ## What Nobody Warned You About
 
-<small>*"Six years in Amsterdam. B2 certificate. Last week I ordered in Dutch and the waiter replied in English, so I continued in Dutch, and he continued in English, and we finished the entire transaction as a bilingual stand-off. I consider it a draw."* — Reddit r/Netherlands</small>
+*"Six years in Amsterdam. B2 certificate. Last week I ordered in Dutch and the waiter replied in English, so I continued in Dutch, and he continued in English, and we finished the entire transaction as a bilingual stand-off. I consider it a draw."* — Reddit r/Netherlands
 
-<small>*"In Chengdu I tried to say I wanted the bill and apparently announced I was a wooden bucket. The whole restaurant was delighted. Someone gave me a free beer. Being bad at Chinese in China is a social asset, use it."* — Reddit r/chinalife</small>
+*"In Chengdu I tried to say I wanted the bill and apparently announced I was a wooden bucket. The whole restaurant was delighted. Someone gave me a free beer. Being bad at Chinese in China is a social asset, use it."* — Reddit r/chinalife
 
-<small>*"Nobody tells you the Dutch government doesn't speak English. The people, yes. The Belastingdienst? Blue envelopes of pure Dutch menace. The one entity you NEED to understand is the one that won't switch."* — Internations (Amsterdam)</small>
+*"Nobody tells you the Dutch government doesn't speak English. The people, yes. The Belastingdienst? Blue envelopes of pure Dutch menace. The one entity you NEED to understand is the one that won't switch."* — Internations (Amsterdam)
 
 ## Conclusion
 

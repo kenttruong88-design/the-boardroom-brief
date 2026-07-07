@@ -86,11 +86,11 @@ Denmark wins the commute. Egypt wins the commuters.
 
 ## What Nobody Warned You About
 
-<small>*"I've lived in Cairo three years. Crossing the road is like tai chi — slow, deliberate, total faith. Hesitate and you're a hazard. Commit and the traffic bends around you like water."* — Reddit r/Egypt</small>
+*"I've lived in Cairo three years. Crossing the road is like tai chi — slow, deliberate, total faith. Hesitate and you're a hazard. Commit and the traffic bends around you like water."* — Reddit r/Egypt
 
-<small>*"I walked into the bike lane on my first day in Copenhagen. Nobody yelled. Fourteen people rang their bells in sequence, like a tiny funeral for my dignity."* — Reddit r/copenhagen</small>
+*"I walked into the bike lane on my first day in Copenhagen. Nobody yelled. Fourteen people rang their bells in sequence, like a tiny funeral for my dignity."* — Reddit r/copenhagen
 
-<small>*"The Cairo microbus fare system is more reliable than my German bank. I've passed money through six strangers and got exact change back every time."* — Internations Cairo</small>
+*"The Cairo microbus fare system is more reliable than my German bank. I've passed money through six strangers and got exact change back every time."* — Internations Cairo
 
 ## Conclusion
 

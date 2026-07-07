@@ -92,15 +92,15 @@ Australia's system is more flexible, with faster hiring and termination processe
 
 ### The Part the Brochure Left Out
 
-> <small>*The Local France — "I would feel ashamed to tell someone how much money I make, especially if it is less than them," said Alexia, a Parisian salesperson. "Some people are afraid to negotiate their salary and might end up earning less than colleagues doing the same job. This is mainly why I would not talk about money at work."*</small>
+> *The Local France — "I would feel ashamed to tell someone how much money I make, especially if it is less than them," said Alexia, a Parisian salesperson. "Some people are afraid to negotiate their salary and might end up earning less than colleagues doing the same job. This is mainly why I would not talk about money at work."*
 
-> <small>*The Local France — "I don't mind telling someone how much I make, I know it is not much, but we all have money issues," said Etan, in his twenties. His parents, he added, would never discuss theirs — a generational fault line running straight through the salary taboo.*</small>
+> *The Local France — "I don't mind telling someone how much I make, I know it is not much, but we all have money issues," said Etan, in his twenties. His parents, he added, would never discuss theirs — a generational fault line running straight through the salary taboo.*
 
-> <small>*Quora — An expat asked whether €80,000 gross in Paris was a "good salary." The consensus: yes, comfortably above average — but the actual number that lands in your account each month will be meaningfully lower than you expect. Factor in social charges, income tax at source, and the fact that French salaries are always quoted brut.*</small>
+> *Quora — An expat asked whether €80,000 gross in Paris was a "good salary." The consensus: yes, comfortably above average — but the actual number that lands in your account each month will be meaningfully lower than you expect. Factor in social charges, income tax at source, and the fact that French salaries are always quoted brut.*
 
-> <small>*Expatica Australia — Migrants in Australia earn a median annual income of AUD 45,351 against a national average of AUD 52,388. The Fair Work Act gives all workers — regardless of visa status — the same minimum wage protections. In practice, hospitality and agriculture see the most underpayment investigations by the Fair Work Ombudsman.*</small>
+> *Expatica Australia — Migrants in Australia earn a median annual income of AUD 45,351 against a national average of AUD 52,388. The Fair Work Act gives all workers — regardless of visa status — the same minimum wage protections. In practice, hospitality and agriculture see the most underpayment investigations by the Fair Work Ombudsman.*
 
-> <small>*vanztravel.com (France vs Australia work culture comparison) — "Money is discussed far more openly in Australia, with job advertisements often including salary ranges and it being common to talk openly about pay with colleagues. In France, talking about money remains largely taboo — salary is often considered a private matter." The observation has been made by expats moving in both directions: the French find Australia alarming; Australians find France confusing.*</small>
+> *vanztravel.com (France vs Australia work culture comparison) — "Money is discussed far more openly in Australia, with job advertisements often including salary ranges and it being common to talk openly about pay with colleagues. In France, talking about money remains largely taboo — salary is often considered a private matter." The observation has been made by expats moving in both directions: the French find Australia alarming; Australians find France confusing.*
 
 ### Conclusion
 

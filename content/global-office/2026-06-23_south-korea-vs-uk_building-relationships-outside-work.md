@@ -104,15 +104,15 @@ The OECD's data on social connections suggest that neither system is delivering 
 
 ## The Part the Brochure Left Out
 
-> <small>*r/korea — Moved to Seoul for work and spent my first three months confused about why everyone seemed friendly at hoesik but distant at the office the next morning. Eventually someone explained: the warmth is real, but it belongs to the evening. The two modes run in parallel and do not merge on their own.*</small>
+> *r/korea — Moved to Seoul for work and spent my first three months confused about why everyone seemed friendly at hoesik but distant at the office the next morning. Eventually someone explained: the warmth is real, but it belongs to the evening. The two modes run in parallel and do not merge on their own.*
 
-> <small>*Quora — The honest answer to "is it hard to make Korean friends as a foreigner" is: yes, but not because Koreans are unfriendly. It's because Koreans form their core friendships early — school, university, military service — and those groups are essentially closed. You can be liked, welcomed, included in activities. But getting inside the actual circle is a different project, and it takes years.*</small>
+> *Quora — The honest answer to "is it hard to make Korean friends as a foreigner" is: yes, but not because Koreans are unfriendly. It's because Koreans form their core friendships early — school, university, military service — and those groups are essentially closed. You can be liked, welcomed, included in activities. But getting inside the actual circle is a different project, and it takes years.*
 
-> <small>*Internations Seoul — The hierarchy at a Korean company dinner is visible in things you wouldn't expect. Who sits closest to the boss, who pours first, who laughs first when he makes a joke. I learned more about my team's internal politics in one hoesik than in six weeks of morning meetings.*</small>
+> *Internations Seoul — The hierarchy at a Korean company dinner is visible in things you wouldn't expect. Who sits closest to the boss, who pours first, who laughs first when he makes a joke. I learned more about my team's internal politics in one hoesik than in six weeks of morning meetings.*
 
-> <small>*r/expats — Took me a year to realise that when my British colleagues said "we should grab a drink sometime," they meant it in the same way they meant "how are you" — as a pleasantry, not a proposal. The ones who actually wanted to meet up just named a pub and a Thursday.*</small>
+> *r/expats — Took me a year to realise that when my British colleagues said "we should grab a drink sometime," they meant it in the same way they meant "how are you" — as a pleasantry, not a proposal. The ones who actually wanted to meet up just named a pub and a Thursday.*
 
-> <small>*LyncMe (UK expat community) — The British social system runs on regularity. You have to become a known face somewhere — a pub, a club, a running group — and let familiarity do the work. Trying to accelerate the process by being warm or direct tends to produce polite withdrawal. It is the opposite of what you'd expect, and it takes a specific kind of patience.*</small>
+> *LyncMe (UK expat community) — The British social system runs on regularity. You have to become a known face somewhere — a pub, a club, a running group — and let familiarity do the work. Trying to accelerate the process by being warm or direct tends to produce polite withdrawal. It is the opposite of what you'd expect, and it takes a specific kind of patience.*
 
 ---
 

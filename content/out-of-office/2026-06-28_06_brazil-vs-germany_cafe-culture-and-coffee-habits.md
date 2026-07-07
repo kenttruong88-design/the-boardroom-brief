@@ -90,11 +90,11 @@ In both countries, the coffee is incidental to the point, and the point is the r
 
 ## What Nobody Warned You About
 
-> <small>*Reddit r/brasil — "I turned down a cafezinho in my first week at a new job because I'd already had too much coffee. My manager looked briefly puzzled and then moved on. Later a colleague told me that the cafezinho wasn't really about the coffee — it was about whether you were available for a conversation. I've accepted every one since, regardless of how caffeinated I already am. The trick is to hold it and sip it slowly."*</small>
+> *Reddit r/brasil — "I turned down a cafezinho in my first week at a new job because I'd already had too much coffee. My manager looked briefly puzzled and then moved on. Later a colleague told me that the cafezinho wasn't really about the coffee — it was about whether you were available for a conversation. I've accepted every one since, regardless of how caffeinated I already am. The trick is to hold it and sip it slowly."*
 
-> <small>*The Local Germany — "The cake requirement at a German café is not a suggestion. I went to a Konditorei on a Sunday afternoon and ordered just a coffee. The waiter looked at me with genuine concern, the way you'd look at someone who had declined a seat at a table and chosen to stand in the corner instead. I ordered the Schwarzwälder Kirschtorte. He seemed relieved. It was excellent."*</small>
+> *The Local Germany — "The cake requirement at a German café is not a suggestion. I went to a Konditorei on a Sunday afternoon and ordered just a coffee. The waiter looked at me with genuine concern, the way you'd look at someone who had declined a seat at a table and chosen to stand in the corner instead. I ordered the Schwarzwälder Kirschtorte. He seemed relieved. It was excellent."*
 
-> <small>*Internations São Paulo — "Brazilian specialty coffee is genuinely extraordinary and nobody outside Brazil knows about it because the international market has been buying commercial-grade beans for decades. The single-origin naturals from Minas Gerais and Bahia that are now available at the better São Paulo cafés are some of the best coffee I have ever had. The country that invented the cafezinho has also quietly produced some of the world's finest raw material."*</small>
+> *Internations São Paulo — "Brazilian specialty coffee is genuinely extraordinary and nobody outside Brazil knows about it because the international market has been buying commercial-grade beans for decades. The single-origin naturals from Minas Gerais and Bahia that are now available at the better São Paulo cafés are some of the best coffee I have ever had. The country that invented the cafezinho has also quietly produced some of the world's finest raw material."*
 
 ---
 

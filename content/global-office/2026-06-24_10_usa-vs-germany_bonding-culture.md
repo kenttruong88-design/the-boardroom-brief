@@ -85,15 +85,15 @@ The expat who moves from New York to Hamburg will spend their first six months f
 
 ### The Part the Brochure Left Out
 
-> <small>*Reddit (r/germany) — "In America I felt like I was always networking. In Germany I feel like I finally have evenings. The trade-off is that I have to actually work to make friends here, because nobody is going to organise it for me."*</small>
+> *Reddit (r/germany) — "In America I felt like I was always networking. In Germany I feel like I finally have evenings. The trade-off is that I have to actually work to make friends here, because nobody is going to organise it for me."*
 
-> <small>*Reddit (r/expats) — "American friendliness took me two years to decode. It's not fake, exactly, but it's also not an invitation. Someone can ask how your weekend was every Monday for a year and never once mean 'let's hang out.' I miss the clarity of just not being asked."*</small>
+> *Reddit (r/expats) — "American friendliness took me two years to decode. It's not fake, exactly, but it's also not an invitation. Someone can ask how your weekend was every Monday for a year and never once mean 'let's hang out.' I miss the clarity of just not being asked."*
 
-> <small>*Quora — "I've worked in Munich for three years. My German colleagues are professional, reliable, and completely uninterested in my personal life during work hours. At the team dinner after we closed a big project, one of them told me about his daughter's first steps. That's what three years looks like here. In the US I'd have had the baby shower photos before the second week."*</small>
+> *Quora — "I've worked in Munich for three years. My German colleagues are professional, reliable, and completely uninterested in my personal life during work hours. At the team dinner after we closed a big project, one of them told me about his daughter's first steps. That's what three years looks like here. In the US I'd have had the baby shower photos before the second week."*
 
-> <small>*The Local Germany — An expat survey found that Germany ranked among the hardest countries in the world for expats to settle into socially, despite high marks for economic security. Respondents cited the work-personal boundary as the primary barrier: "People here are friendly at work. They are just not your friends at work. It takes a while to understand that the distinction is respectful, not cold."*</small>
+> *The Local Germany — An expat survey found that Germany ranked among the hardest countries in the world for expats to settle into socially, despite high marks for economic security. Respondents cited the work-personal boundary as the primary barrier: "People here are friendly at work. They are just not your friends at work. It takes a while to understand that the distinction is respectful, not cold."*
 
-> <small>*IamExpat — British expat Fadi Gaziri, nineteen years in Hamburg, put it plainly: "I only managed to truly bond with a few natives. Piss-taking — which is essential to male bonding in Britain and America — has a very negative connotation in German. Anyone suspected of taking the piss will only invoke hostility, rather than smiles." He eventually concluded that until you genuinely speak the language, you are always slightly not yourself in German social settings — and Germans, who say what they mean, notice.*</small>
+> *IamExpat — British expat Fadi Gaziri, nineteen years in Hamburg, put it plainly: "I only managed to truly bond with a few natives. Piss-taking — which is essential to male bonding in Britain and America — has a very negative connotation in German. Anyone suspected of taking the piss will only invoke hostility, rather than smiles." He eventually concluded that until you genuinely speak the language, you are always slightly not yourself in German social settings — and Germans, who say what they mean, notice.*
 
 ### Conclusion
 

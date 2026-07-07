@@ -82,11 +82,11 @@ The difference is that Poland's norms will embarrass you at worst. The UAE's nor
 
 ## What Nobody Warned You About
 
-<small>*"I moved to Warsaw from California and spent six months thinking everyone hated me. They don't hate me. They just don't perform friendliness at strangers. Once I made actual friends they were the most warm and generous people I'd ever met."* — Reddit r/poland</small>
+*"I moved to Warsaw from California and spent six months thinking everyone hated me. They don't hate me. They just don't perform friendliness at strangers. Once I made actual friends they were the most warm and generous people I'd ever met."* — Reddit r/poland
 
-<small>*"The UAE public behaviour rules are actually easy to follow once you know them. What's hard is the 20% that's ambiguous — where the law exists but enforcement is inconsistent. You develop a sense for it over time."* — Internations Dubai</small>
+*"The UAE public behaviour rules are actually easy to follow once you know them. What's hard is the 20% that's ambiguous — where the law exists but enforcement is inconsistent. You develop a sense for it over time."* — Internations Dubai
 
-<small>*"I made the mistake of eating a sandwich on the street in Dubai during Ramadan. Not illegal exactly but the looks I received from every direction made me put it away very quickly."* — expat.com UAE</small>
+*"I made the mistake of eating a sandwich on the street in Dubai during Ramadan. Not illegal exactly but the looks I received from every direction made me put it away very quickly."* — expat.com UAE
 
 ## Conclusion
 

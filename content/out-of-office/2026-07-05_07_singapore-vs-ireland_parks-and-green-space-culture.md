@@ -80,11 +80,11 @@ But parks are not only infrastructure; they are how a people meets its own sky. 
 
 ## What Nobody Warned You About
 
-<small>*"The MacRitchie monkeys unzipped my backpack's front pocket while the main zip was locked. They've done risk assessment. They know which pocket has the snacks."* — Reddit r/singapore</small>
+*"The MacRitchie monkeys unzipped my backpack's front pocket while the main zip was locked. They've done risk assessment. They know which pocket has the snacks."* — Reddit r/singapore
 
-<small>*"First sunny Saturday of the year, I counted 4,000 people on a beach in Dublin at 19 degrees. Half of them were sunburnt by six. We are not a serious people and I love us."* — Reddit r/ireland</small>
+*"First sunny Saturday of the year, I counted 4,000 people on a beach in Dublin at 19 degrees. Half of them were sunburnt by six. We are not a serious people and I love us."* — Reddit r/ireland
 
-<small>*"Nobody warned me the Singapore otters just... cross the road. Traffic stops. Everyone films. A man in a suit gave them a small bow. Honestly, fair."* — Internations Singapore</small>
+*"Nobody warned me the Singapore otters just... cross the road. Traffic stops. Everyone films. A man in a suit gave them a small bow. Honestly, fair."* — Internations Singapore
 
 ## Conclusion
 

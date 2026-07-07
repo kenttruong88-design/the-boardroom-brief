@@ -82,11 +82,11 @@ But if the question is "which system tells you more about how to live," it's clo
 
 ## What Nobody Warned You About
 
-<small>*"My permesso appointment was scheduled eight months out. The permit it renewed was valid for twelve. I now live in a four-month window of legality per year, like a bureaucratic werewolf."* — Reddit r/ItalyExpats</small>
+*"My permesso appointment was scheduled eight months out. The permit it renewed was valid for twelve. I now live in a four-month window of legality per year, like a bureaucratic werewolf."* — Reddit r/ItalyExpats
 
-<small>*"Opened a bank account in Singapore during a lunch break. Full account, card shipped, app working. I kept waiting for the catch. Three years on, the catch is that I once paid a $200 fine, calculated automatically, for a form I was four days late on. The machine gives and the machine takes."* — Reddit r/askSingapore</small>
+*"Opened a bank account in Singapore during a lunch break. Full account, card shipped, app working. I kept waiting for the catch. Three years on, the catch is that I once paid a $200 fine, calculated automatically, for a form I was four days late on. The machine gives and the machine takes."* — Reddit r/askSingapore
 
-<small>*"The tabaccheria near the anagrafe in Bologna knows every stamp every office needs and dispenses better procedural advice than the offices themselves. That man is the true civil service and he sells cigarettes."* — Internations Rome</small>
+*"The tabaccheria near the anagrafe in Bologna knows every stamp every office needs and dispenses better procedural advice than the offices themselves. That man is the true civil service and he sells cigarettes."* — Internations Rome
 
 ## Conclusion
 

@@ -74,15 +74,15 @@ The irony for managers: Britain's individualist culture produced a collective, H
 
 ## The Part the Brochure Left Out
 
-> <small>*r/UKJobs — A 24-year-old accountant described her boomer partner-boss's genuine confusion at her 17:30 departures: he never asked her to stay, she noted — he just performed staying, nightly, like a lighthouse, and expected the signal to be received. The thread's consensus: the signal was received, and declined.*</small>
+> *r/UKJobs — A 24-year-old accountant described her boomer partner-boss's genuine confusion at her 17:30 departures: he never asked her to stay, she noted — he just performed staying, nightly, like a lighthouse, and expected the signal to be received. The thread's consensus: the signal was received, and declined.*
 
-> <small>*Quora — A post-90s Shanghai programmer explained tangping to Western readers as arithmetic, not philosophy: his parents' overtime bought an apartment; his would buy, at current prices, a parking space in thirty years. "I am not lazy. I checked the reward and it was gone."*</small>
+> *Quora — A post-90s Shanghai programmer explained tangping to Western readers as arithmetic, not philosophy: his parents' overtime bought an apartment; his would buy, at current prices, a parking space in thirty years. "I am not lazy. I checked the reward and it was gone."*
 
-> <small>*HackerNews — A British engineering manager with teams in London and Shenzhen observed that his UK juniors negotiate boundaries loudly and stay, while his Chinese juniors agree to everything and resign; he had learned, slowly, that the second was the louder message.*</small>
+> *HackerNews — A British engineering manager with teams in London and Shenzhen observed that his UK juniors negotiate boundaries loudly and stay, while his Chinese juniors agree to everything and resign; he had learned, slowly, that the second was the louder message.*
 
-> <small>*Internations Shanghai — A French HR director recounted a workshop where a post-70s executive lectured post-00s hires on eating bitterness; afterwards, one wrote on the anonymous feedback wall, "You ate bitterness and were paid in houses. We are offered the bitterness à la carte."*</small>
+> *Internations Shanghai — A French HR director recounted a workshop where a post-70s executive lectured post-00s hires on eating bitterness; afterwards, one wrote on the anonymous feedback wall, "You ate bitterness and were paid in houses. We are offered the bitterness à la carte."*
 
-> <small>*Blind — A UK-based employee of a Chinese-owned firm noted the generational alliance nobody predicted: her British Gen X manager and Chinese post-80s counterpart bonded instantly — two mortgage-holding cohorts squeezed between retiring seniors and boundary-setting juniors, comparing notes on both.*</small>
+> *Blind — A UK-based employee of a Chinese-owned firm noted the generational alliance nobody predicted: her British Gen X manager and Chinese post-80s counterpart bonded instantly — two mortgage-holding cohorts squeezed between retiring seniors and boundary-setting juniors, comparing notes on both.*
 
 ---
 

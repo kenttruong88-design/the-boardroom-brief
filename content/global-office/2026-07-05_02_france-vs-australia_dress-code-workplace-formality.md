@@ -72,13 +72,13 @@ The trap for the traveller in either direction is assuming dress codes measure s
 
 ## The Part the Brochure Left Out
 
-> <small>*r/france — An American who joined a Paris firm recounted being gently mocked — twice, by different colleagues — for wearing running shoes with office trousers, and noted that nobody ever mentioned her work in her first fortnight, but three separate people mentioned the shoes.*</small>
+> *r/france — An American who joined a Paris firm recounted being gently mocked — twice, by different colleagues — for wearing running shoes with office trousers, and noted that nobody ever mentioned her work in her first fortnight, but three separate people mentioned the shoes.*
 
-> <small>*Quora — A French consultant who relocated to Melbourne wrote that she spent her first month feeling overdressed and her second month realising that dressing down was itself a skill: her deliberately casual outfits still read as "trying," and it took an Australian colleague to explain that the goal was to look like you hadn't thought about it at all.*</small>
+> *Quora — A French consultant who relocated to Melbourne wrote that she spent her first month feeling overdressed and her second month realising that dressing down was itself a skill: her deliberately casual outfits still read as "trying," and it took an Australian colleague to explain that the goal was to look like you hadn't thought about it at all.*
 
-> <small>*Internations Paris — A British expat observed that the real dress code in her French office was ironing: colleagues forgave an inexpensive shirt but never a wrinkled one, and her department head reportedly kept a steamer in his office the way other managers keep whisky.*</small>
+> *Internations Paris — A British expat observed that the real dress code in her French office was ironing: colleagues forgave an inexpensive shirt but never a wrinkled one, and her department head reportedly kept a steamer in his office the way other managers keep whisky.*
 
-> <small>*Expat Focus — A contributor who moved from London to Sydney advised newcomers to buy one good blazer and leave it on the office chair permanently: worn perhaps monthly, but its absence during a surprise client visit was the only wardrobe error anyone ever remembered.*</small>
+> *Expat Focus — A contributor who moved from London to Sydney advised newcomers to buy one good blazer and leave it on the office chair permanently: worn perhaps monthly, but its absence during a surprise client visit was the only wardrobe error anyone ever remembered.*
 
 ---
 

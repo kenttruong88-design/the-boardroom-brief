@@ -84,11 +84,11 @@ If you want to *find* a partner, Sweden is the better machine: slow, egalitarian
 
 ## What Nobody Warned You About
 
-<small>*"Three years in Stockholm. My now-wife and I had fika eleven times before either of us used the word 'date'. Eleven. I counted. Swedes don't date, they converge."* — Internations Stockholm</small>
+*"Three years in Stockholm. My now-wife and I had fika eleven times before either of us used the word 'date'. Eleven. I counted. Swedes don't date, they converge."* — Internations Stockholm
 
-<small>*"Nobody warns you that in Buenos Aires 'te amo' on the second date is weather, not news. He meant it! He also meant it to two other people that month. It's fine. It's a system."* — expat.com Buenos Aires</small>
+*"Nobody warns you that in Buenos Aires 'te amo' on the second date is weather, not news. He meant it! He also meant it to two other people that month. It's fine. It's a system."* — expat.com Buenos Aires
 
-<small>*"The histeriqueo is real. She replied in 40 seconds for a week, then vanished for nine days, then reappeared asking why I was cold. I've studied game theory. Nothing prepared me."* — Reddit r/argentina</small>
+*"The histeriqueo is real. She replied in 40 seconds for a week, then vanished for nine days, then reappeared asking why I was cold. I've studied game theory. Nothing prepared me."* — Reddit r/argentina
 
 ## Conclusion
 

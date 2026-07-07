@@ -74,15 +74,15 @@ The other trap is feedback calibration. Australians are direct by global standar
 
 ## The Part the Brochure Left Out
 
-> <small>*r/Netherlands — An Australian project manager described her first Dutch performance review as "a car crash I had to thank someone for": her director listed four shortcomings in the first five minutes, no compliment sandwich, then seemed baffled when she went quiet — from his side, the meeting had been going well.*</small>
+> *r/Netherlands — An Australian project manager described her first Dutch performance review as "a car crash I had to thank someone for": her director listed four shortcomings in the first five minutes, no compliment sandwich, then seemed baffled when she went quiet — from his side, the meeting had been going well.*
 
-> <small>*Quora — Someone who moved from Rotterdam to Melbourne wrote that it took him six months to learn that "not bad" was high praise and "yeah, nah, look, it's interesting" meant his proposal was dead — he'd been fluent in English for twenty years and still needed subtitles.*</small>
+> *Quora — Someone who moved from Rotterdam to Melbourne wrote that it took him six months to learn that "not bad" was high praise and "yeah, nah, look, it's interesting" meant his proposal was dead — he'd been fluent in English for twenty years and still needed subtitles.*
 
-> <small>*Internations Amsterdam — A Brisbane marketing lead said the biggest shock wasn't directness but lunch: thirty minutes, a cheese sandwich and a glass of buttermilk at a shared table, then back to work — she'd budgeted for long networking lunches that simply do not exist.*</small>
+> *Internations Amsterdam — A Brisbane marketing lead said the biggest shock wasn't directness but lunch: thirty minutes, a cheese sandwich and a glass of buttermilk at a shared table, then back to work — she'd budgeted for long networking lunches that simply do not exist.*
 
-> <small>*HackerNews — A developer who'd worked in both countries noted that in Sydney his 6pm departures were noticed even though nobody said anything, while in Utrecht his 5:30 departures were noticed for the opposite reason — a colleague asked, with real concern, whether everything was all right at home.*</small>
+> *HackerNews — A developer who'd worked in both countries noted that in Sydney his 6pm departures were noticed even though nobody said anything, while in Utrecht his 5:30 departures were noticed for the opposite reason — a colleague asked, with real concern, whether everything was all right at home.*
 
-> <small>*r/expats — One commenter's advice for Australians heading to the Netherlands: put everything in the agenda, including coffee with your own teammate, because "just swinging by someone's desk" is treated roughly the way ambush journalism is.*</small>
+> *r/expats — One commenter's advice for Australians heading to the Netherlands: put everything in the agenda, including coffee with your own teammate, because "just swinging by someone's desk" is treated roughly the way ambush journalism is.*
 
 ---
 

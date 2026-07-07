@@ -80,13 +80,13 @@ Both countries subordinate individual salary negotiation to a larger structure, 
 
 ### The Part the Brochure Left Out
 
-> <small>*Blind — A software engineer weighing a move to Seoul asked what salary expectation was realistic for an expat SDE, and the responses converged on the same point: total compensation varies so much by company tier that quoting a single "average" figure is close to meaningless without knowing whether the employer is a chaebol, a mid-size firm, or a foreign subsidiary.*</small>
+> *Blind — A software engineer weighing a move to Seoul asked what salary expectation was realistic for an expat SDE, and the responses converged on the same point: total compensation varies so much by company tier that quoting a single "average" figure is close to meaningless without knowing whether the employer is a chaebol, a mid-size firm, or a foreign subsidiary.*
 
-> <small>*Quora — Someone asking what counts as a good salary in Korea for an educated Westerner was told that 3–4.5 million KRW a month covers a studio apartment, food, and transport in Seoul comfortably, but that anyone expecting Western-style year-over-year raises tied purely to performance would be disappointed at a traditional firm.*</small>
+> *Quora — Someone asking what counts as a good salary in Korea for an educated Westerner was told that 3–4.5 million KRW a month covers a studio apartment, food, and transport in Seoul comfortably, but that anyone expecting Western-style year-over-year raises tied purely to performance would be disappointed at a traditional firm.*
 
-> <small>*r/expats — A thread on German Tarifverträge surfaced a recurring surprise among newcomers: colleagues rarely discuss salary openly even in workplaces where a union has already negotiated the pay scale, meaning the "transparency" is structural, not conversational — you can look up the Tarif tier but you still won't hear what your deskmate makes.*</small>
+> *r/expats — A thread on German Tarifverträge surfaced a recurring surprise among newcomers: colleagues rarely discuss salary openly even in workplaces where a union has already negotiated the pay scale, meaning the "transparency" is structural, not conversational — you can look up the Tarif tier but you still won't hear what your deskmate makes.*
 
-> <small>*Quora — A respondent working at a Korean chaebol described the meal and transport allowances as a genuine surprise for anyone budgeting off a quoted base salary alone, noting that the real take-home advantage of a chaebol job only becomes clear once bonus season (Seollal, Chuseok, and year-end) is factored in.*</small>
+> *Quora — A respondent working at a Korean chaebol described the meal and transport allowances as a genuine surprise for anyone budgeting off a quoted base salary alone, noting that the real take-home advantage of a chaebol job only becomes clear once bonus season (Seollal, Chuseok, and year-end) is factored in.*
 
 ### Conclusion
 

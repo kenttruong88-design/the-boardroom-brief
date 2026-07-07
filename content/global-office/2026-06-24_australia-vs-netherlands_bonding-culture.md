@@ -100,15 +100,15 @@ What both observations are describing, without quite naming it, is the differenc
 
 ## The Part the Brochure Left Out
 
-> <small>*r/expats — Moved to Melbourne from Germany three years ago. The first month I turned down every after-work drinks invite because I didn't think it was mandatory. By month two, my manager sat me down for a "culture chat." Nobody ever said the barbecue was compulsory. Everybody knew it was compulsory.*</small>
+> *r/expats — Moved to Melbourne from Germany three years ago. The first month I turned down every after-work drinks invite because I didn't think it was mandatory. By month two, my manager sat me down for a "culture chat." Nobody ever said the barbecue was compulsory. Everybody knew it was compulsory.*
 
-> <small>*Quora — Dutch colleagues are warm to you at work and perfectly friendly in the corridors. What I wasn't prepared for was that this warmth does not automatically translate into a social invitation. After eight months in Amsterdam I realised I had confused professional friendliness with the beginning of a friendship. They are not the same thing here. They are separated by about two years and a specific act of deliberate invitation.*</small>
+> *Quora — Dutch colleagues are warm to you at work and perfectly friendly in the corridors. What I wasn't prepared for was that this warmth does not automatically translate into a social invitation. After eight months in Amsterdam I realised I had confused professional friendliness with the beginning of a friendship. They are not the same thing here. They are separated by about two years and a specific act of deliberate invitation.*
 
-> <small>*r/Netherlands — The borrel is genuinely pleasant once you understand the rules. The confusion for me as an American was that it ends. At 7 PM everyone just leaves. There is no gravitational pull toward a second venue. At first I thought I had offended someone. I had not. They had dinner reservations.*</small>
+> *r/Netherlands — The borrel is genuinely pleasant once you understand the rules. The confusion for me as an American was that it ends. At 7 PM everyone just leaves. There is no gravitational pull toward a second venue. At first I thought I had offended someone. I had not. They had dinner reservations.*
 
-> <small>*Internations Amsterdam — In Sydney, I was invited to three different barbecues in my first week. By week four, the plans had rescheduled twice and the third host had forgotten I was coming. I eventually worked out that the invitation is the gesture; the event is optional. Once I understood that, I stopped feeling rejected and started showing up whenever something did actually happen. That's when people started treating me like I belonged.*</small>
+> *Internations Amsterdam — In Sydney, I was invited to three different barbecues in my first week. By week four, the plans had rescheduled twice and the third host had forgotten I was coming. I eventually worked out that the invitation is the gesture; the event is optional. Once I understood that, I stopped feeling rejected and started showing up whenever something did actually happen. That's when people started treating me like I belonged.*
 
-> <small>*DutchReview — The key to the Netherlands is the sports club or the hobby group, not the office. My Dutch friends didn't come from work. They came from a cycling club I joined after six months. The Dutch have their school friends from age eight. They're not unwelcoming — they just already have a full roster. You need a side door.*</small>
+> *DutchReview — The key to the Netherlands is the sports club or the hobby group, not the office. My Dutch friends didn't come from work. They came from a cycling club I joined after six months. The Dutch have their school friends from age eight. They're not unwelcoming — they just already have a full roster. You need a side door.*
 
 ---
 

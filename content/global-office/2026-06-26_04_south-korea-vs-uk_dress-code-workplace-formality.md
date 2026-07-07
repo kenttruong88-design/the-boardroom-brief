@@ -91,15 +91,15 @@ The tech sector in both countries has largely converged: in Seoul's startup scen
 
 ### The Part the Brochure Left Out
 
-> <small>*Pink Pangea — An American English teacher in South Korea: "I wore a tank top with a cardigan over it and still got in trouble. The cardigan was the saving grace but the neckline was too low by Korean standards. In America it would have been fine. Here, it prompted a quiet word from my supervisor that I still think about."*</small>
+> *Pink Pangea — An American English teacher in South Korea: "I wore a tank top with a cardigan over it and still got in trouble. The cardigan was the saving grace but the neckline was too low by Korean standards. In America it would have been fine. Here, it prompted a quiet word from my supervisor that I still think about."*
 
-> <small>*Quora (What is it like to work in South Korea?) — A former corporate employee at a Seoul conglomerate: "The suit is not optional in a chaebol. I saw a foreign consultant arrive in smart trousers and a blazer — no tie — and the room visibly registered it. Nobody said anything. Nobody had to. The consultant wore a tie the next day."*</small>
+> *Quora (What is it like to work in South Korea?) — A former corporate employee at a Seoul conglomerate: "The suit is not optional in a chaebol. I saw a foreign consultant arrive in smart trousers and a blazer — no tie — and the room visibly registered it. Nobody said anything. Nobody had to. The consultant wore a tie the next day."*
 
-> <small>*r/korea — A commenter on an office attire thread: "My colleagues at the startup two floors up are in hoodies and headphones. I am in a suit. We are in the same building, earning different salaries, working different hours. I am not sure the suit is doing what management thinks it is doing."*</small>
+> *r/korea — A commenter on an office attire thread: "My colleagues at the startup two floors up are in hoodies and headphones. I am in a suit. We are in the same building, earning different salaries, working different hours. I am not sure the suit is doing what management thinks it is doing."*
 
-> <small>*r/AskEurope — An expat who relocated from Seoul to London: "I asked HR what the dress code was. They said 'smart casual.' I asked what that meant. They said 'you'll figure it out.' I wore a blazer and dark jeans on day one. I was overdressed by about one layer. Nobody said anything. In Seoul, nobody would have needed to."*</small>
+> *r/AskEurope — An expat who relocated from Seoul to London: "I asked HR what the dress code was. They said 'smart casual.' I asked what that meant. They said 'you'll figure it out.' I wore a blazer and dark jeans on day one. I was overdressed by about one layer. Nobody said anything. In Seoul, nobody would have needed to."*
 
-> <small>*Internations (South Korea expat community) — A Western expat working at a mid-size Korean firm: "The unwritten rule is: dress at the level of the most senior person in the room, or one notch below. Dress above them and it's presumptuous. Dress far below and it's disrespectful. The window is narrower than you expect, and there is no document explaining it."*</small>
+> *Internations (South Korea expat community) — A Western expat working at a mid-size Korean firm: "The unwritten rule is: dress at the level of the most senior person in the room, or one notch below. Dress above them and it's presumptuous. Dress far below and it's disrespectful. The window is narrower than you expect, and there is no document explaining it."*
 
 ### Conclusion
 

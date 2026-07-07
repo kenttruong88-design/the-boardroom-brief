@@ -74,15 +74,15 @@ The irony is symmetrical: Germany's impersonal system produces intense long-term
 
 ## The Part the Brochure Left Out
 
-> <small>*r/germany — A Korean engineer's account of her German onboarding: a laptop, four wiki links, a calendar invite titled "Welcome" for week two, and then quiet — she spent her first month waiting for instructions that were, it turned out, already inside the wiki links, where her colleagues considered the matter fully settled.*</small>
+> *r/germany — A Korean engineer's account of her German onboarding: a laptop, four wiki links, a calendar invite titled "Welcome" for week two, and then quiet — she spent her first month waiting for instructions that were, it turned out, already inside the wiki links, where her colleagues considered the matter fully settled.*
 
-> <small>*Quora — A German developer who joined a Seoul conglomerate wrote that he learned more about his actual job at his welcome dinner than in two weeks of formal training — including who really made decisions on his team, which the org chart had rendered with what he called "artistic licence."*</small>
+> *Quora — A German developer who joined a Seoul conglomerate wrote that he learned more about his actual job at his welcome dinner than in two weeks of formal training — including who really made decisions on his team, which the org chart had rendered with what he called "artistic licence."*
 
-> <small>*Internations Seoul — A Munich-trained manager said her mistake was treating her assigned senior as a colleague rather than a sunbae: she thanked him politely, declined his lunch invitations for busy ones at her desk, and only understood the damage when a friend explained she had been refusing adoption, not sandwiches.*</small>
+> *Internations Seoul — A Munich-trained manager said her mistake was treating her assigned senior as a colleague rather than a sunbae: she thanked him politely, declined his lunch invitations for busy ones at her desk, and only understood the damage when a friend explained she had been refusing adoption, not sandwiches.*
 
-> <small>*Blind — A Korean-American at a German multinational's Seoul office described the hybrid absurdity: HQ's onboarding checklist, translated faithfully, included "arrange informal team lunch (optional)" — a phrase his Korean colleagues found hilarious, as no such lunch has ever been optional in the history of the republic.*</small>
+> *Blind — A Korean-American at a German multinational's Seoul office described the hybrid absurdity: HQ's onboarding checklist, translated faithfully, included "arrange informal team lunch (optional)" — a phrase his Korean colleagues found hilarious, as no such lunch has ever been optional in the history of the republic.*
 
-> <small>*r/korea — One expat's advice thread: your first-week performance matters less than your first-week attendance — show up to everything, pour drinks with two hands, ask your sunbae one sincere question a day, and you will be forgiven months of professional mistakes you haven't made yet.*</small>
+> *r/korea — One expat's advice thread: your first-week performance matters less than your first-week attendance — show up to everything, pour drinks with two hands, ask your sunbae one sincere question a day, and you will be forgiven months of professional mistakes you haven't made yet.*
 
 ---
 

@@ -86,15 +86,15 @@ Expats note the adjustment in both directions. A Korean engineer who relocated t
 
 ### The Part the Brochure Left Out
 
-> <small>*The Local Germany — A 2022 European Court of Justice ruling, based on a case in Germany, confirmed that unused holiday entitlement does not expire if the employer never informed the employee of the deadline. One woman recouped compensation for 101 days of leave accumulated across 21 years. Her employer's defence was that she hadn't asked. The court's response was, essentially: you should have told her to.*</small>
+> *The Local Germany — A 2022 European Court of Justice ruling, based on a case in Germany, confirmed that unused holiday entitlement does not expire if the employer never informed the employee of the deadline. One woman recouped compensation for 101 days of leave accumulated across 21 years. Her employer's defence was that she hadn't asked. The court's response was, essentially: you should have told her to.*
 
-> <small>*Kowork.kr (foreigners working in Korea) — Korea's annual leave system mandates 15 days after one year. But paid sick leave is not required by law in most cases, and many employees use annual leave to cover illness. The result: your holiday days quietly double as your sick days, and neither count as either.*</small>
+> *Kowork.kr (foreigners working in Korea) — Korea's annual leave system mandates 15 days after one year. But paid sick leave is not required by law in most cases, and many employees use annual leave to cover illness. The result: your holiday days quietly double as your sick days, and neither count as either.*
 
-> <small>*Korea Times survey — About 35% of Korean workers say they feel guilty taking a long holiday because colleagues have to cover for them. A research professor who published a book on the subject titled it "The Lost 10 Days." He described long vacations as being seen as "a sin" in Korean workplace culture. The book has not, as yet, become mandatory reading for HR departments.*</small>
+> *Korea Times survey — About 35% of Korean workers say they feel guilty taking a long holiday because colleagues have to cover for them. A research professor who published a book on the subject titled it "The Lost 10 Days." He described long vacations as being seen as "a sin" in Korean workplace culture. The book has not, as yet, become mandatory reading for HR departments.*
 
-> <small>*Quora, on German vacation policy — "In Germany, your manager will actually ask you when you're taking your summer holiday, not whether you're taking it. I moved from the US and the first time it happened I genuinely didn't know how to answer."*</small>
+> *Quora, on German vacation policy — "In Germany, your manager will actually ask you when you're taking your summer holiday, not whether you're taking it. I moved from the US and the first time it happened I genuinely didn't know how to answer."*
 
-> <small>*Reddit, r/expats — An Australian who moved to Seoul noted: "I have 15 days. I've taken 4 in 8 months. Not because I don't want to — because taking a full week feels like I'm announcing that I don't care about the team. I've started using half-days [반차] just to feel human again."*</small>
+> *Reddit, r/expats — An Australian who moved to Seoul noted: "I have 15 days. I've taken 4 in 8 months. Not because I don't want to — because taking a full week feels like I'm announcing that I don't care about the team. I've started using half-days [반차] just to feel human again."*
 
 ### Conclusion
 

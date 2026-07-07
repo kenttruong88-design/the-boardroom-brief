@@ -74,15 +74,15 @@ The second irony is aspirational crossover. The most coveted job in Indian tech 
 
 ## The Part the Brochure Left Out
 
-> <small>*r/developersIndia — A Bengaluru engineer calculated that his return to office added three hours and forty minutes of daily commuting for a job unchanged in every other respect, and noted that his manager, who approved the arrangement, dials into their standup from another city.*</small>
+> *r/developersIndia — A Bengaluru engineer calculated that his return to office added three hours and forty minutes of daily commuting for a job unchanged in every other respect, and noted that his manager, who approved the arrangement, dials into their standup from another city.*
 
-> <small>*Quora — An engineer answering questions about working for US companies from India wrote that the real prize wasn't the dollar-linked salary but the silence: no attendance system, no badge report, and a manager eleven time zones away who judged him entirely on shipped work.*</small>
+> *Quora — An engineer answering questions about working for US companies from India wrote that the real prize wasn't the dollar-linked salary but the silence: no attendance system, no badge report, and a manager eleven time zones away who judged him entirely on shipped work.*
 
-> <small>*Blind — A verified employee at a major Indian IT firm described the month-end scramble when the internal tool flags attendance shortfalls: colleagues badging in, taking the lift down, and working from the food court across the road, which he called "compliance-driven hybrid."*</small>
+> *Blind — A verified employee at a major Indian IT firm described the month-end scramble when the internal tool flags attendance shortfalls: colleagues badging in, taking the lift down, and working from the food court across the road, which he called "compliance-driven hybrid."*
 
-> <small>*HackerNews — A US startup engineer recounted that after his company's "return to collaboration" push, the office filled with people on video calls wearing headphones, recreating the home setup at commuting distance; the mandate quietly relaxed within two quarters.*</small>
+> *HackerNews — A US startup engineer recounted that after his company's "return to collaboration" push, the office filled with people on video calls wearing headphones, recreating the home setup at commuting distance; the mandate quietly relaxed within two quarters.*
 
-> <small>*Remote Indian (community forum) — A designer working remotely from Jaipur for a Singapore firm said the unexpected cost was social: family assumed a man at home all day was available all day, and defending work hours inside his own house proved harder than any office politics.*</small>
+> *Remote Indian (community forum) — A designer working remotely from Jaipur for a Singapore firm said the unexpected cost was social: family assumed a man at home all day was available all day, and defending work hours inside his own house proved harder than any office politics.*
 
 ---
 

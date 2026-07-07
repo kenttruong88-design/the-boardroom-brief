@@ -88,15 +88,15 @@ In Canada, dress is more often understood as personal expression within practica
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — on dressing in Singapore as a visitor: "Singaporeans are actually quite relaxed about tourist dress unless you're entering a temple. The bigger issue is the air conditioning — everyone carries a scarf not because it's fashionable but because the MRT will freeze you solid."*</small>
+> *Quora — on dressing in Singapore as a visitor: "Singaporeans are actually quite relaxed about tourist dress unless you're entering a temple. The bigger issue is the air conditioning — everyone carries a scarf not because it's fashionable but because the MRT will freeze you solid."*
 
-> <small>*Quora — on avoiding tourist tells in Singapore: "The giveaway isn't what you wear, it's that you're sweating visibly at 9am. Locals have adapted to move slower and dress lighter. The coordinated look comes from knowing exactly how much to wear, not from trying harder."*</small>
+> *Quora — on avoiding tourist tells in Singapore: "The giveaway isn't what you wear, it's that you're sweating visibly at 9am. Locals have adapted to move slower and dress lighter. The coordinated look comes from knowing exactly how much to wear, not from trying harder."*
 
-> <small>*r/femalefashionadvice — on relocating to Singapore from Canada: "I packed all wrong. Everything I owned was for layering in cold weather. Within two weeks I had donated most of it and rebuilt my wardrobe in linen and cotton. The humidity is not a minor adjustment — it is a complete reset."*</small>
+> *r/femalefashionadvice — on relocating to Singapore from Canada: "I packed all wrong. Everything I owned was for layering in cold weather. Within two weeks I had donated most of it and rebuilt my wardrobe in linen and cotton. The humidity is not a minor adjustment — it is a complete reset."*
 
-> <small>*Expat Life Singapore — on the indoor-outdoor temperature whiplash: "You dress for 30 degrees and immediately enter a space that is 18. Every expat develops the same solution: carry something light but always carry something. Singapore's air conditioning is the most underreported aspect of dressing here."*</small>
+> *Expat Life Singapore — on the indoor-outdoor temperature whiplash: "You dress for 30 degrees and immediately enter a space that is 18. Every expat develops the same solution: carry something light but always carry something. Singapore's air conditioning is the most underreported aspect of dressing here."*
 
-> <small>*She Might Be Loved — on Singapore's fashion culture for visitors: "What struck me wasn't the minimalism — it was the intentionality. People looked like they had made decisions about what they were wearing. That's actually rarer than you'd think."*</small>
+> *She Might Be Loved — on Singapore's fashion culture for visitors: "What struck me wasn't the minimalism — it was the intentionality. People looked like they had made decisions about what they were wearing. That's actually rarer than you'd think."*
 
 ### Conclusion
 

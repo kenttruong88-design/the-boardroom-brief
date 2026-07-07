@@ -94,14 +94,14 @@ France wins on experience. The market, the specialist shop, the cheese counter c
 
 ## What Nobody Warned You About
 
-<small>*"I tried to touch a tomato at a Paris market. The vendor removed it from my hand so gently it took me a moment to realise what had happened. She then selected a better one. She was right. It was a better tomato."*
-— Reddit r/expats</small>
+*"I tried to touch a tomato at a Paris market. The vendor removed it from my hand so gently it took me a moment to realise what had happened. She then selected a better one. She was right. It was a better tomato."*
+— Reddit r/expats
 
-<small>*"Six months in Singapore and I have genuinely stopped cooking three nights a week. The economics of the hawker centre make home cooking feel like a hobby project, not a meal strategy. It took a British friend visiting to make me see this was unusual."*
-— expat.com, Singapore newcomers</small>
+*"Six months in Singapore and I have genuinely stopped cooking three nights a week. The economics of the hawker centre make home cooking feel like a hobby project, not a meal strategy. It took a British friend visiting to make me see this was unusual."*
+— expat.com, Singapore newcomers
 
-<small>*"Greeting the shopkeeper in France before speaking is apparently non-negotiable. I found this out on day three when I asked for bread without saying bonjour first and the boulangerie went absolutely silent."*
-— Internations Paris</small>
+*"Greeting the shopkeeper in France before speaking is apparently non-negotiable. I found this out on day three when I asked for bread without saying bonjour first and the boulangerie went absolutely silent."*
+— Internations Paris
 
 ---
 

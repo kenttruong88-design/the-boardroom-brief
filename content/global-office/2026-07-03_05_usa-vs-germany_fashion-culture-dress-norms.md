@@ -80,13 +80,13 @@ The irony is that America, the country stereotyped abroad as brashly casual, sti
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — Someone asking whether tech firms enforce a casual dress code was told that during Silicon Valley internships, managers regularly wore hoodies and shorts, and that showing up overdressed wouldn't get you sent home, just mistaken for an auditor by the end of the week.*</small>
+> *Quora — Someone asking whether tech firms enforce a casual dress code was told that during Silicon Valley internships, managers regularly wore hoodies and shorts, and that showing up overdressed wouldn't get you sent home, just mistaken for an auditor by the end of the week.*
 
-> <small>*Ask a Manager (workplace advice community) — A recurring reader question centers on whether flip-flops and shorts ever cross into acceptable "business casual" territory in the summer, with the consistent answer from HR-adjacent commenters being no, regardless of how relaxed the office otherwise feels.*</small>
+> *Ask a Manager (workplace advice community) — A recurring reader question centers on whether flip-flops and shorts ever cross into acceptable "business casual" territory in the summer, with the consistent answer from HR-adjacent commenters being no, regardless of how relaxed the office otherwise feels.*
 
-> <small>*life-in-germany.de reader account — A newcomer to a Berlin office described being visibly overdressed on day one in a blazer, only to realize most colleagues in non-client-facing roles wore jeans and Birkenstocks, and that the "conservative German office" reputation they'd prepared for applied more to Frankfurt than to where they'd actually landed.*</small>
+> *life-in-germany.de reader account — A newcomer to a Berlin office described being visibly overdressed on day one in a blazer, only to realize most colleagues in non-client-facing roles wore jeans and Birkenstocks, and that the "conservative German office" reputation they'd prepared for applied more to Frankfurt than to where they'd actually landed.*
 
-> <small>*Cultural Vistas (exchange program community resource) — Guidance aimed at newcomers to Berlin explicitly flags that "casual Friday" is spreading but still inconsistent company to company, advising new arrivals to default formal for the first two weeks and adjust downward once the actual office norm becomes clear.*</small>
+> *Cultural Vistas (exchange program community resource) — Guidance aimed at newcomers to Berlin explicitly flags that "casual Friday" is spreading but still inconsistent company to company, advising new arrivals to default formal for the first two weeks and adjust downward once the actual office norm becomes clear.*
 
 ### Conclusion
 

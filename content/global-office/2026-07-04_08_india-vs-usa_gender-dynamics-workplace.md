@@ -74,15 +74,15 @@ For a woman weighing the move in either direction: from the US to India, the sho
 
 ## The Part the Brochure Left Out
 
-> <small>*r/TwoXIndia — A Bengaluru software engineer wrote that her company's late-shift cab system — mandatory escort, GPS tracking, calls to confirm arrival — made her simultaneously safer than her cousin in Chicago and more monitored than any employee she'd met anywhere, and that both facts were the point.*</small>
+> *r/TwoXIndia — A Bengaluru software engineer wrote that her company's late-shift cab system — mandatory escort, GPS tracking, calls to confirm arrival — made her simultaneously safer than her cousin in Chicago and more monitored than any employee she'd met anywhere, and that both facts were the point.*
 
-> <small>*Quora — An Indian product manager who relocated to Seattle said the astonishment ran opposite to her family's predictions: American colleagues were respectful and the work unremarkable — what floored her was daycare at $2,400 a month and a teammate returning to work three weeks after a caesarean because her leave was exhausted.*</small>
+> *Quora — An Indian product manager who relocated to Seattle said the astonishment ran opposite to her family's predictions: American colleagues were respectful and the work unremarkable — what floored her was daycare at $2,400 a month and a teammate returning to work three weeks after a caesarean because her leave was exhausted.*
 
-> <small>*Blind — A woman at a large US tech firm noted that after the 2025 DEI rollbacks, her women's leadership programme was renamed, defunded, and finally relaunched as an all-hands "excellence initiative"; her Indian counterpart at the same company, meanwhile, still had a legally mandated committee with actual statutory teeth.*</small>
+> *Blind — A woman at a large US tech firm noted that after the 2025 DEI rollbacks, her women's leadership programme was renamed, defunded, and finally relaunched as an all-hands "excellence initiative"; her Indian counterpart at the same company, meanwhile, still had a legally mandated committee with actual statutory teeth.*
 
-> <small>*Internations Bangalore — An American consultant said the hardest adjustment wasn't the office, where she was treated as a professional, but its perimeter: colleagues' genuine alarm at her taking auto-rickshaws alone at 9pm, which she initially read as condescension and later understood as accurate local risk-pricing.*</small>
+> *Internations Bangalore — An American consultant said the hardest adjustment wasn't the office, where she was treated as a professional, but its perimeter: colleagues' genuine alarm at her taking auto-rickshaws alone at 9pm, which she initially read as condescension and later understood as accurate local risk-pricing.*
 
-> <small>*HackerNews — A commenter who had managed teams in both countries observed that the marriage question surfaces in both — Indian interviewers ask it aloud and illegally, American ones silently infer it from a ring and a résumé gap — and that only one system, in his experience, would admit what it was doing.*</small>
+> *HackerNews — A commenter who had managed teams in both countries observed that the marriage question surfaces in both — Indian interviewers ask it aloud and illegally, American ones silently infer it from a ring and a résumé gap — and that only one system, in his experience, would admit what it was doing.*
 
 ---
 

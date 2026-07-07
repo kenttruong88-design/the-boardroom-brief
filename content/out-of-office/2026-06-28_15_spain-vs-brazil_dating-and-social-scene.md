@@ -96,14 +96,14 @@ Spain wins on the slow burn — the pleasure of a social scene that knows how to
 
 ## What Nobody Warned You About
 
-<small>*"After six months in Madrid, I had completely internalised Spanish time. I showed up to a friend's dinner party in London at 10:30pm. I was the last to arrive. The food had been served and cleared. The cleaning up had begun."*
-— Reddit r/askspain</small>
+*"After six months in Madrid, I had completely internalised Spanish time. I showed up to a friend's dinner party in London at 10:30pm. I was the last to arrive. The food had been served and cleared. The cleaning up had begun."*
+— Reddit r/askspain
 
-<small>*"The first time a Brazilian I'd met twenty minutes earlier hugged me goodbye for a full five seconds, I thought something had gone wrong. Nothing had gone wrong. That was just the goodbye. I now understand this was an upgrade."*
-— expat.com, São Paulo newcomers</small>
+*"The first time a Brazilian I'd met twenty minutes earlier hugged me goodbye for a full five seconds, I thought something had gone wrong. Nothing had gone wrong. That was just the goodbye. I now understand this was an upgrade."*
+— expat.com, São Paulo newcomers
 
-<small>*"Dating in Spain as a foreigner: the person you like has seventeen friends who will all be evaluating you for two months before anything happens. This sounds exhausting. It is also completely correct because by the time anything happens, everyone is certain."*
-— Internations São Paulo</small>
+*"Dating in Spain as a foreigner: the person you like has seventeen friends who will all be evaluating you for two months before anything happens. This sounds exhausting. It is also completely correct because by the time anything happens, everyone is certain."*
+— Internations São Paulo
 
 ---
 

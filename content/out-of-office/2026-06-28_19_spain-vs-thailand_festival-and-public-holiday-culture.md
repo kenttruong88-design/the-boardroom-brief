@@ -96,14 +96,14 @@ Spain wins on volume, variety, and the absolute commitment to burning, exploding
 
 ## What Nobody Warned You About
 
-<small>*"I stood in the front row of a Semana Santa procession in Seville taking photos until the man next to me, who had been crying quietly, very gently moved me to the side. He wasn't rude. He just needed to see. I stayed at the back for the rest of the week and understood more."*
-— Reddit r/spain</small>
+*"I stood in the front row of a Semana Santa procession in Seville taking photos until the man next to me, who had been crying quietly, very gently moved me to the side. He wasn't rude. He just needed to see. I stayed at the back for the rest of the week and understood more."*
+— Reddit r/spain
 
-<small>*"Nobody told me Songkran in Bangkok means you cannot do anything that involves being dry. I had a meeting. I wore a suit. I no longer had a meeting. Or a dry suit."*
-— Internations Bangkok</small>
+*"Nobody told me Songkran in Bangkok means you cannot do anything that involves being dry. I had a meeting. I wore a suit. I no longer had a meeting. Or a dry suit."*
+— Internations Bangkok
 
-<small>*"The Yi Peng lantern release in Chiang Mai is the most beautiful thing I have seen in fourteen years of moving between countries. I say this as someone who does not use the word beautiful lightly and is deeply suspicious of bucket lists."*
-— expat.com, Thai festival guide</small>
+*"The Yi Peng lantern release in Chiang Mai is the most beautiful thing I have seen in fourteen years of moving between countries. I say this as someone who does not use the word beautiful lightly and is deeply suspicious of bucket lists."*
+— expat.com, Thai festival guide
 
 ---
 

@@ -88,15 +88,15 @@ The problem with the second argument is the data. The Netherlands produces appro
 
 ### The Part the Brochure Left Out
 
-> <small>*IamExpat / InterNations Expat Insider 2021 — "When asked what they enjoy most about their jobs in the Netherlands, 37 percent of expats praised the work-life balance. 79 percent rated their working hours positively. The Netherlands ranked fifth out of 55 countries for the importance of 'New Work' — autonomy, self-fulfilment, flexible hours — in local business culture."*</small>
+> *IamExpat / InterNations Expat Insider 2021 — "When asked what they enjoy most about their jobs in the Netherlands, 37 percent of expats praised the work-life balance. 79 percent rated their working hours positively. The Netherlands ranked fifth out of 55 countries for the importance of 'New Work' — autonomy, self-fulfilment, flexible hours — in local business culture."*
 
-> <small>*Quora — Indian IT professional who relocated to Amsterdam — "In my first week I kept refreshing my inbox after dinner waiting for something urgent to come in. Nothing did. Then I realised the Dutch colleagues had just... stopped working. Not quietly. They had simply left at five and gone home. It took about a month before I stopped feeling guilty about doing the same."*</small>
+> *Quora — Indian IT professional who relocated to Amsterdam — "In my first week I kept refreshing my inbox after dinner waiting for something urgent to come in. Nothing did. Then I realised the Dutch colleagues had just... stopped working. Not quietly. They had simply left at five and gone home. It took about a month before I stopped feeling guilty about doing the same."*
 
-> <small>*Quora — Dutch professional who took a contract in Bangalore — "The culture shock was real in both directions. My Indian colleagues were surprised I wouldn't do calls at 9pm. I was surprised the 9pm call was considered normal. Eventually we found a middle ground, but it required both sides to acknowledge that neither assumption was universal."*</small>
+> *Quora — Dutch professional who took a contract in Bangalore — "The culture shock was real in both directions. My Indian colleagues were surprised I wouldn't do calls at 9pm. I was surprised the 9pm call was considered normal. Eventually we found a middle ground, but it required both sides to acknowledge that neither assumption was universal."*
 
-> <small>*The Register, November 2025 — On Narayana Murthy's 72-hour proposal — "His remarks have stirred controversy because few feel that 70-hour weeks improve productivity, and many know they make it extremely difficult to achieve decent work-life balance. Murthy continued to argue he is right, praising China's 996 culture — and made no mention of the fact that Chinese courts have ruled it illegal."*</small>
+> *The Register, November 2025 — On Narayana Murthy's 72-hour proposal — "His remarks have stirred controversy because few feel that 70-hour weeks improve productivity, and many know they make it extremely difficult to achieve decent work-life balance. Murthy continued to argue he is right, praising China's 996 culture — and made no mention of the fact that Chinese courts have ruled it illegal."*
 
-> <small>*r/Netherlands — expat thread on adjusting to Dutch work culture — "My manager told me on day one: if you are still here at 6pm, I will ask what is wrong. Not in a concerned way. In a 'did you fail to plan your day' way. I have never worked more efficiently in my life."*</small>
+> *r/Netherlands — expat thread on adjusting to Dutch work culture — "My manager told me on day one: if you are still here at 6pm, I will ask what is wrong. Not in a concerned way. In a 'did you fail to plan your day' way. I have never worked more efficiently in my life."*
 
 ### Conclusion
 

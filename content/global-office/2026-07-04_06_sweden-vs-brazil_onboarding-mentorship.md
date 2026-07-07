@@ -74,15 +74,15 @@ The irony runs both ways. Flat, egalitarian Sweden produces the lonelier arrival
 
 ## The Part the Brochure Left Out
 
-> <small>*r/TillSverige — A newcomer to a Gothenburg engineering firm posted, half in panic, that after a flawless first week of onboarding nobody had spoken to him for three days; the top reply, from a fellow immigrant: "Congratulations, they trust you. Go to fika or this is permanent."*</small>
+> *r/TillSverige — A newcomer to a Gothenburg engineering firm posted, half in panic, that after a flawless first week of onboarding nobody had spoken to him for three days; the top reply, from a fellow immigrant: "Congratulations, they trust you. Go to fika or this is permanent."*
 
-> <small>*Quora — A Brazilian developer who joined a Stockholm startup wrote that she prepared for culture shock about winter and instead was floored by the praise economy: after two months, her manager's "this looks good" turned out to have signalled a promotion track no one had mentioned aloud.*</small>
+> *Quora — A Brazilian developer who joined a Stockholm startup wrote that she prepared for culture shock about winter and instead was floored by the praise economy: after two months, her manager's "this looks good" turned out to have signalled a promotion track no one had mentioned aloud.*
 
-> <small>*Internations Stockholm — An Indian project manager said the buddy system worked exactly once: his buddy answered every question asked, and volunteered nothing. His advice to arrivals: in Sweden, information is pull-based — the API is excellent but nothing is pushed.*</small>
+> *Internations Stockholm — An Indian project manager said the buddy system worked exactly once: his buddy answered every question asked, and volunteered nothing. His advice to arrivals: in Sweden, information is pull-based — the API is excellent but nothing is pushed.*
 
-> <small>*r/expats — A German who transferred to São Paulo reported that in his first fortnight he was invited to three family barbecues and a niece's birthday, and that declining the second barbecue triggered a concerned visit from HR's friendliest colleague asking whether he was unhappy.*</small>
+> *r/expats — A German who transferred to São Paulo reported that in his first fortnight he was invited to three family barbecues and a niece's birthday, and that declining the second barbecue triggered a concerned visit from HR's friendliest colleague asking whether he was unhappy.*
 
-> <small>*The Local Sweden — A reader recounted asking her manager for more feedback during probation and receiving a puzzled, kindly reply: "If something was wrong, we would tell you." She described the following four months as "learning to metabolise silence as affection."*</small>
+> *The Local Sweden — A reader recounted asking her manager for more feedback during probation and receiving a puzzled, kindly reply: "If something was wrong, we would tell you." She described the following four months as "learning to metabolise silence as affection."*
 
 ---
 

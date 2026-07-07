@@ -94,14 +94,14 @@ Mexico wins on sheer meteorological variety — the geography is extraordinary a
 
 ## What Nobody Warned You About
 
-<small>*"My first October in Mexico City, I showed up in linen because Latin America and got absolutely soaked by the 4pm rain and then nearly hypothermic because the temperature dropped eight degrees in twenty minutes. The vendor selling umbrellas outside my office building saw it all coming. He had seen this before."*
-— Reddit r/mexico</small>
+*"My first October in Mexico City, I showed up in linen because Latin America and got absolutely soaked by the 4pm rain and then nearly hypothermic because the temperature dropped eight degrees in twenty minutes. The vendor selling umbrellas outside my office building saw it all coming. He had seen this before."*
+— Reddit r/mexico
 
-<small>*"Germans walking in the forest in November in drizzle and apparently enjoying themselves is something I did not understand for two years. I now do this. I have the technical jacket. I do not know who I have become."*
-— Internations Berlin</small>
+*"Germans walking in the forest in November in drizzle and apparently enjoying themselves is something I did not understand for two years. I now do this. I have the technical jacket. I do not know who I have become."*
+— Internations Berlin
 
-<small>*"Nobody told me that Berlin doesn't really have spring. There's winter, and then some weeks of something undecided, and then suddenly it's 28 degrees and everyone is in a beer garden by noon. There's no transition. You just have to stay alert."*
-— expat.com, German weather guide</small>
+*"Nobody told me that Berlin doesn't really have spring. There's winter, and then some weeks of something undecided, and then suddenly it's 28 degrees and everyone is in a beer garden by noon. There's no transition. You just have to stay alert."*
+— expat.com, German weather guide
 
 ---
 

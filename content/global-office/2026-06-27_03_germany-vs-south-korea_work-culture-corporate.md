@@ -91,15 +91,15 @@ The generational tension in South Korean corporate culture is genuine. Younger K
 
 ### The Part the Brochure Left Out
 
-> <small>*The Local Germany — Intercultural trainer Barbara Sametinger: "Germans prefer to have discussions about politics or what's going on in the world. Small talk is not very satisfying and is perceived as something superficial — for some, even a waste of time." Newcomers expecting Canadian-style office warmth report the adjustment takes longer than anticipated.*</small>
+> *The Local Germany — Intercultural trainer Barbara Sametinger: "Germans prefer to have discussions about politics or what's going on in the world. Small talk is not very satisfying and is perceived as something superficial — for some, even a waste of time." Newcomers expecting Canadian-style office warmth report the adjustment takes longer than anticipated.*
 
-> <small>*Quora — On the Korean ranking system: "I am a basic employee with the Korean ranking system and always discuss with my manager — something said, they shut me down like 'no rights to you for any discussion, just do.' I was so frustrated." A recurring account from foreign hires at Korean SMEs navigating seniority culture without prior context.*</small>
+> *Quora — On the Korean ranking system: "I am a basic employee with the Korean ranking system and always discuss with my manager — something said, they shut me down like 'no rights to you for any discussion, just do.' I was so frustrated." A recurring account from foreign hires at Korean SMEs navigating seniority culture without prior context.*
 
-> <small>*Reddit, r/germany — A US expat after six months in Frankfurt: "My German colleagues literally walked out at 5:31 PM mid-conversation. I thought something was wrong. Turns out that was the point — the conversation should have ended at 5:00. I have never felt so gently, efficiently corrected."*</small>
+> *Reddit, r/germany — A US expat after six months in Frankfurt: "My German colleagues literally walked out at 5:31 PM mid-conversation. I thought something was wrong. Turns out that was the point — the conversation should have ended at 5:00. I have never felt so gently, efficiently corrected."*
 
-> <small>*Korea Local Pages — On hweshik: "Your boss will more than likely try to engage with you to know your history, your reasons for coming to South Korea, and your goals for the future. Hweshik is a great opportunity to connect on a more personal level with coworkers who you may not be able to talk much with otherwise — the hierarchy hasn't dissolved, it's just been softened by Korean barbecue."*</small>
+> *Korea Local Pages — On hweshik: "Your boss will more than likely try to engage with you to know your history, your reasons for coming to South Korea, and your goals for the future. Hweshik is a great opportunity to connect on a more personal level with coworkers who you may not be able to talk much with otherwise — the hierarchy hasn't dissolved, it's just been softened by Korean barbecue."*
 
-> <small>*Quora — On Germany vs. Korea hours: "A German will be at work from 9–4 and accomplish more than a Korean who is at work from 9–9." A blunt comparative that surfaces repeatedly in discussions about productivity per hour worked, and which neither country's economists entirely disagree with.*</small>
+> *Quora — On Germany vs. Korea hours: "A German will be at work from 9–4 and accomplish more than a Korean who is at work from 9–9." A blunt comparative that surfaces repeatedly in discussions about productivity per hour worked, and which neither country's economists entirely disagree with.*
 
 ### Conclusion
 

@@ -85,15 +85,15 @@ Expats who have navigated both describe the same psychological shift: arriving i
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — Indian couple in the Netherlands: "We budgeted €3,000 a month and thought we were being generous. Then we discovered the childcare waiting list was 14 months long. Our daughter started at a dagopvang when she was almost two. We had not planned for that."*</small>
+> *Quora — Indian couple in the Netherlands: "We budgeted €3,000 a month and thought we were being generous. Then we discovered the childcare waiting list was 14 months long. Our daughter started at a dagopvang when she was almost two. We had not planned for that."*
 
-> <small>*DutchReview (Kavana Desai) — "Living in the Netherlands as an Indian has not always been smooth. I cut down on socialising altogether because I always felt like I was spending way too much money. Going out with friends felt like a luxury I couldn't afford. Then I learned: invite people home, go Dutch, and never convert prices back to rupees while standing at a supermarket checkout."*</small>
+> *DutchReview (Kavana Desai) — "Living in the Netherlands as an Indian has not always been smooth. I cut down on socialising altogether because I always felt like I was spending way too much money. Going out with friends felt like a luxury I couldn't afford. Then I learned: invite people home, go Dutch, and never convert prices back to rupees while standing at a supermarket checkout."*
 
-> <small>*Expat Arrivals — British expat in Bengaluru: "Your salary goes a LOT further in India. Food and consumer items — including designer goods — are a fraction of the cost in the UK. The services of anyone from a nanny to a cook to a maid to a driver are not expensive at all. Doing dishes or wiping counters will become a thing of the past."*</small>
+> *Expat Arrivals — British expat in Bengaluru: "Your salary goes a LOT further in India. Food and consumer items — including designer goods — are a fraction of the cost in the UK. The services of anyone from a nanny to a cook to a maid to a driver are not expensive at all. Doing dishes or wiping counters will become a thing of the past."*
 
-> <small>*Internations / Pararius expat guide — "Almost 75% of the Dutch rental market is set aside for social housing, which sounds reassuring until you discover the waitlists are so long that social housing is virtually inaccessible to new arrivals. Expats are left competing with each other for the 25% of the market they can access — which has driven private rents in Amsterdam to an average of €1,600–1,800 per month for a one-bedroom."*</small>
+> *Internations / Pararius expat guide — "Almost 75% of the Dutch rental market is set aside for social housing, which sounds reassuring until you discover the waitlists are so long that social housing is virtually inaccessible to new arrivals. Expats are left competing with each other for the 25% of the market they can access — which has driven private rents in Amsterdam to an average of €1,600–1,800 per month for a one-bedroom."*
 
-> <small>*Reddit r/Netherlands — "The 30% ruling changed the maths completely for me. I came for the gross salary, stayed for the net. But I underestimated housing. I pay €2,200 a month for a two-bedroom in Utrecht. By the time I add health insurance, childcare, and groceries, my Dutch salary buys me roughly the same standard of living I had in Pune — just with better public transport and fewer hours of sunshine."*</small>
+> *Reddit r/Netherlands — "The 30% ruling changed the maths completely for me. I came for the gross salary, stayed for the net. But I underestimated housing. I pay €2,200 a month for a two-bedroom in Utrecht. By the time I add health insurance, childcare, and groceries, my Dutch salary buys me roughly the same standard of living I had in Pune — just with better public transport and fewer hours of sunshine."*
 
 ### Conclusion
 

@@ -96,14 +96,14 @@ Both systems have genuine merits and genuine problems, and the correct approach 
 
 ## What Nobody Warned You About
 
-<small>*"I needed a blood test in Mumbai. I booked online, arrived at the diagnostic centre, was done in fifteen minutes, and had results by email the same afternoon. In the UK, this would have required a GP appointment, a referral, another appointment, and a phone call two weeks later. I am not saying the NHS is worse. I am saying Mumbai is faster."*
-— Reddit r/expats</small>
+*"I needed a blood test in Mumbai. I booked online, arrived at the diagnostic centre, was done in fifteen minutes, and had results by email the same afternoon. In the UK, this would have required a GP appointment, a referral, another appointment, and a phone call two weeks later. I am not saying the NHS is worse. I am saying Mumbai is faster."*
+— Reddit r/expats
 
-<small>*"Registering with an NHS GP in London: first surgery said their list was full. Second surgery said their list was full. Third surgery accepted me. Appointment available: three weeks. The system works. It is under considerable strain. Both are true simultaneously."*
-— expat.com, UK newcomers</small>
+*"Registering with an NHS GP in London: first surgery said their list was full. Second surgery said their list was full. Third surgery accepted me. Appointment available: three weeks. The system works. It is under considerable strain. Both are true simultaneously."*
+— expat.com, UK newcomers
 
-<small>*"The pharmacy in my neighbourhood in Delhi had everything I needed for a stomach bug — oral rehydration salts, probiotics, the correct medication — in about four minutes. The pharmacist explained the dosage. I paid approximately nothing. I remain conflicted about whether this is good or bad for global antibiotic stewardship."*
-— Internations Mumbai</small>
+*"The pharmacy in my neighbourhood in Delhi had everything I needed for a stomach bug — oral rehydration salts, probiotics, the correct medication — in about four minutes. The pharmacist explained the dosage. I paid approximately nothing. I remain conflicted about whether this is good or bad for global antibiotic stewardship."*
+— Internations Mumbai
 
 ---
 

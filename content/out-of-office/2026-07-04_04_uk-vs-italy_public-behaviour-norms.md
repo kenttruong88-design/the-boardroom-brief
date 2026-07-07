@@ -84,11 +84,11 @@ The Brits have the better queue. The Italians have the better everything-the-que
 
 ## What Nobody Warned You About
 
-<small>*"Someone pushed in front of my nan at a Tesco in 2019. Nobody said anything, obviously. But the tutting. I felt it in my chest. The man LEFT THE SHOP."* — Reddit r/AskUK</small>
+*"Someone pushed in front of my nan at a Tesco in 2019. Nobody said anything, obviously. But the tutting. I felt it in my chest. The man LEFT THE SHOP."* — Reddit r/AskUK
 
-<small>*"The 'chi è l'ultimo' system broke my brain. There's no line. There's never been a line. And yet in three years I have never once seen anyone served out of turn. Meanwhile my bank's actual ticketed queue in London once lost me entirely."* — Internations Rome</small>
+*"The 'chi è l'ultimo' system broke my brain. There's no line. There's never been a line. And yet in three years I have never once seen anyone served out of turn. Meanwhile my bank's actual ticketed queue in London once lost me entirely."* — Internations Rome
 
-<small>*"Moved from Milan to Manchester. The first time a colleague apologised to me because I stepped on HIS foot, I understood I was living among a different species."* — Reddit r/italy</small>
+*"Moved from Milan to Manchester. The first time a colleague apologised to me because I stepped on HIS foot, I understood I was living among a different species."* — Reddit r/italy
 
 ## Conclusion
 

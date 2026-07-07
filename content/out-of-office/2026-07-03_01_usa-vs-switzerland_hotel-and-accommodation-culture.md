@@ -82,11 +82,11 @@ America has better beds, better service theatre, and better ice machines — a c
 
 ## What Nobody Warned You About
 
-<small>*"Vegas hotel charged me a $52/night resort fee. The 'resort amenities' were a gym (closed for renovation), a pool (closed for a private event), and 'premium Wi-Fi' (didn't work). When I complained they offered me... a discount on the buffet."* — Reddit r/hotels</small>
+*"Vegas hotel charged me a $52/night resort fee. The 'resort amenities' were a gym (closed for renovation), a pool (closed for a private event), and 'premium Wi-Fi' (didn't work). When I complained they offered me... a discount on the buffet."* — Reddit r/hotels
 
-<small>*"Booked a 4-star in Zurich for a work trip. The room was so small I had to put my suitcase on the bed to open it, then put it in the bathroom to sleep. But the free tram card saved me 40 francs and the breakfast cheese changed my personality."* — Reddit r/askswitzerland</small>
+*"Booked a 4-star in Zurich for a work trip. The room was so small I had to put my suitcase on the bed to open it, then put it in the bathroom to sleep. But the free tram card saved me 40 francs and the breakfast cheese changed my personality."* — Reddit r/askswitzerland
 
-<small>*"American hotels: 'Your room is ready, sir! Can I get you anything at all?' Swiss hotels: 'Check-in is at 15:00.' It was 14:58. I waited. At 15:00 exactly, the key appeared. I respect it enormously."* — Internations Zurich</small>
+*"American hotels: 'Your room is ready, sir! Can I get you anything at all?' Swiss hotels: 'Check-in is at 15:00.' It was 14:58. I waited. At 15:00 exactly, the key appeared. I respect it enormously."* — Internations Zurich
 
 ## Conclusion
 

@@ -80,11 +80,11 @@ But I've relocated fourteen times, and I'll give you the pattern: nobody ever te
 
 ## What Nobody Warned You About
 
-<small>*"I heard my neighbour at his door so I waited inside until he'd gone. Then I realised he was doing the same for me. We are both very considerate people who have never spoken."* — Reddit r/sweden</small>
+*"I heard my neighbour at his door so I waited inside until he'd gone. Then I realised he was doing the same for me. We are both very considerate people who have never spoken."* — Reddit r/sweden
 
-<small>*"The auntie three doors down noticed I hadn't left the house in two days and sent her grandson over with soup and instructions to check I wasn't dead. I'd lived there nine days."* — expat.com Vietnam forum</small>
+*"The auntie three doors down noticed I hadn't left the house in two days and sent her grandson over with soup and instructions to check I wasn't dead. I'd lived there nine days."* — expat.com Vietnam forum
 
-<small>*"Making Swedish friends after 30 is a myth, like the northern lights. Technically real, requires perfect conditions, most visitors never see it."* — Internations Stockholm</small>
+*"Making Swedish friends after 30 is a myth, like the northern lights. Technically real, requires perfect conditions, most visitors never see it."* — Internations Stockholm
 
 ## Conclusion
 

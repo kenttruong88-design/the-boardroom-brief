@@ -88,11 +88,11 @@ The traveller who visits both and eats properly in both — who follows the queu
 
 ## What Nobody Warned You About
 
-> <small>*Reddit r/india — "The regional variation hit me harder than I expected. I had been eating Indian food in London for twenty years and felt reasonably informed. Then I moved to Chennai and discovered that the food I had been calling 'Indian' was primarily Punjabi, and that South Indian food was an entirely different civilisation's cuisine. I spent my first six months relearning everything I thought I knew. It was excellent."*</small>
+> *Reddit r/india — "The regional variation hit me harder than I expected. I had been eating Indian food in London for twenty years and felt reasonably informed. Then I moved to Chennai and discovered that the food I had been calling 'Indian' was primarily Punjabi, and that South Indian food was an entirely different civilisation's cuisine. I spent my first six months relearning everything I thought I knew. It was excellent."*
 
-> <small>*The Local France — "A French colleague corrected my coffee order on my third day. Not unkindly — she explained that a café crème after 11am was 'not done' and suggested an espresso instead. I was briefly annoyed and then I tried the espresso and realised she was right. French food corrections are almost always correct. This is infuriating and useful simultaneously."*</small>
+> *The Local France — "A French colleague corrected my coffee order on my third day. Not unkindly — she explained that a café crème after 11am was 'not done' and suggested an espresso instead. I was briefly annoyed and then I tried the espresso and realised she was right. French food corrections are almost always correct. This is infuriating and useful simultaneously."*
 
-> <small>*Internations Mumbai — "I got pani puri from a cart near my office every day for three months. On the fourth month I got sick. I went back the next week. The vendor adjusted the water. I have been going back ever since. Street food safety in India is real but it is also manageable and the reward for managing it correctly is some of the best food available at any price point anywhere."*</small>
+> *Internations Mumbai — "I got pani puri from a cart near my office every day for three months. On the fourth month I got sick. I went back the next week. The vendor adjusted the water. I have been going back ever since. Street food safety in India is real but it is also manageable and the reward for managing it correctly is some of the best food available at any price point anywhere."*
 
 ---
 

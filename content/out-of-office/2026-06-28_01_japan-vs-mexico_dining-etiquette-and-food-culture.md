@@ -89,11 +89,11 @@ Both countries will ruin everywhere else for you. They are doing it on purpose.
 
 ## What Nobody Warned You About
 
-> <small>*Reddit r/movingtojapan — "The thing nobody tells you is that eating alone in Japan is not just acceptable — it's almost preferred in certain contexts. Ramen shops have solo counter seats, conveyor sushi is designed for one, and nobody will look at you funny for eating a full kaiseki meal by yourself. I ate better alone in Tokyo than I did with groups anywhere else. The meal doesn't require company to be serious."*</small>
+> *Reddit r/movingtojapan — "The thing nobody tells you is that eating alone in Japan is not just acceptable — it's almost preferred in certain contexts. Ramen shops have solo counter seats, conveyor sushi is designed for one, and nobody will look at you funny for eating a full kaiseki meal by yourself. I ate better alone in Tokyo than I did with groups anywhere else. The meal doesn't require company to be serious."*
 
-> <small>*Internations Mexico City — "I showed up to a dinner party at the time I was told and the host was still in the shower. The food wasn't ready. The other guests hadn't arrived. I stood in the kitchen for forty minutes while the host's mother explained to me, very patiently, that the time on an invitation in Mexico City is a suggestion, not a commitment. I now arrive forty-five minutes late to everything and I have never been the first person there."*</small>
+> *Internations Mexico City — "I showed up to a dinner party at the time I was told and the host was still in the shower. The food wasn't ready. The other guests hadn't arrived. I stood in the kitchen for forty minutes while the host's mother explained to me, very patiently, that the time on an invitation in Mexico City is a suggestion, not a commitment. I now arrive forty-five minutes late to everything and I have never been the first person there."*
 
-> <small>*Quora — A British expat who had lived in both countries consecutively described the adjustment as "recalibrating my entire relationship with silence. In Japan, a quiet meal was comfortable, respectful, correct. In Mexico, a quiet meal meant something was wrong — someone was angry, or ill, or the food hadn't arrived. I spent six months being either too loud or too quiet depending on which country I was in."*</small>
+> *Quora — A British expat who had lived in both countries consecutively described the adjustment as "recalibrating my entire relationship with silence. In Japan, a quiet meal was comfortable, respectful, correct. In Mexico, a quiet meal meant something was wrong — someone was angry, or ill, or the food hadn't arrived. I spent six months being either too loud or too quiet depending on which country I was in."*
 
 ---
 

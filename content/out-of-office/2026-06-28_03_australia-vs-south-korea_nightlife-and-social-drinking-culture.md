@@ -88,11 +88,11 @@ If you are moving to Australia, relax and buy your round. If you are moving to S
 
 ## What Nobody Warned You About
 
-> <small>*Waygook.org — "My first hweshik I politely declined the second round of soju because I had an early class the next day. My co-teacher looked at me with an expression I can only describe as concerned. Later she explained that my principal had noticed and asked if I was unhappy at the school. I had been there three weeks. I learned very quickly that 'I have work tomorrow' is not a reason in Korea because everyone has work tomorrow."*</small>
+> *Waygook.org — "My first hweshik I politely declined the second round of soju because I had an early class the next day. My co-teacher looked at me with an expression I can only describe as concerned. Later she explained that my principal had noticed and asked if I was unhappy at the school. I had been there three weeks. I learned very quickly that 'I have work tomorrow' is not a reason in Korea because everyone has work tomorrow."*
 
-> <small>*Internations Sydney — "The shouting system caused me genuine anxiety for my first month. I didn't know when it was my round, I didn't know how to track it, and I was terrified of getting it wrong. Eventually an Australian friend explained: it's not tracked. You roughly take turns. The worst thing you can do is be obviously stingy. After that, it made perfect sense and I stopped overthinking it entirely."*</small>
+> *Internations Sydney — "The shouting system caused me genuine anxiety for my first month. I didn't know when it was my round, I didn't know how to track it, and I was terrified of getting it wrong. Eventually an Australian friend explained: it's not tracked. You roughly take turns. The worst thing you can do is be obviously stingy. After that, it made perfect sense and I stopped overthinking it entirely."*
 
-> <small>*expat.com Seoul — "Koreans drink a lot of soju and the serving sizes are small and frequent, which means you can be significantly more drunk than you realise before the first venue is over. The move to the second venue is when you discover this. The norebang at the third venue is when everyone discovers it together. I have no memory of singing Bohemian Rhapsody but apparently I was excellent."*</small>
+> *expat.com Seoul — "Koreans drink a lot of soju and the serving sizes are small and frequent, which means you can be significantly more drunk than you realise before the first venue is over. The move to the second venue is when you discover this. The norebang at the third venue is when everyone discovers it together. I have no memory of singing Bohemian Rhapsody but apparently I was excellent."*
 
 ---
 

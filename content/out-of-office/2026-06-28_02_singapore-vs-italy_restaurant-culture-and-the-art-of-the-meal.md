@@ -88,11 +88,11 @@ Both risks are worth taking.
 
 ## What Nobody Warned You About
 
-> <small>*expat.com Singapore — "I spent my first two weeks eating at the air-conditioned mall food courts because I didn't understand hawker centres. Then a colleague took me to a kopitiam at 7am and I had kaya toast with soft-boiled eggs and a cup of kopi-C and I realised I had been doing the entire country wrong. The best food in Singapore is in the places with the worst furniture."*</small>
+> *expat.com Singapore — "I spent my first two weeks eating at the air-conditioned mall food courts because I didn't understand hawker centres. Then a colleague took me to a kopitiam at 7am and I had kaya toast with soft-boiled eggs and a cup of kopi-C and I realised I had been doing the entire country wrong. The best food in Singapore is in the places with the worst furniture."*
 
-> <small>*The Local Italy — "I ordered a flat white at a bar in Rome and the barista looked at me the way a doctor looks at a patient who has diagnosed themselves incorrectly. He made me an espresso instead, explained gently that milk after noon was 'not good for the digestion,' and charged me sixty cents. It was the best coffee I have ever had. I have not ordered a flat white in Italy since."*</small>
+> *The Local Italy — "I ordered a flat white at a bar in Rome and the barista looked at me the way a doctor looks at a patient who has diagnosed themselves incorrectly. He made me an espresso instead, explained gently that milk after noon was 'not good for the digestion,' and charged me sixty cents. It was the best coffee I have ever had. I have not ordered a flat white in Italy since."*
 
-> <small>*Reddit r/singapore — "The tissue packet reservation system works, but you have to commit to it. I put my tissues down at a table in Toa Payoh and went to queue. When I came back, a family was sitting there. I pointed at the tissues. They shrugged. There is apparently also a system for disputing tissue reservations, and I did not know it. I ate standing up."*</small>
+> *Reddit r/singapore — "The tissue packet reservation system works, but you have to commit to it. I put my tissues down at a table in Toa Payoh and went to queue. When I came back, a family was sitting there. I pointed at the tissues. They shrugged. There is apparently also a system for disputing tissue reservations, and I did not know it. I ate standing up."*
 
 ---
 

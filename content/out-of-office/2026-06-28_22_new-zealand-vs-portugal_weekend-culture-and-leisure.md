@@ -84,11 +84,11 @@ The question is whether your weekend is for doing or for being. New Zealand has 
 
 ## What Nobody Warned You About
 
-<small>*"I moved to Lisbon from Auckland and spent the first six months trying to plan weekend 'activities.' My Portuguese friends looked at me like I'd suggested we fix the roof for fun. Now I just go to lunch. I'm not sure I'll ever go back."* — Internations Lisbon</small>
+*"I moved to Lisbon from Auckland and spent the first six months trying to plan weekend 'activities.' My Portuguese friends looked at me like I'd suggested we fix the roof for fun. Now I just go to lunch. I'm not sure I'll ever go back."* — Internations Lisbon
 
-<small>*"New Zealand weekends are incredible if you like the outdoors. If you don't, they're long. Very, very long. I learned to hike out of social necessity."* — Reddit r/newzealand</small>
+*"New Zealand weekends are incredible if you like the outdoors. If you don't, they're long. Very, very long. I learned to hike out of social necessity."* — Reddit r/newzealand
 
-<small>*"Nobody warned me that Sunday lunch in Portugal is a full commitment. I thought I was going for a casual meal. I emerged at 7pm having met seventeen relatives and learned something about salt cod."* — expat.com Portugal forums</small>
+*"Nobody warned me that Sunday lunch in Portugal is a full commitment. I thought I was going for a casual meal. I emerged at 7pm having met seventeen relatives and learned something about salt cod."* — expat.com Portugal forums
 
 ## Conclusion
 

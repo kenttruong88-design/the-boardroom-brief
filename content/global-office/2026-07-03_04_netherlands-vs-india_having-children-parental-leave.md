@@ -81,13 +81,13 @@ The paradox is that India's headline maternity benefit is more generous by the w
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — A father in the Netherlands described taking his full 6 weeks of birth leave without hesitation but noted most of his male colleagues quietly compressed theirs into the minimum, treating the extended weeks as technically available but professionally risky to actually use in full.*</small>
+> *Quora — A father in the Netherlands described taking his full 6 weeks of birth leave without hesitation but noted most of his male colleagues quietly compressed theirs into the minimum, treating the extended weeks as technically available but professionally risky to actually use in full.*
 
-> <small>*Expat Focus (Netherlands expat community) — A newcomer family recounted joining a daycare waitlist the week they landed and still waiting nearly five months for a spot, calling the subsidy "meaningless" until the placement actually came through, and recommending anyone relocating register before the job even starts.*</small>
+> *Expat Focus (Netherlands expat community) — A newcomer family recounted joining a daycare waitlist the week they landed and still waiting nearly five months for a spot, calling the subsidy "meaningless" until the placement actually came through, and recommending anyone relocating register before the job even starts.*
 
-> <small>*iamexpat.nl — An expat parent's account described choosing a parent-run crèche specifically to skip the standard waitlist, trading lower fees and a shorter queue for a rotating duty to help care for other families' children — a tradeoff rarely mentioned in official guides.*</small>
+> *iamexpat.nl — An expat parent's account described choosing a parent-run crèche specifically to skip the standard waitlist, trading lower fees and a shorter queue for a rotating duty to help care for other families' children — a tradeoff rarely mentioned in official guides.*
 
-> <small>*Research commentary (ideasforindia.in, on India's 2017 leave law) — Analysts documented that firms facing the new 26-week maternity cost responded by adjusting hiring and wage patterns for women in the affected age bracket, effectively shifting the policy's financial burden back onto the workforce it was designed to protect.*</small>
+> *Research commentary (ideasforindia.in, on India's 2017 leave law) — Analysts documented that firms facing the new 26-week maternity cost responded by adjusting hiring and wage patterns for women in the affected age bracket, effectively shifting the policy's financial burden back onto the workforce it was designed to protect.*
 
 ### Conclusion
 

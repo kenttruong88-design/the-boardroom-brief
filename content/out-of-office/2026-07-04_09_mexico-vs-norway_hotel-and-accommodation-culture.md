@@ -86,11 +86,11 @@ The resort wins the week; the hytte wins the memory. Nobody ever stood in a swim
 
 ## What Nobody Warned You About
 
-<small>*"Day two, I tipped the pool bartender $5 and said his name. For the rest of the week my drinks arrived before I ordered them. My wife thinks I have a gift. I have five dollars and manners."* — Reddit r/cancun</small>
+*"Day two, I tipped the pool bartender $5 and said his name. For the rest of the week my drinks arrived before I ordered them. My wife thinks I have a gift. I have five dollars and manners."* — Reddit r/cancun
 
-<small>*"Norwegian colleague invited me to the family hytte. I asked what I should bring. He said 'everything.' I laughed. He did not laugh. There was no shop, no water, no signal. Best weekend of my life, weirdly."* — Reddit r/Norway</small>
+*"Norwegian colleague invited me to the family hytte. I asked what I should bring. He said 'everything.' I laughed. He did not laugh. There was no shop, no water, no signal. Best weekend of my life, weirdly."* — Reddit r/Norway
 
-<small>*"Nobody warns you about Norwegian hotel bar prices. Two beers and two wines: 620 kroner. I checked my banking app in the lift and grieved quietly between floors."* — Internations Oslo</small>
+*"Nobody warns you about Norwegian hotel bar prices. Two beers and two wines: 620 kroner. I checked my banking app in the lift and grieved quietly between floors."* — Internations Oslo
 
 ## Conclusion
 

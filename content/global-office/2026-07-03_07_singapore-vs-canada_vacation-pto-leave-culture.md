@@ -80,13 +80,13 @@ The irony cuts against instinct in both directions. Singapore's system looks sti
 
 ### The Part the Brochure Left Out
 
-> <small>*Quora — A respondent asked directly why Canada gives so little vacation time compared to Europe, and the most-endorsed answer pointed out that the deeper issue isn't the legal minimum but workplace culture — many Canadians who technically have the days available still don't feel comfortable using them consecutively.*</small>
+> *Quora — A respondent asked directly why Canada gives so little vacation time compared to Europe, and the most-endorsed answer pointed out that the deeper issue isn't the legal minimum but workplace culture — many Canadians who technically have the days available still don't feel comfortable using them consecutively.*
 
-> <small>*Quora — Another thread comparing Canadian, US, and UK vacation policies concluded that while Canada beats the US on paper, the UK's roughly 25 statutory days make Canada look closer to America than to Europe once you set aside the marketing.*</small>
+> *Quora — Another thread comparing Canadian, US, and UK vacation policies concluded that while Canada beats the US on paper, the UK's roughly 25 statutory days make Canada look closer to America than to Europe once you set aside the marketing.*
 
-> <small>*CXC Global client guidance (Singapore employer resource) — Advisors working with relocating professionals frequently flag that new hires from Europe or Australia are visibly surprised to learn Singapore's legal leave ceiling tops out at 14 days regardless of tenure, and that anything beyond that is a negotiated perk, not a guaranteed right.*</small>
+> *CXC Global client guidance (Singapore employer resource) — Advisors working with relocating professionals frequently flag that new hires from Europe or Australia are visibly surprised to learn Singapore's legal leave ceiling tops out at 14 days regardless of tenure, and that anything beyond that is a negotiated perk, not a guaranteed right.*
 
-> <small>*Quora — A separate respondent noted that Singapore's rule requiring leave to be used within 12 months (for employees above a salary threshold) actually forces a kind of discipline that Canadian workers, with looser cultural norms around usage, don't have — an unexpected point in Singapore's favor despite the lower headline number.*</small>
+> *Quora — A separate respondent noted that Singapore's rule requiring leave to be used within 12 months (for employees above a salary threshold) actually forces a kind of discipline that Canadian workers, with looser cultural norms around usage, don't have — an unexpected point in Singapore's favor despite the lower headline number.*
 
 ### Conclusion
 

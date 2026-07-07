@@ -80,11 +80,11 @@ The sting is what each system asks of you. Germany asks for patience and paperwo
 
 ## What Nobody Warned You About
 
-<small>*"I called 27 dermatologists in Munich. The earliest Termin was in four months. I posted about it and got 400 upvotes and zero surprise."* — Reddit r/germany</small>
+*"I called 27 dermatologists in Munich. The earliest Termin was in four months. I posted about it and got 400 upvotes and zero surprise."* — Reddit r/germany
 
-<small>*"My German doctor looked at my scan and said 'this is bad, but not very bad.' No preamble. Weirdly, it was the most reassuring thing a doctor has ever said to me."* — expat.com Germany forum</small>
+*"My German doctor looked at my scan and said 'this is bad, but not very bad.' No preamble. Weirdly, it was the most reassuring thing a doctor has ever said to me."* — expat.com Germany forum
 
-<small>*"Nobody tells you C class is the smart money. Same surgeons as the fancy ward. My Singaporean colleagues were baffled I'd paid for A class 'for the air-con.'"* — Reddit r/askSingapore</small>
+*"Nobody tells you C class is the smart money. Same surgeons as the fancy ward. My Singaporean colleagues were baffled I'd paid for A class 'for the air-con.'"* — Reddit r/askSingapore
 
 ## Conclusion
 

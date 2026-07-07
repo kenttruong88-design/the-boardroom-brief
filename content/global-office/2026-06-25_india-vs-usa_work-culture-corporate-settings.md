@@ -103,15 +103,15 @@ The reverse encounter generates its own friction. American employees joining Ind
 
 ## The Part the Brochure Left Out
 
-> <small>*r/expats — Moved from Mumbai to a mid-size American tech firm. The first week, the VP walked over, introduced himself by his first name, and asked what I thought of the onboarding process. I thought it was a test. Spent three days composing a diplomatically worded reply before I realised he genuinely wanted to know and had already forgotten he asked.*</small>
+> *r/expats — Moved from Mumbai to a mid-size American tech firm. The first week, the VP walked over, introduced himself by his first name, and asked what I thought of the onboarding process. I thought it was a test. Spent three days composing a diplomatically worded reply before I realised he genuinely wanted to know and had already forgotten he asked.*
 
-> <small>*Quora — An Indian engineer who'd spent twelve years saying "sir" to anyone holding a title two levels above his moved to a San Francisco company where the CEO sent him a Slack message with his first name and three emojis. He spent a week assuming it was a bot.*</small>
+> *Quora — An Indian engineer who'd spent twelve years saying "sir" to anyone holding a title two levels above his moved to a San Francisco company where the CEO sent him a Slack message with his first name and three emojis. He spent a week assuming it was a bot.*
 
-> <small>*r/india — I worked remotely for an Indian company from the US for eight months. I had four managers, none of whom knew the others had given me instructions. When I asked who I should report to, I was told "all of them." My job description mentioned none of this. The accountability, however, was crystal clear — and pointed entirely at me.*</small>
+> *r/india — I worked remotely for an Indian company from the US for eight months. I had four managers, none of whom knew the others had given me instructions. When I asked who I should report to, I was told "all of them." My job description mentioned none of this. The accountability, however, was crystal clear — and pointed entirely at me.*
 
-> <small>*Internations India — The thing nobody tells you about American corporate culture when you move from India is that "we really value your input" and "we're going in a different direction" are the same sentence, just eight months apart. The informality is real. The security is not.*</small>
+> *Internations India — The thing nobody tells you about American corporate culture when you move from India is that "we really value your input" and "we're going in a different direction" are the same sentence, just eight months apart. The informality is real. The security is not.*
 
-> <small>*r/cscareerquestions — Three-minute Zoom call. That was the notice. In India I would have had a month, two rounds of HR conversations, and a farewell lunch. Here I got a calendar invite titled "Quick Sync" and a pre-written severance agreement in the chat. I don't say this as a complaint — just as a data point about what "flat culture" actually means at the end of a contract.*</small>
+> *r/cscareerquestions — Three-minute Zoom call. That was the notice. In India I would have had a month, two rounds of HR conversations, and a farewell lunch. Here I got a calendar invite titled "Quick Sync" and a pre-written severance agreement in the chat. I don't say this as a complaint — just as a data point about what "flat culture" actually means at the end of a contract.*
 
 ---
 

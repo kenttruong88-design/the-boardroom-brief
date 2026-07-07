@@ -74,15 +74,15 @@ The irony runs deep on both sides. The US, which prizes freedom, has built the d
 
 ## The Part the Brochure Left Out
 
-> <small>*r/remotework — An American engineer whose "remote-forever" arrangement survived three years and zero performance issues described getting 60 days' notice to appear in an office 1,400 miles away; the policy exception he'd negotiated turned out to live in a departed VP's inbox rather than his contract.*</small>
+> *r/remotework — An American engineer whose "remote-forever" arrangement survived three years and zero performance issues described getting 60 days' notice to appear in an office 1,400 miles away; the policy exception he'd negotiated turned out to live in a departed VP's inbox rather than his contract.*
 
-> <small>*Quora — A German developer who joined a US startup wrote that the flexibility was real but inverted: nobody cared where he was, and nobody cared what time it was either — his Californian teammates cheerfully booked him for 8pm CET calls that no German colleague would have dared propose.*</small>
+> *Quora — A German developer who joined a US startup wrote that the flexibility was real but inverted: nobody cared where he was, and nobody cared what time it was either — his Californian teammates cheerfully booked him for 8pm CET calls that no German colleague would have dared propose.*
 
-> <small>*Internations Berlin — An American product manager in Germany said the revelation was that hybrid rules applied to everyone including her director, who was in the office the same contractually specified two days as the interns — "In the US, policy was what your boss felt like; here, my boss can't even exempt himself."*</small>
+> *Internations Berlin — An American product manager in Germany said the revelation was that hybrid rules applied to everyone including her director, who was in the office the same contractually specified two days as the interns — "In the US, policy was what your boss felt like; here, my boss can't even exempt himself."*
 
-> <small>*Blind — A big-tech employee compared postings internally: the same role was listed on-site in Austin and hybrid in Munich, because, as a German colleague explained, the works council had not agreed to the new RTO policy and therefore, in Germany, there was no new RTO policy.*</small>
+> *Blind — A big-tech employee compared postings internally: the same role was listed on-site in Austin and hybrid in Munich, because, as a German colleague explained, the works council had not agreed to the new RTO policy and therefore, in Germany, there was no new RTO policy.*
 
-> <small>*r/germany — One expat's warning for arrivals: don't try to impress anyone by being online at 22:00 — a colleague reported he received a concerned note from HR about working-time compliance, which was, he admitted, the most German possible response to his ambition.*</small>
+> *r/germany — One expat's warning for arrivals: don't try to impress anyone by being online at 22:00 — a colleague reported he received a concerned note from HR about working-time compliance, which was, he admitted, the most German possible response to his ambition.*
 
 ---
 

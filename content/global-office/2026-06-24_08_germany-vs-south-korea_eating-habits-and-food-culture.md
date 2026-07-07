@@ -88,15 +88,15 @@ One expat who had worked in both Frankfurt and Seoul put it this way in a forum 
 
 ### The Part the Brochure Left Out
 
-> <small>*The Local DE — "In Germany, it is customary to bring snacks to work for everyone on your birthday. Usually chocolate, pralines or cookies. If you're a great and generous person, you will even bring homemade cake. I have no idea how this originated. All I know is that it is another occasion to eat cake, and that's fine by me."*</small>
+> *The Local DE — "In Germany, it is customary to bring snacks to work for everyone on your birthday. Usually chocolate, pralines or cookies. If you're a great and generous person, you will even bring homemade cake. I have no idea how this originated. All I know is that it is another occasion to eat cake, and that's fine by me."*
 
-> <small>*Quora — "German food is very strange for Koreans. They eat bread in the morning and evening, but only one warm meal at noon. Germans don't eat soup as a side dish, don't eat spicy hot things, and don't eat kimchi. Additionally, Germans eat more meat and less vegetables." — Korean expat in Germany comparing adjustments*</small>
+> *Quora — "German food is very strange for Koreans. They eat bread in the morning and evening, but only one warm meal at noon. Germans don't eat soup as a side dish, don't eat spicy hot things, and don't eat kimchi. Additionally, Germans eat more meat and less vegetables." — Korean expat in Germany comparing adjustments*
 
-> <small>*Quora — "Why is food such a big deal in Korean culture? One of the first signs that a Korean cares about you is that they try to feed you or encourage you to eat." — expat reflecting on how food functions as social language in Korea*</small>
+> *Quora — "Why is food such a big deal in Korean culture? One of the first signs that a Korean cares about you is that they try to feed you or encourage you to eat." — expat reflecting on how food functions as social language in Korea*
 
-> <small>*Korea.net (Internations-adjacent expat feature) — "Korean hoesik can be overwhelming for those unaccustomed to spending time with coworkers outside the office, but as I discovered, this warm tradition sheds insight on Korean culture and offers the opportunity for friendship and bonding that the office itself rarely provides."*</small>
+> *Korea.net (Internations-adjacent expat feature) — "Korean hoesik can be overwhelming for those unaccustomed to spending time with coworkers outside the office, but as I discovered, this warm tradition sheds insight on Korean culture and offers the opportunity for friendship and bonding that the office itself rarely provides."*
 
-> <small>*r/germany — "After six months in Munich I started having bread for dinner and genuinely not minding it. I now understand that Abendbrot is not a meal you tolerate. It is a meal that tolerates you, until you come around."*</small>
+> *r/germany — "After six months in Munich I started having bread for dinner and genuinely not minding it. I now understand that Abendbrot is not a meal you tolerate. It is a meal that tolerates you, until you come around."*
 
 ### Conclusion
 

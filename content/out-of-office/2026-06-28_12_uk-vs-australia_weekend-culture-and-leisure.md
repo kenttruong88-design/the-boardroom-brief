@@ -96,14 +96,14 @@ The Australian weekend wins on objective enjoyment metrics: better weather, bett
 
 ## What Nobody Warned You About
 
-<small>*"I moved from Manchester to Sydney and the first weekend I had absolutely no idea what to do with myself. In Manchester, a good weekend is surviving it. In Sydney, there are options, and the options have sub-options. I needed a spreadsheet."*
-— Reddit r/britishproblems (Australian edition)</small>
+*"I moved from Manchester to Sydney and the first weekend I had absolutely no idea what to do with myself. In Manchester, a good weekend is surviving it. In Sydney, there are options, and the options have sub-options. I needed a spreadsheet."*
+— Reddit r/britishproblems (Australian edition)
 
-<small>*"British people spend three years in Australia and then go home because they miss the seasons. What they mean is they miss complaining about the seasons. It is not the same thing."*
-— expat.com, British expats in Melbourne</small>
+*"British people spend three years in Australia and then go home because they miss the seasons. What they mean is they miss complaining about the seasons. It is not the same thing."*
+— expat.com, British expats in Melbourne
 
-<small>*"The Australian Sunday session confused me for months. You arrive for 'afternoon drinks' at three. You leave at nine having eaten something that was technically dinner but no one called it that. It has no name. It simply is."*
-— Internations Sydney</small>
+*"The Australian Sunday session confused me for months. You arrive for 'afternoon drinks' at three. You leave at nine having eaten something that was technically dinner but no one called it that. It has no name. It simply is."*
+— Internations Sydney
 
 ---
 

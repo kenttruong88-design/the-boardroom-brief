@@ -74,15 +74,15 @@ The irony: Singapore's famed efficiency means an hour of office time there is of
 
 ## The Part the Brochure Left Out
 
-> <small>*r/askSingapore — A transplant from Vancouver described his first month: contract said 9-to-6, and at 6:15 the office was still full, so he stayed too, "doing nothing, visibly, along with everyone else doing nothing, visibly." A colleague later explained he could leave — but that colleague also hadn't left.*</small>
+> *r/askSingapore — A transplant from Vancouver described his first month: contract said 9-to-6, and at 6:15 the office was still full, so he stayed too, "doing nothing, visibly, along with everyone else doing nothing, visibly." A colleague later explained he could leave — but that colleague also hadn't left.*
 
-> <small>*Quora — An engineer who moved from Singapore to Calgary wrote that the strangest adjustment was guilt-free weekends: it took nearly a year to stop checking Slack on Saturday mornings, and when he finally raised a Sunday-night worry with his manager, the reply was to please not think about work on Sundays.*</small>
+> *Quora — An engineer who moved from Singapore to Calgary wrote that the strangest adjustment was guilt-free weekends: it took nearly a year to stop checking Slack on Saturday mornings, and when he finally raised a Sunday-night worry with his manager, the reply was to please not think about work on Sundays.*
 
-> <small>*Internations Singapore — A Canadian finance professional noted the trade nobody mentions: her Singapore package included hours she'd never have accepted in Toronto, but also a live-in helper, 15-minute commute and weekend flights to Bali — "my balance didn't disappear, it got outsourced and relocated."*</small>
+> *Internations Singapore — A Canadian finance professional noted the trade nobody mentions: her Singapore package included hours she'd never have accepted in Toronto, but also a live-in helper, 15-minute commute and weekend flights to Bali — "my balance didn't disappear, it got outsourced and relocated."*
 
-> <small>*Blind — A tech worker comparing offers noted that his Singapore team messaged at 10pm as routine while the Toronto team had a norm of delay-sending anything after 6pm — same company, same product, two planets.*</small>
+> *Blind — A tech worker comparing offers noted that his Singapore team messaged at 10pm as routine while the Toronto team had a norm of delay-sending anything after 6pm — same company, same product, two planets.*
 
-> <small>*r/PersonalFinanceCanada — One commenter who repatriated from Singapore warned that Canadian salaries looked lower until he counted the 20-plus vacation days he actually took, versus the 18 he was granted but never used in Singapore — "I was paid for a job; I had been paid for a lifestyle."*</small>
+> *r/PersonalFinanceCanada — One commenter who repatriated from Singapore warned that Canadian salaries looked lower until he counted the 20-plus vacation days he actually took, versus the 18 he was granted but never used in Singapore — "I was paid for a job; I had been paid for a lifestyle."*
 
 ---
 

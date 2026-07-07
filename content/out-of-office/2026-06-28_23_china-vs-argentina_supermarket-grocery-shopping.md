@@ -82,11 +82,11 @@ The supermarket, in both countries, is a statement. In China: we have optimised 
 
 ## What Nobody Warned You About
 
-<small>*"I went to a Hema supermarket in Shanghai expecting a normal grocery run. I was there for two hours. I ate lunch there. I watched a man select a live fish which was then cooked and brought to his table. I did not expect this from a supermarket."* — Internations Shanghai</small>
+*"I went to a Hema supermarket in Shanghai expecting a normal grocery run. I was there for two hours. I ate lunch there. I watched a man select a live fish which was then cooked and brought to his table. I did not expect this from a supermarket."* — Internations Shanghai
 
-<small>*"Argentine supermarkets have a 'bank day' system where your card gives massive discounts on certain days. My entire weekly schedule now revolves around when my card is best. I am not the person I used to be."* — expat.com Buenos Aires</small>
+*"Argentine supermarkets have a 'bank day' system where your card gives massive discounts on certain days. My entire weekly schedule now revolves around when my card is best. I am not the person I used to be."* — expat.com Buenos Aires
 
-<small>*"The wet markets in Beijing are the best food experience in the city. I go every Saturday morning. The vendors have started recommending recipes to me. My Chinese has improved purely through buying vegetables."* — Reddit r/China</small>
+*"The wet markets in Beijing are the best food experience in the city. I go every Saturday morning. The vendors have started recommending recipes to me. My Chinese has improved purely through buying vegetables."* — Reddit r/China
 
 ## Conclusion
 

@@ -72,13 +72,13 @@ The two systems assign opposite meanings to the same acts. In Canada, cooking fo
 
 ## The Part the Brochure Left Out
 
-> <small>*r/askSingapore — In threads about home cooking, young Singaporeans regularly confess their kitchens function as storage: one poster calculated that cooking chicken rice at home cost more than double the hawker version once ingredients were priced, and the thread's consensus was that the stove is for instant noodles at 2am, and that only sometimes.*</small>
+> *r/askSingapore — In threads about home cooking, young Singaporeans regularly confess their kitchens function as storage: one poster calculated that cooking chicken rice at home cost more than double the hawker version once ingredients were priced, and the thread's consensus was that the stove is for instant noodles at 2am, and that only sometimes.*
 
-> <small>*Quora — A Canadian who relocated to Singapore wrote that the hardest habit to break was tipping: she left change on a kopitiam table twice and was chased down twice — once by a hawker assistant who assumed she'd forgotten it, once by another customer performing a citizen's arrest of her generosity.*</small>
+> *Quora — A Canadian who relocated to Singapore wrote that the hardest habit to break was tipping: she left change on a kopitiam table twice and was chased down twice — once by a hawker assistant who assumed she'd forgotten it, once by another customer performing a citizen's arrest of her generosity.*
 
-> <small>*Internations Vancouver — A Singaporean expat reported the reverse culture shock in Canada: her grocery bill felt reasonable, but the first restaurant bill — menu price, plus tax, plus tip — ran nearly 30% over the printed number, and she now describes Canadian menus as "opening offers."*</small>
+> *Internations Vancouver — A Singaporean expat reported the reverse culture shock in Canada: her grocery bill felt reasonable, but the first restaurant bill — menu price, plus tax, plus tip — ran nearly 30% over the printed number, and she now describes Canadian menus as "opening offers."*
 
-> <small>*Hacker News — In discussions of Singapore's urban design, expat engineers repeatedly cite hawker centres as the city's killer feature: one commenter described the ground floor of every public housing block as "a food court better than anything in my home country, subsidised into permanence" — and rated it above the tax rate as a reason to stay.*</small>
+> *Hacker News — In discussions of Singapore's urban design, expat engineers repeatedly cite hawker centres as the city's killer feature: one commenter described the ground floor of every public housing block as "a food court better than anything in my home country, subsidised into permanence" — and rated it above the tax rate as a reason to stay.*
 
 ---
 

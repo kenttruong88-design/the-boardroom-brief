@@ -82,11 +82,11 @@ Both positions require acceptance. Accept the heat. Accept the dark. The countri
 
 ## What Nobody Warned You About
 
-<small>*"Bangkok hot season: I had been living there three years and thought I was adapted. April still broke me every time. The humidity isn't just uncomfortable — it's a presence. You accept it or you move."* — Reddit r/ThailandTourism</small>
+*"Bangkok hot season: I had been living there three years and thought I was adapted. April still broke me every time. The humidity isn't just uncomfortable — it's a presence. You accept it or you move."* — Reddit r/ThailandTourism
 
-<small>*"Norwegian winter: I bought a proper down jacket, ski base layers, Sorel boots, and a SAD lamp on my therapist's recommendation. January was genuinely fine. October and November before I did this: not fine."* — Internations Oslo</small>
+*"Norwegian winter: I bought a proper down jacket, ski base layers, Sorel boots, and a SAD lamp on my therapist's recommendation. January was genuinely fine. October and November before I did this: not fine."* — Internations Oslo
 
-<small>*"Friluftsliv isn't a marketing concept. My Norwegian colleagues genuinely ski most weekends, all winter, and do not consider this remarkable. It took me three winters to join them and I am now — there is no gentle way to say this — a completely different person."* — expat.com Norway</small>
+*"Friluftsliv isn't a marketing concept. My Norwegian colleagues genuinely ski most weekends, all winter, and do not consider this remarkable. It took me three winters to join them and I am now — there is no gentle way to say this — a completely different person."* — expat.com Norway
 
 ## Conclusion
 

@@ -84,11 +84,11 @@ Which you prefer depends on how much of your life you want to share with people 
 
 ## What Nobody Warned You About
 
-<small>*"I moved into a Greek apartment block in Thessaloniki and within 48 hours my downstairs neighbour had given me a container of spanakopita, informed me of the building recycling policy, and asked about my family. I cried a little bit, honestly."* — Internations Athens</small>
+*"I moved into a Greek apartment block in Thessaloniki and within 48 hours my downstairs neighbour had given me a container of spanakopita, informed me of the building recycling policy, and asked about my family. I cried a little bit, honestly."* — Internations Athens
 
-<small>*"American neighbours are lovely and I genuinely like them all and we have waved at each other for four years and I have never been inside any of their homes. This is apparently fine and normal. I am still processing it."* — Reddit r/AmericanExpats</small>
+*"American neighbours are lovely and I genuinely like them all and we have waved at each other for four years and I have never been inside any of their homes. This is apparently fine and normal. I am still processing it."* — Reddit r/AmericanExpats
 
-<small>*"The difference between Greece and America on community: in Greece you have no choice. In America you have every choice. Both are simultaneously the best and worst thing about each place."* — expat.com USA</small>
+*"The difference between Greece and America on community: in Greece you have no choice. In America you have every choice. Both are simultaneously the best and worst thing about each place."* — expat.com USA
 
 ## Conclusion
 

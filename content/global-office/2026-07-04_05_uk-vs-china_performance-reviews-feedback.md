@@ -74,15 +74,15 @@ The transferable skill, in both directions, is triangulation. In Britain, ignore
 
 ## The Part the Brochure Left Out
 
-> <small>*r/UKJobs — A Polish analyst described receiving what she thought was a glowing review — "really solid year, just a couple of bits to tighten up" — and being genuinely blindsided when she was put on a performance plan six weeks later. Commenters' consensus: "a couple of bits" was the entire message.*</small>
+> *r/UKJobs — A Polish analyst described receiving what she thought was a glowing review — "really solid year, just a couple of bits to tighten up" — and being genuinely blindsided when she was put on a performance plan six weeks later. Commenters' consensus: "a couple of bits" was the entire message.*
 
-> <small>*Quora — A British product manager who moved to Hangzhou wrote that his first review meeting was fifteen pleasant minutes about his adaptation to China, followed by a system notification assigning him a score that placed him, he later learned, one band above the layoff line. No one ever mentioned the score aloud.*</small>
+> *Quora — A British product manager who moved to Hangzhou wrote that his first review meeting was fifteen pleasant minutes about his adaptation to China, followed by a system notification assigning him a score that placed him, he later learned, one band above the layoff line. No one ever mentioned the score aloud.*
 
-> <small>*Blind — An engineer at a Chinese tech giant's London office noted the hybrid was the worst of both: British managers delivering feedback too softly to act on, feeding a Chinese calibration curve too hard to survive. His advice: ask your skip-level for your band in writing, every cycle.*</small>
+> *Blind — An engineer at a Chinese tech giant's London office noted the hybrid was the worst of both: British managers delivering feedback too softly to act on, feeding a Chinese calibration curve too hard to survive. His advice: ask your skip-level for your band in writing, every cycle.*
 
-> <small>*Internations Beijing — A German marketing director said her pleasant surprise was the transparency of the mathematics: once she learned the bonus formula, her review became the most predictable in her career — "in Munich I was judged; in Beijing I was calculated. I preferred calculated."*</small>
+> *Internations Beijing — A German marketing director said her pleasant surprise was the transparency of the mathematics: once she learned the bonus formula, her review became the most predictable in her career — "in Munich I was judged; in Beijing I was calculated. I preferred calculated."*
 
-> <small>*HackerNews — A commenter who'd worked in both London and Shenzhen offices of the same firm observed that British 360 feedback produced beautifully written paragraphs signifying nothing, while the Chinese office skipped prose entirely; the only honest feedback in either location, he concluded, was headcount planning.*</small>
+> *HackerNews — A commenter who'd worked in both London and Shenzhen offices of the same firm observed that British 360 feedback produced beautifully written paragraphs signifying nothing, while the Chinese office skipped prose entirely; the only honest feedback in either location, he concluded, was headcount planning.*
 
 ---
 

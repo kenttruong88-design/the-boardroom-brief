@@ -80,11 +80,11 @@ For dating specifically: South Africa for warmth and adventure; France if you wa
 
 ## What Nobody Warned You About
 
-<small>*"I moved to Paris convinced I'd make French friends within a few months. Eighteen months in, I had French acquaintances and one actual friend. But that friend has since become one of the most important people in my life. Quality, not quantity."* — Internations Paris</small>
+*"I moved to Paris convinced I'd make French friends within a few months. Eighteen months in, I had French acquaintances and one actual friend. But that friend has since become one of the most important people in my life. Quality, not quantity."* — Internations Paris
 
-<small>*"The braai in Cape Town is genuinely the social entry point for everything. My first week I got invited to one by a neighbour. I knew nobody. By the end I'd been invited to three more things. Just show up and stand near the fire."* — Reddit r/southafrica</small>
+*"The braai in Cape Town is genuinely the social entry point for everything. My first week I got invited to one by a neighbour. I knew nobody. By the end I'd been invited to three more things. Just show up and stand near the fire."* — Reddit r/southafrica
 
-<small>*"Dating in France: no apps required if you go outside. The eye contact system works. I was mystified and then I was not, and now I live here."* — expat.com France</small>
+*"Dating in France: no apps required if you go outside. The eye contact system works. I was mystified and then I was not, and now I live here."* — expat.com France
 
 ## Conclusion
 

@@ -104,15 +104,15 @@ The other great divergence is in what fashion *says*. In the U.S., clothing comm
 
 ## The Part the Brochure Left Out
 
-> <small>*Trulery (American expat blog) — After two years living abroad, the greatest compliment I receive is when locals approach and speak German first. Just by scanning a crowd, I can usually pick the Americans out. They normally have on leggings or a baseball cap. Back home in the U.S., I used to run errands in athleisure without thinking twice. Now I change out of loungewear before leaving the apartment even for a pharmacy run. It felt inconvenient at first. It no longer does.*</small>
+> *Trulery (American expat blog) — After two years living abroad, the greatest compliment I receive is when locals approach and speak German first. Just by scanning a crowd, I can usually pick the Americans out. They normally have on leggings or a baseball cap. Back home in the U.S., I used to run errands in athleisure without thinking twice. Now I change out of loungewear before leaving the apartment even for a pharmacy run. It felt inconvenient at first. It no longer does.*
 
-> <small>*r/germany — Moved from California to Munich and packed mostly Lululemon and Nike. Within two weeks, a German colleague asked, very gently, if I had come from the gym. I had not. I had come from the office. I bought dark jeans and a wool coat the following weekend.*</small>
+> *r/germany — Moved from California to Munich and packed mostly Lululemon and Nike. Within two weeks, a German colleague asked, very gently, if I had come from the gym. I had not. I had come from the office. I bought dark jeans and a wool coat the following weekend.*
 
-> <small>*Fins Up Abroad (expat blog) — The first thing I noticed: nobody wears university-branded clothing. I showed up in my Ole Miss hoodie and felt like I was wearing a sandwich board that said "tourist." Jeans and a non-logo top is basically the default uniform for everyone under 30 here. No one wears Nike shorts outside of an actual sports context.*</small>
+> *Fins Up Abroad (expat blog) — The first thing I noticed: nobody wears university-branded clothing. I showed up in my Ole Miss hoodie and felt like I was wearing a sandwich board that said "tourist." Jeans and a non-logo top is basically the default uniform for everyone under 30 here. No one wears Nike shorts outside of an actual sports context.*
 
-> <small>*Expatica — A German executive told me he invites new recruits to sit at a glass conference table. His reason: it lets him see the state of their shoes. This is a real story. He meant it sincerely. I checked my shoes before every meeting for the next six months.*</small>
+> *Expatica — A German executive told me he invites new recruits to sit at a glass conference table. His reason: it lets him see the state of their shoes. This is a real story. He meant it sincerely. I checked my shoes before every meeting for the next six months.*
 
-> <small>*Internations Germany — Wore a light summer dress on a mild day and received several inquiries from strangers asking if I was cold. This had never happened to me in the United States. Germans dress for weather, not mood. The idea that you might be warm when it is technically autumn is, to many of them, a category error.*</small>
+> *Internations Germany — Wore a light summer dress on a mild day and received several inquiries from strangers asking if I was cold. This had never happened to me in the United States. Germans dress for weather, not mood. The idea that you might be warm when it is technically autumn is, to many of them, a category error.*
 
 ---
 
