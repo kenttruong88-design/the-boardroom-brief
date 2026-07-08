@@ -23,30 +23,37 @@ async function fetchImageBuffer(url: string): Promise<Buffer | null> {
   }
 }
 
+// Cap per invocation so a large backlog can't run past Vercel's function
+// timeout (maxDuration above) — the daily cron just chips away at it.
+const DEFAULT_BATCH_SIZE = 25;
+
 /** Scheduled entry point — Vercel Cron calls scheduled paths via GET. */
 export async function GET(req: NextRequest) {
   if (!isCronAuthorised(req)) {
     return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   }
-  return runBackfill();
+  const count = parseInt(req.nextUrl.searchParams.get("count") ?? "") || DEFAULT_BATCH_SIZE;
+  return runBackfill(count);
 }
 
 /** Manual/admin entry point — triggered from the editorial UI. */
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   if (!isCronAuthorised(req)) {
     const auth = await requireAuth();
     if (auth instanceof NextResponse) return auth;
   }
-  return runBackfill();
+  const count = parseInt(req.nextUrl.searchParams.get("count") ?? "") || DEFAULT_BATCH_SIZE;
+  return runBackfill(count);
 }
 
-async function runBackfill() {
+async function runBackfill(batchSize: number) {
   if (!client || !writeClient) {
     return NextResponse.json({ error: "Sanity not configured" }, { status: 500 });
   }
 
-  // Fetch all articles missing heroImageUrl that have some source image
-  const articles = await client.fetch<Array<{
+  // Fetch articles missing heroImageUrl that have some source image, oldest first
+  // so the daily cron works through a backlog in order rather than jumping around.
+  const allMissing = await client.fetch<Array<{
     _id: string;
     title: string;
     slug: { current: string };
@@ -54,16 +61,19 @@ async function runBackfill() {
     pillar?: { _ref: string };
     featuredImage?: { asset?: { url?: string }; alt?: string };
   }>>(
-    `*[_type == "article" && !defined(heroImageUrl) && (defined(ogImage) || defined(featuredImage))] {
+    `*[_type == "article" && !defined(heroImageUrl) && (defined(ogImage) || defined(featuredImage))] | order(_createdAt asc) {
       _id, title, slug, ogImage,
       pillar { _ref },
       featuredImage { asset { url }, alt }
     }`
   );
 
-  if (articles.length === 0) {
+  if (allMissing.length === 0) {
     return NextResponse.json({ patched: 0, message: "All articles already have heroImageUrl" });
   }
+
+  const articles = allMissing.slice(0, batchSize);
+  const remaining = allMissing.length - articles.length;
 
   let patched = 0;
   let cloudinaryUploads = 0;
@@ -151,6 +161,7 @@ async function runBackfill() {
 
   return NextResponse.json({
     total: articles.length,
+    remaining,
     patched,
     cloudinaryUploads,
     skipped: skipped.length,
