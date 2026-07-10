@@ -205,6 +205,26 @@ function extractTitle(bodyMd: string, filePath: string): { title: string; noTitl
   return { title: fallback, noTitle: bodyMd };
 }
 
+// Country-flag emoji are pairs of Unicode regional indicator symbols
+// (U+1F1E6–U+1F1FF). The template always opens the body with a flag line
+// ("🇳🇱 Netherlands · 🇮🇳 India") and a byline ("*By ..., The Global Office*")
+// before the real teaser paragraph — skip both so the excerpt is actual copy.
+const REGIONAL_INDICATOR = /^[\u{1F1E6}-\u{1F1FF}]/u;
+
+function extractExcerpt(noTitle: string): string {
+  for (const para of noTitle.split(/\n{2,}/)) {
+    const stripped = para.trim().replace(/^\*\*(.+)\*\*$/, "$1").replace(/^\*(.+)\*$/, "$1").trim();
+    if (!stripped) continue;
+    if (/^-{3,}$/.test(stripped)) continue;
+    if (REGIONAL_INDICATOR.test(stripped)) continue;
+    if (/^By\s+/i.test(stripped)) continue;
+    return stripped
+      .replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1")
+      .replace(/!\[.*?\]\(.*?\)/g, "").replace(/^#+\s+/, "").trim().slice(0, 300);
+  }
+  return "";
+}
+
 function parseArticle(filePath: string): Article | null {
   const text  = readFileSync(filePath, "utf8");
   const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -213,9 +233,7 @@ function parseArticle(filePath: string): Article | null {
   const fm      = parseFrontmatter(match[1]);
   const bodyMd  = match[2].trim();
   const { title, noTitle } = extractTitle(bodyMd, filePath);
-  const excerpt = (noTitle.split(/\n{2,}/)[0] ?? "")
-    .replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1")
-    .replace(/!\[.*?\]\(.*?\)/g, "").replace(/^#+\s+/, "").trim().slice(0, 300);
+  const excerpt = extractExcerpt(noTitle);
 
   const images  = (fm.images ?? {}) as Record<string, string>;
   const heroUrl = images.hero ?? "";
