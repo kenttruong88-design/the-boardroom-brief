@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@sanity/client";
 import { withCronMonitoring } from "@/app/lib/sentry-cron";
 import { JOURNALIST_PERSONAS } from "@/app/lib/agents/personas";
 import { buildDailyContext } from "@/app/lib/agents/context-builder";
@@ -17,6 +18,44 @@ export const maxDuration = 300;
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getSanityClient() {
+  return createClient({
+    projectId:  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "e8dwtkci",
+    dataset:    process.env.NEXT_PUBLIC_SANITY_DATASET    ?? "production",
+    apiVersion: "2024-01-01",
+    useCdn:     false,
+    token:      process.env.SANITY_API_TOKEN,
+  });
+}
+
+// Pexels page URLs end in a numeric photo ID, e.g. .../photo/some-slug-1234567/
+function extractPexelsPhotoId(pexelsPageUrl: string): string | null {
+  const m = pexelsPageUrl.match(/-(\d+)\/?$/);
+  return m ? m[1] : null;
+}
+
+// Already-used Pexels photo IDs across every pillar — passed into the image
+// pipeline so the AI-narrator journalists don't keep re-picking the same
+// handful of stock photos (their static per-pillar search terms return a
+// near-identical result set run after run, so without this, one photo can
+// end up on a dozen+ unrelated articles).
+async function loadUsedPexelsIds(): Promise<Set<string>> {
+  const used = new Set<string>();
+  try {
+    const client = getSanityClient();
+    const docs: { imagePexelsUrl?: string }[] = await client.fetch(
+      `*[_type == "article" && defined(imagePexelsUrl)]{ imagePexelsUrl }`
+    );
+    for (const doc of docs) {
+      const id = doc.imagePexelsUrl ? extractPexelsPhotoId(doc.imagePexelsUrl) : null;
+      if (id) used.add(id);
+    }
+  } catch (err) {
+    console.warn("[newsroom] Failed to load used Pexels IDs, proceeding without exclude list:", (err as Error).message);
+  }
+  return used;
 }
 
 function isAuthorized(req: Request): boolean {
@@ -155,6 +194,8 @@ async function runPipeline(req: Request, jobId: string | null) {
   await appendJobLog(jobId, `Writing ${totalTopics} article${totalTopics !== 1 ? "s" : ""}…`);
   console.log("[newsroom] Step 3: Writing articles…");
 
+  const usedPexelsIds = await loadUsedPexelsIds();
+
   const allDrafts: ArticleDraft[] = [];
   let writtenCount = 0;
 
@@ -169,7 +210,11 @@ async function runPipeline(req: Request, jobId: string | null) {
         try {
           await appendJobLog(jobId, `${persona.name}: writing "${topic.title}"`);
           console.log(`[newsroom] ${persona.name} writing: "${topic.title}"`);
-          const draft = await writeArticle(persona, topic);
+          const draft = await writeArticle(persona, topic, usedPexelsIds);
+          if (draft.featuredImage?.pexelsPageUrl) {
+            const id = extractPexelsPhotoId(draft.featuredImage.pexelsPageUrl);
+            if (id) usedPexelsIds.add(id);
+          }
           drafts.push(draft);
           writtenCount++;
 

@@ -61,7 +61,8 @@ Be concise and factual. Return a short research brief (200-300 words) the journa
 
 export async function writeArticle(
   persona: AgentPersona,
-  topic: TopicBrief
+  topic: TopicBrief,
+  excludePexelsIds?: Set<string>
 ): Promise<ArticleDraft> {
 
   // ── STEP 0 — Research (Option 2: web_search for source story) ────────────────
@@ -182,7 +183,7 @@ Return only valid JSON with no markdown, no explanation — just the object:
       logClaudeUsage("pipeline:article-writer:seo", MODELS.fast, r.usage.input_tokens, r.usage.output_tokens);
       return r;
     }),
-    generateArticleImage(partialDraft).catch((err) => {
+    generateArticleImage(partialDraft, excludePexelsIds).catch((err) => {
       console.error("[article-writer] Unexpected image error:", (err as Error).message);
       return null;
     }),
