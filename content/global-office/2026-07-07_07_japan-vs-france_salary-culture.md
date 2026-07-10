@@ -15,8 +15,7 @@ sources:
   official: [OECD Average Annual Wages, OECD Taxing Wages 2026, OECD Employment Outlook 2025 (Japan), Japan Ministry of Health Labour and Welfare Basic Survey on Wage Structure, Hofstede Insights Country Comparison, Levels.fyi Software Engineer Salary Japan, CNN Business, Al Jazeera, The Local France, Connexion France]
   forums: [r/japanlife, r/expats, Quora — pay raise culture Japanese vs Western companies, Blind — tech jobs in Japan AMA, Expat.com France work culture forum]
 ---
-
-**Two Ways to Never Discuss Money and Call It Politeness**
+# Two Ways to Never Discuss Money and Call It Politeness
 
 🇯🇵 Japan · 🇫🇷 France
 

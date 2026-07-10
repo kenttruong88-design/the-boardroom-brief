@@ -27,8 +27,7 @@ sources:
     - "Hacker News — Ask HN: Who is hiring? hybrid role discussion"
     - "The Local France — télétravail reader guidance"
 ---
-
-**Working From Home Is a Human Right in France and a Personality Trait in Australia**
+# Working From Home Is a Human Right in France and a Personality Trait in Australia
 
 **🇫🇷 France · 🇦🇺 Australia**
 

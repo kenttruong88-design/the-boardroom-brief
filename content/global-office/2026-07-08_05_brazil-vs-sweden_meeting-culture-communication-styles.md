@@ -27,8 +27,7 @@ sources:
     - "InterNations — Brazil expat business community discussions"
     - "Hacker News — threads on consensus decision-making and flat organizational hierarchies"
 ---
-
-**Brazil and Sweden Both Believe Their Meetings Are Efficient. Neither Is Correct.**
+# Brazil and Sweden Both Believe Their Meetings Are Efficient. Neither Is Correct.
 
 **🇧🇷 Brazil · 🇸🇪 Sweden**
 

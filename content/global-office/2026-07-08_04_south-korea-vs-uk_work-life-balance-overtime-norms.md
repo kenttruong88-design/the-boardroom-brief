@@ -26,8 +26,7 @@ sources:
     - Blind / teamblind.com - Samsung Electronics employee reviews
     - Internations / Expat Arrivals - Working in South Korea forum accounts
 ---
-
-**Clocking In, Clocking Out: What Nobody Tells You About Work in South Korea and the UK**
+# Clocking In, Clocking Out: What Nobody Tells You About Work in South Korea and the UK
 
 **🇰🇷 South Korea · 🇬🇧 UK**
 

@@ -15,8 +15,7 @@ sources:
   official: [Hofstede Insights, Gallup State of the Global Workplace, OECD Indicators of Employment Protection, MIT Sloan Management Review, Harvard Business Review]
   forums: [r/japanlife, r/expats, Quora, TeamBlind (teamblind.com), Forum for Expatriate Management]
 ---
-
-**Who's the Boss? In America, Everyone Has an Opinion. In Japan, Everyone Has a Rank.**
+# Who's the Boss? In America, Everyone Has an Opinion. In Japan, Everyone Has a Rank.
 
 **🇺🇸 USA · 🇯🇵 Japan**
 

@@ -15,8 +15,7 @@ sources:
   official: [OECD Employment Outlook, Deloitte 2026 Global Human Capital Trends, Gallup State of the Global Workplace 2025/2026, sweden.se (Swedish Institute), InterNations Expat Insider survey (via The Local Sweden), Hofstede Insights cultural dimensions]
   forums: [Blind (teamblind.com), Quora, The Local Sweden, r/expats, r/sweden]
 ---
-
-**Welcome to the Team: In Brazil You Get a Padrinho. In Sweden You Get a Buddy and a Google Doc.**
+# Welcome to the Team: In Brazil You Get a Padrinho. In Sweden You Get a Buddy and a Google Doc.
 
 **🇧🇷 Brazil · 🇸🇪 Sweden**
 

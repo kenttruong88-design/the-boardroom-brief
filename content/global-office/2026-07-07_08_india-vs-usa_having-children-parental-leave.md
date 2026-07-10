@@ -15,8 +15,7 @@ sources:
   official: [OECD Family Database, ILO Care Economy Brief 2025, India Code on Social Security 2020, US Dept of Labor FMLA, Care.com 2026 Cost of Care Report, US Census Bureau "Cost of Motherhood on Women's Employment and Earnings", PNAS "Large motherhood penalties in US administrative microdata", Hofstede Insights Country Comparison]
   forums: [Blind — parental leave policy threads, Hacker News — "Ask HN: What's Your Company's Paternity Leave Policy?", Quora — parental leave India USA, Expat.com India forum / Expat Info Desk Mumbai]
 ---
-
-**The Six-Week Country and the Six-Month Country: Having a Baby in India vs. the USA**
+# The Six-Week Country and the Six-Month Country: Having a Baby in India vs. the USA
 
 🇮🇳 India · 🇺🇸 USA
 

@@ -15,8 +15,7 @@ sources:
   official: [McKinsey State of Fashion 2026, Business of Fashion China, Statista Fashion Outlook China, Jing Daily "Quiet Luxury in China", The Wire China "Status Symbol", Quartz "In China, flashy logos are making a comeback", The Local Germany "Sandals mean freedom", Expatica German dress code guide, World Business Culture German Dress Code, Hofstede Insights Country Comparison]
   forums: [Quora — dress code Germany, Quora — Chinese dressing etiquette, The Local Germany reader tips, general expat forum observations on China office norms]
 ---
-
-**Logos as Ambition, Beige as Virtue: Dressing for Work in China and Germany**
+# Logos as Ambition, Beige as Virtue: Dressing for Work in China and Germany
 
 🇨🇳 China · 🇩🇪 Germany
 

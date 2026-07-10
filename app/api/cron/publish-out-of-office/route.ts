@@ -151,15 +151,35 @@ interface Article {
   countries: string[]; subject: string;
 }
 
+// Content is normally authored with an H1 title (`# Title`). Some generated
+// batches instead emit the title as a standalone bold line (`**Title**`) with
+// no H1 — fall back to that before ever falling back to the raw filename.
+function extractTitle(bodyMd: string, filePath: string): { title: string; noTitle: string } {
+  const h1 = bodyMd.match(/^#\s+(.+)$/m);
+  if (h1) {
+    return { title: h1[1].trim(), noTitle: bodyMd.replace(/^#\s+.+\n*/m, "").trim() };
+  }
+
+  const lines = bodyMd.split("\n");
+  const firstIdx = lines.findIndex((l) => l.trim().length > 0);
+  const firstLine = firstIdx >= 0 ? lines[firstIdx].trim() : "";
+  const bold = firstLine.match(/^\*\*(.+?)\*\*$/);
+  if (bold) {
+    const rest = [...lines.slice(0, firstIdx), ...lines.slice(firstIdx + 1)].join("\n");
+    return { title: bold[1].trim(), noTitle: rest.trim() };
+  }
+
+  const fallback = filePath.split(/[/\\]/).pop()!.replace(/\.md$/i, "").replace(/-/g, " ");
+  return { title: fallback, noTitle: bodyMd };
+}
+
 function parseArticle(filePath: string): Article | null {
   const text  = readFileSync(filePath, "utf8");
   const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return null;
   const fm      = parseFrontmatter(match[1]);
   const bodyMd  = match[2].trim();
-  const titleM  = bodyMd.match(/^#\s+(.+)$/m);
-  const title   = titleM ? titleM[1].trim() : filePath.split("/").pop()!.replace(/-/g, " ");
-  const noTitle = bodyMd.replace(/^#\s+.+\n*/m, "").trim();
+  const { title, noTitle } = extractTitle(bodyMd, filePath);
   const excerpt = (noTitle.split(/\n{2,}/)[0] ?? "")
     .replace(/[*][*](.+?)[*][*]/g, "$1").replace(/[*](.+?)[*]/g, "$1")
     .replace(/!\[.*?\]\(.*?\)/g, "").replace(/^#+\s+/, "").trim().slice(0, 300);
@@ -190,7 +210,17 @@ async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
 }
 
 
-async function publishArticle(client: ReturnType<typeof getSanityClient>, article: Article): Promise<string> {
+// Pexels page URLs end in a numeric photo ID, e.g. .../photo/some-slug-1234567/
+function extractPexelsPhotoId(pexelsPageUrl: string): string | null {
+  const m = pexelsPageUrl.match(/-(\d+)\/?$/);
+  return m ? m[1] : null;
+}
+
+async function publishArticle(
+  client: ReturnType<typeof getSanityClient>,
+  article: Article,
+  usedPexelsIds: Set<string>
+): Promise<string> {
   const docId = `article-ooo-${article.slug}`;
 
   // Same image line as the newsroom pillars (see app/lib/agents/image-generator.ts):
@@ -217,7 +247,7 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
       satiricalHeadline: "", seoTitle: "", seoDescription: "",
       tone: "straight", marketSymbols: [], topicBrief: {},
     } as unknown as ArticleDraft;
-    const img = await generateArticleImage(draft);
+    const img = await generateArticleImage(draft, usedPexelsIds);
     heroImageUrl          = img.heroUrl;
     ogImage               = img.ogImageUrl;
     imageGeneratedWith    = img.source;
@@ -225,6 +255,10 @@ async function publishArticle(client: ReturnType<typeof getSanityClient>, articl
     imagePhotographerName = img.photographerName ?? null;
     imagePhotographerUrl  = img.photographerUrl ?? null;
     imagePexelsUrl        = img.pexelsPageUrl ?? null;
+    if (imagePexelsUrl) {
+      const id = extractPexelsPhotoId(imagePexelsUrl);
+      if (id) usedPexelsIds.add(id);
+    }
     console.log(`[publish-out-of-office] Image via ${img.source}: ${img.publicId}`);
   } catch (err) {
     console.warn("[publish-out-of-office] Image pipeline failed, using frontmatter URL:", (err as Error).message);
@@ -274,10 +308,20 @@ export async function GET(req: NextRequest) {
   const COUNT = parseInt(req.nextUrl.searchParams.get("count") ?? "4");
   try {
     const client = getSanityClient();
-    const existing: { slug: { current: string } }[] = await client.fetch(
-      `*[_type == "article" && pillar._ref == "${PILLAR_ID}"]{ slug }`
+    const existing: { slug: { current: string }; imagePexelsUrl?: string }[] = await client.fetch(
+      `*[_type == "article" && pillar._ref == "${PILLAR_ID}"]{ slug, imagePexelsUrl }`
     );
     const publishedSlugs = new Set(existing.map(d => d.slug.current));
+
+    // Already-used Pexels photo IDs for this pillar — passed into the image
+    // pipeline so we don't keep re-picking the same stock photos across
+    // separate cron runs (the in-process dedup in image-generator.ts only
+    // covers photos used within a single invocation).
+    const usedPexelsIds = new Set<string>();
+    for (const doc of existing) {
+      const id = doc.imagePexelsUrl ? extractPexelsPhotoId(doc.imagePexelsUrl) : null;
+      if (id) usedPexelsIds.add(id);
+    }
     const contentDir = join(process.cwd(), CONTENT_DIR);
     const allFiles = readdirSync(contentDir).filter(f => f.endsWith(".md")).sort();
     const candidates: { filename: string; article: Article }[] = [];
@@ -296,7 +340,7 @@ export async function GET(req: NextRequest) {
     const failures: { filename: string; error: string }[] = [];
     for (const { filename, article } of toPublish) {
       try {
-        const url = await publishArticle(client, article);
+        const url = await publishArticle(client, article, usedPexelsIds);
         results.push({ title: article.title, url });
         console.log(`[publish-out-of-office] Published: ${article.title}`);
       } catch (err) {

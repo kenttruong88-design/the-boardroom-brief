@@ -15,8 +15,7 @@ sources:
   official: [Compass Group UK Lunch Break Survey, Just Eat for Business Desk Eating Habits Report, Moneypenny "UK's favourite work lunch", China Kadoorie Biobank / UK Biobank food intake comparison (NCBI), Global Nutrition Report China profile, Akteos "A ritual in China: the business meal", Pandanese Chinese Dining Etiquette Guide, Hofstede Insights Country Comparison, Wikipedia Meal Deal / History]
   forums: [Quora — food culture China and UK, Blind — "Help me understand Chinese colleagues" / workplace lunch exclusion threads, HiredChina "Crash Course: Chinese Drinking Culture", Expat Focus UK leisure and dining guide]
 ---
-
-**Lunch Alone at Your Desk vs. Lunch as a Small Diplomatic Event: Eating for Work in the UK and China**
+# Lunch Alone at Your Desk vs. Lunch as a Small Diplomatic Event: Eating for Work in the UK and China
 
 🇬🇧 UK · 🇨🇳 China
 

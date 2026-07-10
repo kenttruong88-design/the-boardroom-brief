@@ -15,8 +15,7 @@ sources:
   official: [OECD Better Life Index / Social Connections and Loneliness in OECD Countries, Gallup Meta World Poll, KFF (Kaiser Family Foundation) Loneliness Survey, American Survey Center (Survey Center on American Life), Hofstede Insights, Japan Times / Japan labor ministry karoshi data]
   forums: [Quora - "Is it true that friendship in the US is often superficial?", Quora - "Is it easy for a non-Japanese person to make friends...in Tokyo", Hacker News thread 42075104 (moving to Tokyo), Blind - "Move to Japan" (Software Engineering Career board), Reddit r/AskAnAmerican (general thread theme on compartmentalized friendships)]
 ---
-
-**America Will Friend You by Friday. Japan Will Get Back to You in a Year.**
+# America Will Friend You by Friday. Japan Will Get Back to You in a Year.
 
 **🇺🇸 USA · 🇯🇵 Japan**
 

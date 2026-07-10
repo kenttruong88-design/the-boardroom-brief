@@ -26,8 +26,7 @@ sources:
     - Reddit — r/australia / r/AskAnAustralian (aggregated expat commentary)
     - ouiinfrance.com — "The lonely expat problem: making friends is harder than it looks"
 ---
-
-**The Ten-Year Waitlist and the Instant Nickname: France, Australia, and the True Cost of Fitting In**
+# The Ten-Year Waitlist and the Instant Nickname: France, Australia, and the True Cost of Fitting In
 
 🇫🇷 France · 🇦🇺 Australia
 
