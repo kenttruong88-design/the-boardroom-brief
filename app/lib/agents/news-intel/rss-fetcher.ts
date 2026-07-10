@@ -49,6 +49,7 @@ function extractSource(itemXml: string): string {
 const GOOGLE_NEWS_BASE = "https://news.google.com/rss/search";
 const USER_AGENT =
   "Mozilla/5.0 (compatible; AlignmentTimes-NewsBot/1.0)";
+const STALE_THRESHOLD_MS = 36 * 60 * 60 * 1000;
 
 export async function fetchRSSFeed(
   query: string,
@@ -96,6 +97,17 @@ export async function fetchRSSFeed(
 
       // Skip items with no useful description
       if (!headline) continue;
+
+      // Defense-in-depth against stale news: the "when:1d" query operator
+      // affects Google's ranking but isn't a hard guarantee, so also drop
+      // anything whose own pubDate is older than 36h (buffer for timezones
+      // and Google's occasional lag on the operator).
+      if (pubDate) {
+        const publishedMs = Date.parse(pubDate);
+        if (!Number.isNaN(publishedMs) && Date.now() - publishedMs > STALE_THRESHOLD_MS) {
+          continue;
+        }
+      }
 
       items.push({ headline, description: rawDesc, url, sourceName, publishedAt: pubDate });
 
