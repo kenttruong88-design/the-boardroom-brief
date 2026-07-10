@@ -107,7 +107,8 @@ const usedPexelsIds = new Set<string>();
 
 export async function fetchPexelsImage(
   keywords: string[],
-  pillar: string
+  pillar: string,
+  excludeIds?: Set<string>
 ): Promise<PexelsResult | null> {
   const key = process.env.PEXELS_API_KEY;
   if (!key) {
@@ -139,9 +140,14 @@ export async function fetchPexelsImage(
     }>;
   };
 
-  // Prefer a photo we haven't used yet this run; fall back to the top result
-  // (still better than returning nothing) if every candidate is already used.
-  const photo = data.photos?.find((p) => !usedPexelsIds.has(String(p.id))) ?? data.photos?.[0];
+  // Prefer a photo we haven't used yet — checked against both this run's
+  // in-memory set and, when the caller passes one, photos already published
+  // in this pillar (from a Sanity lookup, so it holds across cron runs/days).
+  // Fall back to the top result (still better than nothing) if every
+  // candidate is already used.
+  const photo = data.photos?.find(
+    (p) => !usedPexelsIds.has(String(p.id)) && !excludeIds?.has(String(p.id))
+  ) ?? data.photos?.[0];
   if (!photo) {
     console.warn("[image-generator] Pexels returned no results");
     return null;
@@ -208,7 +214,8 @@ function buildCloudinaryUrls(publicId: string, secureUrl: string): CloudinaryRes
 // ── 5. Master function — never returns null ───────────────────────────────────
 
 export async function generateArticleImage(
-  draft: ArticleDraft
+  draft: ArticleDraft,
+  excludePexelsIds?: Set<string>
 ): Promise<ArticleImageResult> {
   const startedAt = Date.now();
 
@@ -248,7 +255,7 @@ export async function generateArticleImage(
   // ── c. Try Pexels fallback ───────────────────────────────────────────────────
   try {
     console.log("[image-generator] Trying Pexels fallback…");
-    const pexels = await fetchPexelsImage(draft.tags ?? [], draft.pillar);
+    const pexels = await fetchPexelsImage(draft.tags ?? [], draft.pillar, excludePexelsIds);
     if (pexels) {
       const cloudinary = await uploadToCloudinary(pexels.buffer, slug, draft.pillar);
       console.log("[image-generator] Pexels fallback succeeded.");
