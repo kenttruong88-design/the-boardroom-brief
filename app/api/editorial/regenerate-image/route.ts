@@ -33,7 +33,6 @@ export async function POST(req: Request) {
     mobileUrl:           imageResult.mobileUrl,
     altText:             entry.draft.headline,
     source:              imageResult.source,
-    generatedPrompt:     imageResult.generatedPrompt,
     photographerName:    imageResult.photographerName,
     photographerUrl:     imageResult.photographerUrl,
     pexelsPageUrl:       imageResult.pexelsPageUrl,

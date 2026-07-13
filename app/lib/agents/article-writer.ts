@@ -228,7 +228,6 @@ Return only valid JSON with no markdown, no explanation — just the object:
       mobileUrl:          imageResult.mobileUrl,
       altText:            headline,
       source:             imageResult.source,
-      generatedPrompt:    imageResult.generatedPrompt,
       photographerName:   imageResult.photographerName,
       photographerUrl:    imageResult.photographerUrl,
       pexelsPageUrl:      imageResult.pexelsPageUrl,

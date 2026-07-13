@@ -1,6 +1,4 @@
-import Replicate from "replicate";
 import { v2 as cloudinary } from "cloudinary";
-import { generateImagePrompt } from "./image-prompt-generator";
 import type { ArticleDraft } from "./types";
 
 // ── Cloudinary config ─────────────────────────────────────────────────────────
@@ -23,8 +21,7 @@ export interface CloudinaryResult {
 }
 
 export interface ArticleImageResult extends CloudinaryResult {
-  source:           "flux-schnell" | "pexels" | "pillar-default";
-  generatedPrompt?: string;
+  source:           "pexels" | "pillar-default";
   photographerName?: string;
   photographerUrl?:  string;
   pexelsPageUrl?:    string;
@@ -58,47 +55,7 @@ const PILLAR_DEFAULT_IDS: Record<string, string> = {
   "out-of-office":  "boardroom-brief/defaults/out-of-office-default",
 };
 
-// ── 1. Flux Schnell via Replicate ─────────────────────────────────────────────
-
-export async function generateWithFlux(prompt: string): Promise<Buffer> {
-  const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
-
-  const output = await replicate.run(
-    "black-forest-labs/flux-schnell",
-    {
-      input: {
-        prompt,
-        num_outputs:    1,
-        aspect_ratio:   "16:9",
-        output_format:  "webp",
-        output_quality: 80,
-      },
-    }
-  );
-
-  // Replicate SDK returns either FileOutput[] (new) or plain objects with .url() (old)
-  const outputs = output as unknown[];
-  if (!outputs || outputs.length === 0) throw new Error("Flux returned no outputs");
-
-  const first = outputs[0];
-  let imageUrl: string;
-  if (typeof first === "string") {
-    imageUrl = first;
-  } else if (first && typeof (first as { url: unknown }).url === "function") {
-    imageUrl = (first as { url: () => URL }).url().toString();
-  } else if (first && typeof (first as { url: unknown }).url === "string") {
-    imageUrl = (first as { url: string }).url;
-  } else {
-    throw new Error(`Unexpected Flux output shape: ${JSON.stringify(first)}`);
-  }
-
-  const res = await fetch(imageUrl);
-  if (!res.ok) throw new Error(`Failed to fetch Flux image: ${res.status}`);
-
-  return Buffer.from(await res.arrayBuffer());
-}
-
-// ── 2. Pexels fallback ────────────────────────────────────────────────────────
+// ── 1. Pexels ─────────────────────────────────────────────────────────────────
 
 // Tracks photo IDs already used this process lifetime so a single batch run
 // (which generates many articles back to back) doesn't keep picking the same
@@ -168,7 +125,7 @@ export async function fetchPexelsImage(
   };
 }
 
-// ── 3. Upload to Cloudinary ───────────────────────────────────────────────────
+// ── 2. Upload to Cloudinary ───────────────────────────────────────────────────
 
 export async function uploadToCloudinary(
   imageBuffer: Buffer,
@@ -197,7 +154,7 @@ export async function uploadToCloudinary(
   return buildCloudinaryUrls(result.public_id, result.secure_url);
 }
 
-// ── 4. Build Cloudinary URL variants ─────────────────────────────────────────
+// ── 3. Build Cloudinary URL variants ─────────────────────────────────────────
 
 function buildCloudinaryUrls(publicId: string, secureUrl: string): CloudinaryResult {
   const base = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
@@ -211,7 +168,7 @@ function buildCloudinaryUrls(publicId: string, secureUrl: string): CloudinaryRes
   };
 }
 
-// ── 5. Master function — never returns null ───────────────────────────────────
+// ── 4. Master function — never returns null ───────────────────────────────────
 
 export async function generateArticleImage(
   draft: ArticleDraft,
@@ -225,40 +182,13 @@ export async function generateArticleImage(
     .replace(/^-|-$/g, "")
     .slice(0, 64);
 
-  // ── a. Generate prompt ───────────────────────────────────────────────────────
-  let prompt = "";
+  // ── a. Try Pexels ─────────────────────────────────────────────────────────────
   try {
-    prompt = await generateImagePrompt(draft);
-    console.log(`[image-generator] Prompt: "${prompt.slice(0, 80)}…"`);
-  } catch (err) {
-    console.warn("[image-generator] Prompt generation failed:", (err as Error).message);
-  }
-
-  // ── b. Try Flux Schnell ──────────────────────────────────────────────────────
-  if (prompt) {
-    try {
-      console.log("[image-generator] Trying Flux Schnell…");
-      const buffer = await generateWithFlux(prompt);
-      const cloudinary = await uploadToCloudinary(buffer, slug, draft.pillar);
-      console.log("[image-generator] Flux succeeded.");
-      return {
-        ...cloudinary,
-        source:          "flux-schnell",
-        generatedPrompt: prompt,
-        durationMs:      Date.now() - startedAt,
-      };
-    } catch (err) {
-      console.warn("[image-generator] Flux failed:", (err as Error).message);
-    }
-  }
-
-  // ── c. Try Pexels fallback ───────────────────────────────────────────────────
-  try {
-    console.log("[image-generator] Trying Pexels fallback…");
+    console.log("[image-generator] Trying Pexels…");
     const pexels = await fetchPexelsImage(draft.tags ?? [], draft.pillar, excludePexelsIds);
     if (pexels) {
       const cloudinary = await uploadToCloudinary(pexels.buffer, slug, draft.pillar);
-      console.log("[image-generator] Pexels fallback succeeded.");
+      console.log("[image-generator] Pexels succeeded.");
       return {
         ...cloudinary,
         source:           "pexels",
@@ -269,10 +199,10 @@ export async function generateArticleImage(
       };
     }
   } catch (err) {
-    console.warn("[image-generator] Pexels fallback failed:", (err as Error).message);
+    console.warn("[image-generator] Pexels failed:", (err as Error).message);
   }
 
-  // ── d. Pillar default — always succeeds ─────────────────────────────────────
+  // ── b. Pillar default — always succeeds ─────────────────────────────────────
   console.warn(`[image-generator] Using pillar default for "${draft.pillar}"`);
   const defaultId = PILLAR_DEFAULT_IDS[draft.pillar]
     ?? PILLAR_DEFAULT_IDS["water-cooler"];

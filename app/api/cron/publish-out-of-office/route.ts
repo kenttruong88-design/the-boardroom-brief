@@ -269,7 +269,7 @@ async function publishArticle(
     heroImageUrl          = img.heroUrl;
     ogImage               = img.ogImageUrl;
     imageGeneratedWith    = img.source;
-    imagePrompt           = img.generatedPrompt ?? null;
+    imagePrompt           = null;
     imagePhotographerName = img.photographerName ?? null;
     imagePhotographerUrl  = img.photographerUrl ?? null;
     imagePexelsUrl        = img.pexelsPageUrl ?? null;
