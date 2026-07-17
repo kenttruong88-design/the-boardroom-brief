@@ -5,6 +5,7 @@ import type { SanityPublishResult } from "@/app/lib/sanity-write";
 import { consumeApprovalToken } from "@/app/lib/approval-tokens";
 import { requireAuth, loadDigest, saveDigest, resolveIndex, todayDate } from "../_helpers";
 import { queueSocialPostsForArticle } from "@/app/lib/social/queue-social-posts";
+import { dedupeFeaturedImage, loadPublishedPexelsIds } from "@/app/lib/agents/pexels-dedup";
 import type { ArticleDraft } from "@/app/lib/agents/types";
 
 // Accepts: POST with body, or GET with ?id=&token= (one-click from email)
@@ -86,6 +87,8 @@ async function approveArticle(
 
   let publishResult;
   try {
+    const publishedPexelsIds = await loadPublishedPexelsIds();
+    entry.draft = await dedupeFeaturedImage(entry.draft, publishedPexelsIds);
     publishResult = await createSanityArticle(entry.draft, "published");
   } catch (err) {
     return { error: (err as Error).message, status: 500 };

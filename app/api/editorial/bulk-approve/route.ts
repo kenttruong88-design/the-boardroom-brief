@@ -3,6 +3,7 @@ import { createSanityArticle } from "@/app/lib/sanity-write";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { requireAuth, loadDigest, saveDigest, todayDate } from "../_helpers";
 import { queueSocialPostsForArticle } from "@/app/lib/social/queue-social-posts";
+import { dedupeFeaturedImage, loadPublishedPexelsIds } from "@/app/lib/agents/pexels-dedup";
 
 export async function POST(req: Request) {
   const auth = await requireAuth();
@@ -20,6 +21,7 @@ export async function POST(req: Request) {
   const publishedUrls: string[] = [];
   let approvedCount = 0;
   let failedCount = 0;
+  const publishedPexelsIds = await loadPublishedPexelsIds();
 
   for (let i = 0; i < digest.articles.length; i++) {
     const entry = digest.articles[i] as typeof digest.articles[0] & {
@@ -33,6 +35,7 @@ export async function POST(req: Request) {
     if (!entry.review.passed || entry.review.score < 7.0) continue;
 
     try {
+      entry.draft = await dedupeFeaturedImage(entry.draft, publishedPexelsIds);
       const result = await createSanityArticle(entry.draft, "published", entry.review.score);
       entry.approved = true;
       entry.sanityDocId = result.sanityDocId;
