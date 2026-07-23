@@ -124,6 +124,7 @@ async function runPipeline(req: Request, jobId: string | null) {
           macroSnapshot: {},
           recentEarnings: [],
           trendingTopics: [],
+          newsFeedStories: [],
         };
       })
     )
