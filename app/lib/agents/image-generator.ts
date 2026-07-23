@@ -1,7 +1,8 @@
-import { v2 as cloudinary } from "cloudinary";
+﻿import { v2 as cloudinary } from "cloudinary";
+import { generatePhotoSearchQuery, pickBestPhoto } from "./photo-selector";
 import type { ArticleDraft } from "./types";
 
-// ── Cloudinary config ─────────────────────────────────────────────────────────
+// --- Cloudinary config -------------------------------------------------------
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -9,7 +10,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// --- Types -------------------------------------------------------------------
 
 export interface CloudinaryResult {
   publicId:     string;
@@ -35,7 +36,7 @@ interface PexelsResult {
   pexelsPageUrl:    string;
 }
 
-// ── Pillar config ─────────────────────────────────────────────────────────────
+// --- Pillar config -----------------------------------------------------------
 
 const PILLAR_SEARCH_TERMS: Record<string, string> = {
   "markets-floor":  "finance business",
@@ -55,7 +56,7 @@ const PILLAR_DEFAULT_IDS: Record<string, string> = {
   "out-of-office":  "boardroom-brief/defaults/out-of-office-default",
 };
 
-// ── 1. Pexels ─────────────────────────────────────────────────────────────────
+// --- 1. Pexels search with Claude query + vision pick ------------------------
 
 // Tracks photo IDs already used this process lifetime so a single batch run
 // (which generates many articles back to back) doesn't keep picking the same
@@ -63,22 +64,31 @@ const PILLAR_DEFAULT_IDS: Record<string, string> = {
 const usedPexelsIds = new Set<string>();
 
 export async function fetchPexelsImage(
-  keywords: string[],
-  pillar: string,
+  draft: ArticleDraft,
   excludeIds?: Set<string>
 ): Promise<PexelsResult | null> {
   const key = process.env.PEXELS_API_KEY;
   if (!key) {
-    console.warn("[image-generator] PEXELS_API_KEY not set — skipping Pexels fallback");
+    console.warn("[image-generator] PEXELS_API_KEY not set - skipping Pexels");
     return null;
   }
 
-  const pillarTerms = PILLAR_SEARCH_TERMS[pillar] ?? "business";
-  const keywordPart = keywords.slice(0, 3).join(" ");
-  const q = encodeURIComponent(`${keywordPart} ${pillarTerms}`.trim());
+  const pillarTerms = PILLAR_SEARCH_TERMS[draft.pillar] ?? "business";
+
+  // a. Claude writes the search query; fall back to tags + pillar terms.
+  let query = "";
+  try {
+    query = await generatePhotoSearchQuery(draft);
+    console.log(`[image-generator] Photo query: "${query}"`);
+  } catch (err) {
+    console.warn("[image-generator] Query generation failed:", (err as Error).message);
+  }
+  if (!query) {
+    query = `${(draft.tags ?? []).slice(0, 3).join(" ")} ${pillarTerms}`.trim();
+  }
 
   const searchRes = await fetch(
-    `https://api.pexels.com/v1/search?query=${q}&orientation=landscape&per_page=15&size=large`,
+    `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&orientation=landscape&per_page=15&size=large`,
     { headers: { Authorization: key } }
   );
 
@@ -90,25 +100,47 @@ export async function fetchPexelsImage(
   const data = await searchRes.json() as {
     photos: Array<{
       id: number;
-      src: { large2x: string };
+      src: { large2x: string; medium: string };
+      alt?: string;
       photographer: string;
       photographer_url: string;
       url: string;
     }>;
   };
 
-  // Prefer a photo we haven't used yet — checked against both this run's
-  // in-memory set and, when the caller passes one, photos already published
-  // in this pillar (from a Sanity lookup, so it holds across cron runs/days).
-  // Fall back to the top result (still better than nothing) if every
-  // candidate is already used.
-  const photo = data.photos?.find(
-    (p) => !usedPexelsIds.has(String(p.id)) && !excludeIds?.has(String(p.id))
-  ) ?? data.photos?.[0];
-  if (!photo) {
+  const all = data.photos ?? [];
+  if (all.length === 0) {
     console.warn("[image-generator] Pexels returned no results");
     return null;
   }
+
+  // b. Drop photos already used - this run's in-memory set plus, when the
+  //    caller passes one, photos already live on published articles (Sanity
+  //    lookup, so it holds across cron runs/days). If everything is used,
+  //    fall back to the full result set rather than returning nothing.
+  const unused = all.filter(
+    (p) => !usedPexelsIds.has(String(p.id)) && !excludeIds?.has(String(p.id))
+  );
+  const pool = unused.length > 0 ? unused : all;
+
+  // c. Claude vision picks the best match; fall back to the top result.
+  let index = 0;
+  try {
+    const pick = await pickBestPhoto(
+      pool.slice(0, 10).map((p) => ({
+        id:           String(p.id),
+        thumbnailUrl: p.src.medium,
+        alt:          p.alt,
+      })),
+      draft
+    );
+    if (pick !== null) index = pick;
+    console.log(`[image-generator] Vision pick: photo ${index + 1} of ${Math.min(pool.length, 10)}`);
+  } catch (err) {
+    console.warn("[image-generator] Vision pick failed:", (err as Error).message);
+  }
+
+  const photo = pool[index] ?? pool[0];
   usedPexelsIds.add(String(photo.id));
 
   const imgRes = await fetch(photo.src.large2x);
@@ -125,7 +157,7 @@ export async function fetchPexelsImage(
   };
 }
 
-// ── 2. Upload to Cloudinary ───────────────────────────────────────────────────
+// --- 2. Upload to Cloudinary -------------------------------------------------
 
 export async function uploadToCloudinary(
   imageBuffer: Buffer,
@@ -154,7 +186,7 @@ export async function uploadToCloudinary(
   return buildCloudinaryUrls(result.public_id, result.secure_url);
 }
 
-// ── 3. Build Cloudinary URL variants ─────────────────────────────────────────
+// --- 3. Build Cloudinary URL variants ----------------------------------------
 
 function buildCloudinaryUrls(publicId: string, secureUrl: string): CloudinaryResult {
   const base = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
@@ -168,7 +200,7 @@ function buildCloudinaryUrls(publicId: string, secureUrl: string): CloudinaryRes
   };
 }
 
-// ── 4. Master function — never returns null ───────────────────────────────────
+// --- 4. Master function - never returns null ---------------------------------
 
 export async function generateArticleImage(
   draft: ArticleDraft,
@@ -182,10 +214,10 @@ export async function generateArticleImage(
     .replace(/^-|-$/g, "")
     .slice(0, 64);
 
-  // ── a. Try Pexels ─────────────────────────────────────────────────────────────
+  // a. Try Pexels (Claude query + vision pick inside)
   try {
-    console.log("[image-generator] Trying Pexels…");
-    const pexels = await fetchPexelsImage(draft.tags ?? [], draft.pillar, excludePexelsIds);
+    console.log("[image-generator] Trying Pexels...");
+    const pexels = await fetchPexelsImage(draft, excludePexelsIds);
     if (pexels) {
       const cloudinary = await uploadToCloudinary(pexels.buffer, slug, draft.pillar);
       console.log("[image-generator] Pexels succeeded.");
@@ -202,7 +234,7 @@ export async function generateArticleImage(
     console.warn("[image-generator] Pexels failed:", (err as Error).message);
   }
 
-  // ── b. Pillar default — always succeeds ─────────────────────────────────────
+  // b. Pillar default - always succeeds
   console.warn(`[image-generator] Using pillar default for "${draft.pillar}"`);
   const defaultId = PILLAR_DEFAULT_IDS[draft.pillar]
     ?? PILLAR_DEFAULT_IDS["water-cooler"];
