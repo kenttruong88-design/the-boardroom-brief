@@ -3,6 +3,7 @@ import { logClaudeUsage, MODELS } from "@/app/lib/claude";
 import type { AgentPersona, TopicBrief } from "./types";
 
 export interface NewsFeedStory {
+  id?:            string;
   headline:       string;
   summary:        string;
   url?:           string;

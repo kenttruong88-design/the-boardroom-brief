@@ -39,15 +39,17 @@ async function getNewsFeedStories(
   try {
     const { data } = await supabase
       .from("news_feed")
-      .select("headline, summary, url, source_name, relevance_score, satirical_score, key_facts, notable_quote, suggested_angle")
+      .select("id, headline, summary, url, source_name, relevance_score, satirical_score, key_facts, notable_quote, suggested_angle")
       .or(`pillar.eq.${pillarSlug},pillar.eq.general`)
       .gt("expires_at", new Date().toISOString())
+      .is("used_by_agent", null)
       .order("relevance_score", { ascending: false })
       .limit(10);
 
     if (!data || data.length === 0) return [];
 
     return data.map((row: {
+      id: string;
       headline: string;
       summary: string;
       url: string | null;
@@ -58,6 +60,7 @@ async function getNewsFeedStories(
       notable_quote: string | null;
       suggested_angle: string | null;
     }) => ({
+      id:             row.id,
       headline:       row.headline,
       summary:        row.summary,
       url:            row.url ?? undefined,

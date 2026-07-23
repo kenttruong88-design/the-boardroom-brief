@@ -178,6 +178,37 @@ async function runPipeline(req: Request, jobId: string | null) {
   });
   console.log("[newsroom] Step 2 complete.");
 
+  // ── Mark consumed news_feed stories so tomorrow's run doesn't resurface them ──
+  // Without this, a high-relevance story sits in the pool for its full 48h
+  // window and keeps out-scoring fresher stories, so it gets handed to a
+  // journalist again the next day.
+  try {
+    const supabase = createAdminClient();
+    const usedIds = new Set<string>();
+    for (let i = 0; i < JOURNALIST_PERSONAS.length; i++) {
+      const persona = JOURNALIST_PERSONAS[i];
+      const stories = contexts[i].newsFeedStories ?? [];
+      for (const topic of agentTopics[i]) {
+        if (!topic.sourceUrl) continue;
+        const match = stories.find((s) => s.url === topic.sourceUrl);
+        if (match?.id) usedIds.add(match.id);
+      }
+      void persona;
+    }
+    if (usedIds.size > 0) {
+      const { error } = await supabase
+        .from("news_feed")
+        .update({ used_by_agent: "topic-selector", used_at: new Date().toISOString() })
+        .in("id", Array.from(usedIds));
+      if (error) throw new Error(error.message);
+      console.log(`[newsroom] Marked ${usedIds.size} news_feed stories as used.`);
+      await appendJobLog(jobId, `Marked ${usedIds.size} breaking-news stories as used.`);
+    }
+  } catch (err) {
+    console.error("[newsroom] Failed to mark news_feed stories as used:", (err as Error).message);
+    errors.push(`Failed to mark news_feed stories as used: ${(err as Error).message}`);
+  }
+
   // ── STAGE 3 — Article writing ──────────────────────────────────────────────
 
   if (await checkCancelled(jobId)) {
