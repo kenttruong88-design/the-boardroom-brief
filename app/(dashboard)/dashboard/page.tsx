@@ -9,6 +9,7 @@ import {
   Mail,
   Search,
   Activity,
+  Film,
 } from "lucide-react";
 
 const LINKS = [
@@ -47,6 +48,12 @@ const LINKS = [
     icon: Share2,
     label: "Social media",
     description: "Schedule, approve, and publish social posts",
+  },
+  {
+    href: "/editorial/ugc",
+    icon: Film,
+    label: "UGC videos",
+    description: "Review, approve, and preview Suki avatar videos",
   },
   {
     href: "/studio",
