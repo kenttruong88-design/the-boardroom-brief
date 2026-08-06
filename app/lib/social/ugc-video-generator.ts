@@ -46,6 +46,7 @@ export interface UgcVideoQueueRow {
   persona_name:      string;
   clips:             UgcClip[];
   status:            "pending_approval" | "rejected" | "approved" | "generating" | "complete" | "failed";
+  compiled_video_url: string | null;
   created_at:        string;
   approved_at:       string | null;
   completed_at:      string | null;
@@ -393,9 +394,24 @@ export async function finalizeUgcVideo(queueId: string): Promise<UgcVideoQueueRo
   const anyFailed   = clips.some((c) => c.status === "failed");
   const stillGoing  = clips.some((c) => c.status === "generating_video");
 
+  // Hard-cut splice only (no AI bridge transitions) — bridges cost 4 extra
+  // Hedra generations per video, which the current credit budget doesn't
+  // support. buildSplicedVideoUrl() still accepts bridge clips for a future
+  // run if that changes; see submitBridgeClip() above.
+  let compiledVideoUrl: string | null = null;
+  if (allComplete) {
+    const persona = getCreatorPersona(row.persona_key);
+    const spliceClips: SpliceClip[] = clips.map((c) => ({ publicId: c.cloudinary_public_id! }));
+    if (persona.outroCloudinaryPublicId) {
+      spliceClips.push({ publicId: persona.outroCloudinaryPublicId });
+    }
+    compiledVideoUrl = buildSplicedVideoUrl(spliceClips);
+  }
+
   return updateRow(queueId, {
     clips,
-    status:        allComplete ? "complete" : anyFailed && !stillGoing ? "failed" : "generating",
-    completed_at:  allComplete ? new Date().toISOString() : null,
+    status:             allComplete ? "complete" : anyFailed && !stillGoing ? "failed" : "generating",
+    compiled_video_url: compiledVideoUrl,
+    completed_at:       allComplete ? new Date().toISOString() : null,
   });
 }
