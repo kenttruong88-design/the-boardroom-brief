@@ -227,6 +227,21 @@ async function ensureAuthor(client: ReturnType<typeof getSanityClient>) {
     bio: "Relocated 14 times. Has eaten in 60 countries. Covers food, cities, and life outside the desk." });
 }
 
+// Same "country-<slugified-name>" id scheme as publish-global-office.mjs's
+// ensureCountries() — both pillars must share the same country documents so
+// a country's articles from either pillar resolve under one slug (see
+// getArticlesByCountry() in app/lib/queries.ts).
+async function ensureCountries(client: ReturnType<typeof getSanityClient>, countries: string[]) {
+  for (const c of countries) {
+    const cid = "country-" + slugify(c);
+    await client.createIfNotExists({
+      _id: cid, _type: "country",
+      name: c,
+      slug: { _type: "slug", current: cid.replace("country-", "") },
+    });
+  }
+}
+
 
 // Pexels page URLs end in a numeric photo ID, e.g. .../photo/some-slug-1234567/
 function extractPexelsPhotoId(pexelsPageUrl: string): string | null {
@@ -282,6 +297,11 @@ async function publishArticle(
     console.warn("[publish-out-of-office] Image pipeline failed, using frontmatter URL:", (err as Error).message);
   }
 
+  await ensureCountries(client, article.countries);
+  const countryRefs = article.countries.map((c) => ({
+    _type: "reference", _ref: "country-" + slugify(c), _key: key(),
+  }));
+
   await client.createOrReplace({
     _id: docId, _type: "article",
     title: article.title,
@@ -290,6 +310,7 @@ async function publishArticle(
     body: article.blocks,
     pillar: { _type: "reference", _ref: PILLAR_ID },
     author: { _type: "reference", _ref: AUTHOR_ID },
+    countries: countryRefs,
     publishedAt: article.pubDt,
     readTime: article.readTime,
     featured: false,
