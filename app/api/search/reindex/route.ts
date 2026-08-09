@@ -9,7 +9,18 @@ import { createClient } from "@sanity/client";
 
 export const maxDuration = 60;
 
+// Vercel Cron Jobs always send GET (with an auto-attached Authorization:
+// Bearer <CRON_SECRET> header) — POST is kept for manual/curl triggering,
+// same auth check either way.
+export async function GET(req: Request) {
+  return reindex(req);
+}
+
 export async function POST(req: Request) {
+  return reindex(req);
+}
+
+async function reindex(req: Request) {
   const secret = req.headers.get("x-cron-secret")
     ?? req.headers.get("authorization")?.replace("Bearer ", "");
 

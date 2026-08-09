@@ -39,6 +39,10 @@
     {
       "path": "/api/editorial/backfill-images",
       "schedule": "30 18 * * *"
+    },
+    {
+      "path": "/api/search/reindex",
+      "schedule": "0 5 * * 0"
     }
   ]
 }

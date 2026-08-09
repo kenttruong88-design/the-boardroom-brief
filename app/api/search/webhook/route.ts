@@ -11,14 +11,17 @@ import { createClient } from "@sanity/client";
 //   HTTP method: POST
 
 function verifySanitySignature(rawBody: string, signatureHeader: string, secret: string): boolean {
-  // Header format: t=<unix-ms>,v1=<hex-digest>
+  // Header format: t=<unix-ms>,v1=<base64url-digest> — NOT hex. Every delivery
+  // failed verification from this webhook's creation until this was found:
+  // Sanity signs with base64url, this used to decode as hex, so the strings
+  // could never match regardless of whether the secret was correct.
   const parts = Object.fromEntries(signatureHeader.split(",").map((p) => p.split("=")));
   const timestamp = parts["t"];
   const signature = parts["v1"];
   if (!timestamp || !signature) return false;
 
   const payload = `${timestamp}.${rawBody}`;
-  const expected = createHmac("sha256", secret).update(payload).digest("hex");
+  const expected = createHmac("sha256", secret).update(payload).digest("base64url");
   return expected === signature;
 }
 
