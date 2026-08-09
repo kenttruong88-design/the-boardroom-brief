@@ -33,9 +33,11 @@ const SLUG_TO_ISO2: Record<string, string> = {
   vietnam: "VN", yemen: "YE", zambia: "ZM", zimbabwe: "ZW",
 };
 
-export function flagEmoji(countrySlug: string): string {
+// Unicode regional-indicator flag emoji don't render as flags on Windows —
+// Chrome/Edge there fall back to two boxed letters, since Windows ships no
+// flag glyphs in its emoji font. Serving local SVGs (flag-icons, MIT —
+// see public/flags/LICENSE.txt) renders identically everywhere instead.
+export function flagIconPath(countrySlug: string): string | null {
   const iso2 = SLUG_TO_ISO2[countrySlug];
-  if (!iso2) return "🏳️";
-  const codePoints = [...iso2.toUpperCase()].map((c) => 0x1f1e6 + (c.charCodeAt(0) - 65));
-  return String.fromCodePoint(...codePoints);
+  return iso2 ? `/flags/${iso2.toLowerCase()}.svg` : null;
 }

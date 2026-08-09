@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronDown, ExternalLink } from "lucide-react";
 import { getCompatibilityForCountry, getScoredCountries } from "@/app/lib/compatibility";
-import { flagEmoji } from "@/app/lib/country-flags";
+import { flagIconPath } from "@/app/lib/country-flags";
 
 export const revalidate = 3600;
 
@@ -70,7 +70,11 @@ export default async function CountryCompatibilityPage({ params }: Props) {
             ← Compatibility Index
           </Link>
           <h1 className="text-2xl sm:text-3xl font-serif font-bold mt-2 flex items-center gap-3" style={{ color: "var(--cream)" }}>
-            <span>{flagEmoji(country)}</span> {name}
+            {flagIconPath(country) && (
+              // eslint-disable-next-line @next/next/no-img-element -- small static SVG from /public, next/image is overkill
+              <img src={flagIconPath(country)!} alt="" width={40} height={30} />
+            )}
+            {name}
           </h1>
           <p className="text-sm font-sans mt-2" style={{ color: "rgba(245,240,232,0.75)" }}>
             Ranked against every country we&apos;ve compared {name} to, highest compatibility first.
@@ -82,7 +86,10 @@ export default async function CountryCompatibilityPage({ params }: Props) {
         {matches.map((m) => (
           <div key={m.otherSlug} style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="flex items-center gap-4 px-5 py-4">
-              <span className="text-2xl leading-none">{flagEmoji(m.otherSlug)}</span>
+              {flagIconPath(m.otherSlug) && (
+                // eslint-disable-next-line @next/next/no-img-element -- small static SVG from /public, next/image is overkill
+                <img src={flagIconPath(m.otherSlug)!} alt="" width={32} height={24} style={{ flexShrink: 0 }} />
+              )}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 flex-wrap">
                   <Link

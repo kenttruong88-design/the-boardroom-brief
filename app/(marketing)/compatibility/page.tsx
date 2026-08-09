@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getScoredCountries } from "@/app/lib/compatibility";
-import { flagEmoji } from "@/app/lib/country-flags";
+import { flagIconPath } from "@/app/lib/country-flags";
 
 export const revalidate = 3600;
 
@@ -48,7 +48,10 @@ export default async function CompatibilityIndexPage() {
                 className="hover-card flex items-center gap-2 px-3 py-3"
                 style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
               >
-                <span className="text-2xl leading-none">{flagEmoji(c.slug)}</span>
+                {flagIconPath(c.slug) && (
+                  // eslint-disable-next-line @next/next/no-img-element -- small static SVG from /public, next/image is overkill
+                  <img src={flagIconPath(c.slug)!} alt="" width={28} height={21} style={{ flexShrink: 0 }} />
+                )}
                 <span className="text-sm font-sans font-semibold" style={{ color: "var(--navy)" }}>
                   {c.name}
                 </span>
