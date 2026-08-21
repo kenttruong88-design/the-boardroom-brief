@@ -99,3 +99,45 @@ If that returns 200 but Cloudinary uploads still fail, the direct signed-upload
 function is the one to debug first — not the SDK.
 
 ---
+
+## 2026-08-21 — Reddit and InterNations are not reachable via WebSearch (STRUCTURAL LIMITATION, not a bug to fix)
+
+**Symptom:** Every `site:reddit.com` or `site:internations.org` WebSearch query returned zero
+results from the target domain (Google-style site-search operator silently found nothing
+on-domain and fell back to unrelated results). Direct `web_fetch` of specific reddit.com URLs
+failed with "URL not in provenance set" (the URL never appeared in a prior search result, since
+reddit.com never appears in results). Explicitly passing `allowed_domains: ["reddit.com"]` or
+`allowed_domains: ["internations.org"]` to WebSearch returned a hard API error: "The following
+domains are not accessible to our user agent." Quora, by contrast, works fine both via
+`site:quora.com` search and via `allowed_domains: ["quora.com"]` — results return real thread
+titles and searchable snippet content (though individual Quora pages are client-rendered and
+`web_fetch` on them typically returns empty; the WebSearch snippet summary is the usable source
+of paraphrasable content, not a follow-up fetch).
+
+**Root cause:** Reddit and InterNations both block or are excluded from whatever crawler/index
+backs the WebSearch tool in this sandbox. This is a platform-level access restriction, not a
+transient failure — retrying with different query phrasing does not help.
+
+**Impact on this task's research requirements:** The SKILL.md's Layer 2 instructions list Reddit
+as the primary forum-voice source (with a subreddit-by-subject table) and separately require
+"no more than 2 Reddit" voices, "at least 1 Quora," and "at least 1 Internations/The
+Local/HackerNews/Blind" per article. In practice, for the 2026-08-21 run, 0 of 10 articles were
+able to source any genuine Reddit or InterNations content — every Reddit-shaped source in this
+log's predecessor runs was likely either paraphrased from indirect secondhand summaries or
+substituted from an accessible platform. The Local (thelocal.se) and Blind (teamblind.com) *did*
+occasionally appear in general WebSearch results (not via `site:` operator) and were usable when
+they did, so those two aren't universally blocked — only Reddit and InterNations appear to be.
+
+**Workaround applied this run:** Treated the "≤2 Reddit" and "≥1 Internations/TheLocal/HN/Blind"
+rules as satisfiable by substituting Quora (searched twice per article) plus whatever of
+TheLocal/Blind/HN organically surfaced in broader (non-site-restricted) WebSearch queries. All
+10 articles ended up with 4 real, verifiable forum/community voices meeting the ≥1 Quora and
+≥1 non-Reddit-diversity requirements, just with 0 Reddit voices rather than up to 2, since Reddit
+content simply isn't retrievable in this environment.
+
+**Recommendation for future runs:** Don't spend search budget on `site:reddit.com` or
+`site:internations.org` queries — they will not return on-domain results. Go straight to broader
+topical WebSearch queries (which occasionally surface thelocal.*, teamblind.com, or Hacker News
+content organically) plus `site:quora.com` / `allowed_domains: ["quora.com"]` queries, and budget
+for 0 Reddit voices rather than trying to hit the "≤2 Reddit" ceiling. If Reddit access is ever
+restored, the subreddit table in Step 2 Layer 2 remains valid.
