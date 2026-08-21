@@ -10,6 +10,52 @@ append a dated entry below and commit it alongside that day's articles.
 
 ---
 
+## 2026-08-21 — Stale /tmp scratch files from earlier runs, owned by a different sandbox user, block overwrite (WORKAROUND: re-namespace)
+
+**Symptom:** Copying the image-generation helper script to a fixed path
+(`/tmp/generate_images_ooo.py`) failed with `Permission denied`, even though
+the copy command ran successfully in earlier steps of this same run. Same
+error on the script's own `USED_IDS_FILE` constant (`/tmp/used_pexels_ids.txt`)
+the first time the script actually ran — every Pexels image fell through to
+`pillar-default` and the printed error was `[Errno 13] Permission denied`.
+
+**Root cause:** `ls -la` on both paths showed them owned by `nobody:nogroup`
+with a stale timestamp from a previous day's run (`Aug 20`), while this
+session runs as a differently-provisioned sandbox user
+(`charming-laughing-wright`). Some earlier run apparently left these files
+behind under a different UID, and this session's user has read access but not
+write/overwrite access to them — the fixed `/tmp/<name>.py` and
+`/tmp/used_pexels_ids.txt` paths used by prior versions of this task's
+instructions aren't actually safe to reuse across runs/sandbox-user
+boundaries, unlike the date-namespaced `WORK_DIR` the instructions already
+use for the git clone.
+
+**Fix applied:** Two changes, both workarounds rather than root-cause fixes
+(the underlying stale-file-ownership issue is a sandbox-provisioning quirk,
+not something this task can fix):
+1. Copied the helper script to a fresh, never-before-used filename
+   (`/tmp/generate_images_ooo_v3.py`) instead of the fixed name from the task
+   instructions. Any new filename that hasn't been used by a prior run works;
+   the specific suffix doesn't matter.
+2. Patched the script itself so `USED_IDS_FILE` is date-namespaced
+   (`f"/tmp/used_pexels_ids_{DATE_SLUG}.txt"`) instead of a fixed name, the
+   same pattern the task instructions already use for `WORK_DIR`. This should
+   prevent the same collision from recurring on future dates automatically,
+   though a same-day rerun could still collide with itself — if that happens,
+   fall back to a further PID- or timestamp-suffixed variant for that run only,
+   same as the `WORK_DIR` fallback pattern.
+
+**Status:** Confirmed working after the fix — all 10 images in the
+2026-08-21 Out of Office batch uploaded via Pexels (0 fell back to
+pillar-default). If a future run hits `Permission denied` on any fixed `/tmp`
+path (script copies, tracking files, etc.), assume it's this same class of
+issue: check `ls -la` on the path, and if it's owned by a different user with
+a stale timestamp, don't fight it — just pick a new, never-used filename or
+add a date/PID suffix, exactly as done here and as already prescribed for
+`WORK_DIR` in Step 0.
+
+---
+
 ## 2026-08-20 — Cloudinary SDK silently fails behind sandbox proxy (RESOLVED, script patched)
 
 **Symptom:** Every image upload fell through to the `pillar-default` fallback. The
