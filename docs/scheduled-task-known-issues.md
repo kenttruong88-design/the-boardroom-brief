@@ -141,3 +141,35 @@ topical WebSearch queries (which occasionally surface thelocal.*, teamblind.com,
 content organically) plus `site:quora.com` / `allowed_domains: ["quora.com"]` queries, and budget
 for 0 Reddit voices rather than trying to hit the "≤2 Reddit" ceiling. If Reddit access is ever
 restored, the subreddit table in Step 2 Layer 2 remains valid.
+
+---
+
+## 2026-08-22 — Subagent stray write to synced Desktop folder (WORKAROUND: tighten future instructions)
+
+**Symptom:** When this run's 10 articles were parallelized across 10 subagents (each handed the
+same orchestrator context: scratch clone path, `.env.local` path, image-gen script template), one
+subagent (article #10) initially wrote a draft copy of its Pexels/Cloudinary helper script to the
+*synced* Desktop folder (`.../the-boardroom-brief/_tmp_generate_images_art10_20260822.py`) before
+self-correcting and writing the real copy into `/tmp`. A second subagent (article #8) reported a
+similar stray duplicate write to the local outputs folder before switching to the correct sandbox
+path. Both self-corrected and the final saved articles are unaffected, but the stray script file
+is now stranded in the synced folder — per this project's constraints, files there can't be
+deleted without explicit user confirmation via `allow_cowork_file_delete`, and this is an
+unattended scheduled run, so it was left in place and only logged here rather than force-deleted.
+
+**Root cause:** Not fully diagnosed — likely a subagent defaulting to a "current directory" or
+"outputs" convention from its own tool defaults before reading the explicit `/tmp/...` instruction
+closely. Since each subagent is freshly spawned with no shared shell state, small early missteps
+before the first correctly-scoped `cd` aren't visible to the orchestrator until the subagent
+reports them after the fact.
+
+**Impact:** Cosmetic only — one harmless stray `.py` file sitting in the synced Desktop folder
+root, not in `content/global-office/`, not tracked by git (scratch clone never saw it), not part
+of any deliverable.
+
+**Recommendation for future runs:** When parallelizing article generation across subagents, state
+even more explicitly and early in each subagent's prompt that ALL file writes (including
+scratch/intermediate scripts, not just the final article) must go under `/tmp/...` and NEVER
+under the synced folder path, and ask each subagent to `pwd` and confirm its cwd before writing
+anything. If a stray file does turn up again in the synced folder, don't attempt to delete it
+without asking the user first — just note it here, same as this entry.
