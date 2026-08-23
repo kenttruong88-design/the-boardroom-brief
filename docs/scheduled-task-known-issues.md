@@ -173,3 +173,35 @@ scratch/intermediate scripts, not just the final article) must go under `/tmp/..
 under the synced folder path, and ask each subagent to `pwd` and confirm its cwd before writing
 anything. If a stray file does turn up again in the synced folder, don't attempt to delete it
 without asking the user first — just note it here, same as this entry.
+
+---
+
+## 2026-08-23 — Step 5's `git fetch && git pull --rebase` before `git commit` errors when new files are already staged (WORKAROUND: commit first, or stash before pulling)
+
+**Symptom:** Following the Step 5 command sequence literally (`git add` → `git fetch origin` →
+`git pull --rebase origin master` → `git commit` → `git push`) produced `error: cannot pull with
+rebase: Your index contains uncommitted changes. error: please commit or stash them.` on the
+`git pull --rebase` step, immediately after ten new article files had been `git add`-ed.
+
+**Root cause:** The ten article files are brand-new (untracked before this run), so `git add`
+stages them as new additions with no prior committed version to reconcile against. `git pull
+--rebase` refuses to run with a dirty index/staged changes present, regardless of whether those
+changes would actually conflict with anything incoming — it's a blanket safety check, not a
+conflict-specific one. The Step 5 instructions place the fetch/pull before the commit, which
+works fine on a clean index but fails as soon as there's anything staged, which is guaranteed to
+be true right after `git add` on new files.
+
+**Impact this run:** Cosmetic only. Because bash continues executing subsequent commands in a
+script block even after one command errors (no `set -e` was in effect), the `git commit` and
+`git push` commands after the failed `pull --rebase` still ran normally, and the push succeeded
+as a clean fast-forward (remote hadn't moved since the scratch clone was made, so there was
+nothing to rebase onto anyway). No data was lost and no destructive recovery was needed.
+
+**Recommendation for future runs:** Reorder Step 5 slightly — run `git commit` immediately after
+`git add`, *then* `git fetch origin && git pull --rebase origin master` (which will now rebase a
+real commit instead of colliding with a dirty index), *then* `git push`. This still satisfies the
+task's goal of picking up any interleaving push from the sibling `daily-work-culture-post` task
+before pushing, it just moves the local commit a step earlier in the sequence so `pull --rebase`
+has a clean index to work with. If a future run sees the same "index contains uncommitted changes"
+error, this is the same known cause — check `git log origin/master` after the fact to confirm the
+push still landed correctly, same as was done here, rather than assuming data loss.
