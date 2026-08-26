@@ -269,3 +269,34 @@ articles and their image scripts were written successfully. No stray files or lo
 each subagent) that `/tmp/...` paths must be written via `mcp__workspace__bash` heredocs or
 `python3 -c "open(...).write(...)"`, not the `Write`/`Edit` tools, to skip the failed-attempt step
 entirely next time.
+
+---
+
+## 2026-08-26 — Intermittent proxy 502 errors on Pexels/Cloudinary calls (TRANSIENT, fallback chain worked as designed)
+
+**Symptom:** Across the 10 `out-of-office-weekly-batch` image-generation calls this run, 3 of 20
+image requests (article 01 hero, article 03 hero, article 08 hero) failed with
+`ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway'))`,
+hitting different hosts each time (`images.pexels.com`, `api.pexels.com`, `api.cloudinary.com`).
+No pattern by host or article position — looked like random transient proxy flakiness rather than
+a systemic block.
+
+**Root cause:** Not diagnosed further since the fallback chain is explicitly designed to absorb
+exactly this class of failure. The sandbox's authenticated `https_proxy` occasionally returned a
+502 on the tunnel handshake for an otherwise-healthy request; retrying the same query moments
+later (as happened naturally between articles) succeeded fine for other calls to the same hosts
+in the same run.
+
+**Impact this run:** None beyond the intended degradation — each of the 3 failed hero requests
+fell through cleanly to the `pillar-default` illustration exactly as designed, while the
+corresponding body image for the same article still succeeded via Pexels in each case. 17/20
+images this run sourced from Pexels, 3/20 fell back to pillar-default. No retry logic was added
+and none seems necessary — the existing try/except-per-image-with-fallback structure already
+handles this correctly without any manual intervention.
+
+**Recommendation for future runs:** If a future run sees a noticeably higher fallback rate (say,
+more than half the images defaulting), that would be worth investigating as a real proxy or API
+outage rather than this same transient flakiness — but an occasional 502 on 1-3 of 20 calls is
+expected sandbox noise, not a bug to chase. Don't add manual retries; the two-image-per-article
+structure combined with the mandatory fallback already means no article ever ships without a
+usable image either way.
