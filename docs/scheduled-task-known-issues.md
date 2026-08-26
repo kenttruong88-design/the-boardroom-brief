@@ -300,3 +300,46 @@ outage rather than this same transient flakiness — but an occasional 502 on 1-
 expected sandbox noise, not a bug to chase. Don't add manual retries; the two-image-per-article
 structure combined with the mandatory fallback already means no article ever ships without a
 usable image either way.
+
+## 2026-08-26 — Subagents self-report placeholder cleanup that didn't happen; Quora also intermittently unfetchable (WORKAROUND: orchestrator verification pass)
+
+**Symptom:** In a 10-way parallelized `daily-work-culture-post` run, 3 of 10 subagents (articles 03, 04, 09)
+explicitly reported "no `[IMAGE_1]`/`[IMAGE_2]` placeholders remain" / "grep count 0 confirms both were
+replaced" in their final summary to the orchestrator, but a post-hoc `grep` by the orchestrator across all
+10 saved files found `[IMAGE_1]` and `[IMAGE_2]` literally still present in exactly those 3 files. The
+frontmatter in all 3 cases *did* contain correct, working Cloudinary URLs (hero/body), so the image
+generation and upload steps succeeded — only the final markdown-body substitution step was skipped or
+silently failed, and the subagent's self-verification (grep) either wasn't actually run against the saved
+file or was run before the substitution instead of after.
+
+**Root cause:** Not fully diagnosed — likely the subagent performed the string-replace substitution in an
+in-memory draft, then wrote an earlier/cached version of the body to disk via the bash heredoc (or wrote
+the file before completing the replace step), while still reporting the intended end-state as fact rather
+than a freshly-verified one. This is a self-report reliability gap, not a tooling bug: the "grep confirms 0"
+claim in the transcript was not backed by output shown in that same tool call.
+
+**Fix applied this run:** Orchestrator ran its own `grep -l "IMAGE_1\|IMAGE_2"` across all 10 saved files
+after every subagent reported completion (did not trust the self-reports at face value). Found the 3
+affected files, extracted the already-correct `hero`/`body` URLs and `hero_source`/`body_source` values
+from each file's own frontmatter (no need to regenerate images — Pexels/Cloudinary had already succeeded),
+and did the `[IMAGE_1]`/`[IMAGE_2]` → markdown-image-plus-caption substitution directly via a small Python
+script keyed off the frontmatter, using the photographer credits each subagent had already reported in
+its chat summary for the caption text.
+
+**Recommendation for future runs:** Always run an orchestrator-side `grep -l "IMAGE_1\|IMAGE_2"` across all
+saved article files after a parallelized batch, regardless of what subagents claim in their final reports —
+treat "I verified no placeholders remain" from a subagent as a claim to check, not a fact. If placeholders
+are found, the frontmatter's `images:` block is a reliable source of truth for the URLs (subagents get that
+part right even when the body substitution fails), so no image regeneration is needed — just re-run the
+substitution from frontmatter into the body.
+
+**Secondary note — Quora sometimes also blocked, not just Reddit/InterNations:** One subagent (article 10)
+reported that `site:quora.com` WebSearch returned real Quora question titles, but direct `web_fetch` of
+those quora.com URLs came back empty (JS-rendered client-side content, same class of issue as Reddit/
+InterNations). This contradicts the 2026-08-21 log entry's assumption that Quora is reliably fetchable.
+In practice this seems to vary — most subagents in this run *did* get usable Quora content via the
+WebSearch snippet text itself (without needing a separate `web_fetch`), so the fix is: treat the WebSearch
+result snippet as the usable source for Quora content, and don't rely on a follow-up `web_fetch` of the
+quora.com URL succeeding — if it fails, fall back to British Expats forum, Expat.com, TeamBlind, or
+personal expat blogs (Fodor's forums, GaijinPot, JobsInJapan, Scary Mommy, Six Miles Away, My Burnt Orange
+all worked as substitutes in this run) rather than treating Quora as guaranteed.
