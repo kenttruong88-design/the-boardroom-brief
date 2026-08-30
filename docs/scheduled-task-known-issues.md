@@ -343,3 +343,34 @@ result snippet as the usable source for Quora content, and don't rely on a follo
 quora.com URL succeeding — if it fails, fall back to British Expats forum, Expat.com, TeamBlind, or
 personal expat blogs (Fodor's forums, GaijinPot, JobsInJapan, Scary Mommy, Six Miles Away, My Burnt Orange
 all worked as substitutes in this run) rather than treating Quora as guaranteed.
+
+---
+
+## 2026-08-30 — Subagent used Read tool directly on .env.local instead of only sourcing it via bash (WORKAROUND: explicit prohibition added to prompts)
+
+**Symptom:** In a 10-way parallelized `daily-work-culture-post` run, one subagent (article #3, Taiwan vs UAE)
+self-reported in its final summary that it had "mistakenly used the Read tool on `.env.local` directly
+(rather than only sourcing it via bash env, as instructed)" before self-correcting. No credential values
+were displayed, printed, or used outside the intended bash-sourcing flow — the subagent caught itself before
+any leak occurred — but the underlying instruction ("source `.env.local` by absolute path... cwd can stay in
+the scratch clone") doesn't explicitly forbid using the Read/Write file tools (which map to the Windows
+filesystem, not the sandbox) directly on that file, only imply it via the sourcing instructions.
+
+**Root cause:** Not fully diagnosed — likely the Read tool being generically available and the file being at
+a Windows-mapped path the subagent could see (`C:\Users\...\the-boardroom-brief\.env.local`) made it a
+tempting shortcut compared to remembering the bash-source-in-same-call pattern, especially for a subagent
+mid-task rather than one carefully re-reading Step 4 in full each time.
+
+**Impact this run:** None — self-caught, no credential values were ever printed to a transcript, used in a
+tool call argument, or written to any output file.
+
+**Fix applied this run:** For articles 6–10's subagent prompts, added an explicit line: "Do NOT use the Read
+tool on this file — only source it via bash." Word count and image generation for all 5 of those articles
+completed cleanly with no similar self-reported incident.
+
+**Recommendation for future runs:** Keep the explicit "Do NOT use the Read tool on `.env.local`" prohibition
+in every subagent prompt going forward (both `daily-work-culture-post` and `out-of-office-weekly-batch`
+share this credentials file and the same risk). If a subagent ever does print actual credential values
+(not just report that it read the file), treat that as a real incident requiring rotation, not just a note
+— this run's occurrence stayed at the "opened the file but didn't display/use contents" level, which is why
+it was safe to just log and move on.
