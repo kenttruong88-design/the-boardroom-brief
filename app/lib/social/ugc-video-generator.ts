@@ -162,11 +162,57 @@ export async function rejectUgcVideo(queueId: string): Promise<UgcVideoQueueRow>
 // awaited inline (~10-20s); avatar video is only *submitted* here and polled
 // later from finalizeUgcVideo(), since each can take a few minutes.
 
+// Structured as Hedra's own template feature does it — Subject / Action /
+// Context / Cinematography / Style & Ambiance / On-Screen Text — rather than
+// one free-form sentence, since that's the vendor's own recommended shape
+// for this exact field, not just a generic prompting convention. Still
+// untested against real Hedra output.
+//
+// Two corrections from an earlier draft of this prompt, made after seeing
+// Hedra's own template example:
+// 1. Hedra's example specifies a STATIC frame, no camera movement. An
+//    earlier version of this prompt borrowed "handheld phone-vlog / camera
+//    shake" language from generic UGC-authenticity blog guides — that
+//    directly contradicts Hedra's own guidance for this feature, so it's
+//    dropped in favor of "static frame."
+// 2. Added an explicit "no on-screen text" line — we bake captions on
+//    ourselves via Cloudinary in finalizeUgcVideo/buildCaptionedVideoUrl, so
+//    the raw Hedra clip should never render its own.
+//
+// Per-item beats (a gesture landing on each of the 2-3 spoken points in a
+// dos/donts clip) are kept from the earlier draft — that addresses a real
+// gap (one static energy descriptor for the whole clip risks a flat,
+// recited-list feel) that Hedra's generic template example doesn't cover,
+// since its example is a single continuous line, not a multi-point list.
+//
+// Revised after a real test came back "stiff": the previous version locked
+// down the WHOLE body ("squared to the camera... no turning, leaning, or
+// angling to the side") to fix an earlier problem (she was turned/leaning
+// away from camera in the start frame). That fixed the facing problem but
+// killed all natural movement along with it, and "small" gestures rendered
+// as barely-there. The fix is scoped narrower: only face/eye-line must stay
+// locked on camera — stance and hands are explicitly freed up and asked to
+// be expressive, with concrete hand-gesture vocabulary (counting off
+// points, open palm) rather than vague "small" gestures.
+function performanceActionFor(label: ClipLabel): string {
+  if (label === "hook") {
+    return "Speaks directly to camera with a warm, knowing, a little wry expression, gentle smiling eyes, and engaging eye contact throughout — an animated eyebrow raise paired with an open-hand gesture landing on the headline's sharpest word, then a more relaxed conversational beat with a smaller natural gesture for the follow-up line.";
+  }
+  const isDos  = label.endsWith("_dos");
+  const tone    = isDos ? "confident, encouraging" : "wry, cautionary";
+  const gesture = isDos
+    ? "an expressive open-hand gesture or a finger counted off for each item, hand shape changing visibly point to point"
+    : "an expressive head-shake paired with a raised, palm-out hand, or a finger counted off for each item, hand shape changing visibly point to point";
+  return `Speaks directly to camera with a ${tone} expression, gentle smiling eyes, and engaging eye contact throughout — ${gesture} as she moves through the 2-3 points, hands staying animated throughout rather than resting still between points, so each point reads as its own distinct beat rather than one continuous recitation.`;
+}
+
 export function performancePromptFor(personaName: string, label: ClipLabel): string {
-  const base = `${personaName} speaking directly to camera, documentary travel vlog style, natural hand gestures, engaging eye contact.`;
-  if (label === "hook") return `${base} Warm and knowing delivery, a little wry.`;
-  if (label.endsWith("_dos")) return `${base} Encouraging, confident energy — recommending these back to back.`;
-  return `${base} Wry, cautionary energy — warning these off back to back.`;
+  return `Subject: ${personaName}, the woman shown in the start frame.
+Action: ${performanceActionFor(label)} Her face and eye line stay locked on camera throughout — never turning away or glancing off — but her stance and hands stay loose and animated, not a stiff, arms-still pose. Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.
+Context: Clean background matching the start frame image, no scene changes mid-take.
+Cinematography: Eye-level vertical full-body shot, subject facing camera with direct eye contact, static frame, no camera movement.
+Style & Ambiance: Soft natural lighting, realistic skin tones, inviting and authentic mood.
+On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 }
 
 // Each clip gets its own start frame (same identity, different pose/setting)
