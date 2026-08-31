@@ -374,3 +374,15 @@ share this credentials file and the same risk). If a subagent ever does print ac
 (not just report that it read the file), treat that as a real incident requiring rotation, not just a note
 — this run's occurrence stayed at the "opened the file but didn't display/use contents" level, which is why
 it was safe to just log and move on.
+
+## 2026-08-31 — Stale `/tmp/gen_assignments.py` recurrence confirms the 2026-08-21 fix is necessary every run (WORKAROUND: unique filename, as documented)
+
+**Symptom:** At Step 1 (generate today's assignments), a `cat > /tmp/gen_assignments.py << 'PYEOF'` heredoc reported `Permission denied`, but the subsequent `python3 /tmp/gen_assignments.py` ran anyway and printed plausible-looking output — silently executing a stale file left over from a prior day's run (`ls -la` showed `nobody:nogroup`, dated Aug 29) rather than the script just written.
+
+**Root cause:** Exactly the class of issue documented on 2026-08-21 below — fixed `/tmp/<name>` paths aren't safe to reuse across runs/sandbox-user boundaries. This is the first time it was observed hitting a plain orchestrator-level script (previously only seen on the image-generation helper and its tracking file).
+
+**Fix applied:** Re-ran with a fresh, PID-suffixed filename (`/tmp/gen_assignments_v2_$$.py`) per the existing guidance — worked immediately. No changes needed to the underlying pattern; this entry exists to confirm the 2026-08-21 fix generalizes to any `/tmp` script an orchestrator (not just per-article subagents) writes, and to flag that a "successful-looking" run is not proof the write succeeded — always check the heredoc's own exit output for "Permission denied" before trusting a script's stdout.
+
+**Recommendation for future runs:** Never assume a `/tmp` heredoc write succeeded just because the following command produced sane-looking output. Use a unique filename (PID/RANDOM-suffixed) for every `/tmp` script from the start, including the Step 1 assignment generator, rather than only applying this pattern to the image-generation script as earlier entries implied.
+
+**Also confirmed this run:** Reddit and InterNations remain unreachable via WebSearch (all 10 subagents independently hit this and used 0 Reddit voices); HackerNews/Blind/TheLocal organically surfaced for only some countries — several subagents (Indonesia/Hungary, Greece/Romania, Argentina/Egypt, Australia/Latvia) reported no on-topic HN/Blind/TheLocal results despite targeted searches and substituted an equivalent first-person source (Budapest Business Journal interview, Greek Substack, Expatforum.com, Blind review of an unrelated-but-real company) to satisfy the diversity requirement. This is consistent with the 2026-08-21 and 2026-08-26 entries — not a new issue, just reconfirming the "organically surface, don't rely on it" guidance holds across a wider set of less-common countries too.
