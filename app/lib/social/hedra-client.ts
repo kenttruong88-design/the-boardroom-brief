@@ -41,14 +41,31 @@ function headers(): HeadersInit {
   return { "X-API-Key": apiKey, "Content-Type": "application/json" };
 }
 
+// Hedra's API intermittently drops the TCP connection before it's
+// established (UND_ERR_CONNECT_TIMEOUT from undici) — unrelated to request
+// validity, seen sporadically across otherwise-successful runs. A short
+// retry on network-level failures (not on HTTP error responses, which are
+// real API errors) absorbs this without masking genuine failures.
+async function fetchWithRetry(url: string, opts: RequestInit, retries = 3): Promise<Response> {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      return await fetch(url, opts);
+    } catch (err) {
+      if (attempt === retries) throw err;
+      await new Promise((r) => setTimeout(r, 2000 * attempt));
+    }
+  }
+  throw new Error("unreachable");
+}
+
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, { headers: headers() });
+  const res = await fetchWithRetry(`${BASE}${path}`, { headers: headers() });
   if (!res.ok) throw new Error(`GET ${path} failed: ${res.status} ${await res.text()}`);
   return res.json() as Promise<T>;
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
+  const res = await fetchWithRetry(`${BASE}${path}`, {
     method:  "POST",
     headers: headers(),
     body:    JSON.stringify(body),
@@ -88,7 +105,7 @@ export interface AvatarVideoParams {
 
 /** Downloads an image and uploads it as a Hedra asset, returning its asset id. */
 export async function uploadImageAsset(imageUrl: string, name: string): Promise<string> {
-  const imgRes = await fetch(imageUrl);
+  const imgRes = await fetchWithRetry(imageUrl, {});
   if (!imgRes.ok) throw new Error(`Failed to download reference image: ${imgRes.status}`);
   const imgBuf = Buffer.from(await imgRes.arrayBuffer());
 
@@ -97,7 +114,7 @@ export async function uploadImageAsset(imageUrl: string, name: string): Promise<
 
   const form = new FormData();
   form.append("file", new Blob([imgBuf]), name);
-  const uploadRes = await fetch(`${BASE}/assets/${created.id}/upload`, {
+  const uploadRes = await fetchWithRetry(`${BASE}/assets/${created.id}/upload`, {
     method: "POST",
     headers: { "X-API-Key": process.env.HEDRA_API_KEY! },
     body: form,
@@ -255,7 +272,10 @@ export async function pollUntilDone(
   opts: { intervalMs?: number; timeoutMs?: number } = {}
 ): Promise<HedraGenerationStatus> {
   const intervalMs = opts.intervalMs ?? 3000;
-  const timeoutMs  = opts.timeoutMs  ?? 120_000;
+  // 120s was too tight — image generations occasionally run long and this
+  // was tripping real (non-network) timeouts on otherwise-healthy
+  // generations, wasting the credits already spent on that call.
+  const timeoutMs  = opts.timeoutMs  ?? 240_000;
   const deadline   = Date.now() + timeoutMs;
 
   while (Date.now() < deadline) {

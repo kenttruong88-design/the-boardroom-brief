@@ -99,7 +99,7 @@ export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideo
     {
       label:  "hook",
       script: scriptResult.hookClip,
-      scene:  scriptResult.hookScene,
+      scene:  "Fixed office-reception backdrop, shared across every video — see persona.introSceneImageAssetId.",
       status: "pending",
     },
     {
@@ -215,10 +215,16 @@ Style & Ambiance: Soft natural lighting, realistic skin tones, inviting and auth
 On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 }
 
-// Each clip gets its own start frame (same identity, different pose/setting)
-// via image-to-image on the uploaded reference photo — flux-kontext-pro-i2i
-// preserves face + outfit reliably in testing. Without this all 3 clips open
-// on the exact same static shot.
+// Clips 2-5 each get their own start frame (same identity, different pose/
+// setting) via image-to-image on the uploaded reference photo —
+// flux-kontext-pro-i2i preserves face + outfit reliably in testing. Without
+// this all 4 clips open on the exact same static shot.
+//
+// The hook clip is the one exception: it always opens on the SAME fixed
+// office-reception backdrop (persona.introSceneImageAssetId, generated once
+// — see scripts/suki-office-backdrop.mts) rather than a freshly generated
+// scene, so the backdrop stays pixel-identical across every video while the
+// spoken script still varies per article.
 async function generateClip(
   persona: ReturnType<typeof getCreatorPersona>,
   identityAssetId: string,
@@ -226,11 +232,19 @@ async function generateClip(
   clip: UgcClip
 ): Promise<UgcClip> {
   try {
-    const sceneImageAssetId = await generateSceneImage(
-      identityAssetId,
-      clip.scene,
-      `${articleSlug}-${clip.label}-scene.png`
-    );
+    let sceneImageAssetId: string;
+    if (clip.label === "hook") {
+      if (!persona.introSceneImageAssetId) {
+        throw new Error(`Persona "${persona.key}" has no introSceneImageAssetId set — run scripts/suki-office-backdrop.mts first`);
+      }
+      sceneImageAssetId = persona.introSceneImageAssetId;
+    } else {
+      sceneImageAssetId = await generateSceneImage(
+        identityAssetId,
+        clip.scene,
+        `${articleSlug}-${clip.label}-scene.png`
+      );
+    }
     const narration = await generateNarration(clip.script, persona.voiceId);
     // Size the video to the actual narration length (+buffer for a natural
     // trailing beat) rather than a fixed guess — a script running a couple

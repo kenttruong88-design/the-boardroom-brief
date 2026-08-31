@@ -27,9 +27,15 @@ export async function generateOutroClip(
   persona: CreatorPersona,
   opts: { pollIntervalMs?: number; pollTimeoutMs?: number } = {}
 ): Promise<{ publicId: string; secureUrl: string }> {
-  const identityAssetId = await getPersonaIdentityAssetId(persona);
-  const sceneAssetId    = await generateSceneImage(identityAssetId, persona.outroScene, `${persona.key}-outro-scene.png`);
-  const narration       = await generateNarration(persona.outroScript, persona.voiceId);
+  // Uses the SAME fixed office-reception backdrop as the hook clip
+  // (persona.introSceneImageAssetId, generated once — see
+  // scripts/suki-office-backdrop.mts) rather than generating a fresh scene
+  // from persona.outroScene, so intro and outro share an identical
+  // backdrop. Falls back to the old per-call generateSceneImage path only
+  // if a persona hasn't had a fixed backdrop generated yet.
+  const sceneAssetId = persona.introSceneImageAssetId
+    ?? await generateSceneImage(await getPersonaIdentityAssetId(persona), persona.outroScene, `${persona.key}-outro-scene.png`);
+  const narration     = await generateNarration(persona.outroScript, persona.voiceId);
 
   const generationId = await submitAvatarVideo({
     startKeyframeId:   sceneAssetId,
