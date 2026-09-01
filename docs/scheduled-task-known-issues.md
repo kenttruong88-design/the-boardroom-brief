@@ -386,3 +386,33 @@ it was safe to just log and move on.
 **Recommendation for future runs:** Never assume a `/tmp` heredoc write succeeded just because the following command produced sane-looking output. Use a unique filename (PID/RANDOM-suffixed) for every `/tmp` script from the start, including the Step 1 assignment generator, rather than only applying this pattern to the image-generation script as earlier entries implied.
 
 **Also confirmed this run:** Reddit and InterNations remain unreachable via WebSearch (all 10 subagents independently hit this and used 0 Reddit voices); HackerNews/Blind/TheLocal organically surfaced for only some countries — several subagents (Indonesia/Hungary, Greece/Romania, Argentina/Egypt, Australia/Latvia) reported no on-topic HN/Blind/TheLocal results despite targeted searches and substituted an equivalent first-person source (Budapest Business Journal interview, Greek Substack, Expatforum.com, Blind review of an unrelated-but-real company) to satisfy the diversity requirement. This is consistent with the 2026-08-21 and 2026-08-26 entries — not a new issue, just reconfirming the "organically surface, don't rely on it" guidance holds across a wider set of less-common countries too.
+
+## 2026-09-01 — Country pool can surface active-conflict/humanitarian-crisis states; needs editorial filtering (WORKAROUND: swap before writing)
+
+**Symptom:** The deterministic country-pair picker (broad pool + dedup against existing filenames, per
+the 2026-08-24 fix) surfaced Philippines/Yemen ("language barrier experiences") and Sudan/Tanzania
+("weekend culture and leisure") among today's 10 combos. Both Yemen and Sudan are currently in acute,
+active humanitarian crises (ongoing civil war, mass displacement/famine conditions) — writing lighthearted
+"Out of Office" lifestyle content framing them as normal expat destinations would have been a poor
+editorial call, not merely off-tone.
+
+**Root cause:** The country pool used by the picker script is a flat list with no crisis/stability
+awareness — it happily returns any unused (pair, subject) combination regardless of current real-world
+conditions in either country. This is a content-quality gap, not a technical bug: the picker did exactly
+what it was asked to do.
+
+**Fix applied this run:** Manually reviewed the 10 generated combos before writing any articles, identified
+Yemen and Sudan as inappropriate for this pillar's tone given their current situation, and regenerated
+just those two slots against an explicitly narrowed pool (excluding Yemen, Sudan, Syria, Libya, Somalia)
+while keeping the other 8 combos and re-checking for both cross-run duplicate combos and same-day pair
+reuse. Note that some other conflict-adjacent or fragile states (e.g. Mali, Haiti) were already
+established in the existing corpus from prior runs and were left as-is rather than retroactively flagged —
+the bar applied here was specifically "currently in an acute, high-intensity crisis," not "ever
+unstable."
+
+**Recommendation for future runs:** Before writing, eyeball any freshly generated country pairs against
+current events (a quick mental or search-based check is enough — this doesn't need a formal database).
+If a pair includes a country in an acute, ongoing humanitarian crisis or active war, swap it out using
+the same dedup approach rather than writing the piece anyway. This is a judgment call each run's operator
+(human or agent) needs to make fresh, since which countries qualify will change over time — don't
+hardcode a fixed exclusion list into the picker script itself, since it will go stale.
