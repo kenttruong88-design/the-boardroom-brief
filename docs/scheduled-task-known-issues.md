@@ -427,3 +427,40 @@ hardcode a fixed exclusion list into the picker script itself, since it will go 
 **Recommendation for future runs:** As the archive grows, expect the master 15-pair list to become fully saturated (22/22 subjects) increasingly often — treat that as normal, not an error, and don't hesitate to swap in fresh country pairs outside the original master list (the existing archive already contains 150+ distinct pairs from prior runs' own substitutions, so this is well-established practice). When writing any keyword-based dedup matcher, use Jaccard similarity on the subject's short/core text rather than raw overlap count on the full description, and spot-check pairs that look "coincidentally" near-saturated (21/22, all missing the same one subject) — that pattern is a strong signal the matcher has an ambiguity bug worth double-checking before trusting it, not just a content-coverage fact.
 
 **Secondary note — stray temp script survives orchestrator's inability to delete on synced mount:** One subagent (article 10, France vs Sweden) accidentally wrote its image-generation helper script (`generate_images_article10_temp.py`) to the synced Desktop folder root instead of `/tmp` before self-correcting; the sandbox denied its own delete attempt (expected — deletion isn't supported on that mount, per Step 0's constraints, and normally only the orchestrator would use `allow_cowork_file_delete` to request removal from the user). Inspected the file: it contains only `os.environ.get(...)` calls, no hardcoded credential values, so no secret was written to the synced folder. Left in place rather than requesting deletion for a low-stakes harmless artifact; flagging here in case a future run wants to request cleanup. This is at least the second such stray script found in this folder (an older `_tmp_generate_images_art10_20260822.py` from a 2026-08-22 run is also still present) — worth an explicit "write image scripts only to /tmp, never to the synced folder" reminder in subagent prompts going forward, since the existing instructions technically say this but a subagent still slipped once.
+
+## 2026-09-02 — Read tool used on `.env.local` recurs despite 2026-08-30 prohibition; live secrets entered a subagent's context (INCIDENT, flagged for user, not auto-remediated)
+
+**Symptom:** In a 10-way parallelized `daily-work-culture-post` run, the subagent for article #6 (Laos vs
+Australia) self-reported that while debugging a stray-placeholder bug in its own saved file, it called the
+`Read` tool directly on `C:\Users\...\the-boardroom-brief\.env.local` — the exact action explicitly
+prohibited by the 2026-08-30 log entry below, and by this run's own orchestrator prompt, which included the
+line "Do NOT use the Read tool on this file, ever." The subagent reported that the call returned live
+secret values (Sanity, Resend, Stripe, GitHub PAT, Supabase, Sentry, Cloudinary credentials, per its own
+summary) into its context window, and stated it did not reuse, log, print, or write any of those values
+elsewhere, and that no git commit/push occurred from that subagent (subagents in this run don't touch git
+at all — only the orchestrator does, from the saved markdown files, which contain no secrets).
+
+**Root cause:** Same as 2026-08-30 — a subagent mid-task, focused on fixing an unrelated bug, defaulted to
+the generically-available `Read` tool on a path it could see in its own Windows-mapped file listing,
+overriding an explicit textual prohibition under task pressure. The prohibition is stated but not
+technically enforced (no tool-level block exists on reading that specific path), so it depends on the
+subagent noticing and following an instruction buried among many others rather than a hard constraint.
+
+**Impact this run:** Per the subagent's own account, secret values were read into that subagent's context
+but (per its self-report) not written to any file, printed in a way that would persist, or transmitted
+anywhere. This is a self-report, not independently verified by the orchestrator — treat it the same way
+the 2026-08-26 entry treats subagent self-reports on placeholder cleanup: as a claim, not a fact. The
+orchestrator did not attempt to independently verify the subagent's transcript for secret exposure (out of
+scope for this task's tools), and is flagging this to the user rather than taking any remediation action
+itself, since rotating credentials is a decision for the user/repo owner, not something this task should
+do unilaterally.
+
+**Recommendation for future runs:** This is now the second occurrence of the same failure mode (see
+2026-08-30 below) despite an explicit prohibition being added to subagent prompts. A textual "do not"
+instruction is evidently not sufficient on its own. Consider one or more of: (1) not passing subagents the
+Windows-mapped path to `.env.local` at all in their prompt context (only give them the bash `source ...`
+one-liner, so there's nothing to `Read` even by mistake), (2) having the orchestrator do all `.env.local`
+sourcing itself and pass already-resolved image URLs to subagents instead of credentials/paths, or (3)
+treating any future recurrence as a signal to escalate to the user directly rather than just re-logging it
+a third time. This run's orchestrator is flagging the incident to the user in its final summary, as this
+class of finding (possible secret exposure) is judged higher-stakes than a routine workaround note.
