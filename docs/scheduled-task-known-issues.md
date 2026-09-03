@@ -464,3 +464,33 @@ sourcing itself and pass already-resolved image URLs to subagents instead of cre
 treating any future recurrence as a signal to escalate to the user directly rather than just re-logging it
 a third time. This run's orchestrator is flagging the incident to the user in its final summary, as this
 class of finding (possible secret exposure) is judged higher-stakes than a routine workaround note.
+
+## 2026-09-03 — Write/Edit/Read tools cannot target the Linux sandbox's /tmp paths; use bash heredocs for all scratch-clone and script writes (WORKAROUND: confirmed, no fix needed)
+
+**Symptom:** Multiple article subagents in this run's 10-way parallelized `daily-work-culture-post` batch independently discovered that the `Write`/`Edit`/`Read` file tools operate on a Windows-mapped filesystem and error or silently miss when pointed at `/tmp/...` paths (the scratch clone and the image-generation scripts both live there). Several subagents lost a small amount of time before falling back to `mcp__workspace__bash` heredocs (`cat > /tmp/file << 'EOF' ... EOF`) for both the article markdown and the Python image script.
+
+**Root cause:** Not a bug — this is the standard tool/filesystem split documented in this environment (Write/Edit/Read address the Windows-side path space; `mcp__workspace__bash` addresses the Linux sandbox where the scratch clone and `/tmp` actually live). It just isn't stated explicitly enough in the SKILL.md's Step 0/2/5 instructions, so each fresh subagent re-derives it independently.
+
+**Fix applied:** None needed at the tooling level. This run's orchestrator prompt for each subagent explicitly stated up front "use bash heredocs for ALL file creation under /tmp/, the Write tool cannot reach it" — subagents that got this line in their prompt did not lose time on it; earlier batches (articles 1-5) without the explicit line self-corrected after one failed attempt.
+
+**Recommendation for future runs:** Keep an explicit "Write/Edit/Read cannot target /tmp — use bash heredocs for the article file and the image script" line in every subagent prompt from the start (added partway through this run for articles 6-10; carry it forward as standard boilerplate for both `daily-work-culture-post` and `out-of-office-weekly-batch`).
+
+## 2026-09-03 — Two of ten articles could not satisfy the "≥1 Quora AND ≥1 Internations/TheLocal/HN/Blind" Layer 2 requirement despite genuine effort (WORKAROUND: legitimate-forum substitution, flagged per existing policy)
+
+**Symptom:** Article 5 (Brunei vs Kenya, gender dynamics) and article 8 (Brazil vs Mexico, meeting culture) both reported, after real targeted searching, that they could not surface any retrievable Quora answer text (Quora pages return empty/JS-rendered on `web_fetch`, and this time WebSearch snippets themselves didn't surface usable Quora content either for these two country/subject combos) nor any Internations/TheLocal/HackerNews/Blind content. Both substituted comparable legitimate forums (Expat.com threads, a syndicated expat essay, a travel blog) instead of fabricating a quote, consistent with existing guidance, but this is the first time the *hard* diversity floor (not just Reddit) was missed outright rather than just substituted-with-notice for one category.
+
+**Root cause:** Same structural search-index gaps documented on 2026-08-21 (Reddit/Internations) and 2026-08-26 (Quora JS-rendering), just landing on both categories simultaneously for two low-search-volume country/subject pairs (Brunei and Kenya together, and gender-dynamics as a subject, appear to have thin indexed English-language discussion).
+
+**Fix applied:** None — both articles shipped with the substitution already applied and the gap self-reported, per the existing "flag the gap in your final report rather than fabricate" policy. No retroactive action taken.
+
+**Recommendation for future runs:** This is expected to recur for less-common country pairs and niche subjects as the country pool broadens (per the 2026-09-01 entry on pool exhaustion, we're now drawing from ~75+ countries rather than the original 15). Treat "0/2 of the two harder Layer 2 categories" as an acceptable, self-flagged outcome for genuinely thin-coverage pairs rather than something to retry or block on — retrying burns search budget without changing what's indexed.
+
+## 2026-09-03 — Naive cyclic subject-assignment in Step 1 reproduces the exact degenerate "all 10 slots get the same subject" failure mode from 2026-08-24 on first draft (WORKAROUND: round-robin subject-first, then pair-search per subject)
+
+**Symptom:** A first-draft rewrite of the Step 1 assignment picker (needed because the original fixed 15-pair/22-subject matrix is long since exhausted — 655+ articles on disk as of this run) advanced the pair index every iteration but only advanced the subject index after cycling through the *entire* ~3,500-pair candidate list, so in practice all 10 assignments landed on the first shuffled subject ("Living culture") before the subject index ever moved — the exact degenerate pattern the 2026-08-24 entry already warned about ("an earlier draft... using raw cyclic subject offsets, produced exactly that degenerate result").
+
+**Root cause:** Off-by-structure bug: nesting a full pair-search inside a single subject slot before advancing the subject counter, rather than picking one subject per slot up front and then searching pairs for that specific subject.
+
+**Fix applied:** Rewrote the picker to iterate `for slot in range(10)`, pick `subj_order[slot % len(subj_order)]` first (guaranteeing 10 distinct, pre-shuffled subjects), then search for an available, not-yet-used-today country pair for that specific subject, with a light preference (not hard constraint) for countries not already used elsewhere in the same day's batch to avoid one country appearing 4+ times across the 10 headlines.
+
+**Also confirmed this run:** A stray unredirected `cat >> file 2>/dev/null;` heredoc fragment left over from an in-place script edit caused the following heredoc's stdin to block, hanging a `python3` call for the full 120s tool timeout with no output — not a sandbox permission issue, just a shell-scripting mistake. Recommendation: when iterating on a heredoc-written script across multiple bash calls, write the *entire* new script fresh each time rather than trying to append/patch around a previous heredoc invocation.
