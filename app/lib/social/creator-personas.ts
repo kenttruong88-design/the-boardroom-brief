@@ -29,6 +29,13 @@ export interface CreatorPersona {
    */
   outroCloudinaryPublicId?: string;
   /**
+   * Cloudinary public_id of the generated end-card clip (dark brand screen
+   * + website URL) appended after the outro in every compiled video — see
+   * `scripts/generate-endcard-clip.mts`. Generated once and reused, same
+   * pattern as `outroCloudinaryPublicId`.
+   */
+  endcardCloudinaryPublicId?: string;
+  /**
    * Reference character sheet: 3 head/shoulders angles (front/three-quarter/
    * profile) at a neutral expression, 2 more expressions (smiling/serious)
    * at the front angle, plus full-body front and side standing shots — a
@@ -63,7 +70,8 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Suki standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
     outroCloudinaryPublicId: "boardroom-brief/ugc/suki-outro",
-    introSceneImageAssetId: "e211b04b-a6b5-459a-ab52-3915b96cc353",
+    endcardCloudinaryPublicId: "boardroom-brief/ugc/suki-endcard",
+    introSceneImageAssetId: "01b0e67e-bfe5-4f49-940f-338776023c0c",
     characterSheet: {
       frontNeutral:        "048ffced-045e-4034-b884-edf4c80cac34",
       threeQuarterNeutral: "1d0ed6cf-52b1-4d40-ac82-30af1392c907",

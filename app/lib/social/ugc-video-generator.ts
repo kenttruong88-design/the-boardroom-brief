@@ -465,6 +465,9 @@ export async function finalizeUgcVideo(queueId: string): Promise<UgcVideoQueueRo
     if (persona.outroCloudinaryPublicId) {
       spliceClips.push({ publicId: persona.outroCloudinaryPublicId });
     }
+    if (persona.endcardCloudinaryPublicId) {
+      spliceClips.push({ publicId: persona.endcardCloudinaryPublicId });
+    }
     compiledVideoUrl = buildSplicedVideoUrl(spliceClips);
   }
 
