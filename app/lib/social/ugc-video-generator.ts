@@ -156,6 +156,34 @@ export async function rejectUgcVideo(queueId: string): Promise<UgcVideoQueueRow>
   return updateRow(queueId, { status: "rejected" });
 }
 
+// ── Re-run specific clips on an already-approved video ──────────────────────
+// For fixing a subset of clips (e.g. a scene-generation model swap) without
+// re-writing the script or re-submitting clips that were already fine —
+// keeps each targeted clip's existing script/scene/captions, just resubmits
+// scene image + narration + avatar video for it. Untouched clips (and the
+// row's compiled_video_url) are left alone until finalizeUgcVideo recompiles
+// once every clip is complete again.
+export async function regenerateClips(queueId: string, labels: ClipLabel[]): Promise<UgcVideoQueueRow> {
+  const row = await loadRow(queueId);
+  const persona = getCreatorPersona(row.persona_key);
+  const identityAssetId = await getPersonaIdentityAssetId(persona);
+
+  const clips = await Promise.all(
+    row.clips.map((clip) =>
+      labels.includes(clip.label)
+        ? generateClip(persona, identityAssetId, row.article_slug, { ...clip, status: "pending" })
+        : clip
+    )
+  );
+  const anyFailed = clips.some((c) => c.status === "failed");
+
+  return updateRow(queueId, {
+    clips,
+    status:             anyFailed && clips.every((c) => c.status === "failed") ? "failed" : "generating",
+    compiled_video_url: null,
+  });
+}
+
 // ── Step 2: on approval, generate narration + submit video for each clip ────
 // All five clips are narrated and submitted in parallel — each is a short
 // (~8-13s) generation, so there's no reason to serialize them. Narration is
@@ -216,9 +244,10 @@ On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 }
 
 // Clips 2-5 each get their own start frame (same identity, different pose/
-// setting) via image-to-image on the uploaded reference photo —
-// flux-kontext-pro-i2i preserves face + outfit reliably in testing. Without
-// this all 4 clips open on the exact same static shot.
+// setting) via generateSceneImage() on the uploaded reference photo (see
+// hedra-client.ts — google/nano-banana-pro, not flux-kontext-pro-i2i, for
+// identity fidelity on big scene jumps). Without this all 4 clips open on
+// the exact same static shot.
 //
 // The hook clip is the one exception: it always opens on the SAME fixed
 // office-reception backdrop (persona.introSceneImageAssetId, generated once

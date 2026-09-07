@@ -125,9 +125,23 @@ export async function uploadImageAsset(imageUrl: string, name: string): Promise<
 }
 
 /**
- * Generates a new pose/scene for a reference identity via image-to-image
- * (flux-kontext-pro preserves face + outfit well in testing), and returns the
+ * Generates a new pose/scene for a reference identity, and returns the
  * resulting image asset id — usable directly as a video's start_keyframe_id.
+ *
+ * Uses google/nano-banana-pro, not fal/flux-kontext-pro-i2i. Confirmed via
+ * a full production run (2026-09-07, Ireland-vs-Japan test article):
+ * flux-kontext-pro-i2i's single-reference identity fidelity degrades
+ * visibly once the target scene diverges enough from the reference photo
+ * (different location/lighting/pose all at once, as every country clip's
+ * scene is) — same failure mode already documented for expression changes
+ * on the character sheet (see creator-personas.ts history), just triggered
+ * by scene distance instead of expression distance. One country_a_donts
+ * frame also showed a warped counting-fingers hand and garbled jacket-logo
+ * text in the same generation, consistent with the model straining on a
+ * heavily-diverged scene. nano-banana-pro is the model already designated
+ * for "keep this exact identity, change the surrounding context" work
+ * elsewhere in this pipeline (see suki-fix-hands.mts) precisely because it
+ * held up better on this kind of edit.
  */
 export async function generateSceneImage(
   referenceAssetId: string,
@@ -136,8 +150,8 @@ export async function generateSceneImage(
   opts: { intervalMs?: number; timeoutMs?: number } = {}
 ): Promise<string> {
   const gen = await post<{ id: string; asset_id: string }>("/generations", {
-    type:                 "image_to_image",
-    model_slug:           "fal/flux-kontext-pro-i2i",
+    type:                 "image",
+    model_slug:           "google/nano-banana-pro",
     reference_image_ids:  [referenceAssetId],
     text_prompt:          prompt,
     aspect_ratio:         "9:16",
