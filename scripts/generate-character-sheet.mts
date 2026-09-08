@@ -55,7 +55,7 @@ if (!personaKey) {
 }
 
 const { getCreatorPersona }       = await import("../app/lib/social/creator-personas");
-const { uploadImageAsset, generateSceneImage } = await import("../app/lib/social/hedra-client");
+const { uploadLocalImageAsset, generateSceneImage } = await import("../app/lib/social/hedra-client");
 const { v2: cloudinary }          = await import("cloudinary");
 
 cloudinary.config({
@@ -94,13 +94,28 @@ for (const shotName of Object.keys(SHOTS)) {
   if (!toGenerate.find(([n]) => n === shotName)) console.log(`  (skipping ${shotName} — already generated)`);
 }
 
-console.log("\nUploading identity reference...");
-const identityAssetId = await uploadImageAsset(persona.referenceImageUrl, `${persona.key}-reference.png`);
+console.log("\nUploading identity references (reference/Suki 1.png .. Suki 7.png)...");
+const identityAssetIds: string[] = [];
+for (let i = 1; i <= 7; i++) {
+  const filePath = resolve(ROOT, "reference", `Suki ${i}.png`);
+  if (!existsSync(filePath)) {
+    console.log(`  (skipping Suki ${i}.png — not found)`);
+    continue;
+  }
+  const buf = readFileSync(filePath);
+  const assetId = await uploadLocalImageAsset(buf, `${persona.key}-ref-${i}.png`);
+  identityAssetIds.push(assetId);
+  console.log(`  Suki ${i}.png -> ${assetId}`);
+}
+if (identityAssetIds.length === 0) {
+  throw new Error("No reference photos found in reference/Suki 1.png .. Suki 7.png");
+}
+console.log(`Using ${identityAssetIds.length} reference photo(s) for every shot.`);
 
 const results: Record<string, string> = { ...existing };
 for (const [shotName, prompt] of toGenerate) {
   console.log(`\n[${shotName}] generating...`);
-  const assetId = await generateSceneImage(identityAssetId, prompt, `${persona.key}-sheet-${shotName}.png`);
+  const assetId = await generateSceneImage(identityAssetIds, prompt, `${persona.key}-sheet-${shotName}.png`);
   results[shotName] = assetId;
   console.log(`[${shotName}] asset id: ${assetId}`);
 }

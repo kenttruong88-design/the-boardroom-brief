@@ -103,17 +103,13 @@ export interface AvatarVideoParams {
 
 // ── 0. Image assets ───────────────────────────────────────────────────────────
 
-/** Downloads an image and uploads it as a Hedra asset, returning its asset id. */
-export async function uploadImageAsset(imageUrl: string, name: string): Promise<string> {
-  const imgRes = await fetchWithRetry(imageUrl, {});
-  if (!imgRes.ok) throw new Error(`Failed to download reference image: ${imgRes.status}`);
-  const imgBuf = Buffer.from(await imgRes.arrayBuffer());
-
+/** Uploads raw image bytes (e.g. a local file) as a Hedra asset, returning its asset id. */
+export async function uploadLocalImageAsset(buf: Buffer, name: string): Promise<string> {
   const created = await post<{ id: string }>("/assets", { name, type: "image" });
   if (!created.id) throw new Error(`No asset id returned for image upload: ${JSON.stringify(created)}`);
 
   const form = new FormData();
-  form.append("file", new Blob([imgBuf]), name);
+  form.append("file", new Blob([buf]), name);
   const uploadRes = await fetchWithRetry(`${BASE}/assets/${created.id}/upload`, {
     method: "POST",
     headers: { "X-API-Key": process.env.HEDRA_API_KEY! },
@@ -122,6 +118,14 @@ export async function uploadImageAsset(imageUrl: string, name: string): Promise<
   if (!uploadRes.ok) throw new Error(`Image asset upload failed: ${uploadRes.status} ${await uploadRes.text()}`);
 
   return created.id;
+}
+
+/** Downloads an image and uploads it as a Hedra asset, returning its asset id. */
+export async function uploadImageAsset(imageUrl: string, name: string): Promise<string> {
+  const imgRes = await fetchWithRetry(imageUrl, {});
+  if (!imgRes.ok) throw new Error(`Failed to download reference image: ${imgRes.status}`);
+  const imgBuf = Buffer.from(await imgRes.arrayBuffer());
+  return uploadLocalImageAsset(imgBuf, name);
 }
 
 /**
@@ -144,7 +148,7 @@ export async function uploadImageAsset(imageUrl: string, name: string): Promise<
  * held up better on this kind of edit.
  */
 export async function generateSceneImage(
-  referenceAssetId: string,
+  referenceAssetId: string | string[],
   prompt: string,
   name: string,
   opts: { intervalMs?: number; timeoutMs?: number } = {}
@@ -152,7 +156,7 @@ export async function generateSceneImage(
   const gen = await post<{ id: string; asset_id: string }>("/generations", {
     type:                 "image",
     model_slug:           "google/nano-banana-pro",
-    reference_image_ids:  [referenceAssetId],
+    reference_image_ids:  Array.isArray(referenceAssetId) ? referenceAssetId : [referenceAssetId],
     text_prompt:          prompt,
     aspect_ratio:         "9:16",
     name,
