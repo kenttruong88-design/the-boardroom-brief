@@ -73,7 +73,7 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     endcardCloudinaryPublicId: "boardroom-brief/ugc/suki-endcard",
     introSceneImageAssetId: "01b0e67e-bfe5-4f49-940f-338776023c0c",
     characterSheet: {
-      frontNeutral:        "850d9f10-9d11-4973-a1bc-e8cd229642fb",
+      frontNeutral:        "799518ab-fd66-4310-a4a6-55be34ecb086",
       threeQuarterNeutral: "63d9c710-c31f-437f-a017-e749206d6bd6",
       profileNeutral:      "783842af-b64a-4e31-ae94-9c940d764e7c",
       frontSmiling:        "cb174182-8f7d-440f-9f60-643056f01dbd",
@@ -100,4 +100,24 @@ export function getCreatorPersona(key: string): CreatorPersona {
 export async function getPersonaIdentityAssetId(persona: CreatorPersona): Promise<string> {
   if (persona.characterSheet?.frontNeutral) return persona.characterSheet.frontNeutral;
   return uploadImageAsset(persona.referenceImageUrl, `${persona.key}-reference.png`);
+}
+
+/**
+ * Resolves the FULL set of identity reference images (every populated
+ * `characterSheet` angle/expression) rather than just `frontNeutral` — for
+ * scene generation calls where the target pose/setting diverges a lot from
+ * any single reference photo (see hedra-client.ts generateSceneImage notes
+ * on identity drift growing with scene distance). Confirmed on a country
+ * clip test (2026-09-08/09): passing all 7 character-sheet shots as
+ * multi-reference to nano-banana-pro held identity noticeably better than
+ * the single-`frontNeutral` reference used previously. Falls back to the
+ * single uploaded `referenceImageUrl` (as a one-element array) for personas
+ * without a character sheet yet.
+ */
+export async function getPersonaIdentityAssetIds(persona: CreatorPersona): Promise<string[]> {
+  if (persona.characterSheet) {
+    const ids = Object.values(persona.characterSheet).filter((id): id is string => Boolean(id));
+    if (ids.length > 0) return ids;
+  }
+  return [await uploadImageAsset(persona.referenceImageUrl, `${persona.key}-reference.png`)];
 }

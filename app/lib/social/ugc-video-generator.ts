@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { writeUgcScript } from "./ugc-script-writer";
-import { getCreatorPersona, getPersonaIdentityAssetId } from "./creator-personas";
+import { getCreatorPersona, getPersonaIdentityAssetIds } from "./creator-personas";
 import { parseOutOfOfficeArticle } from "./out-of-office-parser";
 import {
   generateNarration,
@@ -166,12 +166,12 @@ export async function rejectUgcVideo(queueId: string): Promise<UgcVideoQueueRow>
 export async function regenerateClips(queueId: string, labels: ClipLabel[]): Promise<UgcVideoQueueRow> {
   const row = await loadRow(queueId);
   const persona = getCreatorPersona(row.persona_key);
-  const identityAssetId = await getPersonaIdentityAssetId(persona);
+  const identityAssetIds = await getPersonaIdentityAssetIds(persona);
 
   const clips = await Promise.all(
     row.clips.map((clip) =>
       labels.includes(clip.label)
-        ? generateClip(persona, identityAssetId, row.article_slug, { ...clip, status: "pending" })
+        ? generateClip(persona, identityAssetIds, row.article_slug, { ...clip, status: "pending" })
         : clip
     )
   );
@@ -256,7 +256,7 @@ On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 // spoken script still varies per article.
 async function generateClip(
   persona: ReturnType<typeof getCreatorPersona>,
-  identityAssetId: string,
+  identityAssetIds: string[],
   articleSlug: string,
   clip: UgcClip
 ): Promise<UgcClip> {
@@ -269,7 +269,7 @@ async function generateClip(
       sceneImageAssetId = persona.introSceneImageAssetId;
     } else {
       sceneImageAssetId = await generateSceneImage(
-        identityAssetId,
+        identityAssetIds,
         clip.scene,
         `${articleSlug}-${clip.label}-scene.png`
       );
@@ -306,12 +306,14 @@ export async function approveUgcVideo(queueId: string): Promise<UgcVideoQueueRow
   const persona = getCreatorPersona(row.persona_key);
   await updateRow(queueId, { status: "approved", approved_at: new Date().toISOString() });
 
-  // Resolve the identity anchor once — each clip then derives its own
-  // distinct scene image from this via image-to-image (see generateClip).
-  const identityAssetId = await getPersonaIdentityAssetId(persona);
+  // Resolve the full identity reference set once — each clip then derives
+  // its own distinct scene image from this via image-to-image (see
+  // generateClip). Multi-reference (not just frontNeutral) holds identity
+  // better on scenes that diverge a lot from any single reference photo.
+  const identityAssetIds = await getPersonaIdentityAssetIds(persona);
 
   const clips = await Promise.all(
-    row.clips.map((clip) => generateClip(persona, identityAssetId, row.article_slug, clip))
+    row.clips.map((clip) => generateClip(persona, identityAssetIds, row.article_slug, clip))
   );
   const anyFailed = clips.some((c) => c.status === "failed");
 

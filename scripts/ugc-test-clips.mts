@@ -55,7 +55,7 @@ for (const label of requestedLabels) {
 
 const { parseOutOfOfficeArticle } = await import("../app/lib/social/out-of-office-parser");
 const { writeUgcScript }          = await import("../app/lib/social/ugc-script-writer");
-const { getCreatorPersona, getPersonaIdentityAssetId } = await import("../app/lib/social/creator-personas");
+const { getCreatorPersona, getPersonaIdentityAssetIds } = await import("../app/lib/social/creator-personas");
 const { performancePromptFor } = await import("../app/lib/social/ugc-video-generator");
 const {
   generateNarration,
@@ -95,8 +95,8 @@ async function main() {
     country_b_donts: { script: s.countryBDontsClip, scene: s.countryBDontsScene },
   };
 
-  const identityAssetId = await getPersonaIdentityAssetId(persona);
-  console.log("Identity asset id:", identityAssetId);
+  const identityAssetIds = await getPersonaIdentityAssetIds(persona);
+  console.log("Identity asset ids:", identityAssetIds);
 
   for (const label of requestedLabels as ClipLabel[]) {
     const clip = allClips[label];
@@ -110,7 +110,7 @@ async function main() {
     } else {
       console.log(`[${label}] scene: ${clip.scene}`);
       sceneAssetId = await generateSceneImage(
-        identityAssetId,
+        identityAssetIds,
         clip.scene!,
         `${persona.key}-test-${label}-scene.png`
       );
