@@ -110,6 +110,46 @@ function findOverages(script: UgcScript): Array<{ field: string; words: number; 
     .filter((o) => o.words > o.cap);
 }
 
+// Maps each spoken-clip field to its matching caption-list field, so dropping
+// a trailing item from the script also drops its caption — keeping the two
+// in sync the same way the prompt itself requires ("one caption per item
+// actually spoken"). hookClip has no captions field.
+const CAPTIONS_FIELD: Partial<Record<keyof typeof WORD_CAPS, keyof UgcScript>> = {
+  countryADosClip:   "countryADosCaptions",
+  countryADontsClip: "countryADontsCaptions",
+  countryBDosClip:   "countryBDosCaptions",
+  countryBDontsClip: "countryBDontsCaptions",
+};
+
+// Deterministic backstop for when all MAX_ATTEMPTS retries still came back
+// over cap — confirmed to happen on real runs (e.g. 41 words against a
+// 35-word cap, unchanged across 3 attempts). Previously this just shipped
+// the overage, sizing the Hedra clip to the longer narration; on a 35-word
+// cap clip that's a ~15s take stretched toward ~18-20s, which reads as
+// noticeably slower/more sluggish (same 2-3 gesture beats spread over more
+// screen time), not just "a bit long." Instead of trimming words out of
+// each sentence (which risks an incomplete thought), drop whole trailing
+// sentences — mirroring the prompt's own instructed strategy ("drop a whole
+// item rather than trimming words from each sentence") — until under cap,
+// stopping short of the first two sentences (country name + first item) so
+// a clip is never cut down to nothing.
+function enforceCapDeterministically(script: UgcScript): void {
+  for (const field of Object.keys(WORD_CAPS) as Array<keyof typeof WORD_CAPS>) {
+    const cap = WORD_CAPS[field];
+    const captionsField = CAPTIONS_FIELD[field];
+    while (countWords(script[field]) > cap) {
+      const sentences = script[field].trim().split(/(?<=[.!?])\s+/).filter(Boolean);
+      if (sentences.length <= 2) break;
+      sentences.pop();
+      script[field] = sentences.join(" ");
+      if (captionsField) {
+        const captions = script[captionsField] as unknown as string[];
+        if (Array.isArray(captions) && captions.length > 1) captions.pop();
+      }
+    }
+  }
+}
+
 export async function writeUgcScript(input: UgcScriptInput): Promise<UgcScript> {
   const { parsed, persona } = input;
   const [countryA, countryB] = parsed.dosDonts;
@@ -157,9 +197,10 @@ Write the 5-clip script for Suki to deliver directly to camera.`;
 Your previous attempt broke the word limit: ${overages.map((o) => `${o.field} was ${o.words} words (max ${o.cap})`).join("; ")}. Rewrite ALL clips from scratch. For any clip over its cap, drop a whole item rather than trimming words from each sentence — that's what actually gets you under the limit.`;
   }
 
-  // Exhausted retries — return the last attempt rather than throwing. Hedra's
-  // video duration is sized to the actual narration length (see
-  // hedra-client.ts), so an over-length script runs long rather than
-  // truncating; it just won't hit the 45-60s target as tightly.
+  // Exhausted retries — rather than shipping the model's overage as-is
+  // (which sizes the Hedra clip to the longer narration and reads as
+  // noticeably slower), deterministically drop trailing sentences until
+  // every field is back under its cap. See enforceCapDeterministically.
+  enforceCapDeterministically(lastScript!);
   return lastScript!;
 }
