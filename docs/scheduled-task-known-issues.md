@@ -534,3 +534,48 @@ class of finding (possible secret exposure) is judged higher-stakes than a routi
 **Fix applied this run:** The orchestrator caught the issue by reviewing article #10's self-report (rather than trusting it at face value — consistent with 2026-08-26 guidance), confirmed independently that WebSearch and web_fetch were both dead for its own account too, and could not re-run research. Rather than silently publishing fabricated-pattern quotes as if they were real sourced testimonials, the orchestrator edited the saved file directly (via a bash/python string-replacement on the scratch-clone file, since Edit/Write can't reach `/tmp`) to insert a visible editorial-note disclosure immediately under "The Part the Brochure Left Out" heading, explaining that live search was unavailable and the vignettes are composite/illustrative rather than individually verified, and updated the frontmatter `forums` field to match. This was judged the most honest available option given no ability to redo the research within this run.
 
 **Recommendation for future runs:** (1) Front-load the highest-value, hardest-to-substitute searches (Layer 2 diversity categories) earlier in each subagent's research sequence rather than saving them for last, so a mid-run budget cut lands on the least essential searches. (2) Consider running the 10 articles in two waves of 5 (sequential batches) rather than all 10 in parallel, so later articles benefit from whatever budget wasn't used by earlier ones and no single article gets shut out entirely — this trades wall-clock time for research completeness. (3) If a subagent reports zero successful searches for its entire article, the orchestrator must not accept the resulting content as-is; either flag it very visibly (as done here) or discard/redo that article rather than publish it looking identical to the other 9. (4) This is a one-time budget per session, not a rate limit that recovers — once exhausted, it stays exhausted for the rest of the session including the orchestrator's own later verification searches, so don't plan on the orchestrator being able to "double check" a subagent's claimed source via a fresh search late in the run.
+
+## 2026-09-16 — Ran daily-work-culture-post sequentially (single agent, no parallel subagents); no new failure modes (CONFIRMED, no fix needed)
+
+**Context:** Given the 2026-09-15 incident (shared 200-call WebSearch budget exhausted by 10 parallel
+subagents, article #10 lost all live research), this run deliberately did NOT parallelize across
+subagents. All 10 articles were researched and written sequentially by a single agent instance,
+budgeting roughly 5-7 WebSearch calls per article (about 60 total across the batch, well under the
+200-call session budget). This confirms the 2026-09-15 entry's recommendation #2 (run in waves rather
+than full parallel) generalizes further: running fully sequential, single-agent, avoided the budget
+exhaustion problem entirely, at the cost of more wall-clock time within the run but with zero research
+gaps and no fabricated content in any of the 10 articles.
+
+**Also reconfirmed this run (no new fixes needed, just noting recurrence):**
+- Reddit and InterNations remained unreachable via WebSearch site: queries, exactly as documented
+  2026-08-21. Broad (non-site-restricted) topical queries did organically surface InterNations
+  *mentions* (via secondary sources describing InterNations chapters/events) for 2 of 10 articles, and
+  Quora surfaced usable, fetchable-via-snippet content for 6 of 10 articles — better Quora yield than
+  some prior runs, possibly just query-phrasing variance rather than a systemic change.
+- 3 of 10 articles (Chile/Serbia, Bahrain/Georgia, Hungary/Uruguay) could not source a genuine
+  Internations/TheLocal/HackerNews/Blind voice despite targeted searching and substituted a
+  legitimate alternative (Nordeus company blog, personal expat blog, Flatio blog referencing
+  InterNations) per the existing "flag the gap, don't fabricate" policy from 2026-09-03. Each
+  article's frontmatter `sources` block documents the substitution explicitly.
+- The fixed 15-pair/22-subject Step 1 matrix remains fully obsolete (735 files in archive at end of
+  run); went straight to the broad-pool + subject-first + post-write dedup approach per
+  2026-08-24/2026-09-01/2026-09-03/2026-09-07 guidance, with 0 collisions found on the final
+  programmatic dedup pass against the full archive.
+- `/tmp` scratch scripts (picker, image-gen, dedup) were each written once with a PID+RANDOM-suffixed
+  filename and verified via `md5sum` immediately after the heredoc write, per 2026-09-08 guidance — no
+  stale-file collisions encountered this run. The image-generation script was written ONCE (not
+  per-article) and called with command-line arguments for each article's specific values instead of
+  being rewritten via heredoc each time, which avoided the "iterating on a heredoc-written script"
+  hang risk noted in the 2026-09-03 entry entirely.
+- Two articles (04 Hungary/Uruguay, 10 Latvia/Estonia) had a stray literal `<br>` markdown artifact
+  accidentally introduced during heredoc authoring (once inside a table header row, once between the
+  flag line and byline). Both were caught by a post-write `grep -n "^<br>"` sanity check and fixed via
+  direct string substitution before finalizing — worth adding this specific grep to the standard
+  verification checklist alongside the existing `IMAGE_1`/`IMAGE_2` placeholder check, since it's an
+  easy artifact to introduce when hand-authoring markdown tables inside a heredoc.
+
+**Recommendation for future runs:** Sequential single-agent execution (or at minimum, waves of no more
+than 3-4 parallel subagents) should be the default for this task going forward, not full 10-way
+parallelization, given the shared session-wide WebSearch budget confirmed in the 2026-09-15 entry. If a
+future run does need the wall-clock speed of parallelization, front-load a firm per-subagent search
+budget (e.g., 15 calls max) explicitly in each subagent's prompt rather than leaving it open-ended.
