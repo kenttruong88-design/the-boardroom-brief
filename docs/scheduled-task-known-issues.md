@@ -579,3 +579,37 @@ than 3-4 parallel subagents) should be the default for this task going forward, 
 parallelization, given the shared session-wide WebSearch budget confirmed in the 2026-09-15 entry. If a
 future run does need the wall-clock speed of parallelization, front-load a firm per-subagent search
 budget (e.g., 15 calls max) explicitly in each subagent's prompt rather than leaving it open-ended.
+
+## 2026-09-19 — Sequential single-agent run, broad-pool picker at 755 files, 0 image fallbacks (CONFIRMED, no fix needed)
+
+**Context:** Ran `daily-work-culture-post` fully sequentially (single agent, no parallel subagents), consistent
+with the 2026-09-16 recommendation, given the shared 200-call session WebSearch budget documented in the
+2026-09-15 incident. Budgeted roughly 4-6 WebSearch calls per article (2 for Layer 1 official/quant sources,
+2 for Layer 2 forum voices, occasionally 1-2 more), for a total of ~50 calls across all 10 articles — well
+under budget, with no exhaustion risk at any point in the run.
+
+**Outcome:** All 10 assignments were generated fresh via the broad-pool + Jaccard-similarity dedup picker
+(per the 2026-08-24/2026-09-01/2026-09-03 fixes), now checked against an archive of 745 existing files. All
+10 were unique on first generation — no retries needed. Deliberately avoided `site:reddit.com` and
+`site:internations.org` WebSearch queries per the 2026-08-21 guidance (confirmed these remain unproductive
+in spirit, not re-tested directly) and relied on `site:quora.com` queries (usable via WebSearch snippet text,
+consistent with 2026-08-26 guidance) plus organic surfacing of Expat.com, Medium, LinkedIn, Substack, and
+similar first-person sources to satisfy Layer 2 diversity. All 10 articles shipped with 0/2 Reddit voices
+(expected, per established guidance) and satisfied the ≥1 Quora / ≥1 non-Reddit-diversity floor without
+needing any substitution-with-notice.
+
+**Image generation:** All 20 images (10 articles × hero/body) uploaded successfully via Pexels → direct
+signed Cloudinary upload (the non-SDK `requests`-based approach from the 2026-08-20 fix) on the first
+attempt — 0 pillar-default fallbacks, 0 proxy errors. Spot-checked 3 of the 10 hero image URLs with `curl -o
+/dev/null -w "%{http_code}"` after upload; all returned HTTP 200.
+
+**Tooling notes confirmed, nothing new:** Used PID+RANDOM-suffixed filenames for every `/tmp` script
+(assignment picker, image-generation helper, final dedup check) and printed `md5sum` immediately after each
+heredoc write, per the 2026-09-08 guidance — no stale-file collisions this run. Used `mcp__workspace__bash`
+heredocs (not Write/Edit) for every file under `/tmp`, including the 10 article markdown files themselves,
+per the 2026-09-03 confirmation that Write/Edit/Read cannot target the Linux sandbox. Sourced `.env.local`
+only via bash in the same call that ran the image script, never via the Read tool.
+
+**No new failure modes this run.** Flagging mainly to reconfirm the sequential-execution approach continues
+to scale cleanly well past 750 archived files, and that the research-budget discipline from 2026-09-16
+generalizes without needing subagent parallelization at all for this task size.
