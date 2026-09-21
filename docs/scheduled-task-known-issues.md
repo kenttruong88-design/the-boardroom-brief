@@ -613,3 +613,13 @@ only via bash in the same call that ran the image script, never via the Read too
 **No new failure modes this run.** Flagging mainly to reconfirm the sequential-execution approach continues
 to scale cleanly well past 750 archived files, and that the research-budget discipline from 2026-09-16
 generalizes without needing subagent parallelization at all for this task size.
+
+## 2026-09-21 — Pre-existing archive duplicate found during final dedup pass (OBSERVATION, not remediated — outside this run's scope)
+
+**Context:** Ran `out-of-office-weekly-batch` sequentially (single agent, no parallel subagents), using the broad-pool random-pair picker against the full archive (753 files at start of run) to select 10 fresh, verified-unique country-pair + subject combinations before writing. All 10 of today's new articles passed both the pre-write availability check and a post-write full-archive dedup pass with zero collisions.
+
+**Finding:** The same post-write dedup script (order-independent pair matching + subject slug) flagged one pre-existing duplicate unrelated to today's batch: `2026-07-20_06_japan-vs-poland_language-barrier-experiences.md` and `2026-07-26_06_poland-vs-japan_language-barrier-experiences.md` are the same country pair (reversed order) and the same subject, published six days apart. This is very likely the same class of miss documented in the 2026-08-24 entry (initial manual filename-substring audits checking one hyphenation order and missing the reversed one), just from an earlier run that predates the full-archive script-based dedup check becoming standard practice.
+
+**Action taken:** None — this run's mandate was to write and publish 10 new articles, not to audit or clean the historical archive, and neither file is empty/broken (both are presumably legitimate, if redundant, articles). Flagging here rather than silently ignoring it, per the "don't rediscover a solved bug, but do report new findings" spirit of this log.
+
+**Recommendation for future runs:** If a future run (or a dedicated cleanup task) wants to reconcile historical duplicates, the same order-independent Python dedup pattern used for pre-write/post-write checks in this and prior entries will surface them reliably — consider running it once against the full archive outside the context of a normal daily batch, since today's run only surfaced this one by coincidence (it wasn't near either of today's 10 assignments).
