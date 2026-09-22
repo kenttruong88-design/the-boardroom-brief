@@ -109,7 +109,7 @@ export async function uploadLocalImageAsset(buf: Buffer, name: string): Promise<
   if (!created.id) throw new Error(`No asset id returned for image upload: ${JSON.stringify(created)}`);
 
   const form = new FormData();
-  form.append("file", new Blob([buf]), name);
+  form.append("file", new Blob([Uint8Array.from(buf)]), name);
   const uploadRes = await fetchWithRetry(`${BASE}/assets/${created.id}/upload`, {
     method: "POST",
     headers: { "X-API-Key": process.env.HEDRA_API_KEY! },
