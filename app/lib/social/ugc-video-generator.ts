@@ -230,7 +230,7 @@ function performanceActionFor(label: ClipLabel): string {
   const tone    = isDos ? "confident, encouraging" : "wry, cautionary";
   const gesture = isDos
     ? "an expressive open-hand gesture or a finger counted off for each item, hand shape changing visibly point to point"
-    : "an expressive head-shake paired with a raised, palm-out hand, or a finger counted off for each item, hand shape changing visibly point to point";
+    : "a raised, palm-out hand paired with a skeptically raised eyebrow and a slight downturn of the mouth, or a finger counted off for each item, hand shape changing visibly point to point — conveyed through hands and facial expression only, with no head-shaking or other head movement that would pull her gaze off camera";
   return `Speaks directly to camera with a ${tone} expression, gentle smiling eyes, and engaging eye contact throughout — ${gesture} as she moves through the 2-3 points, hands staying animated throughout rather than resting still between points, so each point reads as its own distinct beat rather than one continuous recitation.`;
 }
 
