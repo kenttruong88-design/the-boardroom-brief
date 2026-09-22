@@ -623,3 +623,59 @@ generalizes without needing subagent parallelization at all for this task size.
 **Action taken:** None — this run's mandate was to write and publish 10 new articles, not to audit or clean the historical archive, and neither file is empty/broken (both are presumably legitimate, if redundant, articles). Flagging here rather than silently ignoring it, per the "don't rediscover a solved bug, but do report new findings" spirit of this log.
 
 **Recommendation for future runs:** If a future run (or a dedicated cleanup task) wants to reconcile historical duplicates, the same order-independent Python dedup pattern used for pre-write/post-write checks in this and prior entries will surface them reliably — consider running it once against the full archive outside the context of a normal daily batch, since today's run only surfaced this one by coincidence (it wasn't near either of today's 10 assignments).
+
+## 2026-09-22 — Sequential single-agent run, broad-pool picker at 775→785 files, 0 image fallbacks; fixed-list Step 1 script confirmed still fully obsolete (CONFIRMED, no new fix needed)
+
+**Context:** Ran `daily-work-culture-post` fully sequentially (single agent, no parallel subagents), per the
+2026-09-16/2026-09-19 recommendation, given the shared 200-call session WebSearch budget documented in the
+2026-09-15 incident. Budgeted roughly 5-9 WebSearch calls per article (slightly higher than the 2026-09-19
+run's 4-6, mainly from extra searches chasing the ≥1 InterNations/TheLocal/HackerNews/Blind diversity
+requirement), for a total of about 75 calls across all 10 articles — comfortably under the 200-call budget,
+with no exhaustion risk observed at any point.
+
+**Assignment generation:** As documented repeatedly since 2026-08-24, the literal Step 1 script in this
+task's instructions (fixed 15-pair/22-subject matrix) is fully obsolete against an archive this size — running
+it as written for today's date produced only 5 distinct country pairs across the 10 slots (heavy repetition:
+Australia/Netherlands x2, Singapore/Canada x2, Germany/South Korea x2, Netherlands/India x2, USA/Germany x2).
+Used the established broad-pool random picker (50-country pool, 24-subject pool, seeded by date, checked
+against the full archive for order-independent pair+subject collisions) instead, per standing guidance. All
+10 of today's assignments were unique on first generation — no retries needed. Archive grew from 775 files at
+start of run to 785 at end.
+
+**Image generation:** All 20 images (10 articles × hero/body) uploaded successfully via Pexels → direct signed
+Cloudinary upload (the non-SDK `requests`-based approach from the 2026-08-20 fix) on the first attempt — 0
+pillar-default fallbacks. The image-generation script was written once (PID+RANDOM-suffixed filename,
+`md5sum`-verified immediately after the heredoc write) and invoked with command-line arguments per article
+rather than rewritten each time, consistent with 2026-09-16 guidance.
+
+**Research/sourcing notes:** Reddit continues to be effectively unreachable via WebSearch for this task —
+`site:reddit.com` and subreddit-targeted queries consistently returned Wikipedia/secondary-source noise
+instead of actual thread content, confirming the 2026-08-21 finding still holds. `site:quora.com` queries
+remained reliably productive (used as at least one voice in all 10 articles, often two). Genuine
+InterNations/TheLocal/HackerNews/Blind hits were found organically (without `site:`-restricting to those
+domains) for about half of today's articles — TheLocal.dk, TheLocal.es, InterNations Expat Insider rankings,
+and several Blind (teamblind.com) threads all surfaced via broad topical searches rather than site-restricted
+ones. For the other half, no genuine hit in that category turned up despite targeted searching; per the
+2026-09-03/2026-09-16 "flag the gap, don't fabricate" policy, substituted a verified first-person Substack,
+Medium, or reputable trade-press source in its place and noted the substitution explicitly in each affected
+article's frontmatter `note` field rather than silently padding the voice count or inventing a forum quote.
+
+**Post-write dedup / archive observation (not remediated — outside this run's scope, same as 2026-09-21):** A
+full-archive order-independent dedup pass (pair + subject-slug matching) found 44 pre-existing duplicate pairs
+in the archive, all dated well before today (June–August 2026) and none involving any of today's 10 new
+files. Nearly all of the duplicates trace directly to the fixed 15-pair Step 1 matrix from this task's written
+instructions (Brazil/Sweden, Canada/Singapore, USA/Japan, China/UK, Australia/France, China/Germany,
+Germany/South Korea account for the large majority), from an era before the broad-pool picker became standard
+practice — i.e., this is the exact failure mode the broad-pool picker was adopted to prevent, now visible at
+scale in the historical record. No action taken this run (mandate was 10 new articles, not archive cleanup),
+consistent with the 2026-09-21 entry's same call. Flagging again since the count (44) is large enough that a
+dedicated one-time cleanup task may be worth scheduling separately.
+
+**Recommendation for future runs:** No new fixes needed. (1) Continue treating the literal Step 1 script as
+reference/flavor-text only, not an actual assignment source — the broad-pool + archive-dedup approach remains
+the correct implementation. (2) When chasing the InterNations/TheLocal/HackerNews/Blind diversity requirement,
+broad topical queries outperform `site:`-restricted queries for InterNations specifically (site-restricted
+InterNations queries returned almost nothing useful in this run, same as prior runs) — search the topic
+directly and watch for those domains appearing organically rather than restricting to them upfront. (3) The
+44-duplicate archive backlog is now large enough to be worth a dedicated cleanup pass outside a normal daily
+batch, per the 2026-09-21 entry's same recommendation, still unactioned as of this run.
