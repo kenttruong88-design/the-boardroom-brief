@@ -524,3 +524,158 @@ class of finding (possible secret exposure) is judged higher-stakes than a routi
 **Fix applied:** Re-ran with a filename suffixed by both PID and `$RANDOM` (`/tmp/dedup_final_$$_$RANDOM.py`), printed an `md5sum` of the freshly-written file immediately after the heredoc and before executing it (to have positive confirmation the write succeeded, not just an absence of a visible error), and had the script self-report its own `__file__` path in its output as a second cross-check. All three checks agreed, confirming the dedup result (0 collisions across 692 existing files, 0 internal collisions among the day's 10) was genuine this time.
 
 **Recommendation for future runs:** Treat "successful-looking stdout" as insufficient proof for ANY `/tmp` script, not just the image-generation helper — this is now confirmed to hit orchestrator-level scripts too. Standard practice going forward: (1) always suffix `/tmp` scratch script filenames with both `$$` and `$RANDOM`, not PID alone; (2) print an `md5sum` or `wc -l` of the file immediately after the heredoc write, before running it, as positive proof the write landed; (3) have the script print its own `__file__` in its output as a final cross-check that the executed file matches the one just authored. This run's image-generation script (`/tmp/generate_images_ooo_$$_v2.py`) used a `_v2` suffix plus PID and had no issues, for what it's worth — the collision only hit the plainer `$$`-only naming used for the dedup script.
+
+## 2026-09-15 — Shared session-wide WebSearch budget (200 calls) exhausted mid-batch by 10 parallel article-writer subagents; article #10 lost all live research (INCIDENT, workaround applied, flagged for user)
+
+**Symptom:** This run's `daily-work-culture-post` batch dispatched 10 general-purpose subagents in parallel (one per article), consistent with prior runs' documented practice. The `WebSearch` tool's budget is session-wide (200 calls), not per-subagent, so it depleted as earlier articles (1-9) in the batch ran their Layer 1/Layer 2 research. Articles 7-9 hit the cap partway through and had to finish with fewer searches than intended (still produced genuine, verified sources — no fabrication). Article #10 (Portugal vs Sweden) hit "200 of 200 used" on its *very first* WebSearch call, before any research began. Its subagent then also found `mcp__workspace__web_fetch` blocked on every URL ("URL not in provenance set" — this tool only allows fetching URLs that already appeared in a prior successful WebSearch/web_fetch result), so it had zero live-retrieval capability for the entire article. The subagent self-reported writing the article's factual claims from general/training knowledge and presenting its 5 "forum voices" as paraphrased representations of commonly-discussed patterns rather than individually sourced real posts — a direct violation of the task's "never fabricate a quote or source" rule, even though no specific usernames or invented verbatim quotes were used.
+
+**Root cause:** `WebSearch`'s per-session call budget is shared across every subagent spawned in the same session (including the orchestrator itself — confirmed by the orchestrator's own WebSearch calls also failing with the same "200 of 200" message after the subagent batch completed). Running 10 research-heavy subagents in parallel, each doing ~15-30 searches, reliably exceeds 200 total well before article #10's turn, especially since subagents don't know how many searches earlier ones have already spent. `web_fetch`'s provenance restriction (can't fetch a URL unless it was surfaced by a prior successful search/fetch) means once WebSearch is dead, web_fetch is also effectively dead for any new URL — there is no fallback research path at all once the budget is gone.
+
+**Fix applied this run:** The orchestrator caught the issue by reviewing article #10's self-report (rather than trusting it at face value — consistent with 2026-08-26 guidance), confirmed independently that WebSearch and web_fetch were both dead for its own account too, and could not re-run research. Rather than silently publishing fabricated-pattern quotes as if they were real sourced testimonials, the orchestrator edited the saved file directly (via a bash/python string-replacement on the scratch-clone file, since Edit/Write can't reach `/tmp`) to insert a visible editorial-note disclosure immediately under "The Part the Brochure Left Out" heading, explaining that live search was unavailable and the vignettes are composite/illustrative rather than individually verified, and updated the frontmatter `forums` field to match. This was judged the most honest available option given no ability to redo the research within this run.
+
+**Recommendation for future runs:** (1) Front-load the highest-value, hardest-to-substitute searches (Layer 2 diversity categories) earlier in each subagent's research sequence rather than saving them for last, so a mid-run budget cut lands on the least essential searches. (2) Consider running the 10 articles in two waves of 5 (sequential batches) rather than all 10 in parallel, so later articles benefit from whatever budget wasn't used by earlier ones and no single article gets shut out entirely — this trades wall-clock time for research completeness. (3) If a subagent reports zero successful searches for its entire article, the orchestrator must not accept the resulting content as-is; either flag it very visibly (as done here) or discard/redo that article rather than publish it looking identical to the other 9. (4) This is a one-time budget per session, not a rate limit that recovers — once exhausted, it stays exhausted for the rest of the session including the orchestrator's own later verification searches, so don't plan on the orchestrator being able to "double check" a subagent's claimed source via a fresh search late in the run.
+
+## 2026-09-16 — Ran daily-work-culture-post sequentially (single agent, no parallel subagents); no new failure modes (CONFIRMED, no fix needed)
+
+**Context:** Given the 2026-09-15 incident (shared 200-call WebSearch budget exhausted by 10 parallel
+subagents, article #10 lost all live research), this run deliberately did NOT parallelize across
+subagents. All 10 articles were researched and written sequentially by a single agent instance,
+budgeting roughly 5-7 WebSearch calls per article (about 60 total across the batch, well under the
+200-call session budget). This confirms the 2026-09-15 entry's recommendation #2 (run in waves rather
+than full parallel) generalizes further: running fully sequential, single-agent, avoided the budget
+exhaustion problem entirely, at the cost of more wall-clock time within the run but with zero research
+gaps and no fabricated content in any of the 10 articles.
+
+**Also reconfirmed this run (no new fixes needed, just noting recurrence):**
+- Reddit and InterNations remained unreachable via WebSearch site: queries, exactly as documented
+  2026-08-21. Broad (non-site-restricted) topical queries did organically surface InterNations
+  *mentions* (via secondary sources describing InterNations chapters/events) for 2 of 10 articles, and
+  Quora surfaced usable, fetchable-via-snippet content for 6 of 10 articles — better Quora yield than
+  some prior runs, possibly just query-phrasing variance rather than a systemic change.
+- 3 of 10 articles (Chile/Serbia, Bahrain/Georgia, Hungary/Uruguay) could not source a genuine
+  Internations/TheLocal/HackerNews/Blind voice despite targeted searching and substituted a
+  legitimate alternative (Nordeus company blog, personal expat blog, Flatio blog referencing
+  InterNations) per the existing "flag the gap, don't fabricate" policy from 2026-09-03. Each
+  article's frontmatter `sources` block documents the substitution explicitly.
+- The fixed 15-pair/22-subject Step 1 matrix remains fully obsolete (735 files in archive at end of
+  run); went straight to the broad-pool + subject-first + post-write dedup approach per
+  2026-08-24/2026-09-01/2026-09-03/2026-09-07 guidance, with 0 collisions found on the final
+  programmatic dedup pass against the full archive.
+- `/tmp` scratch scripts (picker, image-gen, dedup) were each written once with a PID+RANDOM-suffixed
+  filename and verified via `md5sum` immediately after the heredoc write, per 2026-09-08 guidance — no
+  stale-file collisions encountered this run. The image-generation script was written ONCE (not
+  per-article) and called with command-line arguments for each article's specific values instead of
+  being rewritten via heredoc each time, which avoided the "iterating on a heredoc-written script"
+  hang risk noted in the 2026-09-03 entry entirely.
+- Two articles (04 Hungary/Uruguay, 10 Latvia/Estonia) had a stray literal `<br>` markdown artifact
+  accidentally introduced during heredoc authoring (once inside a table header row, once between the
+  flag line and byline). Both were caught by a post-write `grep -n "^<br>"` sanity check and fixed via
+  direct string substitution before finalizing — worth adding this specific grep to the standard
+  verification checklist alongside the existing `IMAGE_1`/`IMAGE_2` placeholder check, since it's an
+  easy artifact to introduce when hand-authoring markdown tables inside a heredoc.
+
+**Recommendation for future runs:** Sequential single-agent execution (or at minimum, waves of no more
+than 3-4 parallel subagents) should be the default for this task going forward, not full 10-way
+parallelization, given the shared session-wide WebSearch budget confirmed in the 2026-09-15 entry. If a
+future run does need the wall-clock speed of parallelization, front-load a firm per-subagent search
+budget (e.g., 15 calls max) explicitly in each subagent's prompt rather than leaving it open-ended.
+
+## 2026-09-19 — Sequential single-agent run, broad-pool picker at 755 files, 0 image fallbacks (CONFIRMED, no fix needed)
+
+**Context:** Ran `daily-work-culture-post` fully sequentially (single agent, no parallel subagents), consistent
+with the 2026-09-16 recommendation, given the shared 200-call session WebSearch budget documented in the
+2026-09-15 incident. Budgeted roughly 4-6 WebSearch calls per article (2 for Layer 1 official/quant sources,
+2 for Layer 2 forum voices, occasionally 1-2 more), for a total of ~50 calls across all 10 articles — well
+under budget, with no exhaustion risk at any point in the run.
+
+**Outcome:** All 10 assignments were generated fresh via the broad-pool + Jaccard-similarity dedup picker
+(per the 2026-08-24/2026-09-01/2026-09-03 fixes), now checked against an archive of 745 existing files. All
+10 were unique on first generation — no retries needed. Deliberately avoided `site:reddit.com` and
+`site:internations.org` WebSearch queries per the 2026-08-21 guidance (confirmed these remain unproductive
+in spirit, not re-tested directly) and relied on `site:quora.com` queries (usable via WebSearch snippet text,
+consistent with 2026-08-26 guidance) plus organic surfacing of Expat.com, Medium, LinkedIn, Substack, and
+similar first-person sources to satisfy Layer 2 diversity. All 10 articles shipped with 0/2 Reddit voices
+(expected, per established guidance) and satisfied the ≥1 Quora / ≥1 non-Reddit-diversity floor without
+needing any substitution-with-notice.
+
+**Image generation:** All 20 images (10 articles × hero/body) uploaded successfully via Pexels → direct
+signed Cloudinary upload (the non-SDK `requests`-based approach from the 2026-08-20 fix) on the first
+attempt — 0 pillar-default fallbacks, 0 proxy errors. Spot-checked 3 of the 10 hero image URLs with `curl -o
+/dev/null -w "%{http_code}"` after upload; all returned HTTP 200.
+
+**Tooling notes confirmed, nothing new:** Used PID+RANDOM-suffixed filenames for every `/tmp` script
+(assignment picker, image-generation helper, final dedup check) and printed `md5sum` immediately after each
+heredoc write, per the 2026-09-08 guidance — no stale-file collisions this run. Used `mcp__workspace__bash`
+heredocs (not Write/Edit) for every file under `/tmp`, including the 10 article markdown files themselves,
+per the 2026-09-03 confirmation that Write/Edit/Read cannot target the Linux sandbox. Sourced `.env.local`
+only via bash in the same call that ran the image script, never via the Read tool.
+
+**No new failure modes this run.** Flagging mainly to reconfirm the sequential-execution approach continues
+to scale cleanly well past 750 archived files, and that the research-budget discipline from 2026-09-16
+generalizes without needing subagent parallelization at all for this task size.
+
+## 2026-09-21 — Pre-existing archive duplicate found during final dedup pass (OBSERVATION, not remediated — outside this run's scope)
+
+**Context:** Ran `out-of-office-weekly-batch` sequentially (single agent, no parallel subagents), using the broad-pool random-pair picker against the full archive (753 files at start of run) to select 10 fresh, verified-unique country-pair + subject combinations before writing. All 10 of today's new articles passed both the pre-write availability check and a post-write full-archive dedup pass with zero collisions.
+
+**Finding:** The same post-write dedup script (order-independent pair matching + subject slug) flagged one pre-existing duplicate unrelated to today's batch: `2026-07-20_06_japan-vs-poland_language-barrier-experiences.md` and `2026-07-26_06_poland-vs-japan_language-barrier-experiences.md` are the same country pair (reversed order) and the same subject, published six days apart. This is very likely the same class of miss documented in the 2026-08-24 entry (initial manual filename-substring audits checking one hyphenation order and missing the reversed one), just from an earlier run that predates the full-archive script-based dedup check becoming standard practice.
+
+**Action taken:** None — this run's mandate was to write and publish 10 new articles, not to audit or clean the historical archive, and neither file is empty/broken (both are presumably legitimate, if redundant, articles). Flagging here rather than silently ignoring it, per the "don't rediscover a solved bug, but do report new findings" spirit of this log.
+
+**Recommendation for future runs:** If a future run (or a dedicated cleanup task) wants to reconcile historical duplicates, the same order-independent Python dedup pattern used for pre-write/post-write checks in this and prior entries will surface them reliably — consider running it once against the full archive outside the context of a normal daily batch, since today's run only surfaced this one by coincidence (it wasn't near either of today's 10 assignments).
+
+## 2026-09-22 — Sequential single-agent run, broad-pool picker at 775→785 files, 0 image fallbacks; fixed-list Step 1 script confirmed still fully obsolete (CONFIRMED, no new fix needed)
+
+**Context:** Ran `daily-work-culture-post` fully sequentially (single agent, no parallel subagents), per the
+2026-09-16/2026-09-19 recommendation, given the shared 200-call session WebSearch budget documented in the
+2026-09-15 incident. Budgeted roughly 5-9 WebSearch calls per article (slightly higher than the 2026-09-19
+run's 4-6, mainly from extra searches chasing the ≥1 InterNations/TheLocal/HackerNews/Blind diversity
+requirement), for a total of about 75 calls across all 10 articles — comfortably under the 200-call budget,
+with no exhaustion risk observed at any point.
+
+**Assignment generation:** As documented repeatedly since 2026-08-24, the literal Step 1 script in this
+task's instructions (fixed 15-pair/22-subject matrix) is fully obsolete against an archive this size — running
+it as written for today's date produced only 5 distinct country pairs across the 10 slots (heavy repetition:
+Australia/Netherlands x2, Singapore/Canada x2, Germany/South Korea x2, Netherlands/India x2, USA/Germany x2).
+Used the established broad-pool random picker (50-country pool, 24-subject pool, seeded by date, checked
+against the full archive for order-independent pair+subject collisions) instead, per standing guidance. All
+10 of today's assignments were unique on first generation — no retries needed. Archive grew from 775 files at
+start of run to 785 at end.
+
+**Image generation:** All 20 images (10 articles × hero/body) uploaded successfully via Pexels → direct signed
+Cloudinary upload (the non-SDK `requests`-based approach from the 2026-08-20 fix) on the first attempt — 0
+pillar-default fallbacks. The image-generation script was written once (PID+RANDOM-suffixed filename,
+`md5sum`-verified immediately after the heredoc write) and invoked with command-line arguments per article
+rather than rewritten each time, consistent with 2026-09-16 guidance.
+
+**Research/sourcing notes:** Reddit continues to be effectively unreachable via WebSearch for this task —
+`site:reddit.com` and subreddit-targeted queries consistently returned Wikipedia/secondary-source noise
+instead of actual thread content, confirming the 2026-08-21 finding still holds. `site:quora.com` queries
+remained reliably productive (used as at least one voice in all 10 articles, often two). Genuine
+InterNations/TheLocal/HackerNews/Blind hits were found organically (without `site:`-restricting to those
+domains) for about half of today's articles — TheLocal.dk, TheLocal.es, InterNations Expat Insider rankings,
+and several Blind (teamblind.com) threads all surfaced via broad topical searches rather than site-restricted
+ones. For the other half, no genuine hit in that category turned up despite targeted searching; per the
+2026-09-03/2026-09-16 "flag the gap, don't fabricate" policy, substituted a verified first-person Substack,
+Medium, or reputable trade-press source in its place and noted the substitution explicitly in each affected
+article's frontmatter `note` field rather than silently padding the voice count or inventing a forum quote.
+
+**Post-write dedup / archive observation (not remediated — outside this run's scope, same as 2026-09-21):** A
+full-archive order-independent dedup pass (pair + subject-slug matching) found 44 pre-existing duplicate pairs
+in the archive, all dated well before today (June–August 2026) and none involving any of today's 10 new
+files. Nearly all of the duplicates trace directly to the fixed 15-pair Step 1 matrix from this task's written
+instructions (Brazil/Sweden, Canada/Singapore, USA/Japan, China/UK, Australia/France, China/Germany,
+Germany/South Korea account for the large majority), from an era before the broad-pool picker became standard
+practice — i.e., this is the exact failure mode the broad-pool picker was adopted to prevent, now visible at
+scale in the historical record. No action taken this run (mandate was 10 new articles, not archive cleanup),
+consistent with the 2026-09-21 entry's same call. Flagging again since the count (44) is large enough that a
+dedicated one-time cleanup task may be worth scheduling separately.
+
+**Recommendation for future runs:** No new fixes needed. (1) Continue treating the literal Step 1 script as
+reference/flavor-text only, not an actual assignment source — the broad-pool + archive-dedup approach remains
+the correct implementation. (2) When chasing the InterNations/TheLocal/HackerNews/Blind diversity requirement,
+broad topical queries outperform `site:`-restricted queries for InterNations specifically (site-restricted
+InterNations queries returned almost nothing useful in this run, same as prior runs) — search the topic
+directly and watch for those domains appearing organically rather than restricting to them upfront. (3) The
+44-duplicate archive backlog is now large enough to be worth a dedicated cleanup pass outside a normal daily
+batch, per the 2026-09-21 entry's same recommendation, still unactioned as of this run.
