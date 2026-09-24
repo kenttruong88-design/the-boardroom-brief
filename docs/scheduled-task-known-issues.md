@@ -764,3 +764,41 @@ push, credentialed API calls, multi-file writes) to a general-purpose subagent v
 subagent correctly cannot distinguish a legitimately-relayed scheduled-task authorization from a
 prompt-injection attempt, and will reasonably decline. This task should continue to be executed directly
 by the agent that received the `<scheduled-task>` system context, not delegated onward.
+
+## 2026-09-24 — New failure mode: literal `[IMAGE_1]`/`[IMAGE_2]` placeholders left unreplaced in all 10 articles at first draft (FOUND AND FIXED, new guidance for future runs)
+
+**Context:** Ran `daily-work-culture-post` fully sequentially (single agent, no parallel subagents, no
+delegation), consistent with the 2026-09-16 through 2026-09-23 standing recommendation not to delegate this
+task to a subagent. Read this log first per Step -1 and confirmed the fixed 15-pair/22-subject Step 1 script
+is obsolete at this archive size (797 files at start of run); used a from-scratch broad-pool random picker
+(63-country pool minus a small crisis-state exclusion list, 24-subject pool from the task's own list, seeded
+by `random.Random(int(today))`, subject-first per-slot assignment, checked against the full archive via
+order-independent country-pair-slug + Jaccard subject-core matching) — all 10 of today's assignments were
+unique on first generation, 0 collisions, 0 retries needed.
+
+**New issue found and fixed this run: writing `` `[IMAGE_1]` `` / `` `[IMAGE_2]` `` literally into the saved
+markdown instead of substituting the actual image markdown.** Step 5 of this task's instructions says to
+"replace `[IMAGE_1]` with the image followed by a caption," but when drafting each article's full text in a
+single heredoc (frontmatter + prose + the literal placeholder tokens as written in the task's own template),
+it's easy to carry the placeholder text straight through into the saved file without performing the actual
+substitution step afterward — especially since the placeholder syntax in the task template (`` `[IMAGE_1]` ``
+in a code span) looks like finished markdown rather than a to-do marker. This happened for all 10 articles in
+this run's first draft; a `grep -l "IMAGE_1\]\|IMAGE_2\]"` check across the batch caught it before the commit
+step, and a small Python post-processing script (parsing each file's own frontmatter for `images.hero` /
+`images.body` / `images.hero_source` / `images.body_source` / `images.hero_credit` / `images.body_credit`,
+then replacing the placeholder tokens with the proper `![alt](url)` + caption block) fixed all 10 files in one
+pass. One file (article 10) was drafted *after* the fix script had already run against the other nine, so it
+still had raw placeholders on the first post-write grep check — re-running the same idempotent fix script
+against the whole batch a second time caught it cleanly (the script no-ops on files that are already fixed,
+since the placeholder substring is no longer present to match).
+
+**Recommendation for future runs:** Do not treat "I wrote `[IMAGE_1]` where the task template shows it" as
+equivalent to "I replaced `[IMAGE_1]` with the image." Treat the two as separate steps even when drafting
+inline: (1) write the article with placeholders as a first pass is fine, but (2) always run an explicit
+post-write substitution pass (a small script that reads each file's own already-saved frontmatter image URLs
+and swaps the placeholder tokens for real `![alt](url)` + caption markdown) before considering *any* article
+finished, and (3) re-run the grep-for-placeholders check *after* every new file is added to the batch, not
+just once at the end — a file written after an earlier fix-up pass will not have been touched by it. The
+existing "grep for stray `<br>` tags and leftover placeholders" verification step from 2026-09-16/2026-09-23
+guidance is correct and sufficient to catch this class of bug — it just has to actually be run per-file or as
+a true final pass over the complete batch, not skipped because "the fix script already ran once."
