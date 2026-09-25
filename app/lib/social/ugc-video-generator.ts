@@ -229,9 +229,9 @@ function performanceActionFor(label: ClipLabel): string {
   const isDos  = label.endsWith("_dos");
   const tone    = isDos ? "confident, encouraging" : "wry, cautionary";
   const gesture = isDos
-    ? "an expressive open-hand gesture or a finger counted off for each item, hand shape changing visibly point to point"
-    : "a raised, palm-out hand paired with a skeptically raised eyebrow and a slight downturn of the mouth, or a finger counted off for each item, hand shape changing visibly point to point — conveyed through hands and facial expression only, with no head-shaking or other head movement that would pull her gaze off camera";
-  return `Speaks directly to camera with a ${tone} expression, gentle smiling eyes, and engaging eye contact throughout — ${gesture} as she moves through the 2-3 points, hands staying animated throughout rather than resting still between points, so each point reads as its own distinct beat rather than one continuous recitation.`;
+    ? "an expressive open-hand gesture for the first point, then a visibly different hand shape (a different finger count, or the hand lowering to a relaxed position before rising again) for each following point"
+    : "a raised, palm-out hand paired with a skeptically raised eyebrow and a slight downturn of the mouth for the first point, then a visibly different hand shape (a different finger count, or the hand lowering to a relaxed position before rising again) for each following point — conveyed through hands and facial expression only, with no head-shaking or other head movement that would pull her gaze off camera";
+  return `Speaks directly to camera with a ${tone} expression, gentle smiling eyes, and engaging eye contact throughout — ${gesture} as she moves through the 2-3 points. Hands stay animated throughout and never hold one fixed shape or position for more than 2 seconds — each point gets its own distinct, visibly different hand shape, so the gesture reads as a sequence of beats rather than one continuous recitation or a single held pose.`;
 }
 
 export function performancePromptFor(personaName: string, label: ClipLabel): string {
