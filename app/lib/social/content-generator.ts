@@ -145,12 +145,13 @@ Return only valid JSON:
 }
 
 // Which platforms each pillar posts to.
-// Twitter  → stocks & macro (humour/satire)
-// LinkedIn → corporate culture & office demeanor
+// Twitter posting is disconnected (2026-09-26, low engagement) — markets-floor
+// and macro-mondays, which posted to Twitter exclusively, now route to LinkedIn.
+// LinkedIn → corporate culture & office demeanor, plus stocks & macro
 // Instagram → Out of Office & workplace relationships
 const PILLAR_PLATFORMS: Record<string, Platform[]> = {
-  "markets-floor":  ["twitter"],
-  "macro-mondays":  ["twitter"],
+  "markets-floor":  ["linkedin"],
+  "macro-mondays":  ["linkedin"],
   "c-suite-circus": ["linkedin"],
   "global-office":  ["linkedin"],
   "water-cooler":   ["linkedin", "instagram"],

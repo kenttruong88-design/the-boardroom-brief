@@ -19,9 +19,11 @@ const SOCIAL_SLOTS = {
 } as const;
 
 // Pillar → platform routing: each pillar posts to ONE platform only
+// Twitter posting is disconnected (2026-09-26, low engagement) — markets-floor
+// and macro-mondays, which posted to Twitter exclusively, now route to LinkedIn.
 const PILLAR_PLATFORMS: Record<string, ("linkedin" | "twitter" | "instagram")[]> = {
-  "markets-floor":  ["twitter"],
-  "macro-mondays":  ["twitter"],
+  "markets-floor":  ["linkedin"],
+  "macro-mondays":  ["linkedin"],
   "c-suite-circus": ["linkedin"],
   "global-office":  ["linkedin"],
   "out-of-office":  ["instagram"],
@@ -70,7 +72,7 @@ export async function queueSocialPostsForArticle(
   };
 
   // Route to the correct platform(s) for this pillar
-  const platforms = PILLAR_PLATFORMS[pillarSlug] ?? ["linkedin", "twitter"];
+  const platforms = PILLAR_PLATFORMS[pillarSlug] ?? ["linkedin"];
 
   const platformJobs: Promise<void>[] = [];
   const supabase = createAdminClient();

@@ -124,7 +124,7 @@ async function run(req: Request) {
   // schedule one post per platform starting 5 minutes from now
   if (articleId && scheduled.length === 0 && articles.length > 0) {
     const now = Date.now();
-    (["linkedin", "twitter", "instagram"] as const).forEach((platform, i) => {
+    (["linkedin", "instagram"] as const).forEach((platform, i) => {
       scheduled.push({
         article: articles[0],
         platform,

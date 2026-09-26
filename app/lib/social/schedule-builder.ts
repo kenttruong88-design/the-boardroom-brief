@@ -11,16 +11,14 @@ interface TimeSlot {
   pillarPreference?: string;
 }
 
+// Twitter posting is disconnected (2026-09-26, low engagement) — no slots
+// assigned, so the "Twitter slots" step below is a no-op.
 const DAILY_SCHEDULE: Record<Platform, TimeSlot[]> = {
   linkedin: [
     { utcHour: 8,  utcMinute: 30, label: "morning" },
     { utcHour: 17, utcMinute: 0,  label: "afternoon", optional: true },
   ],
-  twitter: [
-    { utcHour: 9,  utcMinute: 0,  label: "morning", pillarPreference: "markets-floor" },
-    { utcHour: 13, utcMinute: 0,  label: "midday",   pillarPreference: "water-cooler" },
-    { utcHour: 17, utcMinute: 30, label: "close",    pillarPreference: "c-suite-circus" },
-  ],
+  twitter: [],
   instagram: [
     { utcHour: 12, utcMinute: 0,  label: "noon" },
   ],
