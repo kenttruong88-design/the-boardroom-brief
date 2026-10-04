@@ -1030,3 +1030,13 @@ Country-pair/subject assignment: used the evolved logic already documented in th
 **Other verification:** Grepped all 10 saved files for stray `IMAGE_1]`/`IMAGE_2]` placeholders, `FILL_IN`, `<br`, `<small`, and the `markdown_note_removed` artifact tag — 0 instances of any. Grepped the exact byline line `*By Suki Nakamura, Out of Office*` across all 10 files — 10/10 matched. Confirmed exactly 2 "via Pexels" captions per file (20 total), matching the 20 uploaded images, and confirmed `hero_source: pexels` / `body_source: pexels` present in all 10 frontmatter blocks.
 
 **No new fundamental technical failure modes, sandbox quirks, or workarounds this run.** New files will be mirrored into the synced Desktop folder after the push succeeds.
+
+## 2026-10-04 — stray `<br>` replacing a markdown table's separator row in heredoc-authored articles
+
+**Symptom:** One of today's 10 global-office articles (Belgium vs Qatar) had its second Do's & Don'ts table render with a stray `<br>` line immediately after the `| ✅ Do | ❌ Don't |` header row, instead of the required `|---|---|` separator — breaking that table's markdown rendering entirely. The first table in the same file was fine.
+
+**Root cause:** Not fully diagnosed — most likely a one-off authoring slip while typing a long heredoc by hand (the `<br>` appears to be a leftover habit from HTML-table muscle memory, not a sandbox/tool bug). Nothing in the device_bash/heredoc pipeline itself produced it; it was present in the literal text passed to `cat > file << 'EOF'`.
+
+**Fix applied this run:** Added a standard post-write verification step — after saving each article, grep the whole batch for stray HTML tags (`<br>`, `<small>`, `<div>`, `<span>`) and confirm exactly 2 occurrences of the literal string `|---|---|` per file (one per Do's/Don'ts table). Caught and fixed with a targeted python replace before commit.
+
+**Recommended standing fix:** Add this check to the standard pre-commit verification pass for both the global-office and out-of-office-weekly-batch tasks, alongside the existing placeholder/Hofstede/byline greps: `grep -c '^|---|---|$' <file>` should equal 2 for every two-table article; anything else means a malformed table slipped through.
