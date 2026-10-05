@@ -38,11 +38,23 @@
  *   npx tsx scripts/expat-pair-scorer.mts            # top 40 new-pair suggestions
  *   npx tsx scripts/expat-pair-scorer.mts --all       # don't filter out already-covered pairs
  *   npx tsx scripts/expat-pair-scorer.mts --limit 100
- *   npx tsx scripts/expat-pair-scorer.mts --english   # only pairs with a professional-English
- *                                                      # population on at least one side — this
- *                                                      # site's actual target clientele (corporate
- *                                                      # expats who need to be fluent in English).
- *                                                      # Combine freely with --all/--limit.
+ *   npx tsx scripts/expat-pair-scorer.mts --english   # this site's actual target clientele:
+ *                                                      # corporate expats. A pair qualifies if
+ *                                                      # (a) at least one side has a large
+ *                                                      # professional-English-fluent population
+ *                                                      # (native Anglophone + India/Philippines/
+ *                                                      # Nigeria/Kenya/Ghana/Pakistan/Singapore/
+ *                                                      # South Africa/Malta), OR (b) both sides are
+ *                                                      # major economies (top-20 Europe / top-10
+ *                                                      # LatAm by nominal GDP) — but never two
+ *                                                      # countries sharing the same non-English
+ *                                                      # language (e.g. two Spanish-speaking
+ *                                                      # countries), since neither side is then
+ *                                                      # guaranteed to read English well. Combine
+ *                                                      # freely with --all/--limit. See
+ *                                                      # isTargetClientele() below for the exact
+ *                                                      # logic — this comment summarizes it but the
+ *                                                      # code is the source of truth.
  */
 
 import { readFileSync, existsSync, readdirSync } from "fs";
