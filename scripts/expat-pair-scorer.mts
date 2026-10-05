@@ -87,9 +87,16 @@ const limit   = limitArg !== -1 ? parseInt(args[limitArg + 1], 10) : 40;
 // ── Load data ────────────────────────────────────────────────────────────
 
 type Corridor = [origin: string, dest: string, migrants: number];
-const corridors: Corridor[] = JSON.parse(
+// "Australia/New Zealand" is a UN DESA combined-region row that sits
+// alongside the individual "Australia*"/"New Zealand*" rows — not a real
+// pairable country, so it produces nonsense pairs (e.g. "Australia/New
+// Zealand -> Australia*", two overlapping entities). Filtered out here
+// rather than added to some exclusion list, since it's a data-shape issue,
+// not a content judgment call.
+const AGGREGATE_REGIONS = new Set(["Australia/New Zealand"]);
+const corridors: Corridor[] = (JSON.parse(
   readFileSync(resolve(ROOT, "data/migration/un-migrant-corridors-2024.json"), "utf8")
-);
+) as Corridor[]).filter(([o, d]) => !AGGREGATE_REGIONS.has(o) && !AGGREGATE_REGIONS.has(d));
 const incomeGroups: Record<string, string> = JSON.parse(
   readFileSync(resolve(ROOT, "data/migration/world-bank-income-groups-2025.json"), "utf8")
 );
