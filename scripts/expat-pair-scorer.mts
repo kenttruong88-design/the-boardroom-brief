@@ -90,6 +90,21 @@ const REFUGEE_ORIGIN_COUNTRIES = new Set([
   "Yemen", "State of Palestine", "Central African Republic", "Eritrea", "Ethiopia",
 ]);
 
+// Gulf destinations whose huge migrant volume is overwhelmingly low-wage
+// labor migration (construction, domestic work), not the corporate-expat
+// audience this site targets — previously a manual "skip these even if they
+// score well" judgment call repeated in every scheduled-task's instructions;
+// moved into the score itself 2026-10-05 so it can't be forgotten/skipped on
+// an unattended run. Same down-weight-not-zero reasoning as
+// REFUGEE_ORIGIN_COUNTRIES: some genuine corporate-expat presence exists even
+// in these countries, just a small fraction of the raw volume. United Arab
+// Emirates is the deliberate exception — it has a large, genuine corporate-
+// expat population alongside its labor migration, so it stays in
+// EXPAT_HUB_DESTINATIONS instead, unpenalized.
+const GULF_LABOR_DESTINATIONS = new Set([
+  "Saudi Arabia", "Kuwait", "Qatar", "Oman", "Bahrain",
+]);
+
 // Countries with a large professional-level-English-fluent population —
 // this site's real target clientele (corporate expats who read/work in
 // English), decided 2026-08/09-15 after two rejected narrower framings
@@ -300,19 +315,21 @@ function loadCoveredPairs(): Set<string> {
 
 interface ScoredPair {
   origin: string; dest: string; migrants: number; score: number;
-  refugeeFlagged: boolean; expatHub: boolean; covered: boolean; englishFluent: boolean;
+  refugeeFlagged: boolean; expatHub: boolean; gulfLabor: boolean; covered: boolean; englishFluent: boolean;
 }
 
 const covered = loadCoveredPairs();
 const results: ScoredPair[] = corridors.map(([origin, dest, migrants]) => {
   const refugeeFlagged = REFUGEE_ORIGIN_COUNTRIES.has(origin);
   const expatHub = EXPAT_HUB_DESTINATIONS.has(dest);
+  const gulfLabor = GULF_LABOR_DESTINATIONS.has(dest);
   const destWeight = expatHub ? 1.4 : incomeWeight(dest);
   const refugeePenalty = refugeeFlagged ? 0.25 : 1.0;
-  const score = Math.log10(migrants + 1) * refugeePenalty * destWeight;
+  const gulfLaborPenalty = gulfLabor ? 0.25 : 1.0;
+  const score = Math.log10(migrants + 1) * refugeePenalty * gulfLaborPenalty * destWeight;
   const pairKey = [toSlug(origin), toSlug(dest)].sort().join("|");
   const englishFluent = isTargetClientele(origin, dest);
-  return { origin, dest, migrants, score, refugeeFlagged, expatHub, covered: covered.has(pairKey), englishFluent };
+  return { origin, dest, migrants, score, refugeeFlagged, expatHub, gulfLabor, covered: covered.has(pairKey), englishFluent };
 });
 
 results.sort((a, b) => b.score - a.score);
@@ -331,7 +348,7 @@ console.log(
   "score".padEnd(7), "migrants".padEnd(12), "flags".padEnd(8), "origin -> destination"
 );
 for (const r of shown) {
-  const flags = [r.refugeeFlagged ? "refugee" : "", r.expatHub ? "hub" : ""].filter(Boolean).join(",");
+  const flags = [r.refugeeFlagged ? "refugee" : "", r.expatHub ? "hub" : "", r.gulfLabor ? "gulf-labor" : ""].filter(Boolean).join(",");
   console.log(
     r.score.toFixed(2).padEnd(7),
     r.migrants.toLocaleString().padEnd(12),
