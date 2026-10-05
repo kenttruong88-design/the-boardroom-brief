@@ -150,12 +150,31 @@ function isDevelopedEconomy(country: string): boolean {
   return incomeGroups[normalizeForIncomeLookup(country)] === "high";
 }
 
+// 2026-10-05 addition, user request: don't pair two countries that share the
+// same dominant NON-English language (e.g. two Spanish-speaking countries,
+// two French, two Portuguese) — neither side is guaranteed to actually read
+// English well in that case, which defeats the point of this whole filter.
+// Only covers languages with 2+ countries in the European/LatAm sets above
+// (Italy and Russia are each the only speaker of their language in those
+// sets, so there's no same-language pair possible for them regardless).
+const LANGUAGE_GROUP: Record<string, string> = {
+  "Spain*": "es", "Mexico": "es", "Argentina": "es", "Colombia": "es", "Chile": "es",
+  "Peru": "es", "Dominican Republic": "es", "Ecuador": "es", "Guatemala": "es", "Costa Rica": "es",
+  "Portugal": "pt", "Brazil": "pt",
+  "Germany": "de", "Austria": "de",
+};
+function sameNonEnglishLanguage(a: string, b: string): boolean {
+  const la = LANGUAGE_GROUP[a];
+  return !!la && la === LANGUAGE_GROUP[b];
+}
+
 // Combined target-clientele check — exported under the name "isEnglishFluent"
 // call sites / the `--english` CLI flag for backward compatibility with
 // scheduled-task instructions that already reference `--english`
 // (out-of-office-weekly-batch, daily-work-culture-post).
 function isTargetClientele(origin: string, dest: string): boolean {
   if (isEnglishFluent(origin) || isEnglishFluent(dest)) return true;
+  if (sameNonEnglishLanguage(origin, dest)) return false;
   const [regionSide, otherSide] = isMajorRegionalEconomy(origin) ? [origin, dest]
     : isMajorRegionalEconomy(dest) ? [dest, origin]
     : [null, null];
