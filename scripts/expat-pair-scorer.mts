@@ -55,6 +55,19 @@
  *                                                      # isTargetClientele() below for the exact
  *                                                      # logic — this comment summarizes it but the
  *                                                      # code is the source of truth.
+ *   npx tsx scripts/expat-pair-scorer.mts --diverse   # re-ranks by score × a diminishing weight
+ *                                                      # per country based on how many existing
+ *                                                      # content/ articles it already appears in
+ *                                                      # (1/sqrt(1+count), both sides multiplied) —
+ *                                                      # without this, picking strictly by raw
+ *                                                      # score always surfaces the same handful of
+ *                                                      # countries (India, Spain, Portugal...) and
+ *                                                      # crowds out everyone else, even across many
+ *                                                      # separate daily runs. USE THIS for actual
+ *                                                      # content-batch picking; plain (no --diverse)
+ *                                                      # is for raw audience-opportunity analysis.
+ *                                                      # Combine with --english (recommended) and
+ *                                                      # --limit.
  */
 
 import { readFileSync, existsSync, readdirSync } from "fs";
@@ -67,6 +80,7 @@ const ROOT      = resolve(__dirname, "..");
 const args    = process.argv.slice(2);
 const showAll = args.includes("--all");
 const englishOnly = args.includes("--english");
+const diverseOnly = args.includes("--diverse");
 const limitArg = args.indexOf("--limit");
 const limit   = limitArg !== -1 ? parseInt(args[limitArg + 1], 10) : 40;
 
@@ -218,12 +232,23 @@ const EXPAT_HUB_DESTINATIONS = new Set([
 ]);
 
 function incomeWeight(country: string): number {
+  // BUG FIXED 2026-10-05: data/migration/world-bank-income-groups-2025.json
+  // stores tiers WITH an "_income" suffix ("low_income", "lower_middle_income",
+  // "upper_middle_income", "high_income"), but this previously checked for the
+  // bare names without the suffix — so none of these four conditions ever
+  // matched and EVERY destination silently fell through to the 0.9 "unknown"
+  // fallback regardless of its real income tier, since this scorer existed.
+  // This is why low-income non-hub destinations (Niger, Burkina Faso,
+  // Afghanistan...) were scoring as if income-neutral instead of properly
+  // down-weighted, letting non-corporate regional-labor corridors rank higher
+  // than they should have — caught via --diverse surfacing Nigeria->Niger
+  // and Pakistan->Afghanistan ahead of genuinely strong pairs.
   const tier = incomeGroups[normalizeForIncomeLookup(country)];
-  if (tier === "high") return 1.2;
-  if (tier === "upper_middle") return 1.0;
-  if (tier === "lower_middle") return 0.8;
-  if (tier === "low") return 0.6;
-  return 0.9; // unknown — neutral-ish
+  if (tier === "high_income") return 1.2;
+  if (tier === "upper_middle_income") return 1.0;
+  if (tier === "lower_middle_income") return 0.8;
+  if (tier === "low_income") return 0.6;
+  return 0.9; // genuinely unknown/unclassified — neutral-ish
 }
 
 // UN DESA names -> Our World in Data / World Bank names differ for a
@@ -311,10 +336,50 @@ function loadCoveredPairs(): Set<string> {
   return covered;
 }
 
+// How many existing articles (either pillar, either side of the pair) each
+// country slug already appears in — 2026-10-05 addition, user concern: picking
+// by raw score alone would always surface the same handful of countries
+// (India, Spain, Portugal, Singapore...) at the top, crowding out everyone
+// else. A per-batch country cap (handled in the scheduled-task instructions,
+// not here) only limits concentration WITHIN one day — it doesn't stop the
+// same few countries dominating ACROSS many consecutive days, since
+// high-migration countries like India keep generating new qualifying pairs
+// long after smaller countries run out. The real corpus is already unevenly
+// used (167 distinct countries, 1 to 149 articles each, median 11) — but
+// skewed toward a DIFFERENT set (Japan, Germany, South Korea, USA) than what
+// raw score favors, so naive top-N picking wouldn't fix the imbalance, just
+// relocate it. See isDiverseScore()/--diverse below for how this is applied.
+function loadCountryFrequency(): Record<string, number> {
+  const freq: Record<string, number> = {};
+  for (const dir of ["content/global-office", "content/out-of-office"]) {
+    const full = resolve(ROOT, dir);
+    if (!existsSync(full)) continue;
+    for (const file of readdirSync(full)) {
+      const m = file.match(/^\d{4}-\d{2}-\d{2}_\d+_([a-z0-9-]+)-vs-([a-z0-9-]+)_/);
+      if (!m) continue;
+      const [, a, b] = m;
+      freq[a] = (freq[a] ?? 0) + 1;
+      freq[b] = (freq[b] ?? 0) + 1;
+    }
+  }
+  return freq;
+}
+
+const countryFrequency = loadCountryFrequency();
+
+// Diminishing weight as a country's existing article count grows — sqrt
+// rather than linear so heavily-used countries (Japan: 149) are strongly
+// discouraged but not made permanently unselectable, and lightly-used
+// countries get a real boost without needing to be literally at zero.
+function diversityWeight(country: string): number {
+  const count = countryFrequency[toSlug(country)] ?? 0;
+  return 1 / Math.sqrt(1 + count);
+}
+
 // ── Score ────────────────────────────────────────────────────────────────
 
 interface ScoredPair {
-  origin: string; dest: string; migrants: number; score: number;
+  origin: string; dest: string; migrants: number; score: number; diversityScore: number;
   refugeeFlagged: boolean; expatHub: boolean; gulfLabor: boolean; covered: boolean; englishFluent: boolean;
 }
 
@@ -327,29 +392,51 @@ const results: ScoredPair[] = corridors.map(([origin, dest, migrants]) => {
   const refugeePenalty = refugeeFlagged ? 0.25 : 1.0;
   const gulfLaborPenalty = gulfLabor ? 0.25 : 1.0;
   const score = Math.log10(migrants + 1) * refugeePenalty * gulfLaborPenalty * destWeight;
+  const diversityScore = score * diversityWeight(origin) * diversityWeight(dest);
   const pairKey = [toSlug(origin), toSlug(dest)].sort().join("|");
   const englishFluent = isTargetClientele(origin, dest);
-  return { origin, dest, migrants, score, refugeeFlagged, expatHub, gulfLabor, covered: covered.has(pairKey), englishFluent };
+  return { origin, dest, migrants, score, diversityScore, refugeeFlagged, expatHub, gulfLabor, covered: covered.has(pairKey), englishFluent };
 });
 
+// Always rank by raw score first — diversityScore only ever reorders WITHIN
+// an already-good candidate pool (see DIVERSE_POOL_SIZE below), never pulls
+// in a pair that didn't already clear a real quality bar on its own merits.
 results.sort((a, b) => b.score - a.score);
 
 let filtered = showAll ? results : results.filter((r) => !r.covered);
 if (englishOnly) filtered = filtered.filter((r) => r.englishFluent);
-const shown = filtered.slice(0, limit);
+
+// A country being rare in content/ does NOT make a low-quality corridor
+// good — e.g. Pakistan->Afghanistan/Iran or tiny African corridors (raw
+// score ~3.5-4.6) would otherwise leapfrog genuinely strong pairs (raw
+// score 7-9) purely because the countries involved are novel. So --diverse
+// only re-ranks WITHIN the top DIVERSE_POOL_SIZE by raw score, never
+// outside it — diversity picks the best available mix of countries, it
+// doesn't manufacture relevance that wasn't there.
+const DIVERSE_POOL_SIZE = 80;
+let shown: ScoredPair[];
+if (diverseOnly) {
+  const pool = filtered.slice(0, DIVERSE_POOL_SIZE);
+  pool.sort((a, b) => b.diversityScore - a.diversityScore);
+  shown = pool.slice(0, limit);
+} else {
+  shown = filtered.slice(0, limit);
+}
 
 console.log(`Already-covered pairs found in content/: ${covered.size}`);
 console.log(
   (showAll ? "Showing all pairs (including covered)" : "Showing top NEW (not yet covered) pairs")
   + (englishOnly ? ", filtered to professional-English-fluent audience only" : "")
+  + (diverseOnly ? ", ranked by diversity-adjusted score (penalizes countries already heavily used in content/)" : "")
   + ":\n"
 );
 console.log(
-  "score".padEnd(7), "migrants".padEnd(12), "flags".padEnd(8), "origin -> destination"
+  (diverseOnly ? "div.score" : "score").padEnd(10), "raw".padEnd(7), "migrants".padEnd(12), "flags".padEnd(8), "origin -> destination"
 );
 for (const r of shown) {
   const flags = [r.refugeeFlagged ? "refugee" : "", r.expatHub ? "hub" : "", r.gulfLabor ? "gulf-labor" : ""].filter(Boolean).join(",");
   console.log(
+    (diverseOnly ? r.diversityScore.toFixed(2) : r.score.toFixed(2)).padEnd(10),
     r.score.toFixed(2).padEnd(7),
     r.migrants.toLocaleString().padEnd(12),
     flags.padEnd(8),
