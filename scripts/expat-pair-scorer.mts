@@ -38,6 +38,11 @@
  *   npx tsx scripts/expat-pair-scorer.mts            # top 40 new-pair suggestions
  *   npx tsx scripts/expat-pair-scorer.mts --all       # don't filter out already-covered pairs
  *   npx tsx scripts/expat-pair-scorer.mts --limit 100
+ *   npx tsx scripts/expat-pair-scorer.mts --english   # only pairs with a professional-English
+ *                                                      # population on at least one side — this
+ *                                                      # site's actual target clientele (corporate
+ *                                                      # expats who need to be fluent in English).
+ *                                                      # Combine freely with --all/--limit.
  */
 
 import { readFileSync, existsSync, readdirSync } from "fs";
@@ -49,6 +54,7 @@ const ROOT      = resolve(__dirname, "..");
 
 const args    = process.argv.slice(2);
 const showAll = args.includes("--all");
+const englishOnly = args.includes("--english");
 const limitArg = args.indexOf("--limit");
 const limit   = limitArg !== -1 ? parseInt(args[limitArg + 1], 10) : 40;
 
@@ -71,6 +77,30 @@ const REFUGEE_ORIGIN_COUNTRIES = new Set([
   "South Sudan", "Sudan", "Myanmar", "Somalia", "Democratic Republic of the Congo",
   "Yemen", "State of Palestine", "Central African Republic", "Eritrea", "Ethiopia",
 ]);
+
+// Countries with a large professional-level-English-fluent population —
+// this site's real target clientele (corporate expats who read/work in
+// English), decided 2026-08/09-15 after two rejected narrower framings
+// (restricting to Anglophone-only, then to corporate-hub destinations
+// only — both too narrow). Final rule: it doesn't matter which side of
+// the corridor is English-speaking, or whether it's the "hub"/destination
+// side — just that professionals with strong English are plausibly on
+// AT LEAST ONE side. Two groups:
+//   - Native/official-language Anglophone: content in English is the
+//     default for their own professional class.
+//   - Large professional-English-fluent workforce even where English
+//     isn't the majority first language (India, Philippines, Nigeria,
+//     Kenya, Ghana, Pakistan, Malaysia, Singapore already covered under
+//     Anglophone below).
+const ENGLISH_FLUENT_COUNTRIES = new Set([
+  "United States of America", "United Kingdom", "Canada", "Australia*", "Ireland",
+  "New Zealand", "Singapore", "Philippines", "Nigeria", "Kenya", "Ghana",
+  "South Africa*", "India", "Pakistan", "Malta",
+]);
+
+function isEnglishFluent(country: string): boolean {
+  return ENGLISH_FLUENT_COUNTRIES.has(country);
+}
 
 // InterNations Expat Insider 2026 top-10 destinations + other well-known
 // expat/digital-nomad hubs not already in that list.
@@ -178,7 +208,7 @@ function loadCoveredPairs(): Set<string> {
 
 interface ScoredPair {
   origin: string; dest: string; migrants: number; score: number;
-  refugeeFlagged: boolean; expatHub: boolean; covered: boolean;
+  refugeeFlagged: boolean; expatHub: boolean; covered: boolean; englishFluent: boolean;
 }
 
 const covered = loadCoveredPairs();
@@ -189,15 +219,22 @@ const results: ScoredPair[] = corridors.map(([origin, dest, migrants]) => {
   const refugeePenalty = refugeeFlagged ? 0.25 : 1.0;
   const score = Math.log10(migrants + 1) * refugeePenalty * destWeight;
   const pairKey = [toSlug(origin), toSlug(dest)].sort().join("|");
-  return { origin, dest, migrants, score, refugeeFlagged, expatHub, covered: covered.has(pairKey) };
+  const englishFluent = isEnglishFluent(origin) || isEnglishFluent(dest);
+  return { origin, dest, migrants, score, refugeeFlagged, expatHub, covered: covered.has(pairKey), englishFluent };
 });
 
 results.sort((a, b) => b.score - a.score);
 
-const shown = (showAll ? results : results.filter((r) => !r.covered)).slice(0, limit);
+let filtered = showAll ? results : results.filter((r) => !r.covered);
+if (englishOnly) filtered = filtered.filter((r) => r.englishFluent);
+const shown = filtered.slice(0, limit);
 
 console.log(`Already-covered pairs found in content/: ${covered.size}`);
-console.log(showAll ? "Showing all pairs (including covered):\n" : "Showing top NEW (not yet covered) pairs:\n");
+console.log(
+  (showAll ? "Showing all pairs (including covered)" : "Showing top NEW (not yet covered) pairs")
+  + (englishOnly ? ", filtered to professional-English-fluent audience only" : "")
+  + ":\n"
+);
 console.log(
   "score".padEnd(7), "migrants".padEnd(12), "flags".padEnd(8), "origin -> destination"
 );
