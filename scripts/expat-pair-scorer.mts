@@ -98,8 +98,69 @@ const ENGLISH_FLUENT_COUNTRIES = new Set([
   "South Africa*", "India", "Pakistan", "Malta",
 ]);
 
+// Top 20 European economies by nominal GDP (2026-10-05 addition, user request:
+// "add some european countries as well, all the top 20 ranked by gdp"). These
+// are NOT English-first-language countries (that's ENGLISH_FLUENT_COUNTRIES
+// above) — they're included because they're major corporate/professional
+// markets in their own right, where this site's English-language content
+// still has a real expat/corporate audience (multinational offices, EU
+// freedom-of-movement professional migration, English as the de facto
+// corporate lingua franca at large employers). UK and Ireland are already in
+// the Anglophone set above, so not repeated here. Ranking is nominal GDP, a
+// reasonable default but not the only valid basis (PPP would reorder a few)
+// — revisit if the user wants a different year/measure.
+const TOP_EUROPEAN_GDP_COUNTRIES = new Set([
+  "Germany", "France*", "Italy", "Russian Federation", "Spain*", "Netherlands*",
+  "Switzerland", "Poland", "Belgium", "Sweden", "Austria", "Norway*", "Denmark*",
+  "Romania", "Czechia", "Finland*", "Portugal", "Greece",
+]);
+
+// Top 10 Latin American economies by nominal GDP, Mexico and south (2026-10-05
+// addition, user request: "add a few latam countries... top 10 gdp from mexico
+// and south of mexico"). Same reasoning as TOP_EUROPEAN_GDP_COUNTRIES: these
+// aren't English-first-language countries, they're included as major regional
+// economies/corporate markets in their own right. Ordering (Dominican
+// Republic/Ecuador/Guatemala/Costa Rica) is close and shuffles year to year —
+// treat as a reasonable snapshot, not a precise ranking.
+const TOP_LATAM_GDP_COUNTRIES = new Set([
+  "Brazil", "Mexico", "Argentina", "Colombia", "Chile", "Peru",
+  "Dominican Republic", "Ecuador", "Guatemala", "Costa Rica",
+]);
+
 function isEnglishFluent(country: string): boolean {
   return ENGLISH_FLUENT_COUNTRIES.has(country);
+}
+
+function isMajorRegionalEconomy(country: string): boolean {
+  return TOP_EUROPEAN_GDP_COUNTRIES.has(country) || TOP_LATAM_GDP_COUNTRIES.has(country);
+}
+
+// A major-regional-economy country alone does NOT make a pair relevant — e.g.
+// Spain and Portugal are in TOP_EUROPEAN_GDP_COUNTRIES, but Bolivia->Spain and
+// Angola->Portugal are Spanish/Portuguese-speaking diaspora migration with
+// zero English relevance, not this site's corporate-expat audience. So a
+// major-regional-economy match only counts if the OTHER side is itself a
+// developed economy (high-income, per World Bank tier) or also a major
+// regional economy — i.e. "two major economies trading professionals" reads
+// as corporate-relevant (Germany<->Portugal, Brazil<->Mexico); "developing
+// country -> big economy" reads as general diaspora/labor migration and is
+// excluded, same reasoning as the existing Gulf-states caveat for
+// UAE/Saudi/Kuwait/Qatar/Oman.
+function isDevelopedEconomy(country: string): boolean {
+  return incomeGroups[normalizeForIncomeLookup(country)] === "high";
+}
+
+// Combined target-clientele check — exported under the name "isEnglishFluent"
+// call sites / the `--english` CLI flag for backward compatibility with
+// scheduled-task instructions that already reference `--english`
+// (out-of-office-weekly-batch, daily-work-culture-post).
+function isTargetClientele(origin: string, dest: string): boolean {
+  if (isEnglishFluent(origin) || isEnglishFluent(dest)) return true;
+  const [regionSide, otherSide] = isMajorRegionalEconomy(origin) ? [origin, dest]
+    : isMajorRegionalEconomy(dest) ? [dest, origin]
+    : [null, null];
+  if (!regionSide) return false;
+  return isDevelopedEconomy(otherSide!) || isMajorRegionalEconomy(otherSide!);
 }
 
 // InterNations Expat Insider 2026 top-10 destinations + other well-known
@@ -219,7 +280,7 @@ const results: ScoredPair[] = corridors.map(([origin, dest, migrants]) => {
   const refugeePenalty = refugeeFlagged ? 0.25 : 1.0;
   const score = Math.log10(migrants + 1) * refugeePenalty * destWeight;
   const pairKey = [toSlug(origin), toSlug(dest)].sort().join("|");
-  const englishFluent = isEnglishFluent(origin) || isEnglishFluent(dest);
+  const englishFluent = isTargetClientele(origin, dest);
   return { origin, dest, migrants, score, refugeeFlagged, expatHub, covered: covered.has(pairKey), englishFluent };
 });
 
