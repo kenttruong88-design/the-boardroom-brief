@@ -75,8 +75,20 @@ async function run() {
     });
   }
 
-  const windowStart = new Date(now.getTime() - 30 * 60 * 1000); // now - 30 min
-  const windowEnd   = new Date(now.getTime() +  5 * 60 * 1000); // now + 5 min
+  // windowStart was previously `now - 30min`, which meant a post that missed
+  // its own narrow window for ANY reason (a transient Buffer error before the
+  // "sending" claim, the daily cap being hit at that exact moment, a cron/auth
+  // outage) fell permanently out of range — `scheduled_for` only recedes
+  // further into the past relative to "now", so it could never be picked up
+  // again. Confirmed in production: 64 LinkedIn + 30 Instagram posts stuck in
+  // "pending" back to 2026-06-23, invisible because the UI shows the exact
+  // same "Pending" label for a post that will and one that never will post.
+  // Widened to a 24h lookback so a post recovers within one missed cron cycle
+  // (cron only runs 8-18 UTC, so overnight gaps alone can be ~14h) without
+  // reaching back far enough to resurrect the existing months-old backlog —
+  // user's explicit call: leave those ~94 alone, don't sweep them in.
+  const windowStart = new Date(now.getTime() - 24 * 60 * 60 * 1000); // now - 24h
+  const windowEnd   = new Date(now.getTime() +  5 * 60 * 1000);      // now + 5 min
 
   // 2. Fetch due posts — capped to remaining daily slots
   const { data: duePosts, error: fetchError } = await supabase
@@ -141,11 +153,17 @@ async function run() {
     }
 
     try {
-      // b. Send to Buffer
+      // b. Send to Buffer — clamp to a near-future time if this post is being
+      // recovered after missing its original window (see windowStart comment
+      // above). Buffer's API expects a future `dueAt`; passing a stale past
+      // `scheduled_for` straight through (the old behavior) risked Buffer
+      // rejecting the request or mishandling it for any post caught late.
+      const dueAt = new Date(post.scheduled_for);
+      const effectiveDueAt = dueAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : dueAt;
       const bufferPostId = await scheduleBufferPost(
         profileId,
         post.content,
-        new Date(post.scheduled_for),
+        effectiveDueAt,
         post.image_url ?? undefined,
         post.platform
       );
