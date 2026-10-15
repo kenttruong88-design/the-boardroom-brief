@@ -152,6 +152,13 @@ function markdownToBlocks(body: string) {
   return blocks;
 }
 
+// Generated batches sometimes quote values (date: "2026-10-10"); strip a single
+// pair of matching surrounding quotes so they parse the same as unquoted ones.
+function unquote(v: string): string {
+  const t = v.trim();
+  return /^(["']).*\1$/.test(t) ? t.slice(1, -1) : t;
+}
+
 function parseFrontmatter(raw: string): Record<string, string | Record<string, string>> {
   const fm: Record<string, string | Record<string, string>> = {};
   const lines = raw.split("\n");
@@ -163,14 +170,14 @@ function parseFrontmatter(raw: string): Record<string, string | Record<string, s
       i++;
       while (i < lines.length && /^\s{2}/.test(lines[i])) {
         const kv = lines[i].trim().match(/^(\w+):\s*(.*)/);
-        if (kv) block[kv[1]] = kv[2].trim();
+        if (kv) block[kv[1]] = unquote(kv[2]);
         i++;
       }
       fm[nested[1]] = block;
       continue;
     }
     const kv = lines[i].match(/^(\w[\w_]*):\s*(.*)/);
-    if (kv) fm[kv[1]] = kv[2].trim();
+    if (kv) fm[kv[1]] = unquote(kv[2]);
     i++;
   }
   return fm;
@@ -386,7 +393,14 @@ export async function GET(req: NextRequest) {
 
     const candidates: { filename: string; article: Article }[] = [];
     for (const filename of allFiles) {
-      const article = parseArticle(join(contentDir, filename));
+      let article: ReturnType<typeof parseArticle>;
+      try {
+        article = parseArticle(join(contentDir, filename));
+      } catch (err) {
+        // One malformed file must not block every article queued behind it.
+        console.error(`[publish-global-office] Skipping unparseable ${filename}:`, err);
+        continue;
+      }
       if (!article) continue;
       if (!publishedSlugs.has(article.slug)) candidates.push({ filename, article });
     }
