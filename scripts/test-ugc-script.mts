@@ -69,3 +69,11 @@ report("CLIP 4: COUNTRY B DO'S", result.countryBDosClip);
 result.countryBDosCaptions.forEach((item, i) => console.log(`    Caption ${i + 1}: DO: ${item}`));
 report("CLIP 5: COUNTRY B DON'TS", result.countryBDontsClip);
 result.countryBDontsCaptions.forEach((item, i) => console.log(`    Caption ${i + 1}: DON'T: ${item}`));
+
+console.log("\n--- SCENES + OUTFITS ---");
+for (const [label, scene, outfit] of [
+  ["Clip 2", result.countryADosScene,   result.countryADosOutfit],
+  ["Clip 3", result.countryADontsScene, result.countryADontsOutfit],
+  ["Clip 4", result.countryBDosScene,   result.countryBDosOutfit],
+  ["Clip 5", result.countryBDontsScene, result.countryBDontsOutfit],
+]) console.log(`${label}\n  scene:  ${scene}\n  outfit: ${outfit}`);

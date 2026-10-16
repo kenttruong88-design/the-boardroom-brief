@@ -59,6 +59,7 @@ for (const clip of row.clips) {
   console.log(`--- [${clip.label}] ---`);
   console.log(clip.script);
   console.log("Scene:", clip.scene);
+  if (clip.outfit) console.log("Outfit:", clip.outfit);
   clip.captions?.forEach((c: string, i: number) => console.log(`  Caption ${i + 1}:`, c));
   console.log();
 }

@@ -11,12 +11,17 @@
  *
  * Usage (from project root):
  *   npx tsx scripts/ugc-test-clips.mts <path-to-out-of-office-md> <label> [label2 ...]
+ *   npx tsx scripts/ugc-test-clips.mts <md> <label> [label2 ...] --stills-only
  *   labels: hook | country_a_dos | country_a_donts | country_b_dos | country_b_donts
+ *
+ * --stills-only generates just the scene start frames (one Hedra image each)
+ * and skips narration + avatar video — the cheap way to check scene/outfit
+ * prompts before paying for video.
  *
  * Requires ANTHROPIC_API_KEY, HEDRA_API_KEY, and CLOUDINARY_* in .env.local.
  */
 
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -38,7 +43,8 @@ function loadEnv(path: string) {
 loadEnv(resolve(ROOT, ".env.local"));
 
 const file = process.argv[2];
-const requestedLabels = process.argv.slice(3);
+const stillsOnly = process.argv.includes("--stills-only");
+const requestedLabels = process.argv.slice(3).filter((a) => a !== "--stills-only");
 const VALID_LABELS = ["hook", "country_a_dos", "country_a_donts", "country_b_dos", "country_b_donts"];
 
 if (!file || requestedLabels.length === 0) {
@@ -56,7 +62,7 @@ for (const label of requestedLabels) {
 const { parseOutOfOfficeArticle } = await import("../app/lib/social/out-of-office-parser");
 const { writeUgcScript }          = await import("../app/lib/social/ugc-script-writer");
 const { getCreatorPersona, getPersonaIdentityAssetIds } = await import("../app/lib/social/creator-personas");
-const { performancePromptFor } = await import("../app/lib/social/ugc-video-generator");
+const { performancePromptFor, scenePromptFor } = await import("../app/lib/social/ugc-video-generator");
 const {
   generateNarration,
   submitAvatarVideo,
@@ -75,7 +81,25 @@ function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-type ClipLabel = "hook" | "country_a_dos" | "country_a_donts" | "country_b_dos" | "country_b_donts";
+// Saves a generated scene image to reference/ugc-test/ for review — Hedra's
+// generation status has no download link for images, but /assets does.
+async function saveStill(assetId: string, fileName: string) {
+  const res = await fetch(`https://api.hedra.com/web-app/public/assets?type=image&ids=${assetId}`, {
+    headers: { "X-API-Key": process.env.HEDRA_API_KEY ?? "" },
+  });
+  const [entry] = (await res.json()) as Array<{ asset?: { url?: string } }>;
+  const url = entry?.asset?.url;
+  if (!url) {
+    console.error(`  could not find a download url for asset ${assetId}`);
+    return;
+  }
+  const outDir = resolve(ROOT, "reference", "ugc-test");
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(resolve(outDir, fileName), Buffer.from(await (await fetch(url)).arrayBuffer()));
+  console.log(`  saved reference/ugc-test/${fileName}`);
+}
+
+type ClipLabel ="hook" | "country_a_dos" | "country_a_donts" | "country_b_dos" | "country_b_donts";
 
 async function main() {
   const markdown = readFileSync(resolve(ROOT, file), "utf8");
@@ -87,12 +111,12 @@ async function main() {
   console.log("Writing 5-clip script with Claude (only submitting Hedra for:", requestedLabels.join(", "), ")...");
   const s = await writeUgcScript({ parsed, persona });
 
-  const allClips: Record<ClipLabel, { script: string; scene?: string }> = {
+  const allClips: Record<ClipLabel, { script: string; scene?: string; outfit?: string }> = {
     hook:            { script: s.hookClip },
-    country_a_dos:   { script: s.countryADosClip,   scene: s.countryADosScene },
-    country_a_donts: { script: s.countryADontsClip, scene: s.countryADontsScene },
-    country_b_dos:   { script: s.countryBDosClip,   scene: s.countryBDosScene },
-    country_b_donts: { script: s.countryBDontsClip, scene: s.countryBDontsScene },
+    country_a_dos:   { script: s.countryADosClip,   scene: s.countryADosScene,   outfit: s.countryADosOutfit },
+    country_a_donts: { script: s.countryADontsClip, scene: s.countryADontsScene, outfit: s.countryADontsOutfit },
+    country_b_dos:   { script: s.countryBDosClip,   scene: s.countryBDosScene,   outfit: s.countryBDosOutfit },
+    country_b_donts: { script: s.countryBDontsClip, scene: s.countryBDontsScene, outfit: s.countryBDontsOutfit },
   };
 
   const identityAssetIds = await getPersonaIdentityAssetIds(persona);
@@ -109,12 +133,17 @@ async function main() {
       console.log(`[${label}] using fixed backdrop asset: ${sceneAssetId}`);
     } else {
       console.log(`[${label}] scene: ${clip.scene}`);
+      console.log(`[${label}] outfit: ${clip.outfit}`);
       sceneAssetId = await generateSceneImage(
         identityAssetIds,
-        clip.scene!,
+        scenePromptFor(clip.scene!, clip.outfit),
         `${persona.key}-test-${label}-scene.png`
       );
       console.log(`[${label}] scene asset: ${sceneAssetId}`);
+    }
+    if (stillsOnly) {
+      if (label !== "hook") await saveStill(sceneAssetId, `${runId}-${label}.png`);
+      continue;
     }
 
     const narration = await generateNarration(clip.script, persona.voiceId);

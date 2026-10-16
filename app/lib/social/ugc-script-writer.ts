@@ -37,6 +37,8 @@ Each Do's/Don'ts clip ALSO needs its own caption LIST — these get burned onto 
 
 Each of clips 2-5 (NOT the hook — see above) also needs a SHORT VISUAL SCENE description — a real-world setting/pose for the speaker in that clip, used to generate a distinct start frame per clip so no two clips show the same static shot. Keep each to one photographable sentence: a location plausible for the clip's content, a vertical FULL-BODY framing as if the viewer's own camera is filming her directly (handheld feel, natural angle — NEVER describe her holding or looking at a phone/camera herself, that breaks the illusion she's talking to the viewer), and what the speaker is doing. Her face and shoulders must stay toward the camera with direct eye contact in every scene — NEVER turned away, glancing off-camera, or caught mid-turn — that's the one fixed rule. Her stance and hands must be NEUTRAL and RELAXED, NOT mid-gesture: hands down at her sides, loosely clasped, or resting naturally — NEVER raised, NEVER already extended into a gesture, NEVER caught mid-point (the video model animates gestures from this frame throughout the clip; a start pose that's already at a gesture's peak leaves it nothing to do but slowly relax out of that one pose for the whole clip, which reads as static and unnatural, not lively). Weight settled on one leg, a slight easy angle to the body is fine, since it's her face and eye line that must stay locked on camera, not her whole body squared up like a passport photo. Vary the four scenes from each other through LOCATION, props, and stance angle — NOT through hand gesture, which should stay neutral in every scene and let the animation add movement instead. Ground each country's scenes in something evocative of that country/topic where sensible (e.g. a gym for a fitness article), not just "outside". Where a real, internationally recognizable landmark or iconic cityscape silhouette exists for that country (e.g. the Eiffel Tower, Big Ben/the Houses of Parliament, the Colosseum, Marina Bay Sands, the Sydney Opera House, a Maltese Baroque church facade, a Hong Kong skyline), work it into the background of at least one of that country's two scenes when it's plausible for the specific location/subject — prefer a shot that makes the country instantly recognizable at a glance over a generic unmarked street or building whenever a real option exists, but don't force one in in a way that would look staged or contradict the scene's actual subject (e.g. don't put the Eiffel Tower behind a supermarket aisle). Keep any landmark in the background/mid-ground, never obstructing Suki or her face.
 
+Each of clips 2-5 also needs an OUTFIT — what she's wearing in that clip's scene, so she isn't stuck in the same clothes in every video. Dress her the way a stylish, well-put-together woman would actually dress for THAT location, activity, season and local norms: e.g. activewear in a gym, a light linen dress at a Mediterranean seafront, a wool coat and scarf on a winter street, smart-casual at a café, covered shoulders and knees at a temple, church or mosque. One short phrase naming the main garments and their colours (e.g. "a fitted olive bomber jacket over a white tee, dark jeans and white trainers"). Flattering and realistic, never costume-like or a stereotyped "national dress" unless the scene is explicitly a festival where locals would wear it. No logos, slogans or visible text on clothing. All four outfits should be noticeably different from each other. Don't describe the outfit inside the scene field — it goes only in its own outfit field.
+
 Rules:
 - Use ONLY the do's/don'ts provided — never invent new ones.
 - Each clip must end on a complete thought — no clip should cut off mid-sentence, even when covering multiple items.
@@ -51,15 +53,19 @@ Return only valid JSON, and nothing else:
   "hookClip": "string — Clip 1 script",
   "countryADosClip": "string — Clip 2 spoken script, Do's only",
   "countryADosScene": "string — Clip 2 visual scene description",
+  "countryADosOutfit": "string — what she wears in Clip 2's scene",
   "countryADosCaptions": ["string — max 6 words", "... one entry per Do actually spoken (2-3)"],
   "countryADontsClip": "string — Clip 3 spoken script, Don'ts only",
   "countryADontsScene": "string — Clip 3 visual scene description",
+  "countryADontsOutfit": "string — what she wears in Clip 3's scene",
   "countryADontsCaptions": ["string — max 6 words", "... one entry per Don't actually spoken (2-3)"],
   "countryBDosClip": "string — Clip 4 spoken script, Do's only",
   "countryBDosScene": "string — Clip 4 visual scene description",
+  "countryBDosOutfit": "string — what she wears in Clip 4's scene",
   "countryBDosCaptions": ["string — max 6 words", "... one entry per Do actually spoken (2-3)"],
   "countryBDontsClip": "string — Clip 5 spoken script, Don'ts only, no call-to-action",
   "countryBDontsScene": "string — Clip 5 visual scene description",
+  "countryBDontsOutfit": "string — what she wears in Clip 5's scene",
   "countryBDontsCaptions": ["string — max 6 words", "... one entry per Don't actually spoken (2-3)"]
 }`;
 
@@ -67,15 +73,19 @@ export interface UgcScript {
   hookClip:              string;
   countryADosClip:       string;
   countryADosScene:      string;
+  countryADosOutfit:     string;
   countryADosCaptions:   string[];
   countryADontsClip:     string;
   countryADontsScene:    string;
+  countryADontsOutfit:   string;
   countryADontsCaptions: string[];
   countryBDosClip:       string;
   countryBDosScene:      string;
+  countryBDosOutfit:     string;
   countryBDosCaptions:   string[];
   countryBDontsClip:     string;
   countryBDontsScene:    string;
+  countryBDontsOutfit:   string;
   countryBDontsCaptions: string[];
 }
 
@@ -176,7 +186,7 @@ Write the 5-clip script for Suki to deliver directly to camera.`;
     const response = await callClaude(
       SYSTEM_PROMPT,
       userPrompt,
-      900,
+      1200,
       "social:ugc-script",
       MODELS.default
     );

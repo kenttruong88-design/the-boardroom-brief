@@ -24,6 +24,8 @@ export interface UgcClip {
   label:                 ClipLabel;
   script:                string;
   scene:                 string;
+  /** What she wears in this clip's scene. Absent on rows drafted before per-scene outfits existed. */
+  outfit?:               string;
   /** One bullet per Do/Don't actually spoken in this clip (2-3), same category as `label`. */
   captions?:             string[];
   scene_image_asset_id?: string;
@@ -106,6 +108,7 @@ export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideo
       label:    "country_a_dos",
       script:   scriptResult.countryADosClip,
       scene:    scriptResult.countryADosScene,
+      outfit:   scriptResult.countryADosOutfit,
       captions: scriptResult.countryADosCaptions,
       status:   "pending",
     },
@@ -113,6 +116,7 @@ export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideo
       label:    "country_a_donts",
       script:   scriptResult.countryADontsClip,
       scene:    scriptResult.countryADontsScene,
+      outfit:   scriptResult.countryADontsOutfit,
       captions: scriptResult.countryADontsCaptions,
       status:   "pending",
     },
@@ -120,6 +124,7 @@ export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideo
       label:    "country_b_dos",
       script:   scriptResult.countryBDosClip,
       scene:    scriptResult.countryBDosScene,
+      outfit:   scriptResult.countryBDosOutfit,
       captions: scriptResult.countryBDosCaptions,
       status:   "pending",
     },
@@ -127,6 +132,7 @@ export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideo
       label:    "country_b_donts",
       script:   scriptResult.countryBDontsClip,
       scene:    scriptResult.countryBDontsScene,
+      outfit:   scriptResult.countryBDontsOutfit,
       captions: scriptResult.countryBDontsCaptions,
       status:   "pending",
     },
@@ -243,6 +249,17 @@ Style & Ambiance: Soft natural lighting, realistic skin tones, inviting and auth
 On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 }
 
+// The identity references (character sheet) all show one fixed outfit, and
+// with no clothing named in the prompt the image model copies it — which is
+// why every clip used to show the same clothes. Naming the outfit AND saying
+// the references are for identity only lets it dress her for the scene.
+// Clips without an outfit (rows drafted before this existed) keep the old
+// prompt unchanged.
+export function scenePromptFor(scene: string, outfit?: string): string {
+  if (!outfit) return scene;
+  return `${scene} She is wearing ${outfit}. Use the reference images ONLY for her face, hair, skin tone and body shape — dress her exactly as described here, not in the clothes shown in the reference photos.`;
+}
+
 // Clips 2-5 each get their own start frame (same identity, different pose/
 // setting) via generateSceneImage() on the uploaded reference photo (see
 // hedra-client.ts — google/nano-banana-pro, not flux-kontext-pro-i2i, for
@@ -270,7 +287,7 @@ async function generateClip(
     } else {
       sceneImageAssetId = await generateSceneImage(
         identityAssetIds,
-        clip.scene,
+        scenePromptFor(clip.scene, clip.outfit),
         `${articleSlug}-${clip.label}-scene.png`
       );
     }
