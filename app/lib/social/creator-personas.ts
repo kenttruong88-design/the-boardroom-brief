@@ -8,6 +8,18 @@ export interface CreatorPersona {
   voiceId:                 string;
   voiceName:               string;
   bio:                     string;
+  /**
+   * Set when the persona's voice isn't in Hedra's library (voiceId is then
+   * empty): narration is made with this external TTS voice and uploaded to
+   * Hedra as an audio asset instead — see scripts/ugc-trial-clip.mts. The
+   * automated pipeline can't call it yet (needs a Higgsfield API key).
+   */
+  externalVoice?: {
+    provider:    "higgsfield";
+    model:       string;
+    voiceId:     string;
+    instruction: string;
+  };
   /** Spoken script for the shared closing clip, reused across every video. */
   outroScript:             string;
   /** Description of the shared intro/outro backdrop, for documentation — the actual generation uses `introSceneImageAssetId`, not this text. */
@@ -83,16 +95,25 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     },
   },
   // Global Office creator. Identity designed in Higgsfield (no real source
-  // photos) and registered via scripts/register-persona-sheet.mts. Voice,
-  // intro/outro backdrop, outro and end-card clips are not chosen yet, so
-  // this persona can't produce a full video until those are filled in.
+  // photos) and registered via scripts/register-persona-sheet.mts. Her voice
+  // is a Higgsfield one (Hedra has no fitting Indian-accented voice), so her
+  // narration can't go through the automated pipeline yet, and the outro and
+  // end-card clips aren't made yet.
   priya: {
     key:               "priya",
     name:              "Priya Mehta",
     pillar:            "global-office",
     referenceImageUrl: "https://res.cloudinary.com/dnpcbx89m/image/upload/v1792161148/boardroom-brief/ugc/priya-reference.png",
     voiceId:           "",
-    voiceName:         "",
+    voiceName:         "Imogen (Higgsfield, Indian accent direction)",
+    externalVoice: {
+      provider:    "higgsfield",
+      model:       "qwen_audio_tts",
+      voiceId:     "3811e986-0891-47cf-a1f5-78a1d62a547a",
+      instruction: "Young woman from Mumbai, English with a clear Indian accent; low, husky, raspy voice; sultry, warm, unhurried.",
+    },
+    // Emerald-dress shot in Suki's exact reception spot (reference/priya/backdrop-emerald-v8b.png).
+    introSceneImageAssetId: "d4ad9de6-624c-4dd0-8b17-7def5c80833e",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",

@@ -120,6 +120,27 @@ export async function uploadLocalImageAsset(buf: Buffer, name: string): Promise<
   return created.id;
 }
 
+/**
+ * Uploads ready-made narration (e.g. made with an external TTS voice that
+ * Hedra's own library doesn't have) as a Hedra audio asset, usable directly
+ * as an avatar video's audio_id. Same two-step create + upload as images.
+ */
+export async function uploadLocalAudioAsset(buf: Buffer, name: string): Promise<string> {
+  const created = await post<{ id: string }>("/assets", { name, type: "audio" });
+  if (!created.id) throw new Error(`No asset id returned for audio upload: ${JSON.stringify(created)}`);
+
+  const form = new FormData();
+  form.append("file", new Blob([Uint8Array.from(buf)]), name);
+  const uploadRes = await fetchWithRetry(`${BASE}/assets/${created.id}/upload`, {
+    method: "POST",
+    headers: { "X-API-Key": process.env.HEDRA_API_KEY! },
+    body: form,
+  });
+  if (!uploadRes.ok) throw new Error(`Audio asset upload failed: ${uploadRes.status} ${await uploadRes.text()}`);
+
+  return created.id;
+}
+
 /** Downloads an image and uploads it as a Hedra asset, returning its asset id. */
 export async function uploadImageAsset(imageUrl: string, name: string): Promise<string> {
   const imgRes = await fetchWithRetry(imageUrl, {});
