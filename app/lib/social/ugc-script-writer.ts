@@ -140,6 +140,14 @@ const WORD_CAPS: Record<
   countryBDontsClip: 35,
 };
 
+const REQUIRED_FIELDS: Array<keyof UgcScript> = [
+  "hookClip",
+  "countryADosClip",   "countryADosScene",   "countryADosOutfit",   "countryADosCaptions",
+  "countryADontsClip", "countryADontsScene", "countryADontsOutfit", "countryADontsCaptions",
+  "countryBDosClip",   "countryBDosScene",   "countryBDosOutfit",   "countryBDosCaptions",
+  "countryBDontsClip", "countryBDontsScene", "countryBDontsOutfit", "countryBDontsCaptions",
+];
+
 function countWords(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
@@ -216,11 +224,27 @@ Write the 5-clip script for ${persona.name.split(" ")[0]} to deliver directly to
     const response = await callClaude(
       buildSystemPrompt(persona),
       userPrompt,
-      1200,
+      2000,
       "social:ugc-script",
       MODELS.default
     );
     const script = parseJSON<UgcScript>(response.content);
+
+    // The model has been seen silently dropping a field (e.g. the last
+    // caption list) — retry rather than shipping a script that crashes
+    // later or generates a clip with no scene/outfit.
+    const missing = REQUIRED_FIELDS.filter((f) => {
+      const v = script[f];
+      return Array.isArray(v) ? v.length === 0 : typeof v !== "string" || !v.trim();
+    });
+    if (missing.length > 0) {
+      console.warn(`[ugc-script-writer] Attempt ${attempt}/${MAX_ATTEMPTS} missing fields: ${missing.join(", ")}`);
+      if (attempt === MAX_ATTEMPTS) throw new Error(`Script still missing fields after ${MAX_ATTEMPTS} attempts: ${missing.join(", ")}`);
+      userPrompt = `${baseUserPrompt}
+
+Your previous attempt left out these fields: ${missing.join(", ")}. Return the COMPLETE JSON object with every field filled in.`;
+      continue;
+    }
     lastScript = script;
 
     const overages = findOverages(script);
