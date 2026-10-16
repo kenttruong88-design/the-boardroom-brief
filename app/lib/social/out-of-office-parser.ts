@@ -29,8 +29,13 @@ function extractFrontmatterCountries(markdown: string): [string, string] {
 
 function extractHeadline(markdown: string): string {
   const match = markdown.match(/^#\s+(.+)$/m);
-  if (!match) throw new Error("No H1 headline found");
-  return match[1].trim();
+  if (match) return match[1].trim();
+  // Some batches set the headline as an H2 instead — it's then the first
+  // heading after the frontmatter, ahead of the "Do's & Don'ts" sections.
+  const body = markdown.replace(/^---[\s\S]*?\n---/, "");
+  const h2 = body.match(/^##\s+(.+)$/m);
+  if (!h2 || /do'?s\b/i.test(h2[1])) throw new Error("No headline found (no H1, and the first H2 isn't a title)");
+  return h2[1].trim();
 }
 
 function isSeparatorRow(line: string): boolean {
