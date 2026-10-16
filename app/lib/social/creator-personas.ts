@@ -82,6 +82,30 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
       fullBodySide:        "fffdcafe-842e-4dc9-97a0-f051f767ad7d",
     },
   },
+  // Global Office creator. Identity designed in Higgsfield (no real source
+  // photos) and registered via scripts/register-persona-sheet.mts. Voice,
+  // intro/outro backdrop, outro and end-card clips are not chosen yet, so
+  // this persona can't produce a full video until those are filled in.
+  priya: {
+    key:               "priya",
+    name:              "Priya Mehta",
+    pillar:            "global-office",
+    referenceImageUrl: "https://res.cloudinary.com/dnpcbx89m/image/upload/v1792161148/boardroom-brief/ugc/priya-reference.png",
+    voiceId:           "",
+    voiceName:         "",
+    bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
+    outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
+    outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
+    characterSheet: {
+      frontNeutral:        "e1ccaffc-ccb7-4486-847c-a54308dd3d1a",
+      threeQuarterNeutral: "c07ab9f3-9898-4a02-87c2-b219587b8c89",
+      profileNeutral:      "51c1dad3-78d1-4392-8b45-44d105ebab50",
+      frontSmiling:        "0f8eaa5d-6327-4315-8376-38da59af5939",
+      frontSerious:        "787799ea-15fd-40ed-b46e-323046cb6606",
+      fullBodyFront:       "783823f6-ca9d-47bb-a2db-924bd3648e13",
+      fullBodySide:        "9cb3f587-b2cf-4dc1-976e-a0df8540e95b",
+    },
+  },
 };
 
 export function getCreatorPersona(key: string): CreatorPersona {
