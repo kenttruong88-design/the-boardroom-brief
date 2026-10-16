@@ -104,7 +104,8 @@ type ClipLabel ="hook" | "country_a_dos" | "country_a_donts" | "country_b_dos" |
 async function main() {
   const markdown = readFileSync(resolve(ROOT, file), "utf8");
   const parsed   = parseOutOfOfficeArticle(markdown);
-  const persona  = getCreatorPersona("suki");
+  // Same folder → creator rule as ugc-draft.mts.
+  const persona  = getCreatorPersona(file.replace(/\\/g, "/").includes("global-office/") ? "priya" : "suki");
   const runId    = Date.now();
 
   console.log("Headline:", parsed.headline);

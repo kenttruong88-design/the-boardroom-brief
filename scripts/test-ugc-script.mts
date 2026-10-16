@@ -52,7 +52,8 @@ const parsed = parseOutOfOfficeArticle(markdown);
 console.log("Headline:", parsed.headline);
 console.log("Countries:", parsed.countries);
 
-const persona = getCreatorPersona("suki");
+// Same folder → creator rule as ugc-draft.mts.
+const persona = getCreatorPersona(file.replace(/\\/g, "/").includes("global-office/") ? "priya" : "suki");
 const result = await writeUgcScript({ parsed, persona });
 
 function report(label: string, text: string) {

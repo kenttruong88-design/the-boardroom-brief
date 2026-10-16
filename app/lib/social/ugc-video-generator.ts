@@ -81,7 +81,7 @@ async function updateRow(
 }
 
 // ── Step 1: Claude drafts the 5-clip script, queued for approval ────────────
-// Out of Office only, Suki only: pulls the headline and both countries'
+// Pulls the headline and both countries'
 // Do's & Don'ts straight from the article's own markdown source (see
 // out-of-office-parser.ts) rather than requiring the caller to restate them.
 
@@ -89,10 +89,12 @@ export interface DraftUgcVideoInput {
   slug:       string;
   articleUrl: string;
   markdown:   string;
+  /** Creator persona key; defaults to Suki (Out of Office). The video's pillar comes from the persona. */
+  personaKey?: string;
 }
 
 export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideoQueueRow> {
-  const persona = getCreatorPersona("suki");
+  const persona = getCreatorPersona(input.personaKey ?? "suki");
   const parsed  = parseOutOfOfficeArticle(input.markdown);
 
   const scriptResult = await writeUgcScript({ parsed, persona });
@@ -146,7 +148,7 @@ export async function draftUgcVideo(input: DraftUgcVideoInput): Promise<UgcVideo
       article_slug:     input.slug,
       article_headline: parsed.headline,
       article_url:      input.articleUrl,
-      pillar:           "out-of-office",
+      pillar:           persona.pillar,
       persona_key:      persona.key,
       persona_name:     persona.name,
       clips,

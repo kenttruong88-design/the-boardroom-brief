@@ -9,9 +9,12 @@
  * actually generate video (that step spends credits).
  *
  * Usage (from project root):
- *   npx tsx scripts/ugc-draft.mts <path-to-out-of-office-md> [articleUrl]
+ *   npx tsx scripts/ugc-draft.mts <path-to-article-md> [articleUrl]
  *
- * articleUrl defaults to a thealignmenttimes.com/out-of-office/<slug> guess
+ * Works for content/out-of-office/ (Suki) and content/global-office/
+ * (Priya) articles — the creator is picked from the folder.
+ *
+ * articleUrl defaults to a thealignmenttimes.com/<pillar>/<slug> guess
  * if omitted — the article may not be live yet, this is just stored on the
  * queue row as a reference/CTA link and can be corrected later.
  */
@@ -45,11 +48,17 @@ if (!file) {
 
 const { draftUgcVideo } = await import("../app/lib/social/ugc-video-generator");
 
+// The creator follows the article's pillar folder: Global Office → Priya,
+// everything else → Suki (Out of Office).
+const isGlobalOffice = file.replace(/\\/g, "/").includes("global-office/");
+const personaKey     = isGlobalOffice ? "priya" : "suki";
+const pillarPath     = isGlobalOffice ? "global-office" : "out-of-office";
+
 const markdown = readFileSync(resolve(ROOT, file), "utf8");
 const slug      = basename(file, ".md");
-const articleUrl = process.argv[3] ?? `https://thealignmenttimes.com/out-of-office/${slug}`;
+const articleUrl = process.argv[3] ?? `https://thealignmenttimes.com/${pillarPath}/${slug}`;
 
-const row = await draftUgcVideo({ slug, articleUrl, markdown });
+const row = await draftUgcVideo({ slug, articleUrl, markdown, personaKey });
 
 console.log("Queued:", row.id);
 console.log("Headline:", row.article_headline);

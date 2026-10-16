@@ -23,11 +23,40 @@ import type { ParsedOutOfOfficeArticle } from "./out-of-office-parser";
 // Each Do's/Don'ts clip covers all the pairs used for that country (2-3) —
 // the extra time comes from using more of the article's own existing
 // Do's & Don'ts, never from adding countries or inventing content.
-const SYSTEM_PROMPT = `You write scripts for a 5-clip creator-style vertical video series for The Alignment Times' Out of Office pillar, delivered to camera by Suki Nakamura for Instagram and TikTok. A separate, shared closing clip (not written here) plays after these 5 and directs viewers to the website — so none of these clips needs a call-to-action. Total runtime across the 5 clips should land around 45-60 seconds of natural speech.
+//
+// The same 5-clip format serves both pillars that carry Do's & Don'ts tables
+// (Out of Office and Global Office share the article layout). What differs
+// per pillar is the speaker's tone and what kind of places/clothes fit:
+// Global Office is about work, so its scenes lean toward workplaces and its
+// outfits toward what people actually wear to the office there.
+interface PillarStyle {
+  pillarLabel:  string;
+  tone:         string;
+  sceneGuide?:  string;
+  outfitGuide?: string;
+}
+
+const PILLAR_STYLE: Record<string, PillarStyle> = {
+  "out-of-office": {
+    pillarLabel: "Out of Office",
+    tone:        "dry, curious, a little wry",
+  },
+  "global-office": {
+    pillarLabel: "Global Office",
+    tone:        "sharp, warm and quietly amused, like a colleague who has worked in offices on four continents and is letting you in on how it really works",
+    sceneGuide:  "This pillar is about working life, so set most scenes where work actually happens in that country — an open-plan office floor, a glass meeting room, a business-district street or plaza at rush hour, a café near the office, a metro platform on the commute, a co-working space — and use the landmark rule above for at least one scene per country (e.g. a business district with that city's skyline or landmark behind her).",
+    outfitGuide: "Because these are work scenes, dress her the way a stylish professional actually dresses for work in THAT country and setting — formal where the local office culture is formal (a tailored suit or structured dress), smart-casual where it isn't (e.g. a knit top with tailored trousers), and lighter fabrics in hot climates.",
+  },
+};
+
+function buildSystemPrompt(persona: CreatorPersona): string {
+  const style     = PILLAR_STYLE[persona.pillar] ?? PILLAR_STYLE["out-of-office"];
+  const firstName = persona.name.split(" ")[0];
+  return `You write scripts for a 5-clip creator-style vertical video series for The Alignment Times' ${style.pillarLabel} pillar, delivered to camera by ${persona.name} for Instagram and TikTok. A separate, shared closing clip (not written here) plays after these 5 and directs viewers to the website — so none of these clips needs a call-to-action. Total runtime across the 5 clips should land around 45-60 seconds of natural speech.
 
 Before returning your answer, COUNT THE WORDS in each spoken clip and check they land in range. If a clip is over its maximum, cut it down — remove words, don't just note the target. If a clip is under its minimum, that means you dropped an item too eagerly — add back one rather than leaving the clip thin. A clip a little short is fine; a clip over its maximum breaks the video (Hedra generates a fixed-length take and cuts off whatever doesn't fit).
 
-Clip 1 — Hook (max 26 words): The article's own headline, lightly adapted so it reads as something Suki would say out loud rather than a written headline — keep its wit and contrast fully intact, do not soften or generalize it — followed by ONE short follow-up line that names BOTH countries and previews the Do's/Don'ts format to come, e.g. "Here's what to do — and what not to — in Ireland and Japan." (using that video's actual two countries, not these examples). Keep the follow-up in Suki's wry, curious voice rather than reciting that exact sentence every time, but it must always (a) name both countries and (b) signal the Do's/Don'ts framing — not a vague tease like "And I've lived both." This clip does NOT get its own visual scene — it always opens on the same fixed office backdrop shared by every video, so write only the spoken script for it.
+Clip 1 — Hook (max 26 words): The article's own headline, lightly adapted so it reads as something ${firstName} would say out loud rather than a written headline — keep its wit and contrast fully intact, do not soften or generalize it — followed by ONE short follow-up line that names BOTH countries and previews the Do's/Don'ts format to come, e.g. "Here's what to do — and what not to — in Ireland and Japan." (using that video's actual two countries, not these examples). Keep the follow-up in ${firstName}'s own voice (${style.tone}) rather than reciting that exact sentence every time, but it must always (a) name both countries and (b) signal the Do's/Don'ts framing — not a vague tease like "And I've lived both." This clip does NOT get its own visual scene — it always opens on the same fixed office backdrop shared by every video, so write only the spoken script for it.
 
 Clips 2-5 — one clip per country PER category (STRICT maximum 35 words spoken each, this is a hard limit): Say the country's name once, then deliver EXACTLY 3 items from that category (Do's, or Don'ts) from the list given — if the source list has fewer than 3, use however many exist; never invent a 3rd. Selection rule: when there are more than 3 available, pick the 3 most surprising/vivid and mutually complementary (e.g. one about etiquette, one about logistics, one about cost) rather than any that make the same point twice. IMPORTANT: pick the SAME 3 pairs for a country's Do's clip and its Don'ts clip — each pair's Do goes in the Do's clip, its matching Don't goes in the Don'ts clip, so the two clips stay about the same underlying set of pairs even though they're spoken separately. State each item plainly and directly, back to back — no narrative asides, reactions, or commentary between them ("and I mean everyone", "here's the thing", "just remember" as filler). Every word must be part of an item or the country name — nothing else. If 3 items stated plainly would still exceed 35 words, drop to 2 rather than rushing the delivery. The Don'ts clips get no call-to-action or closing line — end on the last Don't.
 
@@ -35,14 +64,14 @@ Each Do's/Don'ts clip ALSO needs its own caption LIST — these get burned onto 
 - Do caption: a short imperative phrase, e.g. "Book a PT session".
 - Don't caption: name the thing to avoid directly — either a plain verb phrase ("Wear mismatched activewear") or a bare noun phrase ("Mismatched activewear") both work fine under the "DON'T:" prefix. NEVER use a verb that itself already means "avoid" ("skip", "avoid", "don't") — that double-negates under the prefix and flips the meaning. E.g. spoken "Don't wear old, baggy gym clothes — mismatched activewear reads as not trying" → caption "Wear mismatched activewear" or "Mismatched activewear" (both correct), NOT "Skip mismatched activewear" (reads as "DON'T: Skip..." = the opposite of intended).
 
-Each of clips 2-5 (NOT the hook — see above) also needs a SHORT VISUAL SCENE description — a real-world setting/pose for the speaker in that clip, used to generate a distinct start frame per clip so no two clips show the same static shot. Keep each to one photographable sentence: a location plausible for the clip's content, a vertical FULL-BODY framing as if the viewer's own camera is filming her directly (handheld feel, natural angle — NEVER describe her holding or looking at a phone/camera herself, that breaks the illusion she's talking to the viewer), and what the speaker is doing. Her face and shoulders must stay toward the camera with direct eye contact in every scene — NEVER turned away, glancing off-camera, or caught mid-turn — that's the one fixed rule. Her stance and hands must be NEUTRAL and RELAXED, NOT mid-gesture: hands down at her sides, loosely clasped, or resting naturally — NEVER raised, NEVER already extended into a gesture, NEVER caught mid-point (the video model animates gestures from this frame throughout the clip; a start pose that's already at a gesture's peak leaves it nothing to do but slowly relax out of that one pose for the whole clip, which reads as static and unnatural, not lively). Weight settled on one leg, a slight easy angle to the body is fine, since it's her face and eye line that must stay locked on camera, not her whole body squared up like a passport photo. Vary the four scenes from each other through LOCATION, props, and stance angle — NOT through hand gesture, which should stay neutral in every scene and let the animation add movement instead. Ground each country's scenes in something evocative of that country/topic where sensible (e.g. a gym for a fitness article), not just "outside". Where a real, internationally recognizable landmark or iconic cityscape silhouette exists for that country (e.g. the Eiffel Tower, Big Ben/the Houses of Parliament, the Colosseum, Marina Bay Sands, the Sydney Opera House, a Maltese Baroque church facade, a Hong Kong skyline), work it into the background of at least one of that country's two scenes when it's plausible for the specific location/subject — prefer a shot that makes the country instantly recognizable at a glance over a generic unmarked street or building whenever a real option exists, but don't force one in in a way that would look staged or contradict the scene's actual subject (e.g. don't put the Eiffel Tower behind a supermarket aisle). Keep any landmark in the background/mid-ground, never obstructing Suki or her face.
+Each of clips 2-5 (NOT the hook — see above) also needs a SHORT VISUAL SCENE description — a real-world setting/pose for the speaker in that clip, used to generate a distinct start frame per clip so no two clips show the same static shot. Keep each to one photographable sentence: a location plausible for the clip's content, a vertical FULL-BODY framing as if the viewer's own camera is filming her directly (handheld feel, natural angle — NEVER describe her holding or looking at a phone/camera herself, that breaks the illusion she's talking to the viewer), and what the speaker is doing. Her face and shoulders must stay toward the camera with direct eye contact in every scene — NEVER turned away, glancing off-camera, or caught mid-turn — that's the one fixed rule. Her stance and hands must be NEUTRAL and RELAXED, NOT mid-gesture: hands down at her sides, loosely clasped, or resting naturally — NEVER raised, NEVER already extended into a gesture, NEVER caught mid-point (the video model animates gestures from this frame throughout the clip; a start pose that's already at a gesture's peak leaves it nothing to do but slowly relax out of that one pose for the whole clip, which reads as static and unnatural, not lively). Weight settled on one leg, a slight easy angle to the body is fine, since it's her face and eye line that must stay locked on camera, not her whole body squared up like a passport photo. Vary the four scenes from each other through LOCATION, props, and stance angle — NOT through hand gesture, which should stay neutral in every scene and let the animation add movement instead. Ground each country's scenes in something evocative of that country/topic where sensible (e.g. a gym for a fitness article), not just "outside". Where a real, internationally recognizable landmark or iconic cityscape silhouette exists for that country (e.g. the Eiffel Tower, Big Ben/the Houses of Parliament, the Colosseum, Marina Bay Sands, the Sydney Opera House, a Maltese Baroque church facade, a Hong Kong skyline), work it into the background of at least one of that country's two scenes when it's plausible for the specific location/subject — prefer a shot that makes the country instantly recognizable at a glance over a generic unmarked street or building whenever a real option exists, but don't force one in in a way that would look staged or contradict the scene's actual subject (e.g. don't put the Eiffel Tower behind a supermarket aisle). Keep any landmark in the background/mid-ground, never obstructing ${firstName} or her face.${style.sceneGuide ? ` ${style.sceneGuide}` : ""}
 
-Each of clips 2-5 also needs an OUTFIT — what she's wearing in that clip's scene, so she isn't stuck in the same clothes in every video. Dress her the way a stylish, well-put-together woman would actually dress for THAT location, activity, season and local norms: e.g. activewear in a gym, a light linen dress at a Mediterranean seafront, a wool coat and scarf on a winter street, smart-casual at a café, covered shoulders and knees at a temple, church or mosque. One short phrase naming the main garments and their colours (e.g. "a fitted olive bomber jacket over a white tee, dark jeans and white trainers"). Flattering and realistic, never costume-like or a stereotyped "national dress" unless the scene is explicitly a festival where locals would wear it. No logos, slogans or visible text on clothing. All four outfits should be noticeably different from each other. Don't describe the outfit inside the scene field — it goes only in its own outfit field.
+Each of clips 2-5 also needs an OUTFIT — what she's wearing in that clip's scene, so she isn't stuck in the same clothes in every video. Dress her the way a stylish, well-put-together woman would actually dress for THAT location, activity, season and local norms: e.g. activewear in a gym, a light linen dress at a Mediterranean seafront, a wool coat and scarf on a winter street, smart-casual at a café, covered shoulders and knees at a temple, church or mosque. One short phrase naming the main garments and their colours (e.g. "a fitted olive bomber jacket over a white tee, dark jeans and white trainers"). Flattering and realistic, never costume-like or a stereotyped "national dress" unless the scene is explicitly a festival where locals would wear it. No logos, slogans or visible text on clothing. All four outfits should be noticeably different from each other. Don't describe the outfit inside the scene field — it goes only in its own outfit field.${style.outfitGuide ? ` ${style.outfitGuide}` : ""}
 
 Rules:
 - Use ONLY the do's/don'ts provided — never invent new ones.
 - Each clip must end on a complete thought — no clip should cut off mid-sentence, even when covering multiple items.
-- Sound like Suki talking directly to camera — dry, curious, a little wry — never like a listicle being narrated or a checklist being read aloud.
+- Sound like ${firstName} talking directly to camera — ${style.tone} — never like a listicle being narrated or a checklist being read aloud.
 - Never soften the headline's edge when adapting it for speech.
 - When trimming an item to fit (spoken or caption), cut to the sharpest phrase — never cut the part that makes it surprising.
 - Selecting fewer, better items beats cramming all available ones in — a rushed 3rd item reads worse than a confident 2.
@@ -68,6 +97,7 @@ Return only valid JSON, and nothing else:
   "countryBDontsOutfit": "string — what she wears in Clip 5's scene",
   "countryBDontsCaptions": ["string — max 6 words", "... one entry per Don't actually spoken (2-3)"]
 }`;
+}
 
 export interface UgcScript {
   hookClip:              string;
@@ -176,7 +206,7 @@ Country A — ${formatCountry(countryA)}
 
 Country B — ${formatCountry(countryB)}
 
-Write the 5-clip script for Suki to deliver directly to camera.`;
+Write the 5-clip script for ${persona.name.split(" ")[0]} to deliver directly to camera.`;
 
   let userPrompt = baseUserPrompt;
   let lastScript: UgcScript | null = null;
@@ -184,7 +214,7 @@ Write the 5-clip script for Suki to deliver directly to camera.`;
   const MAX_ATTEMPTS = 3;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const response = await callClaude(
-      SYSTEM_PROMPT,
+      buildSystemPrompt(persona),
       userPrompt,
       1200,
       "social:ugc-script",
