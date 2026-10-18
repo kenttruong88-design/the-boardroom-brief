@@ -41,7 +41,9 @@ export async function generateOutroClip(
   const generationId = await submitAvatarVideo({
     startKeyframeId:   sceneAssetId,
     audioAssetId:      narration.assetId,
-    performancePrompt: `${persona.name} speaking directly to camera, documentary travel vlog style, warm closing tone, natural hand gesture.`,
+    // "natural hand gesture" produced a mirrored two-handed presenter move;
+    // asking for hands at rest keeps it to the odd small one-handed gesture.
+    performancePrompt: `${persona.name} speaking directly to camera, calm and composed, warm closing smile. Her arms stay relaxed and hanging at her sides the whole time, hands resting still with only tiny natural finger movements. No hand gestures, no raised hands, no two-handed movements. Subtle natural head movement, natural blinking, relaxed facial expression.`,
     durationMs:        narration.durationMs + 800,
   });
 

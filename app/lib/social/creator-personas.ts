@@ -104,9 +104,9 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     voiceName:         "Rashmi I.",
     // Emerald-dress shot in Suki's exact reception spot (reference/priya/backdrop-emerald-v8b.png).
     introSceneImageAssetId: "d4ad9de6-624c-4dd0-8b17-7def5c80833e",
-    // Burgundy blouse + pencil skirt beside the sign, composited from her
-    // character sheet so the face matches it (reference/priya/backdrop-burgundy-v11-b.png).
-    outroSceneImageAssetId: "be7a037d-ba49-4567-b21e-5670963e706f",
+    // Burgundy blouse + pencil skirt beside the sign (reference/priya/backdrop-burgundy-v5.png),
+    // picked over the later character-sheet composites (v9–v11).
+    outroSceneImageAssetId: "462618e4-233b-4565-a02f-99a59f7fba40",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",

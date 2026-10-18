@@ -14,6 +14,7 @@
  *   npx tsx scripts/ugc-trial-outro.mts <persona> [--voice <hedra-voice-uuid>] <label>=<backdrop.png> [<label>=<backdrop.png> ...]
  *
  * --voice trials a candidate voice without changing the persona's voiceId.
+ * --prompt "<text>" trials a different performance prompt.
  *
  * Requires HEDRA_API_KEY and CLOUDINARY_* in .env.local.
  */
@@ -42,6 +43,8 @@ loadEnv(resolve(ROOT, ".env.local"));
 const args = process.argv.slice(2);
 const voiceFlag = args.findIndex((a) => a === "--voice");
 const voiceOverride = voiceFlag >= 0 ? args.splice(voiceFlag, 2)[1] : undefined;
+const promptFlag = args.findIndex((a) => a === "--prompt");
+const promptOverride = promptFlag >= 0 ? args.splice(promptFlag, 2)[1] : undefined;
 const [personaKey, ...pairs] = args;
 const backdrops = pairs.map((p) => p.split("=")).filter((p) => p.length === 2 && p[0] && p[1]);
 if (!personaKey || !backdrops.length || backdrops.length !== pairs.length) {
@@ -77,7 +80,7 @@ async function trial(label: string, imagePath: string): Promise<string> {
   const generationId = await submitAvatarVideo({
     startKeyframeId:   frameId,
     audioAssetId:      narration.assetId,
-    performancePrompt: `${persona.name} speaking directly to camera, documentary travel vlog style, warm closing tone, natural hand gesture.`,
+    performancePrompt: promptOverride ?? `${persona.name} speaking directly to camera, documentary travel vlog style, warm closing tone, natural hand gesture.`,
     durationMs:        narration.durationMs + 800,
   });
   console.log(`[${label}] frame ${frameId}, video submitted ${generationId}`);
