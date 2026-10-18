@@ -14,7 +14,11 @@
  * outroSceneImageAssetId).
  *
  * Usage (from project root):
- *   npx tsx scripts/edit-backdrop.mts <source.png> <out-basename> <prompt.txt> [count]
+ *   npx tsx scripts/edit-backdrop.mts <source.png[,ref2,...]> <out-basename> <prompt.txt> [count]
+ *
+ * Multiple references (local paths or Hedra asset ids) turn it into a
+ * composite: put a person-free scene first, then identity shots, and
+ * describe the pose in the prompt.
  *
  * Requires HEDRA_API_KEY in .env.local.
  */
@@ -50,10 +54,19 @@ const prompt = readFileSync(resolve(ROOT, promptPath), "utf8").trim();
 
 const { uploadLocalImageAsset, generateSceneImage } = await import("../app/lib/social/hedra-client");
 
-const sourceId = await uploadLocalImageAsset(readFileSync(resolve(ROOT, sourcePath)), basename(sourcePath));
-console.log("Source uploaded:", sourceId);
+// <source> may be a comma-separated list mixing local image paths and existing
+// Hedra asset ids (e.g. a persona's characterSheet shots), in reference order.
+// The first entry also decides the output folder (an asset id → reference/).
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const sources = sourcePath.split(",").map((s) => s.trim()).filter(Boolean);
+const sourceIds: string[] = [];
+for (const s of sources) {
+  sourceIds.push(UUID.test(s) ? s : await uploadLocalImageAsset(readFileSync(resolve(ROOT, s)), basename(s)));
+}
+console.log("References:", sourceIds.join(", "));
+const sourceId = sourceIds.length === 1 ? sourceIds[0] : sourceIds;
 
-const outDir  = dirname(resolve(ROOT, sourcePath));
+const outDir  = UUID.test(sources[0]) ? resolve(ROOT, "reference") : dirname(resolve(ROOT, sources[0]));
 const letters = "abcdefghij";
 await Promise.all(Array.from({ length: count }, async (_, i) => {
   const name    = `${outBase}-${letters[i]}`;
