@@ -4,6 +4,7 @@ import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { generateArticleImage } from "@/app/lib/agents/image-generator";
 import type { ArticleDraft } from "@/app/lib/agents/types";
+import { extractTitle, legacyFilenameTitle } from "@/app/lib/content/article-title";
 
 function isAuthorised(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
@@ -156,28 +157,6 @@ interface Article {
   heroUrl: string; ogUrl: string; pubDt: string;
   readTime: number; blocks: object[]; seoDesc: string;
   countries: string[]; subject: string;
-}
-
-// Content is normally authored with an H1 title (`# Title`). Some generated
-// batches instead emit the title as a standalone bold line (`**Title**`) with
-// no H1 — fall back to that before ever falling back to the raw filename.
-function extractTitle(bodyMd: string, filePath: string): { title: string; noTitle: string } {
-  const h1 = bodyMd.match(/^#\s+(.+)$/m);
-  if (h1) {
-    return { title: h1[1].trim(), noTitle: bodyMd.replace(/^#\s+.+\n*/m, "").trim() };
-  }
-
-  const lines = bodyMd.split("\n");
-  const firstIdx = lines.findIndex((l) => l.trim().length > 0);
-  const firstLine = firstIdx >= 0 ? lines[firstIdx].trim() : "";
-  const bold = firstLine.match(/^\*\*(.+?)\*\*$/);
-  if (bold) {
-    const rest = [...lines.slice(0, firstIdx), ...lines.slice(firstIdx + 1)].join("\n");
-    return { title: bold[1].trim(), noTitle: rest.trim() };
-  }
-
-  const fallback = filePath.split(/[/\\]/).pop()!.replace(/\.md$/i, "").replace(/-/g, " ");
-  return { title: fallback, noTitle: bodyMd };
 }
 
 // Country-flag emoji are pairs of Unicode regional indicator symbols
@@ -381,7 +360,9 @@ export async function GET(req: NextRequest) {
         continue;
       }
       if (!article) continue;
-      if (!publishedSlugs.has(article.slug)) candidates.push({ filename, article });
+      // Articles published before the title fix carry a filename-derived slug.
+      if (publishedSlugs.has(article.slug) || publishedSlugs.has(slugify(legacyFilenameTitle(filename)))) continue;
+      candidates.push({ filename, article });
     }
     if (!candidates.length) {
       return NextResponse.json({ message: "All out-of-office articles already published", published: 0 });
