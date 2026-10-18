@@ -42,8 +42,8 @@ export async function generateOutroClip(
     startKeyframeId:   sceneAssetId,
     audioAssetId:      narration.assetId,
     // "natural hand gesture" produced a mirrored two-handed presenter move;
-    // asking for hands at rest keeps it to the odd small one-handed gesture.
-    performancePrompt: `${persona.name} speaking directly to camera, calm and composed, warm closing smile. Her arms stay relaxed and hanging at her sides the whole time, hands resting still with only tiny natural finger movements. No hand gestures, no raised hands, no two-handed movements. Subtle natural head movement, natural blinking, relaxed facial expression.`,
+    // naming one hand and pinning the other keeps it to a single small gesture.
+    performancePrompt: `${persona.name} speaking directly to camera, warm closing smile. Partway through she makes one single small gesture with her right hand at waist height, a gentle open-palm movement, then lets it settle back down. Her left arm hangs relaxed at her side the whole time and does not move. Only one hand ever moves, never both. Subtle natural head movement, small nods and tilts, natural blinking, soft relaxed facial expression with gentle movement around the eyes and mouth.`,
     durationMs:        narration.durationMs + 800,
   });
 
