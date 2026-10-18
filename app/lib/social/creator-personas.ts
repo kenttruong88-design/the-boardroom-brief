@@ -8,18 +8,6 @@ export interface CreatorPersona {
   voiceId:                 string;
   voiceName:               string;
   bio:                     string;
-  /**
-   * Set when the persona's voice isn't in Hedra's library (voiceId is then
-   * empty): narration is made with this external TTS voice and uploaded to
-   * Hedra as an audio asset instead — see scripts/ugc-trial-clip.mts. The
-   * automated pipeline can't call it yet (needs a Higgsfield API key).
-   */
-  externalVoice?: {
-    provider:    "higgsfield";
-    model:       string;
-    voiceId:     string;
-    instruction: string;
-  };
   /** Spoken script for the shared closing clip, reused across every video. */
   outroScript:             string;
   /** Description of the shared intro/outro backdrop, for documentation — the actual generation uses `introSceneImageAssetId`, not this text. */
@@ -95,23 +83,19 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     },
   },
   // Global Office creator. Identity designed in Higgsfield (no real source
-  // photos) and registered via scripts/register-persona-sheet.mts. Her voice
-  // is a Higgsfield one (Hedra has no fitting Indian-accented voice), so her
-  // narration can't go through the automated pipeline yet, and the outro and
-  // end-card clips aren't made yet.
+  // photos) and registered via scripts/register-persona-sheet.mts. Her outro
+  // and end-card clips aren't made yet.
   priya: {
     key:               "priya",
     name:              "Priya Mehta",
     pillar:            "global-office",
     referenceImageUrl: "https://res.cloudinary.com/dnpcbx89m/image/upload/v1792161148/boardroom-brief/ugc/priya-reference.png",
-    voiceId:           "",
-    voiceName:         "Imogen (Higgsfield, Indian accent direction)",
-    externalVoice: {
-      provider:    "higgsfield",
-      model:       "qwen_audio_tts",
-      voiceId:     "3811e986-0891-47cf-a1f5-78a1d62a547a",
-      instruction: "Young woman from Mumbai, English with a clear Indian accent; low, husky, raspy voice; sultry, warm, unhurried.",
-    },
+    // Hedra voice clone of a Higgsfield Imogen voice with an Indian-accent
+    // direction (sample: reference/priya/voice-clone-sample/). Cloned via the
+    // v3 API, where its id is "voice_<uuid>"; the legacy TTS endpoint takes
+    // the bare uuid and rejects the prefix. It isn't listed by legacy /voices.
+    voiceId:           "08917e7f-d266-4683-ba48-c2bf1a1bf502",
+    voiceName:         "Priya Mehta (Imogen clone)",
     // Emerald-dress shot in Suki's exact reception spot (reference/priya/backdrop-emerald-v8b.png).
     introSceneImageAssetId: "d4ad9de6-624c-4dd0-8b17-7def5c80833e",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",

@@ -2,9 +2,9 @@
 /**
  * ugc-trial-clip.mts
  * ────────────────────
- * Generates ONE avatar clip from narration you already have (e.g. made with
- * a Higgsfield voice Hedra's library doesn't offer), so a new persona/voice
- * can be judged on a single clip before wiring it into the full pipeline.
+ * Generates ONE avatar clip from narration you already have (e.g. a voice
+ * sample, or audio from a voice outside Hedra's library), so a new
+ * persona/voice can be judged on a single clip before a full pipeline run.
  *
  * Uploads the audio (and optionally a start-frame image) to Hedra — uploads
  * are free — then submits one avatar video, which DOES spend Hedra credits.
