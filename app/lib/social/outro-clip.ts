@@ -33,7 +33,8 @@ export async function generateOutroClip(
   // from persona.outroScene, so intro and outro share an identical
   // backdrop. Falls back to the old per-call generateSceneImage path only
   // if a persona hasn't had a fixed backdrop generated yet.
-  const sceneAssetId = persona.introSceneImageAssetId
+  const sceneAssetId = persona.outroSceneImageAssetId
+    ?? persona.introSceneImageAssetId
     ?? await generateSceneImage(await getPersonaIdentityAssetId(persona), persona.outroScene, `${persona.key}-outro-scene.png`);
   const narration     = await generateNarration(persona.outroScript, persona.voiceId);
 

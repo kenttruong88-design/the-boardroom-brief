@@ -22,6 +22,12 @@ export interface CreatorPersona {
    */
   introSceneImageAssetId?: string;
   /**
+   * Hedra image asset id for the outro's start frame when it differs from
+   * the intro's (same spot, different outfit). Falls back to
+   * introSceneImageAssetId when unset.
+   */
+  outroSceneImageAssetId?: string;
+  /**
    * Cloudinary public_id of the generated outro clip. Undefined until
    * `scripts/generate-outro-clip.mts` has been run once for this persona —
    * paste the printed public_id in here afterward. The clip is generated
@@ -90,14 +96,16 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     name:              "Priya Mehta",
     pillar:            "global-office",
     referenceImageUrl: "https://res.cloudinary.com/dnpcbx89m/image/upload/v1792161148/boardroom-brief/ugc/priya-reference.png",
-    // Hedra voice clone of a Higgsfield Imogen voice with an Indian-accent
-    // direction (sample: reference/priya/voice-clone-sample/). Cloned via the
-    // v3 API, where its id is "voice_<uuid>"; the legacy TTS endpoint takes
-    // the bare uuid and rejects the prefix. It isn't listed by legacy /voices.
-    voiceId:           "08917e7f-d266-4683-ba48-c2bf1a1bf502",
-    voiceName:         "Priya Mehta (Imogen clone)",
+    // From the shared ElevenLabs library, found via the v3 API's
+    // GET /v3/models/elevenlabs-v3/voices/search (legacy /voices doesn't list
+    // it). Legacy TTS takes the bare uuid, not v3's "voice_<uuid>" form.
+    // A Hedra clone of her Higgsfield voice was tried first and rejected.
+    voiceId:           "5e6c6c6a-8d4a-4460-8460-bb8a7fa0aaac",
+    voiceName:         "Rashmi I.",
     // Emerald-dress shot in Suki's exact reception spot (reference/priya/backdrop-emerald-v8b.png).
     introSceneImageAssetId: "d4ad9de6-624c-4dd0-8b17-7def5c80833e",
+    // Burgundy blouse + pencil skirt in the same spot (reference/priya/backdrop-burgundy-v5.png).
+    outroSceneImageAssetId: "f9777d65-25d2-488f-8cd0-906a9a9da1ae",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
