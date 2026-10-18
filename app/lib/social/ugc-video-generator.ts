@@ -230,9 +230,14 @@ export async function regenerateClips(queueId: string, labels: ClipLabel[]): Pro
 // locked on camera — stance and hands are explicitly freed up and asked to
 // be expressive, with concrete hand-gesture vocabulary (counting off
 // points, open palm) rather than vague "small" gestures.
+//
+// The hook later dropped the "animated hands" ask: like the outro (see
+// outro-clip.ts), vague gesture wording made Character-3 raise both hands
+// in a mirrored presenter move. Naming one hand and pinning the other keeps
+// it to a single small gesture.
 function performanceActionFor(label: ClipLabel): string {
   if (label === "hook") {
-    return "Speaks directly to camera with a warm, knowing, a little wry expression, gentle smiling eyes, and engaging eye contact throughout — an animated eyebrow raise paired with an open-hand gesture landing on the headline's sharpest word, then a more relaxed conversational beat with a smaller natural gesture for the follow-up line.";
+    return "Speaks directly to camera with a warm, knowing, slightly wry expression and gentle smiling eyes. An eyebrow raise and a small smile land on the headline's punchline, and at that moment she makes one single small open-palm gesture with her right hand at waist height, then lets it settle back down. Her left arm hangs relaxed at her side the whole time and does not move. Only one hand ever moves, never both. Subtle natural head movement, small nods and tilts, natural blinking, soft relaxed facial expression with gentle movement around the eyes and mouth.";
   }
   const isDos  = label.endsWith("_dos");
   const tone    = isDos ? "confident, encouraging" : "wry, cautionary";
@@ -243,8 +248,11 @@ function performanceActionFor(label: ClipLabel): string {
 }
 
 export function performancePromptFor(personaName: string, label: ClipLabel): string {
+  const body = label === "hook"
+    ? "Her face and eye line stay locked on camera throughout — never turning away or glancing off."
+    : "Her face and eye line stay locked on camera throughout — never turning away or glancing off — but her stance and hands stay loose and animated, not a stiff, arms-still pose. Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.";
   return `Subject: ${personaName}, the woman shown in the start frame.
-Action: ${performanceActionFor(label)} Her face and eye line stay locked on camera throughout — never turning away or glancing off — but her stance and hands stay loose and animated, not a stiff, arms-still pose. Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.
+Action: ${performanceActionFor(label)} ${body}
 Context: Clean background matching the start frame image, no scene changes mid-take.
 Cinematography: Eye-level vertical full-body shot, subject facing camera with direct eye contact, static frame, no camera movement.
 Style & Ambiance: Soft natural lighting, realistic skin tones, inviting and authentic mood.
