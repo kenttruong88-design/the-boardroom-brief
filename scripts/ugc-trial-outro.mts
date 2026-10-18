@@ -11,7 +11,9 @@
  * slot). Each backdrop costs one avatar-video generation in Hedra credits.
  *
  * Usage (from project root):
- *   npx tsx scripts/ugc-trial-outro.mts <persona> <label>=<backdrop.png> [<label>=<backdrop.png> ...]
+ *   npx tsx scripts/ugc-trial-outro.mts <persona> [--voice <hedra-voice-uuid>] <label>=<backdrop.png> [<label>=<backdrop.png> ...]
+ *
+ * --voice trials a candidate voice without changing the persona's voiceId.
  *
  * Requires HEDRA_API_KEY and CLOUDINARY_* in .env.local.
  */
@@ -37,10 +39,13 @@ function loadEnv(path: string) {
 }
 loadEnv(resolve(ROOT, ".env.local"));
 
-const [personaKey, ...pairs] = process.argv.slice(2);
+const args = process.argv.slice(2);
+const voiceFlag = args.findIndex((a) => a === "--voice");
+const voiceOverride = voiceFlag >= 0 ? args.splice(voiceFlag, 2)[1] : undefined;
+const [personaKey, ...pairs] = args;
 const backdrops = pairs.map((p) => p.split("=")).filter((p) => p.length === 2 && p[0] && p[1]);
 if (!personaKey || !backdrops.length || backdrops.length !== pairs.length) {
-  console.error("Usage: npx tsx scripts/ugc-trial-outro.mts <persona> <label>=<backdrop.png> [...]");
+  console.error("Usage: npx tsx scripts/ugc-trial-outro.mts <persona> [--voice <hedra-voice-uuid>] <label>=<backdrop.png> [...]");
   process.exit(1);
 }
 
@@ -61,9 +66,10 @@ cloudinary.config({
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const persona = getCreatorPersona(personaKey);
-if (!persona.voiceId) throw new Error(`Persona "${personaKey}" has no voiceId`);
+const voiceId = voiceOverride ?? persona.voiceId;
+if (!voiceId) throw new Error(`Persona "${personaKey}" has no voiceId — pass --voice`);
 
-const narration = await generateNarration(persona.outroScript, persona.voiceId);
+const narration = await generateNarration(persona.outroScript, voiceId);
 console.log(`Narration: ${narration.assetId} (${narration.durationMs}ms) ${narration.audioUrl}`);
 
 async function trial(label: string, imagePath: string): Promise<string> {
