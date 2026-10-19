@@ -6,7 +6,13 @@ import {
   generateSceneImage,
 } from "./hedra-client";
 import { getPersonaIdentityAssetId, type CreatorPersona } from "./creator-personas";
-import { ONE_HAND_GESTURE } from "./ugc-video-generator";
+
+// "natural hand gesture" produced a mirrored two-handed presenter move, and
+// "open-palm" a shoulder-high wave, so the gesture names one hand, pins it
+// below the waist with the palm turned in, and keeps the other arm still.
+// Blinking isn't asked for: on Priya's eye makeup it animated badly.
+// Suki's outro was made before this and isn't regenerated.
+const ONE_HAND_GESTURE = "one single small gesture with her right hand at waist height: the hand lifts slightly away from her hip, fingers loosely curled and the palm turned in toward her body so the palm is never shown to the camera, then settles back down at her side. The hand never rises above her waist: no waving, no open palm, no pointing. Her left arm hangs relaxed at her side the whole time and does not move. Only one hand ever moves, never both. Subtle natural head movement, small nods and tilts, soft relaxed facial expression.";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -42,8 +48,6 @@ export async function generateOutroClip(
   const generationId = await submitAvatarVideo({
     startKeyframeId:   sceneAssetId,
     audioAssetId:      narration.assetId,
-    // "natural hand gesture" produced a mirrored two-handed presenter move;
-    // naming one hand and pinning the other keeps it to a single small gesture.
     performancePrompt: `${persona.name} speaking directly to camera, warm closing smile. Partway through she makes ${ONE_HAND_GESTURE}`,
     durationMs:        narration.durationMs + 800,
   });
