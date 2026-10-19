@@ -40,16 +40,25 @@ loadEnv(resolve(ROOT, ".env.local"));
 
 const { uploadLocalImageAsset, generateSceneImage } = await import("../app/lib/social/hedra-client");
 
-const REFS = ["reference/priya/priya-curly-2-heart.png", "reference/priya/heart-threequarter.png"];
+// The two face refs alone let the model slim her down to its default build,
+// so her full-body Higgsfield sheet shots go in as body references too.
+const REFS = [
+  "reference/priya/priya-curly-2-heart.png",
+  "reference/priya/heart-threequarter.png",
+  "reference/priya/priya-sheet-fullBodyFront.png",
+  "reference/priya/priya-sheet-fullBodySide.png",
+];
 
 const IDENTITY =
   "The reference images show one woman. Reproduce her exactly: the same face shape, light grey eyes, " +
-  "eyebrows, nose, lips, jawline, warm brown skin tone, long voluminous black ringlet curls and curvy " +
-  "hourglass figure. She must be unmistakably the same person. Use the references only for who she is, " +
-  "not for their studio lighting, makeup or clothes.";
+  "eyebrows, nose, lips, jawline, warm brown skin tone and long voluminous black ringlet curls. " +
+  "References 3 and 4 show her body: keep exactly that figure, a full, curvy hourglass shape with a " +
+  "large full bust, a defined narrow waist, wide hips and full thighs. Do not make her slimmer, thinner " +
+  "or more petite than in the references. She must be unmistakably the same person. Use the references " +
+  "only for who she is, not for their studio lighting, makeup or clothes.";
 
 const LOOK =
-  "Her signature outfit: a burgundy satin wrap blouse with long sleeves and a fitted black pencil skirt, " +
+  "Her signature outfit: a burgundy satin wrap blouse with long sleeves that follows her curves and a fitted black pencil skirt that hugs her hips, " +
   "carrying a black leather tote bag on one shoulder. Light, natural everyday makeup: no heavy eyeliner " +
   "or kohl, soft matte lips.";
 
