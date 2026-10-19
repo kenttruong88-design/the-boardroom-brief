@@ -6,6 +6,7 @@ import {
   generateSceneImage,
 } from "./hedra-client";
 import { getPersonaIdentityAssetId, type CreatorPersona } from "./creator-personas";
+import { ONE_HAND_GESTURE } from "./ugc-video-generator";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -43,7 +44,7 @@ export async function generateOutroClip(
     audioAssetId:      narration.assetId,
     // "natural hand gesture" produced a mirrored two-handed presenter move;
     // naming one hand and pinning the other keeps it to a single small gesture.
-    performancePrompt: `${persona.name} speaking directly to camera, warm closing smile. Partway through she makes one single small gesture with her right hand at waist height, a gentle open-palm movement, then lets it settle back down. Her left arm hangs relaxed at her side the whole time and does not move. Only one hand ever moves, never both. Subtle natural head movement, small nods and tilts, natural blinking, soft relaxed facial expression with gentle movement around the eyes and mouth.`,
+    performancePrompt: `${persona.name} speaking directly to camera, warm closing smile. Partway through she makes ${ONE_HAND_GESTURE}`,
     durationMs:        narration.durationMs + 800,
   });
 

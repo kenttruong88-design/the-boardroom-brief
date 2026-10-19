@@ -234,10 +234,14 @@ export async function regenerateClips(queueId: string, labels: ClipLabel[]): Pro
 // The hook later dropped the "animated hands" ask: like the outro (see
 // outro-clip.ts), vague gesture wording made Character-3 raise both hands
 // in a mirrored presenter move. Naming one hand and pinning the other keeps
-// it to a single small gesture.
+// it to a single small gesture. "Open-palm" then rendered as a shoulder-high
+// wave, so the gesture is pinned below the waist with the palm turned in.
+// Blinking isn't asked for: on Priya's eye makeup it animated badly.
+export const ONE_HAND_GESTURE = "one single small gesture with her right hand at waist height: the hand lifts slightly away from her hip, fingers loosely curled and the palm turned in toward her body so the palm is never shown to the camera, then settles back down at her side. The hand never rises above her waist: no waving, no open palm, no pointing. Her left arm hangs relaxed at her side the whole time and does not move. Only one hand ever moves, never both. Subtle natural head movement, small nods and tilts, soft relaxed facial expression.";
+
 function performanceActionFor(label: ClipLabel): string {
   if (label === "hook") {
-    return "Speaks directly to camera with a warm, knowing, slightly wry expression and gentle smiling eyes. An eyebrow raise and a small smile land on the headline's punchline, and at that moment she makes one single small open-palm gesture with her right hand at waist height, then lets it settle back down. Her left arm hangs relaxed at her side the whole time and does not move. Only one hand ever moves, never both. Subtle natural head movement, small nods and tilts, natural blinking, soft relaxed facial expression with gentle movement around the eyes and mouth.";
+    return `Speaks directly to camera with a warm, knowing, slightly wry expression and gentle smiling eyes. An eyebrow raise and a small smile land on the headline's punchline, and at that moment she makes ${ONE_HAND_GESTURE}`;
   }
   const isDos  = label.endsWith("_dos");
   const tone    = isDos ? "confident, encouraging" : "wry, cautionary";
