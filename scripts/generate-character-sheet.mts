@@ -86,17 +86,19 @@ const persona = getCreatorPersona(personaKey);
 
 // The real-looking source photos each persona's sheet is derived from, all
 // passed together as multi-reference. Suki's came from nano-banana-pro off a
-// ChatGPT reference; Priya's were made the same way by
-// scripts/priya-source-photos.mts (shot 6 left out: its laugh drifted the face).
+// ChatGPT reference. Priya's sheet is rebuilt straight from her 7 Higgsfield
+// sheet shots: going via the nano-banana source photos of
+// scripts/priya-source-photos.mts drifted her eyes and slimmed her.
 const SOURCE_PHOTOS: Record<string, string[]> = {
   suki:  [1, 2, 3, 4, 5, 6, 7].map((n) => `reference/Suki ${n}.png`),
-  priya: [1, 2, 3, 4, 5, 7].map((n) => `reference/priya/source/Priya ${n}.png`),
+  priya: ["frontNeutral", "threeQuarterNeutral", "profileNeutral", "frontSmiling", "frontSerious", "fullBodyFront", "fullBodySide"]
+    .map((s) => `reference/priya/priya-sheet-${s}.png`),
 };
 
 // A plain tee lets the model slip back to its default slim build, so a
 // persona whose figure matters spells it out.
 const FIGURE: Record<string, string> = {
-  priya: " Keep her exact figure from the reference photos: a full, curvy hourglass shape with a large full bust, a narrow waist and wide hips. Do not make her slimmer.",
+  priya: " Keep her identical to the reference images: the same face, light grey eyes, eyebrows, nose, lips, warm brown skin and long black ringlet curls. Her figure is a full, curvy hourglass shape with an even larger, fuller bust than in the references, a narrow waist and wide hips. Do not make her slimmer.",
 };
 
 const OUTFIT = "wearing a simple plain white t-shirt and plain black trousers, no jacket, no patterns, no accessories";
