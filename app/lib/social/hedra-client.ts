@@ -172,11 +172,11 @@ export async function generateSceneImage(
   referenceAssetId: string | string[],
   prompt: string,
   name: string,
-  opts: { intervalMs?: number; timeoutMs?: number } = {}
+  opts: { intervalMs?: number; timeoutMs?: number; model?: string } = {}
 ): Promise<string> {
   const gen = await post<{ id: string; asset_id: string }>("/generations", {
     type:                 "image",
-    model_slug:           "google/nano-banana-pro",
+    model_slug:           opts.model ?? "google/nano-banana-pro",
     reference_image_ids:  Array.isArray(referenceAssetId) ? referenceAssetId : [referenceAssetId],
     text_prompt:          prompt,
     aspect_ratio:         "9:16",

@@ -50,6 +50,10 @@ if (!sourcePath || !outBase || !promptPath) {
   process.exit(1);
 }
 const count  = Math.max(1, parseInt(countArg ?? "1", 10));
+// --model <slug> swaps nano-banana-pro for another Hedra image model
+// (e.g. fal/krea-2-large, fal/flux2-max-i2i); mind its reference limit.
+const modelIdx = process.argv.indexOf("--model");
+const model    = modelIdx !== -1 ? process.argv[modelIdx + 1] : undefined;
 const prompt = readFileSync(resolve(ROOT, promptPath), "utf8").trim();
 
 const { uploadLocalImageAsset, generateSceneImage } = await import("../app/lib/social/hedra-client");
@@ -70,7 +74,7 @@ const outDir  = UUID.test(sources[0]) ? resolve(ROOT, "reference") : dirname(res
 const letters = "abcdefghij";
 await Promise.all(Array.from({ length: count }, async (_, i) => {
   const name    = `${outBase}-${letters[i]}`;
-  const assetId = await generateSceneImage(sourceId, prompt, `${name}.png`);
+  const assetId = await generateSceneImage(sourceId, prompt, `${name}.png`, { model });
   const res     = await fetch(`https://api.hedra.com/web-app/public/assets?type=image&ids=${assetId}`, {
     headers: { "X-API-Key": process.env.HEDRA_API_KEY! },
   });
