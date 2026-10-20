@@ -28,11 +28,14 @@
  *   npx tsx scripts/generate-character-sheet.mts <persona-key> [--force]
  *   npx tsx scripts/generate-character-sheet.mts <persona-key> --only <shotName>
  *   npx tsx scripts/generate-character-sheet.mts suki
+ *   --out <dir> also saves each shot as <dir>/<persona>-sheet-<shotName>.png
+ *
+ * Source photos per persona are listed in SOURCE_PHOTOS below.
  *
  * Requires HEDRA_API_KEY and CLOUDINARY_* in .env.local.
  */
 
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -57,6 +60,9 @@ const personaKey = process.argv[2];
 const force = process.argv.includes("--force");
 const onlyIdx = process.argv.indexOf("--only");
 const onlyShot = onlyIdx !== -1 ? process.argv[onlyIdx + 1] : undefined;
+const outIdx = process.argv.indexOf("--out");
+const outDir = outIdx !== -1 ? resolve(ROOT, process.argv[outIdx + 1]) : undefined;
+if (outDir) mkdirSync(outDir, { recursive: true });
 if (!personaKey) {
   console.error("Usage: npx tsx scripts/generate-character-sheet.mts <persona-key> [--force | --only <shotName>]");
   process.exit(1);
@@ -77,6 +83,21 @@ cloudinary.config({
 });
 
 const persona = getCreatorPersona(personaKey);
+
+// The real-looking source photos each persona's sheet is derived from, all
+// passed together as multi-reference. Suki's came from nano-banana-pro off a
+// ChatGPT reference; Priya's were made the same way by
+// scripts/priya-source-photos.mts (shot 6 left out: its laugh drifted the face).
+const SOURCE_PHOTOS: Record<string, string[]> = {
+  suki:  [1, 2, 3, 4, 5, 6, 7].map((n) => `reference/Suki ${n}.png`),
+  priya: [1, 2, 3, 4, 5, 7].map((n) => `reference/priya/source/Priya ${n}.png`),
+};
+
+// A plain tee lets the model slip back to its default slim build, so a
+// persona whose figure matters spells it out.
+const FIGURE: Record<string, string> = {
+  priya: " Keep her exact figure from the reference photos: a full, curvy hourglass shape with a large full bust, a narrow waist and wide hips. Do not make her slimmer.",
+};
 
 const OUTFIT = "wearing a simple plain white t-shirt and plain black trousers, no jacket, no patterns, no accessories";
 const BACKDROP = "plain neutral light-grey background, even studio lighting, no props";
@@ -114,21 +135,23 @@ for (const shotName of Object.keys(SHOTS)) {
   if (!toGenerate.find(([n]) => n === shotName)) console.log(`  (skipping ${shotName} — already generated)`);
 }
 
-console.log("\nUploading identity references (reference/Suki 1.png .. Suki 7.png)...");
+const sources = SOURCE_PHOTOS[persona.key];
+if (!sources) throw new Error(`No source photos listed for "${persona.key}" in SOURCE_PHOTOS`);
+console.log(`\nUploading identity references (${sources.length} source photos)...`);
 const identityAssetIds: string[] = [];
-for (let i = 1; i <= 7; i++) {
-  const filePath = resolve(ROOT, "reference", `Suki ${i}.png`);
+for (const [i, rel] of sources.entries()) {
+  const filePath = resolve(ROOT, rel);
   if (!existsSync(filePath)) {
-    console.log(`  (skipping Suki ${i}.png — not found)`);
+    console.log(`  (skipping ${rel} — not found)`);
     continue;
   }
   const buf = readFileSync(filePath);
-  const assetId = await uploadLocalImageAsset(buf, `${persona.key}-ref-${i}.png`);
+  const assetId = await uploadLocalImageAsset(buf, `${persona.key}-ref-${i + 1}.png`);
   identityAssetIds.push(assetId);
-  console.log(`  Suki ${i}.png -> ${assetId}`);
+  console.log(`  ${rel} -> ${assetId}`);
 }
 if (identityAssetIds.length === 0) {
-  throw new Error("No reference photos found in reference/Suki 1.png .. Suki 7.png");
+  throw new Error(`None of ${persona.key}'s source photos were found`);
 }
 
 if (onlyShot) {
@@ -146,9 +169,18 @@ console.log(`Using ${identityAssetIds.length} reference image(s) total.`);
 const results: Record<string, string> = { ...existing };
 for (const [shotName, prompt] of toGenerate) {
   console.log(`\n[${shotName}] generating...`);
-  const assetId = await generateSceneImage(identityAssetIds, prompt, `${persona.key}-sheet-${shotName}.png`);
+  const assetId = await generateSceneImage(identityAssetIds, prompt + (FIGURE[persona.key] ?? ""), `${persona.key}-sheet-${shotName}.png`);
   results[shotName] = assetId;
   console.log(`[${shotName}] asset id: ${assetId}`);
+  if (outDir) {
+    const res = await fetch(`https://api.hedra.com/web-app/public/assets?type=image&ids=${assetId}`, {
+      headers: { "X-API-Key": process.env.HEDRA_API_KEY! },
+    });
+    const [asset] = await res.json() as Array<{ asset?: { url?: string } }>;
+    if (asset?.asset?.url) {
+      writeFileSync(resolve(outDir, `${persona.key}-sheet-${shotName}.png`), Buffer.from(await (await fetch(asset.asset.url)).arrayBuffer()));
+    }
+  }
 }
 
 console.log("\nDone. Paste this into creator-personas.ts under the persona's `characterSheet` field:");
