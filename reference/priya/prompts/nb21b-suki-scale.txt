@@ -1,0 +1,7 @@
+Keep the FIRST reference image exactly as it is: the same woman with the same face, light grey eyes, closed-mouth smile, curly hair, curvy figure, burgundy satin wrap blouse, black pencil skirt and heels, and the same office reception, wall, backlit "AT" sign, glass partition, lighting and camera framing. The THIRD reference image is her real face: her face must stay an exact match to it. Do not change her face in any way.
+
+The SECOND reference image shows the exact spot and size she must have. Change ONLY her size and depth in the frame:
+- Move her back so she stands right at the wall, exactly like the woman in the second image: her shoes rest on the floor at the base of the wall, at exactly the same height in the image as the shoes in the second image.
+- Make her about 16% smaller overall, so the top of her head is at exactly the same height in the image as the top of the head in the second image, a little below the top edge of the sign.
+- Keep her horizontal position to the left of the sign, the same as now.
+Everything else stays identical.
