@@ -110,14 +110,15 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
+    // Rebuilt in nano-banana-pro from her Higgsfield sheet (reference/priya/sheet-v3).
     characterSheet: {
-      frontNeutral:        "e1ccaffc-ccb7-4486-847c-a54308dd3d1a",
-      threeQuarterNeutral: "c07ab9f3-9898-4a02-87c2-b219587b8c89",
-      profileNeutral:      "51c1dad3-78d1-4392-8b45-44d105ebab50",
-      frontSmiling:        "0f8eaa5d-6327-4315-8376-38da59af5939",
-      frontSerious:        "787799ea-15fd-40ed-b46e-323046cb6606",
-      fullBodyFront:       "783823f6-ca9d-47bb-a2db-924bd3648e13",
-      fullBodySide:        "9cb3f587-b2cf-4dc1-976e-a0df8540e95b",
+      frontNeutral:        "01464605-5d31-41b0-93d4-e18c14f6a24c",
+      threeQuarterNeutral: "e462aef6-1422-4f7d-934c-cff4752b4fe8",
+      profileNeutral:      "ae4d1b56-7805-44a6-ada5-c5d050db66e6",
+      frontSmiling:        "689e96f1-0bce-4620-aa82-773d1b91a3cf",
+      frontSerious:        "b3a520bf-197d-49c1-95ca-c99e42026398",
+      fullBodyFront:       "3fe85790-de03-4e77-9bba-41fcf8c35a1b",
+      fullBodySide:        "9e436048-1f27-43be-a45a-d5232b0e9d91",
     },
   },
 };
