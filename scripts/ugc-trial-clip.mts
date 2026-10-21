@@ -40,7 +40,11 @@ function loadEnv(path: string) {
 }
 loadEnv(resolve(ROOT, ".env.local"));
 
-const [personaKey, label, audioPath, imagePath] = process.argv.slice(2);
+// --model <slug> tries another Hedra avatar model (e.g. together/hedra-avatar)
+// instead of the pipeline's Character-3.
+const modelIdx  = process.argv.indexOf("--model");
+const modelSlug = modelIdx !== -1 ? process.argv[modelIdx + 1] : undefined;
+const [personaKey, label, audioPath, imagePath] = process.argv.slice(2).filter((a, i, all) => a !== "--model" && all[i - 1] !== "--model");
 const VALID_LABELS = ["hook", "country_a_dos", "country_a_donts", "country_b_dos", "country_b_donts"];
 if (!personaKey || !label || !audioPath || !VALID_LABELS.includes(label)) {
   console.error("Usage: npx tsx scripts/ugc-trial-clip.mts <persona> <label> <audio.mp3> [start-frame.png]");
@@ -99,6 +103,7 @@ const generationId = await submitAvatarVideo({
   audioAssetId:      audioId,
   performancePrompt: performancePromptFor(persona.name, label as Parameters<typeof performancePromptFor>[1], persona.performanceNote),
   durationMs:        durationMs + 800,
+  modelSlug,
 });
 console.log("Video submitted:", generationId);
 
