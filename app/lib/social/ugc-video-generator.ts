@@ -242,9 +242,11 @@ function performanceActionFor(label: ClipLabel): string {
   return `Speaks directly to camera with a ${tone} expression, gentle smiling eyes, and engaging eye contact throughout — ${gesture} as she moves through the 2-3 points. Hands stay animated throughout and never hold one fixed shape or position for more than 2 seconds — each point gets its own distinct, visibly different hand shape, so the gesture reads as a sequence of beats rather than one continuous recitation or a single held pose.`;
 }
 
-export function performancePromptFor(personaName: string, label: ClipLabel): string {
+// `performanceNote` is a persona's own addition (CreatorPersona.performanceNote),
+// appended after the shared action so other personas' prompts stay unchanged.
+export function performancePromptFor(personaName: string, label: ClipLabel, performanceNote?: string): string {
   return `Subject: ${personaName}, the woman shown in the start frame.
-Action: ${performanceActionFor(label)} Her face and eye line stay locked on camera throughout — never turning away or glancing off — but her stance and hands stay loose and animated, not a stiff, arms-still pose. Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.
+Action: ${performanceActionFor(label)} Her face and eye line stay locked on camera throughout — never turning away or glancing off — but her stance and hands stay loose and animated, not a stiff, arms-still pose. Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.${performanceNote ? ` ${performanceNote}` : ""}
 Context: Clean background matching the start frame image, no scene changes mid-take.
 Cinematography: Eye-level vertical full-body shot, subject facing camera with direct eye contact, static frame, no camera movement.
 Style & Ambiance: Soft natural lighting, realistic skin tones, inviting and authentic mood.
@@ -301,7 +303,7 @@ async function generateClip(
     const generationId = await submitAvatarVideo({
       startKeyframeId:    sceneImageAssetId,
       audioAssetId:       narration.assetId,
-      performancePrompt:  performancePromptFor(persona.name, clip.label),
+      performancePrompt:  performancePromptFor(persona.name, clip.label, persona.performanceNote),
       durationMs:          narration.durationMs + 800,
     });
     return {

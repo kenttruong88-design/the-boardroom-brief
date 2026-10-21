@@ -50,6 +50,12 @@ export interface CreatorPersona {
    * shot already present here unless run with --force. Values are Hedra
    * image asset ids.
    */
+  /**
+   * Extra line appended to this persona's clip performance prompts only
+   * (see performancePromptFor), for persona-specific animation fixes that
+   * mustn't change other personas' clips.
+   */
+  performanceNote?:        string;
   characterSheet?: {
     frontNeutral?:        string;
     threeQuarterNeutral?: string;
@@ -108,6 +114,9 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // Burgundy blouse + pencil skirt beside the sign (reference/priya/Priya v12.png),
     // picked over v5 and the character-sheet composites (v9–v11).
     outroSceneImageAssetId: "fd479a97-3591-41c5-a5c5-0c0e2bbae06e",
+    // Her light irises under a dark lash line drifted to half-closed, sleepy
+    // eyes on the v18-c hook trial, so her eyes are asked to stay open.
+    performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after.",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
