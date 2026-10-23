@@ -172,7 +172,7 @@ export async function generateSceneImage(
   referenceAssetId: string | string[],
   prompt: string,
   name: string,
-  opts: { intervalMs?: number; timeoutMs?: number; model?: string } = {}
+  opts: { intervalMs?: number; timeoutMs?: number; model?: string; resolution?: string } = {}
 ): Promise<string> {
   const gen = await post<{ id: string; asset_id: string }>("/generations", {
     type:                 "image",
@@ -180,6 +180,9 @@ export async function generateSceneImage(
     reference_image_ids:  Array.isArray(referenceAssetId) ? referenceAssetId : [referenceAssetId],
     text_prompt:          prompt,
     aspect_ratio:         "9:16",
+    // Unset gives the model default (1K = 768x1376 for nano-banana), smaller
+    // than the 1080x1920 avatar videos these frames start.
+    ...(opts.resolution ? { resolution: opts.resolution } : {}),
     name,
   });
   if (!gen.id) throw new Error(`No generation id returned for scene image: ${JSON.stringify(gen)}`);
