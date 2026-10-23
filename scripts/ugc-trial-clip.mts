@@ -41,10 +41,18 @@ function loadEnv(path: string) {
 loadEnv(resolve(ROOT, ".env.local"));
 
 // --model <slug> tries another Hedra avatar model (e.g. together/hedra-avatar)
-// instead of the pipeline's Character-3.
-const modelIdx  = process.argv.indexOf("--model");
-const modelSlug = modelIdx !== -1 ? process.argv[modelIdx + 1] : undefined;
-const [personaKey, label, audioPath, imagePath] = process.argv.slice(2).filter((a, i, all) => a !== "--model" && all[i - 1] !== "--model");
+// instead of the pipeline's Character-3. --resolution 720p renders cheaper
+// trials (default 1080p). --pad <ms> is the silence after the narration
+// (default 800); 500 keeps a hook under the 10 s limit of video-edit models.
+const flag = (name: string) => {
+  const i = process.argv.indexOf(name);
+  return i !== -1 ? process.argv[i + 1] : undefined;
+};
+const modelSlug  = flag("--model");
+const resolution = flag("--resolution");
+const padMs      = Number(flag("--pad") ?? 800);
+const [personaKey, label, audioPath, imagePath] = process.argv.slice(2)
+  .filter((a, i, all) => !a.startsWith("--") && !all[i - 1]?.startsWith("--"));
 const VALID_LABELS = ["hook", "country_a_dos", "country_a_donts", "country_b_dos", "country_b_donts"];
 if (!personaKey || !label || !audioPath || !VALID_LABELS.includes(label)) {
   console.error("Usage: npx tsx scripts/ugc-trial-clip.mts <persona> <label> <audio.mp3> [start-frame.png]");
@@ -102,8 +110,9 @@ const generationId = await submitAvatarVideo({
   startKeyframeId:   startFrameId,
   audioAssetId:      audioId,
   performancePrompt: performancePromptFor(persona.name, label as Parameters<typeof performancePromptFor>[1], persona.performanceNote),
-  durationMs:        durationMs + 800,
+  durationMs:        durationMs + padMs,
   modelSlug,
+  resolution,
 });
 console.log("Video submitted:", generationId);
 
