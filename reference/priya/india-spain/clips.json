@@ -1,0 +1,19 @@
+{
+  "article": "content/global-office/2026-10-16_09_india-vs-spain_management-hierarchy-and-boss-employee-relationships.md",
+  "script": "reference/priya/india-spain/script.json",
+  "clips": {
+    "hook": { "status": "pending", "frameAssetId": "c2b686a0-3a5e-41ce-b2f9-5033082797ab" },
+    "country_a_dos": {
+      "status": "approved",
+      "approved": "2026-10-26",
+      "frame": "reference/ugc-test/scene-a-dos-greyeyes-b-fixed.png",
+      "frameAssetId": "f019f9ec-05ad-4e6c-9817-d0125be84936",
+      "cloudinaryPublicId": "boardroom-brief/ugc-test/ugc-test-1792969717373-country_a_dos",
+      "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1792969921/boardroom-brief/ugc-test/ugc-test-1792969717373-country_a_dos.mp4"
+    },
+    "country_a_donts": { "status": "pending", "frame": "reference/ugc-test/1792952648946-country_a_donts.png" },
+    "country_b_dos":   { "status": "pending", "frame": "reference/ugc-test/1792952648946-country_b_dos.png", "note": "garbled sign text + loose outfit; regenerate?" },
+    "country_b_donts": { "status": "pending", "frame": "reference/ugc-test/1792952648946-country_b_donts.png" },
+    "outro": { "status": "rendered", "cloudinaryPublicId": "boardroom-brief/ugc/priya-outro" }
+  }
+}
