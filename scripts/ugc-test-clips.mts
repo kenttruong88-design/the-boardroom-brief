@@ -13,6 +13,8 @@
  *   npx tsx scripts/ugc-test-clips.mts <path-to-out-of-office-md> <label> [label2 ...]
  *   npx tsx scripts/ugc-test-clips.mts <md> <label> [label2 ...] --stills-only
  *   ... --script-file <json>   reuse (or write and save) one script across runs
+ *   ... --frame <label>=<png>  use an approved local start frame for that clip
+ *                              instead of generating a new scene (repeatable)
  *   labels: hook | country_a_dos | country_a_donts | country_b_dos | country_b_donts
  *
  * --stills-only generates just the scene start frames (one Hedra image each)
@@ -47,8 +49,15 @@ const file = process.argv[2];
 const stillsOnly = process.argv.includes("--stills-only");
 const sfIdx      = process.argv.indexOf("--script-file");
 const scriptFile = sfIdx !== -1 ? process.argv[sfIdx + 1] : undefined;
+const VALUE_FLAGS = ["--script-file", "--frame"];
+const frameOverrides: Record<string, string> = {};
+process.argv.forEach((a, i, all) => {
+  if (all[i - 1] !== "--frame") return;
+  const eq = a.indexOf("=");
+  frameOverrides[a.slice(0, eq)] = a.slice(eq + 1);
+});
 const requestedLabels = process.argv.slice(3)
-  .filter((a, i, all) => a !== "--stills-only" && a !== "--script-file" && all[i - 1] !== "--script-file");
+  .filter((a, i, all) => a !== "--stills-only" && !VALUE_FLAGS.includes(a) && !VALUE_FLAGS.includes(all[i - 1]));
 const VALID_LABELS = ["hook", "country_a_dos", "country_a_donts", "country_b_dos", "country_b_donts"];
 
 if (!file || requestedLabels.length === 0) {
@@ -72,6 +81,7 @@ const {
   submitAvatarVideo,
   getGenerationStatus,
   generateSceneImage,
+  uploadLocalImageAsset,
 } = await import("../app/lib/social/hedra-client");
 const { v2: cloudinary } = await import("cloudinary");
 
@@ -148,6 +158,9 @@ async function main() {
       if (!persona.introSceneImageAssetId) throw new Error(`Persona "${persona.key}" has no introSceneImageAssetId set`);
       sceneAssetId = persona.introSceneImageAssetId;
       console.log(`[${label}] using fixed backdrop asset: ${sceneAssetId}`);
+    } else if (frameOverrides[label]) {
+      sceneAssetId = await uploadLocalImageAsset(readFileSync(resolve(ROOT, frameOverrides[label])), `${persona.key}-${label}-frame.png`);
+      console.log(`[${label}] using approved frame ${frameOverrides[label]}: ${sceneAssetId}`);
     } else {
       console.log(`[${label}] scene: ${clip.scene}`);
       console.log(`[${label}] outfit: ${clip.outfit}`);
