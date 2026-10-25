@@ -114,9 +114,12 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // A Hedra clone of her Higgsfield voice was tried first and rejected.
     voiceId:           "5e6c6c6a-8d4a-4460-8460-bb8a7fa0aaac",
     voiceName:         "Rashmi I.",
-    // Burgundy blouse + pencil skirt at Suki's spot and size (reference/priya/v18-nb21b-scale-c.png):
-    // Nano Banana 2.1 from the rebuilt sheet + source/Priya 5, then rescaled against Suki's frame.
-    introSceneImageAssetId: "f6b4ed8e-03e8-47a4-aa10-61e7a5b9e480",
+    // Burgundy blouse + pencil skirt beside the AT sign, 2K
+    // (reference/priya/v26-v23-hand-out-b-fixed.png): backdrop-burgundy-v2
+    // re-rendered at 2K (v23-a), then only her arm patched so her hand is out
+    // of the (pocketless) skirt. Approved 2026-10-25 after the hook trial
+    // ugc-test/trial-priya-hook-1792944380464 — eyes stayed open, one hand moved.
+    introSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
     // Burgundy blouse + pencil skirt beside the sign (reference/priya/Priya v12.png),
     // picked over v5 and the character-sheet composites (v9–v11).
     outroSceneImageAssetId: "fd479a97-3591-41c5-a5c5-0c0e2bbae06e",
