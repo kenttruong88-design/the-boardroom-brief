@@ -12,6 +12,7 @@
  * Usage (from project root):
  *   npx tsx scripts/ugc-test-clips.mts <path-to-out-of-office-md> <label> [label2 ...]
  *   npx tsx scripts/ugc-test-clips.mts <md> <label> [label2 ...] --stills-only
+ *   ... --script-file <json>   reuse (or write and save) one script across runs
  *   labels: hook | country_a_dos | country_a_donts | country_b_dos | country_b_donts
  *
  * --stills-only generates just the scene start frames (one Hedra image each)
@@ -44,7 +45,10 @@ loadEnv(resolve(ROOT, ".env.local"));
 
 const file = process.argv[2];
 const stillsOnly = process.argv.includes("--stills-only");
-const requestedLabels = process.argv.slice(3).filter((a) => a !== "--stills-only");
+const sfIdx      = process.argv.indexOf("--script-file");
+const scriptFile = sfIdx !== -1 ? process.argv[sfIdx + 1] : undefined;
+const requestedLabels = process.argv.slice(3)
+  .filter((a, i, all) => a !== "--stills-only" && a !== "--script-file" && all[i - 1] !== "--script-file");
 const VALID_LABELS = ["hook", "country_a_dos", "country_a_donts", "country_b_dos", "country_b_donts"];
 
 if (!file || requestedLabels.length === 0) {
@@ -109,8 +113,20 @@ async function main() {
   const runId    = Date.now();
 
   console.log("Headline:", parsed.headline);
-  console.log("Writing 5-clip script with Claude (only submitting Hedra for:", requestedLabels.join(", "), ")...");
-  const s = await writeUgcScript({ parsed, persona });
+  // --script-file <json>: reuse a saved script (so stills and videos come
+  // from the same one), or write a fresh script and save it there.
+  let s: Awaited<ReturnType<typeof writeUgcScript>>;
+  if (scriptFile && existsSync(resolve(ROOT, scriptFile))) {
+    s = JSON.parse(readFileSync(resolve(ROOT, scriptFile), "utf8"));
+    console.log("Using saved script:", scriptFile);
+  } else {
+    console.log("Writing 5-clip script with Claude (only submitting Hedra for:", requestedLabels.join(", "), ")...");
+    s = await writeUgcScript({ parsed, persona });
+    if (scriptFile) {
+      writeFileSync(resolve(ROOT, scriptFile), JSON.stringify(s, null, 2));
+      console.log("Saved script:", scriptFile);
+    }
+  }
 
   const allClips: Record<ClipLabel, { script: string; scene?: string; outfit?: string }> = {
     hook:            { script: s.hookClip },
