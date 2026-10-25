@@ -244,9 +244,12 @@ function performanceActionFor(label: ClipLabel): string {
 
 // `performanceNote` is a persona's own addition (CreatorPersona.performanceNote),
 // appended after the shared action so other personas' prompts stay unchanged.
-export function performancePromptFor(personaName: string, label: ClipLabel, performanceNote?: string): string {
+// `handsDirection` (CreatorPersona.handsDirection) replaces the shared
+// "hands loose and animated" sentence for that persona only.
+export function performancePromptFor(personaName: string, label: ClipLabel, performanceNote?: string, handsDirection?: string): string {
+  const hands = handsDirection ?? "but her stance and hands stay loose and animated, not a stiff, arms-still pose.";
   return `Subject: ${personaName}, the woman shown in the start frame.
-Action: ${performanceActionFor(label)} Her face and eye line stay locked on camera throughout — never turning away or glancing off — but her stance and hands stay loose and animated, not a stiff, arms-still pose. Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.${performanceNote ? ` ${performanceNote}` : ""}
+Action: ${performanceActionFor(label)} Her face and eye line stay locked on camera throughout — never turning away or glancing off — ${hands} Natural asymmetric micro-expressions and occasional natural blinking throughout — never a frozen or unblinking stare.${performanceNote ? ` ${performanceNote}` : ""}
 Context: Clean background matching the start frame image, no scene changes mid-take.
 Cinematography: Eye-level vertical full-body shot, subject facing camera with direct eye contact, static frame, no camera movement.
 Style & Ambiance: Soft natural lighting, realistic skin tones, inviting and authentic mood.
@@ -303,7 +306,7 @@ async function generateClip(
     const generationId = await submitAvatarVideo({
       startKeyframeId:    sceneImageAssetId,
       audioAssetId:       narration.assetId,
-      performancePrompt:  performancePromptFor(persona.name, clip.label, persona.performanceNote),
+      performancePrompt:  performancePromptFor(persona.name, clip.label, persona.performanceNote, persona.handsDirection),
       durationMs:          narration.durationMs + 800,
     });
     return {

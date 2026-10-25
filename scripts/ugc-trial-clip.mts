@@ -109,7 +109,7 @@ console.log(`Audio duration: ${durationMs}ms`);
 const generationId = await submitAvatarVideo({
   startKeyframeId:   startFrameId,
   audioAssetId:      audioId,
-  performancePrompt: performancePromptFor(persona.name, label as Parameters<typeof performancePromptFor>[1], persona.performanceNote),
+  performancePrompt: performancePromptFor(persona.name, label as Parameters<typeof performancePromptFor>[1], persona.performanceNote, persona.handsDirection),
   durationMs:        durationMs + padMs,
   modelSlug,
   resolution,

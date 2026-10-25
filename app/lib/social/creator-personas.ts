@@ -56,6 +56,12 @@ export interface CreatorPersona {
    * mustn't change other personas' clips.
    */
   performanceNote?:        string;
+  /**
+   * Replaces the shared "stance and hands stay loose and animated" sentence
+   * in this persona's clip performance prompts (see performancePromptFor).
+   * Starts mid-sentence, after "...never turning away or glancing off —".
+   */
+  handsDirection?:         string;
   characterSheet?: {
     frontNeutral?:        string;
     threeQuarterNeutral?: string;
@@ -117,6 +123,9 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // Her light irises under a dark lash line drifted to half-closed, sleepy
     // eyes on the v18-c hook trial, so her eyes are asked to stay open.
     performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after.",
+    // The shared "hands loose and animated" line gave her fidgety, mirrored
+    // two-handed gestures at chest height on every hook trial (10-21..25).
+    handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
