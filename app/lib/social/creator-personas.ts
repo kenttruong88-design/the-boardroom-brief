@@ -62,6 +62,11 @@ export interface CreatorPersona {
    * Starts mid-sentence, after "...never turning away or glancing off —".
    */
   handsDirection?:         string;
+  /**
+   * Extra line appended to this persona's country-clip scene image prompts
+   * only (see scenePromptFor), e.g. figure and fit rules.
+   */
+  sceneNote?:              string;
   characterSheet?: {
     frontNeutral?:        string;
     threeQuarterNeutral?: string;
@@ -120,15 +125,16 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // of the (pocketless) skirt. Approved 2026-10-25 after the hook trial
     // ugc-test/trial-priya-hook-1792944380464 — eyes stayed open, one hand moved.
     introSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
-    // Burgundy blouse + pencil skirt beside the sign (reference/priya/Priya v12.png),
-    // picked over v5 and the character-sheet composites (v9–v11).
-    outroSceneImageAssetId: "fd479a97-3591-41c5-a5c5-0c0e2bbae06e",
+    // Same frame as the hook (v26-b) since 2026-10-25; was Priya v12 (fd479a97).
+    outroSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
     // Her light irises under a dark lash line drifted to half-closed, sleepy
     // eyes on the v18-c hook trial, so her eyes are asked to stay open.
     performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after.",
     // The shared "hands loose and animated" line gave her fidgety, mirrored
     // two-handed gestures at chest height on every hook trial (10-21..25).
     handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",
+    // Without an explicit figure brief the image model slims her down (10-20).
+    sceneNote:         "Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts.",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",

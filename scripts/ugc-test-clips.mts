@@ -62,7 +62,7 @@ for (const label of requestedLabels) {
 const { parseOutOfOfficeArticle } = await import("../app/lib/social/out-of-office-parser");
 const { writeUgcScript }          = await import("../app/lib/social/ugc-script-writer");
 const { getCreatorPersona, getPersonaIdentityAssetIds } = await import("../app/lib/social/creator-personas");
-const { performancePromptFor, scenePromptFor } = await import("../app/lib/social/ugc-video-generator");
+const { performancePromptFor, scenePromptFor, SCENE_RESOLUTION } = await import("../app/lib/social/ugc-video-generator");
 const {
   generateNarration,
   submitAvatarVideo,
@@ -137,8 +137,9 @@ async function main() {
       console.log(`[${label}] outfit: ${clip.outfit}`);
       sceneAssetId = await generateSceneImage(
         identityAssetIds,
-        scenePromptFor(clip.scene!, clip.outfit),
-        `${persona.key}-test-${label}-scene.png`
+        scenePromptFor(clip.scene!, clip.outfit, persona.sceneNote),
+        `${persona.key}-test-${label}-scene.png`,
+        { resolution: SCENE_RESOLUTION }
       );
       console.log(`[${label}] scene asset: ${sceneAssetId}`);
     }
@@ -153,7 +154,7 @@ async function main() {
     const generationId = await submitAvatarVideo({
       startKeyframeId:   sceneAssetId,
       audioAssetId:      narration.assetId,
-      performancePrompt: performancePromptFor(persona.name, label),
+      performancePrompt: performancePromptFor(persona.name, label, persona.performanceNote, persona.handsDirection),
       durationMs:        narration.durationMs + 800,
     });
     console.log(`[${label}] video generation submitted: ${generationId}`);

@@ -261,11 +261,18 @@ On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 // why every clip used to show the same clothes. Naming the outfit AND saying
 // the references are for identity only lets it dress her for the scene.
 // Clips without an outfit (rows drafted before this existed) keep the old
-// prompt unchanged.
-export function scenePromptFor(scene: string, outfit?: string): string {
-  if (!outfit) return scene;
-  return `${scene} She is wearing ${outfit}. Use the reference images ONLY for her face, hair, skin tone and body shape — dress her exactly as described here, not in the clothes shown in the reference photos.`;
+// prompt unchanged. `sceneNote` (CreatorPersona.sceneNote) is a persona's own
+// addition, appended so other personas' scene prompts stay unchanged.
+export function scenePromptFor(scene: string, outfit?: string, sceneNote?: string): string {
+  const note = sceneNote ? ` ${sceneNote}` : "";
+  if (!outfit) return `${scene}${note}`;
+  return `${scene} She is wearing ${outfit}. Use the reference images ONLY for her face, hair, skin tone and body shape — dress her exactly as described here, not in the clothes shown in the reference photos.${note}`;
 }
+
+// Scene frames start 1080x1920 avatar videos; the model default (1K,
+// 768x1376) left faces so small the eyes animated half-closed (Priya's hook
+// trials, 10-21..23).
+export const SCENE_RESOLUTION = "2K";
 
 // Clips 2-5 each get their own start frame (same identity, different pose/
 // setting) via generateSceneImage() on the uploaded reference photo (see
@@ -294,8 +301,9 @@ async function generateClip(
     } else {
       sceneImageAssetId = await generateSceneImage(
         identityAssetIds,
-        scenePromptFor(clip.scene, clip.outfit),
-        `${articleSlug}-${clip.label}-scene.png`
+        scenePromptFor(clip.scene, clip.outfit, persona.sceneNote),
+        `${articleSlug}-${clip.label}-scene.png`,
+        { resolution: SCENE_RESOLUTION }
       );
     }
     const narration = await generateNarration(clip.script, persona.voiceId);
