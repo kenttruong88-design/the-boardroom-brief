@@ -67,6 +67,11 @@ export interface CreatorPersona {
    * only (see scenePromptFor), e.g. figure and fit rules.
    */
   sceneNote?:              string;
+  /**
+   * Distinctive facial features the frame review (frame-identity-review.ts)
+   * checks one by one; a generated frame missing any of them is rejected.
+   */
+  identityFeatures?:       string[];
   characterSheet?: {
     frontNeutral?:        string;
     threeQuarterNeutral?: string;
@@ -136,6 +141,17 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",
     // Without an explicit figure brief the image model slims her down (10-20).
     sceneNote:         "Her eyes are light silver-grey, exactly as in the reference images — never brown or hazel. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts.",
+    // Read off the approved hook frame and sheet. The 10-28 Spain Don'ts frame
+    // the user rejected had flat straight brows and a round face, and an
+    // overall likeness score still gave it 7/10.
+    identityFeatures: [
+      "thick, dark, strongly arched brows with a high angled peak (not flat or straight)",
+      "light silver-grey almond-shaped eyes",
+      "long, straight, fairly narrow nose",
+      "full lips with a defined cupid's bow",
+      "oval face with defined cheekbones and a tapered chin (not round or broad)",
+      "long black curly hair, well past the shoulders (curl tightness can vary with styling)",
+    ],
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",

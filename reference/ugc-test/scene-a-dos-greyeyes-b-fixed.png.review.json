@@ -1,0 +1,42 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "arched brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high angled peak, consistent with the references."
+    },
+    {
+      "feature": "silver-grey almond eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes, not brown or hazel."
+    },
+    {
+      "feature": "long narrow nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose matching the reference profile."
+    },
+    {
+      "feature": "full lips with cupid's bow",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, same shape and tone as the references."
+    },
+    {
+      "feature": "oval face, cheekbones, tapered chin",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin, not round or broad."
+    },
+    {
+      "feature": "long black curly hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders."
+    }
+  ],
+  "frameIssues": [
+    "Hands are clasped together in front of her waist and will animate into mirrored two-hand gestures.",
+    "The outfit is only partly figure-hugging: the kurta is fitted at the bodice but falls loose and slightly A-line below the waist, and the trousers are a loose straight cut rather than tailored close to her curves.",
+    "Her hips and thighs read less full than the specified curvy hourglass figure because the loose lower half of the outfit hides them."
+  ],
+  "summary": "The candidate is convincingly Priya Mehta on every facial feature, but she should be re-posed with her hands apart and dressed in a more figure-hugging outfit that shows her hourglass shape before animation.",
+  "pass": true
+}

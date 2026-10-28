@@ -1,0 +1,38 @@
+{
+  "faceMatch": 5,
+  "features": [
+    {
+      "feature": "brows",
+      "match": false,
+      "note": "Candidate's brows are thinner and flatter with only a soft arch. The references show thick, dark brows with a high, sharply angled peak."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond eyes, consistent with the references."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "Candidate's nose looks longer with a broader tip and wider nostrils than the narrow, refined nose in the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a reasonably defined cupid's bow, though the shape is slightly different."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "Candidate's face is longer and broader through the lower half, with a heavier jaw and a less tapered chin. The references show a compact oval with sculpted cheekbones and a pointed chin."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair past the shoulders. The curls are looser and wavier but within styling variation."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The frame itself is clean (hands relaxed at her sides, face to camera, grey eyes, curvy figure in a fitted dress), but the face is a similar-looking woman rather than Priya: flatter brows, a broader nose, and a longer, heavier lower face.",
+  "pass": false
+}

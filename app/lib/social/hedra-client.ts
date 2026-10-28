@@ -141,6 +141,17 @@ export async function uploadLocalAudioAsset(buf: Buffer, name: string): Promise<
   return created.id;
 }
 
+/**
+ * Download URL for an image asset — the /generations status endpoint has no
+ * link for images, only /assets does.
+ */
+export async function getImageAssetUrl(assetId: string): Promise<string> {
+  const assets = await get<Array<{ asset?: { url?: string } }>>(`/assets?type=image&ids=${assetId}`);
+  const url = assets[0]?.asset?.url;
+  if (!url) throw new Error(`No download url found for image asset ${assetId}`);
+  return url;
+}
+
 /** Downloads an image and uploads it as a Hedra asset, returning its asset id. */
 export async function uploadImageAsset(imageUrl: string, name: string): Promise<string> {
   const imgRes = await fetchWithRetry(imageUrl, {});

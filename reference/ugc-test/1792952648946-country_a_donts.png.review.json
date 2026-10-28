@@ -1,0 +1,41 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "arched brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high, angled peak, consistent with the references."
+    },
+    {
+      "feature": "silver-grey almond eyes",
+      "match": true,
+      "note": "Light grey, almond-shaped eyes; not brown or hazel."
+    },
+    {
+      "feature": "long straight narrow nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose bridge matching the references."
+    },
+    {
+      "feature": "full lips with cupid's bow",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow in a similar mauve-pink tone."
+    },
+    {
+      "feature": "oval face, cheekbones, tapered chin",
+      "match": true,
+      "note": "Oval face with prominent cheekbones and a tapered chin. It reads slightly longer and leaner than refs 2–4 but is within the range of refs 1 and 5."
+    },
+    {
+      "feature": "long black curly hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders, center-parted."
+    }
+  ],
+  "frameIssues": [
+    "Face is small in the full-length frame, which limits lip-sync detail.",
+    "Hips and thighs read narrower and straighter than the specified curvy hourglass figure with wide hips and full thighs, so the lower body looks slimmer than her fixed look."
+  ],
+  "summary": "The candidate is recognizably Priya, with matching brows, grey eyes, nose, lips and curly hair, but the full-body framing keeps the face small and her hips and thighs look slimmer than her required hourglass figure.",
+  "pass": true
+}

@@ -15,11 +15,20 @@
  *   ... --script-file <json>   reuse (or write and save) one script across runs
  *   ... --frame <label>=<png>  use an approved local start frame for that clip
  *                              instead of generating a new scene (repeatable)
+ *   ... --retries <n>          regenerate a frame that fails the identity
+ *                              review up to n times (default 2, ~22 credits each)
+ *   ... --skip-review          don't run the Claude identity review
  *   labels: hook | country_a_dos | country_a_donts | country_b_dos | country_b_donts
  *
  * --stills-only generates just the scene start frames (one Hedra image each)
  * and skips narration + avatar video — the cheap way to check scene/outfit
  * prompts before paying for video.
+ *
+ * Every newly generated scene frame goes through Claude's identity review
+ * (app/lib/social/frame-identity-review.ts) against the persona's references
+ * before anything else is spent on it. A failing frame is regenerated up to
+ * --retries times; if none passes, that clip gets no narration or video.
+ * Each still is saved with its verdict as <still>.review.json.
  *
  * Requires ANTHROPIC_API_KEY, HEDRA_API_KEY, and CLOUDINARY_* in .env.local.
  */
@@ -49,7 +58,10 @@ const file = process.argv[2];
 const stillsOnly = process.argv.includes("--stills-only");
 const sfIdx      = process.argv.indexOf("--script-file");
 const scriptFile = sfIdx !== -1 ? process.argv[sfIdx + 1] : undefined;
-const VALUE_FLAGS = ["--script-file", "--frame"];
+const skipReview = process.argv.includes("--skip-review");
+const rtIdx      = process.argv.indexOf("--retries");
+const retries    = rtIdx !== -1 ? Number(process.argv[rtIdx + 1]) : 2;
+const VALUE_FLAGS = ["--script-file", "--frame", "--retries"];
 const frameOverrides: Record<string, string> = {};
 process.argv.forEach((a, i, all) => {
   if (all[i - 1] !== "--frame") return;
@@ -57,7 +69,7 @@ process.argv.forEach((a, i, all) => {
   frameOverrides[a.slice(0, eq)] = a.slice(eq + 1);
 });
 const requestedLabels = process.argv.slice(3)
-  .filter((a, i, all) => a !== "--stills-only" && !VALUE_FLAGS.includes(a) && !VALUE_FLAGS.includes(all[i - 1]));
+  .filter((a, i, all) => a !== "--stills-only" && a !== "--skip-review" && !VALUE_FLAGS.includes(a) && !VALUE_FLAGS.includes(all[i - 1]));
 const VALID_LABELS = ["hook", "country_a_dos", "country_a_donts", "country_b_dos", "country_b_donts"];
 
 if (!file || requestedLabels.length === 0) {
@@ -83,6 +95,7 @@ const {
   generateSceneImage,
   uploadLocalImageAsset,
 } = await import("../app/lib/social/hedra-client");
+const { reviewSceneFrame, formatFrameReview } = await import("../app/lib/social/frame-identity-review");
 const { v2: cloudinary } = await import("cloudinary");
 
 cloudinary.config({
@@ -164,18 +177,31 @@ async function main() {
     } else {
       console.log(`[${label}] scene: ${clip.scene}`);
       console.log(`[${label}] outfit: ${clip.outfit}`);
-      sceneAssetId = await generateSceneImage(
-        identityAssetIds,
-        scenePromptFor(clip.scene!, clip.outfit, persona.sceneNote),
-        `${persona.key}-test-${label}-scene.png`,
-        { resolution: SCENE_RESOLUTION }
-      );
-      console.log(`[${label}] scene asset: ${sceneAssetId}`);
+      let passed = skipReview;
+      sceneAssetId = "";
+      for (let attempt = 0; attempt <= retries; attempt++) {
+        sceneAssetId = await generateSceneImage(
+          identityAssetIds,
+          scenePromptFor(clip.scene!, clip.outfit, persona.sceneNote),
+          `${persona.key}-test-${label}-scene.png`,
+          { resolution: SCENE_RESOLUTION }
+        );
+        console.log(`[${label}] scene asset: ${sceneAssetId}`);
+        const still = `${runId}-${label}${attempt ? `-retry${attempt}` : ""}.png`;
+        await saveStill(sceneAssetId, still);
+        if (skipReview) break;
+        const review = await reviewSceneFrame(persona, sceneAssetId);
+        writeFileSync(resolve(ROOT, "reference", "ugc-test", `${still}.review.json`), JSON.stringify(review, null, 2) + "\n");
+        console.log(`[${label}] review: ${formatFrameReview(review)}`);
+        if (review.pass) { passed = true; break; }
+        if (attempt < retries) console.log(`[${label}] frame failed review, regenerating (${attempt + 1}/${retries})...`);
+      }
+      if (!passed) {
+        console.error(`[${label}] no frame passed the identity review — skipping narration and video for this clip`);
+        continue;
+      }
     }
-    if (stillsOnly) {
-      if (label !== "hook") await saveStill(sceneAssetId, `${runId}-${label}.png`);
-      continue;
-    }
+    if (stillsOnly) continue;
 
     const narration = await generateNarration(clip.script, persona.voiceId);
     console.log(`[${label}] narration ready: ${narration.durationMs}ms`);

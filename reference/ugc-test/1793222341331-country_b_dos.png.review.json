@@ -1,0 +1,40 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high angled arch, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond-shaped eyes, not brown or hazel."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose matching the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow in a closed soft smile."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders; curls slightly looser, which is within normal styling variation."
+    }
+  ],
+  "frameIssues": [
+    "Figure reads slimmer than her fixed look: the bust is moderate rather than large and full, and the hips and thighs are not notably wide or full, so the curvy hourglass proportions are under-represented."
+  ],
+  "summary": "The face is a convincing match for Priya on every feature, hands and framing are fine for animation, but her figure has been rendered slimmer than her required curvy hourglass build.",
+  "pass": true
+}

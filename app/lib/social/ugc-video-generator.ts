@@ -10,6 +10,7 @@ import {
   getGenerationStatus,
   generateSceneImage,
 } from "./hedra-client";
+import { reviewSceneFrame, formatFrameReview } from "./frame-identity-review";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -285,6 +286,32 @@ export const SCENE_RESOLUTION = "2K";
 // — see scripts/suki-office-backdrop.mts) rather than a freshly generated
 // scene, so the backdrop stays pixel-identical across every video while the
 // spoken script still varies per article.
+// Each scene frame must pass Claude's identity review (frame-identity-review.ts)
+// before narration and video are paid for; a lookalike frame is regenerated,
+// and after SCENE_REVIEW_RETRIES failures the clip fails instead.
+const SCENE_REVIEW_RETRIES = 2;
+
+async function generateReviewedScene(
+  persona: ReturnType<typeof getCreatorPersona>,
+  identityAssetIds: string[],
+  articleSlug: string,
+  clip: UgcClip
+): Promise<string> {
+  let last = "";
+  for (let attempt = 0; attempt <= SCENE_REVIEW_RETRIES; attempt++) {
+    const assetId = await generateSceneImage(
+      identityAssetIds,
+      scenePromptFor(clip.scene, clip.outfit, persona.sceneNote),
+      `${articleSlug}-${clip.label}-scene.png`,
+      { resolution: SCENE_RESOLUTION }
+    );
+    const review = await reviewSceneFrame(persona, assetId);
+    if (review.pass) return assetId;
+    last = formatFrameReview(review);
+  }
+  throw new Error(`No scene frame passed the identity review after ${SCENE_REVIEW_RETRIES + 1} tries. Last: ${last}`);
+}
+
 async function generateClip(
   persona: ReturnType<typeof getCreatorPersona>,
   identityAssetIds: string[],
@@ -299,12 +326,7 @@ async function generateClip(
       }
       sceneImageAssetId = persona.introSceneImageAssetId;
     } else {
-      sceneImageAssetId = await generateSceneImage(
-        identityAssetIds,
-        scenePromptFor(clip.scene, clip.outfit, persona.sceneNote),
-        `${articleSlug}-${clip.label}-scene.png`,
-        { resolution: SCENE_RESOLUTION }
-      );
+      sceneImageAssetId = await generateReviewedScene(persona, identityAssetIds, articleSlug, clip);
     }
     const narration = await generateNarration(clip.script, persona.voiceId);
     // Size the video to the actual narration length (+buffer for a natural
