@@ -1,0 +1,43 @@
+{
+  "faceMatch": 5,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark and arched with an angled peak, close to the reference."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes, slightly greener and more heavily lidded but broadly consistent."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "Bridge is straight, but the tip and nostrils are visibly wider and rounder than her long, narrow nose."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, similar shape."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "Broader, rounder face with fuller cheeks and a wider jaw and chin, lacking her tapered oval and sculpted cheekbones."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders; looser waves near the crown but acceptable."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy hourglass with full bust, narrow waist, wide hips and full thighs, consistent with the sheet."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The frame itself is clean, but the face reads as a similar-looking woman rather than Priya: the face is broader and rounder, the nose wider and the skin noticeably darker, so it should not pass as her.",
+  "pass": false
+}

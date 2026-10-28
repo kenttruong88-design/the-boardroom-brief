@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond eyes, same shape and colour as the references."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose that matches the reference profile and front views."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow and a similar closed-mouth smile."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with a tapered chin. Cheeks read slightly fuller and cheekbones a touch softer than the references, but this is within tolerance."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair past the shoulders with a similar side part."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "In the fitted sheath dress, her bust is noticeably smaller and her hips and thighs narrower than the sheet's curvy hourglass full-body panels. She reads as slim or average rather than curvy."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The facial features largely match Priya, though her skin is rendered noticeably darker and the face slightly softer, so recognition is not instant; the main failure is her figure, which has been visibly slimmed compared with her curvy hourglass reference.",
+  "pass": false
+}
