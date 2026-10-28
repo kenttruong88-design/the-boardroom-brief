@@ -160,7 +160,11 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // two-handed gestures at chest height on every hook trial (10-21..25).
     handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",
     // Without an explicit figure brief the image model slims her down (10-20).
-    sceneNote:         "Her eyes are light silver-grey, exactly as in the reference images — never brown or hazel. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts.",
+    // The realism sentences (10-28): the user found the frames "highly
+    // digitally edited", not photoreal. They describe the photo and her
+    // makeup only; asking for facial "asymmetry" once made the model repaint
+    // her face (v9, 10-18), so her features stay locked to the references.
+    sceneNote:         "Her eyes are light silver-grey, exactly as in the reference images — never brown or hazel. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts. She wears minimal, natural everyday makeup: light coverage that lets her real skin show through, no contouring, no heavy eyeliner or false lashes, no glossy lips. Make it an unretouched, true-to-life photo, as if taken on a phone by a colleague: natural ambient light, true colours, real skin texture with visible pores, natural flyaway hairs — no airbrushing, no beauty filter, no HDR, no over-sharpening, no glossy CGI or digital-art look. Her facial features stay exactly as in the reference images.",
     // Read off the approved hook frame and sheet. The 10-28 Spain Don'ts frame
     // the user rejected had flat straight brows and a round face, and an
     // overall likeness score still gave it 7/10.
@@ -239,7 +243,12 @@ export async function getPersonaIdentityAssetIds(persona: CreatorPersona): Promi
     if (persona.mainReference) {
       const body = persona.characterSheet.fullBodyFront;
       const rest = ids.filter((id) => id !== body);
-      return [...(body ? [body] : []), persona.mainReference.assetId, ...rest];
+      // With only the full-body shot ahead of the sheet, her face (small in
+      // that shot) drifted: nose/face-shape failures, passes down to 7/10.
+      // The front headshot second gives the face a strong anchor too.
+      const face = persona.characterSheet.frontNeutral;
+      const others = rest.filter((id) => id !== face);
+      return [...(body ? [body] : []), ...(face ? [face] : []), persona.mainReference.assetId, ...others];
     }
     if (ids.length > 0) return ids;
   }

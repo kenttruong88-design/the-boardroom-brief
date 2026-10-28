@@ -201,7 +201,8 @@ export async function reviewSceneFrame(
         "A similar-looking woman is 6 or below.\n\n" +
         "Finally, list frame problems from the full frame that would hurt the video: garbled or misspelled text/signage, malformed hands or fingers, " +
         "hands clasped or held together in front of her (they animate into mirrored two-hand gestures), face not toward camera, " +
-        "and a loose, boxy or oversized outfit that hides her figure. " +
+        "a loose, boxy or oversized outfit that hides her figure, " +
+        "and anything that makes it read as AI-generated rather than a real photo (airbrushed or plastic skin, heavy glam makeup, HDR or over-sharpened look). " +
         "Report only problems actually visible; an empty list is fine.\n\n" +
         'Reply with JSON only: {"features": [{"feature": "<short name>", "match": true|false, "note": "<what you see>"}], ' +
         '"faceMatch": <1-10>, "frameIssues": [..], "summary": "<one sentence>"}',
