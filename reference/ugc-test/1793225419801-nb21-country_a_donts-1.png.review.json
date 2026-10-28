@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high angled arch, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light almond-shaped eyes. They read slightly warmer and more hazel-green than her silver-grey, but are still clearly light and the same shape."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose. The tip looks marginally softer but is within range."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, smiling, as in the reference smile shot."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin. The cheeks read very slightly fuller but are not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders. The curls are slightly looser, which is acceptable styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Bust is full and the waist is defined by the darted tunic, but the hips and especially the thighs in the slim trousers look noticeably narrower and slimmer than the wide hips and full thighs in the sheet's full-body panels."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The face is a close, convincing match to Priya with only minor eye-colour warmth, but her lower body has been rendered visibly slimmer than her curvy reference figure; the frame is otherwise clean to animate.",
+  "pass": false
+}

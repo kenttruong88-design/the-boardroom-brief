@@ -1,0 +1,43 @@
+{
+  "faceMatch": 6,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, clearly arched brows with an angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": false,
+      "note": "Almond-shaped, but they read as warm hazel/amber-green rather than her distinctive light silver-grey; the warm light does not fully explain the shift."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose, similar to the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, consistent with hers."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval with defined cheekbones and a tapered chin, though slightly softer and fuller through the lower cheeks than the references."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair past the shoulders, in looser waves than her tight ringlets, which is acceptable styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Narrow waist and moderately wide hips, but the bust is noticeably smaller and the overall silhouette slimmer than the very full-busted hourglass in the sheet's full-body panels."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The frame is technically clean and fit to animate, but the candidate reads as a similar-looking woman rather than Priya: the eyes are hazel instead of silver-grey and the figure has been slimmed, notably the bust.",
+  "pass": false
+}

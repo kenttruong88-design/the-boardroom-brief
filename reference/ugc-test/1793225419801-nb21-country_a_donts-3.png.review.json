@@ -1,0 +1,43 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes with a slight hazel cast under warmer lighting; shape and lightness match."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose with the same bridge and tip shape."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow and the same mauve-pink tone and closed soft smile."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin; not rounder or broader."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair with a side part, falling well past the shoulders, matching the reference volume and curl."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Fitted tunic shows a full bust, defined waist and rounded hips and thighs; consistent with the curvy hourglass of the full-body panels, not slimmed."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The candidate matches Priya Mehta's distinctive brows, light eyes, nose, lips, face shape, hair and curvy figure, and the frame is clean and fit to animate, with her facing camera and hands relaxed at her sides.",
+  "pass": true
+}
