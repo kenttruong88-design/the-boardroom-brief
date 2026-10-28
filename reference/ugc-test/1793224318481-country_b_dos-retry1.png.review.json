@@ -1,0 +1,43 @@
+{
+  "faceMatch": 3,
+  "features": [
+    {
+      "feature": "brows",
+      "match": false,
+      "note": "Candidate's brows are thinner and only gently curved, without the reference's thick, strongly arched, high-peaked shape."
+    },
+    {
+      "feature": "eyes",
+      "match": false,
+      "note": "Candidate has dark brown eyes, not the light silver-grey almond eyes seen in every reference."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "Candidate's nose is shorter with a broader, rounder tip than the long, straight, narrow reference nose."
+    },
+    {
+      "feature": "lips",
+      "match": false,
+      "note": "Candidate's lips are thinner with a less defined cupid's bow than the full reference lips."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "Candidate's face is rounder and broader with softer cheekbones and a less tapered chin than the reference oval."
+    },
+    {
+      "feature": "hair",
+      "match": false,
+      "note": "Candidate's hair is black and curly but only shoulder-length, not long and well past the shoulders as in the references."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Candidate is slim and straight-hipped with a small bust, not the reference's curvy hourglass figure with large bust, wide hips and full thighs."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The candidate is a different, similar-looking woman: brown eyes, softer brows, rounder face, shorter hair and a much slimmer figure, so she is not Priya Mehta, though the frame itself is technically clean.",
+  "pass": false
+}

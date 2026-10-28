@@ -1,0 +1,45 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high angled arch, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond eyes; they read slightly heavier-lidded under the bright outdoor light, but the shape and colour match."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose consistent with the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow in a neutral closed expression."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin; it reads slightly longer, but it is not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair past the shoulders, styled in looser waves; the length and colour match."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "The fitted dress shows a moderate bust, modest hips, slim thighs and thin arms. She is visibly slimmer than the sheet's full-body panels, which show a large, full bust, wide hips and full thighs."
+    }
+  ],
+  "frameIssues": [
+    "Faint signage text on the building facade at lower right appears illegible/garbled"
+  ],
+  "summary": "The face is a close match to Priya on every listed feature, though the warmer, darker rendering keeps it short of an instant ID, and her figure has been noticeably slimmed compared with the reference sheet, so the frame should be regenerated.",
+  "pass": false
+}

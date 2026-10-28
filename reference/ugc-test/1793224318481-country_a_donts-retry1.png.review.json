@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high angled arch, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey-green almond eyes with a similar shape and liner look."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose, matching her profile and frontal shape."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow and a similar mauve tone."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin. It reads slightly longer and narrower than the references, but not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders; curls are slightly looser, which is within the allowance."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "She is noticeably slimmer than the sheet. The bust is modest rather than large and full, hips and thighs are narrow and straight in slim trousers, and the hourglass curve is much reduced even though the tunic is fitted."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The facial features broadly match Priya, though her skin is noticeably deeper and the face slightly longer, so she reads as a close lookalike rather than an unhesitating match. Her figure has also been visibly slimmed from the curvy hourglass in the references.",
+  "pass": false
+}

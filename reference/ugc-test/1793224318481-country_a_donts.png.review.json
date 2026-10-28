@@ -1,0 +1,45 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, matching the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes, consistent with hers."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose with the same bridge and tip shape."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, muted rose tone."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin; not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders, side-parted, consistent with the references."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Visibly slimmer than the reference full-body panels: the bust is less full, hips and thighs are narrow and straight in the slim trousers, and there is no clear hourglass waist-to-hip curve."
+    }
+  ],
+  "frameIssues": [
+    "Straight-cut, loose tunic falls over the waist and hips and hides her hourglass figure"
+  ],
+  "summary": "The face reads clearly as Priya Mehta, but her figure has been slimmed and the straight tunic hides her curves, so the frame is not fit to animate as-is.",
+  "pass": false
+}
