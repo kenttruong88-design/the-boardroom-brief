@@ -4,37 +4,40 @@
     {
       "feature": "brows",
       "match": true,
-      "note": "Thick, dark brows with a clear high angled arch, consistent with the references."
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
     },
     {
       "feature": "eyes",
       "match": true,
-      "note": "Light silver-grey almond-shaped eyes, not brown or hazel."
+      "note": "Light silver-grey almond-shaped eyes, same shape and color as hers."
     },
     {
       "feature": "nose",
       "match": true,
-      "note": "Long, straight, fairly narrow nose matching the references."
+      "note": "Long, straight, fairly narrow nose matching the reference profile and front views."
     },
     {
       "feature": "lips",
       "match": true,
-      "note": "Full lips with a defined cupid's bow in a closed soft smile."
+      "note": "Full lips with a defined cupid's bow, same mauve-pink tone and shape."
     },
     {
       "feature": "face shape",
       "match": true,
-      "note": "Oval face with defined cheekbones and a tapered chin."
+      "note": "Oval face with defined cheekbones and a tapered chin; side lighting emphasizes the cheekbones but the structure matches."
     },
     {
       "feature": "hair",
       "match": true,
-      "note": "Long black curly hair falling well past the shoulders; curls slightly looser, which is within normal styling variation."
+      "note": "Long black curly hair well past the shoulders. The curls are slightly looser and wavier, which is within styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "In the fitted dress she reads noticeably slimmer than the reference full-body panels. The bust is moderate rather than large and full, and the hips and thighs are narrower and straighter. She has lost the pronounced hourglass curves."
     }
   ],
-  "frameIssues": [
-    "Figure reads slimmer than her fixed look: the bust is moderate rather than large and full, and the hips and thighs are not notably wide or full, so the curvy hourglass proportions are under-represented."
-  ],
-  "summary": "The face is a convincing match for Priya on every feature, hands and framing are fine for animation, but her figure has been rendered slimmer than her required curvy hourglass build.",
-  "pass": true
+  "frameIssues": [],
+  "summary": "The face is convincingly Priya Mehta and the frame is otherwise clean and animatable, but her figure has been visibly slimmed compared with her curvy hourglass reference.",
+  "pass": false
 }

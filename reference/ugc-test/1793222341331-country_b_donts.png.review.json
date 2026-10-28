@@ -1,38 +1,43 @@
 {
-  "faceMatch": 5,
+  "faceMatch": 4,
   "features": [
     {
       "feature": "brows",
       "match": false,
-      "note": "Candidate's brows are thinner and flatter with only a soft arch. The references show thick, dark brows with a high, sharply angled peak."
+      "note": "Candidate's brows are dark but softer and flatter, with only a gentle curve. They lack the high, sharply angled peak seen in every reference."
     },
     {
       "feature": "eyes",
       "match": true,
-      "note": "Light silver-grey almond eyes, consistent with the references."
+      "note": "Light silver-grey eyes with an almond shape, consistent with the references."
     },
     {
       "feature": "nose",
       "match": false,
-      "note": "Candidate's nose looks longer with a broader tip and wider nostrils than the narrow, refined nose in the references."
+      "note": "Candidate's nose is broader, with a wider, rounder tip and flared nostrils. The references show a long, narrow, straight nose."
     },
     {
       "feature": "lips",
-      "match": true,
-      "note": "Full lips with a reasonably defined cupid's bow, though the shape is slightly different."
+      "match": false,
+      "note": "Lips are full but the upper lip is flatter, with a weak cupid's bow. Her references show a clearly defined bow."
     },
     {
       "feature": "face shape",
       "match": false,
-      "note": "Candidate's face is longer and broader through the lower half, with a heavier jaw and a less tapered chin. The references show a compact oval with sculpted cheekbones and a pointed chin."
+      "note": "Candidate's face is rounder and broader, with fuller cheeks and a softer, wider jaw. The references show an oval face with defined cheekbones and a tapered chin."
     },
     {
       "feature": "hair",
       "match": true,
-      "note": "Long black curly hair past the shoulders. The curls are looser and wavier but within styling variation."
+      "note": "Long, dark, curly/wavy hair past the shoulders. It is looser and slightly browner, which is acceptable as styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy figure with a full bust, defined waist, wide hips and full thighs. She has not been slimmed."
     }
   ],
   "frameIssues": [],
-  "summary": "The frame itself is clean (hands relaxed at her sides, face to camera, grey eyes, curvy figure in a fitted dress), but the face is a similar-looking woman rather than Priya: flatter brows, a broader nose, and a longer, heavier lower face.",
+  "summary": "The frame itself is clean and the figure and eye color match, but the face reads as a different, similar-looking woman: rounder face, broader nose, flatter brows and weaker cupid's bow.",
   "pass": false
 }

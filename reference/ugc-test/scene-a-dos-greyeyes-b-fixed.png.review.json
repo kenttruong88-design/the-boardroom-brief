@@ -1,42 +1,45 @@
 {
-  "faceMatch": 8,
+  "faceMatch": 6,
   "features": [
     {
-      "feature": "arched brows",
+      "feature": "brows",
       "match": true,
-      "note": "Thick, dark brows with a clear high angled peak, consistent with the references."
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
     },
     {
-      "feature": "silver-grey almond eyes",
+      "feature": "eyes",
       "match": true,
-      "note": "Light grey almond-shaped eyes, not brown or hazel."
+      "note": "Light grey almond-shaped eyes; slightly less silvery under the warmer light, but the same colour and shape."
     },
     {
-      "feature": "long narrow nose",
-      "match": true,
-      "note": "Long, straight, fairly narrow nose matching the reference profile."
+      "feature": "nose",
+      "match": false,
+      "note": "The nose is straight but reads broader at the tip and nostrils than her long, narrow nose."
     },
     {
-      "feature": "full lips with cupid's bow",
+      "feature": "lips",
       "match": true,
-      "note": "Full lips with a defined cupid's bow, same shape and tone as the references."
+      "note": "Full lips with a defined cupid's bow, closed in a soft smile."
     },
     {
-      "feature": "oval face, cheekbones, tapered chin",
-      "match": true,
-      "note": "Oval face with defined cheekbones and a tapered chin, not round or broad."
+      "feature": "face shape",
+      "match": false,
+      "note": "The face is fuller and broader through the cheeks and jaw, with a softer, less tapered chin than her narrow oval face."
     },
     {
-      "feature": "long black curly hair",
+      "feature": "hair",
       "match": true,
-      "note": "Long black curly hair falling well past the shoulders."
+      "note": "Long black curly hair well past the shoulders; curls are slightly looser but within styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "In the fitted kurta she reads noticeably slimmer: a more modest bust, less pronounced hips and slim thighs in the trousers, not the full hourglass of the sheet's full-body panels."
     }
   ],
   "frameIssues": [
-    "Hands are clasped together in front of her waist and will animate into mirrored two-hand gestures.",
-    "The outfit is only partly figure-hugging: the kurta is fitted at the bodice but falls loose and slightly A-line below the waist, and the trousers are a loose straight cut rather than tailored close to her curves.",
-    "Her hips and thighs read less full than the specified curvy hourglass figure because the loose lower half of the outfit hides them."
+    "Hands are held together in front of her at waist level, which risks mirrored two-hand gestures when animated."
   ],
-  "summary": "The candidate is convincingly Priya Mehta on every facial feature, but she should be re-posed with her hands apart and dressed in a more figure-hugging outfit that shows her hourglass shape before animation.",
-  "pass": true
+  "summary": "The candidate is a close lookalike with matching brows, eyes, lips and hair, but her broader face, wider nose and slimmer figure make her read as a similar woman rather than unmistakably Priya Mehta, and her clasped hands should be fixed before animating.",
+  "pass": false
 }

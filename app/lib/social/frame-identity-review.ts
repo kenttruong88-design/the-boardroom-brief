@@ -85,6 +85,19 @@ async function locateFace(buf: Buffer): Promise<{ x0: number; y0: number; x1: nu
   return { x0: box.x0 / w, y0: box.y0 / h, x1: box.x1 / w, y1: box.y1 / h };
 }
 
+async function splitPanels(buf: Buffer, [cols, rows]: [number, number]): Promise<Buffer[]> {
+  const { width = 0, height = 0 } = await sharp(buf).metadata();
+  const w = Math.floor(width / cols);
+  const h = Math.floor(height / rows);
+  const panels: Buffer[] = [];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      panels.push(await sharp(buf).extract({ left: c * w, top: r * h, width: w, height: h }).png().toBuffer());
+    }
+  }
+  return panels;
+}
+
 /** Square crop around the face with margin, from the full-resolution image. */
 async function faceCropBase64(buf: Buffer): Promise<string> {
   const { width = 0, height = 0 } = await sharp(buf).metadata();
@@ -103,10 +116,11 @@ async function faceCropBase64(buf: Buffer): Promise<string> {
   return out.toString("base64");
 }
 
-// The approved hook frame is how the user actually knows her, so it goes in
-// next to the studio sheet shots. Profile/side shots add little for a
-// front-facing frame and cost tokens.
+// A persona with a main reference sheet is reviewed against that sheet
+// alone (the user's rule for Priya, 10-28). Otherwise: the approved hook
+// frame plus the front-facing character-sheet shots.
 export function referenceAssetIds(persona: CreatorPersona): string[] {
+  if (persona.mainReference) return [persona.mainReference.assetId];
   const sheet = persona.characterSheet ?? {};
   return [
     persona.introSceneImageAssetId,
@@ -126,19 +140,34 @@ export async function reviewSceneFrame(
   const refBufs  = opts.refs ?? await Promise.all(referenceAssetIds(persona).map(fetchAsset));
   if (refBufs.length === 0) throw new Error(`Persona "${persona.key}" has no reference images to review against`);
 
-  const [refFaces, candidateFace, candidateFull] = await Promise.all([
-    Promise.all(refBufs.map(faceCropBase64)),
+  // A multi-panel sheet is cut into its panels so each face is cropped
+  // on its own; the whole sheet is still shown for her figure.
+  const faceSources = persona.mainReference ? await splitPanels(refBufs[0], persona.mainReference.grid) : refBufs;
+  const [refFaces, refFull, candidateFace, candidateFull] = await Promise.all([
+    Promise.all(faceSources.map(faceCropBase64)),
+    toJpegBase64(refBufs[0]),
     faceCropBase64(frameBuf),
     toJpegBase64(frameBuf),
   ]);
   // Faces side by side in one image, candidate last: a direct comparison
   // shows a different brow or face shape far more plainly than separate images.
-  const faceRow = await sharp({ create: { width: 512 * (refFaces.length + 1), height: 512, channels: 3, background: "#ffffff" } })
-    .composite(await Promise.all([...refFaces, candidateFace].map(async (b64, i) => ({
-      input: await sharp(Buffer.from(b64, "base64")).resize(512, 512, { fit: "cover" }).toBuffer(),
-      left:  i * 512,
-      top:   0,
-    }))))
+  // Two rows once there are more than 6 faces, so each stays ~300px after
+  // Claude's downscale; the candidate is last and outlined in red.
+  const tiles = [...refFaces, candidateFace];
+  const cols  = tiles.length > 6 ? Math.ceil(tiles.length / 2) : tiles.length;
+  const rows  = Math.ceil(tiles.length / cols);
+  const faceRow = await sharp({ create: { width: 512 * cols, height: 512 * rows, channels: 3, background: "#ffffff" } })
+    .composite(await Promise.all(tiles.map(async (b64, i) => {
+      const isCandidate = i === tiles.length - 1;
+      const face = sharp(Buffer.from(b64, "base64")).resize(isCandidate ? 488 : 512, isCandidate ? 488 : 512, { fit: "cover" });
+      return {
+        input: isCandidate
+          ? await face.extend({ top: 12, bottom: 12, left: 12, right: 12, background: "#ff0000" }).toBuffer()
+          : await face.toBuffer(),
+        left:  (i % cols) * 512,
+        top:   Math.floor(i / cols) * 512,
+      };
+    })))
     .jpeg({ quality: 90 })
     .toBuffer();
   if (process.env.FRAME_REVIEW_DEBUG_DIR) {
@@ -148,8 +177,10 @@ export async function reviewSceneFrame(
 
   const features = persona.identityFeatures ?? [];
   const content: Anthropic.Messages.ContentBlockParam[] = [
-    { type: "text", text: `Face row: the first ${refFaces.length} faces are ${persona.name}; the LAST face (far right) is the CANDIDATE.` },
+    { type: "text", text: `Face row: the first ${refFaces.length} faces are ${persona.name}; the LAST face (outlined in red) is the CANDIDATE.` },
     { type: "image", source: { type: "base64", media_type: "image/jpeg", data: faceRow.toString("base64") } },
+    { type: "text", text: persona.mainReference ? `${persona.name}'s main character reference sheet:` : `Reference full frame of ${persona.name}:` },
+    { type: "image", source: { type: "base64", media_type: "image/jpeg", data: refFull } },
     { type: "text", text: "CANDIDATE full frame:" },
     { type: "image", source: { type: "base64", media_type: "image/jpeg", data: candidateFull } },
     {
@@ -162,11 +193,15 @@ export async function reviewSceneFrame(
             "is visibly different (e.g. flat brows where hers are arched, a round face where hers is oval):\n" +
             features.map((f, i) => `${i + 1}. ${f}`).join("\n") + "\n\n"
           : "") +
+        (persona.figureFeature
+          ? "Also check her figure on the CANDIDATE full frame against the reference full-body shots, allowing for the outfit and pose, " +
+            `as one more entry in "features" named "figure": ${persona.figureFeature}. match=false if she has been made visibly slimmer.\n\n`
+          : "") +
         "Then give faceMatch 1-10: would someone who knows her from the reference faces say without hesitation that the candidate is her? " +
         "A similar-looking woman is 6 or below.\n\n" +
         "Finally, list frame problems from the full frame that would hurt the video: garbled or misspelled text/signage, malformed hands or fingers, " +
-        "hands clasped or held together in front of her (they animate into mirrored two-hand gestures), face not toward camera" +
-        (persona.sceneNote ? `, and anything contradicting her fixed look: ${persona.sceneNote}` : "") + ". " +
+        "hands clasped or held together in front of her (they animate into mirrored two-hand gestures), face not toward camera, " +
+        "and a loose, boxy or oversized outfit that hides her figure. " +
         "Report only problems actually visible; an empty list is fine.\n\n" +
         'Reply with JSON only: {"features": [{"feature": "<short name>", "match": true|false, "note": "<what you see>"}], ' +
         '"faceMatch": <1-10>, "frameIssues": [..], "summary": "<one sentence>"}',
@@ -192,9 +227,10 @@ export async function reviewSceneFrame(
     features:    reviewed,
     frameIssues: raw.frameIssues ?? [],
     summary:     raw.summary ?? "",
-    // Frame issues are reported for the human, but only identity blocks a
-    // video: some (clasped hands) were accepted before (India Do's).
-    pass:        raw.faceMatch >= FACE_MATCH_PASS && reviewed.every((f) => f.match),
+    // Frame issues are reported for the human, but only identity (face and
+    // figure) blocks a video: some (clasped hands) were accepted before.
+    pass:        raw.faceMatch >= FACE_MATCH_PASS && reviewed.every((f) => f.match)
+      && (!persona.figureFeature || reviewed.some((f) => f.feature === "figure")),
   };
 }
 

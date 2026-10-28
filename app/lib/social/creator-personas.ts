@@ -72,6 +72,18 @@ export interface CreatorPersona {
    * checks one by one; a generated frame missing any of them is rejected.
    */
   identityFeatures?:       string[];
+  /**
+   * Her body shape, checked by the frame review on the full frame against the
+   * main reference's full-body panels; a frame that doesn't match is rejected.
+   */
+  figureFeature?:          string;
+  /**
+   * The persona's main character reference: one multi-panel sheet image
+   * (Hedra asset id). When set it goes first in scene generation references
+   * and is what the frame review compares against. `grid` is its panel
+   * layout [cols, rows], so the review can crop each panel's face.
+   */
+  mainReference?:          { assetId: string; grid: [number, number] };
   characterSheet?: {
     frontNeutral?:        string;
     threeQuarterNeutral?: string;
@@ -152,6 +164,11 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
       "oval face with defined cheekbones and a tapered chin (not round or broad)",
       "long black curly hair, well past the shoulders (curl tightness can vary with styling)",
     ],
+    // The user's standing rule: always busty and curvy (10-20, 10-28).
+    figureFeature:     "curvy hourglass figure as in the sheet's full-body panels: large, full bust, narrow waist, wide hips and full thighs (not slim, slender or straight-hipped)",
+    // reference/priya/_priya-character-sheet.png, her original Higgsfield
+    // sheet: the user's main reference for her (10-28). 4x2 panels.
+    mainReference:     { assetId: "1b795d87-e3e2-4698-a63c-fabe6d342c4b", grid: [4, 2] },
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
@@ -201,6 +218,8 @@ export async function getPersonaIdentityAssetId(persona: CreatorPersona): Promis
 export async function getPersonaIdentityAssetIds(persona: CreatorPersona): Promise<string[]> {
   if (persona.characterSheet) {
     const ids = Object.values(persona.characterSheet).filter((id): id is string => Boolean(id));
+    // The main reference sheet leads, so it carries the most weight.
+    if (persona.mainReference) ids.unshift(persona.mainReference.assetId);
     if (ids.length > 0) return ids;
   }
   return [await uploadImageAsset(persona.referenceImageUrl, `${persona.key}-reference.png`)];

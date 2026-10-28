@@ -2,37 +2,42 @@
   "faceMatch": 8,
   "features": [
     {
-      "feature": "arched brows",
+      "feature": "brows",
       "match": true,
-      "note": "Thick, dark brows with a clear high angled peak, matching the references."
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
     },
     {
-      "feature": "silver-grey almond eyes",
+      "feature": "eyes",
       "match": true,
-      "note": "Light grey almond-shaped eyes, consistent with the references and not brown or hazel."
+      "note": "Light grey almond-shaped eyes with defined liner. The tint reads very slightly warmer/greener in the window light but is within the reference range."
     },
     {
-      "feature": "long narrow nose",
+      "feature": "nose",
       "match": true,
-      "note": "Long, straight, fairly narrow nose with the same bridge and tip shape."
+      "note": "Long, straight, fairly narrow nose matching the reference front and three-quarter views."
     },
     {
-      "feature": "full lips with cupid's bow",
+      "feature": "lips",
       "match": true,
-      "note": "Full lips with a defined cupid's bow and the same closed, slight-smile shape."
+      "note": "Full lips with a defined cupid's bow and the same mauve-pink tone and closed-mouth smirk."
     },
     {
-      "feature": "oval face, cheekbones, tapered chin",
+      "feature": "face shape",
       "match": true,
-      "note": "Oval face with defined cheekbones and a tapered chin. It reads slightly longer and leaner here, but not visibly different."
+      "note": "Oval face with defined cheekbones and a tapered chin. The cheeks look marginally fuller, but the shape is not round or broad."
     },
     {
-      "feature": "long black curly hair",
+      "feature": "hair",
       "match": true,
-      "note": "Long black curly hair falling well past the shoulders. The curls are slightly looser, which is within styling variation."
+      "note": "Long black curly hair with a side part, falling past the shoulders to the upper chest. It is somewhat shorter and looser than the reference's mid-torso length but still well past the shoulders."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy hourglass figure in a fitted dress: large full bust, cinched waist at the tie belt, wide hips and full thighs. Not slimmed relative to the sheet's full-body panels."
     }
   ],
   "frameIssues": [],
-  "summary": "The candidate is convincingly Priya Mehta, and the frame is clean and fit to animate: face toward camera, hands relaxed at her sides and well formed, curvy figure in a fitted dress, and no text or signage.",
+  "summary": "The candidate is clearly Priya Mehta with all key facial features and her curvy figure intact; the frame is front-facing with hands relaxed at her sides and a fitted outfit, so it is fit to animate.",
   "pass": true
 }
