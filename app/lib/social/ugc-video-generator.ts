@@ -263,11 +263,16 @@ On-Screen Text: No text, subtitles, captions, or graphics visible on screen.`;
 // the references are for identity only lets it dress her for the scene.
 // Clips without an outfit (rows drafted before this existed) keep the old
 // prompt unchanged. `sceneNote` (CreatorPersona.sceneNote) is a persona's own
-// addition, appended so other personas' scene prompts stay unchanged.
-export function scenePromptFor(scene: string, outfit?: string, sceneNote?: string): string {
+// addition, appended so other personas' scene prompts stay unchanged;
+// `sceneLead` likewise opens the prompt only for personas that set one.
+export function scenePromptFor(scene: string, outfit?: string, sceneNote?: string, sceneLead?: string): string {
+  const lead = sceneLead ? `${sceneLead} ` : "";
   const note = sceneNote ? ` ${sceneNote}` : "";
-  if (!outfit) return `${scene}${note}`;
-  return `${scene} She is wearing ${outfit}. Use the reference images ONLY for her face, hair, skin tone and body shape — dress her exactly as described here, not in the clothes shown in the reference photos.${note}`;
+  if (!outfit) return `${lead}${scene}${note}`;
+  // Script outfits often start capitalised and end in a full stop ("She is
+  // wearing An ... mules..").
+  const wearing = outfit.replace(/^\w/, (c) => c.toLowerCase()).replace(/\.+$/, "");
+  return `${lead}${scene} She is wearing ${wearing}. Use the reference images ONLY for her face, hair, skin tone and body shape — dress her exactly as described here, not in the clothes shown in the reference photos.${note}`;
 }
 
 // Scene frames start 1080x1920 avatar videos; the model default (1K,
@@ -278,7 +283,8 @@ export const SCENE_RESOLUTION = "2K";
 // Clips 2-5 each get their own start frame (same identity, different pose/
 // setting) via generateSceneImage() on the uploaded reference photo (see
 // hedra-client.ts — google/nano-banana-pro, not flux-kontext-pro-i2i, for
-// identity fidelity on big scene jumps). Without this all 4 clips open on
+// identity fidelity on big scene jumps; a persona can pick another model
+// via sceneImageModel, as Priya does). Without this all 4 clips open on
 // the exact same static shot.
 //
 // The hook clip is the one exception: it always opens on the SAME fixed
@@ -301,9 +307,9 @@ async function generateReviewedScene(
   for (let attempt = 0; attempt <= SCENE_REVIEW_RETRIES; attempt++) {
     const assetId = await generateSceneImage(
       identityAssetIds,
-      scenePromptFor(clip.scene, clip.outfit, persona.sceneNote),
+      scenePromptFor(clip.scene, clip.outfit, persona.sceneNote, persona.sceneLead),
       `${articleSlug}-${clip.label}-scene.png`,
-      { resolution: SCENE_RESOLUTION }
+      { resolution: SCENE_RESOLUTION, model: persona.sceneImageModel }
     );
     const review = await reviewSceneFrame(persona, assetId);
     if (review.pass) return assetId;

@@ -44,8 +44,10 @@ const PILLAR_STYLE: Record<string, PillarStyle> = {
   "global-office": {
     pillarLabel: "Global Office",
     tone:        "sharp, warm and quietly amused, like a colleague who has worked in offices on four continents and is letting you in on how it really works",
-    sceneGuide:  "This pillar is about working life, so set most scenes where work actually happens in that country — an open-plan office floor, a glass meeting room, a business-district street or plaza at rush hour, a café near the office, a metro platform on the commute, a co-working space — and use the landmark rule above for at least one scene per country (e.g. a business district with that city's skyline or landmark behind her).",
-    outfitGuide: "Because these are work scenes, dress her the way a stylish professional actually dresses for work in THAT country and setting — formal where the local office culture is formal (a tailored suit or structured dress), smart-casual where it isn't (e.g. a knit top with tailored trousers), and lighter fabrics in hot climates.",
+    sceneGuide:  "This pillar is about working life, so set most scenes where work actually happens in that country — an open-plan office floor, a glass meeting room, a business-district street or plaza at rush hour, a café near the office, a metro platform on the commute, a co-working space — and use the landmark rule above for at least one scene per country (e.g. a business district with that city's skyline or landmark behind her). In every scene she stands with both arms hanging relaxed at her sides — never hands clasped or held together in front of her (that pose animates into mirrored two-hand gestures).",
+    // She has a curvy hourglass figure; loose cuts (a kurta tunic, wide-leg
+    // trousers) made the image model slim her down on 10-28.
+    outfitGuide: "Because these are work scenes, dress her the way a stylish professional actually dresses for work in THAT country and setting — formal where the local office culture is formal (a tailored suit or structured dress), smart-casual where it isn't (e.g. a knit top with tailored trousers), and lighter fabrics in hot climates. Every outfit must be fitted and figure-hugging so her curvy hourglass figure shows — e.g. a fitted sheath or wrap dress, a pencil skirt, a tailored fitted blazer, slim tailored trousers — never loose, flowy, boxy, oversized, wide-leg or tunic cuts.",
   },
 };
 

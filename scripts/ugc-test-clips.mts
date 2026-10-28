@@ -182,9 +182,9 @@ async function main() {
       for (let attempt = 0; attempt <= retries; attempt++) {
         sceneAssetId = await generateSceneImage(
           identityAssetIds,
-          scenePromptFor(clip.scene!, clip.outfit, persona.sceneNote),
+          scenePromptFor(clip.scene!, clip.outfit, persona.sceneNote, persona.sceneLead),
           `${persona.key}-test-${label}-scene.png`,
-          { resolution: SCENE_RESOLUTION }
+          { resolution: SCENE_RESOLUTION, model: persona.sceneImageModel }
         );
         console.log(`[${label}] scene asset: ${sceneAssetId}`);
         const still = `${runId}-${label}${attempt ? `-retry${attempt}` : ""}.png`;

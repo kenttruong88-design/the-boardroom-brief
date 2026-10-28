@@ -84,6 +84,14 @@ export interface CreatorPersona {
    * layout [cols, rows], so the review can crop each panel's face.
    */
   mainReference?:          { assetId: string; grid: [number, number] };
+  /**
+   * Opens this persona's scene image prompts (see scenePromptFor), so the
+   * model ties the name in the scene to the reference images before reading
+   * anything else.
+   */
+  sceneLead?:              string;
+  /** Hedra image model for this persona's scene frames (default nano-banana-pro). */
+  sceneImageModel?:        string;
   characterSheet?: {
     frontNeutral?:        string;
     threeQuarterNeutral?: string;
@@ -169,6 +177,12 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // reference/priya/_priya-character-sheet.png, her original Higgsfield
     // sheet: the user's main reference for her (10-28). 4x2 panels.
     mainReference:     { assetId: "1b795d87-e3e2-4698-a63c-fabe6d342c4b", grid: [4, 2] },
+    // The scene text calls her "Priya", a name the image model can't link to
+    // anything, and her identity rules used to come last in a ~180-word prompt.
+    sceneLead:         "The woman in this photo is Priya, the woman shown in the reference images: keep her exact face, light silver-grey eyes, long black curly hair, warm brown skin tone and her curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs.",
+    // 3/6 frames passed the identity review vs nano-banana-pro's 1/4 on the
+    // same prompt and references, at half the credits (10-28).
+    sceneImageModel:   "google/nano-banana-2.1",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
@@ -218,8 +232,15 @@ export async function getPersonaIdentityAssetId(persona: CreatorPersona): Promis
 export async function getPersonaIdentityAssetIds(persona: CreatorPersona): Promise<string[]> {
   if (persona.characterSheet) {
     const ids = Object.values(persona.characterSheet).filter((id): id is string => Boolean(id));
-    // The main reference sheet leads, so it carries the most weight.
-    if (persona.mainReference) ids.unshift(persona.mainReference.assetId);
+    // Hedra makes the FIRST reference the start keyframe, the image it edits
+    // into the scene. A chest-up headshot there left the body to be invented
+    // (she came out slim), and the 8-panel sheet there gave 0/4 usable frames
+    // (10-28). So: full-body shot first, then the main sheet, then the rest.
+    if (persona.mainReference) {
+      const body = persona.characterSheet.fullBodyFront;
+      const rest = ids.filter((id) => id !== body);
+      return [...(body ? [body] : []), persona.mainReference.assetId, ...rest];
+    }
     if (ids.length > 0) return ids;
   }
   return [await uploadImageAsset(persona.referenceImageUrl, `${persona.key}-reference.png`)];
