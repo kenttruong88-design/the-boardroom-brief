@@ -1,0 +1,43 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes, same shape and pale tone as the references."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose matching the reference bridge and tip."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, same shape as hers."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin; not rounder or broader."
+    },
+    {
+      "feature": "hair",
+      "match": false,
+      "note": "Black and curly, but it ends only just below the shoulders, around armpit level. Hers falls well down the torso toward the waist, so the length is visibly shorter."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Fitted dress shows a full bust, defined waist, wide hips and full thighs, consistent with the hourglass figure in the full-body panels; not slimmed."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The face reads clearly as Priya and the figure is intact, but the hair is noticeably shorter than her very long reference curls, which is a continuity mismatch; otherwise the frame is clean and fit to animate.",
+  "pass": false
+}

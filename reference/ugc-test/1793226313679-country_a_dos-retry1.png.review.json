@@ -1,0 +1,43 @@
+{
+  "faceMatch": 6,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes, similar color and shape to hers, though they look slightly smaller and more hooded in this lighting."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "Nose reads broader at the tip and nostrils, less narrow than her long, slim nose in the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, closed-mouth smile similar to the references."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "Face is broader and rounder with fuller cheeks and a wider jaw. The defined cheekbones and tapered chin of her oval face are softened."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders, center-ish part, similar to the references."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy hourglass figure in a fitted dress: large full bust, defined waist, wide hips and full thighs, consistent with the full-body panels."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The brows, eyes, hair and figure all match, but the broader, rounder face and wider nose make the candidate read as a similar-looking woman rather than unmistakably Priya Mehta.",
+  "pass": false
+}

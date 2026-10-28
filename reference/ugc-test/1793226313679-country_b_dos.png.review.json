@@ -1,0 +1,43 @@
+{
+  "faceMatch": 6,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, clearly arched brows with an angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey-hazel almond eyes. Slightly warmer and less silver than the references, but within lighting variation."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "The nose reads shorter, with a broader, rounder tip and wider nostrils than her long, narrow, straight nose."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a visible cupid's bow, similar shape to the references."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "The face looks broader and fuller through the cheeks and jaw, with a less tapered chin than her defined oval with sculpted cheekbones."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders. Looser curls, which is acceptable styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Noticeably slimmer than the sheet: moderate bust, narrower hips and slimmer thighs instead of her large bust, wide hips and full thighs. The fitted dress shows the figure clearly, so this is not hidden by clothing."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The candidate is a convincing lookalike with matching brows, eyes, lips and hair, but she has a broader nose, fuller face and visibly slimmer figure, so she reads as a similar woman rather than unmistakably Priya, even though the frame itself is clean and fit to animate.",
+  "pass": false
+}

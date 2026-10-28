@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high arch and angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond eyes, same striking contrast against her skin."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose. The tip reads slightly softer in the warm side light but is within range."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow and the same closed-mouth smile shape."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin. The cheeks look marginally fuller under this lighting but it is not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair past the shoulders. Curls are looser and more voluminous than the tight ringlets in the references, which is acceptable styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Waist and hips are reasonably curvy, but the bust is visibly smaller and less full than the large bust in the sheet's full-body panels. Overall she reads slimmer and less hourglass than the reference."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The face is a strong but not fully certain match to Priya, with a slightly warmer, fuller look and looser curls; her figure has been visibly slimmed through the bust, so the frame should be regenerated to restore her hourglass proportions.",
+  "pass": false
+}

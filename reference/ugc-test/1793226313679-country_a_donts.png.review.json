@@ -1,0 +1,45 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear arch and angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey-green almond eyes, very close to her silver-grey eyes and striking against darker skin."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long and straight; perhaps marginally broader at the tip under the warmer lighting, but within range."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a visible cupid's bow in a closed-mouth smile; the upper lip reads slightly thinner but not distinctly different."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval with cheekbones and a tapered chin, though the lower face and jaw read slightly fuller and broader than in the references."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders with a side part, matching her."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Fitted wrap top and pencil skirt show a full bust, narrow waist and rounded hips and thighs, consistent with her curvy hourglass build; not slimmed."
+    }
+  ],
+  "frameIssues": [
+    "Face skin is smoothed and evenly warm/orange-toned with little texture, giving a slightly airbrushed AI look compared with the body"
+  ],
+  "summary": "The candidate is clearly in Priya's likeness with all key features present, but a slightly broader lower face and smoothed, warm-tinted skin make her read as a close match rather than an unmistakable one.",
+  "pass": true
+}
