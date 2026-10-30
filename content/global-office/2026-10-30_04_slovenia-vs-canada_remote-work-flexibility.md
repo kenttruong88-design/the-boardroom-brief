@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 4
+pillar: The Global Office
+author: Priya Mehta
+countries: Slovenia, Canada
+subject: Remote work attitudes and flexibility policies
+word_count: 1280
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-04-slovenia-vs-canada-remote-work-flexibility-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-04-slovenia-vs-canada-remote-work-flexibility-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["Slovenia Labour Inspectorate registered-remote-worker figures (via The Slovenia Times/Mojedelo survey)", "Slovenia Employment Relationship Act, Article 68 (via CMS Law expert guide)", "Stanford Institute for Economic Policy Research global remote-work survey", "KPMG 2024 Canadian CEO survey", "Angus Reid return-to-office survey (via Daily Hive)", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["Hacker News (mirrored thread)", "Workfrom.co digital-nomad community", "Reddit r/workingmoms (via mirror)", "Blind (teamblind.com) RTO-policy thread"]
+  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results). Direct reddit.com fetches were blocked, so the Reddit voices here came via an indexed third-party mirror rather than the native site, consistent with prior runs' findings on that structural limitation."
+---
+
 **Slovenia Will Let You Work From a Lake. Canada Will Make You Fight Your Bank For a Desk.**
 
 **🇸🇮 Slovenia · 🇨🇦 Canada**
@@ -65,22 +84,3 @@ There's a second, quieter divergence: Slovenia's remote-work debate is mostly ab
 If remote flexibility is the deciding factor in your move, look past this year's headline and ask which direction the local policy is trending, not just where it sits today. Slovenia is legislating remote work into permanence. Canada, despite leading the world in average work-from-home days, is watching some of its largest employers yank the privilege back hardest and fastest, precisely because so much of it was never written down.
 
 Here's what I'd tell a friend: in Slovenia, get the clause in your contract — the state has your back if you do. In Canada, get the clause in your contract anyway, because right now, the state very much does not, and neither, increasingly, does your bank.
-
----
-date: 2026-10-30
-article_number: 4
-pillar: The Global Office
-author: Priya Mehta
-countries: Slovenia, Canada
-subject: Remote work attitudes and flexibility policies
-word_count: 1280
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-04-slovenia-vs-canada-remote-work-flexibility-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-04-slovenia-vs-canada-remote-work-flexibility-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["Slovenia Labour Inspectorate registered-remote-worker figures (via The Slovenia Times/Mojedelo survey)", "Slovenia Employment Relationship Act, Article 68 (via CMS Law expert guide)", "Stanford Institute for Economic Policy Research global remote-work survey", "KPMG 2024 Canadian CEO survey", "Angus Reid return-to-office survey (via Daily Hive)", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["Hacker News (mirrored thread)", "Workfrom.co digital-nomad community", "Reddit r/workingmoms (via mirror)", "Blind (teamblind.com) RTO-policy thread"]
-  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results). Direct reddit.com fetches were blocked, so the Reddit voices here came via an indexed third-party mirror rather than the native site, consistent with prior runs' findings on that structural limitation."
----

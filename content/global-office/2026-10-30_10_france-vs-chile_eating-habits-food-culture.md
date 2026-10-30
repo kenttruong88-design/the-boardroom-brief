@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 10
+pillar: The Global Office
+author: Priya Mehta
+countries: France, Chile
+subject: Eating habits and food culture
+word_count: 1280
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-10-france-vs-chile-eating-habits-food-culture-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-10-france-vs-chile-eating-habits-food-culture-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["OECD time-use survey data (via The Local France)", "NPR reporting on France's suspended desk-eating law", "Atlas Obscura reporting on the history of Chilean 'once'", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["The Local France reader-sourced meal-length feature", "Yale Globalist student travel-reporting blog"]
+  note: "Quora, Reddit, and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed, fetchable threads). The Local France's reader-sourced feature and a university travel-reporting blog substitute for the required forum diversity, disclosed here rather than fabricated."
+---
+
 **France Spends Two Hours a Day Eating. Chile Spends Its Evenings Pretending It's Having Tea.**
 
 **🇫🇷 France · 🇨🇱 Chile**
@@ -63,22 +82,3 @@ There's a genuine irony buried here: France's protection is institutional but in
 If food is going to be part of your daily rhythm wherever you land, ask which protection you'd rather have: a legal one that occasionally breeds quiet resentment, or a cultural one that nobody enforces but almost everyone still honors. France will build the pause into your contract, more or less, whether or not you want the company. Chile will just quietly move its signature meal three hours later than its name suggests, and trust you to show up anyway.
 
 What I'd tell a friend: in France, take the full lunch, with people, even on the days you'd rather not — it's doing more for you than you'll notice at the time. In Chile, don't show up to dinner at an American hour expecting company; come back at nine, and bring an appetite for bread.
-
----
-date: 2026-10-30
-article_number: 10
-pillar: The Global Office
-author: Priya Mehta
-countries: France, Chile
-subject: Eating habits and food culture
-word_count: 1280
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-10-france-vs-chile-eating-habits-food-culture-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-10-france-vs-chile-eating-habits-food-culture-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["OECD time-use survey data (via The Local France)", "NPR reporting on France's suspended desk-eating law", "Atlas Obscura reporting on the history of Chilean 'once'", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["The Local France reader-sourced meal-length feature", "Yale Globalist student travel-reporting blog"]
-  note: "Quora, Reddit, and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed, fetchable threads). The Local France's reader-sourced feature and a university travel-reporting blog substitute for the required forum diversity, disclosed here rather than fabricated."
----

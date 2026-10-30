@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 8
+pillar: The Global Office
+author: Priya Mehta
+countries: Italy, Norway
+subject: Having children — parental leave, childcare support, and career impact of parenthood
+word_count: 1320
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-08-italy-vs-norway-parental-leave-having-children-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-08-italy-vs-norway-parental-leave-having-children-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["INPS (Italian national social security institute) maternity/parental leave rules, via The Local Italy", "Eurostat female employment rate data (via Reuters/The Star)", "Tortuga think tank paternity-leave uptake research (via Reuters/The Star)", "Tekna.no (Norwegian engineers' union) parental leave guide / NAV", "apolitical.co / sciencenorway.no Norwegian father's-quota research", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["Reddit r/Feminism (via mirror) — Norway paternity-leave discussion thread", "sciencenorway.no immigrant-fathers feature (first-person quotes)"]
+  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results). Direct reddit.com fetches were blocked, so the Reddit voice here came via an indexed third-party mirror; Reuters-sourced named quotes (Di Franco family, Adam) substitute for additional forum diversity, disclosed here rather than fabricated."
+---
+
 **Italy Gives New Fathers Ten Days. Norway Gives Them Fifteen Weeks and Takes Them Away If They Don't Use Them.**
 
 **🇮🇹 Italy · 🇳🇴 Norway**
@@ -65,22 +84,3 @@ The irony is that Italy's cultural mood is arguably moving faster than Norway's 
 If parenthood and career are both on your near-term horizon, don't just compare the number of weeks on offer — compare who the policy actually obligates. Italy's generosity is real but optional for fathers, which keeps the career cost of parenthood landing overwhelmingly on mothers. Norway's generosity is mandatory by design, structured specifically so fathers can't quietly opt out even if they wanted to.
 
 Here's what I'd tell a friend: in Italy, ask your specific employer about paternity top-ups before you need them, because the law alone won't carry you — and know that even visible cultural momentum hasn't yet moved parliament. In Norway, use every week of your quota without guilt; the system was built on the assumption that you would, and declining it doesn't make your partner's life easier — it just wastes leave nobody else can claim.
-
----
-date: 2026-10-30
-article_number: 8
-pillar: The Global Office
-author: Priya Mehta
-countries: Italy, Norway
-subject: Having children — parental leave, childcare support, and career impact of parenthood
-word_count: 1320
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-08-italy-vs-norway-parental-leave-having-children-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-08-italy-vs-norway-parental-leave-having-children-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["INPS (Italian national social security institute) maternity/parental leave rules, via The Local Italy", "Eurostat female employment rate data (via Reuters/The Star)", "Tortuga think tank paternity-leave uptake research (via Reuters/The Star)", "Tekna.no (Norwegian engineers' union) parental leave guide / NAV", "apolitical.co / sciencenorway.no Norwegian father's-quota research", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["Reddit r/Feminism (via mirror) — Norway paternity-leave discussion thread", "sciencenorway.no immigrant-fathers feature (first-person quotes)"]
-  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results). Direct reddit.com fetches were blocked, so the Reddit voice here came via an indexed third-party mirror; Reuters-sourced named quotes (Di Franco family, Adam) substitute for additional forum diversity, disclosed here rather than fabricated."
----

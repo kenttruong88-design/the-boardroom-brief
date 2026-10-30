@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 9
+pillar: The Global Office
+author: Priya Mehta
+countries: Belgium, Australia
+subject: Fashion culture — dress norms in society and everyday life
+word_count: 1300
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-09-belgium-vs-australia-fashion-culture-dress-norms-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-09-belgium-vs-australia-fashion-culture-dress-norms-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["Indeed Hiring Lab Australian job-postings dress-code analysis (June 2025 quarter)", "Expatica Belgium style and fashion guide", "HousingAnywhere Belgian business etiquette guide", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["Tales from a Small Planet (talesmag.com) Real Post Report — Brussels", "Australian Frequent Flyer community forum — Qantas lounge dress-code thread"]
+  note: "Quora, Reddit, and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed, fetchable threads). The Australian Frequent Flyer community forum and Tales from a Small Planet's expat report series substitute for the required diversity, disclosed here rather than fabricated."
+---
+
 **Belgium Will Judge Your Coat. Australia Will Let You Wear the Shower Sandals to the Airport Lounge.**
 
 **🇧🇪 Belgium · 🇦🇺 Australia**
@@ -65,22 +84,3 @@ The genuinely odd convergence: both cultures, despite their reputations, actuall
 If personal style is part of how you want to show up at a new job, read the room literally rather than nationally. Belgium will quietly expect you to already own the well-cut basics and the real rain jacket — not as fashion, just as competence. Australia will let the dress code bend almost entirely around what you were doing an hour before you walked in, which sounds freeing right up until you're the one explaining, politely, why you're wearing shower sandals somewhere that apparently has a policy about it now.
 
 What I'd tell a friend: in Belgium, buy the good coat before you arrive — it's doing more work in that culture than your résumé will in your first week. In Australia, dress for the actual context you're walking into, not for a national stereotype — the thongs are fine at the barbecue and a real liability at the lounge, and everyone there already knows exactly where that line sits.
-
----
-date: 2026-10-30
-article_number: 9
-pillar: The Global Office
-author: Priya Mehta
-countries: Belgium, Australia
-subject: Fashion culture — dress norms in society and everyday life
-word_count: 1300
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-09-belgium-vs-australia-fashion-culture-dress-norms-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-09-belgium-vs-australia-fashion-culture-dress-norms-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["Indeed Hiring Lab Australian job-postings dress-code analysis (June 2025 quarter)", "Expatica Belgium style and fashion guide", "HousingAnywhere Belgian business etiquette guide", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["Tales from a Small Planet (talesmag.com) Real Post Report — Brussels", "Australian Frequent Flyer community forum — Qantas lounge dress-code thread"]
-  note: "Quora, Reddit, and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed, fetchable threads). The Australian Frequent Flyer community forum and Tales from a Small Planet's expat report series substitute for the required diversity, disclosed here rather than fabricated."
----

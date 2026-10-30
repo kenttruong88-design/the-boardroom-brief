@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 6
+pillar: The Global Office
+author: Priya Mehta
+countries: Argentina, Denmark
+subject: Gender dynamics in the workplace
+word_count: 1310
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-06-argentina-vs-denmark-gender-dynamics-workplace-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-06-argentina-vs-denmark-gender-dynamics-workplace-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["INDEC labor force/leadership statistics (via Chequeado)", "Buenos Aires Ministry of Labor wage data (via Chequeado)", "Chicas en Tecnología 2026 survey on women in Argentine tech", "Copenhagen Business School 2022 pay-gap study (via Copenhagen Post/The Local Denmark)", "EU gender pay gap comparison (via The Local Denmark)", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["workindenmark.dk expat story series (Hannes Koopman)", "Berkeley Center for Religion, Peace and World Affairs (Georgetown University) — study-abroad student reflection"]
+  note: "Quora, Reddit, and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed, fetchable threads). The Local (Denmark) was reachable for statistics but its reader-advice thread required a login to view comments, so the workindenmark.dk government expat-story series and a Georgetown-hosted study-abroad reflection substitute for the required forum diversity, disclosed here rather than fabricated."
+---
+
 **Buenos Aires Will Catcall You on the Way to a Job Where You're Paid Less. Copenhagen Will Pay You Less Too, Just More Quietly.**
 
 **🇦🇷 Argentina · 🇩🇰 Denmark**
@@ -63,22 +82,3 @@ The genuinely ironic twist is in tech specifically: Argentina produces more fema
 If gender dynamics are a real factor in your decision, don't compare national reputations — compare the actual leadership pipeline at the specific employer you're considering, in either country. Argentina will be louder about the problem and arguably faster to name it out loud; Denmark will be quieter, flatter day-to-day, and no less likely to leave you reporting to an all-male board.
 
 What I'd tell a friend: in Buenos Aires, judge the company by its management roster, not its mission statement — the culture already knows the gap is real, so ask what it's specifically doing about it. In Copenhagen, enjoy how fast you can rise through a genuinely flat structure, but look up before you get too comfortable — the board above that flat middle is less flat than it looks.
-
----
-date: 2026-10-30
-article_number: 6
-pillar: The Global Office
-author: Priya Mehta
-countries: Argentina, Denmark
-subject: Gender dynamics in the workplace
-word_count: 1310
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-06-argentina-vs-denmark-gender-dynamics-workplace-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-06-argentina-vs-denmark-gender-dynamics-workplace-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["INDEC labor force/leadership statistics (via Chequeado)", "Buenos Aires Ministry of Labor wage data (via Chequeado)", "Chicas en Tecnología 2026 survey on women in Argentine tech", "Copenhagen Business School 2022 pay-gap study (via Copenhagen Post/The Local Denmark)", "EU gender pay gap comparison (via The Local Denmark)", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["workindenmark.dk expat story series (Hannes Koopman)", "Berkeley Center for Religion, Peace and World Affairs (Georgetown University) — study-abroad student reflection"]
-  note: "Quora, Reddit, and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed, fetchable threads). The Local (Denmark) was reachable for statistics but its reader-advice thread required a login to view comments, so the workindenmark.dk government expat-story series and a Georgetown-hosted study-abroad reflection substitute for the required forum diversity, disclosed here rather than fabricated."
----

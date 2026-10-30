@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 3
+pillar: The Global Office
+author: Priya Mehta
+countries: India, Greece
+subject: Vacation, PTO, and leave culture
+word_count: 1290
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-03-india-vs-greece-vacation-leave-culture-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-03-india-vs-greece-vacation-leave-culture-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["Expedia 2018 Vacation Deprivation survey (via People Matters/HR Katha coverage)", "Kimble Applications study on vacation and promotion perception", "Greek statutory annual-leave law (vacationtracker.io leave-law summary)", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["Blind (teamblind.com) — India PTO comparison thread", "Fishbowl — vacation-guilt discussion thread", "tovima.com reporting on the Athens August exodus"]
+  note: "Quora and Reddit returned no fetchable first-person threads for this pairing (robots-disallowed / no indexed results, consistent with prior runs). Internations/TheLocal had no on-topic indexed content either; Blind and Fishbowl (a comparable professional-community platform) covered that diversity requirement instead, disclosed here rather than fabricated."
+---
+
 **India Will Give You the Leave. Greece Will Give You the Entire Country, Closed.**
 
 **🇮🇳 India · 🇬🇷 Greece**
@@ -65,22 +84,3 @@ That's the real export opportunity for anyone managing across both markets: Gree
 If you're choosing based on how recovery actually works, ask which failure mode you can live with: leave that exists on paper but requires real social courage to use, or leave that's compulsory enough that an entire capital city empties out around you. Greece will occasionally cost you a closed pharmacy. India will occasionally cost you the vacation itself.
 
 What I'd tell a friend taking either job: in Greece, take the twenty days — nobody will think less of you, because everyone else is already gone. In India, take the leave you're owed and actually leave your phone in the other room; the system won't hand you the cover Greece gives for free, so you'll have to build it yourself, one firmly worded out-of-office at a time.
-
----
-date: 2026-10-30
-article_number: 3
-pillar: The Global Office
-author: Priya Mehta
-countries: India, Greece
-subject: Vacation, PTO, and leave culture
-word_count: 1290
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-03-india-vs-greece-vacation-leave-culture-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-03-india-vs-greece-vacation-leave-culture-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["Expedia 2018 Vacation Deprivation survey (via People Matters/HR Katha coverage)", "Kimble Applications study on vacation and promotion perception", "Greek statutory annual-leave law (vacationtracker.io leave-law summary)", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["Blind (teamblind.com) — India PTO comparison thread", "Fishbowl — vacation-guilt discussion thread", "tovima.com reporting on the Athens August exodus"]
-  note: "Quora and Reddit returned no fetchable first-person threads for this pairing (robots-disallowed / no indexed results, consistent with prior runs). Internations/TheLocal had no on-topic indexed content either; Blind and Fishbowl (a comparable professional-community platform) covered that diversity requirement instead, disclosed here rather than fabricated."
----

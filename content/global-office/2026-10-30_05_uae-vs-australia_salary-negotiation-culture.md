@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 5
+pillar: The Global Office
+author: Priya Mehta
+countries: United Arab Emirates, Australia
+subject: Salary transparency and negotiation culture
+word_count: 1260
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-05-uae-vs-australia-salary-negotiation-culture-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-05-uae-vs-australia-salary-negotiation-culture-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["Australia Secure Jobs, Better Pay Bill (pay-secrecy ban) — via The Conversation", "Workplace Gender Equality Agency gender pay gap figures (22.8%)", "U.S./Canadian pay-transparency comparative research (cited in The Conversation coverage)", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["Blind (teamblind.com) — Dubai salary-benchmark thread", "expat.com Middle East/UAE forum", "Fishbowl — salary-transparency discussion thread"]
+  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results), and no on-topic Australian forum voice was fetchable for the salary-transparency angle specifically — Fishbowl's general discussion substitutes, disclosed here rather than fabricated."
+---
+
 **Dubai Will Hand You a Number and Walk Away. Sydney Will Now Tell You What Everyone Else Is Making.**
 
 **🇦🇪 United Arab Emirates · 🇦🇺 Australia**
@@ -65,22 +84,3 @@ The counterintuitive twist: income tax, usually the headline difference between 
 If negotiating leverage matters more to you than the headline number, read the actual mechanism each country gives you, not the reputation. The UAE still pays well and tax-free, but multiple long-term residents describe the negotiation itself as increasingly theater — a number handed down, not built up. Australia pays less dramatically but now backs you with a legal right to find out exactly where you stand against everyone else in the room.
 
 What I'd tell a friend: in Dubai, negotiate the whole bundle on day one, because you likely won't get a second real chance at it. In Sydney, ask your colleague what they make — not because it's polite, but because, as of a few years ago, it's finally entirely your legal right to ask.
-
----
-date: 2026-10-30
-article_number: 5
-pillar: The Global Office
-author: Priya Mehta
-countries: United Arab Emirates, Australia
-subject: Salary transparency and negotiation culture
-word_count: 1260
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-05-uae-vs-australia-salary-negotiation-culture-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-05-uae-vs-australia-salary-negotiation-culture-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["Australia Secure Jobs, Better Pay Bill (pay-secrecy ban) — via The Conversation", "Workplace Gender Equality Agency gender pay gap figures (22.8%)", "U.S./Canadian pay-transparency comparative research (cited in The Conversation coverage)", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["Blind (teamblind.com) — Dubai salary-benchmark thread", "expat.com Middle East/UAE forum", "Fishbowl — salary-transparency discussion thread"]
-  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results), and no on-topic Australian forum voice was fetchable for the salary-transparency angle specifically — Fishbowl's general discussion substitutes, disclosed here rather than fabricated."
----

@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 2
+pillar: The Global Office
+author: Priya Mehta
+countries: China, Philippines
+subject: Management hierarchy and boss-employee relationships
+word_count: 1270
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-02-china-vs-philippines-management-hierarchy-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-02-china-vs-philippines-management-hierarchy-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["Knowledge@Wharton (interviews with Karine Schomer/CMCT, Tang Jun/ex-Microsoft China, Mary Fontaine/Hay Group)", "Hofstede Insights (cultural-dimensions context)", "Manila Recruitment Filipino management-style research", "ikkyinchina.com China-workplace expat guides"]
+  forums: ["Blind (teamblind.com) — 'how's the dynamic working for a Chinese boss' thread", "Core77 design forums — DesignerInShanghai AMA thread", "Victoria Hoffarth personal blog (quoting business owner Mike)"]
+  note: "Quora returned no fetchable results for this pairing (robots-disallowed, consistent with prior runs), and no on-topic Reddit thread could be fetched directly. Blind was reachable and reachable this run, so it covers the mandatory Internations/TheLocal/HN/Blind slot; Core77 forums and a personal blog substitute for the Quora/Reddit gap, disclosed here rather than fabricated."
+---
+
 **Your New Boss in Shanghai Is Your Parent. Your New Boss in Manila Is Your Favorite Uncle.**
 
 **🇨🇳 China · 🇵🇭 Philippines**
@@ -67,22 +86,3 @@ The genuinely counterintuitive part: both cultures consider direct, in-the-room 
 If you're weighing these two moves on management style alone, the real question isn't "how hierarchical is it" — both are, more than most Western workplaces you've known. It's "what currency does the hierarchy run on." In China, it's authority and relationship capital, built slowly and spent carefully. In the Philippines, it's dignity, protected fiercely and in private. Get the currency wrong and you'll overpay for the wrong thing in either country.
 
 What I'd tell a friend: in Shanghai, earn the right to disagree before you use it. In Manila, earn the right to be gentle before you assume it's already yours — the warmth is real, but it's a relationship you build, not a given you walk in with.
-
----
-date: 2026-10-30
-article_number: 2
-pillar: The Global Office
-author: Priya Mehta
-countries: China, Philippines
-subject: Management hierarchy and boss-employee relationships
-word_count: 1270
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-02-china-vs-philippines-management-hierarchy-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-02-china-vs-philippines-management-hierarchy-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["Knowledge@Wharton (interviews with Karine Schomer/CMCT, Tang Jun/ex-Microsoft China, Mary Fontaine/Hay Group)", "Hofstede Insights (cultural-dimensions context)", "Manila Recruitment Filipino management-style research", "ikkyinchina.com China-workplace expat guides"]
-  forums: ["Blind (teamblind.com) — 'how's the dynamic working for a Chinese boss' thread", "Core77 design forums — DesignerInShanghai AMA thread", "Victoria Hoffarth personal blog (quoting business owner Mike)"]
-  note: "Quora returned no fetchable results for this pairing (robots-disallowed, consistent with prior runs), and no on-topic Reddit thread could be fetched directly. Blind was reachable and reachable this run, so it covers the mandatory Internations/TheLocal/HN/Blind slot; Core77 forums and a personal blog substitute for the Quora/Reddit gap, disclosed here rather than fabricated."
----

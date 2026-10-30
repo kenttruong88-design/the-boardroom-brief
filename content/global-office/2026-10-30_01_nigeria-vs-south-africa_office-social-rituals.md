@@ -1,3 +1,22 @@
+---
+date: 2026-10-30
+article_number: 1
+pillar: The Global Office
+author: Priya Mehta
+countries: Nigeria, South Africa
+subject: Office social rituals — lunches, after-work, team events
+word_count: 1240
+images:
+  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-01-nigeria-vs-south-africa-office-social-rituals-hero"
+  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-01-nigeria-vs-south-africa-office-social-rituals-body"
+  hero_source: pexels
+  body_source: pexels
+sources:
+  official: ["ILO 2018 labour force working-hours data", "Oxford Our World in Data (2017 annual working hours)", "South Africa Basic Conditions of Employment Act (45-hour statutory maximum)", "Hofstede Insights (cultural-dimensions context)"]
+  forums: ["Zikoko (zikoko.com) — first-person Nigerian workplace accounts", "expat.com Africa/South Africa forum", "How We Made It In Africa (howwemadeitinafrica.com) expat interview", "Intergate Immigration South Africa relocation guide"]
+  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results), and direct Reddit thread search likewise surfaced no on-topic, fetchable posts — consistent with prior runs' findings. Substituted verifiable named accounts from Zikoko, expat.com, and How We Made It In Africa instead of fabricating quotes from the required platforms."
+---
+
 **Lagos Will Make You a Friend by Lunchtime. Johannesburg Will Make You Wait for the Braai Invite.**
 
 **🇳🇬 Nigeria · 🇿🇦 South Africa**
@@ -67,22 +86,3 @@ There's a further irony: the culture that looks more bureaucratic on paper — S
 If you're choosing between these two moves on social grounds alone, ask yourself which kind of obligation you'd rather carry: frequent, informal, slightly exhausting sociability that blurs into every weeknight in Lagos, or infrequent, highly structured sociability that quietly judges your two-time absence in Johannesburg. Neither is lighter duty — they just bill you on different schedules. The one universal: in both places, skipping the unofficial gathering is never read as neutral.
 
 Here's what I'd actually tell a friend taking either job: in Nigeria, say yes to the dinner, because the dinner is the meeting. In South Africa, say yes to the braai, because the braai is the performance review nobody put on your calendar.
-
----
-date: 2026-10-30
-article_number: 1
-pillar: The Global Office
-author: Priya Mehta
-countries: Nigeria, South Africa
-subject: Office social rituals — lunches, after-work, team events
-word_count: 1240
-images:
-  hero: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-01-nigeria-vs-south-africa-office-social-rituals-hero"
-  body: "https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-10-30-01-nigeria-vs-south-africa-office-social-rituals-body"
-  hero_source: pexels
-  body_source: pexels
-sources:
-  official: ["ILO 2018 labour force working-hours data", "Oxford Our World in Data (2017 annual working hours)", "South Africa Basic Conditions of Employment Act (45-hour statutory maximum)", "Hofstede Insights (cultural-dimensions context)"]
-  forums: ["Zikoko (zikoko.com) — first-person Nigerian workplace accounts", "expat.com Africa/South Africa forum", "How We Made It In Africa (howwemadeitinafrica.com) expat interview", "Intergate Immigration South Africa relocation guide"]
-  note: "Quora and Internations returned no fetchable first-person content for this pairing (robots-disallowed / no indexed results), and direct Reddit thread search likewise surfaced no on-topic, fetchable posts — consistent with prior runs' findings. Substituted verifiable named accounts from Zikoko, expat.com, and How We Made It In Africa instead of fabricating quotes from the required platforms."
----
