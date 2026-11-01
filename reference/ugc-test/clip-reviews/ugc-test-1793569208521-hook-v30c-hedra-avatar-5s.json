@@ -1,0 +1,69 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793569265/boardroom-brief/ugc-test/ugc-test-1793569208521-hook-v30c-hedra-avatar-5s.mp4",
+  "duration": 5.48,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793569297/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793569208521-hook-v30c-hedra-avatar-5s-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793569298/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793569208521-hook-v30c-hedra-avatar-5s-frames.jpg"
+  },
+  "faceMatch": 7,
+  "figure": {
+    "match": true,
+    "note": "Across all four full frames she keeps the sheet's curvy hourglass figure: full bust, narrow waist, wide hips and full thighs in the fitted green dress. She is not slimmer or straighter than the reference."
+  },
+  "issues": [
+    {
+      "t": 1.9,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Her eyes are open, and her irises read as medium-to-dark brown. The required warm light hazel is gone, and they are noticeably darker than in the 0.3s start frame."
+    },
+    {
+      "t": 3.6,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Her irises stay dark brown with open eyes, not warm light hazel."
+    },
+    {
+      "t": 5.2,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Her irises are still dark brown. The shift away from light hazel holds through the end of the clip."
+    },
+    {
+      "t": 0.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are out from her sides in a mirrored open-palm gesture at waist height. The brief asks for her right hand only, with the left at rest. Her hands are motion-blurred."
+    },
+    {
+      "t": 3.6,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both arms are again extended outward in a symmetrical, mirrored open-palm gesture instead of a single right-hand gesture."
+    },
+    {
+      "t": 0.3,
+      "kind": "artifact",
+      "severity": "minor",
+      "note": "Her eyebrows show a faint greenish colour tint in the close-up, likely a colour spill from the dress."
+    }
+  ],
+  "summary": "Her facial structure, brows, nose, lips, hair and figure stay consistent with the references, and the camera and scene are stable. However, from 1.9s onward her irises turn dark brown instead of warm light hazel, which is blocking. She also twice gestures with both hands mirrored instead of the right hand only.",
+  "sampledAt": [
+    0.3,
+    1.9,
+    3.6,
+    5.2
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": true,
+      "faceMatch": 8
+    },
+    {
+      "pass": false,
+      "faceMatch": 7
+    }
+  ]
+}
