@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, clearly arched brows with an angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey/greenish almond eyes with the same shape and lid structure."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose; the tip reads slightly fuller under the harsh light but the structure matches."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a cupid's bow, though slightly less plump and less pink than the references."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin; it looks marginally fuller in the cheeks but is not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders, styled in looser, frizzier waves than the tight ringlets in the references."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy hourglass with a full bust, narrow waist and wide hips, shown clearly by the fitted dress; not slimmed."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "The candidate closely resembles Priya, with matching brows, eyes, nose and figure, but slightly fuller cheeks and thinner, less defined lips keep it short of an unhesitating match; the frame itself is clean and suitable to animate.",
+  "pass": true
+}

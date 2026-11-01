@@ -62,7 +62,7 @@ export async function fetchAsset(assetId: string): Promise<Buffer> {
 // pixels of an image whose exact size the prompt states.
 const LOCATE_LONG_EDGE = 1000;
 
-async function locateFace(buf: Buffer): Promise<{ x0: number; y0: number; x1: number; y1: number } | null> {
+export async function locateFace(buf: Buffer): Promise<{ x0: number; y0: number; x1: number; y1: number } | null> {
   const small = await sharp(buf).resize({ width: LOCATE_LONG_EDGE, height: LOCATE_LONG_EDGE, fit: "inside" }).jpeg({ quality: 85 }).toBuffer({ resolveWithObject: true });
   const { width: w, height: h } = small.info;
   const response = await client.messages.create({

@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear arch and angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond-shaped eyes, matching the references."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight nose. It reads slightly broader at the tip in this lighting but is within range."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow and the same closed-mouth smile shape."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with cheekbones and a tapered chin. The cheeks look slightly fuller and the face marginally wider than in the references, but not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Black curly hair past the shoulders, though noticeably shorter than the mid-torso length in the reference sheet."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy figure with a large, full bust, defined waist and wide hips under the fitted dress. Not slimmed relative to the full-body panels."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "Strong resemblance on brows, eyes, lips and figure, with a slightly fuller face, slightly darker skin tone and shorter hair keeping it from an unhesitating match; the frame itself is clean and suitable to animate.",
+  "pass": true
+}

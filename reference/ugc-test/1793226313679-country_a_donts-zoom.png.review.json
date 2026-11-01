@@ -1,0 +1,45 @@
+{
+  "faceMatch": 5,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with an angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey almond-shaped eyes, though they read slightly rounder and more hooded under the dimmer lighting."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "Nose looks broader at the base with a fuller, rounder tip than her long, narrow nose in the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a cupid's bow, though the bow is a little softer and less defined."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "Face reads broader and fuller, with heavier cheeks and a wider jaw, rather than her slimmer oval with sculpted cheekbones and tapered chin."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders with a side part, consistent with the references."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Curvy hourglass figure with full bust, narrow waist and wide hips shown in a fitted wrap top and pencil skirt; not slimmed."
+    }
+  ],
+  "frameIssues": [
+    "Skin looks overly smooth and uniform with a warm orange cast, giving a slightly airbrushed, AI-generated feel"
+  ],
+  "summary": "Hair, brows, eyes and figure match, but the broader, fuller face and wider nose make the candidate read as a similar-looking woman rather than unmistakably Priya Mehta.",
+  "pass": false
+}

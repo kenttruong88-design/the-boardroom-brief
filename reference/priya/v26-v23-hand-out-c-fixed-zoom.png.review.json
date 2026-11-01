@@ -1,0 +1,46 @@
+{
+  "faceMatch": 8,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light silver-grey almond eyes, same shape and lightness as hers."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose matching the reference bridge and tip."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow, same closed-mouth smile shape."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin. Warm lighting makes it read slightly fuller, but the structure matches."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders, center-left part as in the references."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "Reads noticeably slimmer than the sheet. Hips and thighs look narrow and straight in the pencil skirt, and the waist-to-hip curve is much weaker than the full-body panels. The bust is also less full."
+    }
+  ],
+  "frameIssues": [
+    "Mismatched nail polish between hands (pale pink on her right hand, dark burgundy on her left), an AI-generation tell",
+    "Skin looks somewhat smoothed/airbrushed with warm glow lighting, slightly AI-polished"
+  ],
+  "summary": "The face is convincingly Priya Mehta, but her figure has been visibly slimmed from the reference hourglass and the hands have mismatched nail polish, so the frame should be regenerated.",
+  "pass": false
+}
