@@ -1,0 +1,57 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793568855/boardroom-brief/ugc-test/ugc-test-1793568763803-hook-v30c-5s.mp4",
+  "duration": 5.28,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793568887/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793568763803-hook-v30c-5s-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793568888/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793568763803-hook-v30c-5s-frames.jpg"
+  },
+  "faceMatch": 6,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure throughout, with full bust, narrow waist, wide hips and full thighs. This is consistent with the sheet's full-body panels and does not slim down in any still."
+  },
+  "issues": [
+    {
+      "t": 1.9,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Iris colour has darkened from the start frame's lighter hazel to a medium/dark brown. It no longer reads as warm light hazel."
+    },
+    {
+      "t": 3.4,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Irises read clearly dark brown, continuing the drift away from her light hazel eyes."
+    },
+    {
+      "t": 5,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Eyes remain dark brown. Combined with slightly softer, less sharply peaked brows, she drifts toward a similar-looking woman rather than unmistakably Priya."
+    },
+    {
+      "t": 3.4,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "The gesturing hand at waist height is her LEFT hand (frame right), not her right. Her right arm also hangs slightly away from her side rather than resting still."
+    }
+  ],
+  "summary": "Framing, scene, outfit and figure hold steady, and the face is broadly similar. However, her eyes drift from light hazel to dark brown from 1.9s onward, which is blocking. The single gesture at 3.4s uses the wrong hand.",
+  "sampledAt": [
+    0.3,
+    1.9,
+    3.4,
+    5
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 7
+    },
+    {
+      "pass": false,
+      "faceMatch": 6
+    }
+  ]
+}
