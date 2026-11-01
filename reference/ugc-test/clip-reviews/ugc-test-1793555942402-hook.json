@@ -1,0 +1,60 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793555998/boardroom-brief/ugc-test/ugc-test-1793555942402-hook.mp4",
+  "duration": 9.64,
+  "faceMatch": 7,
+  "issues": [
+    {
+      "t": 0.3,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Eyes are somewhat narrowed and heavy-lidded mid-speech rather than fully open and bright."
+    },
+    {
+      "t": 4.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Eyes are half-closed and asymmetric: her left eye is nearly shut, reading as a squint or wink rather than a quick full blink. The irises are partly obscured."
+    },
+    {
+      "t": 6.3,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids are slightly lowered and the gaze is a little heavy, though the irises remain visible."
+    },
+    {
+      "t": 1.8,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "The right-hand gesture is lifted to roughly chest height with the palm up, above the requested waist level."
+    },
+    {
+      "t": 7.8,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Her right hand is raised to about shoulder height, palm open in a wave-like gesture, which violates the never-to-chest/shoulder-height direction."
+    },
+    {
+      "t": 3.3,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "The face looks softer, broader and blurrier in this still, with less defined cheekbones and chin taper than the references, though she is still recognizable."
+    },
+    {
+      "t": null,
+      "kind": "figure",
+      "severity": "minor",
+      "note": "Her figure reads somewhat slimmer and less hourglass than the reference, with a more moderate bust, though hips and waist remain reasonably defined."
+    }
+  ],
+  "summary": "Identity largely holds: arched brows, grey almond eyes, narrow nose and long curly hair, with a slightly softened face around 3.3s. The camera and scene are stable and the left arm stays at her side, but the eyes go heavy or half-closed at 4.8s, with mild heaviness at 0.3s and 6.3s, and right-hand gestures rise to chest or shoulder height at 1.8s and 7.8s.",
+  "sampledAt": [
+    0.3,
+    1.8,
+    3.3,
+    4.8,
+    6.3,
+    7.8,
+    9.3
+  ],
+  "pass": true
+}

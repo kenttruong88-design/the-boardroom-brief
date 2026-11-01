@@ -1,0 +1,63 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556095/boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_dos.mp4",
+  "duration": 14.08,
+  "faceMatch": 7,
+  "issues": [
+    {
+      "t": 1.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Her left eye is fully closed and the right is half-closed, a mid-blink or wink-like asymmetric lid frame."
+    },
+    {
+      "t": 9.3,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Both eyes are heavy-lidded and half-closed, giving a sleepy look. Eyes are open again at 10.8s."
+    },
+    {
+      "t": 13.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids are somewhat lowered and heavy, so her eyes are less bright and open than requested."
+    },
+    {
+      "t": 4.8,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are out to the sides, palms up, in a mirrored two-handed gesture instead of right hand only."
+    },
+    {
+      "t": 6.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are clasped together in front of her waist (also at 7.8s). The left arm is not resting at her side."
+    },
+    {
+      "t": 9.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands gesture together in a mirrored way in front of her stomach. This continues through 10.8s, 12.3s and 13.8s, and the left hand never rests."
+    },
+    {
+      "t": 6.3,
+      "kind": "camera",
+      "severity": "minor",
+      "note": "The camera pushes in from the full-body framing (head to shoes at 0.3–4.8s) to a knee-up crop. It tightens further by 9.3s, so the frame is not static."
+    }
+  ],
+  "summary": "Identity, outfit and office background hold consistently with the reference look and curvy figure. However, the camera pushes in noticeably from 6.3s, both hands gesture or clasp together for most of the clip, and there are heavy-lidded or half-closed eye moments at 1.8s, 9.3s and 13.8s.",
+  "sampledAt": [
+    0.3,
+    1.8,
+    3.3,
+    4.8,
+    6.3,
+    7.8,
+    9.3,
+    10.8,
+    12.3,
+    13.8
+  ],
+  "pass": true
+}

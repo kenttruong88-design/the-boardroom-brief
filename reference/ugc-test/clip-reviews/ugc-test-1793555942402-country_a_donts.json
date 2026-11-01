@@ -1,0 +1,51 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556181/boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_donts.mp4",
+  "duration": 14.44,
+  "faceMatch": 5,
+  "issues": [
+    {
+      "t": 3.4,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "From about here to the end (3.4–14.1s), her eyes read as dark brown, not the reference's light silver-grey. Her face also looks broader and heavier through the jaw and cheeks, making her a similar-looking woman rather than clearly Priya. At 0.3s and 1.8s the eyes are still lighter and closer to the reference."
+    },
+    {
+      "t": 1.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids slightly heavy compared with the bright, wide-open look requested."
+    },
+    {
+      "t": 12.6,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Eyes heavy-lidded and partly lowered, looking down rather than at the camera, in a single still."
+    },
+    {
+      "t": 6.5,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand raised to chest height with an open palm facing the camera (also at 8.0s), above the requested waist-height gestures."
+    },
+    {
+      "t": 9.5,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand held at chest/sternum height continuously from 9.5s through 14.1s and never returns to rest at her side."
+    }
+  ],
+  "summary": "Scene, outfit, figure and framing stay stable, and gestures use only her right hand. However, from about 3.4s her eyes turn dark brown and her face broadens, so she drifts to a lookalike rather than clearly Priya. Several gestures also sit at chest height.",
+  "sampledAt": [
+    0.3,
+    1.8,
+    3.4,
+    4.9,
+    6.5,
+    8,
+    9.5,
+    11.1,
+    12.6,
+    14.1
+  ],
+  "pass": false
+}

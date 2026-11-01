@@ -39,7 +39,7 @@ export const FACE_MATCH_PASS = 7;
 // Long edge sent to Claude. 2K frames are ~5 MB PNGs, over the image limit.
 const REVIEW_LONG_EDGE = 1568;
 
-async function toJpegBase64(buf: Buffer): Promise<string> {
+export async function toJpegBase64(buf: Buffer): Promise<string> {
   const out = await sharp(buf)
     .resize({ width: REVIEW_LONG_EDGE, height: REVIEW_LONG_EDGE, fit: "inside", withoutEnlargement: true })
     .jpeg({ quality: 88 })
@@ -47,7 +47,7 @@ async function toJpegBase64(buf: Buffer): Promise<string> {
   return out.toString("base64");
 }
 
-async function fetchAsset(assetId: string): Promise<Buffer> {
+export async function fetchAsset(assetId: string): Promise<Buffer> {
   const res = await fetch(await getImageAssetUrl(assetId));
   if (!res.ok) throw new Error(`Failed to download image asset ${assetId}: ${res.status}`);
   return Buffer.from(await res.arrayBuffer());
@@ -85,7 +85,7 @@ async function locateFace(buf: Buffer): Promise<{ x0: number; y0: number; x1: nu
   return { x0: box.x0 / w, y0: box.y0 / h, x1: box.x1 / w, y1: box.y1 / h };
 }
 
-async function splitPanels(buf: Buffer, [cols, rows]: [number, number]): Promise<Buffer[]> {
+export async function splitPanels(buf: Buffer, [cols, rows]: [number, number]): Promise<Buffer[]> {
   const { width = 0, height = 0 } = await sharp(buf).metadata();
   const w = Math.floor(width / cols);
   const h = Math.floor(height / rows);
@@ -99,7 +99,7 @@ async function splitPanels(buf: Buffer, [cols, rows]: [number, number]): Promise
 }
 
 /** Square crop around the face with margin, from the full-resolution image. */
-async function faceCropBase64(buf: Buffer): Promise<string> {
+export async function faceCropBase64(buf: Buffer): Promise<string> {
   const { width = 0, height = 0 } = await sharp(buf).metadata();
   const box = await locateFace(buf);
   if (!box) return toJpegBase64(buf);

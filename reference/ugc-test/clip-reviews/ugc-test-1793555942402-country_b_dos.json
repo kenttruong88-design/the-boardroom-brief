@@ -1,0 +1,89 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556273/boardroom-brief/ugc-test/ugc-test-1793555942402-country_b_dos.mp4",
+  "duration": 16.8,
+  "faceMatch": 5,
+  "issues": [
+    {
+      "t": 6.2,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her light silver-grey eyes, a key identity feature, turn dark brown from about 6.2s. They stay dark brown at 7.7s and through 9.1–16.5s, so she reads as a similar-looking woman rather than Priya. At 0.3–3.2s her eyes are still light."
+    },
+    {
+      "t": 9.1,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Dark brown eyes persist through 9.1, 10.6, 12.1, 13.6, 15.0 and 16.5s. Together with the looser, wavier hair, the face drifts away from the reference likeness."
+    },
+    {
+      "t": 4.7,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Eyes are closed or nearly closed in this still. Likely a blink, since they are open again at 6.2s."
+    },
+    {
+      "t": 6.2,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands gesture together in front of her waist in a mirrored pose, instead of the right hand only."
+    },
+    {
+      "t": 7.7,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are raised to chest height in a mirrored gesture."
+    },
+    {
+      "t": 9.1,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are clasped together at her waist instead of the left arm resting at her side."
+    },
+    {
+      "t": 10.6,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are raised to chest height and mirrored."
+    },
+    {
+      "t": 12.1,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are spread outward in a symmetric, mirrored gesture."
+    },
+    {
+      "t": 13.6,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands gesture at chest height."
+    },
+    {
+      "t": 15,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands gesture together at waist height, mirrored."
+    },
+    {
+      "t": 16.5,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are held together in front of her waist rather than resting at her side."
+    }
+  ],
+  "summary": "Scene, outfit, figure and framing stay consistent, but from about 6.2s her signature light grey eyes become dark brown, so she reads as a lookalike rather than Priya. She also gestures with both hands, often mirrored and at chest height, for most of the clip.",
+  "sampledAt": [
+    0.3,
+    1.8,
+    3.2,
+    4.7,
+    6.2,
+    7.7,
+    9.1,
+    10.6,
+    12.1,
+    13.6,
+    15,
+    16.5
+  ],
+  "pass": false
+}

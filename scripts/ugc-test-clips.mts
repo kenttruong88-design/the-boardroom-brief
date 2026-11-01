@@ -17,7 +17,7 @@
  *                              instead of generating a new scene (repeatable)
  *   ... --retries <n>          regenerate a frame that fails the identity
  *                              review up to n times (default 2, ~22 credits each)
- *   ... --skip-review          don't run the Claude identity review
+ *   ... --skip-review          don't run the Claude frame or clip reviews
  *   labels: hook | country_a_dos | country_a_donts | country_b_dos | country_b_donts
  *
  * --stills-only generates just the scene start frames (one Hedra image each)
@@ -29,6 +29,11 @@
  * before anything else is spent on it. A failing frame is regenerated up to
  * --retries times; if none passes, that clip gets no narration or video.
  * Each still is saved with its verdict as <still>.review.json.
+ *
+ * Every rendered clip then goes through Claude's clip review
+ * (app/lib/social/clip-review.ts): stills sampled across the clip, checked
+ * for identity drift, eyes, hands, camera movement and artifacts. Verdicts
+ * land in reference/ugc-test/clip-reviews/ugc-test-<run>-<label>.json.
  *
  * Requires ANTHROPIC_API_KEY, HEDRA_API_KEY, and CLOUDINARY_* in .env.local.
  */
@@ -96,6 +101,7 @@ const {
   uploadLocalImageAsset,
 } = await import("../app/lib/social/hedra-client");
 const { reviewSceneFrame, formatFrameReview } = await import("../app/lib/social/frame-identity-review");
+const { reviewClip, formatClipReview } = await import("../app/lib/social/clip-review");
 const { v2: cloudinary } = await import("cloudinary");
 
 cloudinary.config({
@@ -233,6 +239,13 @@ async function main() {
         });
         console.log(`[${label}] DONE: ${upload.secure_url}`);
         uploaded = true;
+        if (!skipReview) {
+          const clipReview = await reviewClip(persona, upload.secure_url, upload.duration);
+          const reviewDir  = resolve(ROOT, "reference", "ugc-test", "clip-reviews");
+          mkdirSync(reviewDir, { recursive: true });
+          writeFileSync(resolve(reviewDir, `ugc-test-${runId}-${label}.json`), JSON.stringify({ url: upload.secure_url, duration: upload.duration, ...clipReview }, null, 2) + "\n");
+          console.log(`[${label}] clip review: ${formatClipReview(clipReview)}`);
+        }
       } else if (status.status === "error") {
         console.error(`[${label}] FAILED: ${status.error_message}`);
         break;

@@ -1,0 +1,181 @@
+import Anthropic from "@anthropic-ai/sdk";
+import sharp from "sharp";
+import { logClaudeUsage } from "@/app/lib/claude";
+import type { CreatorPersona } from "./creator-personas";
+import { FACE_MATCH_PASS, faceCropBase64, fetchAsset, referenceAssetIds, splitPanels } from "./frame-identity-review";
+
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+const REVIEW_MODEL = "claude-opus-5-5";
+
+// The frame review (frame-identity-review.ts) only sees the start frame; the
+// avatar model can still drift her face, close her eyes, mirror both hands or
+// push the camera in mid-clip (all seen in the India–Spain clips, 10-26..11-01),
+// which until now only a human watching the clip caught. This samples stills
+// across a rendered clip and asks Claude to check them in order.
+
+export interface ClipIssue {
+  /** Seconds into the clip, or null when it applies to the whole clip. */
+  t:        number | null;
+  kind:     "identity" | "eyes" | "hands" | "figure" | "camera" | "scene" | "artifact" | "text" | "other";
+  /** blocking = re-render; minor = worth a look, usually acceptable. */
+  severity: "blocking" | "minor";
+  note:     string;
+}
+
+export interface ClipReview {
+  /** True when the lowest faceMatch passes and nothing is blocking. */
+  pass:      boolean;
+  /** 1-10, the LOWEST likeness across the sampled stills. */
+  faceMatch: number;
+  issues:    ClipIssue[];
+  summary:   string;
+  /** Seconds sampled, in order. */
+  sampledAt: number[];
+}
+
+const SAMPLE_EVERY_S = 1.5;
+const MAX_SAMPLES    = 12;
+const TILE_W = 360, TILE_H = 640;
+
+/** Sample times across a clip, skipping the very first/last instant. */
+export function sampleTimes(durationS: number): number[] {
+  const n = Math.min(MAX_SAMPLES, Math.max(3, Math.ceil(durationS / SAMPLE_EVERY_S)));
+  const start = 0.3, end = Math.max(start, durationS - 0.3);
+  return Array.from({ length: n }, (_, i) => Math.round((start + ((end - start) * i) / (n - 1)) * 10) / 10);
+}
+
+/**
+ * A still at `t` seconds from a Cloudinary video URL, via its so_ (start
+ * offset) transform, so no local ffmpeg is needed. Past the end Cloudinary
+ * returns the last frame rather than an error, hence the known duration.
+ */
+export function cloudinaryStillUrl(videoUrl: string, t: number, width = 1080): string {
+  if (!videoUrl.includes("/video/upload/")) throw new Error(`Not a Cloudinary video URL: ${videoUrl}`);
+  return videoUrl
+    .replace(/\/video\/upload\/(v\d+\/)?/, `/video/upload/so_${t},w_${width}/$1`)
+    .replace(/\.(mp4|mov|webm)(\?.*)?$/i, ".jpg");
+}
+
+async function download(url: string): Promise<Buffer> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to download ${url}: ${res.status}`);
+  return Buffer.from(await res.arrayBuffer());
+}
+
+function label(text: string, w: number): Buffer {
+  return Buffer.from(
+    `<svg width="${w}" height="44"><rect width="100%" height="100%" fill="#000" opacity="0.7"/>` +
+    `<text x="10" y="31" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#fff">${text}</text></svg>`
+  );
+}
+
+/** Tiles in time order with a timestamp on each, `cols` per row. */
+async function timeline(tiles: Buffer[], times: number[], w: number, h: number, cols: number): Promise<Buffer> {
+  const rows = Math.ceil(tiles.length / cols);
+  return sharp({ create: { width: w * cols, height: h * rows, channels: 3, background: "#ffffff" } })
+    .composite((await Promise.all(tiles.map(async (t, i) => [
+      { input: await sharp(t).resize(w, h, { fit: "cover" }).toBuffer(), left: (i % cols) * w, top: Math.floor(i / cols) * h },
+      { input: label(`${times[i].toFixed(1)}s`, w), left: (i % cols) * w, top: Math.floor(i / cols) * h },
+    ]))).flat())
+    .jpeg({ quality: 88 })
+    .toBuffer();
+}
+
+export async function reviewClip(
+  persona: CreatorPersona,
+  videoUrl: string,
+  durationS: number,
+  opts: { refs?: Buffer[]; debugDir?: string } = {}
+): Promise<ClipReview> {
+  if (!(durationS > 0)) throw new Error(`Clip duration unknown for ${videoUrl}`);
+  const times  = sampleTimes(durationS);
+  const stills = await Promise.all(times.map((t) => download(cloudinaryStillUrl(videoUrl, t))));
+  const refBufs = opts.refs ?? await Promise.all(referenceAssetIds(persona).map(fetchAsset));
+  if (refBufs.length === 0) throw new Error(`Persona "${persona.key}" has no reference images to review against`);
+
+  const refSources = persona.mainReference ? await splitPanels(refBufs[0], persona.mainReference.grid) : refBufs;
+  const [refFaces, clipFaces] = await Promise.all([
+    Promise.all(refSources.map(faceCropBase64)),
+    Promise.all(stills.map(faceCropBase64)),
+  ]);
+  const b64 = (s: string) => Buffer.from(s, "base64");
+  const refCols   = Math.min(refFaces.length, 8);
+  const refRow    = await sharp({ create: { width: 384 * refCols, height: 384 * Math.ceil(refFaces.length / refCols), channels: 3, background: "#ffffff" } })
+    .composite(await Promise.all(refFaces.map(async (f, i) => ({
+      input: await sharp(b64(f)).resize(384, 384, { fit: "cover" }).toBuffer(), left: (i % refCols) * 384, top: Math.floor(i / refCols) * 384,
+    }))))
+    .jpeg({ quality: 88 })
+    .toBuffer();
+  const faceStrip = await timeline(clipFaces.map(b64), times, 384, 384, 6);
+  const fullStrip = await timeline(stills, times, TILE_W, TILE_H, 6);
+
+  if (opts.debugDir) {
+    const { writeFileSync } = await import("fs");
+    writeFileSync(`${opts.debugDir}/clip-faces.jpg`, faceStrip);
+    writeFileSync(`${opts.debugDir}/clip-frames.jpg`, fullStrip);
+  }
+
+  const features = persona.identityFeatures ?? [];
+  const content: Anthropic.Messages.ContentBlockParam[] = [
+    { type: "text", text: `REFERENCE faces of ${persona.name}:` },
+    { type: "image", source: { type: "base64", media_type: "image/jpeg", data: refRow.toString("base64") } },
+    { type: "text", text: `Her face in the CLIP, sampled every ~${SAMPLE_EVERY_S}s (timestamp on each):` },
+    { type: "image", source: { type: "base64", media_type: "image/jpeg", data: faceStrip.toString("base64") } },
+    { type: "text", text: "The same moments as full frames:" },
+    { type: "image", source: { type: "base64", media_type: "image/jpeg", data: fullStrip.toString("base64") } },
+    {
+      type: "text",
+      text:
+        `These are stills, in order, from a ${durationS.toFixed(1)}s lip-synced talking-head clip of ${persona.name} for social video. ` +
+        "The first still is the approved start frame; judge how the clip holds up from there. You can't hear audio, so don't judge lip sync.\n\n" +
+        "What the performance was asked for: a static, eye-level vertical full-body shot with no camera movement; her face and eyes toward camera throughout" +
+        (persona.handsDirection ? `; hands: ${persona.handsDirection}` : "") +
+        (persona.performanceNote ? `; eyes: ${persona.performanceNote}` : "") + ".\n\n" +
+        "Check, citing the timestamp of each problem:\n" +
+        "1. identity: is it the same woman as the reference faces in EVERY still? " +
+        (features.length ? `Her distinctive features: ${features.join("; ")}. ` : "") +
+        (persona.figureFeature ? `Her figure: ${persona.figureFeature}. ` : "") +
+        "Flag any still where she drifts toward a different-looking woman or her figure slims.\n" +
+        "2. eyes: closed, half-closed, squinting or heavy-lidded beyond a normal quick blink; looking away from camera.\n" +
+        "3. hands: both hands gesturing together or mirrored, hands raised to chest/shoulder height, malformed or extra fingers, hands melting into the body or clothes.\n" +
+        "4. camera: zoom/push-in, pan or reframing (compare her size and position in the frame across stills).\n" +
+        "5. scene/artifacts: background warping or changing, people or objects morphing or appearing, clothing changing, garbled text appearing, face or body distortion.\n\n" +
+        "severity=blocking for: a still where she reads as a different woman; eyes closed or half-closed across two or more consecutive stills; " +
+        "visibly malformed hands or face; the scene, outfit or background changing or warping; text or captions appearing. " +
+        "Everything else (mirrored or chest-height gestures, a mild push-in, a single blink) is minor. Report only what you actually see; an empty list is fine.\n\n" +
+        "faceMatch 1-10 is the LOWEST likeness across the stills: would someone who knows her from the references say without hesitation that it's her? A similar-looking woman is 6 or below.\n\n" +
+        'Reply with JSON only: {"faceMatch": <1-10>, "issues": [{"t": <seconds or null>, "kind": "identity|eyes|hands|figure|camera|scene|artifact|text|other", ' +
+        '"severity": "blocking|minor", "note": "<what you see>"}], "summary": "<one or two sentences>"}',
+    },
+  ];
+
+  const response = await client.messages.create({
+    model:      REVIEW_MODEL,
+    max_tokens: 4000,
+    system:     "You are a strict continuity and quality checker for an AI video pipeline. You compare faces precisely, look closely at hands and eyes, and never wave through a lookalike.",
+    messages:   [{ role: "user", content }],
+  });
+  logClaudeUsage("ugc:clip-review", REVIEW_MODEL, response.usage.input_tokens, response.usage.output_tokens);
+
+  const text  = response.content.map((b) => (b.type === "text" ? b.text : "")).join("");
+  const match = text.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error(`Clip review returned no JSON: ${text.slice(0, 200)}`);
+  const raw = JSON.parse(match[0]) as Omit<ClipReview, "pass" | "sampledAt">;
+  const issues = raw.issues ?? [];
+  return {
+    faceMatch: raw.faceMatch,
+    issues,
+    summary:   raw.summary ?? "",
+    sampledAt: times,
+    pass:      raw.faceMatch >= FACE_MATCH_PASS && !issues.some((i) => i.severity === "blocking"),
+  };
+}
+
+export function formatClipReview(r: ClipReview): string {
+  const lines = [`${r.pass ? "PASS" : "FAIL"}  lowest face match ${r.faceMatch}/10 — ${r.summary}`];
+  for (const i of r.issues) {
+    lines.push(`    ${i.severity === "blocking" ? "BLOCK" : "minor"} ${i.t === null ? "  all" : `${i.t.toFixed(1).padStart(5)}s`} ${i.kind}: ${i.note}`);
+  }
+  return lines.join("\n");
+}
