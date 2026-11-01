@@ -46,9 +46,12 @@ eyes turning brown mid-clip in three of them.
 
 ## What blocks a clip
 
-`pass` = lowest faceMatch ≥ 7 and no blocking issue. Blocking: she reads as a
-different woman in any still (including eye colour change), eyes closed/half
-closed across 2+ consecutive stills, malformed hands or face, scene/outfit/
+`pass` = every one of the 2 independent review runs passes (lowest faceMatch ≥ 7,
+no blocking issue, and her figure matches the sheet's full-body panels).
+Borderline clips flip between runs, so a split vote is a FAIL. Blocking: she reads as a
+different woman in any still; a distinctive feature changing (light eyes
+turning brown, however gradual); a visibly slimmer figure than the sheet; eyes closed with irises mostly hidden across 2+ consecutive stills (heavy
+lids alone are minor), malformed hands or face, scene/outfit/
 background changing or warping, text appearing. Everything else is minor.
 
 ## Notes
@@ -58,3 +61,8 @@ background changing or warping, text appearing. Everything else is minor.
   (no ffmpeg on this machine). Code: `app/lib/social/clip-review.ts`.
 - Start frames are reviewed separately before rendering
   (`app/lib/social/frame-identity-review.ts`, `scripts/review-frames.mts`).
+
+- Calibration (2026-11-01, India–Spain clips): the user passed only India
+  Do's and failed the hook (slimmer figure, face drift) and the three clips
+  whose eyes turn brown. The review matches that; re-check against it if you
+  change the prompt.

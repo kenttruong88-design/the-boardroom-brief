@@ -1,40 +1,54 @@
 {
   "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556181/boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_donts.mp4",
   "duration": 14.44,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562577/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-country_a_donts-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562215/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-country_a_donts-frames.jpg"
+  },
   "faceMatch": 5,
+  "figure": {
+    "match": true,
+    "note": "Across all stills she keeps the sheet's curvy hourglass figure: full bust, narrow waist, wide hips and full thighs in the fitted top and pencil skirt. No visible slimming."
+  },
   "issues": [
     {
       "t": 3.4,
       "kind": "identity",
       "severity": "blocking",
-      "note": "From about here to the end (3.4–14.1s), her eyes read as dark brown, not the reference's light silver-grey. Her face also looks broader and heavier through the jaw and cheeks, making her a similar-looking woman rather than clearly Priya. At 0.3s and 1.8s the eyes are still lighter and closer to the reference."
+      "note": "Her eyes read dark brown from 3.4s onward (also 4.9, 6.5, 8.0, 9.5, 14.1s) instead of the light silver-grey in the references. At 0.3s they are only lightish/hazel. The eye colour has drifted away from her distinctive light eyes."
     },
     {
       "t": 1.8,
       "kind": "eyes",
       "severity": "minor",
-      "note": "Lids slightly heavy compared with the bright, wide-open look requested."
+      "note": "Lids are somewhat heavy and lowered, and her gaze reads slightly sleepy."
+    },
+    {
+      "t": 11.1,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Heavy, lowered lids with the irises partly covered."
     },
     {
       "t": 12.6,
       "kind": "eyes",
       "severity": "minor",
-      "note": "Eyes heavy-lidded and partly lowered, looking down rather than at the camera, in a single still."
+      "note": "Eyes are nearly half-closed and looking downward, with the irises largely hidden. This continues the heavy-lidded look from 11.1s."
     },
     {
-      "t": 6.5,
+      "t": 8,
       "kind": "hands",
       "severity": "minor",
-      "note": "Right hand raised to chest height with an open palm facing the camera (also at 8.0s), above the requested waist-height gestures."
+      "note": "Her right hand is raised palm-out to lower-chest height, above the requested waist level."
     },
     {
       "t": 9.5,
       "kind": "hands",
       "severity": "minor",
-      "note": "Right hand held at chest/sternum height continuously from 9.5s through 14.1s and never returns to rest at her side."
+      "note": "Her right hand gestures at chest height and stays raised through 11.1s, 12.6s and 14.1s without returning to rest at her side."
     }
   ],
-  "summary": "Scene, outfit, figure and framing stay stable, and gestures use only her right hand. However, from about 3.4s her eyes turn dark brown and her face broadens, so she drifts to a lookalike rather than clearly Priya. Several gestures also sit at chest height.",
+  "summary": "Framing, scene, outfit and figure are stable, and gestures stay one-handed, though often at chest height. The clip fails mainly on identity: her light silver-grey eyes turn dark brown from 3.4s on. There are also heavy-lidded moments around 11.1–12.6s.",
   "sampledAt": [
     0.3,
     1.8,
@@ -47,5 +61,15 @@
     12.6,
     14.1
   ],
-  "pass": false
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 5
+    },
+    {
+      "pass": false,
+      "faceMatch": 5
+    }
+  ]
 }

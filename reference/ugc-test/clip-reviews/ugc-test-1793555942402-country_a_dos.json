@@ -1,52 +1,60 @@
 {
   "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556095/boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_dos.mp4",
   "duration": 14.08,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562556/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-country_a_dos-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562195/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-country_a_dos-frames.jpg"
+  },
   "faceMatch": 7,
+  "figure": {
+    "match": true,
+    "note": "Across every full-frame still she keeps the sheet's curvy hourglass figure: full bust, narrow waist, wide hips and full thighs in the fitted teal dress. No slimming seen."
+  },
   "issues": [
     {
       "t": 1.8,
       "kind": "eyes",
       "severity": "minor",
-      "note": "Her left eye is fully closed and the right is half-closed, a mid-blink or wink-like asymmetric lid frame."
+      "note": "Eyes heavy-lidded and half-closed, one eye nearly shut, mid-blink or sleepy look. They are open again at 3.3s."
+    },
+    {
+      "t": 7.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Heavy, lowered lids with irises partly covered. This is the sleepy look the brief forbids."
     },
     {
       "t": 9.3,
       "kind": "eyes",
       "severity": "minor",
-      "note": "Both eyes are heavy-lidded and half-closed, giving a sleepy look. Eyes are open again at 10.8s."
-    },
-    {
-      "t": 13.8,
-      "kind": "eyes",
-      "severity": "minor",
-      "note": "Lids are somewhat lowered and heavy, so her eyes are less bright and open than requested."
+      "note": "Eyes narrowed and squinting, heavy-lidded. Irises are only partly visible. This is consecutive with 7.8s but the irises are not mostly hidden."
     },
     {
       "t": 4.8,
       "kind": "hands",
       "severity": "minor",
-      "note": "Both hands are out to the sides, palms up, in a mirrored two-handed gesture instead of right hand only."
+      "note": "Both hands spread out palms-up in a mirrored gesture. The left arm is not resting at her side."
     },
     {
       "t": 6.3,
       "kind": "hands",
       "severity": "minor",
-      "note": "Both hands are clasped together in front of her waist (also at 7.8s). The left arm is not resting at her side."
+      "note": "Both hands clasped together in front of her waist at 6.3s and 7.8s instead of the left arm resting at her side."
     },
     {
       "t": 9.3,
       "kind": "hands",
       "severity": "minor",
-      "note": "Both hands gesture together in a mirrored way in front of her stomach. This continues through 10.8s, 12.3s and 13.8s, and the left hand never rests."
+      "note": "From 9.3s to 13.8s both hands gesture together in mirrored fashion at stomach height. The left arm never returns to rest. Fingers look slightly elongated at 9.3s but are not clearly malformed."
     },
     {
       "t": 6.3,
       "kind": "camera",
       "severity": "minor",
-      "note": "The camera pushes in from the full-body framing (head to shoes at 0.3–4.8s) to a knee-up crop. It tightens further by 9.3s, so the frame is not static."
+      "note": "Clear push-in and reframing. The full-body shot with shoes visible (0.3–4.8s) becomes a knee-up crop at 6.3s, then tightens further to a mid-thigh crop at 9.3s. This breaks the static full-body brief."
     }
   ],
-  "summary": "Identity, outfit and office background hold consistently with the reference look and curvy figure. However, the camera pushes in noticeably from 6.3s, both hands gesture or clasp together for most of the clip, and there are heavy-lidded or half-closed eye moments at 1.8s, 9.3s and 13.8s.",
+  "summary": "She reads as Priya throughout and keeps her curvy figure, and the outfit and background stay consistent. However, the camera pushes in noticeably from 6.3s, she gestures with both hands, mirrored, from 4.8s onward, and her eyes go heavy-lidded at 1.8s, 7.8s and 9.3s.",
   "sampledAt": [
     0.3,
     1.8,
@@ -59,5 +67,15 @@
     12.3,
     13.8
   ],
-  "pass": true
+  "pass": true,
+  "runs": [
+    {
+      "pass": true,
+      "faceMatch": 7
+    },
+    {
+      "pass": true,
+      "faceMatch": 7
+    }
+  ]
 }

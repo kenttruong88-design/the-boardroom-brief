@@ -1,52 +1,90 @@
 {
   "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556439/boardroom-brief/ugc-test/ugc-test-1793555942402-country_b_donts.mp4",
   "duration": 14.68,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562630/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-country_b_donts-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562271/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-country_b_donts-frames.jpg"
+  },
   "faceMatch": 6,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure held throughout: full bust, narrow tied waist, wide hips and full thighs, consistent with the sheet's full-body panels. Not slimmed in any still."
+  },
   "issues": [
     {
-      "t": 3.4,
-      "kind": "identity",
+      "t": 1.9,
+      "kind": "hands",
       "severity": "minor",
-      "note": "From about 3.4s onward (clearest at 5.0s, 6.6s, 9.7s, 14.4s) her irises read warm brown/hazel instead of the reference's light silver-grey. The nose also looks slightly broader at the tip. Brows, face shape and hair hold, but she drifts toward a similar-looking woman rather than unmistakably Priya."
+      "note": "Both arms swing out from her sides at once in a near-mirrored gesture. Her left arm is not resting still."
     },
     {
       "t": 1.9,
       "kind": "eyes",
       "severity": "minor",
-      "note": "Lids lowered and heavy, gaze dropping slightly below camera."
+      "note": "Heavy-lidded, half-closed look with irises partly covered. Fully open again by 3.4s."
+    },
+    {
+      "t": 3.4,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand is a motion-smeared blur and the fingers are not clearly formed."
+    },
+    {
+      "t": 3.4,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "Irises read warmer and more hazel than the reference silver-grey, though still light. The nose tip looks slightly broader than the references."
+    },
+    {
+      "t": 6.6,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids lowered and gaze dropped below camera. Recovers by 8.1s."
+    },
+    {
+      "t": 6.6,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "In close-up her face reads broader and less tapered at the chin, with a wider nose. She looks like a similar woman rather than unmistakably the reference."
+    },
+    {
+      "t": 6.6,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand raised to chest height in a pinch/OK gesture."
+    },
+    {
+      "t": 8.1,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand held at chest height."
     },
     {
       "t": 9.7,
       "kind": "eyes",
       "severity": "minor",
-      "note": "Heavy-lidded, eyes partly closed. They are fully open again by 11.3s."
+      "note": "Heavy, half-lowered lids, a sleepy look. Open again by 11.3s."
     },
     {
-      "t": 1.9,
+      "t": 11.3,
       "kind": "hands",
       "severity": "minor",
-      "note": "Both hands are out from the body at once in a mirrored, open-palm gesture. The left arm should stay still at her side."
+      "note": "Right hand raised to chest height."
     },
     {
-      "t": 3.4,
+      "t": 12.8,
       "kind": "hands",
       "severity": "minor",
-      "note": "Gesturing hand is a motion-blurred smear with no readable fingers."
-    },
-    {
-      "t": 6.6,
-      "kind": "hands",
-      "severity": "minor",
-      "note": "Right hand raised to chest height in a pinch/OK gesture. This repeats at 8.1s and 12.8s, where it sits near upper-chest/shoulder level."
+      "note": "Right hand raised to upper chest/shoulder height."
     },
     {
       "t": 6.6,
       "kind": "camera",
       "severity": "minor",
-      "note": "Frame pushes in: she appears larger, her head is near the top edge and her feet are cropped. The shot continues at 8.1s, then returns to the wider framing by 9.7s."
+      "note": "Gradual push-in. At 0.3s she is full body with feet and space above her head. From 6.6s on her feet are cropped and her head is near the top of the frame. Not static."
     }
   ],
-  "summary": "Outfit, scene and figure stay consistent, but her eyes shift from silver-grey to brown for most of the clip, leaving only a close likeness. There are several minor issues: chest-height and mirrored gestures, a temporary push-in, and heavy-lidded moments at 1.9s and 9.7s.",
+  "summary": "Background, outfit and figure stay consistent, and the face is a close lookalike. However, in places the face broadens and the eyes warm toward hazel, so she reads as similar rather than unmistakably Priya. The performance repeatedly breaks the brief: chest-height and mirrored gestures, heavy-lidded eyes at 1.9s, 6.6s and 9.7s, and a gradual push-in.",
   "sampledAt": [
     0.3,
     1.9,
@@ -59,5 +97,15 @@
     12.8,
     14.4
   ],
-  "pass": false
+  "pass": false,
+  "runs": [
+    {
+      "pass": true,
+      "faceMatch": 7
+    },
+    {
+      "pass": false,
+      "faceMatch": 6
+    }
+  ]
 }

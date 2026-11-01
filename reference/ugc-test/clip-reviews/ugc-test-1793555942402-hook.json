@@ -1,52 +1,90 @@
 {
   "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793555998/boardroom-brief/ugc-test/ugc-test-1793555942402-hook.mp4",
   "duration": 9.64,
-  "faceMatch": 7,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562532/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-hook-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793562170/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793555942402-hook-frames.jpg"
+  },
+  "faceMatch": 5,
+  "figure": {
+    "match": false,
+    "note": "Across all stills she reads slimmer and straighter than the sheet. Her bust is modest under the wrap blouse, her hips are fairly narrow in the pencil skirt and her legs are slender. The sheet shows a large bust, wide hips and full thighs. This is consistent from the start frame onward."
+  },
   "issues": [
     {
       "t": 0.3,
-      "kind": "eyes",
-      "severity": "minor",
-      "note": "Eyes are somewhat narrowed and heavy-lidded mid-speech rather than fully open and bright."
-    },
-    {
-      "t": 4.8,
-      "kind": "eyes",
-      "severity": "minor",
-      "note": "Eyes are half-closed and asymmetric: her left eye is nearly shut, reading as a squint or wink rather than a quick full blink. The irises are partly obscured."
-    },
-    {
-      "t": 6.3,
-      "kind": "eyes",
-      "severity": "minor",
-      "note": "Lids are slightly lowered and the gaze is a little heavy, though the irises remain visible."
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Figure is visibly slimmer and less curvy than the reference sheet's full-body panels (smaller bust, narrower hips, slimmer thighs). This persists through every still."
     },
     {
       "t": 1.8,
       "kind": "hands",
       "severity": "minor",
-      "note": "The right-hand gesture is lifted to roughly chest height with the palm up, above the requested waist level."
+      "note": "Right hand is raised palm-up to roughly chest height rather than waist height."
+    },
+    {
+      "t": 3.3,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Face reads broader and fuller through the jaw and cheeks, with a less tapered chin. She drifts toward a different-looking woman."
+    },
+    {
+      "t": 3.3,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Eyes look darker, hazel-brown rather than the light silver-grey of the references."
+    },
+    {
+      "t": 3.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand is still held up around chest/upper-waist height."
+    },
+    {
+      "t": 4.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids are asymmetric: one eye is half-closed in a wink-like droop while the other is open."
+    },
+    {
+      "t": 6.3,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids are heavy and partly lowered; the eyes are not fully open and bright."
     },
     {
       "t": 7.8,
       "kind": "hands",
       "severity": "minor",
-      "note": "Her right hand is raised to about shoulder height, palm open in a wave-like gesture, which violates the never-to-chest/shoulder-height direction."
+      "note": "Right hand is raised to shoulder height in a wave, well above waist height."
     },
     {
-      "t": 3.3,
+      "t": 7.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Heavy-lidded, narrowed eyes."
+    },
+    {
+      "t": 7.8,
       "kind": "identity",
       "severity": "minor",
-      "note": "The face looks softer, broader and blurrier in this still, with less defined cheekbones and chin taper than the references, though she is still recognizable."
+      "note": "Face looks rounder, with softer and less sharply peaked brows than the references."
     },
     {
-      "t": null,
-      "kind": "figure",
+      "t": 9.3,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Eyes are narrowed and heavy-lidded and appear darker brown-grey, losing the light silver-grey colour."
+    },
+    {
+      "t": 9.3,
+      "kind": "identity",
       "severity": "minor",
-      "note": "Her figure reads somewhat slimmer and less hourglass than the reference, with a more moderate bust, though hips and waist remain reasonably defined."
+      "note": "Narrower eyes and a longer-looking face make her read less like the reference."
     }
   ],
-  "summary": "Identity largely holds: arched brows, grey almond eyes, narrow nose and long curly hair, with a slightly softened face around 3.3s. The camera and scene are stable and the left arm stays at her side, but the eyes go heavy or half-closed at 4.8s, with mild heaviness at 0.3s and 6.3s, and right-hand gestures rise to chest or shoulder height at 1.8s and 7.8s.",
+  "summary": "Camera, scene and outfit stay stable, and her left arm stays at her side. Her face drifts toward a similar-looking but different woman (notably at 3.3s), her eyes darken and go heavy-lidded in the second half, the right-hand gestures rise to chest and shoulder height, and her figure is slimmer than the reference sheet throughout.",
   "sampledAt": [
     0.3,
     1.8,
@@ -56,5 +94,15 @@
     7.8,
     9.3
   ],
-  "pass": true
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 5
+    },
+    {
+      "pass": false,
+      "faceMatch": 5
+    }
+  ]
 }
