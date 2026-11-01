@@ -153,9 +153,10 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // Same frame as the hook (v26-b) since 2026-10-25; was Priya v12 (fd479a97).
     outroSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
     outroCloudinaryPublicId: "boardroom-brief/ugc/priya-outro",
-    // Her light irises under a dark lash line drifted to half-closed, sleepy
-    // eyes on the v18-c hook trial, so her eyes are asked to stay open.
-    performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after. Her irises keep the same warm light hazel colour as in the start frame for the whole clip.",
+    // The "eyes stay fully open, never heavy-lidded" fix from the grey-eye
+    // trials (v18-c, 10-21) was dropped on 11-01 at the user's request in
+    // favour of natural, complete blinks.
+    performanceNote:   "She blinks naturally every few seconds, and each blink is complete: her eyelids close fully, then reopen fully. Her irises keep the same warm light hazel colour as in the start frame for the whole clip.",
     // The shared "hands loose and animated" line gave her fidgety, mirrored
     // two-handed gestures at chest height on every hook trial (10-21..25).
     handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",

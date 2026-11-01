@@ -1,0 +1,69 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793569049/boardroom-brief/ugc-test/ugc-test-1793568990752-hook-v30c-blink-5s.mp4",
+  "duration": 5.12,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793569083/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793568990752-hook-v30c-blink-5s-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793569084/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793568990752-hook-v30c-blink-5s-frames.jpg"
+  },
+  "faceMatch": 6,
+  "figure": {
+    "match": true,
+    "note": "Across all four full frames she keeps the curvy hourglass figure from the sheet: large, full bust, narrow waist, wide hips and full thighs. She is not slimmer or straighter at any point."
+  },
+  "issues": [
+    {
+      "t": 3.3,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her face reads broader and rounder, with softer cheekbones, a less tapered chin, a wider-looking nose and smaller-looking eyes. She drifts toward a similar-looking woman rather than clearly Priya."
+    },
+    {
+      "t": 3.3,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Her eyes are open and the irises read dark brown. They are noticeably darker than the lighter hazel at 1.8s and not the required warm light hazel."
+    },
+    {
+      "t": 0.3,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Her irises already look medium brown rather than clearly light hazel in the start frame."
+    },
+    {
+      "t": 3.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both arms are extended outward with open palms in a mirrored two-handed gesture. Only her right hand was supposed to gesture."
+    },
+    {
+      "t": 0.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are held slightly out from her body at the same time instead of her left arm resting still at her side."
+    },
+    {
+      "t": 4.8,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Her eyes are closed or nearly closed. This is a single blink and is not repeated in an adjacent still."
+    }
+  ],
+  "summary": "Camera, scene and outfit stay stable and her figure matches the sheet. At 3.3s her face drifts toward a lookalike and her eyes read dark brown rather than warm light hazel. She also uses mirrored two-handed gestures against the brief.",
+  "sampledAt": [
+    0.3,
+    1.8,
+    3.3,
+    4.8
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 6
+    },
+    {
+      "pass": false,
+      "faceMatch": 7
+    }
+  ]
+}
