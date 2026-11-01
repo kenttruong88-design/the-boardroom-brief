@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import sharp from "sharp";
 import { logClaudeUsage } from "@/app/lib/claude";
 import type { CreatorPersona } from "./creator-personas";
-import { FACE_MATCH_PASS, faceCropBase64, fetchAsset, referenceAssetIds, splitPanels, toJpegBase64 } from "./frame-identity-review";
+import { FACE_MATCH_PASS, faceCropBase64, fetchAsset, fetchWithRetry, referenceAssetIds, splitPanels, toJpegBase64 } from "./frame-identity-review";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -62,11 +62,6 @@ export function cloudinaryStillUrl(videoUrl: string, t: number, width = 1080): s
     .replace(/\.(mp4|mov|webm)(\?.*)?$/i, ".jpg");
 }
 
-async function download(url: string): Promise<Buffer> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to download ${url}: ${res.status}`);
-  return Buffer.from(await res.arrayBuffer());
-}
 
 function label(text: string, w: number): Buffer {
   return Buffer.from(
@@ -95,7 +90,7 @@ export async function reviewClip(
 ): Promise<ClipReview> {
   if (!(durationS > 0)) throw new Error(`Clip duration unknown for ${videoUrl}`);
   const times  = sampleTimes(durationS);
-  const stills = await Promise.all(times.map((t) => download(cloudinaryStillUrl(videoUrl, t))));
+  const stills = await Promise.all(times.map((t) => fetchWithRetry(cloudinaryStillUrl(videoUrl, t))));
   const refBufs = opts.refs ?? await Promise.all(referenceAssetIds(persona).map(fetchAsset));
   if (refBufs.length === 0) throw new Error(`Persona "${persona.key}" has no reference images to review against`);
 

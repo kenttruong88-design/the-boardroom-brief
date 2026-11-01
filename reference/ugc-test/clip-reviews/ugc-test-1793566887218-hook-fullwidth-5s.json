@@ -1,0 +1,58 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793566986/boardroom-brief/ugc-test/ugc-test-1793566887218-hook-fullwidth-5s.mp4",
+  "duration": 6.24,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793567100/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793566887218-hook-fullwidth-5s-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793567101/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793566887218-hook-fullwidth-5s-frames.jpg"
+  },
+  "faceMatch": 5,
+  "figure": {
+    "match": false,
+    "note": "Across the clip she reads slimmer and straighter than the sheet's full-body panels. Her bust is noticeably less full under the blouse, and her hips and thighs in the pencil skirt are narrower than the sheet's wide hips and full thighs. She has a moderate figure rather than the sheet's pronounced hourglass."
+  },
+  "issues": [
+    {
+      "t": 1.7,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her eyes read warm brown/hazel instead of the reference's light silver-grey. This is a visible drift in eye colour from the 0.3s start frame."
+    },
+    {
+      "t": 4.5,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her eyes are clearly dark brown, not silver-grey. Her face also reads rounder and broader, with flatter, less sharply peaked brows and a softer nose and chin. She drifts toward a different-looking woman."
+    },
+    {
+      "t": 3.1,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "Eye colour is ambiguous, light hazel rather than the clear silver-grey of the references. Her brows are slightly less angular."
+    },
+    {
+      "t": 0.3,
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Her figure is visibly slimmer than the sheet: smaller bust, narrower hips and slimmer thighs. This persists through 1.7s, 3.1s, 4.5s and 5.9s."
+    }
+  ],
+  "summary": "Camera, scene, outfit and hands hold up well: there is no push-in, and only right-hand, waist-height gestures at 1.7s and 3.1s. However, her light grey eyes turn brown at 1.7s and 4.5s, her face drifts at 4.5s, and her figure reads slimmer than the reference sheet throughout. This clip should be rejected.",
+  "sampledAt": [
+    0.3,
+    1.7,
+    3.1,
+    4.5,
+    5.9
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 5
+    },
+    {
+      "pass": false,
+      "faceMatch": 5
+    }
+  ]
+}

@@ -47,10 +47,22 @@ export async function toJpegBase64(buf: Buffer): Promise<string> {
   return out.toString("base64");
 }
 
+/** GET with a few retries: image hosts intermittently time out on connect (11-01). */
+export async function fetchWithRetry(url: string, attempts = 4): Promise<Buffer> {
+  for (let i = 1; ; i++) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(60_000) });
+      if (!res.ok) throw new Error(`Failed to download ${url}: ${res.status}`);
+      return Buffer.from(await res.arrayBuffer());
+    } catch (err) {
+      if (i >= attempts) throw err;
+      await new Promise((r) => setTimeout(r, 2000 * i));
+    }
+  }
+}
+
 export async function fetchAsset(assetId: string): Promise<Buffer> {
-  const res = await fetch(await getImageAssetUrl(assetId));
-  if (!res.ok) throw new Error(`Failed to download image asset ${assetId}: ${res.status}`);
-  return Buffer.from(await res.arrayBuffer());
+  return fetchWithRetry(await getImageAssetUrl(assetId));
 }
 
 // Full-body 9:16 frames shrunk to fit Claude leave the face ~100px tall, too
