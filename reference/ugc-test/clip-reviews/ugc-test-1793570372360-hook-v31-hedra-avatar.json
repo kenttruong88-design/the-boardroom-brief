@@ -1,0 +1,72 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793570436/boardroom-brief/ugc-test/ugc-test-1793570372360-hook-v31-hedra-avatar.mp4",
+  "duration": 9.16,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793570473/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793570372360-hook-v31-hedra-avatar-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793570474/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793570372360-hook-v31-hedra-avatar-frames.jpg"
+  },
+  "faceMatch": 5,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure throughout, with full bust, narrow wrap-dress waist, wide hips and full thighs. It is consistent with the sheet's full-body panels in every still and never visibly slimmer."
+  },
+  "issues": [
+    {
+      "t": 1.7,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Iris colour reads as warm brown/amber rather than the reference's light golden-green hazel. It stays dark brown through 4.6s and 7.4s, where the eyes are fully open, so this is the wrong eye colour for the whole clip."
+    },
+    {
+      "t": 4.6,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Face reads as a similar but different woman: longer, narrower face, dark brown eyes and fuller, more pouty lips than the references. The brows and curly hair match, but she would not be recognised without hesitation."
+    },
+    {
+      "t": 0.3,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Heavy-lidded, half-closed eyes in the start frame."
+    },
+    {
+      "t": 6,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids lowered to about half-closed during a pucker expression."
+    },
+    {
+      "t": 8.9,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Heavy, lowered lids again. Irises are partly visible and the stills are not consecutive with 6.0s."
+    },
+    {
+      "t": 3.2,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand raised to about chest/shoulder height in a wave instead of a small gesture at waist height. The left arm stays still at her side."
+    }
+  ],
+  "summary": "Camera, scene, outfit and figure are stable and match the brief. Her eyes are dark brown instead of light golden-green hazel throughout, and her face drifts toward a lookalike, so the clip fails on identity. There are also minor heavy-lid moments and one shoulder-height gesture.",
+  "sampledAt": [
+    0.3,
+    1.7,
+    3.2,
+    4.6,
+    6,
+    7.4,
+    8.9
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 5
+    },
+    {
+      "pass": false,
+      "faceMatch": 6
+    }
+  ]
+}
