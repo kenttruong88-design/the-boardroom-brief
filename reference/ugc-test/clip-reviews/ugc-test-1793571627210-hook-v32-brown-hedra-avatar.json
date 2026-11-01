@@ -1,0 +1,73 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793571695/boardroom-brief/ugc-test/ugc-test-1793571627210-hook-v32-brown-hedra-avatar.mp4",
+  "duration": 9.48,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793571739/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793571627210-hook-v32-brown-hedra-avatar-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793571740/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793571627210-hook-v32-brown-hedra-avatar-frames.jpg",
+    "eyes": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793571741/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793571627210-hook-v32-brown-hedra-avatar-eyes.jpg"
+  },
+  "faceMatch": 7,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure in every full frame: full bust, narrow waist, wide hips and full thighs under the fitted green dress. Consistent with the sheet's full-body panels; no slimming seen."
+  },
+  "issues": [
+    {
+      "t": 0.1,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids heavy and half-lowered in the opening eye frames (0.10s, matching the 0.3s still)."
+    },
+    {
+      "t": 2.61,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Lids stall half-closed at 2.61s and again at 3.36s, never closing fully. Repeated incomplete or stalled blinks."
+    },
+    {
+      "t": 4.87,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "One eye closed while the other stays open after the 4.61s blink, a wink-like asymmetry also visible in the 4.7s face still."
+    },
+    {
+      "t": 6.37,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "One eyelid half-closed while the other is open, another asymmetric, incomplete blink. Gaze reads lowered and heavy around 6.2s."
+    },
+    {
+      "t": 3.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand lifted outward toward chest height instead of staying at waist height."
+    },
+    {
+      "t": 4.7,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Right hand raised to roughly shoulder height in a wave-like gesture, well above the requested waist height."
+    }
+  ],
+  "summary": "Identity is a reasonably close match: arched brows, dark eyes, curly hair and curvy figure all hold, though the face reads slightly softer and broader in places. Camera and scene are stable. The clip fails on eyelids, with repeated stalled half-closed and one-eye-only blinks (2.61s, 3.36s, 4.87s, 6.37s), and the right-hand gestures rise above waist height at 3.3s and 4.7s.",
+  "sampledAt": [
+    0.3,
+    1.8,
+    3.3,
+    4.7,
+    6.2,
+    7.7,
+    9.2
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 7
+    },
+    {
+      "pass": true,
+      "faceMatch": 7
+    }
+  ]
+}
