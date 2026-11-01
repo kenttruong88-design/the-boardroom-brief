@@ -144,19 +144,20 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // A Hedra clone of her Higgsfield voice was tried first and rejected.
     voiceId:           "5e6c6c6a-8d4a-4460-8460-bb8a7fa0aaac",
     voiceName:         "Rashmi I.",
-    // Burgundy blouse + pencil skirt beside the AT sign, 2K
-    // (reference/priya/v26-v23-hand-out-b-fixed.png): backdrop-burgundy-v2
-    // re-rendered at 2K (v23-a), then only her arm patched so her hand is out
-    // of the (pocketless) skirt. Approved 2026-10-25 after the hook trial
-    // ugc-test/trial-priya-hook-1792944380464 — eyes stayed open, one hand moved.
-    introSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
-    // Same frame as the hook (v26-b) since 2026-10-25; was Priya v12 (fd479a97).
+    // Emerald wrap dress beside the AT sign, 2K (reference/priya/v31-at-hazel-c.png):
+    // v30-c placed into the empty AT reception (prompts/v30-at-reception-hazel.txt),
+    // then only her eyes recoloured to light golden-green hazel
+    // (scripts/recolor-eyes.mts). Hook frame since 2026-11-01; was v26-b
+    // (c2b686a0, grey eyes, slimmer than her sheet).
+    introSceneImageAssetId: "c6f3f040-254f-4af1-80c5-824bace3b5da",
+    // Still v26-b (grey eyes): the outro (priya-outro) was rendered on it and
+    // hasn't been redone with hazel eyes yet.
     outroSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
     outroCloudinaryPublicId: "boardroom-brief/ugc/priya-outro",
     // The "eyes stay fully open, never heavy-lidded" fix from the grey-eye
     // trials (v18-c, 10-21) was dropped on 11-01 at the user's request in
     // favour of natural, complete blinks.
-    performanceNote:   "She blinks naturally every few seconds, and each blink is complete: her eyelids close fully, then reopen fully. Her irises keep the same warm light hazel colour as in the start frame for the whole clip.",
+    performanceNote:   "She blinks naturally every few seconds, and each blink is complete: her eyelids close fully, then reopen fully. Her irises keep the same light golden-green hazel colour as in the start frame for the whole clip, never turning brown.",
     // The shared "hands loose and animated" line gave her fidgety, mirrored
     // two-handed gestures at chest height on every hook trial (10-21..25).
     handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",
@@ -168,14 +169,16 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // Eye colour moved from silver-grey to warm light hazel on 11-01: Hedra's
     // avatar model kept turning her grey eyes brown mid-clip (three of four
     // India–Spain clips, and a 6s test), while Suki's dark eyes never drift.
-    // Her reference images still show grey eyes, so the colour is named as an override.
-    sceneNote:         "Her eyes are warm light hazel — a soft golden-brown with hints of green — replacing the grey eyes in the reference images; not grey, not dark brown. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts. She wears minimal, natural everyday makeup: light coverage that lets her real skin show through, no contouring, no heavy eyeliner or false lashes, no glossy lips. Make it an unretouched, true-to-life photo, as if taken on a phone by a colleague: natural ambient light, true colours, real skin texture with visible pores, natural flyaway hairs — no airbrushing, no beauty filter, no HDR, no over-sharpening, no glossy CGI or digital-art look. Her facial features stay exactly as in the reference images.",
+    // Her sheets were recoloured to hazel the same day (scripts/recolor-eyes.mts);
+    // the colour is still spelled out because a hazel close to brown drifted
+    // brown on the v30-c trial, while the high-contrast grey held.
+    sceneNote:         "Her eyes are light warm hazel exactly as in the reference images — luminous golden-amber around the pupil blending into soft green, clearly light and bright, never dark brown or grey. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts. She wears minimal, natural everyday makeup: light coverage that lets her real skin show through, no contouring, no heavy eyeliner or false lashes, no glossy lips. Make it an unretouched, true-to-life photo, as if taken on a phone by a colleague: natural ambient light, true colours, real skin texture with visible pores, natural flyaway hairs — no airbrushing, no beauty filter, no HDR, no over-sharpening, no glossy CGI or digital-art look. Her facial features stay exactly as in the reference images.",
     // Read off the approved hook frame and sheet. The 10-28 Spain Don'ts frame
     // the user rejected had flat straight brows and a round face, and an
     // overall likeness score still gave it 7/10.
     identityFeatures: [
       "thick, dark, strongly arched brows with a high angled peak (not flat or straight)",
-      "almond-shaped eyes in warm light hazel (her reference images still show an older silver-grey: judge the eye SHAPE against them, and require warm light hazel, not grey and not dark brown)",
+      "light warm hazel almond-shaped eyes (golden-amber blending into green, clearly light — not grey and not dark brown)",
       "long, straight, fairly narrow nose",
       "full lips with a defined cupid's bow",
       "oval face with defined cheekbones and a tapered chin (not round or broad)",
@@ -183,27 +186,29 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     ],
     // The user's standing rule: always busty and curvy (10-20, 10-28).
     figureFeature:     "curvy hourglass figure as in the sheet's full-body panels: large, full bust, narrow waist, wide hips and full thighs (not slim, slender or straight-hipped)",
-    // reference/priya/_priya-character-sheet.png, her original Higgsfield
-    // sheet: the user's main reference for her (10-28). 4x2 panels.
-    mainReference:     { assetId: "1b795d87-e3e2-4698-a63c-fabe6d342c4b", grid: [4, 2] },
+    // reference/priya/_priya-character-sheet-hazel.png: her original Higgsfield
+    // sheet (the user's main reference for her, 10-28), eyes recoloured to
+    // hazel on 11-01 (was 1b795d87, grey). 4x2 panels.
+    mainReference:     { assetId: "2eb11112-4f74-4bec-ac2c-4b55220259e2", grid: [4, 2] },
     // The scene text calls her "Priya", a name the image model can't link to
     // anything, and her identity rules used to come last in a ~180-word prompt.
-    sceneLead:         "The woman in this photo is Priya, the woman shown in the reference images: keep her exact face (but with warm light hazel eyes), long black curly hair, warm brown skin tone and her curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs.",
+    sceneLead:         "The woman in this photo is Priya, the woman shown in the reference images: keep her exact face, light warm hazel eyes, long black curly hair, warm brown skin tone and her curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs.",
     // 3/6 frames passed the identity review vs nano-banana-pro's 1/4 on the
     // same prompt and references, at half the credits (10-28).
     sceneImageModel:   "google/nano-banana-2.1",
     bio:               "Raised across Mumbai, Amsterdam, Seoul and São Paulo. Covers how work actually works across 30 economies for The Alignment Times.",
     outroScript:       "To find out more, read the full article at thealignmenttimes.com.",
     outroScene:        "Priya standing in The Alignment Times' office reception, the brand sign visible on the wall beside her, warm closing smile, vertical full-body framing as if filmed directly by the viewer's camera, no phone or camera visible in her hands.",
-    // Rebuilt in nano-banana-pro from her Higgsfield sheet (reference/priya/sheet-v3).
+    // Rebuilt in nano-banana-pro from her Higgsfield sheet (reference/priya/sheet-v3),
+    // eyes recoloured to hazel on 11-01 (*-hazel.png; grey ids in git history).
     characterSheet: {
-      frontNeutral:        "01464605-5d31-41b0-93d4-e18c14f6a24c",
-      threeQuarterNeutral: "e462aef6-1422-4f7d-934c-cff4752b4fe8",
-      profileNeutral:      "ae4d1b56-7805-44a6-ada5-c5d050db66e6",
-      frontSmiling:        "689e96f1-0bce-4620-aa82-773d1b91a3cf",
-      frontSerious:        "b3a520bf-197d-49c1-95ca-c99e42026398",
-      fullBodyFront:       "3fe85790-de03-4e77-9bba-41fcf8c35a1b",
-      fullBodySide:        "9e436048-1f27-43be-a45a-d5232b0e9d91",
+      frontNeutral:        "cbc74a1f-1342-4e6f-9ec6-e9295a5ae92a",
+      threeQuarterNeutral: "346c4baa-f86b-4c5e-a8f3-b289df051164",
+      profileNeutral:      "7fff5841-7e6c-4155-91f0-2e8bed5f5220",
+      frontSmiling:        "44460266-3a19-4b8a-b89c-db9249d3b836",
+      frontSerious:        "8cc0804a-0920-408d-a099-86acfa122730",
+      fullBodyFront:       "4d9481e7-abc0-440a-a265-d7fbec7afa18",
+      fullBodySide:        "bc0469cd-0aee-4814-995c-045628d98e58",
     },
   },
 };
