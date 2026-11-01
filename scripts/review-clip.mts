@@ -65,10 +65,12 @@ for (const url of urls) {
   const review = await reviewClip(persona, url, duration, { refs, debugDir: outDir });
   renameSync(resolve(outDir, "clip-faces.jpg"),  resolve(outDir, `${name}-faces.jpg`));
   renameSync(resolve(outDir, "clip-frames.jpg"), resolve(outDir, `${name}-frames.jpg`));
+  if (existsSync(resolve(outDir, "clip-eyes.jpg"))) renameSync(resolve(outDir, "clip-eyes.jpg"), resolve(outDir, `${name}-eyes.jpg`));
   // The contact sheets go up too, so the verdict can be shared as links
   // instead of local paths.
   const sheets: Record<string, string> = {};
-  for (const kind of ["faces", "frames"]) {
+  for (const kind of ["faces", "frames", "eyes"]) {
+    if (!existsSync(resolve(outDir, `${name}-${kind}.jpg`))) continue;
     const up = await cloudinary.uploader.upload(resolve(outDir, `${name}-${kind}.jpg`), {
       folder: "boardroom-brief/ugc-test/clip-reviews", public_id: `${name}-${kind}`, overwrite: true,
     });

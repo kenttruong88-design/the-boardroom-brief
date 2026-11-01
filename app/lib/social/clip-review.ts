@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import sharp from "sharp";
 import { logClaudeUsage } from "@/app/lib/claude";
 import type { CreatorPersona } from "./creator-personas";
-import { FACE_MATCH_PASS, faceCropBase64, fetchAsset, fetchWithRetry, referenceAssetIds, splitPanels, toJpegBase64 } from "./frame-identity-review";
+import { FACE_MATCH_PASS, faceCropAt, faceCropBase64, fetchAsset, fetchWithRetry, locateFace, referenceAssetIds, splitPanels, toJpegBase64, type FaceBox } from "./frame-identity-review";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -42,6 +42,11 @@ export interface ClipReview {
 const SAMPLE_EVERY_S = 1.5;
 const MAX_SAMPLES    = 12;
 const TILE_W = 360, TILE_H = 640;
+// Blinks last ~0.2-0.4s, so the 1.5s stills almost never catch one. Priya's
+// eyelids stalled half-closed and looked see-through mid-blink (11-01) and no
+// review flagged it; a dense strip of eye close-ups does.
+const EYE_EVERY_S = 0.25, MAX_EYE_SAMPLES = 48;
+const EYE_W = 360, EYE_H = 150;
 
 /** Sample times across a clip, skipping the very first/last instant. */
 export function sampleTimes(durationS: number): number[] {
@@ -63,11 +68,23 @@ export function cloudinaryStillUrl(videoUrl: string, t: number, width = 1080): s
 }
 
 
-function label(text: string, w: number): Buffer {
+function label(text: string, w: number, h = 44): Buffer {
+  const size = Math.round(h * 0.64);
   return Buffer.from(
-    `<svg width="${w}" height="44"><rect width="100%" height="100%" fill="#000" opacity="0.7"/>` +
-    `<text x="10" y="31" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#fff">${text}</text></svg>`
+    `<svg width="${w}" height="${h}"><rect width="100%" height="100%" fill="#000" opacity="0.7"/>` +
+    `<text x="8" y="${Math.round(h * 0.72)}" font-family="Arial, sans-serif" font-size="${size}" font-weight="bold" fill="#fff">${text}</text></svg>`
   );
+}
+
+/** The band across both eyes (brows to below the lower lids) of a face box. */
+async function eyeBand(buf: Buffer, box: FaceBox): Promise<Buffer> {
+  const { width = 0, height = 0 } = await sharp(buf).metadata();
+  const fw = (box.x1 - box.x0) * width, fh = (box.y1 - box.y0) * height;
+  const left = Math.max(0, Math.round(box.x0 * width - 0.05 * fw));
+  const top  = Math.max(0, Math.round(box.y0 * height + 0.18 * fh));
+  const w    = Math.min(width - left, Math.round(fw * 1.1));
+  const h    = Math.min(height - top, Math.round(fh * 0.42));
+  return sharp(buf).extract({ left, top, width: w, height: h }).resize(EYE_W, EYE_H, { fit: "cover" }).toBuffer();
 }
 
 /** Tiles in time order with a timestamp on each, `cols` per row. */
@@ -95,9 +112,29 @@ export async function reviewClip(
   if (refBufs.length === 0) throw new Error(`Persona "${persona.key}" has no reference images to review against`);
 
   const refSources = persona.mainReference ? await splitPanels(refBufs[0], persona.mainReference.grid) : refBufs;
+  const boxes = await Promise.all(stills.map(locateFace));
+  // Dense eye stills reuse the face box of the nearest regular still.
+  const nEye     = Math.max(2, Math.min(MAX_EYE_SAMPLES, Math.floor((durationS - 0.2) / EYE_EVERY_S) + 1));
+  const eyeTimes = Array.from({ length: nEye }, (_, i) => Math.round((0.1 + (i * (durationS - 0.2)) / (nEye - 1)) * 100) / 100);
+  const eyeTiles = await Promise.all(eyeTimes.map(async (t) => {
+    let near = 0;
+    times.forEach((st, i) => { if (Math.abs(st - t) < Math.abs(times[near] - t)) near = i; });
+    const box = boxes[near] ?? boxes.find(Boolean);
+    return box ? eyeBand(await fetchWithRetry(cloudinaryStillUrl(videoUrl, t)), box) : null;
+  }));
+  const eyeOk = eyeTiles.flatMap((b, i) => (b ? [{ b, t: eyeTimes[i] }] : []));
+  const EYE_COLS = 8;
+  const eyeStrip = eyeOk.length ? await sharp({ create: { width: EYE_W * EYE_COLS, height: EYE_H * Math.ceil(eyeOk.length / EYE_COLS), channels: 3, background: "#ffffff" } })
+    .composite(eyeOk.flatMap(({ b, t }, i) => [
+      { input: b, left: (i % EYE_COLS) * EYE_W, top: Math.floor(i / EYE_COLS) * EYE_H },
+      { input: label(`${t.toFixed(2)}s`, 96, 26), left: (i % EYE_COLS) * EYE_W, top: Math.floor(i / EYE_COLS) * EYE_H },
+    ]))
+    .jpeg({ quality: 90 })
+    .toBuffer() : null;
+
   const [refFaces, clipFaces, refFull] = await Promise.all([
     Promise.all(refSources.map(faceCropBase64)),
-    Promise.all(stills.map(faceCropBase64)),
+    Promise.all(stills.map((st, i) => faceCropAt(st, boxes[i]))),
     // The whole sheet for her figure: face crops alone left the figure
     // judged only from a written description.
     toJpegBase64(refBufs[0]),
@@ -117,6 +154,7 @@ export async function reviewClip(
     const { writeFileSync } = await import("fs");
     writeFileSync(`${opts.debugDir}/clip-faces.jpg`, faceStrip);
     writeFileSync(`${opts.debugDir}/clip-frames.jpg`, fullStrip);
+    if (eyeStrip) writeFileSync(`${opts.debugDir}/clip-eyes.jpg`, eyeStrip);
   }
 
   const features = persona.identityFeatures ?? [];
@@ -129,6 +167,10 @@ export async function reviewClip(
     { type: "image", source: { type: "base64", media_type: "image/jpeg", data: faceStrip.toString("base64") } },
     { type: "text", text: "The same moments as full frames:" },
     { type: "image", source: { type: "base64", media_type: "image/jpeg", data: fullStrip.toString("base64") } },
+    ...(eyeStrip ? [
+      { type: "text" as const, text: `Her EYES close up every ~${EYE_EVERY_S}s, in order (timestamp on each), to judge blinks and eyelids:` },
+      { type: "image" as const, source: { type: "base64" as const, media_type: "image/jpeg" as const, data: eyeStrip.toString("base64") } },
+    ] : []),
     {
       type: "text",
       text:
@@ -146,6 +188,9 @@ export async function reviewClip(
             "Flag any still where she is visibly slimmer, flatter or less curvy than the sheet (kind \"figure\", blocking), and give the overall verdict in \"figure\".\n"
           : "") +
         "2. eyes: closed, half-closed, squinting or heavy-lidded beyond a normal quick blink; looking away from camera.\n" +
+        "2b. eyelids, from the dense eye strip: follow every blink. A good blink closes the lids fully and reopens them. Flag (kind \"eyes\") blinks that stall " +
+        "half-closed or never fully close, eyelids that look transparent or ghosted (iris or pupil visible through a closed or closing lid, " +
+        "or the lid and iris blended together), one eye closing without the other, and lids drooping for long stretches.\n" +
         "3. hands: both hands gesturing together or mirrored, hands raised to chest/shoulder height, malformed or extra fingers, hands melting into the body or clothes.\n" +
         "4. camera: zoom/push-in, pan or reframing (compare her size and position in the frame across stills).\n" +
         "5. scene/artifacts: background warping or changing, people or objects morphing or appearing, clothing changing, garbled text appearing, face or body distortion.\n\n" +
@@ -156,7 +201,7 @@ export async function reviewClip(
         "severity=blocking for: a still where she reads as a different woman; any distinctive feature visibly changing from the references " +
         "in any still, eye colour included (light eyes turning brown or dark is blocking, however gradual, but judge colour only on stills where her eyes are open); " +
         "eyes closed or so far closed that the irises are mostly hidden across two or more consecutive stills (merely heavy or lowered lids are minor); " +
-        "visibly malformed hands or face; the scene, outfit or background changing or warping; text or captions appearing; a visibly slimmer figure than the reference sheet. " +
+        "transparent or ghosted eyelids in any eye still; incomplete blinks (lids stalling half-closed) more than once; visibly malformed hands or face;the scene, outfit or background changing or warping; text or captions appearing; a visibly slimmer figure than the reference sheet. " +
         "Everything else (mirrored or chest-height gestures, a mild push-in, a single blink) is minor. Report only what you actually see; an empty list is fine.\n\n" +
         "faceMatch 1-10 is the LOWEST likeness across the stills: would someone who knows her from the references say without hesitation that it's her? A similar-looking woman is 6 or below.\n\n" +
         'Reply with JSON only: {"faceMatch": <1-10>, ' +

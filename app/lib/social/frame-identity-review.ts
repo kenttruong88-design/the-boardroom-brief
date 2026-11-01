@@ -74,7 +74,9 @@ export async function fetchAsset(assetId: string): Promise<Buffer> {
 // pixels of an image whose exact size the prompt states.
 const LOCATE_LONG_EDGE = 1000;
 
-export async function locateFace(buf: Buffer): Promise<{ x0: number; y0: number; x1: number; y1: number } | null> {
+export type FaceBox = { x0: number; y0: number; x1: number; y1: number };
+
+export async function locateFace(buf: Buffer): Promise<FaceBox | null> {
   const small = await sharp(buf).resize({ width: LOCATE_LONG_EDGE, height: LOCATE_LONG_EDGE, fit: "inside" }).jpeg({ quality: 85 }).toBuffer({ resolveWithObject: true });
   const { width: w, height: h } = small.info;
   const response = await client.messages.create({
@@ -112,8 +114,12 @@ export async function splitPanels(buf: Buffer, [cols, rows]: [number, number]): 
 
 /** Square crop around the face with margin, from the full-resolution image. */
 export async function faceCropBase64(buf: Buffer): Promise<string> {
+  return faceCropAt(buf, await locateFace(buf));
+}
+
+/** faceCropBase64 for a face box already found (fractions of the image). */
+export async function faceCropAt(buf: Buffer, box: FaceBox | null): Promise<string> {
   const { width = 0, height = 0 } = await sharp(buf).metadata();
-  const box = await locateFace(buf);
   if (!box) return toJpegBase64(buf);
   const cx   = ((box.x0 + box.x1) / 2) * width;
   const cy   = ((box.y0 + box.y1) / 2) * height;
