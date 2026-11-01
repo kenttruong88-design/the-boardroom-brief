@@ -1,0 +1,45 @@
+{
+  "faceMatch": 5,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear arch and angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Almond shape matches the references; iris reads as warm light hazel/amber, not grey or dark brown."
+    },
+    {
+      "feature": "nose",
+      "match": false,
+      "note": "Nose looks shorter and broader at the tip and nostrils than her long, narrow reference nose."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a visible cupid's bow and a similar closed-mouth smile."
+    },
+    {
+      "feature": "face shape",
+      "match": false,
+      "note": "Face reads rounder and softer through the cheeks and jaw, with less defined cheekbones and a less tapered chin than the references."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair falling past the shoulders to the chest; looser curls are acceptable styling."
+    },
+    {
+      "feature": "figure",
+      "match": false,
+      "note": "She is visibly slimmer than the sheet's full-body panels: a moderate bust and narrower, straighter hips and thighs instead of the large bust, narrow waist and wide hips."
+    }
+  ],
+  "frameIssues": [
+    "Skin looks slightly smoothed and airbrushed, giving a mildly AI-generated look."
+  ],
+  "summary": "A similar-looking woman with matching brows, eyes and hair, but her skin tone is noticeably darker, her nose and face shape are softer and rounder, and her figure has been slimmed, so she does not read clearly as Priya Mehta and the frame should be regenerated.",
+  "pass": false
+}

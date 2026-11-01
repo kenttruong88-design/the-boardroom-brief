@@ -1,0 +1,45 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark, strongly arched brows with a high angled peak, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Almond shape matches the references. Iris color reads as warm light hazel/amber, not grey or dark brown, as required."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose. The tip looks marginally softer in the warmer lighting but the shape is consistent."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a defined cupid's bow and the same closed, slight-smile shape as the references."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with defined cheekbones and a tapered chin. It reads slightly fuller under the warm light but is not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair falling well past the shoulders. Curls are looser and more defined-wave than the tight ringlets in the references, which is acceptable styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Fitted wrap dress shows a full bust, narrow waist and wide hips with full thighs, an hourglass consistent with the full-body panels. She has not been slimmed."
+    }
+  ],
+  "frameIssues": [
+    "Skin looks somewhat smoothed/polished under the warm glow, slightly toward an airbrushed AI look"
+  ],
+  "summary": "The candidate matches all of Priya's distinctive features, including the required warm hazel eyes and her hourglass figure, but the warmer, darker rendering and looser curls leave the likeness strong rather than instantly certain, and the frame is otherwise clean apart from mildly smoothed skin.",
+  "pass": true
+}

@@ -155,7 +155,7 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     outroCloudinaryPublicId: "boardroom-brief/ugc/priya-outro",
     // Her light irises under a dark lash line drifted to half-closed, sleepy
     // eyes on the v18-c hook trial, so her eyes are asked to stay open.
-    performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after.",
+    performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after. Her irises keep the same warm light hazel colour as in the start frame for the whole clip.",
     // The shared "hands loose and animated" line gave her fidgety, mirrored
     // two-handed gestures at chest height on every hook trial (10-21..25).
     handsDirection:    "and her stance is relaxed and natural. She gestures with her right hand only — slow, small and at waist height — while her left arm rests still at her side. Never both hands at once, never mirrored, never raised to chest or shoulder height, no fidgeting; between gestures her right hand returns to rest at her side.",
@@ -164,13 +164,17 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // digitally edited", not photoreal. They describe the photo and her
     // makeup only; asking for facial "asymmetry" once made the model repaint
     // her face (v9, 10-18), so her features stay locked to the references.
-    sceneNote:         "Her eyes are light silver-grey, exactly as in the reference images — never brown or hazel. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts. She wears minimal, natural everyday makeup: light coverage that lets her real skin show through, no contouring, no heavy eyeliner or false lashes, no glossy lips. Make it an unretouched, true-to-life photo, as if taken on a phone by a colleague: natural ambient light, true colours, real skin texture with visible pores, natural flyaway hairs — no airbrushing, no beauty filter, no HDR, no over-sharpening, no glossy CGI or digital-art look. Her facial features stay exactly as in the reference images.",
+    // Eye colour moved from silver-grey to warm light hazel on 11-01: Hedra's
+    // avatar model kept turning her grey eyes brown mid-clip (three of four
+    // India–Spain clips, and a 6s test), while Suki's dark eyes never drift.
+    // Her reference images still show grey eyes, so the colour is named as an override.
+    sceneNote:         "Her eyes are warm light hazel — a soft golden-brown with hints of green — replacing the grey eyes in the reference images; not grey, not dark brown. Keep her figure exactly as in the reference images: a curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs — do not make her slimmer. Her outfit is tight-fitting and figure-hugging, tailored close to her curves — no loose, boxy or oversized cuts. She wears minimal, natural everyday makeup: light coverage that lets her real skin show through, no contouring, no heavy eyeliner or false lashes, no glossy lips. Make it an unretouched, true-to-life photo, as if taken on a phone by a colleague: natural ambient light, true colours, real skin texture with visible pores, natural flyaway hairs — no airbrushing, no beauty filter, no HDR, no over-sharpening, no glossy CGI or digital-art look. Her facial features stay exactly as in the reference images.",
     // Read off the approved hook frame and sheet. The 10-28 Spain Don'ts frame
     // the user rejected had flat straight brows and a round face, and an
     // overall likeness score still gave it 7/10.
     identityFeatures: [
       "thick, dark, strongly arched brows with a high angled peak (not flat or straight)",
-      "light silver-grey almond-shaped eyes",
+      "almond-shaped eyes in warm light hazel (her reference images still show an older silver-grey: judge the eye SHAPE against them, and require warm light hazel, not grey and not dark brown)",
       "long, straight, fairly narrow nose",
       "full lips with a defined cupid's bow",
       "oval face with defined cheekbones and a tapered chin (not round or broad)",
@@ -183,7 +187,7 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     mainReference:     { assetId: "1b795d87-e3e2-4698-a63c-fabe6d342c4b", grid: [4, 2] },
     // The scene text calls her "Priya", a name the image model can't link to
     // anything, and her identity rules used to come last in a ~180-word prompt.
-    sceneLead:         "The woman in this photo is Priya, the woman shown in the reference images: keep her exact face, light silver-grey eyes, long black curly hair, warm brown skin tone and her curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs.",
+    sceneLead:         "The woman in this photo is Priya, the woman shown in the reference images: keep her exact face (but with warm light hazel eyes), long black curly hair, warm brown skin tone and her curvy hourglass figure with a large, full bust, narrow waist, wide hips and full thighs.",
     // 3/6 frames passed the identity review vs nano-banana-pro's 1/4 on the
     // same prompt and references, at half the credits (10-28).
     sceneImageModel:   "google/nano-banana-2.1",

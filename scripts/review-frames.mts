@@ -39,12 +39,11 @@ if (!personaKey || frames.length === 0) {
 }
 
 const { getCreatorPersona } = await import("../app/lib/social/creator-personas");
-const { reviewSceneFrame, formatFrameReview, referenceAssetIds } = await import("../app/lib/social/frame-identity-review");
-const { getImageAssetUrl } = await import("../app/lib/social/hedra-client");
+const { reviewSceneFrame, formatFrameReview, referenceAssetIds, fetchAsset } = await import("../app/lib/social/frame-identity-review");
 
 const persona = getCreatorPersona(personaKey);
 // Download the references once for every frame.
-const refs = await Promise.all(referenceAssetIds(persona).map(async (id) => Buffer.from(await (await fetch(await getImageAssetUrl(id))).arrayBuffer())));
+const refs = await Promise.all(referenceAssetIds(persona).map(fetchAsset));
 
 for (const frame of frames) {
   const review = await reviewSceneFrame(persona, readFileSync(resolve(ROOT, frame)), { refs });
