@@ -1,0 +1,43 @@
+{
+  "faceMatch": 7,
+  "features": [
+    {
+      "feature": "brows",
+      "match": true,
+      "note": "Thick, dark brows with a clear high angled arch, consistent with the references."
+    },
+    {
+      "feature": "eyes",
+      "match": true,
+      "note": "Light grey-green almond eyes. Lids look slightly heavier and darker underneath, but the color and shape are consistent."
+    },
+    {
+      "feature": "nose",
+      "match": true,
+      "note": "Long, straight, fairly narrow nose matching the references."
+    },
+    {
+      "feature": "lips",
+      "match": true,
+      "note": "Full lips with a visible cupid's bow and a closed-mouth soft smile, consistent with hers."
+    },
+    {
+      "feature": "face shape",
+      "match": true,
+      "note": "Oval face with a tapered chin. Cheeks and jaw read slightly fuller than in the references, but it is not round or broad."
+    },
+    {
+      "feature": "hair",
+      "match": true,
+      "note": "Long black curly hair well past the shoulders, slightly looser curls; acceptable styling variation."
+    },
+    {
+      "feature": "figure",
+      "match": true,
+      "note": "Fitted dress shows a full bust, defined waist, wide hips and full thighs, consistent with the curvy hourglass figure on the sheet."
+    }
+  ],
+  "frameIssues": [],
+  "summary": "Every distinctive feature and the curvy figure match, and the frame is clean and fit to animate, but the face reads slightly fuller and heavier-lidded than the references, so it is a strong but not instant match.",
+  "pass": true
+}
