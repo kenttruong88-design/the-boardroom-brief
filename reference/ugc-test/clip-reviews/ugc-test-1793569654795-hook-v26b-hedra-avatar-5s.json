@@ -1,0 +1,79 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793569705/boardroom-brief/ugc-test/ugc-test-1793569654795-hook-v26b-hedra-avatar-5s.mp4",
+  "duration": 5.28,
+  "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793569748/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793569654795-hook-v26b-hedra-avatar-5s-faces.jpg",
+  "eyes": "grey (original persona)",
+  "faceMatch": 6,
+  "figure": {
+    "match": false,
+    "note": "Across all four full frames (0.3s, 1.9s, 3.4s, 5.0s) she is noticeably slimmer and straighter than the sheet. Her bust is moderate rather than large and full, and her hips and thighs are narrow under the pencil skirt. The sheet's pronounced hourglass with wide hips and full thighs is missing throughout."
+  },
+  "issues": [
+    {
+      "t": 0.3,
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Slim, straight-hipped build with a modest bust; visibly less curvy than the reference sheet's full-body panels."
+    },
+    {
+      "t": 1.9,
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Same slim figure: narrow hips, modest bust, not the sheet's hourglass."
+    },
+    {
+      "t": 3.4,
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Figure remains visibly slimmer and less curvy than the reference."
+    },
+    {
+      "t": 5,
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Figure remains visibly slimmer and less curvy than the reference."
+    },
+    {
+      "t": 0.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are out from the body at waist height with open palms, gesturing together in a mirrored pose. Only the right hand was supposed to gesture."
+    },
+    {
+      "t": 0.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are smeared and pinkish, blurred into shapeless blobs with no defined fingers."
+    },
+    {
+      "t": 3.4,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "Her face reads broader and softer, with a wider-looking nose and a less tapered chin. Likeness drifts toward a similar-looking woman in this still."
+    },
+    {
+      "t": 3.4,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Her lids are heavy and half-lowered, partly hiding the irises (single still)."
+    }
+  ],
+  "summary": "Camera, scene and outfit stay stable, and her face mostly holds, though likeness softens at 3.4s and both hands gesture in a mirrored way with smeared fingers at 0.3s. The blocking problem is her figure: she is consistently much slimmer and less curvy than the reference sheet in every frame.",
+  "sampledAt": [
+    0.3,
+    1.9,
+    3.4,
+    5
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 6
+    },
+    {
+      "pass": false,
+      "faceMatch": 7
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793569636/boardroom-brief/ugc-test/ugc-test-1793569550556-hook-v26b-char3-5s.mp4",
+  "duration": 5.72,
+  "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793569766/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793569550556-hook-v26b-char3-5s-faces.jpg",
+  "eyes": "grey (original persona)",
+  "faceMatch": 7,
+  "figure": {
+    "match": false,
+    "note": "In every full frame (0.3s, 2.0s, 3.7s, 5.4s) she looks noticeably slimmer and straighter than the sheet's full-body panels. Her bust is modest rather than large and full, and her hips and thighs under the pencil skirt are narrow, not wide and full. The curvy hourglass figure is not carried over."
+  },
+  "issues": [
+    {
+      "t": 0.3,
+      "kind": "figure",
+      "severity": "blocking",
+      "note": "Slender build with a modest bust and narrow hips; visibly less curvy than the reference sheet's full-body panels. The same build holds through 2.0s, 3.7s and 5.4s."
+    },
+    {
+      "t": 3.7,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids are heavy and half-lowered, and the irises are partly hidden. This is a single still and her eyes are open again at 5.4s."
+    },
+    {
+      "t": 3.7,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "With the lowered lids and puckered mouth, the face reads slightly broader and less like the references, but it is still recognisably her."
+    },
+    {
+      "t": 3.7,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "The arm on frame-right (her left) swings out from her hip at waist height, and the hand is motion-blurred. The brief asked for her left arm to stay still and only her right hand to gesture."
+    }
+  ],
+  "summary": "Face, hair, light grey eyes, outfit, background and framing hold steady, with only a heavy-lidded moment and a left-arm gesture at 3.7s. However, her figure is consistently slimmer and less curvy than the reference sheet throughout, which is blocking.",
+  "sampledAt": [
+    0.3,
+    2,
+    3.7,
+    5.4
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 7
+    },
+    {
+      "pass": false,
+      "faceMatch": 7
+    }
+  ]
+}
