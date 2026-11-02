@@ -1900,3 +1900,27 @@ New content files and this log update are committed and pushed together from the
 **No subagents used this run** — followed the established sequential, single-session fallback (see 2026-10-27 below) throughout; never attempted an `Agent` call, so the nesting-limit issue did not arise.
 
 **Image generation result:** 20/20 images (10 articles × hero + body) sourced successfully from Pexels via the direct-signed-upload Cloudinary approach (0 fell back to `pillar-default`), run as a single combined `device_bash` call looping over all 10 articles with credentials scoped via the anchored-grep method above.
+
+---
+
+## 2026-11-02 — Scratch clone exhausted shared /sessions disk on checkout (RESOLVED)
+
+**Symptom:** Step 0's `git clone` of the full repo into the scratch clone failed partway through checkout with `fatal: cannot create directory at 'reference/priya/trial': No space left on device`, after already writing ~610MB. `df -h "$HOME"` showed the device_bash VM's `/sessions` filesystem (shared across every concurrent session on this device, not just this run's) at 94-100% full with well under 1GB free even before this run started.
+
+**Root cause:** The full repo checkout includes large binary asset trees unrelated to this task — `reference/priya/sheet-v3/` and similar AI-influencer character-sheet PNGs — that are large enough to exhaust the shared disk on a full `git clone`. This is a disk-capacity problem on the shared `/sessions` mount, not a git-lock problem (the documented lock-file issue this scratch-clone strategy was originally built to avoid). A full clone of this repo may now never reliably fit, regardless of how much other sessions are using at the time.
+
+**Fix applied:** Used a blobless, sparse checkout instead of a full clone, scoped to only what this task's scripts and content actually touch:
+```bash
+WORK_DIR="$HOME/repo-work-out-of-office-$(date +%Y%m%d)"
+REMOTE_URL=$(git -C "$HOME/mnt/the-boardroom-brief" remote get-url origin)
+git clone --filter=blob:none --no-checkout --quiet "$REMOTE_URL" "$WORK_DIR"
+cd "$WORK_DIR"
+git sparse-checkout init --cone
+git sparse-checkout set content/global-office content/out-of-office data/migration scripts docs
+git checkout master
+```
+Cone-mode sparse-checkout still includes all top-level files (package.json, tsconfig.json, etc. — needed for `npx tsx`), just none of the unlisted top-level directories (`reference/`, `app/`, `public/`, `sanity/`, etc.). This pulled roughly 40MB instead of 600MB+, leaving the clone fully functional for `scripts/expat-pair-scorer.mts` (which only reads `data/migration/*.json` and does `readdirSync` on `content/global-office` and `content/out-of-office` — confirmed by reading the script source before relying on it) and for writing/committing new `content/out-of-office/` files.
+
+**Recommendation for future runs (this task and the sibling `daily-work-culture-post` task):** Do NOT `git clone` this repo in full in the device_bash scratch-clone step — check `df -h "$HOME"` first if unsure, but default to the blobless + sparse-checkout approach above regardless, since the shared disk has no slack even when this session is the only one running. Add directories to the `sparse-checkout set` list only as actually needed (verify with `git cat-file -p HEAD:path/to/script` what it reads before assuming you need a directory checked out). If a future run needs `content/global-office` write access too (e.g. the sibling task), add it to the same sparse-checkout set rather than doing a second clone.
+
+**Also confirmed working on a fresh read of this log (not a new finding, just reconfirming current state for this run):** the `device_bash` environment's `$HOME` resolves to `/sessions/<session-id>`, the connected folder is at `$HOME/mnt/the-boardroom-brief`, and `.env.local` must be parsed in Python (never shell-sourced) per the 2026-10-09 entry — this run's image-generation script does so, reading `~/mnt/the-boardroom-brief/.env.local` directly in Python and copying only the needed keys into `os.environ`, with no `source`/`.` of that file anywhere in this run's commands.
