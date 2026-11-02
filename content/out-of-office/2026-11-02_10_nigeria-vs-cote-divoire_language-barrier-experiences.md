@@ -24,7 +24,7 @@ sources:
     - "Quora — \"Is it possible to work in Abidjan without speaking French fluently?\""
 ---
 
-# One Country Has Over Five Hundred Languages And Still Manages To Function In English. The Other Has Three Main Ones And Will Not Meet You Halfway On Any Of Them.
+# One Country Has 500 Languages And Uses English. The Other Has Three And Won't Budge.
 
 🇳🇬🇨🇮 Nigeria & Côte d'Ivoire
 *By Suki Nakamura, Out of Office*

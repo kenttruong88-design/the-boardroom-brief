@@ -24,7 +24,7 @@ sources:
     - "Quora — \"What is the social and dating scene like for expats in Monrovia?\""
 ---
 
-# One City's Social Scene Fits In A Single WhatsApp Group. The Other Needs Its Own Transport System.
+# One City's Social Scene Fits In A WhatsApp Group. The Other Needs Its Own Transport.
 
 🇱🇷🇳🇬 Liberia & Nigeria
 *By Suki Nakamura, Out of Office*

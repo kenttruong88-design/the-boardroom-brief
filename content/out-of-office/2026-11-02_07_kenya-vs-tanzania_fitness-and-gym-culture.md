@@ -24,7 +24,7 @@ sources:
     - "Quora — \"Why is Kenya so dominant in long-distance running, and does everyday Kenyan fitness culture reflect that?\""
 ---
 
-# One Country Produces Olympic Runners Like It's A Natural Resource. The Other Is Still Figuring Out Where To Put A Treadmill.
+# One Country Produces Olympic Runners. The Other Is Still Placing The Treadmill.
 
 🇰🇪🇹🇿 Kenya & Tanzania
 *By Suki Nakamura, Out of Office*

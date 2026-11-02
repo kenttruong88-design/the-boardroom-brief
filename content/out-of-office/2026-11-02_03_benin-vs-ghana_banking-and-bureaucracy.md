@@ -24,7 +24,7 @@ sources:
     - "Quora — \"How long does it realistically take to open a business bank account in Ghana?\""
 ---
 
-# One Country Makes You Beg A Bank For A Favour. The Other Makes You Beg Several Banks, Sequentially, For The Same Favour.
+# One Country Makes You Beg A Bank For A Favour. The Other Makes You Beg Several.
 
 🇧🇯🇬🇭 Benin & Ghana
 *By Suki Nakamura, Out of Office*

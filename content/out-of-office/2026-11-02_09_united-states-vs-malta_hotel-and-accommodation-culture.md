@@ -24,7 +24,7 @@ sources:
     - "expat.com Malta — description: residents on navigating landlord negotiations during peak tourist season"
 ---
 
-# One Country Invented The Resort Fee. The Other Turned An Entire Island Into A Short-Term Let.
+# One Country Invented The Resort Fee. The Other Turned An Island Into A Short-Let.
 
 🇺🇸🇲🇹 United States & Malta
 *By Suki Nakamura, Out of Office*

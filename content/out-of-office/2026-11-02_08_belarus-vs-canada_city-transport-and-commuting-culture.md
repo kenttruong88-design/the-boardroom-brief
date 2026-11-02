@@ -24,7 +24,7 @@ sources:
     - "Internations Minsk — description: expats comparing Minsk Metro punctuality to transit back home"
 ---
 
-# One Capital Runs Its Metro Like A Military Operation. The Other Runs Its Transit System Like An Apology That Keeps Getting Longer.
+# One Capital Runs Its Metro Like A Military Drill. The Other Runs It Like An Apology.
 
 🇧🇾🇨🇦 Belarus & Canada
 *By Suki Nakamura, Out of Office*

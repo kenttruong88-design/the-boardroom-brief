@@ -24,7 +24,7 @@ sources:
     - "Quora — \"What is grocery shopping like in Ouagadougou compared to a West African capital?\""
 ---
 
-# One Nation Shops Like The Market Owes It Money. The Other Shops Like It's Auditing A Supermarket.
+# One Nation Shops Like The Market Owes It Money. The Other Shops Like An Auditor.
 
 🇧🇫🇬🇭 Burkina Faso & Ghana
 *By Suki Nakamura, Out of Office*

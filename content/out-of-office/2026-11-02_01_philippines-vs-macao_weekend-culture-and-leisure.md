@@ -24,7 +24,7 @@ sources:
     - "expat.com Manila — description: expats on the unofficial rule that Sunday belongs to the extended family, not you"
 ---
 
-# One Country Treats The Weekend Like A Casino Floor. The Other Treats It Like A Family Reunion You Didn't RSVP To.
+# One Country Spends The Weekend On A Casino Floor. The Other At A Family Reunion.
 
 🇵🇭🇲🇴 Philippines & Macao
 *By Suki Nakamura, Out of Office*

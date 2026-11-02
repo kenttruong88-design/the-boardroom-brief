@@ -24,7 +24,7 @@ sources:
     - "Quora — \"Why does Lagos feel so much louder and faster than other West African capitals?\""
 ---
 
-# One Capital Moves At The Volume Of A Library. The Other Moves At The Volume Of An Argument You Weren't Invited To But Are Now Part Of.
+# One Capital Runs At Library Volume. The Other At The Volume Of An Argument.
 
 🇹🇩🇳🇬 Chad & Nigeria
 *By Suki Nakamura, Out of Office*

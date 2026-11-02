@@ -24,7 +24,7 @@ sources:
     - "expat.com Macau — description: expats comparing Taipa's walking trails to the density of the Cotai Strip nearby"
 ---
 
-# One Territory Measures Green Space In Square Metres Per Person. The Other Has So Much Of It, Nobody's Bothered To Measure.
+# One Territory Measures Its Green Space Per Person. The Other Never Bothered To.
 
 🇲🇴🇨🇦 Macao & Canada
 *By Suki Nakamura, Out of Office*
