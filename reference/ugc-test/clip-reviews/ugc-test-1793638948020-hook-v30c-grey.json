@@ -1,0 +1,91 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793639011/boardroom-brief/ugc-test/ugc-test-1793638948020-hook-v30c-grey.mp4",
+  "duration": 10.16,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793639058/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793638948020-hook-v30c-grey-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793639058/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793638948020-hook-v30c-grey-frames.jpg",
+    "eyes": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793639059/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793638948020-hook-v30c-grey-eyes.jpg"
+  },
+  "faceMatch": 5,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure throughout, consistent with the sheet's full-body panels: full bust, narrow waist, wide hips and full thighs in the fitted green dress. No still looks slimmer."
+  },
+  "issues": [
+    {
+      "t": 0.3,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her eyes read dark brown/hazel rather than the reference's light silver-grey. This holds in the open-eye stills throughout (0.3, 1.9, 5.1, 8.3, 9.9s) and is confirmed in the eye strip at 9.29–10.06s, where the irises are clearly brown."
+    },
+    {
+      "t": 9.9,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "With the dark eyes and a slightly rounder lower face, she reads as a similar-looking woman rather than unmistakably Priya. Brows, nose, lips and curly hair are broadly consistent."
+    },
+    {
+      "t": 0.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are out from the body gesturing at the same time."
+    },
+    {
+      "t": 1.9,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are clasped together at her waist instead of the left arm resting at her side."
+    },
+    {
+      "t": 3.5,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are engaged: the left is across her waist while the right is extended."
+    },
+    {
+      "t": 8.3,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both arms are flung wide in a mirrored, open-palm gesture. This is large, symmetric and far from a small waist-height right-hand gesture."
+    },
+    {
+      "t": 2.4,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "After the blink at 2.14s, her lids stay lowered and heavy through about 2.91s rather than reopening fully."
+    },
+    {
+      "t": 4.95,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Her eyes are asymmetric: one lid is noticeably more closed than the other mid-blink."
+    },
+    {
+      "t": 6.48,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids are somewhat heavy and lowered across 6.23–7.00s."
+    }
+  ],
+  "summary": "The scene, camera and figure are stable, but her eyes are dark brown instead of the reference's light silver-grey, so she reads as a lookalike (blocking). The hand choreography repeatedly uses both hands, including a mirrored wide gesture at 8.3s, with some heavy-lidded stretches.",
+  "sampledAt": [
+    0.3,
+    1.9,
+    3.5,
+    5.1,
+    6.7,
+    8.3,
+    9.9
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 5
+    },
+    {
+      "pass": false,
+      "faceMatch": 5
+    }
+  ]
+}
