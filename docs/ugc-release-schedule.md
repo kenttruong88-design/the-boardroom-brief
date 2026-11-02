@@ -8,13 +8,13 @@ How to use each week:
 2. Paste the matching caption. Instagram doesn't allow clickable links in captions, hence "link in bio".
 3. Tick the box and note the post date.
 
-All links checked live (HTTP 200) on 2026-10-15.
+All links checked live (HTTP 200) on 2026-11-02. They go through `vc_h264:main:4.0,ac_aac` because the stored files are tagged H.264 level 6.2, which phones refuse to play.
 
 ---
 
 ## Week 1 · Thu 15 Oct: India vs UK (healthcare)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-06-28_17_india-vs-uk_healthcare-and-expat-medical-culture-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-06-28_17_india-vs-uk_healthcare-and-expat-medical-culture-COMPILED.mp4
 - Queue id: `f749ae34`
 
 **Instagram**
@@ -37,7 +37,7 @@ Socialised medicine with a waiting list vs hospitals that look like hotels 🏥 
 
 ## Week 2 · Thu 22 Oct: USA vs India (shopping)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-06-29_02_usa-vs-india_shopping-culture-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-06-29_02_usa-vs-india_shopping-culture-COMPILED.mp4
 - Queue id: `ccdf7928`
 
 **Instagram**
@@ -60,7 +60,7 @@ The price tag is a lie 🏷️ Shopping in the US vs India: what to do and what 
 
 ## Week 3 · Thu 29 Oct: Ireland vs Japan (fitness & gyms)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-08-17_07_ireland-vs-japan_fitness-and-gym-culture-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-08-17_07_ireland-vs-japan_fitness-and-gym-culture-COMPILED.mp4
 - Queue id: `59a51f51`
 
 **Instagram**
@@ -83,7 +83,7 @@ A field with shouting vs a library with weights 🏋️ Gym culture in Ireland v
 
 ## Week 4 · Thu 5 Nov: Japan vs USA (grocery shopping)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-07-04_03_japan-vs-usa_supermarket-and-grocery-shopping-culture-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-07-04_03_japan-vs-usa_supermarket-and-grocery-shopping-culture-COMPILED.mp4
 - Queue id: `f165c51b`
 
 **Instagram**
@@ -106,7 +106,7 @@ Japan shops for tonight. America shops for the apocalypse 🛒 Supermarket do's 
 
 ## Week 5 · Thu 12 Nov: UK vs Germany (dating)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-07-07_05_uk-vs-germany_dating-and-social-scene-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-07-07_05_uk-vs-germany_dating-and-social-scene-COMPILED.mp4
 - Queue id: `363de77a`
 
 **Instagram**
@@ -129,7 +129,7 @@ Flirting by insult vs romance booked two weeks out 💘 Dating in the UK vs Germ
 
 ## Week 6 · Thu 19 Nov: UK vs Malta (festivals & public holidays)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-10-09_08_united-kingdom-vs-malta_festival-and-public-holiday-culture-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-10-09_08_united-kingdom-vs-malta_festival-and-public-holiday-culture-COMPILED.mp4
 - Queue id: `95c7f85c` (landmark version: Tower Bridge, Big Ben, Grand Harbour, Mosta Rotunda)
 
 **Instagram**
@@ -152,7 +152,7 @@ Full guide on The Alignment Times, link in bio.
 
 ## Week 7 · Thu 26 Nov: Philippines vs Hong Kong (weekend culture)
 - [ ] Instagram  - [ ] TikTok
-- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/boardroom-brief/ugc/compiled/ugc-2026-10-09_01_philippines-vs-hong-kong_weekend-culture-and-leisure-COMPILED.mp4
+- Video: https://res.cloudinary.com/dnpcbx89m/video/upload/vc_h264:main:4.0,ac_aac/boardroom-brief/ugc/compiled/ugc-2026-10-09_01_philippines-vs-hong-kong_weekend-culture-and-leisure-COMPILED.mp4
 - Queue id: `530f9e65`
 - Note: not yet reviewed for landmarks like UK–Malta was. Review it before week 7 if credits allow.
 
