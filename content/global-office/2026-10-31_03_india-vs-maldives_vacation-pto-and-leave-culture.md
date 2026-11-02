@@ -27,7 +27,7 @@ sources:
   note: "Quora and Reddit threads on Indian work culture and Maldives resort leave surfaced repeatedly in search but returned inaccessible or empty pages on fetch; no first-person Quora account could be independently verified, so none is included or fabricated."
 ---
 
-**[HEADLINE] The Leave Is Owed. The Flight Off the Island Is Not: India vs. the Maldives**
+**The Leave Is Owed. The Flight Off the Island Is Not: India vs. the Maldives**
 
 **🇮🇳 India · 🇲🇻 Maldives**
 

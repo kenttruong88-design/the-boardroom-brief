@@ -303,6 +303,13 @@ export function validateArticle(input: {
     failures.push({ rule: 8, name: "headline", detail: `Title is ${title.length} chars (max ${MAX_HEADLINE_CHARS})` });
   }
 
+  // Rule 10 — title as the crons will publish it carries no leftover markup.
+  // extractTitle strips one clean **…** pair, but not "[…]" wrappers or the
+  // closing ** left behind once a "**[HEADLINE] …**" tag is removed (10-31 batch).
+  if (title && (/^[[*_]|[\]*_]$/.test(title) || /\[HEADLINE\]/i.test(title))) {
+    failures.push({ rule: 10, name: "title-markup", detail: `Published title would carry stray markup: "${title}"` });
+  }
+
   // Rule 9 — slug format (uniqueness: check against Sanity at the call site)
   if (slug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     failures.push({ rule: 9, name: "slug", detail: `Slug "${slug}" is not lowercase-hyphen format` });

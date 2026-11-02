@@ -27,7 +27,7 @@ sources:
   note: "Quora and Internations threads specific to Nigeria or Togo office life could not be reached with usable first-person content despite repeated searches, so the voice set draws instead on Zikoko, Expat.com, Talesmag, and a named published interview."
 ---
 
-**[The Office Doesn't Close at Five: A Working Guide to Socializing on the Clock in Nigeria and Togo]**
+**The Office Doesn't Close at Five: A Working Guide to Socializing on the Clock in Nigeria and Togo**
 
 **🇳🇬 Nigeria · 🇹🇬 Togo**
 
