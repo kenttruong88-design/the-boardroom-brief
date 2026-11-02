@@ -1,0 +1,64 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793634724/boardroom-brief/ugc-test/ugc-test-1793634623008-hook-v30c-grey-5s.mp4",
+  "duration": 4.88,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793634769/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793634623008-hook-v30c-grey-5s-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793634769/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793634623008-hook-v30c-grey-5s-frames.jpg",
+    "eyes": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793634770/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793634623008-hook-v30c-grey-5s-eyes.jpg"
+  },
+  "faceMatch": 5,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure is consistent across all four full frames: full bust, narrow waist, wide hips and full thighs in the fitted green dress. This matches the sheet's full-body panels."
+  },
+  "issues": [
+    {
+      "t": 3.2,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her eyes start shifting from the reference's light silver-grey toward a darker, warmer brown. This is visible in the 3.2s face still and the 2.96–3.74s eye crops."
+    },
+    {
+      "t": 4.6,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her eyes are clearly brown/hazel rather than silver-grey (4.52s and 4.78s eye crops, 4.6s face still). The face also reads softer and broader, with a less tapered chin, so she drifts toward a similar-looking but different woman."
+    },
+    {
+      "t": 4,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "At 4.00s and 4.26s the lids are lowered and smeared, and the iris shows faintly through the closing lid. This reads as a ghosted, blended eyelid rather than a clean full blink."
+    },
+    {
+      "t": 2.44,
+      "kind": "artifact",
+      "severity": "minor",
+      "note": "Her right eye (screen left) has a washed-out, whitish, distorted iris highlight. The same eye looks unevenly rendered from 1.40s to 2.44s."
+    },
+    {
+      "t": 3.2,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both arms are active at once. The right hand is lifted out from her side while the left hand is brought across in front of her waist, instead of resting still at her side."
+    }
+  ],
+  "summary": "Camera, scene, outfit and figure hold steady. However, her signature silver-grey eyes drift to brown in the second half and the face softens by 4.6s, and a ghosted, smeared eyelid appears around 4.0–4.26s, so this clip fails identity and eye checks.",
+  "sampledAt": [
+    0.3,
+    1.7,
+    3.2,
+    4.6
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 5
+    },
+    {
+      "pass": false,
+      "faceMatch": 6
+    }
+  ]
+}
