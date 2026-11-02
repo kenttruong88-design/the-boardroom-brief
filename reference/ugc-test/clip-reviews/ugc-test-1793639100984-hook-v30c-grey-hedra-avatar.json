@@ -1,0 +1,97 @@
+{
+  "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793639217/boardroom-brief/ugc-test/ugc-test-1793639100984-hook-v30c-grey-hedra-avatar.mp4",
+  "duration": 9.16,
+  "sheets": {
+    "faces": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793639265/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793639100984-hook-v30c-grey-hedra-avatar-faces.jpg",
+    "frames": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793639265/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793639100984-hook-v30c-grey-hedra-avatar-frames.jpg",
+    "eyes": "https://res.cloudinary.com/dnpcbx89m/image/upload/v1793639266/boardroom-brief/ugc-test/clip-reviews/ugc-test-1793639100984-hook-v30c-grey-hedra-avatar-eyes.jpg"
+  },
+  "faceMatch": 4,
+  "figure": {
+    "match": true,
+    "note": "Curvy hourglass figure throughout in the fitted green wrap dress: full bust, narrow waist, wide hips and full thighs, consistent with the sheet's full-body panels. No visible slimming in any still."
+  },
+  "issues": [
+    {
+      "t": 3.2,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Her eyes begin darkening from the light silver-grey of the references (still greyish at 0.3–1.7s and in the 1.12–3.68s eye strip). By 4.6s, 6.0s and 7.4s the irises read hazel/brown."
+    },
+    {
+      "t": 8.9,
+      "kind": "identity",
+      "severity": "blocking",
+      "note": "Eyes are now clearly dark brown (eye strip 8.29–9.06s shows dark brown irises and pupils). This is a defining feature lost, and she reads as a lookalike rather than Priya."
+    },
+    {
+      "t": 7.4,
+      "kind": "identity",
+      "severity": "minor",
+      "note": "Face looks broader and rounder through the cheeks and jaw at 4.6s and 7.4s, less tapered than the reference oval."
+    },
+    {
+      "t": 4.71,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Eye strip shows a dark horizontal band cutting across the visible iris mid-blink. The lid and iris appear blended or ghosted."
+    },
+    {
+      "t": 5.73,
+      "kind": "eyes",
+      "severity": "blocking",
+      "note": "Lids stall half-closed at 5.73s and again at 6.24s and 7.01s, with irises partly hidden. These are repeated incomplete or heavy-lidded states rather than quick full blinks."
+    },
+    {
+      "t": 7.27,
+      "kind": "eyes",
+      "severity": "minor",
+      "note": "Lids stay heavy and lowered through 7.27–7.52s; the 7.4s face still also looks heavy-lidded and sleepy."
+    },
+    {
+      "t": 1.7,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Gesture is made with her left hand (frame right) at waist height instead of her right hand."
+    },
+    {
+      "t": 3.2,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Her left hand is raised toward chest height in a gesture. This is the wrong hand and too high."
+    },
+    {
+      "t": 6,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Her left hand is again raised near chest level."
+    },
+    {
+      "t": 7.4,
+      "kind": "hands",
+      "severity": "minor",
+      "note": "Both hands are out and gesturing together in a mirrored open-palm pose."
+    }
+  ],
+  "summary": "Figure, camera, scene and outfit hold steady. However, her light silver-grey eyes drift to dark brown from about 3s and are clearly brown by 8.9s, so she no longer reads as Priya. There is also ghosted or half-closed eyelid behaviour around 4.7–7.3s and repeated wrong-hand and both-hand gestures.",
+  "sampledAt": [
+    0.3,
+    1.7,
+    3.2,
+    4.6,
+    6,
+    7.4,
+    8.9
+  ],
+  "pass": false,
+  "runs": [
+    {
+      "pass": false,
+      "faceMatch": 4
+    },
+    {
+      "pass": false,
+      "faceMatch": 4
+    }
+  ]
+}
