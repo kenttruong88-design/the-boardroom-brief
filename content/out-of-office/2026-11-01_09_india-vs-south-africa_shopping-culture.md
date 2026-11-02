@@ -24,6 +24,8 @@ sources:
     - expat.com Johannesburg forum — notes on mall security culture and shopping safety
 ---
 
+# Mumbai Haggles for Fun. Johannesburg Pays in Silence and Gets Walked to the Car.
+
 🇮🇳 India vs South Africa 🇿🇦 — *By Suki Nakamura, Out of Office*
 
 In India, shopping is a negotiation, a performance, and occasionally a small act of theatre, conducted at volume in a market that's existed in some form for centuries. In South Africa, shopping increasingly means driving to a vast, air-conditioned, heavily-secured mall, parking carefully, and handing over a card without a word of debate about the price. Both countries shop constantly and passionately. Only one of them considers silence at the till to be a wasted opportunity.

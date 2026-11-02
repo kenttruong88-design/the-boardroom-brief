@@ -24,6 +24,8 @@ sources:
     - expat.com Moscow forum — queueing and bureaucracy survival tips
 ---
 
+# Moscow Queues Like a Contact Sport. Vienna Queues Like a Liturgy.
+
 🇷🇺 Russia vs Austria 🇦🇹 — *By Suki Nakamura, Out of Office*
 
 Two nations that have perfected the art of silent disapproval, and yet they go about it so differently you'd think they'd never met. Russians queue like it's a contact sport nobody agreed to the rules of, and Austrians queue like it's a liturgy — hushed, orderly, and faintly resentful of anyone who breathes too loudly while waiting their turn.

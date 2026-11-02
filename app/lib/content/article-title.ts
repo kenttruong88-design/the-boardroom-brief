@@ -13,8 +13,12 @@ export function legacyFilenameTitle(filePath: string): string {
   return filePath.split(/[/\\]/).pop()!.replace(/\.md$/i, "").replace(/-/g, " ");
 }
 
-/** A readable title from the filename, without the "2026-10-18_01_" date/number prefix. */
-function filenameTitle(filePath: string): string {
+/**
+ * A readable title from the filename, without the "2026-10-18_01_" date/number prefix.
+ * Exported so the crons can recognise articles that went live under this fallback
+ * title before their headline was added (2026-11-01 Out of Office batch).
+ */
+export function filenameTitle(filePath: string): string {
   return filePath.split(/[/\\]/).pop()!
     .replace(/\.md$/i, "")
     .replace(/^\d{4}-\d{2}-\d{2}_\d+_/, "")

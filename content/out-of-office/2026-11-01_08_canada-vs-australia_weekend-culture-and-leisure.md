@@ -24,6 +24,8 @@ sources:
     - expat.com Sydney forum — notes on beach culture and the 'arvo' weekend
 ---
 
+# Canada Spends the Weekend at the Cottage. Australia Is at the Beach by 7am.
+
 🇨🇦 Canada vs Australia 🇦🇺 — *By Suki Nakamura, Out of Office*
 
 Canada's weekend starts with a toque, a thermos, and a drive to a cottage that's been in the family since 1974. Australia's weekend starts at 6am with a swim, a flat white, and a deeply held belief that if you're not at the beach by 7am on a Saturday, you've somehow already failed the weekend. Both countries build their entire identity around getting outside. They just disagree, fundamentally, on the temperature at which that should happen.

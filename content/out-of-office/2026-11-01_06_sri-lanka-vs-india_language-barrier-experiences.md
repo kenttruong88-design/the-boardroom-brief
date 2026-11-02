@@ -24,6 +24,8 @@ sources:
     - expat.com Bengaluru forum — notes on Kannada, Hindi, and English code-switching
 ---
 
+# Sri Lanka Gives You Two Languages. India Gives You Twenty-Two and a Shrug.
+
 🇱🇰 Sri Lanka vs India 🇮🇳 — *By Suki Nakamura, Out of Office*
 
 Sri Lanka hands you two languages and a reasonably clear map of where each one lives. India hands you twenty-two official languages, hundreds more unofficial ones, and a shrug that says "figure it out, we did." Both countries will cheerfully switch to English to help you, and both will judge you, gently but permanently, for not learning at least a few words of whichever one surrounds you.

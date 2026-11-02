@@ -24,6 +24,8 @@ sources:
     - expat.com Lagos forum — generator-powered gyms and early morning workouts
 ---
 
+# London Gyms Are Libraries With Dumbbells. Lagos Gyms Are Social Clubs With Squat Racks.
+
 🇳🇬 Nigeria vs United Kingdom 🇬🇧 — *By Suki Nakamura, Out of Office*
 
 London gyms are libraries with dumbbells — headphones in, eyes down, a silent agreement that nobody will acknowledge anyone else's existence between sets. Lagos gyms are social clubs that happen to have squat racks — music loud, trainers shouting encouragement at total strangers, and a very real chance someone will ask about your business plan mid-deadlift.

@@ -4,7 +4,7 @@ import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { generateArticleImage } from "@/app/lib/agents/image-generator";
 import type { ArticleDraft } from "@/app/lib/agents/types";
-import { extractTitle, legacyFilenameTitle } from "@/app/lib/content/article-title";
+import { extractTitle, filenameTitle, legacyFilenameTitle } from "@/app/lib/content/article-title";
 
 function isAuthorised(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
@@ -360,8 +360,9 @@ export async function GET(req: NextRequest) {
         continue;
       }
       if (!article) continue;
-      // Articles published before the title fix carry a filename-derived slug.
-      if (publishedSlugs.has(article.slug) || publishedSlugs.has(slugify(legacyFilenameTitle(filename)))) continue;
+      // Articles published before the title fix, or before a missing headline was
+      // added, carry a filename-derived slug.
+      if (publishedSlugs.has(article.slug) || publishedSlugs.has(slugify(legacyFilenameTitle(filename))) || publishedSlugs.has(slugify(filenameTitle(filename)))) continue;
       candidates.push({ filename, article });
     }
     if (!candidates.length) {

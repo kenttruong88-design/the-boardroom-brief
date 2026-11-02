@@ -24,6 +24,8 @@ sources:
     - expat.com Singapore forum — notes on URA short-term rental minimum-stay rules
 ---
 
+# America Charges You a Resort Fee. Singapore Hands You a Chilled Towel.
+
 🇺🇸 United States vs Singapore 🇸🇬 — *By Suki Nakamura, Out of Office*
 
 American hotels hand you a card key, a resort fee you didn't ask for, and a tipping expectation nobody explained before you arrived. Singaporean hotels hand you a card key, a chilled towel, and a level of operational precision so complete it borders on unsettling. Both countries have built entire hospitality empires. Only one of them will surprise you, unpleasantly, on the final bill.

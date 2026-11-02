@@ -24,6 +24,8 @@ sources:
     - expat.com Moscow forum — notes on Orthodox Christmas and the two-calendar problem
 ---
 
+# Russia Owns New Year. Italy Owns August. Nobody Gets Anything Done in Either.
+
 🇷🇺 Russia vs Italy 🇮🇹 — *By Suki Nakamura, Out of Office*
 
 Russia celebrates New Year like it personally defeated winter. Italy celebrates August like August personally defeated capitalism. Both countries have, independently and with zero self-awareness, decided that an entire calendar month belongs to leisure rather than labour — they simply disagree on which month, and on whether "leisure" should involve vodka, pyrotechnics, and a tree, or the Adriatic, a spritz, and total institutional silence.

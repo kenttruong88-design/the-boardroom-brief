@@ -24,6 +24,8 @@ sources:
     - expat.com Abidjan forum — francophone-anglophone dating culture differences
 ---
 
+# Accra Flirts Like It's at Church. Abidjan Flirts Like It's Already Won.
+
 🇬🇭 Ghana vs Côte d'Ivoire 🇨🇮 — *By Suki Nakamura, Out of Office*
 
 Here's a sentence that will annoy people in both capitals equally: Accra flirts like it's at church, and Abidjan flirts like it's already won. One city courts you slowly, with manners, family vetting, and a WhatsApp courtship phase that could outlast some marriages. The other one makes eye contact across a nightclub and has your number, your Instagram, and an opinion on your dancing within the hour.

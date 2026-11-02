@@ -24,6 +24,8 @@ sources:
     - expat.com Paris forum — pelouse interdite and picnic etiquette tips
 ---
 
+# Berlin Lets You Grill on the Grass. Paris Won't Let You Stand on It.
+
 🇩🇪 Germany vs France 🇫🇷 — *By Suki Nakamura, Out of Office*
 
 Berlin treats its parks like a shared backyard — walk on the grass, bring a disposable grill, drink a beer in public, nobody cares. Paris treats its parks like a museum with a lawn in it — look, admire, sit on the designated bench, and under no circumstances step on the "pelouse interdite." Both cities adore their green space. Only one of them will actually let you touch it.

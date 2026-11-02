@@ -24,6 +24,8 @@ sources:
     - expat.com Zurich forum — notes on noise complaints and bin schedules
 ---
 
+# Your Czech Neighbour Brings Plum Brandy. Your Swiss One Checks Your Recycling.
+
 🇨🇿 Czechia vs Switzerland 🇨🇭 — *By Suki Nakamura, Out of Office*
 
 Prague's version of community is a shared garden shed at the family chata, a bottle of Becherovka, and the unspoken understanding that your neighbours will mind their own business right up until you genuinely need help, at which point they will materialise instantly. Zurich's version of community is a laminated recycling schedule, a mandatory Gemeinde meeting, and the unspoken understanding that your neighbours are, in fact, minding your business, continuously, as a matter of civic duty.
