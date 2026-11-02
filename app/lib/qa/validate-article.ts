@@ -53,7 +53,7 @@ export const REQUIRED_FRONTMATTER = [
 ] as const;
 
 /** Rule 7 — set to your real article lengths. */
-export const WORD_RANGE = { min: 400, max: 1400 };
+export const WORD_RANGE = { min: 400, max: 1900 };
 export const MAX_HEADLINE_CHARS = 90;
 
 /** Rule 4 — allowed image hosts. */
