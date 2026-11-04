@@ -1,14 +1,6 @@
 {
   "crons": [
     {
-      "path": "/api/newsroom/news-intel",
-      "schedule": "0 3 * * *"
-    },
-    {
-      "path": "/api/newsroom/run",
-      "schedule": "0 4 * * *"
-    },
-    {
       "path": "/api/newsletter/send",
       "schedule": "30 7 * * *"
     },
@@ -21,7 +13,7 @@
       "schedule": "*/15 8-18 * * 1-5"
     },
     {
-      "path": "/api/cron/publish-articles",
+      "path": "/api/cron/publish-articles?count=4",
       "schedule": "0 9 * * *"
     },
     {

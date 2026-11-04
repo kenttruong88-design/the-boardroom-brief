@@ -3,6 +3,7 @@ import { createClient } from "@sanity/client";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
+import { extractTitle } from "@/app/lib/content/article-title";
 
 // ── Pillar configs ────────────────────────────────────────────────────────────
 
@@ -19,7 +20,17 @@ interface PillarConfig {
 // global-office and out-of-office have their own dedicated crons
 // (publish-global-office and publish-out-of-office) — do not add them here
 // to avoid duplicate Sanity documents with conflicting IDs.
-const PILLAR_CONFIGS: PillarConfig[] = [];
+//
+// The newsroom pillars below are written by the `daily-newsroom` scheduled
+// Claude task (subscription usage, no API credit) since 2026-11-04. Before
+// that /api/newsroom/run wrote them with the Anthropic API. Author ids match
+// the docs that pipeline created, so bylines stay on the same author pages.
+const PILLAR_CONFIGS: PillarConfig[] = [
+  { id: "markets-floor",  name: "Markets Floor",  contentDir: "markets-floor",  authorId: "author-rex-volkov",     authorName: "Rex Volkov",     authorSlug: "rex-volkov",     authorBio: "Senior Markets Correspondent" },
+  { id: "macro-mondays",  name: "Macro Mondays",  contentDir: "macro-mondays",  authorId: "author-ingrid-holt",    authorName: "Ingrid Holt",    authorSlug: "ingrid-holt",    authorBio: "Macroeconomics Editor" },
+  { id: "c-suite-circus", name: "C-Suite Circus", contentDir: "c-suite-circus", authorId: "author-miles-bancroft", authorName: "Miles Bancroft", authorSlug: "miles-bancroft", authorBio: "Corporate Affairs Correspondent" },
+  { id: "water-cooler",   name: "Water Cooler",   contentDir: "water-cooler",   authorId: "author-danny-fisk",     authorName: "Danny Fisk",     authorSlug: "danny-fisk",     authorBio: "Culture Desk" },
+];
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -140,18 +151,25 @@ interface Article {
   title: string; slug: string; excerpt: string; subject: string;
   countries: string[]; heroUrl: string; ogUrl: string; pubDt: string;
   readTime: number; blocks: object[]; seoDesc: string;
+  satiricalHeadline?: string; seoTitle?: string; tags: string[]; tone?: string; heroAlt?: string;
+}
+
+function str(v: unknown): string {
+  return typeof v === "string" ? v : "";
+}
+
+function list(v: unknown): string[] {
+  return str(v).split(",").map((x) => x.trim()).filter(Boolean);
 }
 
 function parseArticle(filePath: string, config: PillarConfig): Article | null {
-  const text  = readFileSync(filePath, "utf8");
+  const text  = readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
   const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return null;
 
   const fm      = parseFrontmatter(match[1]);
   const bodyMd  = match[2].trim();
-  const titleM  = bodyMd.match(/^#\s+(.+)$/m);
-  const title   = titleM ? titleM[1].trim() : filePath.split("/").pop()!.replace(/-/g, " ");
-  const noTitle = bodyMd.replace(/^#\s+.+\n*/m, "").trim();
+  const { title, noTitle } = extractTitle(bodyMd, filePath);
   const excerpt = (noTitle.split(/\n{2,}/)[0] ?? "")
     .replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1")
     .replace(/!\[.*?\]\(.*?\)/g, "").replace(/^#+\s+/, "").trim().slice(0, 300);
@@ -160,8 +178,7 @@ function parseArticle(filePath: string, config: PillarConfig): Article | null {
   const heroUrl = images.hero ?? "";
   const ogUrl   = images.body ?? heroUrl;
 
-  const countriesRaw = (fm.countries ?? "") as string;
-  const countries    = countriesRaw.split(",").map((c: string) => c.trim()).filter(Boolean);
+  const countries = list(fm.countries);
 
   const dateStr = (fm.date ?? new Date().toISOString().split("T")[0]) as string;
   const pubDt   = new Date(`${dateStr}T08:00:00Z`).toISOString();
@@ -172,9 +189,17 @@ function parseArticle(filePath: string, config: PillarConfig): Article | null {
   const blocks    = markdownToBlocks(noTitle);
   const cStr      = countries.slice(0, 2).join(" vs ");
   const subject   = (fm.subject ?? "") as string;
-  const seoDesc   = `${cStr}: ${subject}. By ${config.authorName} for The Alignment Times.`.slice(0, 160);
+  const seoDesc   = (str(fm.seo_description) ||
+    (cStr ? `${cStr}: ${subject}. By ${config.authorName} for The Alignment Times.` : excerpt)).slice(0, 160);
 
-  return { title, slug, excerpt, subject, countries, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc };
+  return {
+    title, slug, excerpt, subject, countries, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc,
+    satiricalHeadline: str(fm.satirical_headline) || undefined,
+    seoTitle:          str(fm.seo_title) || undefined,
+    tags:              list(fm.tags),
+    tone:              str(fm.tone) || undefined,
+    heroAlt:           str(images.alt) || undefined,
+  };
 }
 
 async function ensurePillar(client: ReturnType<typeof getSanityClient>, config: PillarConfig) {
@@ -258,6 +283,12 @@ async function publishArticle(
     ogImage,
     imageGeneratedWith: "pexels",
     seoDescription: article.seoDesc,
+    status:      "published",
+    ...(article.satiricalHeadline && { satiricalHeadline: article.satiricalHeadline }),
+    ...(article.seoTitle && { seoTitle: article.seoTitle }),
+    ...(article.tags.length && { tags: article.tags }),
+    ...(article.tone && { tone: article.tone }),
+    ...(article.heroAlt && { heroImageAlt: article.heroAlt }),
   });
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thealignmenttimes.com";

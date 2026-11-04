@@ -5,6 +5,12 @@ description: Review every newly rendered UGC creator video (Priya, Suki) with Cl
 
 # Review UGC video
 
+**Ask the user before running any review.** It spends Anthropic API credits
+(2 Opus 5.5 calls per clip, ~$0.10 each; frame reviews add Sonnet 5.5 calls). On
+2026-11-04 the user ruled that all API credit use needs their approval first.
+`scripts/ugc-test-clips.mts` reviews automatically, so pass `--skip-review`
+unless the user approved the review.
+
 Every new creator video gets a Claude review before the user sees it. Stills
 from a quick visual skim are too small to catch drift: on 2026-11-01 a skim
 passed all five India–Spain clips, and the clip review then caught Priya's grey
