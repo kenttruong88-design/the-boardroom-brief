@@ -76,7 +76,7 @@ Separately, and less discussed by outsiders fixated on the nudity angle, is how 
 Ghana is building its fitness culture in real time, in public, with all the visible status-signalling and inconsistency that comes with something still forming. Germany's fitness culture is so settled it's stopped noticing itself — liberal about bodies in a way that still shocks outsiders, and simultaneously bureaucratically rigid about contracts in a way that shocks them again, differently, a few weeks later. If you want a gym scene that's dynamic, aspirational, and still writing its own rules, Accra. If you want one that's figured out exactly how it feels about nudity but will trap you in a contract for two years regardless — Germany, and good luck with the cancellation letter.
 
 ![Body image](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-07-04-ghana-germany-fitness-body)
-*Photo: HUUM  │sauna heaters via Pexels*
+*Photo: Max Vakhtbovych via Pexels*
 
 ## What Nobody Warned You About
 
