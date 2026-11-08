@@ -4,6 +4,8 @@ import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { uploadToCloudinary } from "@/app/lib/agents/image-generator";
 import { extractTitle } from "@/app/lib/content/article-title";
+import { createAdminClient } from "@/app/lib/supabase-server";
+import { nextSlot, PILLAR_PLATFORMS } from "@/app/lib/social/queue-social-posts";
 
 // ── Pillar configs ────────────────────────────────────────────────────────────
 
@@ -152,6 +154,7 @@ interface Article {
   countries: string[]; heroUrl: string; ogUrl: string; pubDt: string;
   readTime: number; blocks: object[]; seoDesc: string;
   satiricalHeadline?: string; seoTitle?: string; tags: string[]; tone?: string; heroAlt?: string;
+  social: Partial<Record<"linkedin" | "instagram", { caption: string; hashtags: string[] }>>;
 }
 
 function str(v: unknown): string {
@@ -199,7 +202,54 @@ function parseArticle(filePath: string, config: PillarConfig): Article | null {
     tags:              list(fm.tags),
     tone:              str(fm.tone) || undefined,
     heroAlt:           str(images.alt) || undefined,
+    social: {
+      ...(str(fm.linkedin_caption)  && { linkedin:  { caption: str(fm.linkedin_caption),  hashtags: list(fm.linkedin_hashtags).map(stripHash) } }),
+      ...(str(fm.instagram_caption) && { instagram: { caption: str(fm.instagram_caption), hashtags: list(fm.instagram_hashtags).map(stripHash) } }),
+    },
   };
+}
+
+function stripHash(tag: string): string {
+  return tag.replace(/^#+/, "").replace(/\s+/g, "");
+}
+
+// Captions are written by the daily-newsroom task into the article's
+// frontmatter (no API credit). They enter the same social_queue the
+// /editorial flow used, still as pending_approval, so nothing posts unreviewed.
+async function queueSocialFromMarkdown(
+  article: Article,
+  config: PillarConfig,
+  docId: string,
+  heroImageUrl: string,
+  articleUrl: string
+): Promise<void> {
+  const platforms = PILLAR_PLATFORMS[config.id] ?? [];
+  const supabase = createAdminClient();
+  const now = new Date();
+  for (const platform of platforms) {
+    if (platform !== "linkedin" && platform !== "instagram") continue;
+    const post = article.social[platform];
+    if (!post) continue;
+    if (platform === "instagram" && !heroImageUrl) continue; // Instagram needs an image
+    const { count } = await supabase.from("social_queue").select("*", { count: "exact", head: true })
+      .eq("article_id", docId).eq("platform", platform);
+    if (count) continue; // already queued on an earlier run
+    const { error } = await supabase.from("social_queue").insert({
+      article_id:       docId,
+      article_slug:     article.slug,
+      article_headline: article.title,
+      article_url:      articleUrl,
+      pillar:           config.id,
+      status:           "pending_approval",
+      generated_by:     "markdown",
+      platform,
+      content:          `${post.caption}\n\n${articleUrl}`,
+      hashtags:         post.hashtags,
+      image_url:        heroImageUrl || null,
+      scheduled_for:    nextSlot(platform, now).toISOString(),
+    });
+    if (error) console.warn(`[publish-articles] social queue insert failed (${platform}):`, error.message);
+  }
 }
 
 async function ensurePillar(client: ReturnType<typeof getSanityClient>, config: PillarConfig) {
@@ -300,7 +350,13 @@ async function publishArticle(
     });
   } catch { /* non-fatal */ }
 
-  return `${siteUrl}/${config.id}/${article.slug}`;
+  const url = `${siteUrl}/${config.id}/${article.slug}`;
+  try {
+    await queueSocialFromMarkdown(article, config, docId, heroImageUrl, url);
+  } catch (err) {
+    console.warn("[publish-articles] social queue failed:", (err as Error).message);
+  }
+  return url;
 }
 
 // ── Route handler ─────────────────────────────────────────────────────────────

@@ -21,7 +21,7 @@ const SOCIAL_SLOTS = {
 // Pillar → platform routing: each pillar posts to ONE platform only
 // Twitter posting is disconnected (2026-09-26, low engagement) — markets-floor
 // and macro-mondays, which posted to Twitter exclusively, now route to LinkedIn.
-const PILLAR_PLATFORMS: Record<string, ("linkedin" | "twitter" | "instagram")[]> = {
+export const PILLAR_PLATFORMS: Record<string, ("linkedin" | "twitter" | "instagram")[]> = {
   "markets-floor":  ["linkedin"],
   "macro-mondays":  ["linkedin"],
   "c-suite-circus": ["linkedin"],
@@ -30,7 +30,7 @@ const PILLAR_PLATFORMS: Record<string, ("linkedin" | "twitter" | "instagram")[]>
   "water-cooler":   ["linkedin", "instagram"],
 };
 
-function nextSlot(platform: "linkedin" | "twitter" | "instagram", now: Date): Date {
+export function nextSlot(platform: "linkedin" | "twitter" | "instagram", now: Date): Date {
   for (const { h, m } of SOCIAL_SLOTS[platform]) {
     const candidate = new Date(now);
     candidate.setUTCHours(h, m, 0, 0);
