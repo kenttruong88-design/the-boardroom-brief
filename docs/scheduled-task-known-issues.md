@@ -2174,3 +2174,9 @@ New content files and this log update are committed and pushed together from the
 **Transfer:** single-batched-archive method (`tar czf` in the cloud container → `sha256sum` → `SendUserFile` once → `device_commit_files` into `_transfer/` once → `device_bash tar xzf` directly into the scratch clone's `content/global-office/`) — sha256 (`e5aaf5b1...`) matched exactly between the cloud-container copy and the device-side copy before extraction. The `_transfer/` tarball could not be deleted afterward (`Operation not permitted`, the standard mount delete-block) and was left in place as a harmless leftover, consistent with standing practice of not fighting this constraint for a single scratch file.
 
 New content files and this log update are committed and pushed together from the scratch clone, then mirrored into the synced Desktop folder via a plain `cp` after the push succeeded, with this log file's `mnt` copy explicitly overwritten (not appended), per the standing 2026-10-10 finding on `mnt`/git divergence for this exact file.
+
+## 2026-11-09 — Newsroom (4 pillars x 2) run
+- Symptom: `mkdir /tmp/nr` + write failed with "Permission denied" on the device VM. Cause: a leftover `/tmp/nr` owned by `nobody` from an earlier sandbox. Fix: use a date-namespaced scratch dir (`/tmp/nrx<date>`).
+- WebSearch returns titles/URLs only (no page text); read pages through the web-fetch agent. Many sites (CNBC, Bloomberg, Variety US, SCMP, FXStreet, UPI) are unreadable; the Australian Variety mirror, Yardeni, Kiplinger, The Hill, Tom's Guide, AP-via-local-TV sites and investingLive commodities pages were readable.
+- Frontmatter values containing ": " break strict YAML parsers (caption sentences); replace with " - " before saving.
+- Drafts were written in the cloud container, shipped via SendUserFile -> device_commit_files into `_transfer/`, merged with image URLs on the device.
