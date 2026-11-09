@@ -241,7 +241,7 @@ async function queueSocialFromMarkdown(
       article_url:      articleUrl,
       pillar:           config.id,
       status:           "pending_approval",
-      generated_by:     "markdown",
+      generated_by:     "auto", // social_queue_generated_by_check allows only auto|manual
       platform,
       content:          `${post.caption}\n\n${articleUrl}`,
       hashtags:         post.hashtags,
