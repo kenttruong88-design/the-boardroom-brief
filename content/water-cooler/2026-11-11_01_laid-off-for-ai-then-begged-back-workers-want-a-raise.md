@@ -24,7 +24,7 @@ sources: https://fortune.com/2026/11/09/ai-rebounding-20-us-workers-replaced-hig
 Somewhere in America, a manager is typing the most awkward email of the quarter: "Hope you're well! Quick question. Would you consider returning?"
 
 ![Office worker at a laptop looking thoughtful](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/water-cooler/2026-11-11-01-laid-off-for-ai-asked-back-wants-raise-hero)
-*Photo via Pexels*
+*Photo: Sora Shimazaki via Pexels*
 
 According to a Fortune report published Monday, talent-assessment firm SHL found that 19.1% of US respondents said they had been replaced by AI and then asked to come back. Across the US and UK combined, the figure was 16%. Among 18-to-24-year-olds, it was 24%. Fortune gave no sample size or methodology, and the figures are self-reported, so treat them as a mood with decimals.
 

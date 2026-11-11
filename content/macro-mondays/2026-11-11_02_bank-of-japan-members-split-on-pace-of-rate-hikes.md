@@ -24,7 +24,7 @@ sources: https://www.investing.com/news/economy-news/some-in-boj-called-for-fast
 Central banks publish summaries of their meetings so the public can see how decisions were made. The Bank of Japan's latest summary, released on Tuesday, shows the usual process: some members think the bank should hurry, others think it should check whether its last hike has worked yet, and everyone describes their position as prudent.
 
 ![Tokyo business district skyline](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/macro-mondays/2026-11-11-02-bank-of-japan-members-disagree-neutral-rate-hike-hero)
-*Photo: AXP Photography via Pexels*
+*Photo: Szymon Shields via Pexels*
 
 According to Reuters, the summary covers the BOJ's October 29-30 meeting, at which the bank held its policy rate at 1.25%. That rate follows an increase in September, which came after one in June. So the bank is mid-cycle, which is the interval during which every statement can be read as either "we are nearly done" or "we are only beginning."
 
@@ -43,6 +43,9 @@ Weather is a charming explanation for weak spending, and a central banker's favo
 The summary also records disagreement over next year's wage negotiations, though Reuters described this in paraphrase, without direct quotation. That detail matters more than it appears, because the Bank of Japan's whole strategy rests on a virtuous cycle in which wages rise, prices rise, and rates rise gently behind them. If the first link is unclear, the rest of the chain is a hypothesis.
 
 ## The neutral rate problem
+
+![Japanese yen banknotes](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/macro-mondays/2026-11-11-02-bank-of-japan-members-disagree-neutral-rate-hike-body)
+*Photo: Ivo Brasil via Pexels*
 
 The deeper dispute is about where the rate should stop. Reuters reported that BOJ staff estimate the neutral rate, the setting that neither stimulates nor restrains the economy, at between 1.1% and 2.5%. That is a range wide enough to drive a policy mistake through. Board member Naoki Tamura has said he thinks neutral is probably around 2%, which would put the current 1.25% policy rate well below it.
 

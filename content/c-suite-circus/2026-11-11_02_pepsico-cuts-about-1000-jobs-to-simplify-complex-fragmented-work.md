@@ -24,7 +24,7 @@ sources: https://www.fastcompany.com/91639302/pepsico-layoffs-today-jobs-slashed
 Performance review: PepsiCo North America, current year. Objective: simplify. Method: reduce about 1,000 people. Rationale: "too much of how we work today remains complex and fragmented." Rating pending, as the organisation has not yet explained which of the 1,000 were the complex ones.
 
 ![Corporate headquarters building exterior](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/c-suite-circus/2026-11-11-02-pepsico-cuts-1000-jobs-simplify-memo-hero)
-*Photo: Pixabay via Pexels*
+*Photo: Francesco Ungaro via Pexels*
 
 The Wall Street Journal first reported the cuts on Monday. Reuters, relayed by BNN Bloomberg, and Bloomberg, relayed by Transport Topics, followed the same day, and Fast Company covered the memo on Tuesday. About 1,000 roles in North America's food and beverage business are affected, according to the reports. Reuters said it could not independently confirm the number, and we found no formal PepsiCo press statement, so the account rests on a memo and the reporting around it.
 
@@ -45,6 +45,9 @@ The part it will quote less eagerly is that North American food volume was flat,
 The share price tells the same story. PepsiCo closed at $141 on Monday, according to Fast Company, down 1.1% for the year while the S&P 500 is up more than 10%. Its 2026 high was above $170. Anyone who has owned the stock this year has watched the index make money that the shares did not.
 
 ## Other attendees
+
+![Rows of empty office desks](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/c-suite-circus/2026-11-11-02-pepsico-cuts-1000-jobs-simplify-memo-body)
+*Photo: cottonbro studio via Pexels*
 
 Two other parties are in the room. The first is Elliott Investment Management, the activist fund that took a stake of roughly $4 billion about a year ago, according to Reuters. Activists do not usually take $4 billion positions to admire the packaging. The memo says nothing about Elliott, and the timing is a coincidence in the way that most corporate timing is coincidence: technically available as an explanation.
 

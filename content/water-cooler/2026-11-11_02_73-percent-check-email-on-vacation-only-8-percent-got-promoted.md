@@ -24,7 +24,7 @@ sources: https://fortune.com/2026/11/08/gen-z-performative-availability-after-ho
 You replied to the client from a sunbed. You said "quick one!" and meant it. Nobody noticed except your family and, apparently, the survey.
 
 ![Person working on a laptop while on a beach vacation](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/water-cooler/2026-11-11-02-performative-availability-email-vacation-promoted-hero)
-*Photo: Sezer Uzunoğlu via Pexels*
+*Photo: Brunxs via Pexels*
 
 Fortune reported Sunday on a Software Finder survey of 1,006 US employees, fielded in June. It found that 73% check work messages on vacation, and 51% have answered a work email while away. Fortune gave no further methodology, and Software Finder is a software-review company, so salt accordingly.
 

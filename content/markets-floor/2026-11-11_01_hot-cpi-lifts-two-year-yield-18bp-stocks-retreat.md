@@ -24,7 +24,7 @@ sources: https://www.thestreet.com/stock-market-today/stock-market-today-dow-jon
 Wall Street's two-session recovery lasted one session. On Tuesday, US consumer prices for October came in hotter than economists had forecast, the two-year Treasury yield posted its biggest one-day rise since April 2025, and the S&P 500 closed down 29.01 points, or 0.38%, at 7,520.93.
 
 ![Stock market trading screens during a sell-off](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/markets-floor/2026-11-11-01-hot-cpi-yields-stocks-give-back-rally-hero)
-*Photo: Alex Luna via Pexels*
+*Photo: Rafael Minguet Delgado via Pexels*
 
 The inflation data did the damage. According to TheStreet's market wrap, headline CPI rose 0.4% on the month against an expected 0.3%, after a 0.6% gain in September. Core prices, which strip out food and energy and are therefore harder to blame on anyone, rose 0.3% against a forecast of 0.2%. Year-on-year comparisons were muddied by last year's government shutdown, which left gaps in the 2025 data, so traders were left to argue about the monthly numbers. They did so with some enthusiasm.
 
@@ -39,6 +39,9 @@ Context helps. On Monday the S&P 500 had risen 2.35% to 7,549.94, the VIX had co
 Brian Jacobsen of Annex Wealth Management, quoted by Euronext, summed up the problem: "It's not just headline CPI that is too high, but the oil shock has seeped into core." That sentence is the entire Federal Reserve debate in 17 words. Skyler Weinand of Regan Capital told TheStreet the print "sets the stage for another rate hike in December."
 
 ## Currencies, and the Fed's shadow
+
+![Wall Street street sign in lower Manhattan](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/markets-floor/2026-11-11-01-hot-cpi-yields-stocks-give-back-rally-body)
+*Photo: DΛVΞ GΛRCIΛ via Pexels*
 
 The dollar took the opportunity to flex. The dollar index rose 0.56% to 102.25, according to Cappnotes, while the euro fell 0.53% to $1.1163 and the dollar gained 0.55% on the yen to 158.77. A yen at that level will remain a topic of conversation in Tokyo, where the central bank has its own inflation conversation to manage.
 

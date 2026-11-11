@@ -24,7 +24,7 @@ sources: https://www.ksat.com/business/2026/11/11/as-higher-prices-seep-into-bro
 The most reassuring sentence in monetary policy, "this is a one-off", has been retired. After October's consumer price report landed on Tuesday, several Federal Reserve officials said publicly that price pressures are spreading, and one, Dallas Fed president Lorie Logan, said the central bank could "move more rapidly this winter."
 
 ![The Federal Reserve headquarters building in Washington](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/macro-mondays/2026-11-11-01-fed-officials-faster-hikes-smartphone-prices-recor-hero)
-*Photo: Mark Stebnicki via Pexels*
+*Photo: Quang Vuong via Pexels*
 
 Start with the data, which is where economists are supposed to start and where governments prefer not to. According to TheStreet, headline consumer prices rose 0.4% in October against an expected 0.3%, following a 0.6% rise in September. Core prices, which exclude food and energy, rose 0.3%, according to the Associated Press. That figure matters because Fed Governor Christopher Waller had said in advance that a 0.3% core reading could justify a half-point rate increase. The number arrived on the threshold, as numbers sometimes do when everyone has announced the threshold.
 
@@ -39,6 +39,9 @@ A word on the annual rate, since the sources disagree about whether one exists. 
 Logan, a voting member of the rate-setting committee this year, backs two more quarter-point increases and said "the broader inflationary trend is more likely to persist," per the AP. Anna Paulson, president of the Philadelphia Fed, said in a speech late Tuesday: "Underlying inflation is above target, and it hasn't come down." She favours gradual hikes. Governor Michelle Bowman told the Council on Foreign Relations that price pressures "may be broadening."
 
 Waller, speaking in London, said 70% of services prices rose at least 3% in September from a year earlier. He also said that tanker insurance costs linked to the Strait of Hormuz were adding $20 to $30 a barrel to oil, according to the AP. The Fed's chair, Kevin Warsh, declined to say whether more hikes are likely, a position that is professionally cautious and strategically unhelpful.
+
+![Shoppers browsing smartphones in an electronics store](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/macro-mondays/2026-11-11-01-fed-officials-faster-hikes-smartphone-prices-recor-body)
+*Photo: Kampus Production via Pexels*
 
 The federal funds rate is around 3.9%, after the Fed hiked in September and held in late October. The AP reported that the CME Group's FedWatch tool put the odds of a December 8-9 hike at about 90%. Reuters described a hike as effectively certain, with an 11.5% chance of a half-point move, and said the probability of a January increase had risen from under 30% on Monday to more than 64% on Tuesday. Two-year Treasury yields had their largest one-day jump since April 2025, according to Reuters.
 

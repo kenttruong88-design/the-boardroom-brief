@@ -24,7 +24,7 @@ sources: https://live.euronext.com/en/financial-news/us-yields-climb-stocks-fall
 Gold, the asset investors buy when they want to feel calm, fell 2.62% on Tuesday to $4,030.56 an ounce. Brent crude, the asset everyone watches when they want to feel anxious, settled at $91.49, its lowest close since August 31. Between them, the two commodities ran a short seminar on what happens when the dollar and bond yields stop cooperating.
 
 ![Gold bars stacked in a vault](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/markets-floor/2026-11-11-02-gold-falls-oil-brent-lowest-close-august-hero)
-*Photo: yun zhu via Pexels*
+*Photo: Aurelijus U. via Pexels*
 
 According to Euronext, citing Reuters, spot gold's drop came as US inflation data pushed Treasury yields sharply higher and lifted the dollar. The dollar index gained 0.56% to 102.25, per Cappnotes, which is the arithmetic gold dislikes most: bullion is priced in dollars, pays no interest, and becomes more expensive for foreign buyers whenever the dollar strengthens. Higher yields, meanwhile, raise the opportunity cost of owning a lump of metal that sits in a vault.
 
@@ -39,6 +39,9 @@ For gold, that is a problem of its own making. Gold is conventionally treated as
 Gold at $4,030 remains a high price by any historical standard, and a session like this one is the sort of thing long-term holders are expected to describe as healthy. A drop of 2.6% in one session is a notable move, though it is a move from a very elevated level.
 
 ## Oil keeps falling, which is the opposite of the inflation story
+
+![Oil refinery at dusk](https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/markets-floor/2026-11-11-02-gold-falls-oil-brent-lowest-close-august-body)
+*Photo: Oleksiy via Pexels*
 
 The crude market ran in the opposite direction from the inflation narrative. Euronext reported that Brent settled at $91.49, down 1.2%, while West Texas Intermediate settled at $86.04, down 0.9%. Both were the lowest closes since August 31.
 
