@@ -149,7 +149,7 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // re-rendered at 2K (v23-a), then only her arm patched so her hand is out
     // of the (pocketless) skirt. Approved 2026-10-25 after the hook trial
     // ugc-test/trial-priya-hook-1792944380464 — eyes stayed open, one hand moved.
-    introSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
+    introSceneImageAssetId: "9ae9011b-3fc0-4b0c-91f0-448f6fe77070",
     // Same frame as the hook (v26-b) since 2026-10-25; was Priya v12 (fd479a97).
     outroSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
     outroCloudinaryPublicId: "boardroom-brief/ugc/priya-outro",
