@@ -19,11 +19,12 @@
       "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556095/boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_dos.mp4"
     },
     "country_a_donts": {
-      "frame": "reference/ugc-test/1793226313679-country_a_donts.png",
+      "frame": "reference/ugc-test/india-donts-greyeyes-light.png",
       "status": "rendered",
-      "rendered": "2026-11-01",
-      "cloudinaryPublicId": "boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_donts",
-      "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793556181/boardroom-brief/ugc-test/ugc-test-1793555942402-country_a_donts.mp4"
+      "rendered": "2026-11-14",
+      "note": "lighter frame + brighter grey eyes; replaces 11-01 version (eyes drifted brown)",
+      "cloudinaryPublicId": "boardroom-brief/ugc-test/ugc-test-1794654807100-country_a_donts",
+      "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1794654909/boardroom-brief/ugc-test/ugc-test-1794654807100-country_a_donts.mp4"
     },
     "country_b_dos": {
       "frame": "reference/ugc-test/1793226313679-country_b_dos-retry2.png",
