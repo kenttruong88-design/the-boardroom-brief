@@ -3,11 +3,13 @@
   "script": "reference/priya/india-spain/script.json",
   "clips": {
     "hook": {
-      "frameAssetId": "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
+      "frame": "reference/priya/v30-at-grey-c.png",
+      "frameAssetId": "9ae9011b-3fc0-4b0c-91f0-448f6fe77070",
+      "model": "together/hedra-character-3",
       "status": "rendered",
-      "rendered": "2026-11-01",
-      "cloudinaryPublicId": "boardroom-brief/ugc-test/ugc-test-1793555942402-hook",
-      "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793555998/boardroom-brief/ugc-test/ugc-test-1793555942402-hook.mp4"
+      "rendered": "2026-11-03",
+      "cloudinaryPublicId": "boardroom-brief/ugc-test/ugc-test-1793638948020-hook-v30c-grey",
+      "url": "https://res.cloudinary.com/dnpcbx89m/video/upload/v1793639011/boardroom-brief/ugc-test/ugc-test-1793638948020-hook-v30c-grey.mp4"
     },
     "country_a_dos": {
       "frame": "reference/ugc-test/ados-facefix-a-fixed.png",
