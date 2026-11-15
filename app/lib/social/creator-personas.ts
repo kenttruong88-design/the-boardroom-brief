@@ -150,9 +150,10 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // of the (pocketless) skirt. Approved 2026-10-25 after the hook trial
     // ugc-test/trial-priya-hook-1792944380464 — eyes stayed open, one hand moved.
     introSceneImageAssetId: "9ae9011b-3fc0-4b0c-91f0-448f6fe77070",
-    // Same frame as the hook (v26-b) since 2026-10-25; was Priya v12 (fd479a97).
-    outroSceneImageAssetId: "c2b686a0-3a5e-41ce-b2f9-5033082797ab",
+    // Lightened emerald v30-c frame with brighter grey eyes (approved 2026-11-15); was the hook frame v26-b.
+    outroSceneImageAssetId: "9c21d609-3030-4fc6-b65d-847d65c8c9bf",
     outroCloudinaryPublicId: "boardroom-brief/ugc/priya-outro",
+    endcardCloudinaryPublicId: "boardroom-brief/ugc/suki-endcard",
     // Her light irises under a dark lash line drifted to half-closed, sleepy
     // eyes on the v18-c hook trial, so her eyes are asked to stay open.
     performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after.",
