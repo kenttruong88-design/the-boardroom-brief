@@ -153,7 +153,7 @@ export const CREATOR_PERSONAS: Record<string, CreatorPersona> = {
     // Lightened emerald v30-c frame with brighter grey eyes (approved 2026-11-15); was the hook frame v26-b.
     outroSceneImageAssetId: "9c21d609-3030-4fc6-b65d-847d65c8c9bf",
     outroCloudinaryPublicId: "boardroom-brief/ugc/priya-outro",
-    endcardCloudinaryPublicId: "boardroom-brief/ugc/suki-endcard",
+    endcardCloudinaryPublicId: "boardroom-brief/ugc/endcard-3s",
     // Her light irises under a dark lash line drifted to half-closed, sleepy
     // eyes on the v18-c hook trial, so her eyes are asked to stay open.
     performanceNote:   "Her eyes stay fully open, bright and alert the whole time, irises clearly visible: never squinting, never heavy-lidded or half-closed, never sleepy. Blinks are quick and full, and her eyes reopen fully straight after.",
