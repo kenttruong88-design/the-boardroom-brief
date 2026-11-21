@@ -6,6 +6,7 @@ import {
   scheduleBufferPost,
   cancelBufferPost,
 } from "@/app/lib/social/buffer-client";
+import { scheduledForApproval } from "@/app/lib/social/approval-schedule";
 
 interface PatchBody {
   content?: string;
@@ -40,6 +41,13 @@ export async function PATCH(
   if (body.content !== undefined) updates.content = body.content;
   if (body.scheduled_for !== undefined) updates.scheduled_for = body.scheduled_for;
   if (body.status !== undefined) updates.status = body.status;
+
+  // Approving (-> "pending") after the original slot has passed would put the post
+  // outside the publish cron's lookback window for good, so move it to the next slot.
+  if (body.status === "pending" && body.scheduled_for === undefined) {
+    const next = scheduledForApproval(current.platform as string, current.scheduled_for as string | null);
+    if (next && next !== current.scheduled_for) updates.scheduled_for = next;
+  }
 
   const bufferId = current.buffer_post_id as string | null;
   const isCancelling = body.status === "cancelled";

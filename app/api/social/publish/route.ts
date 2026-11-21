@@ -29,6 +29,7 @@ interface QueueRow {
   image_url: string | null;
   article_url: string;
   scheduled_for: string;
+  review_score: number | null;
 }
 
 interface PostDetail {
@@ -90,21 +91,28 @@ async function run() {
   const windowStart = new Date(now.getTime() - 24 * 60 * 60 * 1000); // now - 24h
   const windowEnd   = new Date(now.getTime() +  5 * 60 * 1000);      // now + 5 min
 
-  // 2. Fetch due posts — capped to remaining daily slots
+  // 2. Fetch every due post, then keep only the best-rated ones that fit the
+  // remaining daily cap (Buffer's limit). review_score is the 1-10 rating the
+  // newsroom tasks write as `social_score` (or the AI reviewer's score on the old
+  // generated flow); unrated posts rank last, ties go to the earliest slot.
   const { data: duePosts, error: fetchError } = await supabase
     .from("social_queue")
-    .select("id, article_id, article_headline, platform, content, hashtags, image_url, article_url, scheduled_for")
+    .select("id, article_id, article_headline, platform, content, hashtags, image_url, article_url, scheduled_for, review_score")
     .eq("status", "pending")
     .gte("scheduled_for", windowStart.toISOString())
     .lte("scheduled_for", windowEnd.toISOString())
     .order("scheduled_for", { ascending: true })
-    .limit(remaining);
+    .limit(500);
 
   if (fetchError) {
     return NextResponse.json({ error: fetchError.message }, { status: 500 });
   }
 
-  const posts = (duePosts ?? []) as QueueRow[];
+  const posts = ((duePosts ?? []) as QueueRow[])
+    .sort((a, b) =>
+      (b.review_score ?? -1) - (a.review_score ?? -1) ||
+      a.scheduled_for.localeCompare(b.scheduled_for))
+    .slice(0, remaining);
 
   // 3. Nothing due
   if (posts.length === 0) {

@@ -7,7 +7,12 @@ import { nextSlot, PILLAR_PLATFORMS } from "./queue-social-posts";
 // pillars queue social posts the same way and skips are never silent.
 
 export type SocialPlatform = "linkedin" | "instagram";
-export type SocialCaptions = Partial<Record<SocialPlatform, { caption: string; hashtags: string[] }>>;
+export interface SocialCaptions {
+  linkedin?:  { caption: string; hashtags: string[] };
+  instagram?: { caption: string; hashtags: string[] };
+  /** 1-10 self-rating the newsroom task writes as `social_score`; the publish cron posts the highest first. */
+  score?: number;
+}
 
 function str(v: unknown): string {
   return typeof v === "string" ? v : "";
@@ -22,7 +27,10 @@ function stripHash(tag: string): string {
 }
 
 export function parseSocialCaptions(fm: Record<string, unknown>): SocialCaptions {
+  const raw = Number.parseFloat(str(fm.social_score));
+  const score = Number.isFinite(raw) ? Math.min(10, Math.max(1, Math.round(raw))) : undefined;
   return {
+    ...(score !== undefined && { score }),
     ...(str(fm.linkedin_caption)  && { linkedin:  { caption: str(fm.linkedin_caption),  hashtags: list(fm.linkedin_hashtags).map(stripHash) } }),
     ...(str(fm.instagram_caption) && { instagram: { caption: str(fm.instagram_caption), hashtags: list(fm.instagram_hashtags).map(stripHash) } }),
   };
@@ -85,6 +93,7 @@ export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Pr
       hashtags:         post.hashtags,
       image_url:        heroImageUrl || null,
       scheduled_for:    nextSlot(platform, now).toISOString(),
+      review_score:     social.score ?? null,
     });
     if (error) { skip(platform, "insert-failed", error.message); continue; }
     queued.push(platform);
