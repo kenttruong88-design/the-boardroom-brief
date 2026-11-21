@@ -14,7 +14,7 @@
     },
     {
       "path": "/api/cron/publish-articles?count=4",
-      "schedule": "0 9 * * *"
+      "schedule": "30 13 * * *"
     },
     {
       "path": "/api/social/publish",

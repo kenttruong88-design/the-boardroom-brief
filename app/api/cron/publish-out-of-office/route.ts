@@ -5,6 +5,7 @@ import { join } from "path";
 import { generateArticleImage } from "@/app/lib/agents/image-generator";
 import type { ArticleDraft } from "@/app/lib/agents/types";
 import { extractTitle, filenameTitle, legacyFilenameTitle } from "@/app/lib/content/article-title";
+import { parseSocialCaptions, queueSocialFromMarkdown, type SocialCaptions } from "@/app/lib/social/queue-from-markdown";
 
 function isAuthorised(req: NextRequest): boolean {
   const secret = process.env.CRON_SECRET;
@@ -157,6 +158,7 @@ interface Article {
   heroUrl: string; ogUrl: string; pubDt: string;
   readTime: number; blocks: object[]; seoDesc: string;
   countries: string[]; subject: string;
+  social: SocialCaptions;
 }
 
 // Country-flag emoji are pairs of Unicode regional indicator symbols
@@ -199,7 +201,7 @@ function parseArticle(filePath: string): Article | null {
   const seoDesc   = `${title}. By ${AUTHOR_NAME} for The Alignment Times.`.slice(0, 160);
   const countries = ((fm.countries as string) ?? "").split(",").map(s => s.trim()).filter(Boolean);
   const subject   = (fm.subject as string) ?? "";
-  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc, countries, subject };
+  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc, countries, subject, social: parseSocialCaptions(fm) };
 }
 
 async function ensurePillar(client: ReturnType<typeof getSanityClient>) {
@@ -323,7 +325,16 @@ async function publishArticle(
   } catch (err) {
     console.warn(`[publish-out-of-office] Revalidate fetch failed for ${article.slug}:`, err);
   }
-  return `${siteUrl}/out-of-office/${article.slug}`;
+  const url = `${siteUrl}/out-of-office/${article.slug}`;
+  try {
+    await queueSocialFromMarkdown({
+      pillarId: PILLAR_ID, docId, slug: article.slug, title: article.title,
+      articleUrl: url, heroImageUrl, social: article.social,
+    });
+  } catch (err) {
+    console.warn("[publish-out-of-office] social queue failed:", (err as Error).message);
+  }
+  return url;
 }
 
 export async function GET(req: NextRequest) {
