@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Mexico, Spain
 subject: Dating and social scene
+instagram_caption: Spain will meet you at the terrace at ten. Mexico will ask whether you have an appointment. 💬 Dating abroad is an exam where the questions are never written down. What was your most confusing date abroad? Full article — link in bio
+instagram_hashtags: DatingAbroad, Spain, Mexico, ExpatLife, CultureShock
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-05-mexico-vs-spain-hero

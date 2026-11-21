@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: South Africa, United Kingdom
 subject: Having children (parental leave, childcare, career impact)
+linkedin_caption: South Africa grants a new mother at least four months of leave and leaves the pay to a government fund and her employer. Britain offers up to 39 weeks and a nursery bill. Parental leave looks generous until you read the small print. What should a leave policy cover?
+linkedin_hashtags: ParentalLeave, WorkingParents, HumanResources, WorkplaceCulture
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-10-south-africa-vs-united-kingdom-hero

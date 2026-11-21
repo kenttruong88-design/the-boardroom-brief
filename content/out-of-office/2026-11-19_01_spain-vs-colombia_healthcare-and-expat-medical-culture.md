@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Spain, Colombia
 subject: Healthcare and expat medical culture
+instagram_caption: Spain gives you a doctor. Colombia gives you a waiting-room hierarchy. 🏥 Both beat a hospital bill. Nothing reveals a country's character like lying on a trolley in its corridor. Ever been ill abroad? Full article — link in bio
+instagram_hashtags: ExpatHealth, Spain, Colombia, HealthcareAbroad, LivingAbroad
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-01-spain-vs-colombia-hero

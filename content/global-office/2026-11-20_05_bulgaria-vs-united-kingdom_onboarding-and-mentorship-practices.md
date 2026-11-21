@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Bulgaria, United Kingdom
 subject: Onboarding and mentorship practices
+linkedin_caption: A 2024 YouGov poll of 1,016 UK HR professionals found that 27 percent of employers had a new starter fail to turn up on day one. Britain hands over a welcome pack and says someone will be in touch. Bulgaria hands over a laptop and a colleague who started last year. What does your first day say about your company?
+linkedin_hashtags: Onboarding, Mentorship, HumanResources, WorkplaceCulture
+social_score: 9
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-05-bulgaria-vs-united-kingdom-hero

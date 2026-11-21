@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Hungary, Germany
 subject: Public behaviour norms
+instagram_caption: Germany legislates silence on Sundays. Hungary just judges you quietly from the bench. 🤫 In Germany there is a rule for when you can vacuum and a rule for when you can mow. Which rulebook would you break first? Full article — link in bio
+instagram_hashtags: CultureShock, Germany, Hungary, ExpatLife, Etiquette
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-09-hungary-vs-germany-hero

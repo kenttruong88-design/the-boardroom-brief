@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Greece, Canada
 subject: Eating habits and food culture
+linkedin_caption: Locally favoured restaurants in Greece look empty at seven in the evening and fill after half past nine. In Canada, a restaurant at that hour is stacking chairs. Greece dines at ten and Canada tips at twenty, and each finds the other slightly alarming. When does your team actually eat?
+linkedin_hashtags: TeamCulture, WorkplaceCulture, GlobalWorkplace, Leadership
+social_score: 6
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-09-greece-vs-canada-hero

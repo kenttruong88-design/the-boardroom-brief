@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: China, United Kingdom
 subject: Banking and bureaucracy
+instagram_caption: China wants your face at the counter. Britain wants a utility bill you do not have yet. 🏦 Every banking system tells you what it fears. Which one made opening an account hardest? Full article — link in bio
+instagram_hashtags: Banking, China, UK, ExpatLife, Paperwork
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-02-china-vs-united-kingdom-hero

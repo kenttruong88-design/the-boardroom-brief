@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Czechia, Canada
 subject: Remote work attitudes and flexibility policies
+linkedin_caption: Czechia wants the remote work agreement in writing. Canada wants people back in the building. Same pandemic, opposite conclusions. One treats flexibility as a contract term, the other as a perk that can be withdrawn. Which would you rather negotiate with?
+linkedin_hashtags: RemoteWork, FutureOfWork, WorkplaceCulture, Leadership
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-03-czechia-vs-canada-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Thailand, China
 subject: City transport and commuting culture
+instagram_caption: Bangkok commutes on hope and a motorbike. China commutes on a schedule and a QR code. 🛵 Getting to work in Bangkok is an act of faith. What is your commute built on? Full article — link in bio
+instagram_hashtags: CommuteLife, Bangkok, China, ExpatLife, Motorbike
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-06-thailand-vs-china-hero

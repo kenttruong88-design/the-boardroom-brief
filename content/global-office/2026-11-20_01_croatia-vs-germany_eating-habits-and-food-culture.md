@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Croatia, Germany
 subject: Eating habits and food culture
+linkedin_caption: A German employee takes an average of 33.4 minutes for lunch, according to a 2024 jobtensor.com survey of 1,000 workers. A Croatian colleague, in the right café, may take four hours. One treats lunch as a sandwich, the other as a treaty. How long is your lunch, really?
+linkedin_hashtags: WorkLifeBalance, LunchBreak, WorkplaceCulture, Wellbeing
+social_score: 9
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-01-croatia-vs-germany-hero

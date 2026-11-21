@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Peru, Chile
 subject: Bonding culture
+linkedin_caption: In Chile, 80 percent of workers have friends at the office, according to a Randstad survey. In Peru, a Bumeran study found 87 percent believe work friendships strengthen commitment to the company. One invites you to a cousin's birthday. The other invites you to stay at the table after lunch. How well do you know your team?
+linkedin_hashtags: TeamBuilding, WorkplaceFriendships, Belonging, WorkplaceCulture
+social_score: 8
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-03-peru-vs-chile-hero

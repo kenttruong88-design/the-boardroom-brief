@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Poland, Taiwan
 subject: Meeting culture and communication styles
+linkedin_caption: Both countries work long weeks. Eurostat puts the average Pole at 38.7 hours in 2025, against an EU mean of 35.9. Poland says what it thinks, on time. Taiwan says we will see and messages you at nine. Which is more tiring: directness or ambiguity?
+linkedin_hashtags: MeetingCulture, Communication, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-06-poland-vs-taiwan-hero

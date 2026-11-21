@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Nigeria, United Kingdom
 subject: Management hierarchy and boss-employee relationships
+linkedin_caption: In Lagos he is Oga. In Manchester he is Dave. Both are the boss, and both will be disappointed by your candour. Titles, first names and who is allowed to disagree out loud all change by country. How honest can you really be with your manager?
+linkedin_hashtags: Leadership, Management, WorkplaceCulture, GlobalWorkplace
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-05-nigeria-vs-united-kingdom-hero

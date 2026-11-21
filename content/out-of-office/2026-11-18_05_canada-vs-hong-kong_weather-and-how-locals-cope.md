@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Canada, Hong Kong
 subject: Weather and how locals cope
+instagram_caption: Canada fights winter with boots. Hong Kong fights summer with a shopping mall. ❄️ Every country has weather, but only some have a long, abusive marriage with it. How do you cope where you live? Full article — link in bio
+instagram_hashtags: WeatherLife, Canada, HongKong, ExpatLife, SeasonalLiving
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-05-canada-vs-hong-kong-hero

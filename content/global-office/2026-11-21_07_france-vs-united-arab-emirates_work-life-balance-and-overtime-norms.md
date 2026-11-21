@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: France, United Arab Emirates
 subject: Work-life balance and overtime norms
+linkedin_caption: France defines the full-time week as 35 hours and treats every hour beyond it as an exception needing justification or premium pay. The Emirates count deadlines instead of hours. One system protects the clock, the other protects the outcome. Which would you choose?
+linkedin_hashtags: WorkLifeBalance, Overtime, Wellbeing, WorkplaceCulture
+social_score: 8
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-07-france-vs-united-arab-emirates-hero

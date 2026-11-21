@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: USA, New Zealand
 subject: Weekend culture and leisure
+instagram_caption: America fills the weekend with plans. New Zealand fills it with mud and mild smugness. 🥾 The American weekend is a logistics operation, with brunch booked eleven days ahead. What does your weekend look like? Full article — link in bio
+instagram_hashtags: WeekendVibes, USA, NewZealand, ExpatLife, Outdoors
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-01-usa-vs-new-zealand-hero

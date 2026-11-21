@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Sweden, Estonia
 subject: Banking and bureaucracy
+instagram_caption: Sweden wants a number before it will love you. Estonia will marry you over Wi-Fi. 🇪🇪 One perfect catch-22 called fairness, and one country that does it all online. Which would you rather arrive in? Full article — link in bio
+instagram_hashtags: Sweden, Estonia, Bureaucracy, ExpatLife, DigitalNomad
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-02-sweden-vs-estonia-hero

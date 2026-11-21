@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Poland, Czechia
 subject: Weekend culture and leisure
+instagram_caption: Poland shuts the shops on Sunday. Czechia shuts the city because everyone has left for the cottage. 🛒 Neighbours, one border, two very different weekends. Where would you rather be stuck on a Sunday? Full article — link in bio
+instagram_hashtags: WeekendVibes, Poland, Czechia, ExpatLife, SundayClosing
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-09-poland-vs-czechia-hero

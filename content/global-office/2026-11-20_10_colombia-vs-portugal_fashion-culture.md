@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Colombia, Portugal
 subject: Fashion culture
+linkedin_caption: One poster on an Expat.com thread said that in Colombia the shoes are the first thing people notice, and that looking disheveled is a form of disrespect. In Portugal, the risk is overdressing. Same job, different dress rules that nobody wrote down. What does your outfit say before you speak?
+linkedin_hashtags: DressCode, ProfessionalImage, WorkplaceCulture, GlobalWorkplace
+social_score: 7
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-10-colombia-vs-portugal-hero

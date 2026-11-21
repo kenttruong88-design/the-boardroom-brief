@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: China, Singapore
 subject: Fitness and gym culture
+instagram_caption: China exercises in public at dawn. Singapore does it indoors under air conditioning. 🧘 Parks fill with tai chi, sword dancers and people walking backwards. Where would you work out? Full article — link in bio
+instagram_hashtags: FitnessAbroad, China, Singapore, ExpatLife, TaiChi
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-10-china-vs-singapore-hero

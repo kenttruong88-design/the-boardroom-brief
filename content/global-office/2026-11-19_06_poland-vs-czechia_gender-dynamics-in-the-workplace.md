@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Poland, Czechia
 subject: Gender dynamics in the workplace
+linkedin_caption: Eurostat puts Poland's gender pay gap at about 4 percent and Czechia's at 18.5 percent. Both countries insist the real problem is somewhere else. Neighbours with a mountain range between them and opposite numbers. Why do two similar economies end up so far apart?
+linkedin_hashtags: GenderEquality, PayGap, DiversityAndInclusion, WorkplaceCulture
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-06-poland-vs-czechia-hero

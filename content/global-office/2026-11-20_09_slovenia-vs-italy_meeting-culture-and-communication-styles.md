@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Slovenia, Italy
 subject: Meeting culture and communication styles
+linkedin_caption: Being late to a meeting in Slovenia is considered extremely rude, and hosts are expected to send minutes with action items within a few days. In Italy, the real meeting happens after the meeting. Which one gets more done?
+linkedin_hashtags: MeetingCulture, Communication, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-09-slovenia-vs-italy-hero

@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: India, United Kingdom
 subject: Performance reviews and feedback culture
+linkedin_caption: In India, a manager may have to spread a team across a bell curve so that someone gets the bottom rating, however good they are. In Britain, the same message arrives as a hint. Would you rather be graded on a curve or graded on a hint?
+linkedin_hashtags: PerformanceReviews, Feedback, Management, WorkplaceCulture
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-03-india-vs-united-kingdom-hero

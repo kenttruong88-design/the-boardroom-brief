@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Japan, South Korea
 subject: Banking and bureaucracy
+instagram_caption: Japan wants your seal. Korea wants your phone contract. Both want you to come back tomorrow. 📄 Bureaucracy is a nation's love language. Which one would you survive? Full article — link in bio
+instagram_hashtags: Bureaucracy, Japan, SouthKorea, ExpatLife, Paperwork
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-10-japan-vs-south-korea-hero

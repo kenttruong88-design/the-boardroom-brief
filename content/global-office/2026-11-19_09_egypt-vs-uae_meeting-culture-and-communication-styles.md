@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Egypt, United Arab Emirates
 subject: Meeting culture and communication styles
+linkedin_caption: In Egypt, the meeting is a lively negotiation where several people speak at once. In the United Arab Emirates, it tends to end in polite agreement. Two countries, one language family, opposite theories of what a meeting is for. What is yours for?
+linkedin_hashtags: MeetingCulture, Communication, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-09-egypt-vs-uae-hero

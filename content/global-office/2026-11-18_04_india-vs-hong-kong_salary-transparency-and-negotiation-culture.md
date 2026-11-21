@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: India, Hong Kong
 subject: Salary transparency and negotiation culture
+linkedin_caption: In India, recruiters often ask what you earn now before you ask what the job pays. In Hong Kong, the question runs the other way, and fewer people dare to ask it. Two countries, two very different negotiating positions. Should your old salary ever be part of the conversation?
+linkedin_hashtags: SalaryTransparency, PayTransparency, Negotiation, CareerAdvice
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-04-india-vs-hong-kong-hero

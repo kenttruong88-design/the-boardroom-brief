@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Israel, Germany
 subject: Language barrier experiences
+instagram_caption: Israel will argue with you in four languages. Germany will politely answer in yours. 🗣️ A language barrier is not a wall. It is a revolving door. Which one would you rather get lost in? Full article — link in bio
+instagram_hashtags: LanguageBarrier, Israel, Germany, ExpatLife, LearningLanguages
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-08-israel-vs-germany-hero

@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Israel, United States
 subject: Startup vs corporate mindset
+linkedin_caption: Israeli startups raised about $10.6 billion in 2024, according to the Israel Innovation Authority, making the country the fifth-largest startup funding hub in the world. In Israel, a meeting is everyone interrupting at once. In America it is alignment with a calendar invite. Which style actually ships faster?
+linkedin_hashtags: Startups, Innovation, MeetingCulture, Leadership
+social_score: 8
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-04-israel-vs-united-states-hero

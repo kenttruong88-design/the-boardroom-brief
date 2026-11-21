@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Czechia, Canada
 subject: Parks and green space culture
+instagram_caption: Czechs escape to the cottage. Canadians escape to the wilderness. 🌲 Both bring beer. Two national theories of nature, and neither involves staying home. Where do you go to get away? Full article — link in bio
+instagram_hashtags: Cottage, Outdoors, Czechia, Canada, NatureLovers
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-07-czechia-vs-canada-hero

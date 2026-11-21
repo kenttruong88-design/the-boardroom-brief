@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Mexico, Spain
 subject: Weekend culture and leisure
+instagram_caption: Mexico spends the weekend at the family table. Spain spends it there too, but later and louder. 🍽️ Saturday is the market, Sunday belongs to the extended family. Whose weekend would you join? Full article — link in bio
+instagram_hashtags: WeekendVibes, Mexico, Spain, FamilyTime, ExpatLife
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-06-mexico-vs-spain-hero

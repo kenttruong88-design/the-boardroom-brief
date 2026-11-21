@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Kenya, South Africa
 subject: City transport and commuting culture
+instagram_caption: Nairobi commutes by matatu and faith. Johannesburg commutes by car and anxiety. 🚐 A city's transport tells you who it was built for. Who is your city built for? Full article — link in bio
+instagram_hashtags: Nairobi, Johannesburg, CommuteLife, ExpatLife, Africa
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-06-kenya-vs-south-africa-hero

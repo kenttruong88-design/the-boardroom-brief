@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Lithuania, Norway
 subject: Remote work attitudes and flexibility policies
+linkedin_caption: Statistics Norway reports that 45 percent of Norwegian employees could work from home in 2024, but only about 7 percent did so half the time or more. Lithuania lets parents demand the spare room. Having the right to remote work is not the same as using it. Why do people not take what they are offered?
+linkedin_hashtags: RemoteWork, FutureOfWork, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-02-lithuania-vs-norway-hero

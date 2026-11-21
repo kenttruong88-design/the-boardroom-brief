@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Croatia, Slovenia
 subject: Hotel and accommodation culture
+instagram_caption: Croatia rents you a room from a grandmother. Slovenia rents you a hayloft and calls it policy. 🏡 A hotel is a promise made by a chain. A private room is a promise made by a family. Which would you book? Full article — link in bio
+instagram_hashtags: TravelStay, Croatia, Slovenia, ExpatLife, LocalStays
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-10-croatia-vs-slovenia-hero

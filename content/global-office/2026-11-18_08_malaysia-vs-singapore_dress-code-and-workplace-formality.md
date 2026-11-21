@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Malaysia, Singapore
 subject: Dress code and workplace formality
+linkedin_caption: In April 2026, Malaysia made batik a daily option for civil servants and mandatory on Thursdays. Singapore dresses for the air conditioning. Same climate, different idea of formal. What does your dress code say about your culture?
+linkedin_hashtags: DressCode, ProfessionalImage, WorkplaceCulture, GlobalWorkplace
+social_score: 6
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-08-malaysia-vs-singapore-hero

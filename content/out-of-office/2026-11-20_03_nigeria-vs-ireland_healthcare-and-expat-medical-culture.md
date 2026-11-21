@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Nigeria, Ireland
 subject: Healthcare and expat medical culture
+instagram_caption: Nigeria pays at the door. Ireland makes you wait until you have forgotten why you came. 🏥 Healthcare in Nigeria is a transaction conducted at speed. Which system would you trust with a Monday-morning cough? Full article — link in bio
+instagram_hashtags: HealthcareAbroad, Nigeria, Ireland, ExpatHealth, LivingAbroad
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-03-nigeria-vs-ireland-hero

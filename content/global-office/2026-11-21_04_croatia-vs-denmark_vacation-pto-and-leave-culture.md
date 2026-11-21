@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Croatia, Denmark
 subject: Vacation, PTO, and leave culture
+linkedin_caption: Croatian law promises four weeks of paid leave. Danish law promises five. The gap looks modest until you see how much leave people actually feel able to take. Croatia dreams of thirty-one days. Denmark vanishes in July. Is a leave entitlement worth anything if nobody uses it?
+linkedin_hashtags: PaidLeave, WorkLifeBalance, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-04-croatia-vs-denmark-hero

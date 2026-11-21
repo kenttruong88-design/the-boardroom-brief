@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: United Kingdom, UAE
 subject: Healthcare and expat medical culture
+instagram_caption: In Britain you queue for the doctor. In the UAE the doctor queues for you, pending insurance approval. 🏥 The British love affair with the NHS is conducted entirely through complaint. Which would you pick? Full article — link in bio
+instagram_hashtags: HealthcareAbroad, NHS, UAE, ExpatHealth, ExpatLife
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-08-united-kingdom-vs-uae-hero

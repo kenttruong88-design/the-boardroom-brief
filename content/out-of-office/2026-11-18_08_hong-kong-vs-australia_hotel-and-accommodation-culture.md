@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Hong Kong, Australia
 subject: Hotel and accommodation culture
+instagram_caption: Hong Kong charges you three months to sleep in a cupboard. Australia charges you a Saturday queue. 🛏️ The relocation deck says serviced apartment. The reality says studio. What was your worst first home abroad? Full article — link in bio
+instagram_hashtags: RelocationLife, ExpatHousing, HongKong, Australia, MovingAbroad
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-08-hong-kong-vs-australia-hero

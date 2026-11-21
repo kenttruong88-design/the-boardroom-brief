@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: France, New Zealand
 subject: Fitness and gym culture
+instagram_caption: The French treat the gym like a rumour. New Zealanders treat it like a hill. 🏔️ The French will walk three miles to a bakery but resist deliberate exercise. Which one are you? Full article — link in bio
+instagram_hashtags: FitnessAbroad, France, NewZealand, ExpatLife, GymLife
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-05-france-vs-new-zealand-hero

@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Austria, Denmark
 subject: Gender dynamics in the workplace
+linkedin_caption: In Austria, 51.1 percent of employed women work part-time, against 13.7 percent of employed men. In Denmark, the four o'clock pickup is part of the conversation for fathers too. Same argument, different answers, and neither country has finished it. Who should adjust: the workplace or the household?
+linkedin_hashtags: GenderEquality, PayGap, DiversityAndInclusion, WorkplaceCulture
+social_score: 9
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-10-austria-vs-denmark-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Spain, Mexico
 subject: City transport and commuting culture
+instagram_caption: Madrid runs its metro like a Swiss watch. Mexico City runs its like a mosh pit with a subscription. 🚇 Two cities, two completely different morning commutes. Which one could you survive? Full article — link in bio
+instagram_hashtags: CommuteLife, Madrid, MexicoCity, ExpatLife, PublicTransport
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-04-spain-vs-mexico-hero

@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Czechia, Canada
 subject: Work-life balance and overtime norms
+linkedin_caption: Czechia treats the working day as a finite resource, with mandated rest periods, a cap on ordered overtime and at least four weeks of leave. Canada admires the idea from a distance. Should work-life balance be protected by law or earned by employers?
+linkedin_hashtags: WorkLifeBalance, Overtime, Wellbeing, WorkplaceCulture
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-04-czechia-vs-canada-hero

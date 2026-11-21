@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Bulgaria, Germany
 subject: Remote work attitudes and flexibility policies
+linkedin_caption: In 2019, 0.5 percent of employed Bulgarians habitually worked from home, the lowest share in the EU, according to Eurostat. Germany decided years ago and would like a word on Wednesdays. A country's remote work rules say a lot about trust. How much trust does your office run on?
+linkedin_hashtags: RemoteWork, FutureOfWork, WorkplaceCulture, Leadership
+social_score: 7
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-01-bulgaria-vs-germany-hero

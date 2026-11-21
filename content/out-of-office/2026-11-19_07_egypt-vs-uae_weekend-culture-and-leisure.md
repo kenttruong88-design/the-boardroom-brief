@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Egypt, UAE
 subject: Weekend culture and leisure
+instagram_caption: Egypt spends its weekend on the Nile. The UAE spends it at a buffet. 🍽️ One is a long loose gathering of friends, family and strangers, the other a consumer experience. Which weekend is yours? Full article — link in bio
+instagram_hashtags: WeekendVibes, Egypt, UAE, ExpatLife, Leisure
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-07-egypt-vs-uae-hero

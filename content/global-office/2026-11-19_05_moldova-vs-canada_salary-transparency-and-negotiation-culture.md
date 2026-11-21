@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Moldova, Canada
 subject: Salary transparency and negotiation culture
+linkedin_caption: In Canada, 57 percent of job postings now state the pay, up from roughly one in five six years ago. In Moldova, the conversation is about pay collected unofficially, which is a different kind of transparency. What would it take to publish every salary where you work?
+linkedin_hashtags: SalaryTransparency, PayTransparency, Negotiation, CareerAdvice
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-05-moldova-vs-canada-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Egypt, Germany
 subject: Language barrier experiences
+instagram_caption: Egypt will happily switch to English. Germany will politely wait for you to learn the dative. 🗣️ One country is linguistically generous, the other expects effort. Which would help you more? Full article — link in bio
+instagram_hashtags: LanguageLearning, Egypt, Germany, ExpatLife, LanguageBarrier
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-08-egypt-vs-germany-hero

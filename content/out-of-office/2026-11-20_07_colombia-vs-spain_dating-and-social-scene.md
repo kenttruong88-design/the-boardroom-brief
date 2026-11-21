@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Colombia, Spain
 subject: Dating and social scene
+instagram_caption: Colombia dances its way into a relationship. Spain talks its way out of one. 💃 Dating in Colombia is a contact sport conducted to a soundtrack. Which approach is closer to yours? Full article — link in bio
+instagram_hashtags: DatingAbroad, Colombia, Spain, ExpatLife, SalsaNight
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-07-colombia-vs-spain-hero

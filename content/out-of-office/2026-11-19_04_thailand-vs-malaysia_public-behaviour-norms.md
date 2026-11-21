@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Thailand, Malaysia
 subject: Public behaviour norms
+instagram_caption: Thailand wants you calm and barefoot. Malaysia wants you right-handed and reasonable. 🙏 The best predictor of a happy arrival is learning how to behave before you learn to speak. What rule surprised you most abroad? Full article — link in bio
+instagram_hashtags: CultureShock, Thailand, Malaysia, ExpatLife, Etiquette
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-04-thailand-vs-malaysia-hero

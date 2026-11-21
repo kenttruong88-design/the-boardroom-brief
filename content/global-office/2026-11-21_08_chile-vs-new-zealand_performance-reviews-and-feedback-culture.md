@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Chile, New Zealand
 subject: Performance reviews and feedback culture
+linkedin_caption: Gallup counts 33 percent of Chilean employees as engaged at work and 23 percent of New Zealanders. Chile delivers criticism upward, New Zealand delivers it sideways, and both apologise first. How do you give feedback without softening it into nothing?
+linkedin_hashtags: PerformanceReviews, Feedback, Management, WorkplaceCulture
+social_score: 8
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-08-chile-vs-new-zealand-hero

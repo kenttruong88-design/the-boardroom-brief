@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Nigeria, Ghana
 subject: Management hierarchy and boss-employee relationships
+linkedin_caption: Nigeria offers a benevolent autocrat. Ghana offers an elder you must not contradict. Two West African neighbours, one shared suspicion of the open-plan office, two very different bosses. How do you disagree with someone you are not supposed to question?
+linkedin_hashtags: Leadership, Management, WorkplaceCulture, GlobalWorkplace
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-07-nigeria-vs-ghana-hero

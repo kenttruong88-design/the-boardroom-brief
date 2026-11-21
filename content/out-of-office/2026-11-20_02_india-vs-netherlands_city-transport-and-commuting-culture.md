@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: India, Netherlands
 subject: City transport and commuting culture
+instagram_caption: India commutes by negotiation. The Netherlands commutes by bicycle and smugness. 🚲 An Indian commute is a spectator sport with a contact element. What does your commute feel like? Full article — link in bio
+instagram_hashtags: CommuteLife, India, Netherlands, ExpatLife, Cycling
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-02-india-vs-netherlands-hero

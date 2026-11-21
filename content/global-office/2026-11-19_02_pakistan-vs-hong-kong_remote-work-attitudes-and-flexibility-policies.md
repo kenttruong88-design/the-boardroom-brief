@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Pakistan, Hong Kong
 subject: Remote work attitudes and flexibility policies
+linkedin_caption: In Hong Kong, 91 percent of companies were pushing staff to spend more time in the office in a 2024 Morgan McKinley survey, against a global average of 56 percent. Pakistan is being told to work from anywhere. Who is reading the remote work trend correctly?
+linkedin_hashtags: RemoteWork, FutureOfWork, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-02-pakistan-vs-hong-kong-hero

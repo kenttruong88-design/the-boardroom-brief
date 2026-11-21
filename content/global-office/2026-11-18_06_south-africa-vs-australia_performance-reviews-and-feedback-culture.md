@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: South Africa, Australia
 subject: Performance reviews and feedback culture
+linkedin_caption: Only 38 percent of Australian employees say their workplace has a consistent, formal review process, according to a 2025 ELMO and YouGov survey. South Africa treats the performance review as a ritual. Australia treats it as a rumour. Which gives people more honest feedback?
+linkedin_hashtags: PerformanceReviews, Feedback, Management, WorkplaceCulture
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-06-south-africa-vs-australia-hero

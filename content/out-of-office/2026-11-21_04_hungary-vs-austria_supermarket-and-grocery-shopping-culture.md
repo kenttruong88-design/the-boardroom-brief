@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Hungary, Austria
 subject: Supermarket and grocery shopping culture
+instagram_caption: Austria sells you groceries politely. Hungary sells them to you in a negotiation. 🛒 Two countries, one border, one former empire and an unreasonable fondness for pork. How do you shop abroad? Full article — link in bio
+instagram_hashtags: Groceries, Hungary, Austria, ExpatLife, Shopping
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-04-hungary-vs-austria-hero

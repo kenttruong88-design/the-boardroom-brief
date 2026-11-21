@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Kenya, Ghana
 subject: Onboarding and mentorship practices
+linkedin_caption: In a BrighterMonday Kenya survey of 2,059 employers and HR practitioners, 83 percent called onboarding very important to their talent strategy. Ghana's answer is a mentor. Both expect new starters to swim. Does your onboarding teach people anything, or just point them at the water?
+linkedin_hashtags: Onboarding, Mentorship, HumanResources, WorkplaceCulture
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-08-kenya-vs-ghana-hero

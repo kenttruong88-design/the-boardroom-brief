@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Sri Lanka, Australia
 subject: Job loyalty vs. career mobility
+linkedin_caption: In Australia, roughly one working adult in ten changes jobs in a year, and nobody panics. In Sri Lanka, a manager who changes employers twice in five years may be asked to explain. Staying put or leaving politely: which one reads as ambition where you work?
+linkedin_hashtags: CareerGrowth, JobHopping, Retention, WorkplaceCulture
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-09-sri-lanka-vs-australia-hero

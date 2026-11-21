@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Ghana, Netherlands
 subject: Weather and how locals cope
+instagram_caption: Ghana is hot in two different ways. The Netherlands is grey in every possible way. ☁️ Ghana has weather the way other countries have personality. How does the weather shape your mood? Full article — link in bio
+instagram_hashtags: WeatherLife, Ghana, Netherlands, ExpatLife, SeasonalMood
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-04-ghana-vs-netherlands-hero

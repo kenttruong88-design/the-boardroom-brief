@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: China, Australia
 subject: Supermarket and grocery shopping culture
+instagram_caption: China buys dinner alive at seven in the morning. Australia buys it shrink-wrapped on a Tuesday. 🐟 In a Chinese city, dinner begins as a conversation. How do you shop for dinner? Full article — link in bio
+instagram_hashtags: GroceryShopping, China, Australia, ExpatLife, WetMarket
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-20-05-china-vs-australia-hero

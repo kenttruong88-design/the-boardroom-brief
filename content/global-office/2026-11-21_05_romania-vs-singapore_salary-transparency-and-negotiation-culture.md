@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Romania, Singapore
 subject: Salary transparency and negotiation culture
+linkedin_caption: Romania has drafted a law, now being debated in its Senate, that would require employers to state pay in the job advert or before the first interview. Singapore prefers you guess, politely. Would you apply for a job that hid its salary?
+linkedin_hashtags: SalaryTransparency, PayTransparency, Negotiation, CareerAdvice
+social_score: 9
 word_count: ~1250
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-21-05-romania-vs-singapore-hero

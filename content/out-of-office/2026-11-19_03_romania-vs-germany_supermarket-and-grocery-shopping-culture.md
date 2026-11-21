@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Romania, Germany
 subject: Supermarket and grocery shopping culture
+instagram_caption: Germany closes on Sundays out of principle. Romania keeps the market open out of necessity. 🛒 Two ways to run a grocery system: a moral exercise, or a daily necessity. Do you plan your week around the shops? Full article — link in bio
+instagram_hashtags: Groceries, Germany, Romania, ExpatLife, SundayShopping
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-03-romania-vs-germany-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Malaysia, Indonesia
 subject: Festival and public holiday culture
+instagram_caption: Malaysia goes home for Raya. Indonesia moves half the country to do it. 🌙 At the end of Ramadan two neighbours do the same thing and behave as though they invented it. Do you travel home for the holidays? Full article — link in bio
+instagram_hashtags: Raya, Malaysia, Indonesia, Eid, BalikKampung
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-21-07-malaysia-vs-indonesia-hero

@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Ghana, Canada
 subject: Onboarding and mentorship practices
+linkedin_caption: Ghana hands the new starter a mentor whether they asked or not. Canada hands them a laptop and wishes them luck. Hofstede power distance scores of 80 and 39 explain most of the first fortnight. What did your first two weeks teach you about the company?
+linkedin_hashtags: Onboarding, Mentorship, HumanResources, WorkplaceCulture
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-07-ghana-vs-canada-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: India, Singapore
 subject: Language barrier experiences
+instagram_caption: Twenty-two languages in India. One sentence ending in lah in Singapore. 🗣️ Moving between them means discovering that the English you speak is a separate language. Which accent has tripped you up the most? Full article — link in bio
+instagram_hashtags: ExpatLife, LanguageBarrier, Singlish, IndiaToSingapore, LivingAbroad
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-18-03-india-vs-singapore-hero

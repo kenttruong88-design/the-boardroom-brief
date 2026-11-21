@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Portugal, Netherlands
 subject: Having children (parental leave, childcare, career impact)
+linkedin_caption: Statistics Netherlands reports that six years after a first birth, women's work income is about 33 percent lower than before, against about 3 percent for men. Portugal gives five months and a waiting list. The Netherlands gives six weeks and paperwork. What does a family-friendly workplace look like in practice?
+linkedin_hashtags: ParentalLeave, WorkingParents, HumanResources, WorkplaceCulture
+social_score: 8
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-08-portugal-vs-netherlands-hero

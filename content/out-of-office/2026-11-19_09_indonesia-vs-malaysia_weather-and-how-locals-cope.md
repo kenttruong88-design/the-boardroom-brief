@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Indonesia, Malaysia
 subject: Weather and how locals cope
+instagram_caption: Jakarta floods with dignity. Malaysia sweats with style. ☔ Britain did not invent talking about the weather, it only invented doing it without consequence. How do you cope with the rainy season? Full article — link in bio
+instagram_hashtags: RainySeason, Jakarta, Malaysia, ExpatLife, TropicalLife
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-19-09-indonesia-vs-malaysia-hero

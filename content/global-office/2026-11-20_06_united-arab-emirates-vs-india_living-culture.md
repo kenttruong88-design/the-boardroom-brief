@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: United Arab Emirates, India
 subject: Living culture (cost of living, childcare, welfare, insurance)
+linkedin_caption: A Reddit post reported by Business Today modelled a 25-year-old software engineer in Dubai and in India. After rent, the monthly savings came out almost identical. The UAE pays you tax-free and invoices for everything else. India taxes you and sends the aunt. Is a bigger salary worth anything if the costs move with it?
+linkedin_hashtags: CostOfLiving, Compensation, GlobalMobility, WorkplaceCulture
+social_score: 9
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-20-06-united-arab-emirates-vs-india-hero

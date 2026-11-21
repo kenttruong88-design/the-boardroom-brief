@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Philippines, Hong Kong
 subject: Vacation, PTO, and leave culture
+linkedin_caption: Hong Kong guarantees seven days of paid annual leave. The Philippines guarantees five. The gap that matters is how much gets used, because Hong Kongers actually use theirs. Time off is a right on paper and a negotiation in practice. Do you take all of yours?
+linkedin_hashtags: PaidLeave, WorkLifeBalance, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-19-01-philippines-vs-hong-kong-hero

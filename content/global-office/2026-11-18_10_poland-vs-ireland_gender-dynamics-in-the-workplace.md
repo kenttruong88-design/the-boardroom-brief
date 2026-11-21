@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Poland, Ireland
 subject: Gender dynamics in the workplace
+linkedin_caption: Poland has a smaller gender pay gap than the EU average and more women in management than Ireland's progressive reputation suggests. Ireland has longer statutory maternity leave and a louder public argument about discrimination. Which matters more: representation or support?
+linkedin_hashtags: GenderEquality, PayGap, DiversityAndInclusion, WorkplaceCulture
+social_score: 7
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-18-10-poland-vs-ireland-hero
