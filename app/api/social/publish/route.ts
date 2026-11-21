@@ -5,6 +5,7 @@ import {
   scheduleBufferPost,
   type BufferProfile,
 } from "@/app/lib/social/buffer-client";
+import { GUARANTEED_PILLARS, pickPosts } from "@/app/lib/social/pick-posts";
 
 export const maxDuration = 60;
 
@@ -30,6 +31,7 @@ interface QueueRow {
   article_url: string;
   scheduled_for: string;
   review_score: number | null;
+  pillar: string | null;
 }
 
 interface PostDetail {
@@ -62,13 +64,16 @@ async function run() {
   const todayStart = new Date(now);
   todayStart.setUTCHours(0, 0, 0, 0);
 
-  const { count: sentToday } = await supabase
+  const { data: sentRows } = await supabase
     .from("social_queue")
-    .select("*", { count: "exact", head: true })
+    .select("pillar")
     .eq("status", "sent")
     .gte("sent_at", todayStart.toISOString());
 
-  const remaining = DAILY_CAP - (sentToday ?? 0);
+  const sentToday = sentRows?.length ?? 0;
+  const sentTodayPillars = new Set((sentRows ?? []).map((r) => r.pillar as string).filter(Boolean));
+
+  const remaining = DAILY_CAP - sentToday;
   if (remaining <= 0) {
     return NextResponse.json({
       message: `Daily cap reached (${DAILY_CAP}/day). Posts will resume tomorrow.`,
@@ -97,7 +102,7 @@ async function run() {
   // generated flow); unrated posts rank last, ties go to the earliest slot.
   const { data: duePosts, error: fetchError } = await supabase
     .from("social_queue")
-    .select("id, article_id, article_headline, platform, content, hashtags, image_url, article_url, scheduled_for, review_score")
+    .select("id, article_id, article_headline, platform, content, hashtags, image_url, article_url, scheduled_for, review_score, pillar")
     .eq("status", "pending")
     .gte("scheduled_for", windowStart.toISOString())
     .lte("scheduled_for", windowEnd.toISOString())
@@ -108,11 +113,20 @@ async function run() {
     return NextResponse.json({ error: fetchError.message }, { status: 500 });
   }
 
-  const posts = ((duePosts ?? []) as QueueRow[])
-    .sort((a, b) =>
-      (b.review_score ?? -1) - (a.review_score ?? -1) ||
-      a.scheduled_for.localeCompare(b.scheduled_for))
-    .slice(0, remaining);
+  // Guaranteed daily slots: Global Office (LinkedIn) and Out of Office (Instagram)
+  // each get at least one post a day. If one hasn't posted and has a post scheduled
+  // later today (the cron's last run is ~18:45 UTC), hold a cap slot free for it.
+  const lastRunToday = new Date(todayStart.getTime() + (18 * 60 + 45) * 60 * 1000);
+  const { data: laterRows } = await supabase
+    .from("social_queue")
+    .select("pillar")
+    .eq("status", "pending")
+    .in("pillar", [...GUARANTEED_PILLARS])
+    .gt("scheduled_for", windowEnd.toISOString())
+    .lte("scheduled_for", lastRunToday.toISOString());
+  const laterTodayPillars = new Set((laterRows ?? []).map((r) => r.pillar as string));
+
+  const posts = pickPosts((duePosts ?? []) as QueueRow[], remaining, sentTodayPillars, laterTodayPillars);
 
   // 3. Nothing due
   if (posts.length === 0) {
