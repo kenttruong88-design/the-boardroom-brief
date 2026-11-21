@@ -5,7 +5,13 @@ import {
   scheduleBufferPost,
   type BufferProfile,
 } from "@/app/lib/social/buffer-client";
-import { GUARANTEED_PILLARS, pickPosts } from "@/app/lib/social/pick-posts";
+import {
+  GUARANTEED_PILLARS,
+  PLATFORM_CAPS,
+  POST_SPACING_MINUTES,
+  pickPosts,
+  type SentToday,
+} from "@/app/lib/social/pick-posts";
 
 export const maxDuration = 60;
 
@@ -53,8 +59,6 @@ export async function POST(req: Request) {
   return run();
 }
 
-const DAILY_CAP = 10;
-
 async function run() {
   const startedAt = Date.now();
   const supabase = createAdminClient();
@@ -66,20 +70,15 @@ async function run() {
 
   const { data: sentRows } = await supabase
     .from("social_queue")
-    .select("pillar")
+    .select("pillar, platform")
     .eq("status", "sent")
     .gte("sent_at", todayStart.toISOString());
 
-  const sentToday = sentRows?.length ?? 0;
-  const sentTodayPillars = new Set((sentRows ?? []).map((r) => r.pillar as string).filter(Boolean));
-
-  const remaining = DAILY_CAP - sentToday;
-  if (remaining <= 0) {
-    return NextResponse.json({
-      message: `Daily cap reached (${DAILY_CAP}/day). Posts will resume tomorrow.`,
-      sentToday: sentToday ?? 0,
-    });
-  }
+  const sentTodayRows: SentToday[] = (sentRows ?? []).map((r) => ({
+    platform: r.platform as string,
+    pillar: (r.pillar as string | null) ?? null,
+  }));
+  const sentToday = sentTodayRows.length;
 
   // windowStart was previously `now - 30min`, which meant a post that missed
   // its own narrow window for ANY reason (a transient Buffer error before the
@@ -113,24 +112,29 @@ async function run() {
     return NextResponse.json({ error: fetchError.message }, { status: 500 });
   }
 
-  // Guaranteed daily slots: Global Office (LinkedIn) and Out of Office (Instagram)
-  // each get at least one post a day. If one hasn't posted and has a post scheduled
-  // later today (the cron's last run is ~18:45 UTC), hold a cap slot free for it.
+  // Guaranteed daily slots (see pick-posts.ts): Global Office -> LinkedIn and Out of
+  // Office -> Instagram each get a minimum per day. If one is still short and has posts
+  // scheduled later today (the cron's last run is ~18:45 UTC), hold cap slots for them.
   const lastRunToday = new Date(todayStart.getTime() + (18 * 60 + 45) * 60 * 1000);
   const { data: laterRows } = await supabase
     .from("social_queue")
     .select("pillar")
     .eq("status", "pending")
-    .in("pillar", [...GUARANTEED_PILLARS])
+    .in("pillar", GUARANTEED_PILLARS)
     .gt("scheduled_for", windowEnd.toISOString())
     .lte("scheduled_for", lastRunToday.toISOString());
-  const laterTodayPillars = new Set((laterRows ?? []).map((r) => r.pillar as string));
+  const laterToday: Record<string, number> = {};
+  for (const r of laterRows ?? []) {
+    const pillar = r.pillar as string;
+    laterToday[pillar] = (laterToday[pillar] ?? 0) + 1;
+  }
 
-  const posts = pickPosts((duePosts ?? []) as QueueRow[], remaining, sentTodayPillars, laterTodayPillars);
+  // Per-platform daily caps (LinkedIn 5, Instagram 3), best-rated first.
+  const posts = pickPosts((duePosts ?? []) as QueueRow[], sentTodayRows, laterToday);
 
-  // 3. Nothing due
+  // 3. Nothing due (or every platform is at its cap)
   if (posts.length === 0) {
-    return NextResponse.json({ message: "No posts due", checked_at: now.toISOString() });
+    return NextResponse.json({ message: "No posts due or caps reached", sentToday, caps: PLATFORM_CAPS, checked_at: now.toISOString() });
   }
 
   // 4. Build platform → Buffer profile ID map
@@ -151,6 +155,7 @@ async function run() {
   const details: PostDetail[] = [];
   let postsSent = 0;
   let postsFailed = 0;
+  const sentThisRun: Record<string, number> = {};
 
   for (const post of posts) {
     const profileId = profileMap[post.platform];
@@ -180,8 +185,14 @@ async function run() {
       // above). Buffer's API expects a future `dueAt`; passing a stale past
       // `scheduled_for` straight through (the old behavior) risked Buffer
       // rejecting the request or mishandling it for any post caught late.
+      // Space posts out: the nth post on a platform in this run goes out n * spacing
+      // minutes after the first, so a day's posts don't all land in the same minute.
       const dueAt = new Date(post.scheduled_for);
-      const effectiveDueAt = dueAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : dueAt;
+      const baseDueAt = dueAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : dueAt;
+      const nth = sentThisRun[post.platform] ?? 0;
+      const spacingMin = POST_SPACING_MINUTES[post.platform] ?? 90;
+      const effectiveDueAt = new Date(baseDueAt.getTime() + nth * spacingMin * 60 * 1000);
+      sentThisRun[post.platform] = nth + 1;
       const bufferPostId = await scheduleBufferPost(
         profileId,
         post.content,
@@ -224,5 +235,5 @@ async function run() {
   });
 
   // 7. Return summary
-  return NextResponse.json({ postsSent, postsFailed, sentToday: (sentToday ?? 0) + postsSent, dailyCap: DAILY_CAP, warnings, details });
+  return NextResponse.json({ postsSent, postsFailed, sentToday: sentToday + postsSent, caps: PLATFORM_CAPS, warnings, details });
 }

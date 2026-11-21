@@ -1,22 +1,45 @@
-// Picks which due social posts go to Buffer, given what is left of the daily cap.
+// Picks which due social posts go to Buffer, applying a daily cap PER PLATFORM.
 //
-// Rules, in order:
-//  1. Guarantee: each pillar in GUARANTEED_PILLARS gets at least one post per day
-//     (Global Office -> LinkedIn, Out of Office -> Instagram — each pillar routes to a
-//     single platform). If it hasn't posted yet today and has a due post, its best-rated
-//     due post goes first.
-//  2. Hold: if a guaranteed pillar hasn't posted and has no due post now but has one
-//     scheduled later today, keep a cap slot free for it, so the cap can't be used up
-//     before its post becomes due.
+// Per platform, in order:
+//  1. Guarantee: a pillar in GUARANTEES that has posted fewer than `min` times today
+//     gets its best-rated due posts first, up to what it still needs (Global Office ->
+//     LinkedIn, Out of Office -> Instagram).
+//  2. Hold: if a guaranteed pillar is still short and has more posts scheduled later
+//     today but not due yet, keep that many cap slots free for it, so the cap can't be
+//     used up before those posts become due.
 //  3. The remaining room is filled by rating, highest first.
+//
+// Buffer's own limits are 50 posts per 24h on both LinkedIn and Instagram; these caps
+// are deliberately lower so the feeds don't feel spammy.
 
-export const GUARANTEED_PILLARS = ["global-office", "out-of-office"] as const;
+export const PLATFORM_CAPS: Record<string, number> = { linkedin: 5, instagram: 3 };
+export const DEFAULT_PLATFORM_CAP = 3;
+
+export const GUARANTEES = [
+  { pillar: "global-office", platform: "linkedin",  min: 2 },
+  { pillar: "out-of-office", platform: "instagram", min: 2 },
+] as const;
+
+// Minutes between consecutive posts on one platform sent in the same cron run.
+export const POST_SPACING_MINUTES: Record<string, number> = { linkedin: 90, instagram: 120 };
+
+export const GUARANTEED_PILLARS: string[] = GUARANTEES.map((g) => g.pillar);
+
+export function capFor(platform: string): number {
+  return PLATFORM_CAPS[platform] ?? DEFAULT_PLATFORM_CAP;
+}
 
 export interface Pickable {
   id: string;
+  platform: string;
   pillar: string | null;
   review_score: number | null;
   scheduled_for: string;
+}
+
+export interface SentToday {
+  platform: string;
+  pillar: string | null;
 }
 
 // Highest rating first; unrated last; ties go to the earliest slot.
@@ -26,27 +49,37 @@ export function byRating(a: Pickable, b: Pickable): number {
 
 export function pickPosts<T extends Pickable>(
   due: T[],
-  remaining: number,
-  sentTodayPillars: Set<string>,
-  laterTodayPillars: Set<string>
+  sentToday: SentToday[],
+  /** pillar -> number of its pending posts scheduled later today (not due yet) */
+  laterToday: Record<string, number>
 ): T[] {
-  const picks: T[] = [];
+  const result: T[] = [];
 
-  for (const pillar of GUARANTEED_PILLARS) {
-    if (picks.length >= remaining) break;
-    if (sentTodayPillars.has(pillar)) continue;
-    const best = due.filter((p) => p.pillar === pillar).sort(byRating)[0];
-    if (best) picks.push(best);
+  for (const platform of new Set(due.map((p) => p.platform))) {
+    const platformDue = due.filter((p) => p.platform === platform);
+    const remaining = capFor(platform) - sentToday.filter((s) => s.platform === platform).length;
+    if (remaining <= 0) continue;
+
+    const picks: T[] = [];
+    let held = 0;
+    for (const g of GUARANTEES.filter((x) => x.platform === platform)) {
+      const need = Math.max(
+        0,
+        g.min - sentToday.filter((s) => s.platform === platform && s.pillar === g.pillar).length
+      );
+      if (need === 0) continue;
+      const take = platformDue
+        .filter((p) => p.pillar === g.pillar)
+        .sort(byRating)
+        .slice(0, Math.max(0, Math.min(need, remaining - picks.length)));
+      picks.push(...take);
+      held += Math.min(need - take.length, laterToday[g.pillar] ?? 0);
+    }
+
+    const room = Math.max(0, remaining - picks.length - held);
+    const rest = platformDue.filter((p) => !picks.includes(p)).sort(byRating).slice(0, room);
+    result.push(...picks, ...rest);
   }
 
-  const held = GUARANTEED_PILLARS.filter(
-    (pillar) =>
-      !sentTodayPillars.has(pillar) &&
-      !picks.some((p) => p.pillar === pillar) &&
-      laterTodayPillars.has(pillar)
-  ).length;
-
-  const room = Math.max(0, remaining - picks.length - held);
-  const rest = due.filter((p) => !picks.includes(p)).sort(byRating).slice(0, room);
-  return [...picks, ...rest];
+  return result.sort(byRating);
 }
