@@ -70,6 +70,27 @@ export const getLatestArticles = cache(async (limit = 10): Promise<SanityArticle
   );
 });
 
+/**
+ * The newest article of each given pillar, in one request. Used for the homepage's
+ * "Today's Edition" so a busy pillar can't push the others out of a global top-N.
+ * Pillars with no article are simply absent from the result.
+ */
+export const getLatestPerPillar = cache(async (pillarSlugs: string[]): Promise<Record<string, SanityArticle>> => {
+  if (!client) return {};
+  const slugs = pillarSlugs.filter((s) => /^[a-z0-9-]+$/.test(s));
+  if (slugs.length === 0) return {};
+  const query = `{ ${slugs
+    .map(
+      (s) =>
+        `"${s}": *[_type == "article" && pillar->slug.current == "${s}"] | order(publishedAt desc) [0] { ${ARTICLE_CARD} }`
+    )
+    .join(", ")} }`;
+  const res = await client.fetch<Record<string, SanityArticle | null>>(query, {}, { next: { revalidate: 60 } });
+  const out: Record<string, SanityArticle> = {};
+  for (const s of slugs) if (res?.[s]) out[s] = res[s] as SanityArticle;
+  return out;
+});
+
 /** Featured articles for the homepage hero */
 export const getFeaturedArticles = cache(async (limit = 5): Promise<SanityArticle[]> => {
   if (!client) return [];

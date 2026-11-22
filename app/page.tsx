@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import EconomySelector from "@/app/components/EconomySelector";
 import { MOCK_ARTICLES, PILLARS, TICKER_DATA, CONTINENTS, formatDateShort } from "@/app/lib/mock-data";
-import { getLatestArticles, type SanityArticle } from "@/app/lib/queries";
+import { getLatestArticles, getLatestPerPillar, type SanityArticle } from "@/app/lib/queries";
 import { Clock, Mic, ArrowRight, MessageSquare } from "lucide-react";
 import { getCommentCounts } from "@/app/lib/comment-counts";
 
@@ -81,13 +81,16 @@ export default async function HomePage() {
     return b.publishedAt.localeCompare(a.publishedAt);
   })[0];
 
-  // ── Grid: one article per pillar (excluding hero's pillar) ──────────────────
+  // ── Grid: newest article of each pillar (excluding hero's pillar) ───────────
+  // Fetched per pillar, NOT picked out of the global newest-N: Global Office and Out of
+  // Office publish ~12/day each and would otherwise push every other pillar out of the list.
+  let latestByPillar: Record<string, SanityArticle> = {};
+  try {
+    latestByPillar = await getLatestPerPillar(PILLARS.map((p) => p.slug));
+  } catch { /* fall through */ }
   const sanityByPillar: Record<string, ArticleLead> = {};
-  for (const a of sanityArticles) {
-    const pillarSlug = a.pillar?.slug?.current;
-    if (pillarSlug && !sanityByPillar[pillarSlug]) {
-      sanityByPillar[pillarSlug] = normaliseSanity(a);
-    }
+  for (const [slug, a] of Object.entries(latestByPillar)) {
+    sanityByPillar[slug] = normaliseSanity(a);
   }
 
   const heroArticle: ArticleLead = heroSanity
@@ -99,10 +102,8 @@ export default async function HomePage() {
   const pillarLeads: { pillar: (typeof PILLARS)[0]; article: ArticleLead }[] = PILLARS
     .filter((p) => p.slug !== "macro-mondays" && p.slug !== heroPillarSlug)
     .flatMap((pillar) => {
-      const article: ArticleLead | undefined =
-        sanityByPillar[pillar.slug] ??
-        MOCK_ARTICLES.find((a) => a.slug === CURATED[pillar.slug]) ??
-        MOCK_ARTICLES.find((a) => a.pillar === pillar.slug);
+      // A pillar with no published article is hidden — no stale sample stories.
+      const article: ArticleLead | undefined = sanityByPillar[pillar.slug];
       return article ? [{ pillar, article }] : [];
     });
 
