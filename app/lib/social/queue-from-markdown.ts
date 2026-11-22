@@ -89,7 +89,9 @@ export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Pr
       status:           "pending_approval",
       generated_by:     "auto", // social_queue_generated_by_check allows only auto|manual
       platform,
-      content:          `${post.caption}\n\n${articleUrl}`,
+      // Instagram captions can't hold clickable links, and Suki's captions already end
+      // with "link in bio" — a bare URL there is just dead text. LinkedIn does link it.
+      content:          platform === "instagram" ? post.caption : `${post.caption}\n\n${articleUrl}`,
       hashtags:         post.hashtags,
       image_url:        heroImageUrl || null,
       scheduled_for:    nextSlot(platform, now).toISOString(),
