@@ -56,7 +56,7 @@ export interface SocialSkip {
 // the reason — previously a missing caption or image skipped without a trace.
 export function instagramCaption(caption: string, pillarId: string): string {
   const base = caption.replace(/\s*Full article\s*[—-]\s*link in bio\.?\s*$/i, "").trim();
-  return `${base}\n\n🔗 Latest stories: link in bio (thealignmenttimes.com/${pillarId})`;
+  return `${base}\n\n🔗 Latest stories: link in bio (thealignmenttimes.com/articles)`;
 }
 
 export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Promise<{ queued: SocialPlatform[]; skipped: SocialSkip[] }> {
@@ -95,7 +95,7 @@ export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Pr
       generated_by:     "auto", // social_queue_generated_by_check allows only auto|manual
       platform,
       // Instagram captions can't hold clickable links, so no article URL. Point to the bio link
-      // (set to the pillar page, newest articles first) in plain text instead.
+      // (set to /articles, all pillars) in plain text instead.
       content:          platform === "instagram" ? instagramCaption(post.caption, pillarId) : `${post.caption}\n\n${articleUrl}`,
       hashtags:         post.hashtags,
       image_url:        heroImageUrl || null,
