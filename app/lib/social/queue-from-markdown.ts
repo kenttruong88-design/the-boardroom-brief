@@ -54,6 +54,11 @@ export interface SocialSkip {
 // Rows enter social_queue as pending_approval, so nothing posts unreviewed.
 // Every platform the pillar routes to that does NOT get a row is logged with
 // the reason — previously a missing caption or image skipped without a trace.
+export function instagramCaption(caption: string, pillarId: string): string {
+  const base = caption.replace(/\s*Full article\s*[—-]\s*link in bio\.?\s*$/i, "").trim();
+  return `${base}\n\n🔗 Latest stories: link in bio (thealignmenttimes.com/${pillarId})`;
+}
+
 export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Promise<{ queued: SocialPlatform[]; skipped: SocialSkip[] }> {
   const { pillarId, docId, slug, title, articleUrl, heroImageUrl, social } = input;
   const platforms = (PILLAR_PLATFORMS[pillarId] ?? []).filter(
@@ -89,9 +94,9 @@ export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Pr
       status:           "pending_approval",
       generated_by:     "auto", // social_queue_generated_by_check allows only auto|manual
       platform,
-      // Instagram captions can't hold clickable links, and Suki's captions already end
-      // with "link in bio" — a bare URL there is just dead text. LinkedIn does link it.
-      content:          platform === "instagram" ? post.caption : `${post.caption}\n\n${articleUrl}`,
+      // Instagram captions can't hold clickable links, so no article URL. Point to the bio link
+      // (set to the pillar page, newest articles first) in plain text instead.
+      content:          platform === "instagram" ? instagramCaption(post.caption, pillarId) : `${post.caption}\n\n${articleUrl}`,
       hashtags:         post.hashtags,
       image_url:        heroImageUrl || null,
       scheduled_for:    nextSlot(platform, now).toISOString(),
