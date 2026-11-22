@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Czechia, Switzerland
 subject: Language barrier experiences
+instagram_caption: Czech is a wall with a small, grumpy door. Switzerland is a moving target of four national languages and a dialect nobody writes 🗣️ Which language barrier would you rather take on? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, LanguageBarrier, Czechia, Switzerland, LivingAbroad
+social_score: 8
 word_count: ~1060
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-09-czechia-vs-switzerland-hero

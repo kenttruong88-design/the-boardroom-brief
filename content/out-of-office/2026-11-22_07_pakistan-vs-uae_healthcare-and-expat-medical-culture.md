@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Pakistan, UAE
 subject: Healthcare and expat medical culture
+instagram_caption: In Pakistan you pay for healthcare with your time, your family and your nerves. In the UAE you pay with a card, usually your employer's 🏥 Two very different bills for the same appointment. Which would you rather be handed? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, ExpatHealthcare, Pakistan, UAE, LivingAbroad
+social_score: 7
 word_count: ~1070
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-07-pakistan-vs-uae-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Czechia, Canada
 subject: Festival and public holiday culture
+instagram_caption: Czechs buy a live carp, keep it in the bath and eat it on Christmas Eve 🐟 Canadians eat turkey twice, once in October and once in December 🎄 Whose holiday table would you rather sit at? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, Christmas, Czechia, Canada, LivingAbroad
+social_score: 9
 word_count: ~1120
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-06-czechia-vs-canada-hero

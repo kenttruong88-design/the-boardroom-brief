@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Finland, Greece
 subject: Vacation, PTO, and leave culture
+linkedin_caption: A third of employed Finns took at least one full week off in July 2024, according to Statistics Finland, and answering a work email while away counts legally as work. Greece handles the holiday far more loosely. Would you rather have the rule or the relaxed attitude?
+linkedin_hashtags: PaidLeave, WorkLifeBalance, WorkplaceCulture, Leadership
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-7-finland-vs-greece-hero

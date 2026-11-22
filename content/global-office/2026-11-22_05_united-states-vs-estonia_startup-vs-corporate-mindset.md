@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: United States, Estonia
 subject: Startup vs. corporate mindset
+linkedin_caption: The United States has produced 712 unicorns and Estonia twelve. Per head, the smaller country wins easily. One treats effort as identity, the other simply delivers. Which startup culture would you actually want to work in?
+linkedin_hashtags: Startups, Entrepreneurship, Leadership, WorkplaceCulture
+social_score: 7
 word_count: ~1130
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-5-united-states-vs-estonia-hero

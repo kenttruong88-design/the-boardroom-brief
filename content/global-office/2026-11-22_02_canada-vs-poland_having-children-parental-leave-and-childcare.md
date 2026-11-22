@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Canada, Poland
 subject: Having children (parental leave, childcare, career impact)
+linkedin_caption: On paper Poland offers 61 weeks of leave to new mothers and Canada 50, and both come with fine print. Canada's system is flexible but thinly paid. The headline number is only half the story. Would you take the longer leave or the better pay?
+linkedin_hashtags: ParentalLeave, WorkingParents, HumanResources, WorkplaceCulture
+social_score: 8
 word_count: ~1130
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-2-canada-vs-poland-hero

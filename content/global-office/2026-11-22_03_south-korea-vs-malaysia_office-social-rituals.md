@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: South Korea, Malaysia
 subject: Office social rituals
+linkedin_caption: In Seoul the boss pours the drinks. In Kuala Lumpur the boss hosts the dinner. In both, you are expected to turn up and eat. The company dinner is a different obligation in each country. Which version could you actually survive?
+linkedin_hashtags: TeamCulture, WorkplaceCulture, GlobalWorkplace, Leadership
+social_score: 6
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-3-south-korea-vs-malaysia-hero

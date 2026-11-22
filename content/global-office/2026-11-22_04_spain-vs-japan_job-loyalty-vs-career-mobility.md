@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Spain, Japan
 subject: Job loyalty vs. career mobility
+linkedin_caption: Japan's regular employees have stayed 12.4 years with their current employer on average, according to the 2024 wage structure survey. Spain spent decades defined by the temporary contract, and its workers move far more freely. Is loyalty a virtue or just a lack of options?
+linkedin_hashtags: CareerMobility, JobLoyalty, FutureOfWork, WorkplaceCulture
+social_score: 8
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-4-spain-vs-japan-hero

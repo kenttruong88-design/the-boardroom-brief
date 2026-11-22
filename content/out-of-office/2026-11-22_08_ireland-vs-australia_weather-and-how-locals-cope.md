@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Ireland, Australia
 subject: Weather and how locals cope
+instagram_caption: Ireland has no climate, it has a mood ☔ Australia has a sky that is bright, enormous and slightly murderous ☀️ How do locals cope with theirs, and how would you? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, WeatherTalk, Ireland, Australia, LivingAbroad
+social_score: 9
 word_count: ~1060
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-08-ireland-vs-australia-hero

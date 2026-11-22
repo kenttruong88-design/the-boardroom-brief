@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Pakistan, United Kingdom
 subject: Banking and bureaucracy
+instagram_caption: In Pakistan you find out who knows the man behind the desk, drink the tea and wait for the stamp. In the UK you need a utility bill 📄 Two countries, two ways of proving you exist. Which would you rather face on arrival? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, Bureaucracy, Pakistan, UnitedKingdom, LivingAbroad
+social_score: 8
 word_count: ~1120
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-04-pakistan-vs-united-kingdom-hero

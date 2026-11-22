@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Belgium, Mexico
 subject: Generational differences in workplace norms
+linkedin_caption: In Belgium an employee over 55 earns 76 percent more than a 25-year-old colleague, according to an Acerta study reported by the Brussels Times. Mexico regulates the hours instead. Both countries misread their under-30s. Should pay follow age or output?
+linkedin_hashtags: GenerationalDifferences, PayGap, HumanResources, WorkplaceCulture
+social_score: 8
 word_count: ~1170
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-9-belgium-vs-mexico-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Moldova, Ireland
 subject: Hotel and accommodation culture
+instagram_caption: Ireland hands you a kettle and a breakfast so large it needs a second sitting ☕ Moldova hands you a glass of wine and no instructions 🍷 Which check-in would you take? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, HotelLife, Ireland, Moldova, LivingAbroad
+social_score: 8
 word_count: ~1150
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-10-moldova-vs-ireland-hero

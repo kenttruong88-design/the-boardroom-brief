@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Ireland, Serbia
 subject: Remote work attitudes and flexibility policies
+linkedin_caption: In 2025, 19.2 percent of employed people in Ireland usually worked from home, against an EU average of 8.8 percent, according to Eurostat. Ireland gives you a legal right to request it. In Serbia you negotiate it in your contract. Is a right to ask better than a good contract?
+linkedin_hashtags: RemoteWork, FutureOfWork, WorkplaceCulture, Leadership
+social_score: 9
 word_count: ~1140
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-6-ireland-vs-serbia-hero

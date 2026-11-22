@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: India, Hong Kong
 subject: Healthcare and expat medical culture
+instagram_caption: India has a doctor on every corner and a negotiation over the tablets. Hong Kong has two lanes, public and private, as different as a bus and a taxi 🩺 Where would you rather get ill abroad? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, ExpatHealthcare, India, HongKong, LivingAbroad
+social_score: 7
 word_count: ~1050
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-03-india-vs-hong-kong-hero

@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Canada, Hong Kong
 subject: City transport and commuting culture
+instagram_caption: Canada built a country around the car. Hong Kong built a city around not needing one 🚇 One commute is a private act of endurance in a heated steel box, the other a public sport in a packed carriage. Which would you choose every morning? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, Commuting, CanadaVsHongKong, TravelCulture, LivingAbroad
+social_score: 8
 word_count: ~1180
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-01-canada-vs-hong-kong-hero

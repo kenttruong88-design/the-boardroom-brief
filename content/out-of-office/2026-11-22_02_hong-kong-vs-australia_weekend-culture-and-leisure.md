@@ -5,6 +5,9 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Hong Kong, Australia
 subject: Weekend culture and leisure
+instagram_caption: Australia treats the weekend as a national religion. Hong Kong treats it as a rumour 🏖️ Same instinct, a much smaller box and a much faster clock. Where would you rather spend your Saturday? Full article — link in bio
+instagram_hashtags: OutOfOffice, ExpatLife, WeekendVibes, HongKong, Australia, LivingAbroad
+social_score: 8
 word_count: ~1090
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/out-of-office/2026-11-22-02-hong-kong-vs-australia-hero

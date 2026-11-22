@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Sweden, Hungary
 subject: Onboarding and mentorship practices
+linkedin_caption: Gallup reports that only 12 percent of American employees say their company does a good job of onboarding. Sweden trusts you from day one. Hungary reserves judgment until month three. Which first week would you rather have?
+linkedin_hashtags: Onboarding, Mentorship, HumanResources, WorkplaceCulture
+social_score: 7
 word_count: ~1190
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-10-sweden-vs-hungary-hero

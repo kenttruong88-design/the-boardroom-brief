@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Switzerland, Chile
 subject: Salary transparency and negotiation culture
+linkedin_caption: Switzerland's median gross monthly wage was CHF 7,024 in 2024, and discussing it is still treated as a huge taboo, according to a union spokesperson. Chile quotes salaries after tax. Same question, very different etiquette. Would you tell a colleague what you earn?
+linkedin_hashtags: SalaryTransparency, PayTransparency, Negotiation, CareerAdvice
+social_score: 9
 word_count: ~1200
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-8-switzerland-vs-chile-hero

@@ -5,6 +5,9 @@ pillar: The Global Office
 author: Priya Mehta
 countries: United Kingdom, Germany
 subject: Dress code and workplace formality
+linkedin_caption: Only 7 percent of British workers wear a suit to work, according to a 2023 YouGov survey. Germany dressed down too, but kept the formal Sie in every sentence. Formality has moved from the wardrobe to the vocabulary. Which would you rather get wrong on your first day?
+linkedin_hashtags: DressCode, ProfessionalImage, WorkplaceCulture, GlobalWorkplace
+social_score: 7
 word_count: ~1140
 images:
   hero: https://res.cloudinary.com/dnpcbx89m/image/upload/c_fill,w_1200,h_630/boardroom-brief/global-office/2026-11-22-1-united-kingdom-vs-germany-hero
