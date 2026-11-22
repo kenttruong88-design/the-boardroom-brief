@@ -163,6 +163,7 @@ interface Article {
   readTime: number; blocks: object[]; seoDesc: string;
   countries: string[]; subject: string;
   social: SocialCaptions;
+  satiricalHeadline: string;
 }
 
 // Country-flag emoji are pairs of Unicode regional indicator symbols
@@ -205,7 +206,8 @@ function parseArticle(filePath: string): Article | null {
   const seoDesc   = `${title}. By ${AUTHOR_NAME} for The Alignment Times.`.slice(0, 160);
   const countries = ((fm.countries as string) ?? "").split(",").map(s => s.trim()).filter(Boolean);
   const subject   = (fm.subject as string) ?? "";
-  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc, countries, subject, social: parseSocialCaptions(fm) };
+  return { title, slug, excerpt, heroUrl, ogUrl, pubDt, readTime, blocks, seoDesc, countries, subject, social: parseSocialCaptions(fm),
+    satiricalHeadline: String(fm.satirical_headline ?? "").trim().slice(0, 200) };
 }
 
 async function ensurePillar(client: ReturnType<typeof getSanityClient>) {
@@ -299,6 +301,7 @@ async function publishArticle(
     title: article.title,
     slug: { _type: "slug", current: article.slug },
     excerpt: article.excerpt,
+    ...(article.satiricalHeadline && { satiricalHeadline: article.satiricalHeadline }),
     body: article.blocks,
     pillar: { _type: "reference", _ref: PILLAR_ID },
     author: { _type: "reference", _ref: AUTHOR_ID },
