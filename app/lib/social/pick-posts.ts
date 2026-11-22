@@ -47,6 +47,33 @@ export function byRating(a: Pickable, b: Pickable): number {
   return (b.review_score ?? -1) - (a.review_score ?? -1) || a.scheduled_for.localeCompare(b.scheduled_for);
 }
 
+/**
+ * Spreads a platform's approved posts over days, same rules as pickPosts: per-platform cap,
+ * guaranteed pillars first, best-rated next. Returns post id -> day offset (0 = today).
+ * `committedToday` is what the platform already has sent/queued for today, in total and per pillar.
+ */
+export function planDays<T extends Pickable>(
+  posts: T[],
+  platform: string,
+  committedToday: { total: number; byPillar: Record<string, number> }
+): Map<string, number> {
+  const plan = new Map<string, number>();
+  const cap = capFor(platform);
+  let left = [...posts].sort(byRating);
+  for (let day = 0; left.length > 0 && day < 366; day++) {
+    let room = Math.max(0, cap - (day === 0 ? committedToday.total : 0));
+    const take: T[] = [];
+    for (const g of GUARANTEES.filter((x) => x.platform === platform)) {
+      const need = Math.max(0, g.min - (day === 0 ? committedToday.byPillar[g.pillar] ?? 0 : 0));
+      take.push(...left.filter((p) => p.pillar === g.pillar).slice(0, Math.min(need, room - take.length)));
+    }
+    take.push(...left.filter((p) => !take.includes(p)).slice(0, Math.max(0, room - take.length)));
+    for (const p of take) plan.set(p.id, day);
+    left = left.filter((p) => !take.includes(p));
+  }
+  return plan;
+}
+
 export function pickPosts<T extends Pickable>(
   due: T[],
   sentToday: SentToday[],
