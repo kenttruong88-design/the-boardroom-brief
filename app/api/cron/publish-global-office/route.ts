@@ -7,6 +7,10 @@ import type { ArticleDraft } from "@/app/lib/agents/types";
 import { extractTitle, filenameTitle, legacyFilenameTitle } from "@/app/lib/content/article-title";
 import { parseSocialCaptions, queueSocialFromMarkdown, type SocialCaptions } from "@/app/lib/social/queue-from-markdown";
 
+// 12 articles/run (image pick + Cloudinary + Sanity + social queue) took ~58s, right at
+// the old 60s limit. Allow up to 5 minutes so a run can't be cut off mid-article.
+export const maxDuration = 300;
+
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
 function isAuthorised(req: NextRequest): boolean {
