@@ -124,11 +124,11 @@ export default async function HomePage() {
             <section className="mb-10">
               <div className="rule-thick mb-6" />
               <article className="group">
-                <Link href={`/${hero.article.pillar}/${hero.article.slug}`}>
+                <Link href={`/${hero.article.pillar}/${hero.article.slug}`} className="no-underline hover:no-underline">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div className="space-y-4">
                       <PillarBadge pillar={hero.article.pillar} />
-                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight group-hover:opacity-80 transition-opacity" style={{ color: "var(--navy)" }}>
+                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight group-hover:opacity-80 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                         {hero.article.title}
                       </h2>
                       <p className="text-lg font-serif italic" style={{ color: "var(--red)" }}>
@@ -172,7 +172,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {grid.map(({ pillar, article }) => (
                 <article key={pillar.slug} className="group border-b pb-5" style={{ borderColor: "var(--border)" }}>
-                  <Link href={`/${article.pillar}/${article.slug}`}>
+                  <Link href={`/${article.pillar}/${article.slug}`} className="no-underline hover:no-underline">
                     {/* Colour accent strip */}
                     <div className="h-0.5 mb-4" style={{ background: "var(--border)" }} />
                     <PillarBadge pillar={article.pillar} />
@@ -181,7 +181,7 @@ export default async function HomePage() {
                         <Mic className="w-2.5 h-2.5" /> Podcast
                       </span>
                     )}
-                    <h3 className="text-base font-serif font-bold mt-2 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
+                    <h3 className="text-base font-serif font-bold mt-2 leading-snug group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                       {article.title}
                     </h3>
                     <p className="text-xs font-serif italic mt-1" style={{ color: "var(--red)" }}>
