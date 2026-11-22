@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: United Kingdom, Germany
 subject: Dress code and workplace formality
+satirical_headline: The tie went out of fashion; the formality merely moved to the grammar.
 linkedin_caption: Only 7 percent of British workers wear a suit to work, according to a 2023 YouGov survey. Germany dressed down too, but kept the formal Sie in every sentence. Formality has moved from the wardrobe to the vocabulary. Which would you rather get wrong on your first day?
 linkedin_hashtags: DressCode, ProfessionalImage, WorkplaceCulture, GlobalWorkplace
 social_score: 7

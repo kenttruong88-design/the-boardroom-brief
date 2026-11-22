@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: South Korea, Malaysia
 subject: Office social rituals
+satirical_headline: The company dinner is optional in the way that Tuesday is optional.
 linkedin_caption: In Seoul the boss pours the drinks. In Kuala Lumpur the boss hosts the dinner. In both, you are expected to turn up and eat. The company dinner is a different obligation in each country. Which version could you actually survive?
 linkedin_hashtags: TeamCulture, WorkplaceCulture, GlobalWorkplace, Leadership
 social_score: 6

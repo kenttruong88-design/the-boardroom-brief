@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Sweden, Hungary
 subject: Onboarding and mentorship practices
+satirical_headline: Trust is extended on day one in one country and on a payment plan in the other.
 linkedin_caption: Gallup reports that only 12 percent of American employees say their company does a good job of onboarding. Sweden trusts you from day one. Hungary reserves judgment until month three. Which first week would you rather have?
 linkedin_hashtags: Onboarding, Mentorship, HumanResources, WorkplaceCulture
 social_score: 7

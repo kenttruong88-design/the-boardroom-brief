@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Philippines, Singapore
 subject: Salary culture
+satirical_headline: The law guarantees the bonus in one country; in the other you are advised to read the small print.
 linkedin_caption: In the Philippines, the thirteenth month of salary is mandatory, due by 24 December, and often gone by Christmas. Singapore leaves it to your contract. One country legislates the bonus, the other negotiates it. Should a year-end bonus be a right or a reward?
 linkedin_hashtags: Compensation, Bonus, SalaryCulture, WorkplaceCulture
 social_score: 8

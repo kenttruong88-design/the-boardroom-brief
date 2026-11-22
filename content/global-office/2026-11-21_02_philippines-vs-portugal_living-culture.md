@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Philippines, Portugal
 subject: Living culture (cost of living, childcare, welfare, insurance)
+satirical_headline: Low cost and high cover turn out to be sold separately.
 linkedin_caption: Portugal's 2026 minimum wage is 920 euros a month, and a typical 80-square-metre flat rents for about 1,312 euros. The Philippines offers cheap help and a patchy safety net. Portugal offers a safety net and a Lisbon rent. Which is the harder place to build a life on one salary?
 linkedin_hashtags: CostOfLiving, Compensation, GlobalMobility, WorkplaceCulture
 social_score: 8

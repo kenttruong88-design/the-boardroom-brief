@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Austria, Denmark
 subject: Gender dynamics in the workplace
+satirical_headline: Equality at work is mostly a question of who is expected to leave at four.
 linkedin_caption: In Austria, 51.1 percent of employed women work part-time, against 13.7 percent of employed men. In Denmark, the four o'clock pickup is part of the conversation for fathers too. Same argument, different answers, and neither country has finished it. Who should adjust: the workplace or the household?
 linkedin_hashtags: GenderEquality, PayGap, DiversityAndInclusion, WorkplaceCulture
 social_score: 9

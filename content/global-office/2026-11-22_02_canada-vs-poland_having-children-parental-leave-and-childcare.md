@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Canada, Poland
 subject: Having children (parental leave, childcare, career impact)
+satirical_headline: Generosity is measured in weeks and experienced in waiting lists.
 linkedin_caption: On paper Poland offers 61 weeks of leave to new mothers and Canada 50, and both come with fine print. Canada's system is flexible but thinly paid. The headline number is only half the story. Would you take the longer leave or the better pay?
 linkedin_hashtags: ParentalLeave, WorkingParents, HumanResources, WorkplaceCulture
 social_score: 8

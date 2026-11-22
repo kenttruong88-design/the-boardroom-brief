@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Bulgaria, Germany
 subject: Remote work attitudes and flexibility policies
+satirical_headline: Both countries agree that work happens somewhere. They differ on whether that somewhere has a Wednesday.
 linkedin_caption: In 2019, 0.5 percent of employed Bulgarians habitually worked from home, the lowest share in the EU, according to Eurostat. Germany decided years ago and would like a word on Wednesdays. A country's remote work rules say a lot about trust. How much trust does your office run on?
 linkedin_hashtags: RemoteWork, FutureOfWork, WorkplaceCulture, Leadership
 social_score: 7

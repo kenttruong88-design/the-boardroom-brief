@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Chile, New Zealand
 subject: Performance reviews and feedback culture
+satirical_headline: Feedback travels in different directions, but always with a cushion.
 linkedin_caption: Gallup counts 33 percent of Chilean employees as engaged at work and 23 percent of New Zealanders. Chile delivers criticism upward, New Zealand delivers it sideways, and both apologise first. How do you give feedback without softening it into nothing?
 linkedin_hashtags: PerformanceReviews, Feedback, Management, WorkplaceCulture
 social_score: 8

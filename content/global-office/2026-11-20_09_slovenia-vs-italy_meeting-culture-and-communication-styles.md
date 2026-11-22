@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Slovenia, Italy
 subject: Meeting culture and communication styles
+satirical_headline: Punctuality is the easy part; working out where the actual decision was made takes a further week.
 linkedin_caption: Being late to a meeting in Slovenia is considered extremely rude, and hosts are expected to send minutes with action items within a few days. In Italy, the real meeting happens after the meeting. Which one gets more done?
 linkedin_hashtags: MeetingCulture, Communication, WorkplaceCulture, Leadership
 social_score: 8

@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: France, United Arab Emirates
 subject: Work-life balance and overtime norms
+satirical_headline: Whether the clock or the calendar owns your evening depends on the passport.
 linkedin_caption: France defines the full-time week as 35 hours and treats every hour beyond it as an exception needing justification or premium pay. The Emirates count deadlines instead of hours. One system protects the clock, the other protects the outcome. Which would you choose?
 linkedin_hashtags: WorkLifeBalance, Overtime, Wellbeing, WorkplaceCulture
 social_score: 8

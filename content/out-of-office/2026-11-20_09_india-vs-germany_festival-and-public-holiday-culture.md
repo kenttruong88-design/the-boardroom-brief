@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: India, Germany
 subject: Festival and public holiday culture
+satirical_headline: One country celebrates everything at once and the other books it in advance, then closes the shops.
 instagram_caption: India celebrates everything at once. Germany celebrates everything on a schedule and then closes the shops. 🪔 Diwali, Holi, Eid, Christmas, Pongal, Onam, Durga Puja and more. Which holiday calendar would you rather live by? Full article — link in bio
 instagram_hashtags: Festivals, India, Germany, ExpatLife, PublicHolidays
 social_score: 9

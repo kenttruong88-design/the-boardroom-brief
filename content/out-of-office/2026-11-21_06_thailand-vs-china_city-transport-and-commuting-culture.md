@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Thailand, China
 subject: City transport and commuting culture
+satirical_headline: Hope is a transport plan in one city and a QR code in the other.
 instagram_caption: Bangkok commutes on hope and a motorbike. China commutes on a schedule and a QR code. 🛵 Getting to work in Bangkok is an act of faith. What is your commute built on? Full article — link in bio
 instagram_hashtags: CommuteLife, Bangkok, China, ExpatLife, Motorbike
 social_score: 8

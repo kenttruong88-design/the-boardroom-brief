@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Hungary, Austria
 subject: Supermarket and grocery shopping culture
+satirical_headline: Politeness is the product in one aisle and the opening bid in the other.
 instagram_caption: Austria sells you groceries politely. Hungary sells them to you in a negotiation. 🛒 Two countries, one border, one former empire and an unreasonable fondness for pork. How do you shop abroad? Full article — link in bio
 instagram_hashtags: Groceries, Hungary, Austria, ExpatLife, Shopping
 social_score: 7

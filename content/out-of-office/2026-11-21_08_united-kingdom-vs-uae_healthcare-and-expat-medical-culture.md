@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: United Kingdom, UAE
 subject: Healthcare and expat medical culture
+satirical_headline: Both countries have waiting lists. Only one sends the doctor, and insurance has views.
 instagram_caption: In Britain you queue for the doctor. In the UAE the doctor queues for you, pending insurance approval. 🏥 The British love affair with the NHS is conducted entirely through complaint. Which would you pick? Full article — link in bio
 instagram_hashtags: HealthcareAbroad, NHS, UAE, ExpatHealth, ExpatLife
 social_score: 9

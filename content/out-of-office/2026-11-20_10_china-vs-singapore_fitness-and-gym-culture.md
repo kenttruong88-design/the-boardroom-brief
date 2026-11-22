@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: China, Singapore
 subject: Fitness and gym culture
+satirical_headline: Dawn belongs to the public in one country and to the air conditioning in the other.
 instagram_caption: China exercises in public at dawn. Singapore does it indoors under air conditioning. 🧘 Parks fill with tai chi, sword dancers and people walking backwards. Where would you work out? Full article — link in bio
 instagram_hashtags: FitnessAbroad, China, Singapore, ExpatLife, TaiChi
 social_score: 8

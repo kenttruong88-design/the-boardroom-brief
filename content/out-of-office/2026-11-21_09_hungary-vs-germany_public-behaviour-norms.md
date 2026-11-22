@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Hungary, Germany
 subject: Public behaviour norms
+satirical_headline: Silence is legislated in one country and enforced by glaring in the other.
 instagram_caption: Germany legislates silence on Sundays. Hungary just judges you quietly from the bench. 🤫 In Germany there is a rule for when you can vacuum and a rule for when you can mow. Which rulebook would you break first? Full article — link in bio
 instagram_hashtags: CultureShock, Germany, Hungary, ExpatLife, Etiquette
 social_score: 8

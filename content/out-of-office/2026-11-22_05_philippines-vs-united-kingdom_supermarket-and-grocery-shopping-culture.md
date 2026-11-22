@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Philippines, United Kingdom
 subject: Supermarket and grocery shopping culture
+satirical_headline: Groceries are a day out in one country and a chore in the other.
 instagram_caption: In the Philippines the grocery run is a social event, from wet market to air-conditioned mall. In Britain it is administration in a large shed with a trolley that pulls left 🛒 Which shop would feel like home? Full article — link in bio
 instagram_hashtags: OutOfOffice, ExpatLife, GroceryShopping, Philippines, UnitedKingdom, LivingAbroad
 social_score: 7

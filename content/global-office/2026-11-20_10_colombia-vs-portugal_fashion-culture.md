@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Colombia, Portugal
 subject: Fashion culture
+satirical_headline: Appearance is assessed in seconds and appealed never.
 linkedin_caption: One poster on an Expat.com thread said that in Colombia the shoes are the first thing people notice, and that looking disheveled is a form of disrespect. In Portugal, the risk is overdressing. Same job, different dress rules that nobody wrote down. What does your outfit say before you speak?
 linkedin_hashtags: DressCode, ProfessionalImage, WorkplaceCulture, GlobalWorkplace
 social_score: 7

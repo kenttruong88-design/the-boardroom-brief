@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Czechia, Canada
 subject: Festival and public holiday culture
+satirical_headline: Festive tradition decides which dinner starts the day alive and which is eaten twice.
 instagram_caption: Czechs buy a live carp, keep it in the bath and eat it on Christmas Eve 🐟 Canadians eat turkey twice, once in October and once in December 🎄 Whose holiday table would you rather sit at? Full article — link in bio
 instagram_hashtags: OutOfOffice, ExpatLife, Christmas, Czechia, Canada, LivingAbroad
 social_score: 9

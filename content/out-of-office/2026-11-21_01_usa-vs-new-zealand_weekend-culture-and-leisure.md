@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: USA, New Zealand
 subject: Weekend culture and leisure
+satirical_headline: Plans are compulsory in one country; in the other, mud is the plan.
 instagram_caption: America fills the weekend with plans. New Zealand fills it with mud and mild smugness. 🥾 The American weekend is a logistics operation, with brunch booked eleven days ahead. What does your weekend look like? Full article — link in bio
 instagram_hashtags: WeekendVibes, USA, NewZealand, ExpatLife, Outdoors
 social_score: 9

@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Moldova, Ireland
 subject: Hotel and accommodation culture
+satirical_headline: Check-in rituals differ, and so do the instructions, which in one case do not exist.
 instagram_caption: Ireland hands you a kettle and a breakfast so large it needs a second sitting ☕ Moldova hands you a glass of wine and no instructions 🍷 Which check-in would you take? Full article — link in bio
 instagram_hashtags: OutOfOffice, ExpatLife, HotelLife, Ireland, Moldova, LivingAbroad
 social_score: 8

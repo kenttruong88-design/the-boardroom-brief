@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: New Zealand, Canada
 subject: Weather and how locals cope
+satirical_headline: Both survive winter, one with layers and the other with a thermostat that has opinions.
 instagram_caption: New Zealanders dress for winter indoors. Canadians dress for winter outdoors and heat the house like a sauna. 🧣 Two theories of winter. Which one would you pick? Full article — link in bio
 instagram_hashtags: WinterLife, NewZealand, Canada, ExpatLife, WeatherLife
 social_score: 8

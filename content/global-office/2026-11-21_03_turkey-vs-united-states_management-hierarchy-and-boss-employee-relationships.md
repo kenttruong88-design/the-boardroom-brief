@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Turkey, United States
 subject: Management hierarchy and boss-employee relationships
+satirical_headline: The same org chart, read in two very different tones of voice.
 linkedin_caption: Only 29 percent of American workers were engaged at work in the third quarter of 2026, according to Gallup, the lowest figure since 2011. In Istanbul, the boss is a patriarch you consult in private. In America, he is a first name who can fire you on Friday. Which style gets better engagement?
 linkedin_hashtags: Leadership, Management, WorkplaceCulture, GlobalWorkplace
 social_score: 9

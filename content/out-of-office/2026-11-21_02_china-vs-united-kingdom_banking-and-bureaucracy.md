@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: China, United Kingdom
 subject: Banking and bureaucracy
+satirical_headline: Identity is checked in person in one place and by paper trail in the other, and nobody trusts either.
 instagram_caption: China wants your face at the counter. Britain wants a utility bill you do not have yet. 🏦 Every banking system tells you what it fears. Which one made opening an account hardest? Full article — link in bio
 instagram_hashtags: Banking, China, UK, ExpatLife, Paperwork
 social_score: 9

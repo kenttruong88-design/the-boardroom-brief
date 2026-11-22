@@ -5,6 +5,7 @@ pillar: The Global Office
 author: Priya Mehta
 countries: Greece, Canada
 subject: Eating habits and food culture
+satirical_headline: Dinner time is a matter of geography, and tipping a matter of conscience.
 linkedin_caption: Locally favoured restaurants in Greece look empty at seven in the evening and fill after half past nine. In Canada, a restaurant at that hour is stacking chairs. Greece dines at ten and Canada tips at twenty, and each finds the other slightly alarming. When does your team actually eat?
 linkedin_hashtags: TeamCulture, WorkplaceCulture, GlobalWorkplace, Leadership
 social_score: 6

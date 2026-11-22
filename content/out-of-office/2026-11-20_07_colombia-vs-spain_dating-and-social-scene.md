@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Colombia, Spain
 subject: Dating and social scene
+satirical_headline: One country flirts in public. The other flirts in paragraphs and leaves anyway.
 instagram_caption: Colombia dances its way into a relationship. Spain talks its way out of one. 💃 Dating in Colombia is a contact sport conducted to a soundtrack. Which approach is closer to yours? Full article — link in bio
 instagram_hashtags: DatingAbroad, Colombia, Spain, ExpatLife, SalsaNight
 social_score: 9

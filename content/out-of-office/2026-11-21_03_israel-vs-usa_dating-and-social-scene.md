@@ -5,6 +5,7 @@ pillar: Out of Office
 author: Suki Nakamura
 countries: Israel, USA
 subject: Dating and social scene
+satirical_headline: Commitment arrives early in one country and is still under review in the other.
 instagram_caption: In Israel you get engaged by date ten. In America you are still defining the relationship. 💍 American dating is a long, anxious negotiation conducted mostly in text messages. Which pace suits you? Full article — link in bio
 instagram_hashtags: DatingAbroad, Israel, USA, ExpatLife, Relationships
 social_score: 10
