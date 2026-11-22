@@ -5,6 +5,7 @@ import {
   scheduleBufferPost,
   type BufferProfile,
 } from "@/app/lib/social/buffer-client";
+import { withHashtags } from "@/app/lib/social/format-post";
 import {
   GUARANTEED_PILLARS,
   PLATFORM_CAPS,
@@ -195,7 +196,7 @@ async function run() {
       sentThisRun[post.platform] = nth + 1;
       const bufferPostId = await scheduleBufferPost(
         profileId,
-        post.content,
+        withHashtags(post.content, post.hashtags),
         effectiveDueAt,
         post.image_url ?? undefined,
         post.platform

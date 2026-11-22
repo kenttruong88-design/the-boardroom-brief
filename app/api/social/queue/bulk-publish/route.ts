@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuth } from "@/app/api/editorial/_helpers";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { getBufferProfiles, scheduleBufferPost } from "@/app/lib/social/buffer-client";
+import { withHashtags } from "@/app/lib/social/format-post";
 import { POST_SPACING_MINUTES, planDays } from "@/app/lib/social/pick-posts";
 
 export const maxDuration = 120;
@@ -123,10 +124,7 @@ export async function POST(req: Request) {
       sentThisRun[post.platform] = nth + 1;
       const scheduledAt = new Date(baseAt.getTime() + nth * (POST_SPACING_MINUTES[post.platform] ?? 90) * 60 * 1000);
 
-      const tags = post.hashtags ?? [];
-      const finalText = tags.length
-        ? `${post.content}\n\n${tags.map((t: string) => `#${t}`).join(" ")}`
-        : post.content;
+      const finalText = withHashtags(post.content, post.hashtags);
 
       try {
         const bufferPostId = await scheduleBufferPost(

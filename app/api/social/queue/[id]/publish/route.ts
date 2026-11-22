@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuth } from "@/app/api/editorial/_helpers";
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { getBufferProfiles, scheduleBufferPost, cancelBufferPost } from "@/app/lib/social/buffer-client";
+import { withHashtags } from "@/app/lib/social/format-post";
 
 export const maxDuration = 60;
 
@@ -70,10 +71,7 @@ export async function POST(
     const scheduledAt = requestedAt <= now ? new Date(now.getTime() + 2 * 60 * 1000) : requestedAt;
 
     // 6. Call Buffer — revert claim on failure so the post can be retried
-    const tags = (post.hashtags as string[] | null) ?? [];
-    const finalText = tags.length
-      ? `${post.content as string}\n\n${tags.map((t: string) => `#${t}`).join(" ")}`
-      : (post.content as string);
+    const finalText = withHashtags(post.content as string, post.hashtags as string[] | null);
 
     let bufferPostId: string;
     try {
