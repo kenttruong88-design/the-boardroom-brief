@@ -169,7 +169,7 @@ export default async function SectionPage({ params }: Props) {
                       <h2 className="text-2xl sm:text-3xl font-serif font-bold leading-tight group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
                         {featured.title}
                       </h2>
-                      <p className="text-base font-serif italic" style={{ color: "var(--red)" }}>{featured.satiricalHeadline}</p>
+                      <p className="text-base font-serif italic" style={{ color: "var(--ink)" }}>{featured.satiricalHeadline}</p>
                       <p className="text-sm font-sans leading-relaxed" style={{ color: "var(--ink-m)" }}>{featured.excerpt}</p>
                       <div className="flex items-center justify-between">
                         <Meta date={featured.publishedAt} readTime={featured.readTime} />
@@ -220,7 +220,7 @@ export default async function SectionPage({ params }: Props) {
                       <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
                         {article.title}
                       </h3>
-                      <p className="text-sm font-serif italic mt-1" style={{ color: "var(--red)" }}>{article.satiricalHeadline}</p>
+                      <p className="text-sm font-serif italic mt-1" style={{ color: "var(--ink)" }}>{article.satiricalHeadline}</p>
                       <p className="text-xs font-sans mt-2 line-clamp-2 leading-relaxed" style={{ color: "var(--ink-m)" }}>{article.excerpt}</p>
                       <div className="mt-3 flex items-center justify-between">
                         <Meta date={article.publishedAt} readTime={article.readTime} />

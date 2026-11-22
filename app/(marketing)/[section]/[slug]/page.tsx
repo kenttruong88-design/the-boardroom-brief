@@ -463,7 +463,7 @@ export default async function ArticlePage({ params }: Props) {
                       <Link href={`/${a.pillar}/${a.slug}`}>
                         <span className={`pillar-badge text-2xs ${pillar?.color}`}>{pillar?.name}</span>
                         <h4 className="text-sm font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>{a.title}</h4>
-                        <p className="text-xs font-serif italic mt-1" style={{ color: "var(--red)" }}>{a.satiricalHeadline}</p>
+                        <p className="text-xs font-serif italic mt-1" style={{ color: "var(--ink)" }}>{a.satiricalHeadline}</p>
                         <p className="text-xs mt-2" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>{formatDateShort(a.publishedAt)}</p>
                       </Link>
                     </article>

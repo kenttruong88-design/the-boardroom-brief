@@ -131,7 +131,7 @@ export default async function HomePage() {
                       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight group-hover:opacity-80 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                         {hero.article.title}
                       </h2>
-                      <p className="text-lg font-serif italic" style={{ color: "var(--red)" }}>
+                      <p className="text-lg font-serif italic" style={{ color: "var(--ink)" }}>
                         {hero.article.satiricalHeadline}
                       </p>
                       <p className="text-sm font-sans leading-relaxed" style={{ color: "var(--ink-m)" }}>
@@ -184,7 +184,7 @@ export default async function HomePage() {
                     <h3 className="text-base font-serif font-bold mt-2 leading-snug group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                       {article.title}
                     </h3>
-                    <p className="text-xs font-serif italic mt-1" style={{ color: "var(--red)" }}>
+                    <p className="text-xs font-serif italic mt-1" style={{ color: "var(--ink)" }}>
                       {article.satiricalHeadline}
                     </p>
                     <p className="text-xs font-sans mt-2 leading-relaxed line-clamp-2" style={{ color: "var(--ink-m)" }}>

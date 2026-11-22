@@ -222,7 +222,7 @@ export default async function ContinentPage({ params }: Props) {
                       <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
                         {article.title}
                       </h3>
-                      <p className="text-xs font-serif italic mt-1" style={{ color: "var(--red)" }}>
+                      <p className="text-xs font-serif italic mt-1" style={{ color: "var(--ink)" }}>
                         {article.satiricalHeadline}
                       </p>
                       <div className="flex items-center gap-3 text-xs mt-2" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>
