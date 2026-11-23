@@ -217,9 +217,9 @@ export default async function ContinentPage({ params }: Props) {
               <div className="space-y-5">
                 {articles.map((article) => (
                   <article key={article.slug} className="group border-b pb-5" style={{ borderColor: "var(--border)" }}>
-                    <Link href={`/${article.pillar}/${article.slug}`}>
+                    <Link href={`/${article.pillar}/${article.slug}`} className="no-underline hover:no-underline">
                       <PillarBadge pillar={article.pillar} />
-                      <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
+                      <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                         {article.title}
                       </h3>
                       <p className="text-xs font-serif italic mt-1" style={{ color: "var(--ink)" }}>

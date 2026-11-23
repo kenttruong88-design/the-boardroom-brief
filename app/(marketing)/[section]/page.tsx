@@ -162,11 +162,11 @@ export default async function SectionPage({ params }: Props) {
             {/* Featured article */}
             {featured && (
               <article className="group mb-8 pb-8 border-b" style={{ borderColor: "var(--border)" }}>
-                <Link href={`/${featured.pillar}/${featured.slug}`}>
+                <Link href={`/${featured.pillar}/${featured.slug}`} className="no-underline hover:no-underline">
                   <div className="grid grid-cols-1 sm:grid-cols-5 gap-6 items-start">
                     <div className="sm:col-span-3 space-y-2">
                       <PillarBadge pillar={featured.pillar} />
-                      <h2 className="text-2xl sm:text-3xl font-serif font-bold leading-tight group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
+                      <h2 className="text-2xl sm:text-3xl font-serif font-bold leading-tight group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                         {featured.title}
                       </h2>
                       <p className="text-base font-serif italic" style={{ color: "var(--ink)" }}>{featured.satiricalHeadline}</p>
@@ -203,7 +203,7 @@ export default async function SectionPage({ params }: Props) {
                 const imageUrl = (article as typeof article & { imageUrl?: string | null }).imageUrl ?? null;
                 return (
                   <article key={article.slug} className="group border-b pb-6" style={{ borderColor: "var(--border)" }}>
-                    <Link href={`/${article.pillar}/${article.slug}`}>
+                    <Link href={`/${article.pillar}/${article.slug}`} className="no-underline hover:no-underline">
                       {/* Thumbnail */}
                       <div className="mb-3 overflow-hidden rounded-sm" style={{ position: "relative", paddingTop: "56.25%", background: "linear-gradient(135deg, var(--navy) 0%, #1a2a3a 100%)" }}>
                         {imageUrl && (
@@ -217,7 +217,7 @@ export default async function SectionPage({ params }: Props) {
                         )}
                       </div>
                       <PillarBadge pillar={article.pillar} />
-                      <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>
+                      <h3 className="text-base font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>
                         {article.title}
                       </h3>
                       <p className="text-sm font-serif italic mt-1" style={{ color: "var(--ink)" }}>{article.satiricalHeadline}</p>

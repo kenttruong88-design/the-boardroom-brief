@@ -460,9 +460,9 @@ export default async function ArticlePage({ params }: Props) {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {related.map((a) => (
                     <article key={a.slug} className="group">
-                      <Link href={`/${a.pillar}/${a.slug}`}>
+                      <Link href={`/${a.pillar}/${a.slug}`} className="no-underline hover:no-underline">
                         <span className={`pillar-badge text-2xs ${pillar?.color}`}>{pillar?.name}</span>
-                        <h4 className="text-sm font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>{a.title}</h4>
+                        <h4 className="text-sm font-serif font-bold mt-1.5 leading-snug group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>{a.title}</h4>
                         <p className="text-xs font-serif italic mt-1" style={{ color: "var(--ink)" }}>{a.satiricalHeadline}</p>
                         <p className="text-xs mt-2" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>{formatDateShort(a.publishedAt)}</p>
                       </Link>
@@ -496,8 +496,8 @@ export default async function ArticlePage({ params }: Props) {
                   <div className="space-y-4">
                     {related.map((a) => (
                       <article key={a.slug} className="group border-b pb-4" style={{ borderColor: "var(--border)" }}>
-                        <Link href={`/${a.pillar}/${a.slug}`}>
-                          <p className="text-sm font-serif font-bold leading-snug group-hover:opacity-70 transition-opacity" style={{ color: "var(--navy)" }}>{a.title}</p>
+                        <Link href={`/${a.pillar}/${a.slug}`} className="no-underline hover:no-underline">
+                          <p className="text-sm font-serif font-bold leading-snug group-hover:opacity-70 transition-opacity group-hover:underline decoration-[var(--red)] underline-offset-4" style={{ color: "var(--navy)" }}>{a.title}</p>
                           <p className="text-2xs mt-1" style={{ color: "var(--ink-m)", fontFamily: "var(--font-jetbrains)" }}>{formatDateShort(a.publishedAt)}</p>
                         </Link>
                       </article>
