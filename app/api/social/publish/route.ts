@@ -6,6 +6,7 @@ import {
   type BufferProfile,
 } from "@/app/lib/social/buffer-client";
 import { withHashtags } from "@/app/lib/social/format-post";
+import { escapeHtml, sendSocialEmail } from "@/app/lib/social/notify";
 import {
   GUARANTEED_PILLARS,
   PLATFORM_CAPS,
@@ -234,6 +235,22 @@ async function run() {
     errors:          details.filter((d) => d.status === "failed"),
     duration_ms:     Date.now() - startedAt,
   });
+
+  // 6b. Alert on failures. Failed rows are not retried, so each failure alerts once; a
+  // repeating setup problem (warnings) is limited to the first run of each hour.
+  const failedDetails = details.filter((d) => d.status === "failed");
+  if (failedDetails.length > 0 || (warnings.length > 0 && now.getUTCMinutes() < 15)) {
+    await sendSocialEmail(
+      `Social publish: ${failedDetails.length} failed${warnings.length ? `, ${warnings.length} warning(s)` : ""}`,
+      `<p>The publish cron ran at ${now.toISOString()}.</p>` +
+        (failedDetails.length
+          ? `<p><strong>Failed posts:</strong></p><ul>${failedDetails
+              .map((d) => `<li>[${escapeHtml(d.platform)}] ${escapeHtml(d.headline)} — ${escapeHtml(d.error ?? "unknown error")}</li>`)
+              .join("")}</ul>`
+          : "") +
+        (warnings.length ? `<p><strong>Warnings:</strong></p><ul>${warnings.map((w) => `<li>${escapeHtml(w)}</li>`).join("")}</ul>` : "")
+    );
+  }
 
   // 7. Return summary
   return NextResponse.json({ postsSent, postsFailed, sentToday: sentToday + postsSent, caps: PLATFORM_CAPS, warnings, details });
