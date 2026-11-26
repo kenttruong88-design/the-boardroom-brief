@@ -1,5 +1,6 @@
 import { createAdminClient } from "@/app/lib/supabase-server";
 import { nextSlot, PILLAR_PLATFORMS } from "./queue-social-posts";
+import { holdReasons, hookKey } from "./auto-approve";
 
 // Captions are written by the newsroom scheduled tasks into each article's
 // frontmatter (linkedin_caption / linkedin_hashtags / instagram_caption /
@@ -62,7 +63,8 @@ export interface SocialSkip {
   reason: "no-caption" | "no-image" | "already-queued" | "insert-failed";
 }
 
-// Rows enter social_queue as pending_approval, so nothing posts unreviewed.
+// Rows that pass the auto-approve gate (see auto-approve.ts) enter social_queue as "pending"
+// and the publish cron sends them; the rest enter as pending_approval and wait for a human.
 // Every platform the pillar routes to that does NOT get a row is logged with
 // the reason — previously a missing caption or image skipped without a trace.
 export function instagramCaption(caption: string, pillarId: string): string {
@@ -96,13 +98,20 @@ export async function queueSocialFromMarkdown(input: QueueFromMarkdownInput): Pr
       .eq("article_id", docId).eq("platform", platform);
     if (count) { skip(platform, "already-queued"); continue; }
 
+    // Auto-approve only posts that pass the quality gate; everything else waits for a human.
+    const { data: recent } = await supabase.from("social_queue").select("content")
+      .eq("platform", platform).order("created_at", { ascending: false }).limit(300);
+    const recentHooks = (recent ?? []).map((r) => hookKey(String(r.content ?? "")));
+    const reasons = holdReasons({ platform, caption: post.caption, hashtags: post.hashtags, score: social.score, recentHooks });
+    if (reasons.length) console.warn(`[social-queue] ${pillarId}/${slug}: ${platform} held for review (${reasons.join("; ")})`);
+
     const { error } = await supabase.from("social_queue").insert({
       article_id:       docId,
       article_slug:     slug,
       article_headline: title,
       article_url:      articleUrl,
       pillar:           pillarId,
-      status:           "pending_approval",
+      status:           reasons.length ? "pending_approval" : "pending",
       generated_by:     "auto", // social_queue_generated_by_check allows only auto|manual
       platform,
       // Instagram captions can't hold clickable links, so no article URL. Point to the bio link
