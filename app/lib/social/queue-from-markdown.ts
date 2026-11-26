@@ -22,6 +22,17 @@ function list(v: unknown): string[] {
   return str(v).split(",").map((x) => x.trim()).filter(Boolean);
 }
 
+// The cron frontmatter parsers are line-based (no YAML block scalars), so a long,
+// multi-paragraph LinkedIn caption is written on ONE line, with a literal backslash-n
+// (two characters) between paragraphs. Turn those into real line breaks.
+function unescapeCaption(v: string): string {
+  return v
+    .replace(/\\n/g, "\n")
+    .replace(/[ \t]*\n[ \t]*/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 function stripHash(tag: string): string {
   return tag.replace(/^#+/, "").replace(/\s+/g, "");
 }
@@ -31,7 +42,7 @@ export function parseSocialCaptions(fm: Record<string, unknown>): SocialCaptions
   const score = Number.isFinite(raw) ? Math.min(10, Math.max(1, Math.round(raw))) : undefined;
   return {
     ...(score !== undefined && { score }),
-    ...(str(fm.linkedin_caption)  && { linkedin:  { caption: str(fm.linkedin_caption),  hashtags: list(fm.linkedin_hashtags).map(stripHash) } }),
+    ...(str(fm.linkedin_caption)  && { linkedin:  { caption: unescapeCaption(str(fm.linkedin_caption)),  hashtags: list(fm.linkedin_hashtags).map(stripHash) } }),
     ...(str(fm.instagram_caption) && { instagram: { caption: str(fm.instagram_caption), hashtags: list(fm.instagram_hashtags).map(stripHash) } }),
   };
 }
